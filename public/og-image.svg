@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#050816"/>
+      <stop offset="50%" stop-color="#0a1331"/>
+      <stop offset="100%" stop-color="#03040d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="200" cy="315" r="180" fill="none" stroke="#9fe1cb" stroke-width="8" opacity="0.15"/>
+  <circle cx="1000" cy="315" r="120" fill="none" stroke="#FAC775" stroke-width="6" opacity="0.12"/>
+  <text x="600" y="240" text-anchor="middle" font-family="sans-serif" font-weight="700" font-size="160" fill="#9fe1cb">أ ب ت</text>
+  <text x="600" y="380" text-anchor="middle" font-family="sans-serif" font-weight="700" font-size="72" fill="#ffffff">ArabFingers</text>
+  <text x="600" y="440" text-anchor="middle" font-family="sans-serif" font-weight="400" font-size="28" fill="rgba(255,255,255,0.6)">Arabic Keyboard Smash Toy for Kids | لعبة الحروف العربية للأطفال</text>
+  <text x="600" y="540" text-anchor="middle" font-family="sans-serif" font-size="22" fill="#FAC775">🚀 3D Animations · 🔊 Letter Pronunciation · 🎨 5 Themes · 🌍 Bilingual</text>
+</svg>

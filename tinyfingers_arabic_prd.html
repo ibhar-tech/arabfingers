@@ -1,0 +1,883 @@
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        font-family: var(--font-sans);
+        color: var(--color-text-primary);
+    }
+    .prd {
+        max-width: 680px;
+        padding: 0 0 2rem;
+    }
+    .hero {
+        background: linear-gradient(
+            135deg,
+            #1a1035 0%,
+            #2d1b69 50%,
+            #0f2a4a 100%
+        );
+        border-radius: 16px;
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+    .hero::before {
+        content: "🧸🎈🌟🦄🚀";
+        position: absolute;
+        top: 10px;
+        right: 16px;
+        font-size: 22px;
+        letter-spacing: 4px;
+        opacity: 0.6;
+    }
+    .hero-badge {
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 20px;
+        font-size: 11px;
+        padding: 3px 10px;
+        margin-bottom: 12px;
+        color: rgba(255, 255, 255, 0.85);
+    }
+    .hero h1 {
+        font-size: 22px;
+        font-weight: 500;
+        margin-bottom: 6px;
+        color: white;
+    }
+    .hero-sub {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.65);
+        margin-bottom: 1rem;
+    }
+    .hero-tags {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+    .tag {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        font-size: 11px;
+        padding: 2px 10px;
+        color: rgba(255, 255, 255, 0.8);
+    }
+    .toc {
+        background: var(--color-background-secondary);
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        margin-bottom: 1.5rem;
+        border: 0.5px solid var(--color-border-tertiary);
+    }
+    .toc-title {
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--color-text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 10px;
+    }
+    .toc-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4px;
+    }
+    .toc-item {
+        font-size: 13px;
+        color: var(--color-text-secondary);
+        padding: 3px 0;
+        cursor: pointer;
+    }
+    .toc-item:hover {
+        color: var(--color-text-primary);
+    }
+    .toc-num {
+        color: #7f77dd;
+        font-size: 11px;
+        margin-right: 6px;
+        font-weight: 500;
+    }
+    section {
+        margin-bottom: 1.5rem;
+    }
+    .sec-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 1rem;
+        padding-bottom: 8px;
+        border-bottom: 0.5px solid var(--color-border-tertiary);
+    }
+    .sec-num {
+        background: #eeedfe;
+        color: #534ab7;
+        font-size: 11px;
+        font-weight: 500;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+    .sec-title {
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .card {
+        background: var(--color-background-primary);
+        border: 0.5px solid var(--color-border-tertiary);
+        border-radius: 12px;
+        padding: 1rem 1.25rem;
+        margin-bottom: 10px;
+    }
+    .card-title {
+        font-size: 13px;
+        font-weight: 500;
+        margin-bottom: 6px;
+    }
+    .card-body {
+        font-size: 13px;
+        color: var(--color-text-secondary);
+        line-height: 1.6;
+    }
+    .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 8px;
+    }
+    .pill {
+        background: var(--color-background-secondary);
+        border: 0.5px solid var(--color-border-tertiary);
+        border-radius: 20px;
+        font-size: 11px;
+        padding: 3px 10px;
+        color: var(--color-text-secondary);
+    }
+    .pill.green {
+        background: #eaf3de;
+        color: #3b6d11;
+        border-color: #c0dd97;
+    }
+    .pill.purple {
+        background: #eeedfe;
+        color: #534ab7;
+        border-color: #afa9ec;
+    }
+    .pill.blue {
+        background: #e6f1fb;
+        color: #185fa5;
+        border-color: #85b7eb;
+    }
+    .pill.amber {
+        background: #faeeda;
+        color: #854f0b;
+        border-color: #fac775;
+    }
+    .pill.coral {
+        background: #faece7;
+        color: #993c1d;
+        border-color: #f0997b;
+    }
+    .feat-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    .feat-card {
+        background: var(--color-background-primary);
+        border: 0.5px solid var(--color-border-tertiary);
+        border-radius: 10px;
+        padding: 12px;
+    }
+    .feat-icon {
+        font-size: 20px;
+        margin-bottom: 6px;
+        display: block;
+    }
+    .feat-name {
+        font-size: 13px;
+        font-weight: 500;
+        margin-bottom: 4px;
+    }
+    .feat-desc {
+        font-size: 12px;
+        color: var(--color-text-secondary);
+        line-height: 1.5;
+    }
+    .priority-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 4px;
+    }
+    .p1 {
+        background: #e24b4a;
+    }
+    .p2 {
+        background: #ef9f27;
+    }
+    .p3 {
+        background: #639922;
+    }
+    .stack-row {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .stack-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 10px;
+        background: var(--color-background-primary);
+        border: 0.5px solid var(--color-border-tertiary);
+        border-radius: 8px;
+    }
+    .stack-lib {
+        font-size: 13px;
+        font-weight: 500;
+        min-width: 140px;
+        flex-shrink: 0;
+    }
+    .stack-role {
+        font-size: 12px;
+        color: var(--color-text-secondary);
+        line-height: 1.5;
+    }
+    .phase-row {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .phase {
+        border-left: 3px solid var(--color-border-tertiary);
+        padding-left: 12px;
+    }
+    .phase.p1-phase {
+        border-color: #e24b4a;
+    }
+    .phase.p2-phase {
+        border-color: #ef9f27;
+    }
+    .phase.p3-phase {
+        border-color: #639922;
+    }
+    .phase-name {
+        font-size: 13px;
+        font-weight: 500;
+        margin-bottom: 4px;
+    }
+    .phase-items {
+        font-size: 12px;
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+    }
+    .prompt-box {
+        background: #1a1035;
+        border-radius: 12px;
+        padding: 1.25rem;
+        font-family: var(--font-mono);
+        font-size: 11.5px;
+        line-height: 1.7;
+        color: #c9d1d9;
+        overflow-x: auto;
+        border: 0.5px solid rgba(127, 119, 221, 0.3);
+    }
+    .prompt-comment {
+        color: #7f77dd;
+    }
+    .prompt-key {
+        color: #9fe1cb;
+    }
+    .prompt-val {
+        color: #fac775;
+    }
+    .copy-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 10px;
+        font-size: 12px;
+        padding: 5px 12px;
+    }
+    .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+    .metric {
+        background: var(--color-background-secondary);
+        border-radius: 10px;
+        padding: 12px;
+        text-align: center;
+    }
+    .metric-val {
+        font-size: 20px;
+        font-weight: 500;
+        color: #534ab7;
+    }
+    .metric-label {
+        font-size: 11px;
+        color: var(--color-text-secondary);
+        margin-top: 2px;
+    }
+    .divider {
+        border: none;
+        border-top: 0.5px solid var(--color-border-tertiary);
+        margin: 1.5rem 0;
+    }
+    .rtl-badge {
+        direction: rtl;
+        font-family: "Tahoma", var(--font-sans);
+        font-size: 13px;
+        background: #faeeda;
+        color: #633806;
+        border: 0.5px solid #fac775;
+        border-radius: 6px;
+        padding: 4px 10px;
+        display: inline-block;
+    }
+    .user-row {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    .user-card {
+        background: var(--color-background-secondary);
+        border: 0.5px solid var(--color-border-tertiary);
+        border-radius: 10px;
+        padding: 10px 14px;
+        flex: 1;
+        min-width: 140px;
+    }
+    .user-icon {
+        font-size: 18px;
+        margin-bottom: 4px;
+    }
+    .user-name {
+        font-size: 13px;
+        font-weight: 500;
+        margin-bottom: 2px;
+    }
+    .user-desc {
+        font-size: 11px;
+        color: var(--color-text-secondary);
+    }
+</style>
+
+<div class="prd">
+    <div class="hero">
+        <div class="hero-badge">PRD v1.0 — Product Requirements Document</div>
+        <h1>ArabFingers — Keyboard Smash Toy</h1>
+        <div class="hero-sub">
+            A bilingual (Arabic + English) fullscreen keyboard smash toy for
+            kids<br />with 3D floating objects, animations, and rich
+            localization
+        </div>
+        <div class="hero-tags">
+            <span class="tag">Next.js 15+</span>
+            <span class="tag">React Three Fiber</span>
+            <span class="tag">Framer Motion</span>
+            <span class="tag">Arabic RTL</span>
+            <span class="tag">i18n</span>
+            <span class="tag">Kids 1–6 yrs</span>
+        </div>
+    </div>
+
+    <div class="toc">
+        <div class="toc-title">Table of contents</div>
+        <div class="toc-grid">
+            <div class="toc-item">
+                <span class="toc-num">01</span>Overview & vision
+            </div>
+            <div class="toc-item">
+                <span class="toc-num">02</span>Target users
+            </div>
+            <div class="toc-item">
+                <span class="toc-num">03</span>Core features
+            </div>
+            <div class="toc-item">
+                <span class="toc-num">04</span>Localization
+            </div>
+            <div class="toc-item">
+                <span class="toc-num">05</span>Tech stack
+            </div>
+            <div class="toc-item">
+                <span class="toc-num">06</span>3D & animation spec
+            </div>
+            <div class="toc-item">
+                <span class="toc-num">07</span>Parent panel
+            </div>
+            <div class="toc-item">
+                <span class="toc-num">08</span>Success metrics
+            </div>
+            <div class="toc-item"><span class="toc-num">09</span>Phases</div>
+            <div class="toc-item">
+                <span class="toc-num">10</span>AI agent prompt
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="sec-header">
+            <div class="sec-num">1</div>
+            <div class="sec-title">Overview & vision</div>
+        </div>
+        <div class="card">
+            <div class="card-title">Problem</div>
+            <div class="card-body">
+                When parents (especially Arab/bilingual ones) hand the keyboard
+                to a toddler, existing toys like TinyFingers show only English
+                animations, have no Arabic letter recognition, no bilingual UI,
+                and no culturally relevant themes. Kids see random characters,
+                not their own alphabet.
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">Solution</div>
+            <div class="card-body">
+                ArabFingers is a fullscreen, bilingual keyboard-smash
+                experience. It detects which language the key belongs to, shows
+                the large Arabic or English letter with its name spoken aloud,
+                and fills the screen with animated 3D floating toys, animals,
+                and emojis. The UI is fully localized in Arabic (RTL) and
+                English (LTR) — switchable from a parent panel.
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">Differentiators vs TinyFingers</div>
+            <div class="card-body">
+                <div class="pill-row">
+                    <span class="pill green">Arabic alphabet detection</span>
+                    <span class="pill green"
+                        >3D floating objects (Three.js)</span
+                    >
+                    <span class="pill green">Bilingual letter display</span>
+                    <span class="pill green">Letter name + sound (TTS)</span>
+                    <span class="pill green">RTL / LTR UI switching</span>
+                    <span class="pill green">Arabic cultural themes</span>
+                    <span class="pill green">Open-source self-hostable</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="sec-header">
+            <div class="sec-num">2</div>
+            <div class="sec-title">Target users</div>
+        </div>
+        <div class="user-row">
+            <div class="user-card">
+                <div class="user-icon">👶</div>
+                <div class="user-name">Toddlers (1–4 yrs)</div>
+                <div class="user-desc">
+                    Primary — smash keys, see & hear letters
+                </div>
+            </div>
+            <div class="user-card">
+                <div class="user-icon">🧒</div>
+                <div class="user-name">Pre-schoolers (4–6)</div>
+                <div class="user-desc">
+                    Learn letter names, match Arabic ↔ English
+                </div>
+            </div>
+            <div class="user-card">
+                <div class="user-icon">👨‍💻</div>
+                <div class="user-name">Arab developer parent</div>
+                <div class="user-desc">
+                    Self-hosting, wants bilingual content
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="sec-header">
+            <div class="sec-num">3</div>
+            <div class="sec-title">Core features</div>
+        </div>
+        <div class="feat-grid">
+            <div class="feat-card">
+                <span class="feat-icon">⌨️</span>
+                <div class="feat-name">
+                    <span class="priority-dot p1"></span>Key capture & display
+                </div>
+                <div class="feat-desc">
+                    Any keypress shows the character large on screen. Detects
+                    Arabic vs Latin. Shows both scripts side by side for the
+                    same key.
+                </div>
+            </div>
+            <div class="feat-card">
+                <span class="feat-icon">🌐</span>
+                <div class="feat-name">
+                    <span class="priority-dot p1"></span>Bilingual letter panel
+                </div>
+                <div class="feat-desc">
+                    Shows Arabic letter + English equivalent + the letter name
+                    in both languages. E.g. press "A" → shows أ / A / "ألف".
+                </div>
+            </div>
+            <div class="feat-card">
+                <span class="feat-icon">🔊</span>
+                <div class="feat-name">
+                    <span class="priority-dot p1"></span>Text-to-Speech
+                </div>
+                <div class="feat-desc">
+                    Web Speech API reads the letter name aloud in the active
+                    language (Arabic voice for Arabic letters, English voice for
+                    English).
+                </div>
+            </div>
+            <div class="feat-card">
+                <span class="feat-icon">🧸</span>
+                <div class="feat-name">
+                    <span class="priority-dot p1"></span>3D floating objects
+                </div>
+                <div class="feat-desc">
+                    React Three Fiber canvas floats 3D toys, animals, stars, and
+                    emojis that bounce and spin behind the letter display.
+                </div>
+            </div>
+            <div class="feat-card">
+                <span class="feat-icon">🎨</span>
+                <div class="feat-name">
+                    <span class="priority-dot p2"></span>Themes
+                </div>
+                <div class="feat-desc">
+                    Space 🚀, Underwater 🐠, Desert 🌵, Jungle 🦁, Ramadan ✨ —
+                    each with matching 3D objects and color palettes.
+                </div>
+            </div>
+            <div class="feat-card">
+                <span class="feat-icon">📱</span>
+                <div class="feat-name">
+                    <span class="priority-dot p2"></span>Touch + mouse +
+                    keyboard
+                </div>
+                <div class="feat-desc">
+                    Tap anywhere on a touch screen, click, or smash the keyboard
+                    — all trigger the same experience. Works on tablets.
+                </div>
+            </div>
+            <div class="feat-card">
+                <span class="feat-icon">🔒</span>
+                <div class="feat-name">
+                    <span class="priority-dot p1"></span>Fullscreen lock
+                </div>
+                <div class="feat-desc">
+                    App goes fullscreen immediately and traps navigation keys
+                    (F5, Alt+F4, Win key softblock). Parent unlock via secret
+                    gesture.
+                </div>
+            </div>
+            <div class="feat-card">
+                <span class="feat-icon">🎉</span>
+                <div class="feat-name">
+                    <span class="priority-dot p2"></span>Confetti milestones
+                </div>
+                <div class="feat-desc">
+                    Every 10 keys smashed triggers a confetti explosion +
+                    encouraging message in the active language.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="sec-header">
+            <div class="sec-num">4</div>
+            <div class="sec-title">Localization requirements</div>
+        </div>
+        <div class="card">
+            <div class="card-title">Arabic ↔ English mapping</div>
+            <div class="card-body">
+                Full 28-letter Arabic alphabet mapped to nearest Latin phonetic
+                equivalent. Arabic keyboard layout (when OS is in AR mode)
+                detected via Unicode range U+0600–U+06FF. Display both scripts
+                simultaneously on each keypress.
+                <div class="pill-row" style="margin-top: 10px">
+                    <span class="rtl-badge">أ — Alef</span>
+                    <span class="rtl-badge">ب — Ba</span>
+                    <span class="rtl-badge">ت — Ta</span>
+                    <span class="rtl-badge">ث — Tha</span>
+                    <span class="rtl-badge">ج — Jeem</span>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">UI language switching</div>
+            <div class="card-body">
+                All UI text (counters, milestones, parent panel, settings)
+                available in Arabic (RTL, dir="rtl") and English (LTR). Stored
+                in /locales/ar.json and /locales/en.json. Active locale stored
+                in localStorage. <strong>next-intl</strong> handles routing and
+                translation.
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">Font requirements</div>
+            <div class="card-body">
+                Arabic: <strong>IBM Plex Arabic</strong> or
+                <strong>Noto Naskh Arabic</strong> (Google Fonts). English
+                display: <strong>Fredoka</strong> or
+                <strong>Nunito</strong> (rounded, child-friendly). Both loaded
+                via next/font.
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="sec-header">
+            <div class="sec-num">5</div>
+            <div class="sec-title">Tech stack</div>
+        </div>
+        <div class="stack-row">
+            <div class="stack-item">
+                <div class="stack-lib">Next.js 15+ (App Router)</div>
+                <div class="stack-role">
+                    Framework. Use App Router with a single root page.tsx that
+                    renders the fullscreen app. No SSR needed for the main
+                    canvas — use "use client" directive. next-intl for i18n
+                    routing (/en, /ar).
+                </div>
+            </div>
+            <div class="stack-item">
+                <div class="stack-lib">
+                    React Three Fiber + @react-three/drei
+                </div>
+                <div class="stack-role">
+                    3D canvas for floating objects. Use &lt;Canvas&gt; as a
+                    background layer. Drei helpers: Float, MeshWobbleMaterial,
+                    Sphere, Box, Torus, OrbitControls (disabled in production).
+                    drei/Text for 3D letter rendering.
+                </div>
+            </div>
+            <div class="stack-item">
+                <div class="stack-lib">Framer Motion</div>
+                <div class="stack-role">
+                    2D overlay animations. Letter pop animation (scale + fade),
+                    confetti, milestone messages, emoji bursts on keypress. Use
+                    AnimatePresence for letter transitions.
+                </div>
+            </div>
+            <div class="stack-item">
+                <div class="stack-lib">Zustand</div>
+                <div class="stack-role">
+                    Lightweight global state for: current key, key count, active
+                    theme, active locale, parent panel open state, sound
+                    setting. No Redux overhead needed.
+                </div>
+            </div>
+            <div class="stack-item">
+                <div class="stack-lib">next-intl</div>
+                <div class="stack-role">
+                    Internationalization. Translation files at /messages/ar.json
+                    and /messages/en.json. RTL detection via locale — apply
+                    dir="rtl" to html element when locale is "ar".
+                </div>
+            </div>
+            <div class="stack-item">
+                <div class="stack-lib">Howler.js</div>
+                <div class="stack-role">
+                    Sound effects — key smash sound, milestone chime, confetti
+                    pop. Pre-load audio sprites for instant playback. Web Speech
+                    API (native browser) for letter name TTS.
+                </div>
+            </div>
+            <div class="stack-item">
+                <div class="stack-lib">Tailwind CSS v4</div>
+                <div class="stack-role">
+                    Utility styling. Custom theme tokens for each visual theme
+                    (space, desert, etc.). Dark mode = always on for the main
+                    canvas (space feel). RTL utilities via tailwindcss-rtl
+                    plugin.
+                </div>
+            </div>
+            <div class="stack-item">
+                <div class="stack-lib">canvas-confetti</div>
+                <div class="stack-role">
+                    Milestone confetti explosions. Triggered at 10, 25, 50, 100
+                    key smashes. Bilingual celebration message overlaid via
+                    Framer Motion.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="sec-header">
+            <div class="sec-num">6</div>
+            <div class="sec-title">3D & animation spec</div>
+        </div>
+        <div class="card">
+            <div class="card-title">3D floating objects (R3F)</div>
+            <div class="card-body">
+                Background Three.js canvas renders 15–25 floating 3D objects
+                based on the active theme:
+                <div class="pill-row">
+                    <span class="pill purple"
+                        >Space: 🚀 rockets, ⭐ stars, 🪐 planets</span
+                    >
+                    <span class="pill blue"
+                        >Desert: 🌵 cacti, 🐪 camels, 🌙 moons</span
+                    >
+                    <span class="pill green"
+                        >Jungle: 🦁 lions, 🌴 palms, 🐸 frogs</span
+                    >
+                    <span class="pill coral"
+                        >Underwater: 🐠 fish, 🐙 octopi, 🪸 coral</span
+                    >
+                </div>
+                Each object uses drei's &lt;Float&gt; for gentle floating,
+                random rotation speed, and MeshWobbleMaterial for jelly-like
+                movement. On keypress, nearest object "reacts" with a bounce
+                (scale spring).
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">
+                Letter display animation (Framer Motion)
+            </div>
+            <div class="card-body">
+                On each keypress: previous letter exits with scale(0) +
+                opacity(0) in 150ms. New letter enters with spring scale from
+                0.5→1.2→1.0, opacity 0→1. Letter card shows Arabic character
+                (large, ~30vw) + English character (medium, ~10vw) side by side.
+                Both letter names shown below in respective fonts.
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">Emoji burst</div>
+            <div class="card-body">
+                On each keypress, 3–5 random emojis burst from the tap/click
+                point using Framer Motion (radial spread + fade out over 600ms).
+                Each emoji has random velocity vector and rotation.
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="sec-header">
+            <div class="sec-num">7</div>
+            <div class="sec-title">Parent panel</div>
+        </div>
+        <div class="card">
+            <div class="card-title">Access method</div>
+            <div class="card-body">
+                Hold top-left corner for 2.5 seconds, OR type "والدين" (Arabic)
+                or "parent" (English) on keyboard. Panel slides in as a modal
+                overlay. Simple PIN lock optional (4-digit, stored in
+                localStorage).
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-title">Controls</div>
+            <div class="card-body">
+                <div class="pill-row">
+                    <span class="pill">🔊 Sound on/off</span>
+                    <span class="pill">🌍 Language: AR / EN / Both</span>
+                    <span class="pill">🎨 Theme picker</span>
+                    <span class="pill">🔢 Show key counter</span>
+                    <span class="pill">🐢 Reduce motion</span>
+                    <span class="pill">⤢ Exit fullscreen</span>
+                    <span class="pill"
+                        >🔤 Letter mode: AR only / EN only / Both</span
+                    >
+                    <span class="pill">🔊 TTS voice speed</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="sec-header">
+            <div class="sec-num">8</div>
+            <div class="sec-title">Success metrics</div>
+        </div>
+        <div class="metrics-grid">
+            <div class="metric">
+                <div class="metric-val">&lt;100ms</div>
+                <div class="metric-label">Keypress to animation</div>
+            </div>
+            <div class="metric">
+                <div class="metric-val">60fps</div>
+                <div class="metric-label">Canvas frame rate</div>
+            </div>
+            <div class="metric">
+                <div class="metric-val">&lt;3s</div>
+                <div class="metric-label">First load (cold)</div>
+            </div>
+            <div class="metric">
+                <div class="metric-val">28</div>
+                <div class="metric-label">Arabic letters mapped</div>
+            </div>
+            <div class="metric">
+                <div class="metric-val">5</div>
+                <div class="metric-label">Visual themes</div>
+            </div>
+            <div class="metric">
+                <div class="metric-val">0</div>
+                <div class="metric-label">Ads / tracking</div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="sec-header">
+            <div class="sec-num">9</div>
+            <div class="sec-title">Development phases</div>
+        </div>
+        <div class="phase-row">
+            <div class="phase p1-phase">
+                <div class="phase-name">Phase 1 — MVP (Week 1–2)</div>
+                <div class="phase-items">
+                    ✓ Fullscreen keypress capture &amp; display<br />
+                    ✓ Arabic + English letter card with both scripts<br />
+                    ✓ Framer Motion letter pop animation<br />
+                    ✓ Basic emoji burst on keypress<br />
+                    ✓ TTS letter name in AR + EN<br />
+                    ✓ 1 theme (Space)<br />
+                    ✓ Parent panel (sound + exit fullscreen)<br />
+                    ✓ AR/EN locale switch in parent panel
+                </div>
+            </div>
+            <div class="phase p2-phase">
+                <div class="phase-name">Phase 2 — 3D + Themes (Week 3–4)</div>
+                <div class="phase-items">
+                    ✓ React Three Fiber background canvas<br />
+                    ✓ 15 floating 3D objects with Float + Wobble<br />
+                    ✓ 4 more themes (Desert, Jungle, Underwater, Ramadan)<br />
+                    ✓ Theme picker in parent panel<br />
+                    ✓ canvas-confetti milestones at 10/25/50/100 keys<br />
+                    ✓ Touch screen support (tap anywhere)<br />
+                    ✓ Key smash sound effects (Howler.js)
+                </div>
+            </div>
+            <div class="phase p3-phase">
+                <div class="phase-name">Phase 3 — Polish (Week 5)</div>
+                <div class="phase-items">
+                    ✓ Keypress counter &amp; session summary screen<br />
+                    ✓ Reduce motion mode<br />
+                    ✓ PWA manifest (installable on iPad/tablet)<br />
+                    ✓ Keyboard layout detection (AR OS vs EN OS)<br />
+                    ✓ Full RTL layout flip for AR locale<br />
+                    ✓ Accessibility: prefers-reduced-motion respected<br />
+                    ✓ Open Graph / share card for parents
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
