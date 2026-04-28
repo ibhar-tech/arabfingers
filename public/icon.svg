@@ -1,6 +1,70 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" rx="96" fill="#050816"/>
-  <circle cx="256" cy="220" r="140" fill="none" stroke="#9fe1cb" stroke-width="16" opacity="0.3"/>
-  <text x="256" y="260" text-anchor="middle" font-family="sans-serif" font-weight="700" font-size="200" fill="#9fe1cb">أ</text>
-  <text x="256" y="420" text-anchor="middle" font-family="sans-serif" font-weight="600" font-size="80" fill="#FAC775">AF</text>
+  <defs>
+    <!-- Background Sky Blue -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#48CAE4" />
+      <stop offset="100%" stop-color="#0077B6" />
+    </linearGradient>
+
+    <!-- Block 1 (Left) Pink -->
+    <linearGradient id="block1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF9A9E" />
+      <stop offset="100%" stop-color="#FF758C" />
+    </linearGradient>
+
+    <!-- Block 3 (Right) Yellow/Orange -->
+    <linearGradient id="block3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F6D365" />
+      <stop offset="100%" stop-color="#FDA085" />
+    </linearGradient>
+
+    <!-- Block 2 (Center) Purple -->
+    <linearGradient id="block2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B06AB3" />
+      <stop offset="100%" stop-color="#4568DC" />
+    </linearGradient>
+
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000000" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Base -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)"/>
+  
+  <!-- Fun sparkles -->
+  <circle cx="80" cy="100" r="16" fill="#FFFFFF" opacity="0.6"/>
+  <circle cx="430" cy="150" r="22" fill="#FFFFFF" opacity="0.6"/>
+  <path d="M 90 400 L 100 420 L 120 430 L 100 440 L 90 460 L 80 440 L 60 430 L 80 420 Z" fill="#FFE066" opacity="0.8"/>
+  <path d="M 400 350 L 405 365 L 420 370 L 405 375 L 400 390 L 395 375 L 380 370 L 395 365 Z" fill="#FF9A9E" opacity="0.8"/>
+  <circle cx="256" cy="60" r="10" fill="#FFFFFF" opacity="0.4"/>
+  <circle cx="150" cy="450" r="14" fill="#FFFFFF" opacity="0.4"/>
+
+  <!-- Left Block (ت) -->
+  <g transform="translate(140, 240) rotate(-15)">
+    <rect x="-60" y="-60" width="120" height="120" rx="25" fill="url(#block1)" filter="url(#shadow)"/>
+    <text x="0" y="20" text-anchor="middle" font-family="'Nunito', 'Comic Sans MS', sans-serif" font-weight="900" font-size="70" fill="#FFFFFF">ت</text>
+  </g>
+
+  <!-- Right Block (ب) -->
+  <g transform="translate(372, 240) rotate(15)">
+    <rect x="-60" y="-60" width="120" height="120" rx="25" fill="url(#block3)" filter="url(#shadow)"/>
+    <text x="0" y="20" text-anchor="middle" font-family="'Nunito', 'Comic Sans MS', sans-serif" font-weight="900" font-size="70" fill="#FFFFFF">ب</text>
+  </g>
+
+  <!-- Center Block (أ) -->
+  <g transform="translate(256, 210) scale(1.2)">
+    <rect x="-70" y="-70" width="140" height="140" rx="30" fill="url(#block2)" filter="url(#shadow)"/>
+    <text x="0" y="15" text-anchor="middle" font-family="'Nunito', 'Comic Sans MS', sans-serif" font-weight="900" font-size="80" fill="#FFFFFF">أ</text>
+    
+    <!-- Cute Face -->
+    <circle cx="-25" cy="40" r="6" fill="#FFFFFF"/>
+    <circle cx="25" cy="40" r="6" fill="#FFFFFF"/>
+    <circle cx="-40" cy="45" r="8" fill="#FF8E8B" opacity="0.9"/>
+    <circle cx="40" cy="45" r="8" fill="#FF8E8B" opacity="0.9"/>
+    <path d="M -10 42 Q 0 52 10 42" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Title Text -->
+  <text x="256" y="460" text-anchor="middle" font-family="'Nunito', 'Comic Sans MS', sans-serif" font-weight="900" font-size="44" fill="#FFFFFF" letter-spacing="1" filter="url(#shadow)">ArabFingers</text>
 </svg>
