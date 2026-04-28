@@ -7,12 +7,10 @@ import { isLocale, locales, type AppLocale } from "@/lib/locales";
 
 import arMessages from "../../messages/ar.json";
 import enMessages from "../../messages/en.json";
-import frMessages from "../../messages/fr.json";
 
 const allMessages: Record<AppLocale, Record<string, string>> = {
   ar: arMessages,
   en: enMessages,
-  fr: frMessages,
 };
 
 const localeMetadata: Record<AppLocale, Metadata> = {
@@ -25,11 +23,6 @@ const localeMetadata: Record<AppLocale, Metadata> = {
     title: "عرب فنجرز — لعبة الحروف العربية للأطفال",
     description:
       "لعبة مجانية ثنائية اللغة للأطفال من عمر ١ إلى ٦ سنوات. حروف متحركة، أشكال ثلاثية الأبعاد، نطق الحروف و٥ ثيمات مختلفة.",
-  },
-  fr: {
-    title: "ArabFingers — Jouet clavier arabe pour enfants",
-    description:
-      "Jouet clavier bilingue arabe et anglais gratuit pour les tout-petits (1–6 ans). Lettres animées, objets 3D, prononciation et 5 thèmes.",
   },
 };
 

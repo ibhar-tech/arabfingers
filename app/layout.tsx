@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fredoka, IBM_Plex_Sans_Arabic } from "next/font/google";
+import { Fredoka, IBM_Plex_Sans_Arabic, Noto_Naskh_Arabic } from "next/font/google";
 import { ServiceWorkerRegistrar } from "@/components/ServiceWorkerRegistrar";
 import { StructuredData } from "@/components/StructuredData";
 import "./globals.css";
@@ -13,6 +13,12 @@ const fredoka = Fredoka({
 const ibmPlexArabic = IBM_Plex_Sans_Arabic({
   variable: "--font-ibm-plex-arabic",
   subsets: ["arabic", "latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const notoNaskhArabic = Noto_Naskh_Arabic({
+  variable: "--font-noto-naskh",
+  subsets: ["arabic"],
   weight: ["400", "500", "600", "700"],
 });
 
@@ -59,7 +65,7 @@ export const metadata: Metadata = {
     description:
       "Free bilingual Arabic & English keyboard smash toy for toddlers. Animated letters, 3D objects, sound effects & 5 themes. لعبة مجانية ثنائية اللغة للأطفال.",
     locale: "en_US",
-    alternateLocale: ["ar_SA", "fr_FR"],
+    alternateLocale: ["ar_SA"],
     url: siteUrl,
     images: [
       {
@@ -94,7 +100,6 @@ export const metadata: Metadata = {
     languages: {
       "en": `${siteUrl}/en`,
       "ar": `${siteUrl}/ar`,
-      "fr": `${siteUrl}/fr`,
       "x-default": `${siteUrl}/en`,
     },
   },
@@ -130,7 +135,11 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning lang="en" dir="ltr">
-      <body className={`${fredoka.variable} ${ibmPlexArabic.variable} antialiased`}>
+      <head>
+        {/* Google AdSense — replace ca-pub-XXXXXXX with your publisher ID after approval */}
+        <meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX" />
+      </head>
+      <body className={`${fredoka.variable} ${ibmPlexArabic.variable} ${notoNaskhArabic.variable} antialiased`}>
         <StructuredData />
         {children}
         <ServiceWorkerRegistrar />

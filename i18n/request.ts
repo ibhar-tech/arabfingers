@@ -4,12 +4,10 @@ import { locales, type AppLocale } from "@/lib/locales";
 
 import arMessages from "../messages/ar.json";
 import enMessages from "../messages/en.json";
-import frMessages from "../messages/fr.json";
 
 const allMessages: Record<AppLocale, Record<string, string>> = {
   ar: arMessages,
   en: enMessages,
-  fr: frMessages,
 };
 
 export default getRequestConfig(async ({ requestLocale }) => {

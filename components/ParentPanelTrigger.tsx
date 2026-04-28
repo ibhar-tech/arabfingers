@@ -4,6 +4,8 @@ import { Settings } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { useAppStore } from "@/store/useAppStore";
+import { InstallButton } from "@/components/InstallButton";
+import { InfoMenu } from "@/components/InfoMenu";
 
 const HOLD_MS = 1500;
 
@@ -26,36 +28,26 @@ export function ParentPanelTrigger() {
     if (rafRef.current) {
       window.cancelAnimationFrame(rafRef.current);
     }
-
     rafRef.current = null;
     startRef.current = null;
     setProgress(0);
   }
 
   function tick() {
-    if (startRef.current === null) {
-      return;
-    }
-
+    if (startRef.current === null) return;
     const elapsed = performance.now() - startRef.current;
     const nextProgress = Math.min(elapsed / HOLD_MS, 1);
-
     setProgress(nextProgress);
-
     if (nextProgress >= 1) {
       setParentPanelOpen(true);
       reset();
       return;
     }
-
     rafRef.current = window.requestAnimationFrame(tick);
   }
 
   function beginHold() {
-    if (startRef.current !== null) {
-      return;
-    }
-
+    if (startRef.current !== null) return;
     startRef.current = performance.now();
     rafRef.current = window.requestAnimationFrame(tick);
   }
@@ -63,7 +55,8 @@ export function ParentPanelTrigger() {
   const isHolding = progress > 0;
 
   return (
-    <div className="absolute left-2 top-2 sm:left-3 sm:top-3 z-30 safe-top safe-left">
+    <div className="absolute left-2 top-2 sm:left-3 sm:top-3 z-30 safe-top safe-left flex items-center gap-2">
+      {/* Settings button */}
       <button
         type="button"
         data-parent-ui="true"
@@ -93,6 +86,12 @@ export function ParentPanelTrigger() {
           {t("parentHint")}
         </span>
       </button>
+
+      {/* Install button */}
+      <InstallButton />
+
+      {/* Info / pages menu */}
+      <InfoMenu />
     </div>
   );
 }

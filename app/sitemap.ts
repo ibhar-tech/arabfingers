@@ -15,36 +15,42 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
-      alternates: {
-        languages: {
-          ar: `${siteUrl}/ar`,
-          fr: `${siteUrl}/fr`,
-        },
-      },
+      alternates: { languages: { ar: `${siteUrl}/ar` } },
     },
     {
       url: `${siteUrl}/ar`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
-      alternates: {
-        languages: {
-          en: `${siteUrl}/en`,
-          fr: `${siteUrl}/fr`,
-        },
-      },
+      alternates: { languages: { en: `${siteUrl}/en` } },
     },
     {
-      url: `${siteUrl}/fr`,
+      url: `${siteUrl}/en/about`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.8,
-      alternates: {
-        languages: {
-          en: `${siteUrl}/en`,
-          ar: `${siteUrl}/ar`,
-        },
-      },
+      priority: 0.7,
+      alternates: { languages: { ar: `${siteUrl}/ar/about` } },
+    },
+    {
+      url: `${siteUrl}/en/contact`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.6,
+      alternates: { languages: { ar: `${siteUrl}/ar/contact` } },
+    },
+    {
+      url: `${siteUrl}/en/privacy`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.5,
+      alternates: { languages: { ar: `${siteUrl}/ar/privacy` } },
+    },
+    {
+      url: `${siteUrl}/en/terms`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.5,
+      alternates: { languages: { ar: `${siteUrl}/ar/terms` } },
     },
   ];
 }

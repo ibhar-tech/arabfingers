@@ -21,7 +21,7 @@ export function StructuredData() {
       suggestedMinAge: 1,
       suggestedMaxAge: 6,
     },
-    inLanguage: ["ar", "en", "fr"],
+    inLanguage: ["ar", "en"],
     isAccessibleForFree: true,
     keywords:
       "Arabic letters, حروف عربية, kids keyboard, لعبة أطفال, bilingual, ثنائي اللغة, toddler, educational",

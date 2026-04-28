@@ -18,6 +18,7 @@
   --color-accent: var(--accent);
   --font-sans: var(--font-fredoka);
   --font-arabic: var(--font-ibm-plex-arabic);
+  --font-arabic-display: var(--font-noto-naskh);
 }
 
 * {
@@ -31,6 +32,19 @@ body {
   height: 100%;
   overflow: hidden;
   overscroll-behavior: none;
+}
+
+/* Legal/info pages need scrolling */
+html:has(.page-scrollable),
+html:has(.page-scrollable) body {
+  overflow: auto;
+  height: auto;
+}
+
+.page-scrollable {
+  -webkit-user-select: text;
+  user-select: text;
+  touch-action: auto;
 }
 
 html {

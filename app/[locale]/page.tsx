@@ -21,6 +21,7 @@ import {
 } from "@/lib/arabicMap";
 import type { AppLocale } from "@/lib/locales";
 import { playChime, playConfetti, playSmash, primeSounds } from "@/lib/sounds";
+import { playLetterSound, primeLetterSounds } from "@/lib/letterSounds";
 import { themes } from "@/lib/themes";
 import { useAppStore } from "@/store/useAppStore";
 
@@ -87,6 +88,7 @@ export default function LocalePage() {
   useEffect(() => {
     setLocale(locale);
     primeSounds();
+    primeLetterSounds();
     void ensureFullscreen();
 
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -107,33 +109,6 @@ export default function LocalePage() {
   }, [locale, setLocale]);
 
   useEffect(() => {
-    let speechTimeout: ReturnType<typeof setTimeout> | null = null;
-
-    function speakLetter(arName: string, enName: string) {
-      if (typeof window === "undefined" || !("speechSynthesis" in window)) {
-        return;
-      }
-
-      window.speechSynthesis.cancel();
-
-      if (speechTimeout) {
-        clearTimeout(speechTimeout);
-      }
-
-      speechTimeout = setTimeout(() => {
-        const arabicUtterance = new SpeechSynthesisUtterance(arName);
-        arabicUtterance.lang = "ar-SA";
-        arabicUtterance.rate = ttsSpeed;
-
-        const englishUtterance = new SpeechSynthesisUtterance(enName);
-        englishUtterance.lang = "en-US";
-        englishUtterance.rate = ttsSpeed;
-
-        window.speechSynthesis.speak(arabicUtterance);
-        window.speechSynthesis.speak(englishUtterance);
-      }, 80);
-    }
-
     function updateParentSequence(value: string) {
       if (value.length !== 1) {
         return;
@@ -171,7 +146,7 @@ export default function LocalePage() {
           source,
           ...point,
         });
-        speakLetter(letter.arName, letter.enName);
+        if (soundEnabled) playLetterSound(letter.soundId, ttsSpeed);
         return;
       }
 
@@ -188,7 +163,7 @@ export default function LocalePage() {
             source,
             ...point,
           });
-          speakLetter(letter.arName, letter.enName);
+          if (soundEnabled) playLetterSound(letter.soundId, ttsSpeed);
           return;
         }
       }
@@ -204,7 +179,7 @@ export default function LocalePage() {
             source,
             ...point,
           });
-          speakLetter(letter.arName, letter.enName);
+          if (soundEnabled) playLetterSound(letter.soundId, ttsSpeed);
           return;
         }
       }
@@ -275,10 +250,6 @@ export default function LocalePage() {
       window.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("pointermove", onPointerMove);
-
-      if (speechTimeout) {
-        clearTimeout(speechTimeout);
-      }
     };
   }, [registerInteraction, setParentPanelOpen, soundEnabled, theme, ttsSpeed, keyboardLayout]);
 

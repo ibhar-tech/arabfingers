@@ -20,30 +20,30 @@ export function MilestoneMessage() {
     : "";
 
   return (
-    <AnimatePresence>
-      {milestone ? (
-        <motion.div
-          key={milestone.id}
-          initial={{ opacity: 0, scale: 0.84, y: 18 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.92, y: -12 }}
-          transition={{
-            duration: reduceMotion ? 0.18 : 0.32,
-            ease: "easeOut",
-          }}
-          className="pointer-events-none absolute inset-0 z-40 flex items-center justify-center px-4 sm:px-6"
-        >
-          <div className="rounded-2xl sm:rounded-lg border border-white/14 bg-black/48 px-5 py-4 sm:px-8 sm:py-6 text-center shadow-[0_28px_90px_rgba(0,0,0,0.42)] backdrop-blur-md">
+    <div className="pointer-events-none absolute left-0 right-0 bottom-12 sm:bottom-16 z-40 flex justify-center px-4">
+      <AnimatePresence>
+        {milestone ? (
+          <motion.div
+            key={milestone.id}
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: -10 }}
+            transition={{
+              duration: reduceMotion ? 0.18 : 0.32,
+              ease: "easeOut",
+            }}
+            className="rounded-2xl border border-white/14 bg-black/50 px-8 py-5 sm:px-12 sm:py-6 text-center shadow-[0_16px_48px_rgba(0,0,0,0.4)] backdrop-blur-md"
+          >
             <div
-              className="text-[clamp(1.5rem,5vw,4.4rem)] font-semibold"
+              className="text-4xl sm:text-6xl font-semibold"
               style={{ color: themes[theme].palette[4] }}
             >
               {label}
             </div>
-            <div className="mt-2 text-sm text-white/65">{milestone.count}</div>
-          </div>
-        </motion.div>
-      ) : null}
-    </AnimatePresence>
+            <div className="mt-2 text-base sm:text-lg text-white/55">🎉 {milestone.count}</div>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+    </div>
   );
 }

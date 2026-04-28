@@ -111,8 +111,8 @@ export function ParentPanel() {
   const [pinUnlocked, setPinUnlocked] = useState(false);
   const [pinInput, setPinInput] = useState("");
 
-  function switchLocale(nextLocale: "ar" | "en" | "fr") {
-    const nextPath = pathname.replace(/^\/(ar|en|fr)(?=\/|$)/, `/${nextLocale}`);
+  function switchLocale(nextLocale: "ar" | "en") {
+    const nextPath = pathname.replace(/^\/(ar|en)(?=\/|$)/, `/${nextLocale}`);
 
     startTransition(() => {
       setLocale(nextLocale);
@@ -220,7 +220,7 @@ export function ParentPanel() {
                   <Languages className="h-4 w-4" />
                   {t("uiLanguage")}
                 </div>
-                <div className="grid grid-cols-3 gap-2">
+                <div className="grid grid-cols-2 gap-2">
                   <SegmentedOption
                     label={t("arabicLabel")}
                     selected={locale === "ar"}
@@ -230,11 +230,6 @@ export function ParentPanel() {
                     label={t("englishLabel")}
                     selected={locale === "en"}
                     onClick={() => switchLocale("en")}
-                  />
-                  <SegmentedOption
-                    label={t("frenchLabel")}
-                    selected={locale === "fr"}
-                    onClick={() => switchLocale("fr")}
                   />
                 </div>
               </section>
