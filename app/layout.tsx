@@ -22,7 +22,7 @@ const notoNaskhArabic = Noto_Naskh_Arabic({
   weight: ["400", "500", "600", "700"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://arabfingers.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://arabfingers.site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -136,8 +136,8 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en" dir="ltr">
       <head>
-        {/* Google AdSense — replace ca-pub-XXXXXXX with your publisher ID after approval */}
-        <meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX" />
+        <meta name="google-adsense-account" content="ca-pub-9623110963718326" />
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9623110963718326" crossOrigin="anonymous" />
       </head>
       <body className={`${fredoka.variable} ${ibmPlexArabic.variable} ${notoNaskhArabic.variable} antialiased`}>
         <StructuredData />
