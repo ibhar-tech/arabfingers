@@ -3,6 +3,7 @@ import { Fredoka, IBM_Plex_Sans_Arabic, Noto_Naskh_Arabic } from "next/font/goog
 import { ServiceWorkerRegistrar } from "@/components/ServiceWorkerRegistrar";
 import { StructuredData } from "@/components/StructuredData";
 import { AdSenseLoader } from "@/components/AdSenseLoader";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const fredoka = Fredoka({
@@ -147,6 +148,7 @@ export default function RootLayout({
         {children}
         <ServiceWorkerRegistrar />
         <AdSenseLoader />
+        <SpeedInsights />
       </body>
     </html>
   );
