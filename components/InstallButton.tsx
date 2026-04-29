@@ -79,11 +79,17 @@ export function InstallButton() {
   async function handleClick() {
     if (hasNativePrompt && window.__pwaPrompt) {
       try {
+        if (document.fullscreenElement) {
+          await document.exitFullscreen();
+          // Small delay to let the browser exit fullscreen visually before prompting
+          await new Promise((resolve) => setTimeout(resolve, 100));
+        }
         await window.__pwaPrompt.prompt();
         const { outcome } = await window.__pwaPrompt.userChoice;
         if (outcome === "accepted") setHidden(true);
-      } catch {
+      } catch (err) {
         // prompt failed
+        console.error("Install prompt failed:", err);
       }
       window.__pwaPrompt = null;
       setHasNativePrompt(false);

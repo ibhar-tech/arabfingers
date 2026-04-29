@@ -36,26 +36,39 @@ self.addEventListener("fetch", (event) => {
   // Only handle GET requests
   if (request.method !== "GET") return;
 
-  // Never intercept: navigation, manifest, service worker, or chrome-extension
-  if (
-    request.mode === "navigate" ||
-    request.url.includes("manifest.json") ||
-    request.url.includes("sw.js") ||
-    request.url.startsWith("chrome-extension")
-  ) {
+  if (request.url.startsWith("chrome-extension")) return;
+
+  if (request.mode === "navigate") {
+    event.respondWith(
+      fetch(request)
+        .then((response) => {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          return response;
+        })
+        .catch(() => {
+          return caches.match(request).then((cached) => {
+            if (cached) return cached;
+            // Fallback to precached /en if offline and not in cache
+            return caches.match("/en");
+          });
+        })
+    );
     return;
   }
 
   event.respondWith(
     caches.match(request).then((cached) => {
       if (cached) return cached;
-      return fetch(request).then((response) => {
-        if (response.ok) {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
-        }
-        return response;
-      }).catch(() => cached);
+      return fetch(request)
+        .then((response) => {
+          if (response.ok && request.method === "GET") {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          }
+          return response;
+        })
+        .catch(() => cached);
     })
   );
 });
