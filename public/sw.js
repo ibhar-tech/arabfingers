@@ -1,10 +1,11 @@
-const CACHE_NAME = "arabfingers-v1";
+const CACHE_NAME = "arabfingers-v2";
 const PRECACHE_URLS = [
   "/",
   "/en",
   "/ar",
-  "/fr",
-  "/icon.svg",
+  "/manifest.json",
+  "/icon-192.png",
+  "/icon-512.png",
   "/sounds/smash.mp3",
   "/sounds/chime.mp3",
   "/sounds/confetti.mp3",
@@ -29,13 +30,21 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
+  // Don't cache-intercept navigation requests or the manifest
+  // Let the browser handle these directly for PWA install to work
+  const url = new URL(event.request.url);
+  if (event.request.mode === "navigate" || url.pathname === "/manifest.json") {
+    return;
+  }
+
   event.respondWith(
-    fetch(event.request)
-      .then((response) => {
+    caches.match(event.request).then((cached) => {
+      const fetched = fetch(event.request).then((response) => {
         const clone = response.clone();
         caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
         return response;
-      })
-      .catch(() => caches.match(event.request))
+      });
+      return cached || fetched;
+    })
   );
 });
