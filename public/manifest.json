@@ -3,7 +3,7 @@
   "short_name": "ArabFingers",
   "description": "A bilingual Arabic and English keyboard smash toy for toddlers with 3D animations, letter pronunciation, and themed experiences.",
   "start_url": "/en",
-  "id": "/",
+  "id": "https://www.arabfingers.site/",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#050816",

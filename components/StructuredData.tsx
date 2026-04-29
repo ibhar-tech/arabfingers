@@ -6,7 +6,7 @@ export function StructuredData() {
     alternateName: "عرب فنجرز",
     description:
       "A free bilingual Arabic and English keyboard smash toy for toddlers with 3D animations, letter pronunciation, and themed experiences.",
-    url: "https://arabfingers.site",
+    url: "https://www.arabfingers.site",
     applicationCategory: "EducationalApplication",
     operatingSystem: "Any",
     browserRequirements: "Requires JavaScript, WebGL",

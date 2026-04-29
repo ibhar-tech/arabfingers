@@ -1,9 +1,7 @@
-const CACHE_NAME = "arabfingers-v2";
+const CACHE_NAME = "arabfingers-v3";
 const PRECACHE_URLS = [
-  "/",
   "/en",
   "/ar",
-  "/manifest.json",
   "/icon-192.png",
   "/icon-512.png",
   "/sounds/smash.mp3",
@@ -13,7 +11,12 @@ const PRECACHE_URLS = [
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS))
+    caches
+      .open(CACHE_NAME)
+      .then((cache) => cache.addAll(PRECACHE_URLS))
+      .catch(() => {
+        // Don't block install if precaching fails
+      })
   );
   self.skipWaiting();
 });
@@ -28,23 +31,31 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("fetch", (event) => {
-  if (event.request.method !== "GET") return;
+  const { request } = event;
 
-  // Don't cache-intercept navigation requests or the manifest
-  // Let the browser handle these directly for PWA install to work
-  const url = new URL(event.request.url);
-  if (event.request.mode === "navigate" || url.pathname === "/manifest.json") {
+  // Only handle GET requests
+  if (request.method !== "GET") return;
+
+  // Never intercept: navigation, manifest, service worker, or chrome-extension
+  if (
+    request.mode === "navigate" ||
+    request.url.includes("manifest.json") ||
+    request.url.includes("sw.js") ||
+    request.url.startsWith("chrome-extension")
+  ) {
     return;
   }
 
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      const fetched = fetch(event.request).then((response) => {
-        const clone = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+    caches.match(request).then((cached) => {
+      if (cached) return cached;
+      return fetch(request).then((response) => {
+        if (response.ok) {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+        }
         return response;
-      });
-      return cached || fetched;
+      }).catch(() => cached);
     })
   );
 });

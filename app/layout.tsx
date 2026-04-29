@@ -24,7 +24,7 @@ const notoNaskhArabic = Noto_Naskh_Arabic({
   weight: ["400", "500", "600", "700"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://arabfingers.site";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.arabfingers.site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
