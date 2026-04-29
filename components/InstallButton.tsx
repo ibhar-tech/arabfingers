@@ -9,15 +9,10 @@ interface BeforeInstallPromptEvent extends Event {
   userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
 }
 
-// Capture the event globally BEFORE React mounts
-// This runs at module load time so it never misses the event
-let savedPrompt: BeforeInstallPromptEvent | null = null;
-
-if (typeof window !== "undefined") {
-  window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-    savedPrompt = e as BeforeInstallPromptEvent;
-  });
+declare global {
+  interface Window {
+    __pwaPrompt: BeforeInstallPromptEvent | null;
+  }
 }
 
 function isStandalone(): boolean {
@@ -50,28 +45,47 @@ export function InstallButton() {
       return;
     }
 
-    // Check if we already captured the event before mount
-    if (savedPrompt) {
+    // Check if the head script already captured the event
+    if (window.__pwaPrompt) {
       setHasNativePrompt(true);
     }
 
-    // Also listen for future events
+    // Listen for future events too
     function onBeforeInstall(e: Event) {
       e.preventDefault();
-      savedPrompt = e as BeforeInstallPromptEvent;
+      window.__pwaPrompt = e as BeforeInstallPromptEvent;
       setHasNativePrompt(true);
     }
 
     window.addEventListener("beforeinstallprompt", onBeforeInstall);
-    return () => window.removeEventListener("beforeinstallprompt", onBeforeInstall);
+
+    // Poll briefly in case the event fired between head script and this effect
+    const poll = setInterval(() => {
+      if (window.__pwaPrompt) {
+        setHasNativePrompt(true);
+        clearInterval(poll);
+      }
+    }, 500);
+
+    const stopPoll = setTimeout(() => clearInterval(poll), 5000);
+
+    return () => {
+      window.removeEventListener("beforeinstallprompt", onBeforeInstall);
+      clearInterval(poll);
+      clearTimeout(stopPoll);
+    };
   }, []);
 
   async function handleClick() {
-    if (hasNativePrompt && savedPrompt) {
-      await savedPrompt.prompt();
-      const { outcome } = await savedPrompt.userChoice;
-      if (outcome === "accepted") setHidden(true);
-      savedPrompt = null;
+    if (hasNativePrompt && window.__pwaPrompt) {
+      try {
+        await window.__pwaPrompt.prompt();
+        const { outcome } = await window.__pwaPrompt.userChoice;
+        if (outcome === "accepted") setHidden(true);
+      } catch {
+        // prompt failed
+      }
+      window.__pwaPrompt = null;
       setHasNativePrompt(false);
       return;
     }

@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import { Fredoka, IBM_Plex_Sans_Arabic, Noto_Naskh_Arabic } from "next/font/google";
-import { ServiceWorkerRegistrar } from "@/components/ServiceWorkerRegistrar";
 import { StructuredData } from "@/components/StructuredData";
 import { AdSenseLoader } from "@/components/AdSenseLoader";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -142,11 +141,20 @@ export default function RootLayout({
         <meta name="google-adsense-account" content="ca-pub-9623110963718326" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.__pwaPrompt=null;window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();window.__pwaPrompt=e})`,
+          }}
+        />
       </head>
       <body className={`${fredoka.variable} ${ibmPlexArabic.variable} ${notoNaskhArabic.variable} antialiased`}>
         <StructuredData />
         {children}
-        <ServiceWorkerRegistrar />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if("serviceWorker"in navigator){navigator.serviceWorker.register("/sw.js")}`,
+          }}
+        />
         <AdSenseLoader />
         <SpeedInsights />
       </body>
