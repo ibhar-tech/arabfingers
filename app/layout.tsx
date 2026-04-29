@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     "Arabic for toddlers",
     "العربية للأطفال",
   ],
-  manifest: "/manifest.json",
+
   applicationName: "ArabFingers",
   authors: [{ name: "ArabFingers" }],
   creator: "ArabFingers",
@@ -139,22 +139,18 @@ export default function RootLayout({
     <html suppressHydrationWarning lang="en" dir="ltr">
       <head>
         <meta name="google-adsense-account" content="ca-pub-9623110963718326" />
+        <link rel="manifest" href="/manifest.json" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script
           dangerouslySetInnerHTML={{
-            __html: `if(typeof window.__pwaPrompt==="undefined"){window.__pwaPrompt=null;}window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();window.__pwaPrompt=e})`,
+            __html: `if(typeof window.__pwaPrompt==="undefined"){window.__pwaPrompt=null;}window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();window.__pwaPrompt=e});if("serviceWorker"in navigator){navigator.serviceWorker.register("/sw.js")}`,
           }}
         />
       </head>
       <body className={`${fredoka.variable} ${ibmPlexArabic.variable} ${notoNaskhArabic.variable} antialiased`}>
         <StructuredData />
         {children}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `if("serviceWorker"in navigator){navigator.serviceWorker.register("/sw.js")}`,
-          }}
-        />
         <AdSenseLoader />
         <SpeedInsights />
       </body>
