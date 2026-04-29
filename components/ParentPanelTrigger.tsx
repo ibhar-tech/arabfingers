@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { useAppStore } from "@/store/useAppStore";
 import { InstallButton } from "@/components/InstallButton";
 import { InfoMenu } from "@/components/InfoMenu";
+import { FullscreenButton } from "@/components/FullscreenButton";
 
 const HOLD_MS = 1500;
 
@@ -92,6 +93,9 @@ export function ParentPanelTrigger() {
 
       {/* Info / pages menu */}
       <InfoMenu />
+
+      {/* Fullscreen toggle */}
+      <FullscreenButton />
     </div>
   );
 }
