@@ -30,15 +30,13 @@ html,
 body {
   width: 100%;
   height: 100%;
-  overflow: hidden;
-  overscroll-behavior: none;
 }
 
-/* Legal/info pages need scrolling */
-html:has(.page-scrollable),
-html:has(.page-scrollable) body {
-  overflow: auto;
-  height: auto;
+/* Play page locks scrolling */
+html:has(.play-surface),
+html:has(.play-surface) body {
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
 .page-scrollable {

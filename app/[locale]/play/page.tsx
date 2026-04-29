@@ -285,7 +285,7 @@ export default function LocalePage() {
   return (
     <main
       aria-label={t("screenLabel")}
-      className="relative h-dvh w-screen overflow-hidden"
+      className="play-surface relative h-dvh w-screen overflow-hidden"
       style={{ background: themes[theme].background }}
     >
       <div
