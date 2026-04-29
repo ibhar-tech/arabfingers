@@ -8,10 +8,11 @@ type PageLayoutProps = {
 
 const navLinks = [
   { href: "", labelEn: "Home", labelAr: "الرئيسية" },
+  { href: "/play", labelEn: "▶ Play", labelAr: "▶ العب" },
+  { href: "/learn/arabic-alphabet-guide", labelEn: "Alphabet", labelAr: "الأبجدية" },
+  { href: "/learn/teaching-arabic-to-kids", labelEn: "For Parents", labelAr: "للوالدين" },
   { href: "/about", labelEn: "About", labelAr: "عن التطبيق" },
   { href: "/contact", labelEn: "Contact", labelAr: "تواصل معنا" },
-  { href: "/privacy", labelEn: "Privacy", labelAr: "الخصوصية" },
-  { href: "/terms", labelEn: "Terms", labelAr: "الشروط" },
 ];
 
 export function PageLayout({ locale, children }: PageLayoutProps) {

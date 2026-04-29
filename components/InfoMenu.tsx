@@ -6,10 +6,13 @@ import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 
 const links = [
+  { href: "", icon: FileText, labelEn: "Home", labelAr: "الرئيسية" },
+  { href: "learn/arabic-alphabet-guide", icon: FileText, labelEn: "Alphabet Guide", labelAr: "دليل الأبجدية" },
+  { href: "learn/teaching-arabic-to-kids", icon: FileText, labelEn: "For Parents", labelAr: "للوالدين" },
   { href: "about", icon: FileText, labelEn: "About", labelAr: "عن التطبيق" },
   { href: "contact", icon: Mail, labelEn: "Contact Us", labelAr: "تواصل معنا" },
-  { href: "privacy", icon: Shield, labelEn: "Privacy Policy", labelAr: "سياسة الخصوصية" },
-  { href: "terms", icon: Scale, labelEn: "Terms of Service", labelAr: "شروط الاستخدام" },
+  { href: "privacy", icon: Shield, labelEn: "Privacy", labelAr: "الخصوصية" },
+  { href: "terms", icon: Scale, labelEn: "Terms", labelAr: "الشروط" },
 ];
 
 export function InfoMenu() {
