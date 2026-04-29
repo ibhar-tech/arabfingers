@@ -1,9 +1,8 @@
 "use client";
 
-import confetti from "canvas-confetti";
 import dynamic from "next/dynamic";
 import { useLocale, useTranslations } from "next-intl";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { EmojiBlast } from "@/components/EmojiBlast";
 import { KeyCounter } from "@/components/KeyCounter";
 import { LetterDisplay } from "@/components/LetterDisplay";
@@ -66,6 +65,12 @@ export default function LocalePage() {
   const sequenceRef = useRef("");
   const pointerRef = useRef({ x: 0, y: 0 });
   const fullscreenAttemptedRef = useRef(false);
+  const [show3D, setShow3D] = useState(false);
+
+  // Load 3D background after first interaction to avoid blocking initial paint
+  const activate3D = useCallback(() => {
+    if (!show3D) setShow3D(true);
+  }, [show3D]);
 
   async function ensureFullscreen() {
     if (fullscreenAttemptedRef.current || document.fullscreenElement) {
@@ -131,6 +136,7 @@ export default function LocalePage() {
       point: ReturnType<typeof getPoint>,
     ) {
       void ensureFullscreen();
+      activate3D();
 
       const currentTheme = themes[theme];
 
@@ -251,17 +257,19 @@ export default function LocalePage() {
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("pointermove", onPointerMove);
     };
-  }, [registerInteraction, setParentPanelOpen, soundEnabled, theme, ttsSpeed, keyboardLayout]);
+  }, [registerInteraction, setParentPanelOpen, soundEnabled, theme, ttsSpeed, keyboardLayout, activate3D]);
 
   useEffect(() => {
     if (!milestone) {
       return;
     }
 
-    confetti({
-      particleCount: 150,
-      spread: 80,
-      origin: { y: 0.6 },
+    import("canvas-confetti").then((mod) => {
+      mod.default({
+        particleCount: 150,
+        spread: 80,
+        origin: { y: 0.6 },
+      });
     });
     playConfetti(soundEnabled);
 
@@ -284,9 +292,11 @@ export default function LocalePage() {
         className="absolute inset-0"
         style={{ background: themes[theme].veil }}
       />
-      <ThreeDErrorBoundary>
-        <ThreeDBackground />
-      </ThreeDErrorBoundary>
+      {show3D ? (
+        <ThreeDErrorBoundary>
+          <ThreeDBackground />
+        </ThreeDErrorBoundary>
+      ) : null}
       <LetterDisplay />
       <EmojiBlast />
       <KeyCounter />

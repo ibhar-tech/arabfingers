@@ -42,11 +42,11 @@ function mulberry32(seed: number) {
 }
 
 const themeObjectCounts: Record<ThemeName, number> = {
-  space: 22,
-  desert: 16,
-  jungle: 20,
-  underwater: 18,
-  ramadan: 15,
+  space: 14,
+  desert: 10,
+  jungle: 12,
+  underwater: 11,
+  ramadan: 10,
 };
 
 function buildObjects(themeName: ThemeName) {
@@ -74,15 +74,15 @@ function buildObjects(themeName: ThemeName) {
 function Geometry({ kind }: { kind: GeometryKind }) {
   switch (kind) {
     case "sphere":
-      return <sphereGeometry args={[0.78, 28, 28]} />;
+      return <sphereGeometry args={[0.78, 16, 16]} />;
     case "box":
       return <boxGeometry args={[1.1, 1.1, 1.1]} />;
     case "torus":
-      return <torusGeometry args={[0.68, 0.22, 18, 42]} />;
+      return <torusGeometry args={[0.68, 0.22, 12, 24]} />;
     case "octahedron":
       return <octahedronGeometry args={[0.85, 0]} />;
     case "cone":
-      return <coneGeometry args={[0.8, 1.3, 28]} />;
+      return <coneGeometry args={[0.8, 1.3, 16]} />;
     default:
       return null;
   }
@@ -181,8 +181,8 @@ export default function ThreeDBackground() {
     <div className="absolute inset-0 z-0" aria-hidden="true">
       <Canvas
         camera={{ position: [0, 0, 8], fov: 60 }}
-        dpr={[1, 1.5]}
-        gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
+        dpr={[1, 1.25]}
+        gl={{ alpha: true, antialias: false, powerPreference: "high-performance" }}
         style={{ position: "absolute", inset: 0 }}
       >
         <ambientLight intensity={0.6} />
