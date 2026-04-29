@@ -2,11 +2,22 @@
 
 import { Download, X } from "lucide-react";
 import { useTranslations } from "next-intl";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 interface BeforeInstallPromptEvent extends Event {
   prompt(): Promise<void>;
   userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
+}
+
+// Capture the event globally BEFORE React mounts
+// This runs at module load time so it never misses the event
+let savedPrompt: BeforeInstallPromptEvent | null = null;
+
+if (typeof window !== "undefined") {
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    savedPrompt = e as BeforeInstallPromptEvent;
+  });
 }
 
 function isStandalone(): boolean {
@@ -32,7 +43,6 @@ export function InstallButton() {
   const [hasNativePrompt, setHasNativePrompt] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const deferredPrompt = useRef<BeforeInstallPromptEvent | null>(null);
 
   useEffect(() => {
     if (isStandalone()) {
@@ -40,9 +50,15 @@ export function InstallButton() {
       return;
     }
 
+    // Check if we already captured the event before mount
+    if (savedPrompt) {
+      setHasNativePrompt(true);
+    }
+
+    // Also listen for future events
     function onBeforeInstall(e: Event) {
       e.preventDefault();
-      deferredPrompt.current = e as BeforeInstallPromptEvent;
+      savedPrompt = e as BeforeInstallPromptEvent;
       setHasNativePrompt(true);
     }
 
@@ -51,11 +67,12 @@ export function InstallButton() {
   }, []);
 
   async function handleClick() {
-    if (hasNativePrompt && deferredPrompt.current) {
-      await deferredPrompt.current.prompt();
-      const { outcome } = await deferredPrompt.current.userChoice;
+    if (hasNativePrompt && savedPrompt) {
+      await savedPrompt.prompt();
+      const { outcome } = await savedPrompt.userChoice;
       if (outcome === "accepted") setHidden(true);
-      deferredPrompt.current = null;
+      savedPrompt = null;
+      setHasNativePrompt(false);
       return;
     }
 
