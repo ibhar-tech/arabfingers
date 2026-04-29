@@ -1,4 +1,4 @@
-const CACHE_NAME = "arabfingers-v3";
+const CACHE_NAME = "arabfingers-v4";
 const PRECACHE_URLS = [
   "/en",
   "/ar",
@@ -9,25 +9,32 @@ const PRECACHE_URLS = [
   "/sounds/confetti.mp3",
 ];
 
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches
-      .open(CACHE_NAME)
-      .then((cache) => cache.addAll(PRECACHE_URLS))
-      .catch(() => {
-        // Don't block install if precaching fails
-      })
-  );
+const OFFLINE_HTML =
+  '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ArabFingers</title><style>body{background:#050816;color:white;text-align:center;padding:50px;font-family:sans-serif}h1{font-size:2rem}p{margin-top:1rem;color:rgba(255,255,255,.7)}button{margin-top:2rem;padding:12px 24px;border:none;border-radius:8px;background:#7f77dd;color:white;font-size:1rem;cursor:pointer}</style></head><body><h1>ArabFingers</h1><p>Please connect to the internet to play.</p><button onclick="location.reload()">Retry</button></body></html>';
+
+// Install: activate immediately without waiting for precache.
+// This is critical — blocking install on network fetches delays SW
+// activation, which delays Chrome's PWA installability check and
+// prevents beforeinstallprompt from firing on the first page load.
+self.addEventListener("install", () => {
   self.skipWaiting();
 });
 
 self.addEventListener("activate", (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
-    )
+    Promise.all([
+      self.clients.claim(),
+      caches.keys().then((keys) =>
+        Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
+      ),
+    ])
   );
-  self.clients.claim();
+
+  // Precache in the background — fire and forget, does NOT block activation
+  caches
+    .open(CACHE_NAME)
+    .then((cache) => cache.addAll(PRECACHE_URLS))
+    .catch(() => {});
 });
 
 self.addEventListener("fetch", (event) => {
@@ -38,6 +45,7 @@ self.addEventListener("fetch", (event) => {
 
   if (request.url.startsWith("chrome-extension")) return;
 
+  // Navigation requests: network-first with offline fallback
   if (request.mode === "navigate") {
     event.respondWith(
       fetch(request)
@@ -46,36 +54,37 @@ self.addEventListener("fetch", (event) => {
           caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
           return response;
         })
-        .catch(() => {
-          return caches.match(request).then((cached) => {
+        .catch(() =>
+          caches.match(request).then((cached) => {
             if (cached) return cached;
-            // Fallback to precached /en if offline and not in cache
             return caches.match("/en").then((enCached) => {
               if (enCached) return enCached;
-              // Provide a synthetic 200 response to pass PWA offline checks
-              return new Response(
-                '<!DOCTYPE html><html lang="en" dir="ltr"><head><meta charset="utf-8"><title>ArabFingers</title></head><body style="background:#050816;color:white;text-align:center;padding:50px;font-family:sans-serif;"><h1>ArabFingers</h1><p>Please connect to the internet to play.</p><button onclick="window.location.reload()">Retry</button></body></html>',
-                { headers: { "Content-Type": "text/html" } }
-              );
+              // Synthetic 200 fallback — guarantees Chrome's offline
+              // installability check always passes, even before precache
+              // populates.
+              return new Response(OFFLINE_HTML, {
+                headers: { "Content-Type": "text/html" },
+              });
             });
-          });
-        })
+          })
+        )
     );
     return;
   }
 
+  // Sub-resources: cache-first
   event.respondWith(
     caches.match(request).then((cached) => {
       if (cached) return cached;
       return fetch(request)
         .then((response) => {
-          if (response.ok && request.method === "GET") {
+          if (response.ok) {
             const clone = response.clone();
             caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
           }
           return response;
         })
-        .catch(() => cached);
+        .catch(() => new Response("", { status: 408 }));
     })
   );
 });
