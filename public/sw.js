@@ -50,7 +50,14 @@ self.addEventListener("fetch", (event) => {
           return caches.match(request).then((cached) => {
             if (cached) return cached;
             // Fallback to precached /en if offline and not in cache
-            return caches.match("/en");
+            return caches.match("/en").then((enCached) => {
+              if (enCached) return enCached;
+              // Provide a synthetic 200 response to pass PWA offline checks
+              return new Response(
+                '<!DOCTYPE html><html lang="en" dir="ltr"><head><meta charset="utf-8"><title>ArabFingers</title></head><body style="background:#050816;color:white;text-align:center;padding:50px;font-family:sans-serif;"><h1>ArabFingers</h1><p>Please connect to the internet to play.</p><button onclick="window.location.reload()">Retry</button></body></html>',
+                { headers: { "Content-Type": "text/html" } }
+              );
+            });
           });
         })
     );
