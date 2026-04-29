@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Fredoka, IBM_Plex_Sans_Arabic, Noto_Naskh_Arabic } from "next/font/google";
 import { ServiceWorkerRegistrar } from "@/components/ServiceWorkerRegistrar";
 import { StructuredData } from "@/components/StructuredData";
+import { AdSenseLoader } from "@/components/AdSenseLoader";
 import "./globals.css";
 
 const fredoka = Fredoka({
@@ -136,12 +137,14 @@ export default function RootLayout({
     <html suppressHydrationWarning lang="en" dir="ltr">
       <head>
         <meta name="google-adsense-account" content="ca-pub-9623110963718326" />
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9623110963718326" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className={`${fredoka.variable} ${ibmPlexArabic.variable} ${notoNaskhArabic.variable} antialiased`}>
         <StructuredData />
         {children}
         <ServiceWorkerRegistrar />
+        <AdSenseLoader />
       </body>
     </html>
   );

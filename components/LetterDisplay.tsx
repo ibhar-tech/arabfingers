@@ -80,19 +80,15 @@ export function LetterDisplay() {
               )}
             </motion.div>
           ) : (
-            <motion.div
+            <div
               key="idle-hint"
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.4 }}
               className="flex flex-col items-center gap-4 text-center"
             >
               <div className="text-6xl sm:text-8xl animate-bounce">🎹</div>
               <div className="text-xl sm:text-2xl font-semibold text-white/80">
                 {t("startHint")}
               </div>
-            </motion.div>
+            </div>
           )}
         </AnimatePresence>
       </div>
