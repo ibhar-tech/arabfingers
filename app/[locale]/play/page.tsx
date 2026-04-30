@@ -142,6 +142,10 @@ export default function LocalePage() {
 
       playSmash(soundEnabled);
 
+      // Haptic feedback on supported devices
+      if (navigator.vibrate) {
+        navigator.vibrate(25);
+      }
       if (source === "touch") {
         const letter = getRandomArabicLetter();
 
@@ -272,6 +276,11 @@ export default function LocalePage() {
       });
     });
     playConfetti(soundEnabled);
+
+    // Strong haptic for milestone celebration
+    if (navigator.vibrate) {
+      navigator.vibrate([50, 30, 50, 30, 100]);
+    }
 
     const timeout = window.setTimeout(() => {
       clearMilestone();

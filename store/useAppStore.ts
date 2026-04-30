@@ -59,6 +59,9 @@ type AppState = {
   sessionSummaryOpen: boolean;
   milestone: MilestoneState | null;
   interactionId: number;
+  letterStats: Record<string, number>;
+  uniqueLetters: Set<string>;
+  sessionStartTime: number;
   setLocale: (locale: AppLocale) => void;
   setTheme: (theme: ThemeName) => void;
   setSoundEnabled: (soundEnabled: boolean) => void;
@@ -97,6 +100,9 @@ export const useAppStore = create<AppState>((set) => ({
   sessionSummaryOpen: false,
   milestone: null,
   interactionId: 0,
+  letterStats: {},
+  uniqueLetters: new Set<string>(),
+  sessionStartTime: Date.now(),
   setLocale: (locale) => set({ locale }),
   setTheme: (theme) => set({ theme }),
   setSoundEnabled: (soundEnabled) => set({ soundEnabled }),
@@ -108,7 +114,7 @@ export const useAppStore = create<AppState>((set) => ({
   setTtsSpeed: (ttsSpeed) => set({ ttsSpeed }),
   setParentPin: (parentPin) => set({ parentPin }),
   setSessionSummaryOpen: (sessionSummaryOpen) => set({ sessionSummaryOpen }),
-  resetSession: () => set({ keyCount: 0, currentKey: null, milestone: null, sessionSummaryOpen: false, interactionId: 0 }),
+  resetSession: () => set({ keyCount: 0, currentKey: null, milestone: null, sessionSummaryOpen: false, interactionId: 0, letterStats: {}, uniqueLetters: new Set(), sessionStartTime: Date.now() }),
   registerInteraction: (payload) =>
     set((state) => {
       const id = state.interactionId + 1;
@@ -117,10 +123,21 @@ export const useAppStore = create<AppState>((set) => ({
         ? { count: keyCount, id }
         : state.milestone;
 
+      // Track letter stats
+      const letterStats = { ...state.letterStats };
+      const uniqueLetters = new Set(state.uniqueLetters);
+      if (payload.kind === "letter") {
+        const ar = payload.letter.ar;
+        letterStats[ar] = (letterStats[ar] ?? 0) + 1;
+        uniqueLetters.add(ar);
+      }
+
       return {
         interactionId: id,
         keyCount,
         milestone,
+        letterStats,
+        uniqueLetters,
         currentKey: {
           ...payload,
           id,

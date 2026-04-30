@@ -308,6 +308,30 @@ export function ParentPanel() {
                 </div>
               </section>
 
+              {/* Session Stats */}
+              <section className="space-y-3">
+                <div className="flex items-center gap-2 text-sm text-white/68">
+                  <BarChart3 className="h-4 w-4" />
+                  {t("sessionStats")}
+                </div>
+                <div className="grid grid-cols-3 gap-2">
+                  <div className="rounded-lg border border-white/8 bg-white/5 p-3 text-center">
+                    <div className="text-lg font-semibold text-accent">{useAppStore.getState().keyCount}</div>
+                    <div className="text-[10px] text-white/40">{t("totalPresses")}</div>
+                  </div>
+                  <div className="rounded-lg border border-white/8 bg-white/5 p-3 text-center">
+                    <div className="text-lg font-semibold text-accent">{useAppStore.getState().uniqueLetters.size}/28</div>
+                    <div className="text-[10px] text-white/40">{t("lettersFound")}</div>
+                  </div>
+                  <div className="rounded-lg border border-white/8 bg-white/5 p-3 text-center">
+                    <div className="text-lg font-semibold text-accent">
+                      {Math.floor((Date.now() - useAppStore.getState().sessionStartTime) / 60000)}m
+                    </div>
+                    <div className="text-[10px] text-white/40">{t("sessionTime")}</div>
+                  </div>
+                </div>
+              </section>
+
               <button
                 type="button"
                 onClick={() => { setSessionSummaryOpen(true); setParentPanelOpen(false); setPinUnlocked(false); }}
