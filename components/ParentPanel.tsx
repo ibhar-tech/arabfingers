@@ -205,6 +205,25 @@ export function ParentPanel() {
 
               <section className="space-y-3">
                 <div className="flex items-center gap-2 text-sm text-white/68">
+                  <Hash className="h-4 w-4" />
+                  {t("playMode")}
+                </div>
+                <div className="grid grid-cols-2 gap-2">
+                  <SegmentedOption
+                    label={t("freePlay")}
+                    selected={useAppStore.getState().playMode === "free"}
+                    onClick={() => useAppStore.getState().setPlayMode("free")}
+                  />
+                  <SegmentedOption
+                    label={t("guidedPlay")}
+                    selected={useAppStore.getState().playMode === "guided"}
+                    onClick={() => useAppStore.getState().setPlayMode("guided")}
+                  />
+                </div>
+              </section>
+
+              <section className="space-y-3">
+                <div className="flex items-center gap-2 text-sm text-white/68">
                   <Languages className="h-4 w-4" />
                   {t("languageDisplay")}
                 </div>

@@ -9,6 +9,7 @@ import type { KeyboardLayoutId } from "@/lib/keyboardLayouts";
 export type DisplayMode = "both" | "arabic" | "english";
 export type InteractionKind = "letter" | "fun";
 export type SpecialMilestone = 10 | 25 | 50 | 100;
+export type PlayMode = "free" | "guided";
 
 type BaseInteraction = {
   id: number;
@@ -62,6 +63,16 @@ type AppState = {
   letterStats: Record<string, number>;
   uniqueLetters: Set<string>;
   sessionStartTime: number;
+  playMode: PlayMode;
+  guidedIndex: number;
+  guidedCorrect: number;
+  guidedWrong: number;
+  guidedShowHint: boolean;
+  setPlayMode: (mode: PlayMode) => void;
+  advanceGuided: () => void;
+  markGuidedWrong: () => void;
+  setGuidedShowHint: (show: boolean) => void;
+  resetGuided: () => void;
   setLocale: (locale: AppLocale) => void;
   setTheme: (theme: ThemeName) => void;
   setSoundEnabled: (soundEnabled: boolean) => void;
@@ -103,6 +114,16 @@ export const useAppStore = create<AppState>((set) => ({
   letterStats: {},
   uniqueLetters: new Set<string>(),
   sessionStartTime: Date.now(),
+  playMode: "free",
+  guidedIndex: 0,
+  guidedCorrect: 0,
+  guidedWrong: 0,
+  guidedShowHint: false,
+  setPlayMode: (playMode) => set({ playMode, guidedIndex: 0, guidedCorrect: 0, guidedWrong: 0, guidedShowHint: false }),
+  advanceGuided: () => set((s) => ({ guidedIndex: (s.guidedIndex + 1) % 28, guidedCorrect: s.guidedCorrect + 1, guidedShowHint: false })),
+  markGuidedWrong: () => set((s) => ({ guidedWrong: s.guidedWrong + 1, guidedShowHint: true })),
+  setGuidedShowHint: (guidedShowHint) => set({ guidedShowHint }),
+  resetGuided: () => set({ guidedIndex: 0, guidedCorrect: 0, guidedWrong: 0, guidedShowHint: false }),
   setLocale: (locale) => set({ locale }),
   setTheme: (theme) => set({ theme }),
   setSoundEnabled: (soundEnabled) => set({ soundEnabled }),

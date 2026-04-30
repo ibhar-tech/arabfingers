@@ -10,6 +10,7 @@ import { MilestoneMessage } from "@/components/MilestoneMessage";
 import { ParentPanel } from "@/components/ParentPanel";
 import { ParentPanelTrigger } from "@/components/ParentPanelTrigger";
 import { SessionSummary } from "@/components/SessionSummary";
+import { GuidedPrompt } from "@/components/GuidedPrompt";
 import { ThreeDErrorBoundary } from "@/components/ThreeDErrorBoundary";
 import {
   findArabicLetterByArabicChar,
@@ -17,6 +18,7 @@ import {
   getRandomArabicLetter,
   isArabicCharacter,
   isMappedKey,
+  arabicLetters,
 } from "@/lib/arabicMap";
 import type { AppLocale } from "@/lib/locales";
 import { playChime, playConfetti, playSmash, primeSounds } from "@/lib/sounds";
@@ -62,6 +64,10 @@ export default function LocalePage() {
   const setParentPanelOpen = useAppStore((state) => state.setParentPanelOpen);
   const ttsSpeed = useAppStore((state) => state.ttsSpeed);
   const keyboardLayout = useAppStore((state) => state.keyboardLayout);
+  const playMode = useAppStore((state) => state.playMode);
+  const guidedIndex = useAppStore((state) => state.guidedIndex);
+  const advanceGuided = useAppStore((state) => state.advanceGuided);
+  const markGuidedWrong = useAppStore((state) => state.markGuidedWrong);
   const sequenceRef = useRef("");
   const pointerRef = useRef({ x: 0, y: 0 });
   const fullscreenAttemptedRef = useRef(false);
@@ -146,7 +152,37 @@ export default function LocalePage() {
       if (navigator.vibrate) {
         navigator.vibrate(25);
       }
+
+      // In guided mode, handle letter matching
+      function handleLetterInGuidedMode(letter: typeof arabicLetters[number]) {
+        if (playMode === "guided") {
+          const target = arabicLetters[guidedIndex];
+          if (letter.ar === target.ar) {
+            // Correct!
+            advanceGuided();
+            registerInteraction({ kind: "letter", letter, pressed: letter.ar, source, ...point });
+            if (soundEnabled) playLetterSound(letter.soundId, ttsSpeed);
+            if (navigator.vibrate) navigator.vibrate([30, 20, 30]);
+          } else {
+            // Wrong — show hint, still show the letter briefly
+            markGuidedWrong();
+            registerInteraction({ kind: "letter", letter, pressed: letter.ar, source, ...point });
+            if (soundEnabled) playLetterSound(target.soundId, ttsSpeed);
+          }
+          return true;
+        }
+        return false;
+      }
+
       if (source === "touch") {
+        if (playMode === "guided") {
+          // In guided mode, touch shows the target letter
+          const target = arabicLetters[guidedIndex];
+          advanceGuided();
+          registerInteraction({ kind: "letter", letter: target, pressed: target.ar, source, ...point });
+          if (soundEnabled) playLetterSound(target.soundId, ttsSpeed);
+          return;
+        }
         const letter = getRandomArabicLetter();
 
         registerInteraction({
@@ -166,6 +202,7 @@ export default function LocalePage() {
         const letter = findArabicLetterByArabicChar(pressed);
 
         if (letter) {
+          if (handleLetterInGuidedMode(letter)) return;
           registerInteraction({
             kind: "letter",
             letter,
@@ -182,6 +219,7 @@ export default function LocalePage() {
         const letter = findArabicLetterByKey(pressed, keyboardLayout);
 
         if (letter) {
+          if (handleLetterInGuidedMode(letter)) return;
           registerInteraction({
             kind: "letter",
             letter,
@@ -261,7 +299,7 @@ export default function LocalePage() {
       window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("pointermove", onPointerMove);
     };
-  }, [registerInteraction, setParentPanelOpen, soundEnabled, theme, ttsSpeed, keyboardLayout, activate3D]);
+  }, [registerInteraction, setParentPanelOpen, soundEnabled, theme, ttsSpeed, keyboardLayout, activate3D, playMode, guidedIndex, advanceGuided, markGuidedWrong]);
 
   useEffect(() => {
     if (!milestone) {
@@ -311,6 +349,7 @@ export default function LocalePage() {
       <KeyCounter />
       <ParentPanelTrigger />
       <MilestoneMessage />
+      <GuidedPrompt />
       <ParentPanel />
       <SessionSummary />
     </main>
