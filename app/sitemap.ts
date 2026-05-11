@@ -28,6 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...localizedUrls("", 1),
     ...localizedUrls("/play", 0.9),
     ...localizedUrls("/learn", 0.9),
+    ...localizedUrls("/coloring", 0.8),
 
     // Learn articles
     ...localizedUrls("/learn/arabic-alphabet-guide", 0.8),
