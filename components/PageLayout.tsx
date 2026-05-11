@@ -9,19 +9,26 @@ type PageLayoutProps = {
 const navLinks = [
   { href: "", labelEn: "Home", labelAr: "الرئيسية" },
   { href: "/play", labelEn: "▶ Play", labelAr: "▶ العب" },
-  { href: "/learn/arabic-alphabet-guide", labelEn: "Learn", labelAr: "تعلم" },
+  { href: "/learn", labelEn: "Learn", labelAr: "تعلم" },
   { href: "/about", labelEn: "About", labelAr: "عن التطبيق" },
   { href: "/contact", labelEn: "Contact", labelAr: "تواصل" },
 ];
 
-const footerLinks = [
-  { href: "", labelEn: "Home", labelAr: "الرئيسية" },
-  { href: "/play", labelEn: "Play", labelAr: "العب" },
+const footerLearnLinks = [
+  { href: "/learn", labelEn: "All Guides", labelAr: "جميع الأدلة" },
   { href: "/learn/arabic-alphabet-guide", labelEn: "Alphabet Guide", labelAr: "دليل الأبجدية" },
   { href: "/learn/arabic-numbers", labelEn: "Numbers", labelAr: "الأرقام" },
   { href: "/learn/arabic-colors", labelEn: "Colors", labelAr: "الألوان" },
   { href: "/learn/first-arabic-words", labelEn: "First Words", labelAr: "كلمات" },
+  { href: "/learn/arabic-letter-forms", labelEn: "Letter Forms", labelAr: "أشكال الحروف" },
+  { href: "/learn/arabic-vs-english", labelEn: "Arabic vs English", labelAr: "عربي مقابل إنجليزي" },
   { href: "/learn/teaching-arabic-to-kids", labelEn: "For Parents", labelAr: "للوالدين" },
+  { href: "/learn/best-age-to-learn-arabic", labelEn: "Best Age", labelAr: "أفضل عمر" },
+  { href: "/learn/bilingual-children-benefits", labelEn: "Bilingual Benefits", labelAr: "فوائد ثنائية اللغة" },
+  { href: "/learn/arabic-activities-at-home", labelEn: "Home Activities", labelAr: "أنشطة منزلية" },
+];
+
+const footerInfoLinks = [
   { href: "/about", labelEn: "About", labelAr: "عن التطبيق" },
   { href: "/contact", labelEn: "Contact", labelAr: "تواصل معنا" },
   { href: "/privacy", labelEn: "Privacy", labelAr: "الخصوصية" },
@@ -64,19 +71,42 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
         {children}
       </main>
 
-      {/* Footer — always at bottom */}
+      {/* Footer */}
       <footer className="mt-auto border-t border-white/8 bg-[#050816]">
         <div className="mx-auto max-w-2xl px-5 py-8 sm:px-6">
-          <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs text-white/35">
-            {footerLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={`/${locale}${link.href}`}
-                className="hover:text-white/60 transition"
-              >
-                {isAr ? link.labelAr : link.labelEn}
-              </Link>
-            ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
+            <div>
+              <h3 className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-3">
+                {isAr ? "تعلم العربية" : "Learn Arabic"}
+              </h3>
+              <div className="flex flex-col gap-1.5">
+                {footerLearnLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={`/${locale}${link.href}`}
+                    className="text-xs text-white/35 hover:text-white/60 transition"
+                  >
+                    {isAr ? link.labelAr : link.labelEn}
+                  </Link>
+                ))}
+              </div>
+            </div>
+            <div>
+              <h3 className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-3">
+                {isAr ? "معلومات" : "Info"}
+              </h3>
+              <div className="flex flex-col gap-1.5">
+                {footerInfoLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={`/${locale}${link.href}`}
+                    className="text-xs text-white/35 hover:text-white/60 transition"
+                  >
+                    {isAr ? link.labelAr : link.labelEn}
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
           <p className="mt-4 text-xs text-white/20">
             © 2026 ArabFingers. {isAr ? "جميع الحقوق محفوظة." : "All rights reserved."}

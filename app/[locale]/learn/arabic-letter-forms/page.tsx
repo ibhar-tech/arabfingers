@@ -1,0 +1,139 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { PageLayout } from "@/components/PageLayout";
+import { isLocale } from "@/lib/locales";
+
+export const metadata: Metadata = {
+  title: "How Arabic Letters Change Shape | كيف تتغير أشكال الحروف العربية",
+  description:
+    "Visual guide to Arabic letter forms. Learn how each of the 28 Arabic letters changes shape at the beginning, middle, and end of a word. Essential for reading Arabic.",
+};
+
+const letterForms = [
+  { name: "Alef", arName: "ألف", isolated: "ا", initial: "ا", medial: "ـا", final: "ـا" },
+  { name: "Ba", arName: "باء", isolated: "ب", initial: "بـ", medial: "ـبـ", final: "ـب" },
+  { name: "Ta", arName: "تاء", isolated: "ت", initial: "تـ", medial: "ـتـ", final: "ـت" },
+  { name: "Tha", arName: "ثاء", isolated: "ث", initial: "ثـ", medial: "ـثـ", final: "ـث" },
+  { name: "Jeem", arName: "جيم", isolated: "ج", initial: "جـ", medial: "ـجـ", final: "ـج" },
+  { name: "Hha", arName: "حاء", isolated: "ح", initial: "حـ", medial: "ـحـ", final: "ـح" },
+  { name: "Kha", arName: "خاء", isolated: "خ", initial: "خـ", medial: "ـخـ", final: "ـخ" },
+  { name: "Dal", arName: "دال", isolated: "د", initial: "د", medial: "ـد", final: "ـد" },
+  { name: "Thal", arName: "ذال", isolated: "ذ", initial: "ذ", medial: "ـذ", final: "ـذ" },
+  { name: "Ra", arName: "راء", isolated: "ر", initial: "ر", medial: "ـر", final: "ـر" },
+  { name: "Zay", arName: "زاي", isolated: "ز", initial: "ز", medial: "ـز", final: "ـز" },
+  { name: "Seen", arName: "سين", isolated: "س", initial: "سـ", medial: "ـسـ", final: "ـس" },
+  { name: "Sheen", arName: "شين", isolated: "ش", initial: "شـ", medial: "ـشـ", final: "ـش" },
+  { name: "Sad", arName: "صاد", isolated: "ص", initial: "صـ", medial: "ـصـ", final: "ـص" },
+  { name: "Dad", arName: "ضاد", isolated: "ض", initial: "ضـ", medial: "ـضـ", final: "ـض" },
+  { name: "Tah", arName: "طاء", isolated: "ط", initial: "طـ", medial: "ـطـ", final: "ـط" },
+  { name: "Zah", arName: "ظاء", isolated: "ظ", initial: "ظـ", medial: "ـظـ", final: "ـظ" },
+  { name: "Ain", arName: "عين", isolated: "ع", initial: "عـ", medial: "ـعـ", final: "ـع" },
+  { name: "Ghain", arName: "غين", isolated: "غ", initial: "غـ", medial: "ـغـ", final: "ـغ" },
+  { name: "Fa", arName: "فاء", isolated: "ف", initial: "فـ", medial: "ـفـ", final: "ـف" },
+  { name: "Qaf", arName: "قاف", isolated: "ق", initial: "قـ", medial: "ـقـ", final: "ـق" },
+  { name: "Kaf", arName: "كاف", isolated: "ك", initial: "كـ", medial: "ـكـ", final: "ـك" },
+  { name: "Lam", arName: "لام", isolated: "ل", initial: "لـ", medial: "ـلـ", final: "ـل" },
+  { name: "Meem", arName: "ميم", isolated: "م", initial: "مـ", medial: "ـمـ", final: "ـم" },
+  { name: "Noon", arName: "نون", isolated: "ن", initial: "نـ", medial: "ـنـ", final: "ـن" },
+  { name: "Ha", arName: "هاء", isolated: "ه", initial: "هـ", medial: "ـهـ", final: "ـه" },
+  { name: "Waw", arName: "واو", isolated: "و", initial: "و", medial: "ـو", final: "ـو" },
+  { name: "Ya", arName: "ياء", isolated: "ي", initial: "يـ", medial: "ـيـ", final: "ـي" },
+];
+
+export default async function ArabicLetterFormsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  if (!isLocale(locale)) return null;
+  const isAr = locale === "ar";
+
+  return (
+    <PageLayout locale={locale}>
+      <h1 className="text-3xl font-semibold text-white mb-2">
+        {isAr ? "كيف تتغير أشكال الحروف العربية" : "How Arabic Letters Change Shape"}
+      </h1>
+      <p className="text-sm text-white/50 mb-8">
+        {isAr ? "دليل بصري لأشكال الحروف في بداية ووسط ونهاية الكلمة" : "A visual guide to letter forms at the beginning, middle, and end of words"}
+      </p>
+
+      <div className="space-y-6 text-sm leading-relaxed text-white/70 mb-10">
+        <section>
+          <h2 className="text-xl font-semibold text-white mb-3">
+            {isAr ? "لماذا تتغير أشكال الحروف؟" : "Why Do Arabic Letters Change Shape?"}
+          </h2>
+          <p className="mb-3">
+            {isAr
+              ? "على عكس الحروف اللاتينية التي تحتفظ بنفس الشكل بغض النظر عن موقعها، تتغير الحروف العربية في شكلها حسب مكانها في الكلمة. هذا لأن الكتابة العربية هي كتابة متصلة — تتصل الحروف ببعضها البعض لتشكل كلمات، تماماً كالكتابة المتصلة في الإنجليزية."
+              : "Unlike Latin letters that keep the same shape regardless of position, Arabic letters change form depending on where they appear in a word. This is because Arabic is a cursive script — letters connect to each other to form words, much like cursive handwriting in English."}
+          </p>
+          <p className="mb-3">
+            {isAr
+              ? "لكل حرف عربي حتى أربعة أشكال مختلفة: الشكل المنفصل (عندما يكون الحرف وحده)، الشكل في البداية (في بداية الكلمة)، الشكل في الوسط (بين حرفين آخرين)، والشكل في النهاية (في آخر الكلمة). لا تقلق — التغييرات عادة ما تكون بسيطة وتتبع أنماطاً يمكن التنبؤ بها."
+              : "Each Arabic letter has up to four different forms: isolated (when standing alone), initial (at the beginning of a word), medial (between two other letters), and final (at the end of a word). Don't worry — the changes are usually subtle and follow predictable patterns."}
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-white mb-3">
+            {isAr ? "الحروف غير المتصلة" : "Non-Connecting Letters"}
+          </h2>
+          <p className="mb-3">
+            {isAr
+              ? "ستة حروف في الأبجدية العربية لا تتصل بالحرف الذي يليها. هذه الحروف هي: ا (ألف)، د (دال)، ذ (ذال)، ر (راء)، ز (زاي)، و (واو). هذه الحروف لها شكلان فقط: منفصل ونهائي. عندما يأتي أحد هذه الحروف في وسط الكلمة، فإنه يكسر الاتصال والحرف التالي يبدأ كما لو كان في بداية كلمة جديدة."
+              : "Six letters in the Arabic alphabet don't connect to the letter that follows them. These letters are: ا (Alef), د (Dal), ذ (Thal), ر (Ra), ز (Zay), and و (Waw). These letters only have two forms: isolated and final. When one of these letters appears in the middle of a word, it breaks the connection and the next letter starts as if it were at the beginning of a new word."}
+          </p>
+          <p>
+            {isAr
+              ? "معرفة هذه الحروف الستة هي أسرع طريقة لتبسيط تعلم أشكال الحروف — فبدلاً من تعلم أربعة أشكال لكل حرف، تحتاج فقط لتعلم شكلين لهذه الحروف الستة."
+              : "Knowing these six letters is the fastest shortcut to simplifying letter form learning — instead of learning four forms for each letter, you only need two forms for these six letters."}
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-white mb-3">
+            {isAr ? "نصائح لتعلم أشكال الحروف" : "Tips for Learning Letter Forms"}
+          </h2>
+          <ul className="list-disc list-inside space-y-2 text-white/60">
+            <li><strong className="text-white/80">{isAr ? "ابدأ بالشكل المنفصل" : "Start with isolated forms"}</strong> — {isAr ? "هذا هو ما يعلمه عرب فنجرز. بمجرد أن يتعرف طفلك على الأشكال الأساسية، سيتعرف عليها داخل الكلمات." : "This is what ArabFingers teaches. Once your child recognizes the basic shapes, they'll spot them inside words."}</li>
+            <li><strong className="text-white/80">{isAr ? "ابحث عن الأنماط" : "Look for patterns"}</strong> — {isAr ? "كثير من الحروف تتغير بنفس الطريقة. حروف مثل ب ت ث تتبع نفس النمط مع اختلاف النقاط فقط." : "Many letters change in the same way. Letters like ب ت ث follow the same pattern with only the dots changing."}</li>
+            <li><strong className="text-white/80">{isAr ? "لا تتعجل" : "Don't rush"}</strong> — {isAr ? "الأطفال يتعلمون الأشكال المنفصلة أولاً (عمر ٣-٥)، ثم الأشكال المتصلة لاحقاً (عمر ٥-٧). هذا تطور طبيعي." : "Children learn isolated forms first (ages 3-5), then connected forms later (ages 5-7). This is a natural progression."}</li>
+            <li><strong className="text-white/80">{isAr ? "استخدم كلمات حقيقية" : "Use real words"}</strong> — {isAr ? "عندما يكون طفلك مستعداً، أره كيف تبدو الحروف التي يعرفها داخل كلمات بسيطة مثل بَاب (باب) أو كِتَاب (كتاب)." : "When your child is ready, show them how letters they know look inside simple words like بَاب (door) or كِتَاب (book)."}</li>
+          </ul>
+        </section>
+      </div>
+
+      <h2 className="text-xl font-semibold text-white mb-4">
+        {isAr ? "جميع أشكال الحروف العربية الـ ٢٨" : "All 28 Arabic Letter Forms"}
+      </h2>
+
+      <div className="overflow-x-auto mb-10">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-white/10">
+              <th className="py-2 px-3 text-left text-white/60 font-medium">{isAr ? "الاسم" : "Name"}</th>
+              <th className="py-2 px-3 text-center text-white/60 font-medium">{isAr ? "منفصل" : "Isolated"}</th>
+              <th className="py-2 px-3 text-center text-white/60 font-medium">{isAr ? "بداية" : "Initial"}</th>
+              <th className="py-2 px-3 text-center text-white/60 font-medium">{isAr ? "وسط" : "Medial"}</th>
+              <th className="py-2 px-3 text-center text-white/60 font-medium">{isAr ? "نهاية" : "Final"}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {letterForms.map((l) => (
+              <tr key={l.name} className="border-b border-white/5 hover:bg-white/5 transition">
+                <td className="py-2.5 px-3 text-white/80 text-xs">{isAr ? l.arName : l.name}</td>
+                <td className="py-2.5 px-3 text-center text-2xl text-white" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.isolated}</td>
+                <td className="py-2.5 px-3 text-center text-2xl text-white" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.initial}</td>
+                <td className="py-2.5 px-3 text-center text-2xl text-white" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.medial}</td>
+                <td className="py-2.5 px-3 text-center text-2xl text-white" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.final}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="text-center py-6">
+        <Link href={`/${locale}/play`} className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105">
+          🚀 {isAr ? "تدرب على الحروف في عرب فنجرز" : "Practice Letters in ArabFingers"}
+        </Link>
+      </div>
+    </PageLayout>
+  );
+}

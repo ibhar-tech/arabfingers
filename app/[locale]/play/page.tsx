@@ -1,357 +1,66 @@
-"use client";
+import type { Metadata } from "next";
+import PlayLoader from "./PlayLoader";
 
-import dynamic from "next/dynamic";
-import { useLocale, useTranslations } from "next-intl";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { EmojiBlast } from "@/components/EmojiBlast";
-import { KeyCounter } from "@/components/KeyCounter";
-import { LetterDisplay } from "@/components/LetterDisplay";
-import { MilestoneMessage } from "@/components/MilestoneMessage";
-import { ParentPanel } from "@/components/ParentPanel";
-import { ParentPanelTrigger } from "@/components/ParentPanelTrigger";
-import { SessionSummary } from "@/components/SessionSummary";
-import { GuidedPrompt } from "@/components/GuidedPrompt";
-import { ThreeDErrorBoundary } from "@/components/ThreeDErrorBoundary";
-import {
-  findArabicLetterByArabicChar,
-  findArabicLetterByKey,
-  getRandomArabicLetter,
-  isArabicCharacter,
-  isMappedKey,
-  arabicLetters,
-} from "@/lib/arabicMap";
-import type { AppLocale } from "@/lib/locales";
-import { playChime, playConfetti, playSmash, primeSounds } from "@/lib/sounds";
-import { playLetterSound, primeLetterSounds } from "@/lib/letterSounds";
-import { themes } from "@/lib/themes";
-import { useAppStore } from "@/store/useAppStore";
+export const metadata: Metadata = {
+  title: "Play — Learn Arabic Letters | العب وتعلم الحروف العربية",
+  description:
+    "Press any key or tap the screen to see animated Arabic letters with natural pronunciation. A free, interactive keyboard smash toy for toddlers aged 1–6. All 28 Arabic letters with bilingual display.",
+};
 
-const ThreeDBackground = dynamic(() => import("@/components/ThreeDBackground"), {
-  ssr: false,
-  loading: () => <div className="absolute inset-0 z-0" />,
-});
-
-function getPoint(clientX: number, clientY: number) {
-  return {
-    x: clientX,
-    y: clientY,
-    normalizedX: clientX / window.innerWidth,
-    normalizedY: clientY / window.innerHeight,
-  };
-}
-
-function isParentUiTarget(target: EventTarget | null) {
-  if (!(target instanceof HTMLElement)) {
-    return false;
-  }
-
-  return Boolean(
-    target.closest(
-      '[data-parent-ui="true"], input, select, textarea, button, [contenteditable="true"]',
-    ),
-  );
-}
-
-export default function LocalePage() {
-  const locale = useLocale() as AppLocale;
-  const t = useTranslations();
-  const theme = useAppStore((state) => state.theme);
-  const soundEnabled = useAppStore((state) => state.soundEnabled);
-  const milestone = useAppStore((state) => state.milestone);
-  const setLocale = useAppStore((state) => state.setLocale);
-  const registerInteraction = useAppStore((state) => state.registerInteraction);
-  const clearMilestone = useAppStore((state) => state.clearMilestone);
-  const setParentPanelOpen = useAppStore((state) => state.setParentPanelOpen);
-  const ttsSpeed = useAppStore((state) => state.ttsSpeed);
-  const keyboardLayout = useAppStore((state) => state.keyboardLayout);
-  const playMode = useAppStore((state) => state.playMode);
-  const guidedIndex = useAppStore((state) => state.guidedIndex);
-  const advanceGuided = useAppStore((state) => state.advanceGuided);
-  const markGuidedWrong = useAppStore((state) => state.markGuidedWrong);
-  const sequenceRef = useRef("");
-  const pointerRef = useRef({ x: 0, y: 0 });
-  const fullscreenAttemptedRef = useRef(false);
-  const [show3D, setShow3D] = useState(false);
-
-  // Load 3D background after first interaction to avoid blocking initial paint
-  const activate3D = useCallback(() => {
-    if (!show3D) setShow3D(true);
-  }, [show3D]);
-
-  async function ensureFullscreen() {
-    if (fullscreenAttemptedRef.current || document.fullscreenElement) {
-      return;
-    }
-
-    fullscreenAttemptedRef.current = true;
-
-    if (typeof document.documentElement.requestFullscreen !== "function") {
-      return;
-    }
-
-    try {
-      await document.documentElement.requestFullscreen();
-    } catch {
-      return;
-    }
-  }
-
-  useEffect(() => {
-    setLocale(locale);
-    primeSounds();
-    primeLetterSounds();
-    void ensureFullscreen();
-
-    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-    if (motionQuery.matches) {
-      useAppStore.getState().setReduceMotion(true);
-    }
-
-    function onMotionChange(event: MediaQueryListEvent) {
-      useAppStore.getState().setReduceMotion(event.matches);
-    }
-
-    motionQuery.addEventListener("change", onMotionChange);
-
-    return () => {
-      motionQuery.removeEventListener("change", onMotionChange);
-    };
-  }, [locale, setLocale]);
-
-  useEffect(() => {
-    function updateParentSequence(value: string) {
-      if (value.length !== 1) {
-        return;
-      }
-
-      sequenceRef.current = `${sequenceRef.current}${value.toLowerCase()}`.slice(-16);
-
-      if (
-        sequenceRef.current.endsWith("parent") ||
-        sequenceRef.current.endsWith("والدين")
-      ) {
-        setParentPanelOpen(true);
-        sequenceRef.current = "";
-      }
-    }
-
-    function handleInput(
-      pressed: string,
-      source: "keyboard" | "touch",
-      point: ReturnType<typeof getPoint>,
-    ) {
-      void ensureFullscreen();
-      activate3D();
-
-      const currentTheme = themes[theme];
-
-      playSmash(soundEnabled);
-
-      // Haptic feedback on supported devices
-      if (navigator.vibrate) {
-        navigator.vibrate(25);
-      }
-
-      // In guided mode, handle letter matching
-      function handleLetterInGuidedMode(letter: typeof arabicLetters[number]) {
-        if (playMode === "guided") {
-          const target = arabicLetters[guidedIndex];
-          if (letter.ar === target.ar) {
-            // Correct!
-            advanceGuided();
-            registerInteraction({ kind: "letter", letter, pressed: letter.ar, source, ...point });
-            if (soundEnabled) playLetterSound(letter.soundId, ttsSpeed);
-            if (navigator.vibrate) navigator.vibrate([30, 20, 30]);
-          } else {
-            // Wrong — show hint, still show the letter briefly
-            markGuidedWrong();
-            registerInteraction({ kind: "letter", letter, pressed: letter.ar, source, ...point });
-            if (soundEnabled) playLetterSound(target.soundId, ttsSpeed);
-          }
-          return true;
-        }
-        return false;
-      }
-
-      if (source === "touch") {
-        if (playMode === "guided") {
-          // In guided mode, touch shows the target letter
-          const target = arabicLetters[guidedIndex];
-          advanceGuided();
-          registerInteraction({ kind: "letter", letter: target, pressed: target.ar, source, ...point });
-          if (soundEnabled) playLetterSound(target.soundId, ttsSpeed);
-          return;
-        }
-        const letter = getRandomArabicLetter();
-
-        registerInteraction({
-          kind: "letter",
-          letter,
-          pressed: letter.ar,
-          source,
-          ...point,
-        });
-        if (soundEnabled) playLetterSound(letter.soundId, ttsSpeed);
-        return;
-      }
-
-      updateParentSequence(pressed);
-
-      if (isArabicCharacter(pressed)) {
-        const letter = findArabicLetterByArabicChar(pressed);
-
-        if (letter) {
-          if (handleLetterInGuidedMode(letter)) return;
-          registerInteraction({
-            kind: "letter",
-            letter,
-            pressed,
-            source,
-            ...point,
-          });
-          if (soundEnabled) playLetterSound(letter.soundId, ttsSpeed);
-          return;
-        }
-      }
-
-      if (isMappedKey(pressed, keyboardLayout)) {
-        const letter = findArabicLetterByKey(pressed, keyboardLayout);
-
-        if (letter) {
-          if (handleLetterInGuidedMode(letter)) return;
-          registerInteraction({
-            kind: "letter",
-            letter,
-            pressed,
-            source,
-            ...point,
-          });
-          if (soundEnabled) playLetterSound(letter.soundId, ttsSpeed);
-          return;
-        }
-      }
-
-      const emoji =
-        currentTheme.emojis[Math.floor(Math.random() * currentTheme.emojis.length)];
-
-      registerInteraction({
-        kind: "fun",
-        emoji,
-        pressed,
-        source,
-        ...point,
-      });
-      playChime(soundEnabled);
-    }
-
-    const trappedKeys = new Set([
-      "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12",
-      "Tab", "Escape", "BrowserBack", "BrowserForward", "BrowserHome",
-    ]);
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (isParentUiTarget(event.target)) {
-        return;
-      }
-
-      if (trappedKeys.has(event.key) || event.altKey || event.metaKey || event.ctrlKey) {
-        event.preventDefault();
-        return;
-      }
-
-      event.preventDefault();
-
-      const fallbackPoint =
-        pointerRef.current.x > 0 && pointerRef.current.y > 0
-          ? getPoint(pointerRef.current.x, pointerRef.current.y)
-          : getPoint(window.innerWidth / 2, window.innerHeight / 2);
-
-      handleInput(event.key, "keyboard", fallbackPoint);
-    };
-    const onTouchStart = (event: TouchEvent) => {
-      if (isParentUiTarget(event.target)) {
-        return;
-      }
-
-      const touch = event.touches[0];
-
-      if (!touch) {
-        return;
-      }
-
-      handleInput(
-        touch.identifier.toString(),
-        "touch",
-        getPoint(touch.clientX, touch.clientY),
-      );
-    };
-    const onPointerMove = (event: PointerEvent) => {
-      pointerRef.current = { x: event.clientX, y: event.clientY };
-    };
-
-    window.addEventListener("keydown", onKeyDown);
-    window.addEventListener("touchstart", onTouchStart, { passive: true });
-    window.addEventListener("pointermove", onPointerMove, { passive: true });
-
-    return () => {
-      window.removeEventListener("keydown", onKeyDown);
-      window.removeEventListener("touchstart", onTouchStart);
-      window.removeEventListener("pointermove", onPointerMove);
-    };
-  }, [registerInteraction, setParentPanelOpen, soundEnabled, theme, ttsSpeed, keyboardLayout, activate3D, playMode, guidedIndex, advanceGuided, markGuidedWrong]);
-
-  useEffect(() => {
-    if (!milestone) {
-      return;
-    }
-
-    import("canvas-confetti").then((mod) => {
-      mod.default({
-        particleCount: 150,
-        spread: 80,
-        origin: { y: 0.6 },
-      });
-    });
-    playConfetti(soundEnabled);
-
-    // Strong haptic for milestone celebration
-    if (navigator.vibrate) {
-      navigator.vibrate([50, 30, 50, 30, 100]);
-    }
-
-    const timeout = window.setTimeout(() => {
-      clearMilestone();
-    }, 2500);
-
-    return () => {
-      window.clearTimeout(timeout);
-    };
-  }, [clearMilestone, milestone, soundEnabled]);
-
+export default function PlayPage() {
   return (
-    <main
-      aria-label={t("screenLabel")}
-      className="play-surface relative h-dvh w-screen overflow-hidden"
-      style={{ background: themes[theme].background }}
-    >
-      <div
-        className="absolute inset-0"
-        style={{ background: themes[theme].veil }}
-      />
-      {show3D ? (
-        <ThreeDErrorBoundary>
-          <ThreeDBackground />
-        </ThreeDErrorBoundary>
-      ) : null}
-      <LetterDisplay />
-      <EmojiBlast />
-      <KeyCounter />
-      <ParentPanelTrigger />
-      <MilestoneMessage />
-      <GuidedPrompt />
-      <ParentPanel />
-      <SessionSummary />
-    </main>
+    <>
+      <PlayLoader />
+      {/* SEO content — visible to crawlers, hidden from interactive play UI */}
+      <div className="sr-only" aria-hidden="true">
+        <h1>ArabFingers — Interactive Arabic Letter Learning Game</h1>
+        <p>
+          ArabFingers is a free, bilingual Arabic and English keyboard smash toy designed for
+          toddlers and pre-schoolers aged 1 to 6 years old. Press any key on the keyboard or
+          tap anywhere on the screen to see beautiful, large Arabic letters appear with their
+          English equivalents displayed side by side.
+        </p>
+        <h2>How to Play</h2>
+        <p>
+          Simply press any key on your keyboard or tap the screen. Each keypress reveals one of
+          the 28 Arabic letters with natural-sounding pronunciation in both Arabic and English.
+          Children learn through repetition — the more they play, the more familiar they become
+          with Arabic letter shapes and sounds.
+        </p>
+        <h2>Features</h2>
+        <ul>
+          <li>Full 28-letter Arabic alphabet with natural pronunciation</li>
+          <li>Bilingual display showing Arabic and English letters side by side</li>
+          <li>High-quality neural text-to-speech voice pronunciation</li>
+          <li>3D animated floating objects in themed backgrounds</li>
+          <li>5 visual themes: Space, Desert, Jungle, Underwater, and Ramadan</li>
+          <li>Keyboard and touch screen support for all devices</li>
+          <li>Multiple keyboard layout support: Standard QWERTY, Phonetic, and AZERTY</li>
+          <li>Parent control panel with optional PIN lock</li>
+          <li>Milestone celebrations with confetti at 10, 25, 50, and 100 key presses</li>
+          <li>Guided mode to learn letters in alphabetical order</li>
+          <li>Session summary showing all letters practiced</li>
+          <li>Works offline as an installable Progressive Web App</li>
+          <li>Child-safe with zero data collection and no tracking</li>
+        </ul>
+        <h2>The Arabic Alphabet</h2>
+        <p>
+          The Arabic alphabet consists of 28 letters written from right to left. Each letter in
+          ArabFingers is displayed in its isolated form — the foundational shape that children
+          learn first. The letters are: Alef (ا), Ba (ب), Ta (ت), Tha (ث), Jeem (ج), Hha (ح),
+          Kha (خ), Dal (د), Thal (ذ), Ra (ر), Zay (ز), Seen (س), Sheen (ش), Sad (ص), Dad (ض),
+          Tah (ط), Zah (ظ), Ain (ع), Ghain (غ), Fa (ف), Qaf (ق), Kaf (ك), Lam (ل), Meem (م),
+          Noon (ن), Ha (ه), Waw (و), and Ya (ي).
+        </p>
+        <h2>Who Is This For?</h2>
+        <p>
+          ArabFingers is perfect for toddlers aged 1 to 3 who enjoy the sensory experience of
+          pressing keys and seeing colorful responses, pre-schoolers aged 4 to 6 who are ready
+          to start recognizing and naming Arabic letters, bilingual Arab families who want their
+          children exposed to Arabic script in a fun environment, and parents looking for a safe,
+          ad-free play area with parental controls.
+        </p>
+      </div>
+    </>
   );
 }
