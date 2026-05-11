@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import confetti from "canvas-confetti";
 
 const LETTERS = [
   { char: "ا", name: "Alef" },
@@ -57,6 +58,7 @@ export default function ColoringClient() {
   const [currentColor, setCurrentColor] = useState(COLORS[0]);
   const [brushSize, setBrushSize] = useState(20);
   const [letterIndex, setLetterIndex] = useState(0);
+  const [isCompleted, setIsCompleted] = useState(false);
 
   // Use a ref to store the background layer (the outline) so we don't clear the user's drawing 
   // when the window resizes, or if we want to redraw the outline on top, we can composite.
@@ -113,6 +115,72 @@ export default function ColoringClient() {
     clearCanvas();
   }, [letterIndex, clearCanvas, dimensions]);
 
+  const changeLetter = (delta: number) => {
+    setLetterIndex((prev) => (prev + delta + LETTERS.length) % LETTERS.length);
+    setIsCompleted(false);
+  };
+
+  const checkCompletion = () => {
+    if (isCompleted) return;
+    const canvas = canvasRef.current;
+    if (!canvas || dimensions.width === 0 || dimensions.height === 0) return;
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    if (!ctx) return;
+
+    // Create offscreen canvas for the mask
+    const maskCanvas = document.createElement("canvas");
+    maskCanvas.width = canvas.width;
+    maskCanvas.height = canvas.height;
+    const maskCtx = maskCanvas.getContext("2d", { willReadFrequently: true });
+    if (!maskCtx) return;
+
+    // Draw the text solid
+    const letter = LETTERS[letterIndex].char;
+    const fontSize = Math.min(canvas.width, canvas.height) * 0.6;
+    maskCtx.font = `800 ${fontSize}px "Noto Naskh Arabic", sans-serif`;
+    maskCtx.textAlign = "center";
+    maskCtx.textBaseline = "middle";
+    maskCtx.fillStyle = "#000";
+    
+    // Match the outline area
+    maskCtx.fillText(letter, maskCanvas.width / 2, maskCanvas.height / 2);
+    maskCtx.lineWidth = 8;
+    maskCtx.strokeText(letter, maskCanvas.width / 2, maskCanvas.height / 2);
+
+    try {
+      const maskData = maskCtx.getImageData(0, 0, maskCanvas.width, maskCanvas.height).data;
+      const userData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+
+      let targetPixels = 0;
+      let coloredPixels = 0;
+
+      // Check every 4th pixel to save performance (stride = 16 bytes)
+      for (let i = 3; i < maskData.length; i += 16) {
+        if (maskData[i] > 128) {
+          targetPixels++;
+          if (userData[i] > 10) { // user colored this pixel
+            coloredPixels++;
+          }
+        }
+      }
+
+      if (targetPixels > 0) {
+        const percentage = coloredPixels / targetPixels;
+        if (percentage > 0.8) { // 80% filled
+          setIsCompleted(true);
+          confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 },
+            colors: COLORS,
+          });
+        }
+      }
+    } catch (e) {
+      // Ignore cross-origin canvas errors if any
+    }
+  };
+
   // Handle drawing
   const startDrawing = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
     e.preventDefault();
@@ -125,6 +193,8 @@ export default function ColoringClient() {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext("2d");
     if (ctx) ctx.beginPath(); // Reset path so next click doesn't connect
+    
+    checkCompletion();
   };
 
   const draw = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
@@ -233,14 +303,48 @@ export default function ColoringClient() {
         />
       </div>
 
+      {/* Completion Modal */}
+      {isCompleted && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-in fade-in duration-500">
+          <div className="flex flex-col items-center gap-6 rounded-3xl bg-[#1a1f3c] p-8 text-center shadow-2xl border border-white/10 mx-4 max-w-sm w-full">
+            <div className="text-6xl animate-bounce">🌟</div>
+            <div>
+              <h2 className="text-2xl font-bold text-white mb-2">
+                {isAr ? "عمل رائع!" : "Great Job!"}
+              </h2>
+              <p className="text-white/60">
+                {isAr ? "لقد لونت الحرف بنجاح." : "You've successfully colored the letter."}
+              </p>
+            </div>
+            <div className="flex gap-4 w-full">
+              <button
+                onClick={() => {
+                  clearCanvas();
+                  setIsCompleted(false);
+                }}
+                className="flex-1 rounded-2xl bg-white/10 px-6 py-3 font-semibold text-white transition hover:bg-white/20"
+              >
+                {isAr ? "إعادة" : "Replay"}
+              </button>
+              <button
+                onClick={() => changeLetter(1)}
+                className="flex-1 rounded-2xl bg-accent px-6 py-3 font-semibold text-[#050816] transition hover:scale-105"
+              >
+                {isAr ? "التالي" : "Next"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Bottom Controls */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 w-[90%] max-w-lg z-20">
         
         {/* Navigation */}
         <div className="flex items-center gap-4 w-full justify-between">
           <button
-            onClick={() => setLetterIndex((prev) => (prev - 1 + LETTERS.length) % LETTERS.length)}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition hover:bg-white/20 active:scale-95"
+            onClick={() => changeLetter(-1)}
+            className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition hover:bg-white/20 active:scale-95 shrink-0"
             aria-label="Previous Letter"
           >
             ←
@@ -260,8 +364,8 @@ export default function ColoringClient() {
           </div>
 
           <button
-            onClick={() => setLetterIndex((prev) => (prev + 1) % LETTERS.length)}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition hover:bg-white/20 active:scale-95"
+            onClick={() => changeLetter(1)}
+            className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition hover:bg-white/20 active:scale-95 shrink-0"
             aria-label="Next Letter"
           >
             →
