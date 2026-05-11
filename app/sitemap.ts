@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.arabfingers.site";
+// Always use www to match canonical domain — avoids redirect chains in Google's index
+const rawUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.arabfingers.site";
+const siteUrl = rawUrl.replace("://arabfingers.site", "://www.arabfingers.site");
 
 const locales = ["en", "ar"] as const;
 
