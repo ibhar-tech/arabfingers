@@ -202,7 +202,7 @@ function FloatingShape({
   );
 }
 
-export default function ThreeDBackground() {
+export default function ThreeDBackground({ subtle = false }: { subtle?: boolean }) {
   const theme = useAppStore((state) => state.theme);
   const reduceMotion = useAppStore((state) => state.reduceMotion);
   const currentKey = useAppStore((state) => state.currentKey);
@@ -245,12 +245,17 @@ export default function ThreeDBackground() {
   }, [currentKey, objects]);
 
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none print:hidden" aria-hidden="true">
+    <div
+      className={`fixed inset-0 z-[-10] pointer-events-none print:hidden transition-opacity duration-700 ${
+        subtle ? "opacity-30" : "opacity-75"
+      }`}
+      aria-hidden="true"
+    >
       <Canvas
         camera={{ position: [0, 0, 8], fov: 60 }}
         dpr={[1, 1.2]}
         gl={{ alpha: true, antialias: false, powerPreference: "high-performance" }}
-        style={{ position: "fixed", inset: 0 }}
+        style={{ position: "fixed", inset: 0, pointerEvents: "none" }}
       >
         <ambientLight intensity={0.4} />
         <pointLight position={[10, 10, 10]} intensity={1.5} color="#ffffff" />

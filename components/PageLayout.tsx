@@ -81,7 +81,7 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
       dir={isAr ? "rtl" : "ltr"}
       style={isAr ? { fontFamily: "var(--font-ibm-plex-arabic), sans-serif" } : undefined}
     >
-      <ThreeDBackground />
+      <ThreeDBackground subtle={true} />
       {/* Top nav */}
       <nav className="border-b border-white/8 bg-[#050816]/95 backdrop-blur-sm sticky top-0 z-20">
         <div className="mx-auto max-w-6xl flex items-center justify-between px-4 py-3.5 sm:px-6">
@@ -134,12 +134,12 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
       </nav>
 
       {/* Content Area with spacious desktop padding */}
-      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 sm:py-10">
+      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 sm:py-10 relative z-10">
         {children}
       </main>
 
       {/* Footer */}
-      <footer className="mt-auto border-t border-white/8 bg-[#050816] print:hidden">
+      <footer className="mt-auto border-t border-white/8 bg-[#050816] print:hidden relative z-10">
         <div className="mx-auto max-w-6xl px-5 py-8 sm:px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             
