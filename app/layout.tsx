@@ -28,11 +28,11 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.arabfingers.sit
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "ArabFingers — لعبة الحروف العربية | Arabic Keyboard Smash Toy for Kids",
-    template: "%s | ArabFingers",
+    default: "Arab Fingers — لعبة الحروف العربية | Arabic Keyboard Smash Toy for Kids",
+    template: "%s | Arab Fingers",
   },
   description:
-    "ArabFingers is a free bilingual Arabic & English keyboard smash toy for toddlers (1–6 yrs). Kids press any key to see animated Arabic letters with pronunciation, 3D floating objects, and confetti celebrations. عرب فنجرز — لعبة تعليمية ثنائية اللغة للأطفال لتعلم الحروف العربية والإنجليزية بالرسوم المتحركة والأصوات.",
+    "Arab Fingers is a free bilingual Arabic & English keyboard smash toy for toddlers (1–6 yrs). Kids press any key to see animated Arabic letters with pronunciation, 3D floating objects, and confetti celebrations. عرب فنجرز — لعبة تعليمية ثنائية اللغة للأطفال لتعلم الحروف العربية والإنجليزية بالرسوم المتحركة والأصوات.",
   keywords: [
     "Arabic letters for kids",
     "حروف عربية للأطفال",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     "toddler keyboard game",
     "لعبة أطفال تعليمية",
     "Arabic English letters",
-    "ArabFingers",
+    "Arab Fingers",
     "عرب فنجرز",
     "baby keyboard",
     "kids educational game",
@@ -54,15 +54,15 @@ export const metadata: Metadata = {
     "العربية للأطفال",
   ],
 
-  applicationName: "ArabFingers",
-  authors: [{ name: "ArabFingers" }],
-  creator: "ArabFingers",
-  publisher: "ArabFingers",
+  applicationName: "Arab Fingers",
+  authors: [{ name: "Arab Fingers" }],
+  creator: "Arab Fingers",
+  publisher: "Arab Fingers",
   category: "education",
   openGraph: {
     type: "website",
-    siteName: "ArabFingers",
-    title: "ArabFingers — لعبة الحروف العربية | Arabic Keyboard Smash Toy",
+    siteName: "Arab Fingers",
+    title: "Arab Fingers — لعبة الحروف العربية | Arabic Keyboard Smash Toy",
     description:
       "Free bilingual Arabic & English keyboard smash toy for toddlers. Animated letters, 3D objects, sound effects & 5 themes. لعبة مجانية ثنائية اللغة للأطفال.",
     locale: "en_US",
@@ -73,14 +73,14 @@ export const metadata: Metadata = {
         url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "ArabFingers — Arabic Keyboard Smash Toy for Kids",
+        alt: "Arab Fingers — Arabic Keyboard Smash Toy for Kids",
         type: "image/svg+xml",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "ArabFingers — Arabic Keyboard Smash Toy for Kids",
+    title: "Arab Fingers — Arabic Keyboard Smash Toy for Kids",
     description:
       "Free bilingual Arabic & English keyboard smash toy for toddlers with 3D animations and letter pronunciation.",
     images: ["/og-image.svg"],
@@ -118,7 +118,7 @@ export const metadata: Metadata = {
     "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
-    "apple-mobile-web-app-title": "ArabFingers",
+    "apple-mobile-web-app-title": "Arab Fingers",
   },
 };
 
