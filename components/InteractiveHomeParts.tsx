@@ -338,7 +338,7 @@ function ScreenPinningGuide({ isAr }: { isAr: boolean }) {
         <h2 className="text-lg font-bold text-white">
           {isAr ? "دليل اللعب الآمن للوالدين" : "Safe Play Area Settings"}
         </h2>
-        <p className="text-xs text-white/50 mt-1 leading-relaxed">
+        <p className="text-xs text-white/70 mt-1 leading-relaxed">
           {isAr
             ? "كيف تقفل شاشة جهازك حتى يتمكن طفلك من سحق المفاتيح بأمان دون الخروج من الصفحة."
             : "Learn how to pin or lock your screen so your baby can smash keys without closing the app."}
@@ -349,20 +349,20 @@ function ScreenPinningGuide({ isAr }: { isAr: boolean }) {
       <div className="flex border-b border-white/10 mb-4">
         <button
           onClick={() => setActiveTab("ios")}
-          className={`flex-1 pb-2 text-center text-xs font-semibold border-b-2 cursor-pointer transition ${
+          className={`flex-1 pb-2 text-center text-xs font-bold border-b-2 cursor-pointer transition ${
             activeTab === "ios"
-              ? "border-accent text-accent"
-              : "border-transparent text-white/40 hover:text-white/60"
+              ? "border-emerald-400 text-emerald-400"
+              : "border-transparent text-white/70 hover:text-white/95"
           }`}
         >
           🍏 {isAr ? "أجهزة الآيفون والآيباد (iOS)" : "iPad / iPhone (iOS)"}
         </button>
         <button
           onClick={() => setActiveTab("android")}
-          className={`flex-1 pb-2 text-center text-xs font-semibold border-b-2 cursor-pointer transition ${
+          className={`flex-1 pb-2 text-center text-xs font-bold border-b-2 cursor-pointer transition ${
             activeTab === "android"
-              ? "border-accent text-accent"
-              : "border-transparent text-white/40 hover:text-white/60"
+              ? "border-emerald-400 text-emerald-400"
+              : "border-transparent text-white/70 hover:text-white/95"
           }`}
         >
           🤖 {isAr ? "أجهزة الأندرويد (Android)" : "Android Tablet / Phone"}
@@ -370,18 +370,18 @@ function ScreenPinningGuide({ isAr }: { isAr: boolean }) {
       </div>
 
       {/* Guide Content */}
-      <div className="text-xs text-white/70 space-y-3 leading-relaxed">
+      <div className="text-xs text-white/90 space-y-3 leading-relaxed">
         {activeTab === "ios" ? (
           isAr ? (
             <ol className="list-decimal list-inside space-y-2">
               <li>
-                افتح تطبيق <strong className="text-white">الإعدادات</strong> ← <strong className="text-white">تسهيلات الاستخدام</strong> ← <strong className="text-white">الوصول الموجه (Guided Access)</strong> وقم بتفعيله.
+                افتح تطبيق <strong className="text-emerald-300 font-bold">الإعدادات</strong> ← <strong className="text-emerald-300 font-bold">تسهيلات الاستخدام</strong> ← <strong className="text-emerald-300 font-bold">الوصول الموجه (Guided Access)</strong> وقم بتفعيله.
               </li>
               <li>
                 قم بتعيين رمز مرور خاص بك لإنهاء القفل.
               </li>
               <li>
-                افتح تطبيق <strong className="text-accent">عرب فنجرز</strong>، واضغط على <strong className="text-white">الزر الجانبي ثلاث مرات</strong> لتفعيل الوصول الموجه.
+                افتح تطبيق <strong className="text-accent font-bold">عرب فنجرز</strong>، واضغط على <strong className="text-emerald-300 font-bold">الزر الجانبي ثلاث مرات</strong> لتفعيل الوصول الموجه.
               </li>
               <li>
                 الآن تم قفل الشاشة بالكامل! لإنهاء القفل، اضغط مجدداً ثلاث مرات وأدخل رمز المرور الخاص بك.
@@ -390,13 +390,13 @@ function ScreenPinningGuide({ isAr }: { isAr: boolean }) {
           ) : (
             <ol className="list-decimal list-inside space-y-2">
               <li>
-                Go to <strong className="text-white">Settings</strong> → <strong className="text-white">Accessibility</strong> → <strong className="text-white">Guided Access</strong> and switch it ON.
+                Go to <strong className="text-emerald-300 font-bold">Settings</strong> → <strong className="text-emerald-300 font-bold">Accessibility</strong> → <strong className="text-emerald-300 font-bold">Guided Access</strong> and switch it ON.
               </li>
               <li>
-                Tap <strong className="text-white">Passcode Settings</strong> to set a secure PIN for ending the lock.
+                Tap <strong className="text-emerald-300 font-bold">Passcode Settings</strong> to set a secure PIN for ending the lock.
               </li>
               <li>
-                Open <strong className="text-accent">ArabFingers</strong>, and <strong className="text-white">triple-click the power button</strong> to launch Guided Access.
+                Open <strong className="text-accent font-bold">ArabFingers</strong>, and <strong className="text-emerald-300 font-bold">triple-click the power button</strong> to launch Guided Access.
               </li>
               <li>
                 The screen is now safely trapped! To unlock, triple-click the power button again and enter your PIN.
@@ -406,31 +406,31 @@ function ScreenPinningGuide({ isAr }: { isAr: boolean }) {
         ) : isAr ? (
           <ol className="list-decimal list-inside space-y-2">
             <li>
-              افتح <strong className="text-white">الإعدادات</strong> ← <strong className="text-white">الأمان</strong> ← <strong className="text-white">تثبيت الشاشة (Screen Pinning / App Pinning)</strong> وقم بتفعيله.
+              افتح <strong className="text-emerald-300 font-bold">الإعدادات</strong> ← <strong className="text-emerald-300 font-bold">الأمان</strong> ← <strong className="text-emerald-300 font-bold">تثبيت الشاشة (Screen Pinning / App Pinning)</strong> وقم بتفعيله.
             </li>
             <li>
-              افتح تطبيق <strong className="text-accent">عرب فنجرز</strong>، وافتح شاشة التطبيقات الحديثة (Overview / Recents).
+              افتح تطبيق <strong className="text-accent font-bold">عرب فنجرز</strong>، وافتح شاشة التطبيقات الحديثة (Overview / Recents).
             </li>
             <li>
-              اضغط على أيقونة التطبيق في الجزء العلوي، واختر <strong className="text-white">تثبيت (Pin)</strong>.
+              اضغط على أيقونة التطبيق في الجزء العلوي، واختر <strong className="text-emerald-300 font-bold">تثبيت (Pin)</strong>.
             </li>
             <li>
-              الآن لا يستطيع طفلك الخروج! لإلغاء التثبيت، اضغط مع الاستمرار على زري <strong className="text-white">الرجوع والرئيسية</strong> معاً.
+              الآن لا يستطيع طفلك الخروج! لإلغاء التثبيت، اضغط مع الاستمرار على زري <strong className="text-emerald-300 font-bold">الرجوع والرئيسية</strong> معاً.
             </li>
           </ol>
         ) : (
           <ol className="list-decimal list-inside space-y-2">
             <li>
-              Open <strong className="text-white">Settings</strong> → <strong className="text-white">Security</strong> → <strong className="text-white">App Pinning (or Screen Pinning)</strong> and turn it ON.
+              Open <strong className="text-emerald-300 font-bold">Settings</strong> → <strong className="text-emerald-300 font-bold">Security</strong> → <strong className="text-emerald-300 font-bold">App Pinning (or Screen Pinning)</strong> and turn it ON.
             </li>
             <li>
-              Open <strong className="text-accent">ArabFingers</strong>, and swipe up to open the <strong className="text-white">Recents / Overview screen</strong>.
+              Open <strong className="text-accent font-bold">ArabFingers</strong>, and swipe up to open the <strong className="text-emerald-300 font-bold">Recents / Overview screen</strong>.
             </li>
             <li>
-              Tap the icon at the top of the app preview and select <strong className="text-white">Pin</strong>.
+              Tap the icon at the top of the app preview and select <strong className="text-emerald-300 font-bold">Pin</strong>.
             </li>
             <li>
-              The app is now locked! To unpin, touch and hold both the <strong className="text-white">Back and Home</strong> buttons simultaneously.
+              The app is now locked! To unpin, touch and hold both the <strong className="text-emerald-300 font-bold">Back and Home</strong> buttons simultaneously.
             </li>
           </ol>
         )}
@@ -447,10 +447,10 @@ function KidSafeBadge({ isAr }: { isAr: boolean }) {
     <div className="flex flex-col sm:flex-row items-center gap-4 rounded-3xl border border-white/5 bg-white/1 p-6 text-center sm:text-left">
       <div className="text-5xl shrink-0">🛡️✨</div>
       <div className="space-y-1">
-        <h4 className="text-sm font-bold text-white">
+        <h3 className="text-sm font-bold text-white/95">
           {isAr ? "سلامة الأطفال والخصوصية أولاً" : "100% Kid Safe & Privacy First"}
-        </h4>
-        <p className="text-xs text-white/50 leading-relaxed">
+        </h3>
+        <p className="text-xs text-white/75 leading-relaxed">
           {isAr
             ? "نحن ملتزمون بعدم جمع أي بيانات شخصية، ولا نستخدم أي تتبع، وليس لدينا حسابات مستخدمين. خيار مثالي وآمن تماماً للأطفال والرضع."
             : "We collect absolutely no personal data, use no trackers, and have zero user accounts. Pure sensory joy, perfectly private, and COPPA compliant."}

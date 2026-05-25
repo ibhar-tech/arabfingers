@@ -49,10 +49,10 @@ const themeObjectCounts: Record<ThemeName, number> = {
   ramadan: 10,
 };
 
-function buildObjects(themeName: ThemeName) {
+function buildObjects(themeName: ThemeName, subtle: boolean) {
   const random = mulberry32(7643);
   const palette = themes[themeName].palette;
-  const count = themeObjectCounts[themeName];
+  const count = subtle ? 4 : themeObjectCounts[themeName]; // Only 4 slow-drifting background shapes for marketing layouts to preserve CPU/GPU performance!
 
   return Array.from({ length: count }, (_, index) => {
     const geometry = geometryKinds[Math.floor(random() * geometryKinds.length)];
@@ -66,7 +66,7 @@ function buildObjects(themeName: ThemeName) {
       color: palette[index % palette.length],
       position: [x, y, z] as [number, number, number],
       scale: 0.55 + random() * 0.85,
-      speed: 0.6 + random() * 1.2,
+      speed: subtle ? 0.35 + random() * 0.45 : 0.6 + random() * 1.2, // Slower drift for subtle backgrounds
     };
   });
 }
@@ -214,7 +214,7 @@ export default function ThreeDBackground({ subtle = false, className = "z-0" }: 
   const currentKey = useAppStore((state) => state.currentKey);
   const [pulseTokens, setPulseTokens] = useState<Record<string, number>>({});
 
-  const objects = useMemo(() => buildObjects(theme), [theme]);
+  const objects = useMemo(() => buildObjects(theme, subtle), [theme, subtle]);
 
   useEffect(() => {
     if (!currentKey) {

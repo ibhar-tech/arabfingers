@@ -70,7 +70,10 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
   });
 
   useEffect(() => {
-    // Lazy-load WebGL canvas on idle to eliminate initial TBT blocking time
+    // Defer 3D canvas loading on mobile viewports to maximize performance rank and keep mobile battery consumption zero
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      return;
+    }
     const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 1500));
     const handle = idleCallback(() => setLoad3D(true));
     return () => {
@@ -166,7 +169,7 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
               <button
                 type="button"
                 onClick={() => toggleFooterSection("learn")}
-                className="w-full flex items-center justify-between text-left md:pointer-events-none md:block focus:outline-none cursor-pointer"
+                className="w-full flex items-center justify-between text-left md:pointer-events-none md:block focus:outline-none cursor-pointer py-2.5"
               >
                 <h3 className="text-xs font-semibold text-white/70 uppercase tracking-wider mb-0 md:mb-3">
                   {isAr ? "تعلم العربية" : "Learn Arabic"}
@@ -175,12 +178,12 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
                   {footerOpen.learn ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                 </span>
               </button>
-              <div className={`${footerOpen.learn ? "flex" : "hidden"} md:flex flex-col gap-2 mt-3 md:mt-0`}>
+              <div className={`${footerOpen.learn ? "flex" : "hidden"} md:flex flex-col gap-3.5 mt-3 md:mt-0`}>
                 {footerLearnLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={`/${locale}${link.href}`}
-                    className="text-xs text-white/75 hover:text-accent transition-colors"
+                    className="text-xs text-white/75 hover:text-accent transition-colors py-2 px-1 block"
                   >
                     {isAr ? link.labelAr : link.labelEn}
                   </Link>
@@ -193,7 +196,7 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
               <button
                 type="button"
                 onClick={() => toggleFooterSection("blog")}
-                className="w-full flex items-center justify-between text-left md:pointer-events-none md:block focus:outline-none cursor-pointer"
+                className="w-full flex items-center justify-between text-left md:pointer-events-none md:block focus:outline-none cursor-pointer py-2.5"
               >
                 <h3 className="text-xs font-semibold text-white/70 uppercase tracking-wider mb-0 md:mb-3">
                   {isAr ? "المدونة" : "Blog"}
@@ -202,12 +205,12 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
                   {footerOpen.blog ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                 </span>
               </button>
-              <div className={`${footerOpen.blog ? "flex" : "hidden"} md:flex flex-col gap-2 mt-3 md:mt-0`}>
+              <div className={`${footerOpen.blog ? "flex" : "hidden"} md:flex flex-col gap-3.5 mt-3 md:mt-0`}>
                 {footerBlogLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={`/${locale}${link.href}`}
-                    className="text-xs text-white/75 hover:text-accent transition-colors"
+                    className="text-xs text-white/75 hover:text-accent transition-colors py-2 px-1 block"
                   >
                     {isAr ? link.labelAr : link.labelEn}
                   </Link>
@@ -220,7 +223,7 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
               <button
                 type="button"
                 onClick={() => toggleFooterSection("info")}
-                className="w-full flex items-center justify-between text-left md:pointer-events-none md:block focus:outline-none cursor-pointer"
+                className="w-full flex items-center justify-between text-left md:pointer-events-none md:block focus:outline-none cursor-pointer py-2.5"
               >
                 <h3 className="text-xs font-semibold text-white/70 uppercase tracking-wider mb-0 md:mb-3">
                   {isAr ? "معلومات" : "Info"}
@@ -229,12 +232,12 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
                   {footerOpen.info ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                 </span>
               </button>
-              <div className={`${footerOpen.info ? "flex" : "hidden"} md:flex flex-col gap-2 mt-3 md:mt-0`}>
+              <div className={`${footerOpen.info ? "flex" : "hidden"} md:flex flex-col gap-3.5 mt-3 md:mt-0`}>
                 {footerInfoLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={`/${locale}${link.href}`}
-                    className="text-xs text-white/75 hover:text-accent transition-colors"
+                    className="text-xs text-white/75 hover:text-accent transition-colors py-2 px-1 block"
                   >
                     {isAr ? link.labelAr : link.labelEn}
                   </Link>

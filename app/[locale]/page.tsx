@@ -59,7 +59,7 @@ function HomeEn() {
         </p>
         <Link
           href="/en/play"
-          className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-accent px-8 py-4 text-lg font-semibold text-[#050816] shadow-[0_8px_32px_rgba(159,225,203,0.3)] transition hover:shadow-[0_12px_40px_rgba(159,225,203,0.45)] hover:scale-105"
+          className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-accent px-8 py-4 text-lg font-bold text-slate-950 shadow-[0_8px_32px_rgba(159,225,203,0.3)] transition hover:shadow-[0_12px_40px_rgba(159,225,203,0.45)] hover:scale-105"
         >
           🚀 Start Playing
         </Link>
@@ -186,7 +186,7 @@ function HomeEn() {
       <div className="text-center py-8">
         <Link
           href="/en/play"
-          className="inline-flex items-center gap-2 rounded-2xl bg-accent px-8 py-4 text-lg font-semibold text-[#050816] shadow-[0_8px_32px_rgba(159,225,203,0.3)] transition hover:shadow-[0_12px_40px_rgba(159,225,203,0.45)] hover:scale-105"
+          className="inline-flex items-center gap-2 rounded-2xl bg-accent px-8 py-4 text-lg font-bold text-slate-950 shadow-[0_8px_32px_rgba(159,225,203,0.3)] transition hover:shadow-[0_12px_40px_rgba(159,225,203,0.45)] hover:scale-105"
         >
           🚀 Start Playing Now — It&apos;s Free!
         </Link>
@@ -234,7 +234,7 @@ function HomeAr() {
         </p>
         <Link
           href="/ar/play"
-          className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-accent px-8 py-4 text-lg font-semibold text-[#050816] shadow-[0_8px_32px_rgba(159,225,203,0.3)] transition hover:shadow-[0_12px_40px_rgba(159,225,203,0.45)] hover:scale-105"
+          className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-accent px-8 py-4 text-lg font-bold text-slate-950 shadow-[0_8px_32px_rgba(159,225,203,0.3)] transition hover:shadow-[0_12px_40px_rgba(159,225,203,0.45)] hover:scale-105"
         >
           🚀 ابدأ اللعب
         </Link>
@@ -351,7 +351,7 @@ function HomeAr() {
       <div className="text-center py-8">
         <Link
           href="/ar/play"
-          className="inline-flex items-center gap-2 rounded-2xl bg-accent px-8 py-4 text-lg font-semibold text-[#050816] shadow-[0_8px_32px_rgba(159,225,203,0.3)] transition hover:shadow-[0_12px_40px_rgba(159,225,203,0.45)] hover:scale-105"
+          className="inline-flex items-center gap-2 rounded-2xl bg-accent px-8 py-4 text-lg font-bold text-slate-950 shadow-[0_8px_32px_rgba(159,225,203,0.3)] transition hover:shadow-[0_12px_40px_rgba(159,225,203,0.45)] hover:scale-105"
         >
           🚀 ابدأ اللعب الآن — مجاناً!
         </Link>
