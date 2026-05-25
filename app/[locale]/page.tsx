@@ -4,11 +4,21 @@ import { PageLayout } from "@/components/PageLayout";
 import { isLocale } from "@/lib/locales";
 import { InteractiveHomeParts } from "@/components/InteractiveHomeParts";
 
-export const metadata: Metadata = {
-  title: "Arab Fingers — Learn Arabic Letters | تعلم الحروف العربية",
-  description:
-    "Free bilingual Arabic & English keyboard smash toy for toddlers. Learn the Arabic alphabet with 3D animations, natural pronunciation, and fun themes.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return {
+    title: locale === "ar"
+      ? "عرب فنجرز — لعبة الحروف العربية للأطفال"
+      : "Arab Fingers — Learn Arabic Letters | Arabic Keyboard Smash Toy for Kids",
+    description: locale === "ar"
+      ? "عرب فنجرز هو تطبيق ولعبة مجانية ثنائية اللغة للأطفال لتعلم الحروف العربية والإنجليزية بالرسوم المتحركة ثلاثية الأبعاد، الأصوات الطبيعية والاحتفالات الممتعة."
+      : "Free bilingual Arabic & English keyboard smash toy for toddlers (1-6 yrs). Learn the Arabic alphabet with 3D animations, natural pronunciation, and fun interactive themes.",
+  };
+}
 
 export default async function HomePage({
   params,

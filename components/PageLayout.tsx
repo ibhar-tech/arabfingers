@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, type ReactNode } from "react";
+import { useState, useEffect, type ReactNode } from "react";
 import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 import dynamic from "next/dynamic";
 
@@ -62,11 +62,25 @@ const footerInfoLinks = [
 export function PageLayout({ locale, children }: PageLayoutProps) {
   const isAr = locale === "ar";
   const [menuOpen, setMenuOpen] = useState(false);
+  const [load3D, setLoad3D] = useState(false);
   const [footerOpen, setFooterOpen] = useState<Record<string, boolean>>({
     learn: false,
     blog: false,
     info: false,
   });
+
+  useEffect(() => {
+    // Lazy-load WebGL canvas on idle to eliminate initial TBT blocking time
+    const idleCallback = window.requestIdleCallback || ((cb) => setTimeout(cb, 1500));
+    const handle = idleCallback(() => setLoad3D(true));
+    return () => {
+      if (window.cancelIdleCallback) {
+        window.cancelIdleCallback(handle);
+      } else {
+        clearTimeout(handle);
+      }
+    };
+  }, []);
 
   const toggleFooterSection = (section: string) => {
     setFooterOpen((prev) => ({
@@ -81,7 +95,11 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
       dir={isAr ? "rtl" : "ltr"}
       style={isAr ? { fontFamily: "var(--font-ibm-plex-arabic), sans-serif" } : undefined}
     >
-      <ThreeDBackground subtle={true} className="z-[-10]" />
+      {load3D ? (
+        <ThreeDBackground subtle={true} className="z-[-10]" />
+      ) : (
+        <div className="fixed inset-0 z-[-10] bg-[#050816] print:hidden" />
+      )}
       {/* Top nav */}
       <nav className="border-b border-white/8 bg-[#050816]/95 backdrop-blur-sm sticky top-0 z-20">
         <div className="mx-auto max-w-6xl flex items-center justify-between px-4 py-3.5 sm:px-6">
@@ -150,7 +168,7 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
                 onClick={() => toggleFooterSection("learn")}
                 className="w-full flex items-center justify-between text-left md:pointer-events-none md:block focus:outline-none cursor-pointer"
               >
-                <h3 className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-0 md:mb-3">
+                <h3 className="text-xs font-semibold text-white/70 uppercase tracking-wider mb-0 md:mb-3">
                   {isAr ? "تعلم العربية" : "Learn Arabic"}
                 </h3>
                 <span className="md:hidden text-white/40">
@@ -162,7 +180,7 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
                   <Link
                     key={link.href}
                     href={`/${locale}${link.href}`}
-                    className="text-xs text-white/55 hover:text-accent transition-colors"
+                    className="text-xs text-white/75 hover:text-accent transition-colors"
                   >
                     {isAr ? link.labelAr : link.labelEn}
                   </Link>
@@ -177,7 +195,7 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
                 onClick={() => toggleFooterSection("blog")}
                 className="w-full flex items-center justify-between text-left md:pointer-events-none md:block focus:outline-none cursor-pointer"
               >
-                <h3 className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-0 md:mb-3">
+                <h3 className="text-xs font-semibold text-white/70 uppercase tracking-wider mb-0 md:mb-3">
                   {isAr ? "المدونة" : "Blog"}
                 </h3>
                 <span className="md:hidden text-white/40">
@@ -189,7 +207,7 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
                   <Link
                     key={link.href}
                     href={`/${locale}${link.href}`}
-                    className="text-xs text-white/55 hover:text-accent transition-colors"
+                    className="text-xs text-white/75 hover:text-accent transition-colors"
                   >
                     {isAr ? link.labelAr : link.labelEn}
                   </Link>
@@ -204,7 +222,7 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
                 onClick={() => toggleFooterSection("info")}
                 className="w-full flex items-center justify-between text-left md:pointer-events-none md:block focus:outline-none cursor-pointer"
               >
-                <h3 className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-0 md:mb-3">
+                <h3 className="text-xs font-semibold text-white/70 uppercase tracking-wider mb-0 md:mb-3">
                   {isAr ? "معلومات" : "Info"}
                 </h3>
                 <span className="md:hidden text-white/40">
@@ -216,7 +234,7 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
                   <Link
                     key={link.href}
                     href={`/${locale}${link.href}`}
-                    className="text-xs text-white/55 hover:text-accent transition-colors"
+                    className="text-xs text-white/75 hover:text-accent transition-colors"
                   >
                     {isAr ? link.labelAr : link.labelEn}
                   </Link>
@@ -226,10 +244,10 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
 
           </div>
           <div className="border-t border-white/5 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-            <p className="text-xs text-white/50">
+            <p className="text-xs text-white/70">
               © 2026 Arab Fingers. {isAr ? "جميع الحقوق محفوظة." : "All rights reserved."}
             </p>
-            <p className="text-xs text-white/40">
+            <p className="text-xs text-white/65">
               {isAr ? "صُنع بـ ❤️ بواسطة Ibrahim" : "Made with ❤️ by Ibrahim"}
             </p>
           </div>
