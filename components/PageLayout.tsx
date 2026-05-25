@@ -1,8 +1,16 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, type ReactNode } from "react";
 import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const ThreeDBackground = dynamic(() => import("@/components/ThreeDBackground"), {
+  ssr: false,
+  loading: () => <div className="fixed inset-0 z-0 bg-[#050816] print:hidden" />,
+});
+
 
 type PageLayoutProps = {
   locale: string;
@@ -69,18 +77,19 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
 
   return (
     <div
-      className="page-scrollable flex min-h-screen flex-col bg-[#050816] text-white/85"
+      className="page-scrollable relative flex min-h-screen flex-col bg-[#050816] text-white/85 overflow-x-hidden"
       dir={isAr ? "rtl" : "ltr"}
       style={isAr ? { fontFamily: "var(--font-ibm-plex-arabic), sans-serif" } : undefined}
     >
+      <ThreeDBackground />
       {/* Top nav */}
       <nav className="border-b border-white/8 bg-[#050816]/95 backdrop-blur-sm sticky top-0 z-20">
         <div className="mx-auto max-w-6xl flex items-center justify-between px-4 py-3.5 sm:px-6">
           <Link
             href={`/${locale}`}
-            className="shrink-0 text-base font-bold text-accent tracking-wide hover:scale-102 transition-transform"
+            className="shrink-0 flex items-center hover:scale-102 transition-transform"
           >
-            ArabFingers
+            <Image src="/logo.svg" alt="Arab Fingers Logo" width={151} height={36} priority className="h-9 w-auto" />
           </Link>
 
           {/* Desktop links */}

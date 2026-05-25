@@ -5,7 +5,7 @@ import { isLocale } from "@/lib/locales";
 import { InteractiveHomeParts } from "@/components/InteractiveHomeParts";
 
 export const metadata: Metadata = {
-  title: "ArabFingers — Learn Arabic Letters | تعلم الحروف العربية",
+  title: "Arab Fingers — Learn Arabic Letters | تعلم الحروف العربية",
   description:
     "Free bilingual Arabic & English keyboard smash toy for toddlers. Learn the Arabic alphabet with 3D animations, natural pronunciation, and fun themes.",
 };
@@ -20,12 +20,12 @@ export default async function HomePage({
 
   return (
     <PageLayout locale={locale}>
-      {/* Whimsical CSS-animated floating aurora/bubbles background for children */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-[8%] left-[5%] w-64 h-64 rounded-full bg-red-500/8 blur-[70px] animate-float-slow" />
-        <div className="absolute top-[35%] right-[8%] w-80 h-80 rounded-full bg-emerald-500/8 blur-[85px] animate-float-medium" />
-        <div className="absolute bottom-[20%] left-[10%] w-96 h-96 rounded-full bg-blue-500/8 blur-[95px] animate-float-fast" />
-        <div className="absolute top-[65%] left-[45%] w-72 h-72 rounded-full bg-purple-500/6 blur-[80px] animate-float-slowest" />
+      {/* Whimsical fixed glowing atmospheric auroras for background depth */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 print:hidden opacity-35">
+        <div className="absolute top-[8%] left-[5%] w-80 h-80 rounded-full bg-red-500/8 blur-[90px] animate-float-slow" />
+        <div className="absolute top-[35%] right-[8%] w-96 h-96 rounded-full bg-emerald-500/8 blur-[100px] animate-float-medium" />
+        <div className="absolute bottom-[20%] left-[10%] w-[450px] h-[450px] rounded-full bg-blue-500/8 blur-[110px] animate-float-fast" />
+        <div className="absolute top-[65%] left-[45%] w-84 h-84 rounded-full bg-purple-500/6 blur-[90px] animate-float-slowest" />
       </div>
 
       <div className="relative z-10">
@@ -42,7 +42,7 @@ function HomeEn() {
       <div className="text-center mb-12">
         <div className="text-6xl mb-4">🎹✨</div>
         <h1 className="text-4xl sm:text-5xl font-bold text-white leading-tight">
-          ArabFingers
+          Arab Fingers
         </h1>
         <p className="mt-3 text-lg text-white/60">
           The fun way for kids to learn Arabic letters
