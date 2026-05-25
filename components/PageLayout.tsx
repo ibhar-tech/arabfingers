@@ -81,7 +81,7 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
       dir={isAr ? "rtl" : "ltr"}
       style={isAr ? { fontFamily: "var(--font-ibm-plex-arabic), sans-serif" } : undefined}
     >
-      <ThreeDBackground subtle={true} />
+      <ThreeDBackground subtle={true} className="z-[-10]" />
       {/* Top nav */}
       <nav className="border-b border-white/8 bg-[#050816]/95 backdrop-blur-sm sticky top-0 z-20">
         <div className="mx-auto max-w-6xl flex items-center justify-between px-4 py-3.5 sm:px-6">

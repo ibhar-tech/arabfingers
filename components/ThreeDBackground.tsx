@@ -190,10 +190,14 @@ function FloatingShape({
         {!reduceMotion && (
           <mesh ref={ringRef} rotation={[Math.PI / 3, Math.PI / 6, 0]} scale={[1.35, 1.35, 1.35]}>
             <torusGeometry args={[0.9, 0.028, 8, 32]} />
-            <meshBasicMaterial
+            <meshStandardMaterial
               color={object.color}
               transparent
-              opacity={0.55}
+              opacity={0.65}
+              emissive={object.color}
+              emissiveIntensity={1.4}
+              roughness={0.1}
+              metalness={0.9}
             />
           </mesh>
         )}
@@ -202,7 +206,7 @@ function FloatingShape({
   );
 }
 
-export default function ThreeDBackground({ subtle = false }: { subtle?: boolean }) {
+export default function ThreeDBackground({ subtle = false, className = "z-0" }: { subtle?: boolean; className?: string }) {
   const theme = useAppStore((state) => state.theme);
   const reduceMotion = useAppStore((state) => state.reduceMotion);
   const currentKey = useAppStore((state) => state.currentKey);
@@ -246,7 +250,7 @@ export default function ThreeDBackground({ subtle = false }: { subtle?: boolean 
 
   return (
     <div
-      className={`fixed inset-0 z-[-10] pointer-events-none print:hidden transition-opacity duration-700 ${
+      className={`fixed inset-0 pointer-events-none print:hidden transition-opacity duration-700 ${className} ${
         subtle ? "opacity-30" : "opacity-75"
       }`}
       aria-hidden="true"
