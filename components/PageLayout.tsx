@@ -157,12 +157,12 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
                   {footerOpen.learn ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                 </span>
               </button>
-              <div className={`${footerOpen.learn ? "block" : "hidden"} md:block mt-3 md:mt-0 flex flex-col gap-2`}>
+              <div className={`${footerOpen.learn ? "flex" : "hidden"} md:flex flex-col gap-2 mt-3 md:mt-0`}>
                 {footerLearnLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={`/${locale}${link.href}`}
-                    className="text-xs text-white/35 hover:text-white/60 transition"
+                    className="text-xs text-white/55 hover:text-accent transition-colors"
                   >
                     {isAr ? link.labelAr : link.labelEn}
                   </Link>
@@ -184,12 +184,12 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
                   {footerOpen.blog ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                 </span>
               </button>
-              <div className={`${footerOpen.blog ? "block" : "hidden"} md:block mt-3 md:mt-0 flex flex-col gap-2`}>
+              <div className={`${footerOpen.blog ? "flex" : "hidden"} md:flex flex-col gap-2 mt-3 md:mt-0`}>
                 {footerBlogLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={`/${locale}${link.href}`}
-                    className="text-xs text-white/35 hover:text-white/60 transition"
+                    className="text-xs text-white/55 hover:text-accent transition-colors"
                   >
                     {isAr ? link.labelAr : link.labelEn}
                   </Link>
@@ -211,12 +211,12 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
                   {footerOpen.info ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
                 </span>
               </button>
-              <div className={`${footerOpen.info ? "block" : "hidden"} md:block mt-3 md:mt-0 flex flex-col gap-2`}>
+              <div className={`${footerOpen.info ? "flex" : "hidden"} md:flex flex-col gap-2 mt-3 md:mt-0`}>
                 {footerInfoLinks.map((link) => (
                   <Link
                     key={link.href}
                     href={`/${locale}${link.href}`}
-                    className="text-xs text-white/35 hover:text-white/60 transition"
+                    className="text-xs text-white/55 hover:text-accent transition-colors"
                   >
                     {isAr ? link.labelAr : link.labelEn}
                   </Link>
@@ -226,10 +226,10 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
 
           </div>
           <div className="border-t border-white/5 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-            <p className="text-xs text-white/20">
-              © 2026 ArabFingers. {isAr ? "جميع الحقوق محفوظة." : "All rights reserved."}
+            <p className="text-xs text-white/50">
+              © 2026 Arab Fingers. {isAr ? "جميع الحقوق محفوظة." : "All rights reserved."}
             </p>
-            <p className="text-xs text-white/15">
+            <p className="text-xs text-white/40">
               {isAr ? "صُنع بـ ❤️ بواسطة Ibrahim" : "Made with ❤️ by Ibrahim"}
             </p>
           </div>
