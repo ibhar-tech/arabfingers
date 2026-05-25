@@ -11,7 +11,9 @@ const navLinks = [
   { href: "/play", labelEn: "▶ Play", labelAr: "▶ العب" },
   { href: "/coloring", labelEn: "🎨 Color", labelAr: "🎨 تلوين" },
   { href: "/learn", labelEn: "Learn", labelAr: "تعلم" },
+  { href: "/printables", labelEn: "📄 Worksheets", labelAr: "📄 أوراق عمل" },
   { href: "/blog", labelEn: "Blog", labelAr: "المدونة" },
+  { href: "/resources", labelEn: "Resources", labelAr: "المصادر" },
   { href: "/about", labelEn: "About", labelAr: "عن التطبيق" },
 ];
 
@@ -39,6 +41,8 @@ const footerBlogLinks = [
 
 const footerInfoLinks = [
   { href: "/about", labelEn: "About", labelAr: "عن التطبيق" },
+  { href: "/printables", labelEn: "Worksheets", labelAr: "أوراق عمل" },
+  { href: "/resources", labelEn: "Resources", labelAr: "المصادر" },
   { href: "/contact", labelEn: "Contact", labelAr: "تواصل معنا" },
   { href: "/privacy", labelEn: "Privacy", labelAr: "الخصوصية" },
   { href: "/terms", labelEn: "Terms", labelAr: "الشروط" },

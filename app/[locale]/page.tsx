@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
 import { isLocale } from "@/lib/locales";
+import { InteractiveHomeParts } from "@/components/InteractiveHomeParts";
 
 export const metadata: Metadata = {
   title: "ArabFingers — Learn Arabic Letters | تعلم الحروف العربية",
@@ -42,6 +43,10 @@ function HomeEn() {
         >
           🚀 Start Playing
         </Link>
+      </div>
+
+      <div className="mb-12">
+        <InteractiveHomeParts locale="en" />
       </div>
 
       {/* What is ArabFingers */}
@@ -213,6 +218,10 @@ function HomeAr() {
         >
           🚀 ابدأ اللعب
         </Link>
+      </div>
+
+      <div className="mb-12">
+        <InteractiveHomeParts locale="ar" />
       </div>
 
       {/* What is ArabFingers */}

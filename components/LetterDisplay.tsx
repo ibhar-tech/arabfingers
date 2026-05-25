@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { themes } from "@/lib/themes";
 import { useAppStore } from "@/store/useAppStore";
 
@@ -11,6 +11,7 @@ export function LetterDisplay() {
   const reduceMotion = useAppStore((state) => state.reduceMotion);
   const theme = useAppStore((state) => state.theme);
   const t = useTranslations();
+  const locale = useLocale();
   const accent = themes[theme].palette[2];
   const showBoth = displayMode === "both";
 
@@ -124,6 +125,25 @@ export function LetterDisplay() {
             </motion.div>
           ) : null}
         </AnimatePresence>
+      </div>
+
+      {/* Accessibility (a11y) screen-reader live region */}
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {currentKey ? (
+          currentKey.kind === "letter" ? (
+            locale === "ar"
+              ? `تم الضغط على حرف ${currentKey.letter.arName}، ويعادل حرف ${currentKey.letter.enName} بالإنجليزية`
+              : `Pressed letter ${currentKey.letter.enName}, Arabic equivalent ${currentKey.letter.arName}`
+          ) : (
+            locale === "ar"
+              ? `تم تفجير رمز تعبيري`
+              : `Burst emoji`
+          )
+        ) : (
+          locale === "ar"
+            ? "لوحة المفاتيح جاهزة للعب"
+            : "Keyboard is ready to play"
+        )}
       </div>
     </>
   );

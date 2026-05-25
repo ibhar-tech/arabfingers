@@ -144,6 +144,12 @@ export default function PlayClient() {
       void ensureFullscreen();
       activate3D();
 
+      // Track total keys smashed to persist in localStorage for homepage stats widget
+      if (typeof window !== "undefined") {
+        const current = parseInt(localStorage.getItem("arab_fingers_total_smashes") || "0", 10);
+        localStorage.setItem("arab_fingers_total_smashes", (current + 1).toString());
+      }
+
       const currentTheme = themes[theme];
 
       playSmash(soundEnabled);

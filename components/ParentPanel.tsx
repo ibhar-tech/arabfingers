@@ -40,7 +40,7 @@ function ToggleRow({ label, icon, enabled, onToggle }: ToggleRowProps) {
     <button
       type="button"
       onClick={onToggle}
-      className="flex w-full items-center justify-between gap-4 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-left transition hover:bg-white/8"
+      className="flex w-full items-center justify-between gap-4 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-left transition hover:bg-white/8 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
     >
       <span className="flex items-center gap-3 text-sm text-white">
         <span className="text-white/78">{icon}</span>
@@ -72,7 +72,7 @@ function SegmentedOption({
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-lg border px-3 py-2 text-sm transition ${
+      className={`rounded-lg border px-3 py-2 text-sm transition focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none ${
         selected
           ? "border-transparent bg-white/88 text-[#07111f]"
           : "border-white/10 bg-white/5 text-white/72 hover:bg-white/8"
@@ -175,7 +175,7 @@ export function ParentPanel() {
                 type="button"
                 aria-label={t("close")}
                 onClick={() => { setParentPanelOpen(false); setPinUnlocked(false); }}
-                className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/72 transition hover:bg-white/8"
+                className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/72 transition hover:bg-white/8 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -354,7 +354,7 @@ export function ParentPanel() {
               <button
                 type="button"
                 onClick={() => { setSessionSummaryOpen(true); setParentPanelOpen(false); setPinUnlocked(false); }}
-                className="flex w-full items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white transition hover:bg-white/8"
+                className="flex w-full items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white transition hover:bg-white/8 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
               >
                 <BarChart3 className="h-4 w-4" />
                 {t("viewSummary")}
@@ -363,7 +363,7 @@ export function ParentPanel() {
               <button
                 type="button"
                 onClick={exitFullscreen}
-                className="flex w-full items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white transition hover:bg-white/8"
+                className="flex w-full items-center justify-center gap-2 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white transition hover:bg-white/8 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
               >
                 <Minimize className="h-4 w-4" />
                 {t("exitFullscreen")}
@@ -378,7 +378,7 @@ export function ParentPanel() {
                   <button
                     type="button"
                     onClick={() => setParentPin(null)}
-                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white transition hover:bg-white/8"
+                    className="w-full rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-sm text-white transition hover:bg-white/8 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
                   >
                     {t("pinRemove")}
                   </button>
@@ -392,13 +392,13 @@ export function ParentPanel() {
                       data-parent-ui="true"
                       value={pinInput}
                       onChange={(e) => setPinInput(e.target.value.replace(/\D/g, "").slice(0, 4))}
-                      className="flex-1 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white outline-none placeholder:text-white/30 focus:border-white/25"
+                      className="flex-1 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-white outline-none placeholder:text-white/30 focus:border-white/25 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
                     />
                     <button
                       type="button"
                       disabled={pinInput.length !== 4}
                       onClick={() => { setParentPin(pinInput); setPinInput(""); }}
-                      className="rounded-lg border border-white/10 bg-white/10 px-4 py-2 text-sm text-white transition hover:bg-white/15 disabled:opacity-40"
+                      className="rounded-lg border border-white/10 bg-white/10 px-4 py-2 text-sm text-white transition hover:bg-white/15 disabled:opacity-40 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
                     >
                       {t("pinSet")}
                     </button>

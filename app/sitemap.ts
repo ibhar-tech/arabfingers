@@ -52,6 +52,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Info pages
     ...localizedUrls("/about", 0.7),
+    ...localizedUrls("/printables", 0.8),
+    ...localizedUrls("/resources", 0.8),
     ...localizedUrls("/contact", 0.6, "yearly"),
     ...localizedUrls("/privacy", 0.5, "yearly"),
     ...localizedUrls("/terms", 0.5, "yearly"),
