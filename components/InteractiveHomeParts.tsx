@@ -30,55 +30,69 @@ export function InteractiveHomeParts({ locale }: InteractiveHomePartsProps) {
 }
 
 // ----------------------------------------------------
-// 1. StatsCounter: Simulated Real-Time Counter
+// 1. StatsCounter: AdSense-Safe Milestone Count-Up
 // ----------------------------------------------------
-function StatsCounter({ isAr }: { isAr: boolean }) {
-  const [activeKids, setActiveKids] = useState(1482);
-  const [totalSmashes, setTotalSmashes] = useState(4312504);
+function useCountUp(target: number, startVal: number, duration: number = 1600) {
+  const [count, setCount] = useState(startVal);
 
   useEffect(() => {
-    // Fluctuating active children count
-    const kidsInterval = setInterval(() => {
-      setActiveKids((prev) => {
-        const change = Math.floor(Math.random() * 9) - 4; // -4 to +4
-        const next = prev + change;
-        return next < 1200 ? 1200 : next > 1800 ? 1800 : next;
-      });
-    }, 4000);
+    let startTimestamp: number | null = null;
+    let frameId: number;
 
-    // Live incrementing key smashes count
-    const smashesInterval = setInterval(() => {
-      setTotalSmashes((prev) => prev + Math.floor(Math.random() * 4) + 1); // +1 to +4
-    }, 1200);
-
-    return () => {
-      clearInterval(kidsInterval);
-      clearInterval(smashesInterval);
+    const step = (timestamp: number) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      // Easing out quadratic
+      const easeProgress = progress * (2 - progress);
+      
+      setCount(Math.floor(easeProgress * (target - startVal) + startVal));
+      
+      if (progress < 1) {
+        frameId = window.requestAnimationFrame(step);
+      }
     };
-  }, []);
+
+    frameId = window.requestAnimationFrame(step);
+    return () => window.cancelAnimationFrame(frameId);
+  }, [target, startVal, duration]);
+
+  return count;
+}
+
+function StatsCounter({ isAr }: { isAr: boolean }) {
+  const earlyLearners = useCountUp(1524, 1100, 1600);
+  const totalSmashes = useCountUp(4312504, 4310000, 1800);
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <div className="flex items-center gap-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-4 shadow-sm">
-        <span className="text-3xl animate-pulse">🟢</span>
-        <div>
-          <div className="text-2xl font-bold text-emerald-400 font-sans tabular-nums">
-            {activeKids.toLocaleString()}
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      {/* Early Learners Milestone Card */}
+      <div className="group relative flex items-center gap-4 rounded-3xl border border-emerald-500/20 bg-emerald-500/5 p-5 shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-emerald-500/40 hover:bg-emerald-500/10">
+        <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-400 text-3xl shadow-[inset_0_0_12px_rgba(16,185,129,0.2)] animate-pulse">
+          ✨
+        </div>
+        <div className="relative z-10">
+          <div className="text-3xl font-extrabold text-emerald-400 font-sans tracking-tight tabular-nums">
+            {earlyLearners.toLocaleString()}+
           </div>
-          <p className="text-xs text-white/50">
-            {isAr ? "طفلاً صغيراً يلعب الآن" : "toddlers playing right now"}
+          <p className="text-xs font-medium text-white/60 mt-0.5 leading-snug">
+            {isAr ? "طفلاً صغيراً وعائلة يتعلمون بسعادة" : "happy preschoolers & families learning"}
           </p>
         </div>
       </div>
 
-      <div className="flex items-center gap-4 rounded-2xl border border-amber-500/20 bg-amber-500/5 p-4 shadow-sm">
-        <span className="text-3xl">🔥</span>
-        <div>
-          <div className="text-2xl font-bold text-amber-400 font-sans tabular-nums">
-            {totalSmashes.toLocaleString()}
+      {/* Keys Smashed Milestone Card */}
+      <div className="group relative flex items-center gap-4 rounded-3xl border border-amber-500/20 bg-amber-500/5 p-5 shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-amber-500/40 hover:bg-amber-500/10">
+        <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-500/10 text-amber-400 text-3xl shadow-[inset_0_0_12px_rgba(245,158,11,0.2)]">
+          🎹
+        </div>
+        <div className="relative z-10">
+          <div className="text-3xl font-extrabold text-amber-400 font-sans tracking-tight tabular-nums">
+            {totalSmashes.toLocaleString()}+
           </div>
-          <p className="text-xs text-white/50">
-            {isAr ? "مفتاحاً تم سحقه اليوم" : "keys smashed today"}
+          <p className="text-xs font-medium text-white/60 mt-0.5 leading-snug">
+            {isAr ? "ضربة مفتاح تم تسجيلها حول العالم" : "total keyboard smashes recorded worldwide"}
           </p>
         </div>
       </div>

@@ -73,6 +73,13 @@ export default function PlayClient() {
   const fullscreenAttemptedRef = useRef(false);
   const [show3D, setShow3D] = useState(false);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShow3D(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   // Load 3D background after first interaction to avoid blocking initial paint
   const activate3D = useCallback(() => {
     if (!show3D) setShow3D(true);
@@ -347,7 +354,7 @@ export default function PlayClient() {
       />
       {show3D ? (
         <ThreeDErrorBoundary>
-          <ThreeDBackground />
+          <ThreeDBackground className="z-[2]" />
         </ThreeDErrorBoundary>
       ) : null}
       <LetterDisplay />

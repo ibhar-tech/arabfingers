@@ -74,15 +74,15 @@ function buildObjects(themeName: ThemeName) {
 function Geometry({ kind }: { kind: GeometryKind }) {
   switch (kind) {
     case "sphere":
-      return <sphereGeometry args={[0.78, 16, 16]} />;
+      return <sphereGeometry args={[0.78, 32, 32]} />;
     case "box":
-      return <boxGeometry args={[1.1, 1.1, 1.1]} />;
+      return <boxGeometry args={[1.1, 1.1, 1.1, 4, 4, 4]} />;
     case "torus":
-      return <torusGeometry args={[0.68, 0.22, 12, 24]} />;
+      return <torusGeometry args={[0.68, 0.22, 16, 64]} />;
     case "octahedron":
-      return <octahedronGeometry args={[0.85, 0]} />;
+      return <octahedronGeometry args={[0.85, 1]} />;
     case "cone":
-      return <coneGeometry args={[0.8, 1.3, 16]} />;
+      return <coneGeometry args={[0.8, 1.3, 32, 4]} />;
     default:
       return null;
   }
@@ -156,12 +156,12 @@ function FloatingShape({
             <Geometry kind={object.geometry} />
             <MeshWobbleMaterial
               color={object.color}
-              factor={reduceMotion ? 0.05 : (0.35 + wobbleBoost.current)}
-              speed={reduceMotion ? 0.35 : (2.4 + wobbleBoost.current * 2)}
-              roughness={0.08}
-              metalness={0.92}
+              factor={reduceMotion ? 0.05 : (0.42 + wobbleBoost.current)}
+              speed={reduceMotion ? 0.35 : (2.6 + wobbleBoost.current * 2.2)}
+              roughness={0.12}
+              metalness={0.88}
               emissive={object.color}
-              emissiveIntensity={reduceMotion ? 0.05 : (0.22 + glowBoost.current)}
+              emissiveIntensity={reduceMotion ? 0.05 : (0.35 + glowBoost.current * 1.2)}
             />
           </mesh>
 
@@ -171,17 +171,19 @@ function FloatingShape({
             <meshPhysicalMaterial
               color={object.color}
               transparent
-              opacity={0.62}
-              roughness={0.05}
-              metalness={0.1}
+              opacity={0.72}
+              roughness={0.08}
+              metalness={0.15}
               clearcoat={1.0}
               clearcoatRoughness={0.02}
-              transmission={0.82}
+              transmission={0.45}
               thickness={1.6}
               ior={1.52}
               iridescence={reduceMotion ? 0 : 1.0}
               iridescenceIOR={1.38}
               iridescenceThicknessRange={[100, 400]}
+              emissive={object.color}
+              emissiveIntensity={0.18}
             />
           </mesh>
         </mesh>
