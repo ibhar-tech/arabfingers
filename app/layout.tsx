@@ -138,8 +138,6 @@ export default function RootLayout({
       <head>
         <meta name="google-adsense-account" content="ca-pub-9623110963718326" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script
           dangerouslySetInnerHTML={{
             __html: `if(typeof window.__pwaPrompt==="undefined"){window.__pwaPrompt=null;}window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();window.__pwaPrompt=e});if("serviceWorker"in navigator){navigator.serviceWorker.register("/sw.js")}`,
