@@ -283,8 +283,11 @@ export function PrintablesClient({ locale }: PrintablesClientProps) {
                   {/* Outer hollow shape to color */}
                   <div className="flex-1 flex flex-col items-center gap-1">
                     <span className="text-[9px] text-white/30 print:text-black/30 font-semibold uppercase">{isAr ? "تلوين" : "Color"}</span>
-                    <div className="w-full h-16 rounded-xl border-2 border-dashed border-white/10 flex items-center justify-center bg-white/1 print:border-black/20">
-                      <span className="text-[10px] font-bold text-white/20 print:text-black/30 uppercase tracking-widest">
+                    <div className="w-full h-16 rounded-xl border-2 border-dashed border-white/10 flex items-center justify-center bg-white/1 print:border-black/20 relative overflow-hidden group">
+                      <span className="absolute text-4xl filter grayscale opacity-15 print:opacity-20 select-none transition-transform duration-300 group-hover:scale-110">
+                        {color.outlineEmoji}
+                      </span>
+                      <span className="relative z-10 text-[10px] font-bold text-white/40 print:text-black/50 uppercase tracking-widest">
                         {isAr ? color.ar : color.en}
                       </span>
                     </div>
@@ -335,8 +338,10 @@ export function PrintablesClient({ locale }: PrintablesClientProps) {
                   {/* Outer hollow frame for coloring child drawings */}
                   <div className="flex-1 flex flex-col items-center gap-1">
                     <span className="text-[9px] text-white/30 print:text-black/30 font-semibold uppercase">{isAr ? "لون حيوان الـ" : "Color The"} {animal.enName}</span>
-                    <div className="w-full h-20 rounded-2xl border-2 border-dashed border-white/10 flex items-center justify-center bg-white/1 print:border-black/20 text-4xl filter grayscale print:grayscale-0">
-                      🎨
+                    <div className="w-full h-20 rounded-2xl border-2 border-dashed border-white/10 flex items-center justify-center bg-white/1 print:border-black/20 overflow-hidden relative group">
+                      <span className="text-5xl filter grayscale opacity-20 print:opacity-25 select-none transition-transform duration-300 group-hover:scale-110">
+                        {animal.emoji}
+                      </span>
                     </div>
                   </div>
 
