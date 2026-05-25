@@ -20,7 +20,17 @@ export default async function HomePage({
 
   return (
     <PageLayout locale={locale}>
-      {locale === "ar" ? <HomeAr /> : <HomeEn />}
+      {/* Whimsical CSS-animated floating aurora/bubbles background for children */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <div className="absolute top-[8%] left-[5%] w-64 h-64 rounded-full bg-red-500/8 blur-[70px] animate-float-slow" />
+        <div className="absolute top-[35%] right-[8%] w-80 h-80 rounded-full bg-emerald-500/8 blur-[85px] animate-float-medium" />
+        <div className="absolute bottom-[20%] left-[10%] w-96 h-96 rounded-full bg-blue-500/8 blur-[95px] animate-float-fast" />
+        <div className="absolute top-[65%] left-[45%] w-72 h-72 rounded-full bg-purple-500/6 blur-[80px] animate-float-slowest" />
+      </div>
+
+      <div className="relative z-10">
+        {locale === "ar" ? <HomeAr /> : <HomeEn />}
+      </div>
     </PageLayout>
   );
 }

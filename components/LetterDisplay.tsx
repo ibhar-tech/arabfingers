@@ -23,25 +23,38 @@ export function LetterDisplay() {
           {currentKey ? (
             <motion.div
               key={currentKey.id}
-              initial={{ opacity: 0, scale: 0.5 }}
-              animate={{ opacity: 1, scale: reduceMotion ? 1 : 1.2 }}
-              exit={{ opacity: 0, scale: 0 }}
+              initial={{ opacity: 0, scale: 0.4, y: 35 }}
+              animate={{ opacity: 1, scale: reduceMotion ? 1 : 1.15, y: 0 }}
+              exit={{ opacity: 0, scale: 0.4, y: -35 }}
               transition={{
-                duration: reduceMotion ? 0.18 : 0.52,
-                scale: { type: "spring", stiffness: 220, damping: 16 },
+                duration: reduceMotion ? 0.18 : 0.45,
+                scale: { type: "spring", stiffness: 280, damping: 13 },
+                y: { type: "spring", stiffness: 240, damping: 14 },
               }}
-              className="flex items-end justify-center gap-3 sm:gap-5 rounded-2xl border border-white/12 bg-white/8 px-6 py-6 sm:px-10 sm:py-8 shadow-[0_24px_80px_rgba(0,0,0,0.32)] backdrop-blur-md"
+              style={{
+                boxShadow: reduceMotion
+                  ? "0 20px 60px rgba(0,0,0,0.4)"
+                  : `0 0 60px 15px ${accent}30, 0 30px 100px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.25)`,
+                border: `3.5px solid ${accent}60`,
+                background: "rgba(255, 255, 255, 0.16)",
+              }}
+              className="relative flex items-end justify-center gap-4 sm:gap-6 rounded-3xl px-8 py-8 sm:px-12 sm:py-10 backdrop-blur-lg overflow-hidden"
             >
+              {/* Glossy shine and halo glow overlay */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-white/25 pointer-events-none" />
+              <div className="absolute -top-12 -left-12 w-24 h-24 bg-white/10 rounded-full blur-xl pointer-events-none" />
+
               {currentKey.kind === "letter" ? (
                 <>
                   {displayMode !== "english" ? (
                     <div
-                      className="leading-none text-white"
+                      className="leading-none text-white font-bold"
                       style={{
                         fontFamily: "var(--font-noto-naskh), var(--font-ibm-plex-arabic), sans-serif",
                         fontSize: showBoth
-                          ? "clamp(4rem, 18vw, 10rem)"
-                          : "clamp(5rem, 24vw, 14rem)",
+                          ? "clamp(4.5rem, 20vw, 11rem)"
+                          : "clamp(5.5rem, 26vw, 15rem)",
+                        textShadow: reduceMotion ? "none" : `0 0 45px ${accent}50, 0 10px 20px rgba(0,0,0,0.35)`,
                       }}
                     >
                       {currentKey.letter.ar}
@@ -49,12 +62,13 @@ export function LetterDisplay() {
                   ) : null}
                   {displayMode !== "arabic" ? (
                     <div
-                      className="leading-none font-semibold pb-[0.1em]"
+                      className="leading-none font-extrabold pb-[0.1em]"
                       style={{
                         color: accent,
                         fontSize: showBoth
-                          ? "clamp(2.5rem, 10vw, 5.5rem)"
-                          : "clamp(4rem, 18vw, 10rem)",
+                          ? "clamp(3rem, 11vw, 6rem)"
+                          : "clamp(4.5rem, 20vw, 11rem)",
+                        textShadow: reduceMotion ? "none" : `0 0 55px ${accent}75, 0 10px 20px rgba(0,0,0,0.35)`,
                       }}
                     >
                       {currentKey.letter.en}

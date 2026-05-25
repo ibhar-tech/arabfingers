@@ -119,3 +119,30 @@ textarea {
     margin: 0 !important;
   }
 }
+
+/* Whimsical animated background bubbles for children */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-45px) scale(1.12); }
+}
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0) scale(1.1); }
+  50% { transform: translateY(45px) scale(0.92); }
+}
+@keyframes float-fast {
+  0%, 100% { transform: translateX(0) translateY(0); }
+  50% { transform: translateX(-25px) translateY(-25px); }
+}
+
+.animate-float-slow {
+  animation: float-slow 9s ease-in-out infinite;
+}
+.animate-float-medium {
+  animation: float-medium 14s ease-in-out infinite;
+}
+.animate-float-fast {
+  animation: float-fast 8s ease-in-out infinite;
+}
+.animate-float-slowest {
+  animation: float-slow 20s ease-in-out infinite;
+}
