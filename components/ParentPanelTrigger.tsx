@@ -1,17 +1,19 @@
 "use client";
 
-import { Settings } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { Settings, Home } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { useAppStore } from "@/store/useAppStore";
 import { InstallButton } from "@/components/InstallButton";
 import { InfoMenu } from "@/components/InfoMenu";
 import { FullscreenButton } from "@/components/FullscreenButton";
+import Link from "next/link";
 
 const HOLD_MS = 1500;
 
 export function ParentPanelTrigger() {
   const t = useTranslations();
+  const locale = useLocale();
   const setParentPanelOpen = useAppStore((state) => state.setParentPanelOpen);
   const [progress, setProgress] = useState(0);
   const rafRef = useRef<number | null>(null);
@@ -57,6 +59,20 @@ export function ParentPanelTrigger() {
 
   return (
     <div className="absolute left-2 top-2 sm:left-3 sm:top-3 z-30 safe-top safe-left flex items-center gap-2">
+      {/* Home button */}
+      <Link
+        href={`/${locale}`}
+        data-parent-ui="true"
+        aria-label={locale === "ar" ? "الرئيسية" : "Home"}
+        title={locale === "ar" ? "الرئيسية" : "Home"}
+        className="group flex items-center justify-center rounded-xl border border-white/15 bg-black/35 px-3 py-2.5 text-white/80 shadow-[0_8px_24px_rgba(0,0,0,0.25)] backdrop-blur-md transition hover:bg-black/45 hover:text-white/95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none cursor-pointer"
+      >
+        <Home className="h-5 w-5 group-hover:scale-110 transition-transform" strokeWidth={2} />
+        <span className="text-xs font-semibold ml-1.5 hidden md:inline">
+          {locale === "ar" ? "الرئيسية" : "Home"}
+        </span>
+      </Link>
+
       {/* Settings button */}
       <button
         type="button"

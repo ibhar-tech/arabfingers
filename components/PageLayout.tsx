@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
+import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 
 type PageLayoutProps = {
   locale: string;
@@ -50,6 +53,19 @@ const footerInfoLinks = [
 
 export function PageLayout({ locale, children }: PageLayoutProps) {
   const isAr = locale === "ar";
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [footerOpen, setFooterOpen] = useState<Record<string, boolean>>({
+    learn: false,
+    blog: false,
+    info: false,
+  });
+
+  const toggleFooterSection = (section: string) => {
+    setFooterOpen((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
 
   return (
     <div
@@ -58,41 +74,81 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
       style={isAr ? { fontFamily: "var(--font-ibm-plex-arabic), sans-serif" } : undefined}
     >
       {/* Top nav */}
-      <nav className="border-b border-white/8 bg-[#050816]/90 backdrop-blur-sm sticky top-0 z-10">
-        <div className="mx-auto max-w-2xl flex items-center gap-1 px-4 py-3">
+      <nav className="border-b border-white/8 bg-[#050816]/95 backdrop-blur-sm sticky top-0 z-20">
+        <div className="mx-auto max-w-6xl flex items-center justify-between px-4 py-3.5 sm:px-6">
           <Link
             href={`/${locale}`}
-            className="shrink-0 text-sm font-semibold text-accent"
+            className="shrink-0 text-base font-bold text-accent tracking-wide hover:scale-102 transition-transform"
           >
             ArabFingers
           </Link>
-          <span className="text-white/15 mx-2">|</span>
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={`/${locale}${link.href}`}
-              className="shrink-0 rounded-lg px-2.5 py-1.5 text-xs text-white/50 transition hover:bg-white/8 hover:text-white/80"
-            >
-              {isAr ? link.labelAr : link.labelEn}
-            </Link>
-          ))}
+
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-1.5">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={`/${locale}${link.href}`}
+                className="shrink-0 rounded-lg px-2.5 py-1.5 text-xs font-medium text-white/50 transition hover:bg-white/8 hover:text-white/80"
+              >
+                {isAr ? link.labelAr : link.labelEn}
+              </Link>
+            ))}
+          </div>
+
+          {/* Mobile hamburger menu toggle */}
+          <button
+            type="button"
+            aria-label="Toggle Navigation Menu"
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/5 text-white/72 transition hover:bg-white/8 focus:outline-none focus:ring-2 focus:ring-accent"
+          >
+            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
+
+        {/* Mobile slide-down menu */}
+        {menuOpen && (
+          <div className="md:hidden border-t border-white/5 bg-[#080d21] py-2 animate-fade-in shadow-2xl">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={`/${locale}${link.href}`}
+                onClick={() => setMenuOpen(false)}
+                className="block px-6 py-2.5 text-xs font-semibold text-white/60 hover:bg-white/5 hover:text-accent transition-colors"
+              >
+                {isAr ? link.labelAr : link.labelEn}
+              </Link>
+            ))}
+          </div>
+        )}
       </nav>
 
-      {/* Content */}
-      <main className="mx-auto w-full max-w-2xl flex-1 px-5 py-10 sm:px-6 sm:py-12">
+      {/* Content Area with spacious desktop padding */}
+      <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 sm:py-10">
         {children}
       </main>
 
       {/* Footer */}
-      <footer className="mt-auto border-t border-white/8 bg-[#050816]">
-        <div className="mx-auto max-w-2xl px-5 py-8 sm:px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
-            <div>
-              <h3 className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-3">
-                {isAr ? "تعلم العربية" : "Learn Arabic"}
-              </h3>
-              <div className="flex flex-col gap-1.5">
+      <footer className="mt-auto border-t border-white/8 bg-[#050816] print:hidden">
+        <div className="mx-auto max-w-6xl px-5 py-8 sm:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            
+            {/* Learn Column */}
+            <div className="border-b border-white/5 md:border-none pb-4 md:pb-0">
+              <button
+                type="button"
+                onClick={() => toggleFooterSection("learn")}
+                className="w-full flex items-center justify-between text-left md:pointer-events-none md:block focus:outline-none cursor-pointer"
+              >
+                <h3 className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-0 md:mb-3">
+                  {isAr ? "تعلم العربية" : "Learn Arabic"}
+                </h3>
+                <span className="md:hidden text-white/40">
+                  {footerOpen.learn ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                </span>
+              </button>
+              <div className={`${footerOpen.learn ? "block" : "hidden"} md:block mt-3 md:mt-0 flex flex-col gap-2`}>
                 {footerLearnLinks.map((link) => (
                   <Link
                     key={link.href}
@@ -104,11 +160,22 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
                 ))}
               </div>
             </div>
-            <div>
-              <h3 className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-3">
-                {isAr ? "المدونة" : "Blog"}
-              </h3>
-              <div className="flex flex-col gap-1.5">
+
+            {/* Blog Column */}
+            <div className="border-b border-white/5 md:border-none pb-4 md:pb-0">
+              <button
+                type="button"
+                onClick={() => toggleFooterSection("blog")}
+                className="w-full flex items-center justify-between text-left md:pointer-events-none md:block focus:outline-none cursor-pointer"
+              >
+                <h3 className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-0 md:mb-3">
+                  {isAr ? "المدونة" : "Blog"}
+                </h3>
+                <span className="md:hidden text-white/40">
+                  {footerOpen.blog ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                </span>
+              </button>
+              <div className={`${footerOpen.blog ? "block" : "hidden"} md:block mt-3 md:mt-0 flex flex-col gap-2`}>
                 {footerBlogLinks.map((link) => (
                   <Link
                     key={link.href}
@@ -120,11 +187,22 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
                 ))}
               </div>
             </div>
-            <div>
-              <h3 className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-3">
-                {isAr ? "معلومات" : "Info"}
-              </h3>
-              <div className="flex flex-col gap-1.5">
+
+            {/* Info Column */}
+            <div className="pb-2 md:pb-0">
+              <button
+                type="button"
+                onClick={() => toggleFooterSection("info")}
+                className="w-full flex items-center justify-between text-left md:pointer-events-none md:block focus:outline-none cursor-pointer"
+              >
+                <h3 className="text-xs font-semibold text-white/50 uppercase tracking-wider mb-0 md:mb-3">
+                  {isAr ? "معلومات" : "Info"}
+                </h3>
+                <span className="md:hidden text-white/40">
+                  {footerOpen.info ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                </span>
+              </button>
+              <div className={`${footerOpen.info ? "block" : "hidden"} md:block mt-3 md:mt-0 flex flex-col gap-2`}>
                 {footerInfoLinks.map((link) => (
                   <Link
                     key={link.href}
@@ -136,6 +214,7 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
                 ))}
               </div>
             </div>
+
           </div>
           <div className="border-t border-white/5 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2">
             <p className="text-xs text-white/20">
@@ -147,6 +226,17 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
           </div>
         </div>
       </footer>
+
+      {/* Visual slide-down animation */}
+      <style jsx global>{`
+        @keyframes slideDown {
+          from { opacity: 0; transform: translateY(-10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+          animation: slideDown 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+      `}</style>
     </div>
   );
 }
