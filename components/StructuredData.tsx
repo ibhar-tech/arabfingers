@@ -37,6 +37,10 @@ export function StructuredData() {
       email: "ibhartech39@gmail.com",
       contactType: "customer support",
     },
+    founder: {
+      "@type": "Person",
+      name: "Ibrahim",
+    },
   };
 
   const faqPage = {

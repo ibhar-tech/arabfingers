@@ -1,0 +1,112 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { PageLayout } from "@/components/PageLayout";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { isLocale } from "@/lib/locales";
+import { blogPosts } from "@/lib/blog-data";
+
+export const metadata: Metadata = {
+  title: "Blog — Arabic Learning Tips & Insights | مدونة عرب فنجرز",
+  description:
+    "Expert articles on teaching Arabic to children, bilingual parenting, Arabic calligraphy, screen time guidelines, and more. Updated regularly with fresh insights.",
+};
+
+export default async function BlogIndexPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  if (!isLocale(locale)) return null;
+  const isAr = locale === "ar";
+
+  return (
+    <PageLayout locale={locale}>
+      <Breadcrumbs
+        locale={locale}
+        crumbs={[{ label: isAr ? "المدونة" : "Blog" }]}
+      />
+
+      <h1 className="text-3xl font-semibold text-white mb-2">
+        {isAr ? "مدونة عرب فنجرز" : "ArabFingers Blog"}
+      </h1>
+      <p className="text-sm text-white/50 mb-4">
+        {isAr
+          ? "مقالات ونصائح حول تعليم العربية للأطفال، التربية ثنائية اللغة، والمزيد"
+          : "Articles and tips on teaching Arabic to kids, bilingual parenting, and more"}
+      </p>
+      <p className="text-sm text-white/60 leading-relaxed mb-10">
+        {isAr
+          ? "مرحباً بك في مدونة عرب فنجرز. هنا نشارك رؤى مبنية على الأبحاث حول تعليم الأطفال الصغار اللغة العربية، وفوائد ثنائية اللغة، وأنشطة عملية يمكنك تجربتها في المنزل. نؤمن بأن كل طفل يستحق فرصة التواصل مع اللغة العربية — وهذه المقالات هنا لمساعدتك في تحقيق ذلك."
+          : "Welcome to the ArabFingers blog. Here we share research-backed insights on teaching young children Arabic, the benefits of bilingualism, and practical activities you can try at home. We believe every child deserves the chance to connect with the Arabic language — and these articles are here to help you make that happen."}
+      </p>
+
+      <div className="space-y-4 mb-10">
+        {blogPosts.map((post) => (
+          <Link
+            key={post.slug}
+            href={`/${locale}/blog/${post.slug}`}
+            className="group block rounded-xl border border-white/10 bg-white/5 p-5 transition hover:bg-white/8 hover:border-white/15"
+          >
+            <div className="flex items-start gap-4">
+              <span className="text-2xl shrink-0 mt-0.5">{post.icon}</span>
+              <div className="flex-1 min-w-0">
+                <h2 className="text-base font-semibold text-white mb-1 group-hover:text-accent transition-colors">
+                  {isAr ? post.titleAr : post.titleEn}
+                </h2>
+                <p className="text-xs text-white/50 leading-relaxed mb-2">
+                  {isAr ? post.descAr : post.descEn}
+                </p>
+                <div className="flex items-center gap-3 text-[11px] text-white/30">
+                  <span>{isAr ? post.readingTimeAr : post.readingTimeEn}</span>
+                  <span>·</span>
+                  <time dateTime={post.datePublished}>
+                    {new Date(post.datePublished).toLocaleDateString(isAr ? "ar-SA" : "en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </time>
+                  {post.dateModified !== post.datePublished && (
+                    <>
+                      <span>·</span>
+                      <span>
+                        {isAr ? "محدث: " : "Updated: "}
+                        {new Date(post.dateModified).toLocaleDateString(isAr ? "ar-SA" : "en-US", {
+                          month: "short",
+                          day: "numeric",
+                        })}
+                      </span>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
+
+      <section className="mb-8">
+        <h2 className="text-xl font-semibold text-white mb-3">
+          {isAr ? "أدلة التعلم" : "Learning Guides"}
+        </h2>
+        <p className="text-sm text-white/60 mb-4">
+          {isAr
+            ? "بالإضافة إلى المدونة، لدينا أدلة تعليمية شاملة لمساعدتك في تعليم طفلك العربية."
+            : "In addition to the blog, we have comprehensive learning guides to help you teach your child Arabic."}
+        </p>
+        <Link
+          href={`/${locale}/learn`}
+          className="text-sm text-accent underline hover:text-accent/80 transition-colors"
+        >
+          {isAr ? "استكشف جميع الأدلة ←" : "Explore all guides →"}
+        </Link>
+      </section>
+
+      <div className="text-center py-6">
+        <Link
+          href={`/${locale}/play`}
+          className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105"
+        >
+          🚀 {isAr ? "جرب عرب فنجرز الآن" : "Try ArabFingers Now"}
+        </Link>
+      </div>
+    </PageLayout>
+  );
+}

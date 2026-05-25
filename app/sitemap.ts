@@ -30,6 +30,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...localizedUrls("/learn", 0.9),
     ...localizedUrls("/coloring", 0.8),
 
+    // Blog
+    ...localizedUrls("/blog", 0.9, "weekly"),
+    ...localizedUrls("/blog/how-we-built-arabfingers", 0.8),
+    ...localizedUrls("/blog/screen-time-guidelines-arabic-learning", 0.8),
+    ...localizedUrls("/blog/arabic-alphabet-vs-latin-deep-dive", 0.8),
+    ...localizedUrls("/blog/arabic-calligraphy-for-kids", 0.8),
+    ...localizedUrls("/blog/ramadan-activities-arabic-learning", 0.8),
+
     // Learn articles
     ...localizedUrls("/learn/arabic-alphabet-guide", 0.8),
     ...localizedUrls("/learn/teaching-arabic-to-kids", 0.8),
@@ -49,3 +57,4 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...localizedUrls("/terms", 0.5, "yearly"),
   ];
 }
+

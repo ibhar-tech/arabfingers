@@ -110,29 +110,25 @@ function HomeEn() {
         </div>
       </section>
 
-      {/* Arabic Alphabet Reference */}
+      {/* Why Parents Choose ArabFingers */}
       <section className="mb-10">
         <h2 className="text-2xl font-semibold text-white mb-4">
-          The Arabic Alphabet
+          Why Parents Choose ArabFingers
         </h2>
-        <p className="text-sm text-white/70 leading-relaxed mb-4">
-          The Arabic alphabet consists of 28 letters, written from right to left. Each letter has
-          a unique shape that can change depending on its position in a word. ArabFingers teaches
-          children to recognize the isolated form of each letter — the foundation for reading Arabic.
-        </p>
-        <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
+        <div className="space-y-3">
           {[
-            { ar: "ا", en: "A" }, { ar: "ب", en: "B" }, { ar: "ت", en: "T" }, { ar: "ث", en: "TH" },
-            { ar: "ج", en: "J" }, { ar: "ح", en: "H" }, { ar: "خ", en: "KH" }, { ar: "د", en: "D" },
-            { ar: "ذ", en: "DH" }, { ar: "ر", en: "R" }, { ar: "ز", en: "Z" }, { ar: "س", en: "S" },
-            { ar: "ش", en: "SH" }, { ar: "ص", en: "SS" }, { ar: "ض", en: "DD" }, { ar: "ط", en: "TT" },
-            { ar: "ظ", en: "ZZ" }, { ar: "ع", en: "A'" }, { ar: "غ", en: "GH" }, { ar: "ف", en: "F" },
-            { ar: "ق", en: "Q" }, { ar: "ك", en: "K" }, { ar: "ل", en: "L" }, { ar: "م", en: "M" },
-            { ar: "ن", en: "N" }, { ar: "ه", en: "Ha" }, { ar: "و", en: "W" }, { ar: "ي", en: "Y" },
-          ].map((l) => (
-            <div key={l.ar} className="flex flex-col items-center rounded-lg border border-white/8 bg-white/5 py-3">
-              <span className="text-2xl text-white" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.ar}</span>
-              <span className="text-[10px] text-white/40 mt-1">{l.en}</span>
+            { icon: "✅", title: "Zero data collection", desc: "We collect absolutely no personal information. No accounts, no tracking, no analytics. Your child's privacy is non-negotiable." },
+            { icon: "💰", title: "100% free, forever", desc: "No subscriptions, no in-app purchases, no premium tiers. Every feature is available to every family, regardless of budget." },
+            { icon: "🧠", title: "Research-backed approach", desc: "Built on multi-sensory learning principles and play-based pedagogy supported by decades of child development research." },
+            { icon: "🔒", title: "Child-safe play area", desc: "No external links, no navigation, no UI distractions in the play area. The entire screen is a safe, contained learning toy." },
+            { icon: "🌍", title: "Built for the Arab diaspora", desc: "Designed specifically for bilingual Arab families worldwide who want their children to connect with their Arabic heritage through play." },
+          ].map((item) => (
+            <div key={item.title} className="flex gap-3 items-start rounded-xl border border-white/8 bg-white/5 p-4">
+              <span className="text-xl shrink-0">{item.icon}</span>
+              <div>
+                <h3 className="text-sm font-semibold text-white mb-1">{item.title}</h3>
+                <p className="text-xs text-white/55 leading-relaxed">{item.desc}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -171,17 +167,27 @@ function HomeEn() {
         </Link>
       </div>
 
-      {/* Learn more links */}
+      {/* Latest from the Blog */}
       <section className="mb-6">
-        <h2 className="text-2xl font-semibold text-white mb-4">Learn More</h2>
+        <h2 className="text-2xl font-semibold text-white mb-4">Latest from the Blog</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <Link href="/en/blog/how-we-built-arabfingers" className="rounded-xl border border-white/8 bg-white/5 p-4 transition hover:bg-white/8">
+            <h3 className="text-sm font-semibold text-white mb-1">🛠️ How We Built ArabFingers</h3>
+            <p className="text-xs text-white/50">The story behind the app and our mission</p>
+          </Link>
+          <Link href="/en/blog/screen-time-guidelines-arabic-learning" className="rounded-xl border border-white/8 bg-white/5 p-4 transition hover:bg-white/8">
+            <h3 className="text-sm font-semibold text-white mb-1">📱 Screen Time & Arabic Learning</h3>
+            <p className="text-xs text-white/50">Evidence-based guide for parents</p>
+          </Link>
+        </div>
+        <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <Link href="/en/learn/arabic-alphabet-guide" className="rounded-xl border border-white/8 bg-white/5 p-4 transition hover:bg-white/8">
             <h3 className="text-sm font-semibold text-white mb-1">📖 Arabic Alphabet Complete Guide</h3>
             <p className="text-xs text-white/50">Learn all 28 Arabic letters with pronunciation tips</p>
           </Link>
-          <Link href="/en/learn/teaching-arabic-to-kids" className="rounded-xl border border-white/8 bg-white/5 p-4 transition hover:bg-white/8">
-            <h3 className="text-sm font-semibold text-white mb-1">👶 Teaching Arabic to Kids</h3>
-            <p className="text-xs text-white/50">Tips and strategies for parents and educators</p>
+          <Link href="/en/blog" className="rounded-xl border border-white/8 bg-white/5 p-4 transition hover:bg-white/8">
+            <h3 className="text-sm font-semibold text-white mb-1">📝 View All Articles</h3>
+            <p className="text-xs text-white/50">Browse our full blog and learning resources</p>
           </Link>
         </div>
       </section>
@@ -271,27 +277,23 @@ function HomeAr() {
         </div>
       </section>
 
-      {/* Arabic Alphabet Reference */}
+      {/* Why Parents Choose ArabFingers */}
       <section className="mb-10">
-        <h2 className="text-2xl font-semibold text-white mb-4">الأبجدية العربية</h2>
-        <p className="text-sm text-white/70 leading-relaxed mb-4">
-          تتكون الأبجدية العربية من ٢٨ حرفاً، تُكتب من اليمين إلى اليسار. لكل حرف شكل فريد يمكن
-          أن يتغير حسب موقعه في الكلمة. يُعلّم عرب فنجرز الأطفال التعرف على الشكل المنفصل لكل
-          حرف — وهو الأساس لقراءة العربية.
-        </p>
-        <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
+        <h2 className="text-2xl font-semibold text-white mb-4">لماذا يختار الوالدون عرب فنجرز</h2>
+        <div className="space-y-3">
           {[
-            { ar: "ا", en: "A" }, { ar: "ب", en: "B" }, { ar: "ت", en: "T" }, { ar: "ث", en: "TH" },
-            { ar: "ج", en: "J" }, { ar: "ح", en: "H" }, { ar: "خ", en: "KH" }, { ar: "د", en: "D" },
-            { ar: "ذ", en: "DH" }, { ar: "ر", en: "R" }, { ar: "ز", en: "Z" }, { ar: "س", en: "S" },
-            { ar: "ش", en: "SH" }, { ar: "ص", en: "SS" }, { ar: "ض", en: "DD" }, { ar: "ط", en: "TT" },
-            { ar: "ظ", en: "ZZ" }, { ar: "ع", en: "A'" }, { ar: "غ", en: "GH" }, { ar: "ف", en: "F" },
-            { ar: "ق", en: "Q" }, { ar: "ك", en: "K" }, { ar: "ل", en: "L" }, { ar: "م", en: "M" },
-            { ar: "ن", en: "N" }, { ar: "ه", en: "Ha" }, { ar: "و", en: "W" }, { ar: "ي", en: "Y" },
-          ].map((l) => (
-            <div key={l.ar} className="flex flex-col items-center rounded-lg border border-white/8 bg-white/5 py-3">
-              <span className="text-2xl text-white" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.ar}</span>
-              <span className="text-[10px] text-white/40 mt-1">{l.en}</span>
+            { icon: "✅", title: "صفر جمع بيانات", desc: "لا نجمع أي معلومات شخصية على الإطلاق. لا حسابات، لا تتبع، لا تحليلات. خصوصية طفلك غير قابلة للتفاوض." },
+            { icon: "💰", title: "مجاني ١٠٠٪ إلى الأبد", desc: "لا اشتراكات، لا مشتريات داخل التطبيق، لا مستويات مدفوعة. كل ميزة متاحة لكل عائلة." },
+            { icon: "🧠", title: "نهج مبني على الأبحاث", desc: "مبني على مبادئ التعلم متعدد الحواس والتعليم القائم على اللعب المدعوم بعقود من أبحاث تطور الطفل." },
+            { icon: "🔒", title: "منطقة لعب آمنة", desc: "لا روابط خارجية، لا تنقل، لا مشتتات واجهة في منطقة اللعب. الشاشة بأكملها لعبة تعليمية آمنة." },
+            { icon: "🌍", title: "مصمم للشتات العربي", desc: "مصمم خصيصاً للعائلات العربية ثنائية اللغة حول العالم الذين يريدون لأطفالهم التواصل مع تراثهم العربي من خلال اللعب." },
+          ].map((item) => (
+            <div key={item.title} className="flex gap-3 items-start rounded-xl border border-white/8 bg-white/5 p-4">
+              <span className="text-xl shrink-0">{item.icon}</span>
+              <div>
+                <h3 className="text-sm font-semibold text-white mb-1">{item.title}</h3>
+                <p className="text-xs text-white/55 leading-relaxed">{item.desc}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -326,17 +328,27 @@ function HomeAr() {
         </Link>
       </div>
 
-      {/* Learn more links */}
+      {/* Latest from the Blog */}
       <section className="mb-6">
-        <h2 className="text-2xl font-semibold text-white mb-4">تعلم المزيد</h2>
+        <h2 className="text-2xl font-semibold text-white mb-4">آخر المقالات</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <Link href="/ar/blog/how-we-built-arabfingers" className="rounded-xl border border-white/8 bg-white/5 p-4 transition hover:bg-white/8">
+            <h3 className="text-sm font-semibold text-white mb-1">🛠️ كيف بنينا عرب فنجرز</h3>
+            <p className="text-xs text-white/50">القصة وراء التطبيق ومهمتنا</p>
+          </Link>
+          <Link href="/ar/blog/screen-time-guidelines-arabic-learning" className="rounded-xl border border-white/8 bg-white/5 p-4 transition hover:bg-white/8">
+            <h3 className="text-sm font-semibold text-white mb-1">📱 وقت الشاشة وتعلم العربية</h3>
+            <p className="text-xs text-white/50">دليل مبني على الأدلة للوالدين</p>
+          </Link>
+        </div>
+        <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <Link href="/ar/learn/arabic-alphabet-guide" className="rounded-xl border border-white/8 bg-white/5 p-4 transition hover:bg-white/8">
             <h3 className="text-sm font-semibold text-white mb-1">📖 دليل الأبجدية العربية الكامل</h3>
             <p className="text-xs text-white/50">تعلم جميع الحروف العربية الـ ٢٨ مع نصائح النطق</p>
           </Link>
-          <Link href="/ar/learn/teaching-arabic-to-kids" className="rounded-xl border border-white/8 bg-white/5 p-4 transition hover:bg-white/8">
-            <h3 className="text-sm font-semibold text-white mb-1">👶 تعليم العربية للأطفال</h3>
-            <p className="text-xs text-white/50">نصائح واستراتيجيات للوالدين والمعلمين</p>
+          <Link href="/ar/blog" className="rounded-xl border border-white/8 bg-white/5 p-4 transition hover:bg-white/8">
+            <h3 className="text-sm font-semibold text-white mb-1">📝 عرض جميع المقالات</h3>
+            <p className="text-xs text-white/50">تصفح مدونتنا الكاملة وموارد التعلم</p>
           </Link>
         </div>
       </section>
