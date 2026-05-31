@@ -29,19 +29,27 @@ export function StructuredData() {
 
   const organization = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "EducationalOrganization",
     name: "Arab Fingers",
+    alternateName: "عرب فنجرز",
     url: "https://www.arabfingers.site",
+    description:
+      "A free, open-source bilingual Arabic & English educational platform for children aged 1-6, featuring interactive letter games, science lessons, and printable worksheets.",
+    areaServed: "Worldwide",
     contactPoint: {
       "@type": "ContactPoint",
       email: "ibhartech39@gmail.com",
       contactType: "customer support",
+      availableLanguage: ["Arabic", "English"],
     },
     founder: {
       "@type": "Person",
       name: "Aissa Trad",
       url: "https://www.arabfingers.site/en/author",
     },
+    sameAs: [
+      "https://github.com/ibhar-tech/arabfingers",
+    ],
   };
 
   const faqPage = {

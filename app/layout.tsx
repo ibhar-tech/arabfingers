@@ -70,11 +70,11 @@ export const metadata: Metadata = {
     url: siteUrl,
     images: [
       {
-        url: "/og-image.svg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Arab Fingers — Arabic Keyboard Smash Toy for Kids",
-        type: "image/svg+xml",
+        type: "image/png",
       },
     ],
   },
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     title: "Arab Fingers — Arabic Keyboard Smash Toy for Kids",
     description:
       "Free bilingual Arabic & English keyboard smash toy for toddlers with 3D animations and letter pronunciation.",
-    images: ["/og-image.svg"],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,

@@ -13,6 +13,12 @@ Languages: English (en), Arabic (ar). Base URL: https://www.arabfingers.site
 - Coloring & tracing: https://www.arabfingers.site/en/coloring
 - Printable worksheets: https://www.arabfingers.site/en/printables
 
+## Interactive science cartoon lessons (NEW)
+- States of Matter for Kids: https://www.arabfingers.site/en/learn/states-of-matter
+- The Water Cycle for Kids: https://www.arabfingers.site/en/learn/water-cycle
+- The Solar System for Kids: https://www.arabfingers.site/en/learn/solar-system
+- How Gravity Works for Kids: https://www.arabfingers.site/en/learn/gravity
+
 ## Learning guides
 - Arabic alphabet — all 28 letters with audio: https://www.arabfingers.site/en/learn/arabic-alphabet-guide
 - Arabic numbers (1–10): https://www.arabfingers.site/en/learn/arabic-numbers

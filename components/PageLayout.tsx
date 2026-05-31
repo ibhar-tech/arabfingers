@@ -42,6 +42,10 @@ const footerLearnLinks = [
   { href: "/learn/best-age-to-learn-arabic", labelEn: "Best Age", labelAr: "أفضل عمر" },
   { href: "/learn/bilingual-children-benefits", labelEn: "Bilingual Benefits", labelAr: "فوائد ثنائية اللغة" },
   { href: "/learn/arabic-activities-at-home", labelEn: "Home Activities", labelAr: "أنشطة منزلية" },
+  { href: "/learn/states-of-matter", labelEn: "🧪 States of Matter", labelAr: "🧪 حالات المادة" },
+  { href: "/learn/water-cycle", labelEn: "💧 Water Cycle", labelAr: "💧 دورة المياه" },
+  { href: "/learn/solar-system", labelEn: "🚀 Solar System", labelAr: "🚀 النظام الشمسي" },
+  { href: "/learn/gravity", labelEn: "🍎 Gravity", labelAr: "🍎 الجاذبية" },
 ];
 
 const footerBlogLinks = [

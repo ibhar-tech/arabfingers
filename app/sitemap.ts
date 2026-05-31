@@ -38,6 +38,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...localizedUrls("/coloring", 0.8),
     ...localizedUrls("/printables", 0.8),
 
+    // Science interactive lessons
+    ...localizedUrls("/learn/states-of-matter", 0.8, "monthly", d("2026-05-31")),
+    ...localizedUrls("/learn/water-cycle", 0.8, "monthly", d("2026-05-31")),
+    ...localizedUrls("/learn/solar-system", 0.8, "monthly", d("2026-05-31")),
+    ...localizedUrls("/learn/gravity", 0.8, "monthly", d("2026-05-31")),
+
     // Blog (real last-updated dates)
     ...localizedUrls("/blog", 0.9, "weekly"),
     ...localizedUrls("/blog/how-we-built-arabfingers", 0.8, "monthly", d("2026-05-20")),
