@@ -265,8 +265,8 @@ async function generateAll() {
         const arGenerated = await generateGeminiAudio(scene.ar, "ar", voice, arPath);
         if (arGenerated) {
           totalGenerated++;
-          console.log(`  ⏳ Waiting 1 second to respect rate limits safely...`);
-          await new Promise((r) => setTimeout(r, 1000));
+          console.log(`  ⏳ Waiting 8 seconds to respect rate limits safely...`);
+          await new Promise((r) => setTimeout(r, 8000));
         }
       } catch (err) {
         console.error(`  ❌ Failed Gemini AR Scene ${scene.id}:`, err.message);
@@ -279,8 +279,8 @@ async function generateAll() {
         const enGenerated = await generateGeminiAudio(scene.en, "en", voice, enPath);
         if (enGenerated) {
           totalGenerated++;
-          console.log(`  ⏳ Waiting 1 second to respect rate limits safely...`);
-          await new Promise((r) => setTimeout(r, 1000));
+          console.log(`  ⏳ Waiting 8 seconds to respect rate limits safely...`);
+          await new Promise((r) => setTimeout(r, 8000));
         }
       } catch (err) {
         console.error(`  ❌ Failed Gemini EN Scene ${scene.id}:`, err.message);
@@ -317,8 +317,8 @@ async function generateAll() {
       const generated = await generateGeminiAudio(c.text, "ar", "Aoede", targetPath);
       if (generated) {
         totalGenerated++;
-        console.log(`  ⏳ Waiting 1 second to respect rate limits safely...`);
-        await new Promise((r) => setTimeout(r, 1000));
+        console.log(`  ⏳ Waiting 8 seconds to respect rate limits safely...`);
+        await new Promise((r) => setTimeout(r, 8000));
       }
     } catch (err) {
       console.error(`  ❌ Failed color ${c.id}:`, err.message);
@@ -352,8 +352,8 @@ async function generateAll() {
       const generated = await generateGeminiAudio(n.text, "ar", "Aoede", targetPath);
       if (generated) {
         totalGenerated++;
-        console.log(`  ⏳ Waiting 1 second to respect rate limits safely...`);
-        await new Promise((r) => setTimeout(r, 1000));
+        console.log(`  ⏳ Waiting 8 seconds to respect rate limits safely...`);
+        await new Promise((r) => setTimeout(r, 8000));
       }
     } catch (err) {
       console.error(`  ❌ Failed number ${n.id}:`, err.message);
@@ -406,8 +406,8 @@ async function generateAll() {
       const generated = await generateGeminiAudio(l.ar, "ar", "Aoede", arPath);
       if (generated) {
         totalGenerated++;
-        console.log(`  ⏳ Waiting 1 second to respect rate limits safely...`);
-        await new Promise((r) => setTimeout(r, 1000));
+        console.log(`  ⏳ Waiting 8 seconds to respect rate limits safely...`);
+        await new Promise((r) => setTimeout(r, 8000));
       }
     } catch (err) {
       console.error(`  ❌ Failed Arabic letter ${l.id}:`, err.message);
@@ -420,8 +420,8 @@ async function generateAll() {
       const generated = await generateGeminiAudio(l.en, "en", "Aoede", enPath);
       if (generated) {
         totalGenerated++;
-        console.log(`  ⏳ Waiting 1 second to respect rate limits safely...`);
-        await new Promise((r) => setTimeout(r, 1000));
+        console.log(`  ⏳ Waiting 8 seconds to respect rate limits safely...`);
+        await new Promise((r) => setTimeout(r, 8000));
       }
     } catch (err) {
       console.error(`  ❌ Failed English letter ${l.id}:`, err.message);

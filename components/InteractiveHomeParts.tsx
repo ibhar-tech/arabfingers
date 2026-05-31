@@ -136,23 +136,19 @@ function MiniPlayground({ isAr }: { isAr: boolean }) {
       activeAudioRef.current.pause();
       activeAudioRef.current = null;
     }
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      window.speechSynthesis.cancel();
-    }
-
     const speakFallback = () => {
-      if (typeof window !== "undefined" && "speechSynthesis" in window) {
-        const arUtterance = new SpeechSynthesisUtterance(letter.arName);
-        arUtterance.lang = "ar-SA";
-        arUtterance.rate = 0.85;
-        arUtterance.onend = () => {
-          const enUtterance = new SpeechSynthesisUtterance(letter.enName);
-          enUtterance.lang = "en-US";
-          enUtterance.rate = 0.9;
-          window.speechSynthesis.speak(enUtterance);
+      // 100% Free Neural Fallback (No robotic local TTS)
+      const arFallbackUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=ar&client=tw-ob&q=${encodeURIComponent(letter.arName)}`;
+      const fallbackAudio = new Audio(arFallbackUrl);
+      activeAudioRef.current = fallbackAudio;
+      fallbackAudio.play().then(() => {
+        fallbackAudio.onended = () => {
+          const enFallbackUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=en&client=tw-ob&q=${encodeURIComponent(letter.enName)}`;
+          const enFallbackAudio = new Audio(enFallbackUrl);
+          activeAudioRef.current = enFallbackAudio;
+          enFallbackAudio.play().catch(() => {});
         };
-        window.speechSynthesis.speak(arUtterance);
-      }
+      }).catch(() => {});
     };
 
     // Play high-quality studio pre-recorded MP3

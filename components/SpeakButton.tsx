@@ -67,22 +67,14 @@ export function SpeakButton({
     }
  
     const speakFallback = () => {
-      try {
-        window.speechSynthesis.cancel();
-        const utter = new SpeechSynthesisUtterance(text);
-        utter.lang = "ar-SA";
-        utter.rate = 0.85;
-        const arVoice = window.speechSynthesis
-          .getVoices()
-          .find((v) => v.lang?.toLowerCase().startsWith("ar"));
-        if (arVoice) utter.voice = arVoice;
-        utter.onend = () => setSpeaking(false);
-        utter.onerror = () => setSpeaking(false);
-        setSpeaking(true);
-        window.speechSynthesis.speak(utter);
-      } catch {
-        setSpeaking(false);
-      }
+      // 100% Free Neural Fallback (No robotic local TTS)
+      const fallbackUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=ar&client=tw-ob&q=${encodeURIComponent(text)}`;
+      const fallbackAudio = new Audio(fallbackUrl);
+      audioRef.current = fallbackAudio;
+      fallbackAudio.addEventListener("ended", () => setSpeaking(false));
+      fallbackAudio.addEventListener("error", () => setSpeaking(false));
+      setSpeaking(true);
+      fallbackAudio.play().catch(() => setSpeaking(false));
     };
  
     const mappedAudioSrc = AUDIO_MAPPING[text.trim()];

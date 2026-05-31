@@ -300,30 +300,7 @@ export default function GravityInteractive({ locale = "ar" }: GravityInteractive
     const dialogue = isAr ? activeScene.dialogueAr : activeScene.dialogueEn;
     const targetLang = isAr ? "ar" : "en";
 
-    const speakTTS = () => {
-      if (typeof window === "undefined" || !window.speechSynthesis) return;
-      const utterance = new SpeechSynthesisUtterance(dialogue);
-      const voice = getBestVoice(targetLang);
-      if (voice) utterance.voice = voice;
-      utterance.lang = isAr ? "ar-SA" : "en-US";
-      
-      const baseRate = isAr ? 0.74 : 0.83;
-      utterance.rate = playbackSpeed * baseRate;
-      
-      if (activeScene.speaker === "hakim") utterance.pitch = 0.93;
-      else if (activeScene.speaker === "anas") utterance.pitch = 1.15;
-      else utterance.pitch = 1.0;
 
-      isSpeakingRef.current = true;
-      utterance.onend = () => { isSpeakingRef.current = false; };
-
-      if (isPlaying) {
-        window.speechSynthesis.speak(utterance);
-      } else {
-        window.speechSynthesis.speak(utterance);
-        window.speechSynthesis.pause();
-      }
-    };
 
     const speakGoogleTTS = () => {
       const googleTtsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${targetLang}&client=tw-ob&q=${encodeURIComponent(dialogue)}`;
@@ -331,23 +308,11 @@ export default function GravityInteractive({ locale = "ar" }: GravityInteractive
       audio.playbackRate = playbackSpeed;
       audioRef.current = audio;
 
-      let fallbackTriggered = false;
-      const triggerTTSFallback = () => {
-        if (fallbackTriggered) return;
-        fallbackTriggered = true;
-        speakTTS();
-      };
-
       audio.addEventListener("canplaythrough", () => {
         if (isPlaying) {
-          audio.play().catch(() => triggerTTSFallback());
+          audio.play().catch(() => {});
         }
       });
-      audio.addEventListener("error", () => triggerTTSFallback());
-
-      setTimeout(() => {
-        if (audio.readyState < 3 && !fallbackTriggered) triggerTTSFallback();
-      }, 1200);
     };
 
     // Pre-recorded fallback

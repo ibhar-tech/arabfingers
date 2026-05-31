@@ -350,73 +350,20 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
     const dialogue = isAr ? activeScene.dialogueAr : activeScene.dialogueEn;
     const targetLang = isAr ? "ar" : "en";
  
-    // Stage 3: Standard Local TTS (last resort fallback)
-    const speakTTS = () => {
-      if (typeof window === "undefined" || !window.speechSynthesis) return;
-      
-      const utterance = new SpeechSynthesisUtterance(dialogue);
-      const voice = getBestVoice(targetLang);
-      
-      if (voice) utterance.voice = voice;
-      utterance.lang = isAr ? "ar-SA" : "en-US";
-      
-      const baseRate = isAr ? 0.74 : 0.83; // Slightly slower for children grasp
-      utterance.rate = playbackSpeed * baseRate;
-      
-      if (activeScene.speaker === "hakim") {
-        utterance.pitch = 0.93;
-      } else if (activeScene.speaker === "anas") {
-        utterance.pitch = 1.15;
-      } else {
-        utterance.pitch = 1.0;
-      }
+
  
-      isSpeakingRef.current = true;
-      utterance.onend = () => {
-        isSpeakingRef.current = false;
-      };
- 
-      if (isPlaying) {
-        window.speechSynthesis.speak(utterance);
-      } else {
-        // Queue it but immediately pause it so it starts paused
-        window.speechSynthesis.speak(utterance);
-        window.speechSynthesis.pause();
-      }
-    };
- 
-    // Stage 2: Google Translate Cloud TTS (high-quality neural voiceover)
+    // Stage 2: Google Translate Cloud TTS (high-quality neural voiceover fallback)
     const speakGoogleTTS = () => {
       const googleTtsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${targetLang}&client=tw-ob&q=${encodeURIComponent(dialogue)}`;
       const audio = new Audio(googleTtsUrl);
       audio.playbackRate = playbackSpeed;
       audioRef.current = audio;
- 
-      let fallbackTriggered = false;
-      const triggerTTSFallback = () => {
-        if (fallbackTriggered) return;
-        fallbackTriggered = true;
-        speakTTS();
-      };
- 
+
       audio.addEventListener("canplaythrough", () => {
         if (isPlaying) {
-          audio.play().catch(() => {
-            triggerTTSFallback();
-          });
+          audio.play().catch(() => {});
         }
       });
- 
-      audio.addEventListener("error", () => {
-        triggerTTSFallback();
-      });
- 
-      // Safe cloud connection timeout
-      setTimeout(() => {
-        if (audio.readyState < 3 && !fallbackTriggered) {
-          triggerTTSFallback();
-        }
-      }, 1200);
     };
  
     // Stage 1: Local studio pre-recorded MP3
