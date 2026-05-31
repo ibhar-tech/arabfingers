@@ -202,6 +202,32 @@ const STORYBOARD: Scene[] = [
   },
 ];
 
+const getBestVoice = (lang: string): SpeechSynthesisVoice | null => {
+  if (typeof window === "undefined" || !window.speechSynthesis) return null;
+  const voices = window.speechSynthesis.getVoices();
+  const langVoices = voices.filter((v) => v.lang.toLowerCase().startsWith(lang.toLowerCase()));
+  
+  if (langVoices.length === 0) return null;
+  
+  // Prioritize premium natural neural voices
+  const premiumKeywords = [
+    "natural", "neural", "google", "microsoft", "premium", "edge", 
+    "maged", "hazem", "hoda", "laila", "zariyah", "jenny", "aria", "guy", "salli"
+  ];
+  
+  const sorted = [...langVoices].sort((a, b) => {
+    const aName = a.name.toLowerCase();
+    const bName = b.name.toLowerCase();
+    
+    const aScore = premiumKeywords.reduce((score, kw) => score + (aName.includes(kw) ? 1 : 0), 0);
+    const bScore = premiumKeywords.reduce((score, kw) => score + (bName.includes(kw) ? 1 : 0), 0);
+    
+    return bScore - aScore; // Highest score first
+  });
+
+  return sorted[0];
+};
+
 interface StatesOfMatterInteractiveProps {
   locale?: string;
 }
@@ -281,24 +307,34 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
     }
 
     // Trigger Speech Synthesis voiceover safely on client
-    if (soundEnabled && typeof window !== "undefined" && window.speechSynthesis) {
-      // Stop current speech
+    const speakDialogue = () => {
+      if (!soundEnabled || typeof window === "undefined" || !window.speechSynthesis) return;
+
       window.speechSynthesis.cancel();
 
       const dialogue = isAr ? activeScene.dialogueAr : activeScene.dialogueEn;
       const utterance = new SpeechSynthesisUtterance(dialogue);
       
-      // Select voice based on locale
-      const voices = window.speechSynthesis.getVoices();
       const targetLang = isAr ? "ar" : "en";
-      const voice = voices.find((v) => v.lang.startsWith(targetLang));
+      const voice = getBestVoice(targetLang);
       
       if (voice) utterance.voice = voice;
       utterance.lang = isAr ? "ar-SA" : "en-US";
       
-      // Map playbackSpeed directly to speech rate
-      utterance.rate = playbackSpeed * (isAr ? 0.85 : 0.95);
-      utterance.pitch = isAr ? 1.05 : 1.1; // Cute kid friendly tone
+      // Let's refine rates for optimal kid-friendly narration:
+      // Arabic sounds much more natural when read slightly slower.
+      const baseRate = isAr ? 0.76 : 0.85;
+      utterance.rate = playbackSpeed * baseRate;
+      
+      // Adjust pitch based on voice name for character mapping:
+      // Hakim (Scientist) warmer pitch (0.93), Anas (Child) cute high pitch (1.15), Narrator natural (1.0)
+      if (activeScene.speaker === "hakim") {
+        utterance.pitch = 0.93;
+      } else if (activeScene.speaker === "anas") {
+        utterance.pitch = 1.15;
+      } else {
+        utterance.pitch = 1.0;
+      }
 
       isSpeakingRef.current = true;
       utterance.onend = () => {
@@ -306,6 +342,20 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
       };
 
       window.speechSynthesis.speak(utterance);
+    };
+
+    if (typeof window !== "undefined" && window.speechSynthesis) {
+      if (window.speechSynthesis.getVoices().length === 0) {
+        // Voices are loading asynchronously, wait for them to load and then speak
+        window.speechSynthesis.onvoiceschanged = () => {
+          speakDialogue();
+          if (window.speechSynthesis) {
+            window.speechSynthesis.onvoiceschanged = null; // Unbind
+          }
+        };
+      } else {
+        speakDialogue();
+      }
     }
 
     // Trigger confetti blast in the final celebrating scene!
@@ -380,13 +430,24 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
       window.speechSynthesis.cancel();
       const dialogue = isAr ? activeScene.dialogueAr : activeScene.dialogueEn;
       const utterance = new SpeechSynthesisUtterance(dialogue);
-      const voices = window.speechSynthesis.getVoices();
+      
       const targetLang = isAr ? "ar" : "en";
-      const voice = voices.find((v) => v.lang.startsWith(targetLang));
+      const voice = getBestVoice(targetLang);
+      
       if (voice) utterance.voice = voice;
       utterance.lang = isAr ? "ar-SA" : "en-US";
-      utterance.rate = playbackSpeed * (isAr ? 0.85 : 0.95);
-      utterance.pitch = isAr ? 1.05 : 1.1;
+      
+      const baseRate = isAr ? 0.76 : 0.85;
+      utterance.rate = playbackSpeed * baseRate;
+      
+      if (activeScene.speaker === "hakim") {
+        utterance.pitch = 0.93;
+      } else if (activeScene.speaker === "anas") {
+        utterance.pitch = 1.15;
+      } else {
+        utterance.pitch = 1.0;
+      }
+      
       window.speechSynthesis.speak(utterance);
     }
   };
