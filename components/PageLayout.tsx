@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useState, useEffect, type ReactNode } from "react";
 import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 import dynamic from "next/dynamic";
+import { usePathname, useRouter } from "next/navigation";
+import { useAppStore } from "@/store/useAppStore";
 
 const ThreeDBackground = dynamic(() => import("@/components/ThreeDBackground"), {
   ssr: false,
@@ -62,6 +64,16 @@ const footerInfoLinks = [
 
 export function PageLayout({ locale, children }: PageLayoutProps) {
   const isAr = locale === "ar";
+  const pathname = usePathname();
+  const router = useRouter();
+  const setLocale = useAppStore((state) => state.setLocale);
+
+  function switchLocale(nextLocale: "ar" | "en") {
+    const nextPath = pathname.replace(/^\/(ar|en)(?=\/|$)/, `/${nextLocale}`);
+    setLocale(nextLocale);
+    router.replace(nextPath);
+  }
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [load3D, setLoad3D] = useState(false);
   const [footerOpen, setFooterOpen] = useState<Record<string, boolean>>({
@@ -115,16 +127,44 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
           </Link>
 
           {/* Desktop links */}
-          <div className="hidden md:flex items-center gap-1.5">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={`/${locale}${link.href}`}
-                className="shrink-0 rounded-lg px-2.5 py-1.5 text-xs font-medium text-white/50 transition hover:bg-white/8 hover:text-white/80"
+          <div className="hidden md:flex items-center gap-4">
+            <div className="flex items-center gap-1.5">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={`/${locale}${link.href}`}
+                  className="shrink-0 rounded-lg px-2.5 py-1.5 text-xs font-medium text-white/50 transition hover:bg-white/8 hover:text-white/80"
+                >
+                  {isAr ? link.labelAr : link.labelEn}
+                </Link>
+              ))}
+            </div>
+
+            {/* Language Switcher (Desktop) */}
+            <div className="flex items-center gap-0.5 rounded-xl border border-white/10 bg-white/5 p-0.5 text-[11px] font-semibold">
+              <button
+                type="button"
+                onClick={() => switchLocale("ar")}
+                className={`rounded-lg px-2.5 py-0.5 transition cursor-pointer ${
+                  isAr
+                    ? "bg-accent text-[#050816] font-bold"
+                    : "text-white/60 hover:text-white hover:bg-white/5"
+                }`}
               >
-                {isAr ? link.labelAr : link.labelEn}
-              </Link>
-            ))}
+                عربي
+              </button>
+              <button
+                type="button"
+                onClick={() => switchLocale("en")}
+                className={`rounded-lg px-2.5 py-0.5 transition cursor-pointer ${
+                  !isAr
+                    ? "bg-accent text-[#050816] font-bold"
+                    : "text-white/60 hover:text-white hover:bg-white/5"
+                }`}
+              >
+                EN
+              </button>
+            </div>
           </div>
 
           {/* Mobile hamburger menu toggle */}
@@ -151,6 +191,37 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
                 {isAr ? link.labelAr : link.labelEn}
               </Link>
             ))}
+            
+            {/* Language Switcher (Mobile) */}
+            <div className="border-t border-white/5 mt-2 px-6 py-3 flex items-center justify-between gap-4">
+              <span className="text-[11px] font-semibold text-white/50">
+                {isAr ? "اللغة / Language" : "Language / اللغة"}
+              </span>
+              <div className="flex items-center gap-0.5 rounded-xl border border-white/10 bg-white/5 p-0.5 text-[10px] font-semibold">
+                <button
+                  type="button"
+                  onClick={() => { switchLocale("ar"); setMenuOpen(false); }}
+                  className={`rounded-lg px-2.5 py-1 transition cursor-pointer ${
+                    isAr
+                      ? "bg-accent text-[#050816] font-bold"
+                      : "text-white/60 hover:text-white"
+                  }`}
+                >
+                  العربية
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { switchLocale("en"); setMenuOpen(false); }}
+                  className={`rounded-lg px-2.5 py-1 transition cursor-pointer ${
+                    !isAr
+                      ? "bg-accent text-[#050816] font-bold"
+                      : "text-white/60 hover:text-white"
+                  }`}
+                >
+                  English
+                </button>
+              </div>
+            </div>
           </div>
         )}
       </nav>
