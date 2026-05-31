@@ -387,10 +387,6 @@ export default function SolarSystemInteractive({ locale = "ar" }: SolarSystemInt
       }
     });
     audio.addEventListener("error", () => triggerGoogleTTS());
-
-    setTimeout(() => {
-      if (audio.readyState < 3 && !nextStageTriggered) triggerGoogleTTS();
-    }, 200);
   };
 
   const handleSpeechRepeat = () => {

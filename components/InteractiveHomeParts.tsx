@@ -110,44 +110,71 @@ type DemoLetter = {
   enName: string;
   color: string;
   emoji: string;
+  soundId: string;
 };
 
 const demoLetters: DemoLetter[] = [
-  { ar: "أ", en: "A", arName: "ألف", enName: "Alef", color: "bg-red-500/20 border-red-500/30 text-red-300", emoji: "🚀" },
-  { ar: "ب", en: "B", arName: "باء", enName: "Ba", color: "bg-orange-500/20 border-orange-500/30 text-orange-300", emoji: "🧸" },
-  { ar: "ت", en: "T", arName: "تاء", enName: "Ta", color: "bg-amber-500/20 border-amber-500/30 text-amber-300", emoji: "🐢" },
-  { ar: "ج", en: "J", arName: "جيم", enName: "Jeem", color: "bg-emerald-500/20 border-emerald-500/30 text-emerald-300", emoji: "🐪" },
-  { ar: "د", en: "D", arName: "دال", enName: "Daal", color: "bg-blue-500/20 border-blue-500/30 text-blue-300", emoji: "🐠" },
-  { ar: "س", en: "S", arName: "سين", enName: "Seen", color: "bg-purple-500/20 border-purple-500/30 text-purple-300", emoji: "⭐" },
+  { ar: "أ", en: "A", arName: "ألف", enName: "Alef", color: "bg-red-500/20 border-red-500/30 text-red-300", emoji: "🚀", soundId: "alef" },
+  { ar: "ب", en: "B", arName: "باء", enName: "Ba", color: "bg-orange-500/20 border-orange-500/30 text-orange-300", emoji: "🧸", soundId: "ba" },
+  { ar: "ت", en: "T", arName: "تاء", enName: "Ta", color: "bg-amber-500/20 border-amber-500/30 text-amber-300", emoji: "🐢", soundId: "ta" },
+  { ar: "ج", en: "J", arName: "جيم", enName: "Jeem", color: "bg-emerald-500/20 border-emerald-500/30 text-emerald-300", emoji: "🐪", soundId: "jeem" },
+  { ar: "د", en: "D", arName: "دال", enName: "Daal", color: "bg-blue-500/20 border-blue-500/30 text-blue-300", emoji: "🐠", soundId: "dal" },
+  { ar: "س", en: "S", arName: "سين", enName: "Seen", color: "bg-purple-500/20 border-purple-500/30 text-purple-300", emoji: "⭐", soundId: "seen" },
 ];
 
 function MiniPlayground({ isAr }: { isAr: boolean }) {
   const [activeLetter, setActiveLetter] = useState<DemoLetter | null>(null);
   const [bursts, setBursts] = useState<{ id: number; emoji: string; x: number; y: number }[]>([]);
   const [burstCount, setBurstCount] = useState(0);
+  const activeAudioRef = useRef<HTMLAudioElement | null>(null);
 
   const handleLetterClick = (letter: DemoLetter, e: React.MouseEvent<HTMLButtonElement>) => {
     setActiveLetter(letter);
 
-    // Speak letter using Web Speech API
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      window.speechSynthesis.cancel(); // cancel previous speaking
-
-      // Speak Arabic letter name
-      const arUtterance = new SpeechSynthesisUtterance(letter.arName);
-      arUtterance.lang = "ar-SA";
-      arUtterance.rate = 0.85;
-
-      // Speak English letter name after Arabic finishes
-      arUtterance.onend = () => {
-        const enUtterance = new SpeechSynthesisUtterance(letter.enName);
-        enUtterance.lang = "en-US";
-        enUtterance.rate = 0.9;
-        window.speechSynthesis.speak(enUtterance);
-      };
-
-      window.speechSynthesis.speak(arUtterance);
+    // Stop currently playing audio and cancel web speech synthesis
+    if (activeAudioRef.current) {
+      activeAudioRef.current.pause();
+      activeAudioRef.current = null;
     }
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+    }
+
+    const speakFallback = () => {
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        const arUtterance = new SpeechSynthesisUtterance(letter.arName);
+        arUtterance.lang = "ar-SA";
+        arUtterance.rate = 0.85;
+        arUtterance.onend = () => {
+          const enUtterance = new SpeechSynthesisUtterance(letter.enName);
+          enUtterance.lang = "en-US";
+          enUtterance.rate = 0.9;
+          window.speechSynthesis.speak(enUtterance);
+        };
+        window.speechSynthesis.speak(arUtterance);
+      }
+    };
+
+    // Play high-quality studio pre-recorded MP3
+    const arAudio = new Audio(`/sounds/letters/${letter.soundId}-ar.mp3`);
+    activeAudioRef.current = arAudio;
+
+    arAudio.addEventListener("canplaythrough", () => {
+      arAudio.play().catch(() => speakFallback());
+    });
+
+    arAudio.addEventListener("ended", () => {
+      const enAudio = new Audio(`/sounds/letters/${letter.soundId}-en.mp3`);
+      activeAudioRef.current = enAudio;
+      enAudio.addEventListener("canplaythrough", () => {
+        enAudio.play().catch(() => {});
+      });
+      enAudio.addEventListener("error", () => {});
+    });
+
+    arAudio.addEventListener("error", () => {
+      speakFallback();
+    });
 
     // Trigger emoji burst
     const rect = e.currentTarget.getBoundingClientRect();

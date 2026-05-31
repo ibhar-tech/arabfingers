@@ -1,23 +1,23 @@
 /**
- * Google AI Studio (Gemini 2.0) Multimodal Audio Generator for Arab Fingers
+ * ElevenLabs AI Voiceover Generator for Arab Fingers
  * 
- * This script uses a Google AI Studio Gemini API Key (including new AQ. keys)
- * to generate beautiful, natural, child-friendly spoken voiceovers for all
- * 4 educational courses in both Arabic and English, and saves them directly.
+ * This script uses an ElevenLabs API Key to generate breathtaking,
+ * studio-quality AI voiceovers for all 4 educational courses in
+ * both Arabic and English, and saves them directly to the public directory.
  * 
  * Usage:
- *   export GEMINI_API_KEY="your_AQ_api_key_here"
- *   node scripts/generate-voiceovers-gemini.js
+ *   export ELEVEN_API_KEY="your_api_key_here"
+ *   node scripts/generate-voiceovers-eleven.js
  */
 
 const fs = require("fs");
 const path = require("path");
 const https = require("https");
 
-const API_KEY = process.env.GEMINI_API_KEY;
+const API_KEY = process.env.ELEVEN_API_KEY;
 
 if (!API_KEY) {
-  console.error("❌ Error: GEMINI_API_KEY environment variable is not set.");
+  console.error("❌ Error: ELEVEN_API_KEY environment variable is not set.");
   process.exit(1);
 }
 
@@ -74,170 +74,70 @@ const courses = {
 };
 
 // ----------------------------------------------------
-// GEMINI 2.0 MULTIMODAL VOICES
+// VOICE ASSIGNMENTS (ELEVENLABS PREMIUM VOICES)
 // ----------------------------------------------------
-const voices = {
-  hakim: "Fenrir",   // Deep warm male
-  anas: "Puck",       // Child-like energetic male
-  narrator: "Aoede"   // Friendly narrative female
+const voiceIds = {
+  hakim: "pNInz6obpgfrhhF21wNZ",   // George (Wise deep male)
+  anas: "AZnzlk1XvdvUeBnXmlld",    // Domi (Cute/youthful kid style)
+  narrator: "EXAVITQu4vr4xnSDxMaL" // Bella (Warm female storybook narrator)
 };
 
-function writeWavHeader(pcmBuffer, sampleRate = 24000) {
-  const numChannels = 1;
-  const bitsPerSample = 16;
-  const pcmLength = pcmBuffer.length;
-  
-  const header = Buffer.alloc(44);
-  
-  header.write("RIFF", 0);
-  header.writeUInt32LE(pcmLength + 36, 4);
-  header.write("WAVE", 8);
-  header.write("fmt ", 12);
-  header.writeUInt32LE(16, 16);
-  header.writeUInt16LE(1, 20); // PCM format
-  header.writeUInt16LE(numChannels, 22);
-  header.writeUInt32LE(sampleRate, 24);
-  header.writeUInt32LE(sampleRate * numChannels * (bitsPerSample / 8), 28);
-  header.writeUInt16LE(numChannels * (bitsPerSample / 8), 32);
-  header.writeUInt16LE(bitsPerSample, 34);
-  header.write("data", 36);
-  header.writeUInt32LE(pcmLength, 40);
-  
-  return Buffer.concat([header, pcmBuffer]);
-}
+function synthesizeTextEleven(text, voiceId, targetPath) {
+  return new Promise((resolve, reject) => {
+    const postData = JSON.stringify({
+      text: text,
+      model_id: "eleven_multilingual_v2",
+      voice_settings: {
+        stability: 0.45,
+        similarity_boost: 0.75
+      }
+    });
 
-function generateGeminiAudio(text, lang, voiceName, targetPath) {
-  // Check if file already exists with content to avoid wasting API quota!
-  if (fs.existsSync(targetPath) && fs.statSync(targetPath).size > 0) {
-    console.log(`  ⏭️ Skipping existing file: ${path.basename(targetPath)}`);
-    return Promise.resolve(false);
-  }
+    const options = {
+      hostname: "api.elevenlabs.io",
+      port: 443,
+      path: `/v1/text-to-speech/${voiceId}`,
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Content-Length": Buffer.byteLength(postData),
+        "xi-api-key": API_KEY
+      }
+    };
 
-  let attempt = 0;
-  const maxAttempts = 10;
-
-  const runRequest = () => {
-    attempt++;
-    return new Promise((resolve, reject) => {
-      const prompt = `Read the following text aloud in ${
-        lang === "ar" ? "Arabic with clear child-friendly pronunciation" : "English naturally"
-      }. Speak slowly and clearly. Do NOT output any text, only the spoken audio. Text:\n\n"${text}"`;
-
-      const postData = JSON.stringify({
-        contents: [{
-          role: "user",
-          parts: [{ text: prompt }]
-        }],
-        generationConfig: {
-          responseModalities: ["AUDIO"],
-          speechConfig: {
-            voiceConfig: {
-              prebuiltVoiceConfig: {
-                voiceName: voiceName
-              }
-            }
-          }
-        }
-      });
-
-      const options = {
-        hostname: "generativelanguage.googleapis.com",
-        port: 443,
-        path: `/v1beta/models/gemini-3.1-flash-tts-preview:generateContent?key=${API_KEY}`,
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Content-Length": Buffer.byteLength(postData)
-        }
-      };
-
-      const req = https.request(options, (res) => {
+    const req = https.request(options, (res) => {
+      if (res.statusCode !== 200) {
         let body = "";
         res.on("data", (chunk) => body += chunk);
-        
-        res.on("end", () => {
-          if (res.statusCode === 429) {
-            // Rate limit! Let's try to extract the retry time
-            let retrySec = 22;
-            try {
-              const errObj = JSON.parse(body);
-              const errMsg = errObj.error?.message || "";
-              const match = errMsg.match(/retry in (\d+(\.\d+)?)/i);
-              if (match) {
-                retrySec = Math.ceil(parseFloat(match[1])) + 1;
-              } else {
-                const retryDelayField = errObj.error?.details?.find(d => d.retryDelay)?.retryDelay;
-                if (retryDelayField) {
-                  retrySec = parseInt(retryDelayField, 10) + 1;
-                }
-              }
-            } catch (e) {
-              // Ignore parse error, use default
-            }
+        res.on("end", () => reject(new Error(`ElevenLabs Error ${res.statusCode}: ${body}`)));
+        return;
+      }
 
-            if (attempt < maxAttempts) {
-              console.warn(`  ⚠️ Rate limit hit (429). Waiting ${retrySec} seconds before retrying (Attempt ${attempt}/${maxAttempts})...`);
-              setTimeout(() => {
-                runRequest().then(resolve).catch(reject);
-              }, retrySec * 1000);
-            } else {
-              reject(new Error(`Rate limit exceeded. Failed after ${maxAttempts} attempts.`));
-            }
-            return;
-          }
+      const fileStream = fs.createWriteStream(targetPath);
+      res.pipe(fileStream);
 
-          if (res.statusCode !== 200) {
-            reject(new Error(`Gemini Error ${res.statusCode}: ${body}`));
-            return;
-          }
-
-          try {
-            const responseJson = JSON.parse(body);
-            const parts = responseJson.candidates?.[0]?.content?.parts;
-            
-            if (!parts) {
-              reject(new Error("No response parts returned from Gemini API"));
-              return;
-            }
-
-            const audioPart = parts.find(p => p.inlineData && p.inlineData.mimeType.startsWith("audio/"));
-            if (!audioPart) {
-              reject(new Error("No audio inlineData found in Gemini response"));
-              return;
-            }
-
-            const mimeType = audioPart.inlineData.mimeType;
-            let sampleRate = 24000;
-            const rateMatch = mimeType.match(/rate=(\d+)/);
-            if (rateMatch) {
-              sampleRate = parseInt(rateMatch[1], 10);
-            }
-
-            const rawBuffer = Buffer.from(audioPart.inlineData.data, "base64");
-            const wavBuffer = writeWavHeader(rawBuffer, sampleRate);
-            fs.writeFileSync(targetPath, wavBuffer);
-            resolve(true);
-          } catch (err) {
-            reject(err);
-          }
-        });
+      fileStream.on("finish", () => {
+        fileStream.close();
+        resolve();
       });
 
-      req.on("error", (err) => reject(err));
-      req.write(postData);
-      req.end();
+      fileStream.on("error", (err) => {
+        fs.unlink(targetPath, () => {});
+        reject(err);
+      });
     });
-  };
 
-  return runRequest();
+    req.on("error", (err) => reject(err));
+    req.write(postData);
+    req.end();
+  });
 }
 
 async function generateAll() {
-  console.log("🧪 Starting Gemini 2.0 Multimodal AI Voiceover Generation...");
+  console.log("🧪 Starting ElevenLabs Premium Multilingual AI Voiceover Generation...");
   
   const publicDir = path.join(__dirname, "../public");
   const audioBase = path.join(publicDir, "audio");
-  const soundsBase = path.join(publicDir, "sounds");
   
   if (!fs.existsSync(audioBase)) {
     fs.mkdirSync(audioBase, { recursive: true });
@@ -246,7 +146,6 @@ async function generateAll() {
   const courseKeys = Object.keys(courses);
   let totalGenerated = 0;
 
-  // 1. Process Science Courses
   for (const course of courseKeys) {
     console.log(`\n📦 Processing Course: ${course}...`);
     const courseDir = path.join(audioBase, course);
@@ -256,111 +155,34 @@ async function generateAll() {
 
     const scenes = courses[course];
     for (const scene of scenes) {
-      const voice = voices[scene.speaker] || voices.narrator;
+      const voiceId = voiceIds[scene.speaker] || voiceIds.narrator;
 
       // 1. Generate Arabic MP3
       const arPath = path.join(courseDir, `scene_${scene.id}_ar.mp3`);
       try {
-        console.log(`  🗣️ Generating Gemini AR - Scene ${scene.id} (${scene.speaker})...`);
-        const arGenerated = await generateGeminiAudio(scene.ar, "ar", voice, arPath);
-        if (arGenerated) {
-          totalGenerated++;
-          console.log(`  ⏳ Waiting 21 seconds to respect 3 RPM rate limits safely...`);
-          await new Promise((r) => setTimeout(r, 21000));
-        }
+        console.log(`  🗣️ Generating ElevenLabs AR - Scene ${scene.id} (${scene.speaker})...`);
+        await synthesizeTextEleven(scene.ar, voiceId, arPath);
+        totalGenerated++;
       } catch (err) {
-        console.error(`  ❌ Failed Gemini AR Scene ${scene.id}:`, err.message);
+        console.error(`  ❌ Failed ElevenLabs AR Scene ${scene.id}:`, err.message);
       }
 
       // 2. Generate English MP3
       const enPath = path.join(courseDir, `scene_${scene.id}_en.mp3`);
       try {
-        console.log(`  🗣️ Generating Gemini EN - Scene ${scene.id} (${scene.speaker})...`);
-        const enGenerated = await generateGeminiAudio(scene.en, "en", voice, enPath);
-        if (enGenerated) {
-          totalGenerated++;
-          console.log(`  ⏳ Waiting 21 seconds to respect 3 RPM rate limits safely...`);
-          await new Promise((r) => setTimeout(r, 21000));
-        }
+        console.log(`  🗣️ Generating ElevenLabs EN - Scene ${scene.id} (${scene.speaker})...`);
+        await synthesizeTextEleven(scene.en, voiceId, enPath);
+        totalGenerated++;
       } catch (err) {
-        console.error(`  ❌ Failed Gemini EN Scene ${scene.id}:`, err.message);
+        console.error(`  ❌ Failed ElevenLabs EN Scene ${scene.id}:`, err.message);
       }
+
+      // Safe rate-limiting delay
+      await new Promise((r) => setTimeout(r, 600));
     }
   }
 
-  // 2. Process Colors
-  console.log("\n🎨 Processing Colors...");
-  const colorsDir = path.join(soundsBase, "colors");
-  if (!fs.existsSync(colorsDir)) {
-    fs.mkdirSync(colorsDir, { recursive: true });
-  }
-
-  const colors = [
-    { text: "أحمر", id: "red" },
-    { text: "أزرق", id: "blue" },
-    { text: "أخضر", id: "green" },
-    { text: "أصفر", id: "yellow" },
-    { text: "برتقالي", id: "orange" },
-    { text: "بنفسجي", id: "purple" },
-    { text: "وردي", id: "pink" },
-    { text: "أبيض", id: "white" },
-    { text: "أسود", id: "black" },
-    { text: "بني", id: "brown" },
-    { text: "رمادي", id: "gray" },
-    { text: "ذهبي", id: "gold" }
-  ];
-
-  for (const c of colors) {
-    const targetPath = path.join(colorsDir, `${c.id}.mp3`);
-    try {
-      console.log(`  🗣️ Generating color: ${c.text} (${c.id})...`);
-      const generated = await generateGeminiAudio(c.text, "ar", "Aoede", targetPath);
-      if (generated) {
-        totalGenerated++;
-        console.log(`  ⏳ Waiting 21 seconds to respect 3 RPM rate limits safely...`);
-        await new Promise((r) => setTimeout(r, 21000));
-      }
-    } catch (err) {
-      console.error(`  ❌ Failed color ${c.id}:`, err.message);
-    }
-  }
-
-  // 3. Process Numbers
-  console.log("\n🔢 Processing Numbers...");
-  const numbersDir = path.join(soundsBase, "numbers");
-  if (!fs.existsSync(numbersDir)) {
-    fs.mkdirSync(numbersDir, { recursive: true });
-  }
-
-  const numbers = [
-    { text: "واحد", id: "one" },
-    { text: "اثنان", id: "two" },
-    { text: "ثلاثة", id: "three" },
-    { text: "أربعة", id: "four" },
-    { text: "خمسة", id: "five" },
-    { text: "ستة", id: "six" },
-    { text: "سبعة", id: "seven" },
-    { text: "ثمانية", id: "eight" },
-    { text: "تسعة", id: "nine" },
-    { text: "عشرة", id: "ten" }
-  ];
-
-  for (const n of numbers) {
-    const targetPath = path.join(numbersDir, `${n.id}.mp3`);
-    try {
-      console.log(`  🗣️ Generating number: ${n.text} (${n.id})...`);
-      const generated = await generateGeminiAudio(n.text, "ar", "Aoede", targetPath);
-      if (generated) {
-        totalGenerated++;
-        console.log(`  ⏳ Waiting 21 seconds to respect 3 RPM rate limits safely...`);
-        await new Promise((r) => setTimeout(r, 21000));
-      }
-    } catch (err) {
-      console.error(`  ❌ Failed number ${n.id}:`, err.message);
-    }
-  }
-
-  console.log(`\n🎉 Super success! Successfully generated ${totalGenerated} premium voiceover files!`);
+  console.log(`\n🎉 Breathtaking success! Generated ${totalGenerated} ElevenLabs premium voiceover files!`);
 }
 
 generateAll().catch((err) => {

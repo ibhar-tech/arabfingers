@@ -382,10 +382,6 @@ export default function WaterCycleInteractive({ locale = "ar" }: WaterCycleInter
       }
     });
     audio.addEventListener("error", () => triggerGoogleTTS());
-
-    setTimeout(() => {
-      if (audio.readyState < 3 && !nextStageTriggered) triggerGoogleTTS();
-    }, 200);
   };
 
   const handleSpeechRepeat = () => {

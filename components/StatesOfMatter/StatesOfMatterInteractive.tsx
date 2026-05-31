@@ -443,13 +443,6 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
     audio.addEventListener("error", () => {
       triggerGoogleTTS();
     });
- 
-    // Safe fast local check timeout (if not cached/loaded in 200ms, go to cloud TTS)
-    setTimeout(() => {
-      if (audio.readyState < 3 && !nextStageTriggered) {
-        triggerGoogleTTS();
-      }
-    }, 200);
   };
  
   const handleSpeechRepeat = () => {
