@@ -121,6 +121,98 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
         </p>
       </div>
 
+      {/* Interactive Cartoon Lessons Dashboard */}
+      <section className="mb-12">
+        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
+          {isAr ? "🎬 الدروس الكرتونية التفاعلية" : "🎬 Interactive Cartoon Lessons"}
+          <span className="text-xs bg-accent/20 text-accent font-semibold px-2.5 py-0.5 rounded-full animate-pulse border border-accent/20">
+            {isAr ? "جديد" : "NEW"}
+          </span>
+        </h2>
+        <p className="text-sm text-white/60 mb-6">
+          {isAr
+            ? "شاهد وتحكم في قصص علمية كرتونية مذهلة! ساعد أصدقاءك في فهم أسرار الكون من خلال تجارب تفاعلية شيقة."
+            : "Watch and control spectacular interactive science cartoons! Help your cartoon friends discover the universe."}
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Active Flagship Lesson Card */}
+          <Link
+            href={`/${locale}/learn/states-of-matter`}
+            className="md:col-span-2 group relative overflow-hidden rounded-2xl border border-accent/30 bg-gradient-to-br from-[#0f1b2d] to-[#0a101f] p-6 shadow-[0_12px_30px_rgba(159,225,203,0.1)] transition-all hover:scale-[1.01] hover:border-accent hover:shadow-[0_12px_40px_rgba(159,225,203,0.18)]"
+          >
+            <div className="absolute top-0 right-0 bg-accent text-[#050816] text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">
+              {isAr ? "نشط الآن ✨" : "Active Now ✨"}
+            </div>
+            
+            <div className="flex flex-col sm:flex-row gap-5 items-start h-full">
+              <div className="shrink-0 flex items-center justify-center w-16 h-16 rounded-2xl bg-accent/15 border border-accent/30 text-3xl shadow-inner group-hover:scale-110 transition-transform duration-300">
+                🧪
+              </div>
+              <div className="flex-grow flex flex-col justify-between h-full">
+                <div>
+                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-accent transition-colors flex items-center gap-2">
+                    {isAr ? "حالات المادة (حكاية علمية)" : "States of Matter (Science Story)"}
+                  </h3>
+                  <p className="text-sm text-white/70 leading-relaxed mb-4">
+                    {isAr
+                      ? "انضم إلى أنس والدكتور حكيم في مختبرهم السحري! استكشف الحالات الأربع للمادة (الصلبة، السائلة، الغازية، والبلازما) وتحكم في حرارة الجزيئات بنفسك لتراها تتجمد، تنصهر، وتتبخر!"
+                      : "Join Anas and Dr. Hakim in their magical lab! Explore the four states of matter (Solid, Liquid, Gas, and Plasma) and adjust the temperature slider yourself to watch molecules freeze, melt, or vaporize!"}
+                  </p>
+                </div>
+                <div className="inline-flex items-center gap-1.5 text-xs text-accent font-semibold group-hover:underline">
+                  {isAr ? "ابدأ المغامرة التفاعلية الآن 🚀" : "Start the Interactive Adventure Now 🚀"}
+                </div>
+              </div>
+            </div>
+          </Link>
+
+          {/* Teaser Cards Column */}
+          <div className="flex flex-col gap-4">
+            <div className="rounded-2xl border border-white/8 bg-white/5 p-4 flex gap-3 items-center opacity-65 hover:opacity-85 transition-opacity">
+              <div className="shrink-0 text-2xl">💧</div>
+              <div>
+                <h4 className="text-xs font-semibold text-white/90">
+                  {isAr ? "دورة المياه في الطبيعة" : "The Water Cycle"}
+                </h4>
+                <p className="text-[11px] text-white/50 mt-0.5">
+                  {isAr ? "قريباً - رحلة قطرة الماء السحرية!" : "Coming Soon - The magical journey of a water drop!"}
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-white/8 bg-white/5 p-4 flex gap-3 items-center opacity-65 hover:opacity-85 transition-opacity">
+              <div className="shrink-0 text-2xl">🚀</div>
+              <div>
+                <h4 className="text-xs font-semibold text-white/90">
+                  {isAr ? "نظامنا الشمسي الرائع" : "Our Spectacular Solar System"}
+                </h4>
+                <p className="text-[11px] text-white/50 mt-0.5">
+                  {isAr ? "قريباً - طيران تفاعلي بين الكواكب!" : "Coming Soon - Interactive flight among planets!"}
+                </p>
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-white/8 bg-white/5 p-4 flex gap-3 items-center opacity-65 hover:opacity-85 transition-opacity">
+              <div className="shrink-0 text-2xl">🍎</div>
+              <div>
+                <h4 className="text-xs font-semibold text-white/90">
+                  {isAr ? "كيف تعمل الجاذبية؟" : "How Gravity Works"}
+                </h4>
+                <p className="text-[11px] text-white/50 mt-0.5">
+                  {isAr ? "قريباً - لماذا تسقط الأشياء للأسفل؟" : "Coming Soon - Why do things fall to the ground?"}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Standard Articles Section */}
+      <h2 className="text-xl font-bold text-white mb-4">
+        {isAr ? "📚 أدلة ومقالات تعليمية" : "📚 Educational Guides & Articles"}
+      </h2>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
         {articles.map((article) => (
           <Link
