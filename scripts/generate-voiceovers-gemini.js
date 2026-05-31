@@ -360,6 +360,74 @@ async function generateAll() {
     }
   }
 
+  // 4. Process Letters
+  console.log("\n🔤 Processing Letters...");
+  const lettersDir = path.join(soundsBase, "letters");
+  if (!fs.existsSync(lettersDir)) {
+    fs.mkdirSync(lettersDir, { recursive: true });
+  }
+
+  const letters = [
+    { id: "alef", ar: "ألف", en: "Alef" },
+    { id: "ba", ar: "باء", en: "Ba" },
+    { id: "ta", ar: "تاء", en: "Ta" },
+    { id: "tha", ar: "ثاء", en: "Tha" },
+    { id: "jeem", ar: "جيم", en: "Jeem" },
+    { id: "hha", ar: "حاء", en: "Hha" },
+    { id: "kha", ar: "خاء", en: "Kha" },
+    { id: "dal", ar: "دال", en: "Dal" },
+    { id: "thal", ar: "ذال", en: "Thal" },
+    { id: "ra", ar: "راء", en: "Ra" },
+    { id: "zay", ar: "زاي", en: "Zay" },
+    { id: "seen", ar: "سين", en: "Seen" },
+    { id: "sheen", ar: "شين", en: "Sheen" },
+    { id: "sad", ar: "صاد", en: "Sad" },
+    { id: "dad", ar: "ضاد", en: "Dad" },
+    { id: "tah", ar: "طاء", en: "Tah" },
+    { id: "zah", ar: "ظاء", en: "Zah" },
+    { id: "ain", ar: "عين", en: "Ain" },
+    { id: "ghain", ar: "غين", en: "Ghain" },
+    { id: "fa", ar: "فاء", en: "Fa" },
+    { id: "qaf", ar: "قاف", en: "Qaf" },
+    { id: "kaf", ar: "كاف", en: "Kaf" },
+    { id: "lam", ar: "لام", en: "Lam" },
+    { id: "meem", ar: "ميم", en: "Meem" },
+    { id: "noon", ar: "نون", en: "Noon" },
+    { id: "ha", ar: "هاء", en: "Ha" },
+    { id: "waw", ar: "واو", en: "Waw" },
+    { id: "ya", ar: "ياء", en: "Ya" }
+  ];
+
+  for (const l of letters) {
+    // 1. Generate Arabic Letter name
+    const arPath = path.join(lettersDir, `${l.id}-ar.mp3`);
+    try {
+      console.log(`  🗣️ Generating Arabic letter: ${l.ar} (${l.id})...`);
+      const generated = await generateGeminiAudio(l.ar, "ar", "Aoede", arPath);
+      if (generated) {
+        totalGenerated++;
+        console.log(`  ⏳ Waiting 21 seconds to respect 3 RPM rate limits safely...`);
+        await new Promise((r) => setTimeout(r, 21000));
+      }
+    } catch (err) {
+      console.error(`  ❌ Failed Arabic letter ${l.id}:`, err.message);
+    }
+
+    // 2. Generate English Letter name
+    const enPath = path.join(lettersDir, `${l.id}-en.mp3`);
+    try {
+      console.log(`  🗣️ Generating English letter: ${l.en} (${l.id})...`);
+      const generated = await generateGeminiAudio(l.en, "en", "Aoede", enPath);
+      if (generated) {
+        totalGenerated++;
+        console.log(`  ⏳ Waiting 21 seconds to respect 3 RPM rate limits safely...`);
+        await new Promise((r) => setTimeout(r, 21000));
+      }
+    } catch (err) {
+      console.error(`  ❌ Failed English letter ${l.id}:`, err.message);
+    }
+  }
+
   console.log(`\n🎉 Super success! Successfully generated ${totalGenerated} premium voiceover files!`);
 }
 
