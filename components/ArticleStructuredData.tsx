@@ -29,13 +29,18 @@ export function ArticleStructuredData({
     dateModified: dateModified ?? datePublished,
     author: {
       "@type": "Person",
-      name: "Ibrahim",
-      url: siteUrl,
+      name: "Aissa Trad",
+      url: `${siteUrl}/${locale}/author`,
+      image: `${siteUrl}/author.svg`,
     },
     publisher: {
       "@type": "Organization",
-      name: "ArabFingers",
+      name: "Arab Fingers",
       url: siteUrl,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/logo.svg`,
+      },
     },
     mainEntityOfPage: {
       "@type": "WebPage",

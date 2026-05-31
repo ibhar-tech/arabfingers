@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
+import { ArticleMeta } from "@/components/ArticleMeta";
 import { isLocale } from "@/lib/locales";
 
 export const metadata: Metadata = {
@@ -16,6 +17,20 @@ export default async function ArabicVsEnglishPage({ params }: { params: Promise<
 
   return (
     <PageLayout locale={locale}>
+      <ArticleMeta
+        locale={locale}
+        title="Arabic vs English Alphabet: Key Differences"
+        description="The key differences between the Arabic and English alphabets — direction, letter shapes, sounds, and how they connect."
+        slug="learn/arabic-vs-english"
+        datePublished="2026-04-09"
+        dateModified="2026-05-18"
+        section="Education"
+        crumbs={[
+          { label: locale === "ar" ? "تعلم" : "Learn", href: `/${locale}/learn` },
+          { label: locale === "ar" ? "عربي مقابل إنجليزي" : "Arabic vs English" },
+        ]}
+      />
+
       {isAr ? <ContentAr /> : <ContentEn />}
       <div className="text-center py-8">
         <Link href={`/${locale}/learn/arabic-alphabet-guide`} className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105">

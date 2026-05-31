@@ -90,7 +90,7 @@ function ResourcesEn() {
                     {res.badge}
                   </span>
                   <h3 className="text-base font-bold text-white mb-2 group-hover:text-accent transition">
-                    <a href={res.url} target="_blank" rel="noopener noreferrer" className="focus:outline-none focus:underline">
+                    <a href={res.url} target="_blank" rel="nofollow noopener noreferrer" className="focus:outline-none focus:underline">
                       {res.name} <span className="inline-block text-xs font-normal opacity-50 group-hover:translate-x-1 transition-transform">→</span>
                     </a>
                   </h3>
@@ -116,7 +116,7 @@ function ResourcesEn() {
                     {res.badge}
                   </span>
                   <h3 className="text-base font-bold text-white mb-2 group-hover:text-accent transition">
-                    <a href={res.url} target="_blank" rel="noopener noreferrer" className="focus:outline-none focus:underline">
+                    <a href={res.url} target="_blank" rel="nofollow noopener noreferrer" className="focus:outline-none focus:underline">
                       {res.name} <span className="inline-block text-xs font-normal opacity-50 group-hover:translate-x-1 transition-transform">→</span>
                     </a>
                   </h3>
@@ -214,7 +214,7 @@ function ResourcesAr() {
                     {res.badge}
                   </span>
                   <h3 className="text-base font-bold text-white mb-2 group-hover:text-accent transition">
-                    <a href={res.url} target="_blank" rel="noopener noreferrer" className="focus:outline-none focus:underline">
+                    <a href={res.url} target="_blank" rel="nofollow noopener noreferrer" className="focus:outline-none focus:underline">
                       {res.name} <span className="inline-block text-xs font-normal opacity-50 group-hover:translate-x-1 transition-transform">←</span>
                     </a>
                   </h3>
@@ -240,7 +240,7 @@ function ResourcesAr() {
                     {res.badge}
                   </span>
                   <h3 className="text-base font-bold text-white mb-2 group-hover:text-accent transition">
-                    <a href={res.url} target="_blank" rel="noopener noreferrer" className="focus:outline-none focus:underline">
+                    <a href={res.url} target="_blank" rel="nofollow noopener noreferrer" className="focus:outline-none focus:underline">
                       {res.name} <span className="inline-block text-xs font-normal opacity-50 group-hover:translate-x-1 transition-transform">←</span>
                     </a>
                   </h3>

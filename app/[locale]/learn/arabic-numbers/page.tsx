@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
+import { ArticleMeta } from "@/components/ArticleMeta";
+import { SpeakButton } from "@/components/SpeakButton";
 import { isLocale } from "@/lib/locales";
 
 export const metadata: Metadata = {
@@ -28,6 +30,20 @@ export default async function ArabicNumbersPage({ params }: { params: Promise<{ 
 
   return (
     <PageLayout locale={locale}>
+      <ArticleMeta
+        locale={locale}
+        title="Arabic Numbers for Kids (1–10)"
+        description="Learn Arabic numbers 1 to 10 with pronunciation, English equivalents, and fun facts for kids and parents."
+        slug="learn/arabic-numbers"
+        datePublished="2026-03-12"
+        dateModified="2026-05-08"
+        section="Education"
+        crumbs={[
+          { label: locale === "ar" ? "تعلم" : "Learn", href: `/${locale}/learn` },
+          { label: locale === "ar" ? "الأرقام" : "Numbers" },
+        ]}
+      />
+
       <h1 className="text-3xl font-semibold text-white mb-2">
         {isAr ? "الأرقام العربية للأطفال (١-١٠)" : "Arabic Numbers for Kids (1-10)"}
       </h1>
@@ -51,12 +67,13 @@ export default async function ArabicNumbersPage({ params }: { params: Promise<{ 
       <div className="space-y-4 mb-10">
         {numbers.map((n) => (
           <div key={n.en} className="rounded-xl border border-white/8 bg-white/5 p-5">
-            <div className="flex items-center gap-4 mb-3">
+            <div className="flex items-center justify-between gap-4 mb-3">
               <div className="flex items-center gap-3">
                 <span className="text-4xl font-bold text-accent">{n.ar}</span>
                 <span className="text-2xl text-white/30">/</span>
                 <span className="text-3xl font-bold text-white/80">{n.en}</span>
               </div>
+              <SpeakButton text={n.arWord} label={`Listen: ${n.arWord}`} />
             </div>
             <div className="mb-2">
               <span className="text-base font-semibold text-white">{isAr ? n.arWord : n.enWord}</span>

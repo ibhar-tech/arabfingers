@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
+import { ArticleMeta } from "@/components/ArticleMeta";
 import { isLocale } from "@/lib/locales";
 
 export const metadata: Metadata = {
@@ -47,6 +48,20 @@ export default async function ArabicLetterFormsPage({ params }: { params: Promis
 
   return (
     <PageLayout locale={locale}>
+      <ArticleMeta
+        locale={locale}
+        title="How Arabic Letters Change Shape"
+        description="A visual guide to how Arabic letters change shape depending on their position in a word — isolated, initial, medial, and final."
+        slug="learn/arabic-letter-forms"
+        datePublished="2026-04-02"
+        dateModified="2026-05-15"
+        section="Education"
+        crumbs={[
+          { label: locale === "ar" ? "تعلم" : "Learn", href: `/${locale}/learn` },
+          { label: locale === "ar" ? "أشكال الحروف" : "Letter Forms" },
+        ]}
+      />
+
       <h1 className="text-3xl font-semibold text-white mb-2">
         {isAr ? "كيف تتغير أشكال الحروف العربية" : "How Arabic Letters Change Shape"}
       </h1>

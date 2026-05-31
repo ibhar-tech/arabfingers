@@ -48,21 +48,34 @@ export default async function HomePage({
 function HomeEn() {
   return (
     <>
-      {/* Hero */}
-      <div className="text-center mb-12">
-        <div className="text-6xl mb-4">🎹✨</div>
-        <h1 className="text-4xl sm:text-5xl font-bold text-white leading-tight">
-          Arab Fingers
-        </h1>
-        <p className="mt-3 text-lg text-white/60">
-          The fun way for kids to learn Arabic letters
+      {/* Hero — content-first */}
+      <div className="text-center mb-12 max-w-3xl mx-auto">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent/90 mb-3">
+          Arab Fingers · Free Bilingual Arabic Learning
         </p>
-        <Link
-          href="/en/play"
-          className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-accent px-8 py-4 text-lg font-bold text-slate-950 shadow-[0_8px_32px_rgba(159,225,203,0.3)] transition hover:shadow-[0_12px_40px_rgba(159,225,203,0.45)] hover:scale-105"
-        >
-          🚀 Start Playing
-        </Link>
+        <h1 className="text-3xl sm:text-5xl font-bold text-white leading-tight">
+          Learn the Arabic Alphabet — Free, Playful &amp; Bilingual
+        </h1>
+        <p className="mt-4 text-base sm:text-lg text-white/70 leading-relaxed">
+          Arab Fingers is a free, ad-free Arabic learning resource for families raising bilingual
+          kids aged 1–6. Explore an interactive letter game, printable worksheets, and in-depth
+          guides to the Arabic alphabet, numbers, and first words — all with natural pronunciation
+          in Arabic and English.
+        </p>
+        <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+          <Link
+            href="/en/play"
+            className="inline-flex items-center gap-2 rounded-2xl bg-accent px-7 py-3.5 text-base font-bold text-slate-950 shadow-[0_8px_32px_rgba(159,225,203,0.3)] transition hover:shadow-[0_12px_40px_rgba(159,225,203,0.45)] hover:scale-105"
+          >
+            🚀 Start Playing
+          </Link>
+          <Link
+            href="/en/learn"
+            className="inline-flex items-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-7 py-3.5 text-base font-semibold text-white transition hover:bg-white/10"
+          >
+            📚 Explore the Learning Guides
+          </Link>
+        </div>
       </div>
 
       <div className="mb-12">
@@ -223,21 +236,33 @@ function HomeEn() {
 function HomeAr() {
   return (
     <>
-      {/* Hero */}
-      <div className="text-center mb-12">
-        <div className="text-6xl mb-4">🎹✨</div>
-        <h1 className="text-4xl sm:text-5xl font-bold text-white leading-tight">
-          عرب فنجرز
-        </h1>
-        <p className="mt-3 text-lg text-white/60">
-          الطريقة الممتعة لتعلم الحروف العربية للأطفال
+      {/* Hero — content-first */}
+      <div className="text-center mb-12 max-w-3xl mx-auto">
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent/90 mb-3">
+          عرب فنجرز · تعلم عربي مجاني ثنائي اللغة
         </p>
-        <Link
-          href="/ar/play"
-          className="mt-6 inline-flex items-center gap-2 rounded-2xl bg-accent px-8 py-4 text-lg font-bold text-slate-950 shadow-[0_8px_32px_rgba(159,225,203,0.3)] transition hover:shadow-[0_12px_40px_rgba(159,225,203,0.45)] hover:scale-105"
-        >
-          🚀 ابدأ اللعب
-        </Link>
+        <h1 className="text-3xl sm:text-5xl font-bold text-white leading-tight">
+          تعلّم الحروف العربية — مجاناً، باللعب، وثنائي اللغة
+        </h1>
+        <p className="mt-4 text-base sm:text-lg text-white/70 leading-relaxed">
+          عرب فنجرز هو مورد تعليمي عربي مجاني وخالٍ من الإعلانات للعائلات التي تربي أطفالاً ثنائيي
+          اللغة من عمر سنة إلى ٦ سنوات. استكشف لعبة حروف تفاعلية، وأوراق عمل قابلة للطباعة، وأدلة
+          متعمقة للأبجدية العربية والأرقام والكلمات الأولى — كلها بنطق طبيعي بالعربية والإنجليزية.
+        </p>
+        <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+          <Link
+            href="/ar/play"
+            className="inline-flex items-center gap-2 rounded-2xl bg-accent px-7 py-3.5 text-base font-bold text-slate-950 shadow-[0_8px_32px_rgba(159,225,203,0.3)] transition hover:shadow-[0_12px_40px_rgba(159,225,203,0.45)] hover:scale-105"
+          >
+            🚀 ابدأ اللعب
+          </Link>
+          <Link
+            href="/ar/learn"
+            className="inline-flex items-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-7 py-3.5 text-base font-semibold text-white transition hover:bg-white/10"
+          >
+            📚 استكشف أدلة التعلم
+          </Link>
+        </div>
       </div>
 
       <div className="mb-12">

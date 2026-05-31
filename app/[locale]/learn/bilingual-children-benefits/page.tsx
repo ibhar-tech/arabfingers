@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
+import { ArticleMeta } from "@/components/ArticleMeta";
 import { isLocale } from "@/lib/locales";
 
 export const metadata: Metadata = {
@@ -16,6 +17,20 @@ export default async function BilingualBenefitsPage({ params }: { params: Promis
 
   return (
     <PageLayout locale={locale}>
+      <ArticleMeta
+        locale={locale}
+        title="Benefits of Raising Bilingual Arabic-English Children"
+        description="The cognitive, cultural, and social benefits of raising bilingual Arabic-English children — and how to support them."
+        slug="learn/bilingual-children-benefits"
+        datePublished="2026-04-30"
+        dateModified="2026-05-24"
+        section="Parenting"
+        crumbs={[
+          { label: locale === "ar" ? "تعلم" : "Learn", href: `/${locale}/learn` },
+          { label: locale === "ar" ? "فوائد ثنائية اللغة" : "Bilingual Benefits" },
+        ]}
+      />
+
       {isAr ? <ContentAr /> : <ContentEn />}
       <div className="text-center py-8">
         <Link href={`/${locale}/play`} className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105">

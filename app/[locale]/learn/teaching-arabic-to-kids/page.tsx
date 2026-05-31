@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
+import { ArticleMeta } from "@/components/ArticleMeta";
 import { isLocale } from "@/lib/locales";
 
 export const metadata: Metadata = {
@@ -14,6 +15,20 @@ export default async function TeachingArabicPage({ params }: { params: Promise<{
 
   return (
     <PageLayout locale={locale}>
+      <ArticleMeta
+        locale={locale}
+        title="Teaching Arabic to Kids: Tips & Strategies"
+        description="Practical, age-appropriate tips and strategies for teaching Arabic letters to toddlers and pre-schoolers."
+        slug="learn/teaching-arabic-to-kids"
+        datePublished="2026-04-16"
+        dateModified="2026-05-20"
+        section="Parenting"
+        crumbs={[
+          { label: locale === "ar" ? "تعلم" : "Learn", href: `/${locale}/learn` },
+          { label: locale === "ar" ? "للوالدين" : "For Parents" },
+        ]}
+      />
+
       {locale === "ar" ? <ContentAr /> : <ContentEn />}
     </PageLayout>
   );

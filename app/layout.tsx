@@ -55,8 +55,8 @@ export const metadata: Metadata = {
   ],
 
   applicationName: "Arab Fingers",
-  authors: [{ name: "Arab Fingers" }],
-  creator: "Arab Fingers",
+  authors: [{ name: "Aissa Trad", url: "https://www.arabfingers.site/en/author" }],
+  creator: "Aissa Trad",
   publisher: "Arab Fingers",
   category: "education",
   openGraph: {

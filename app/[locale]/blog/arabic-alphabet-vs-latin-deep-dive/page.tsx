@@ -40,9 +40,9 @@ export default async function ArabicVsLatinPage({ params }: { params: Promise<{ 
 function AuthorBlock({ isAr }: { isAr?: boolean }) {
   return (
     <div className="flex items-center gap-3 mt-2 mb-8 text-xs text-white/40">
-      <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent text-sm font-bold">I</div>
+      <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent text-sm font-bold">A</div>
       <div>
-        <span className="text-white/60 font-medium">Ibrahim</span>
+        <Link href={`/${isAr ? "ar" : "en"}/author`} className="text-white/70 font-medium hover:text-accent transition">Aissa Trad</Link>
         <span className="mx-2">·</span>
         <time dateTime="2026-05-05">{isAr ? "٥ مايو ٢٠٢٦" : "May 5, 2026"}</time>
         <span className="mx-2">·</span>

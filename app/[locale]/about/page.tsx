@@ -144,6 +144,24 @@ function AboutEn() {
         </section>
 
         <section>
+          <h2 className="mb-2 text-xl font-semibold text-white">Who&apos;s Behind Arab Fingers</h2>
+          <p className="mb-3">
+            Arab Fingers is built and maintained by{" "}
+            <Link href="/en/author" className="text-accent underline">Aissa Trad</Link>, a parent and
+            developer who created it after struggling to find a simple, ad-free way to introduce his own
+            child to the Arabic alphabet. It is an independent, self-funded project — not backed by any
+            company or institution.
+          </p>
+          <p>
+            The learning guides on this site are written from a parent&apos;s perspective and grounded in
+            publicly available child-development research, not claimed academic or teaching credentials.
+            Each guide shows a published and last-updated date, and we revise articles when we learn
+            something new or a reader sends a correction. If you spot an error, please{" "}
+            <a href="mailto:ibhartech39@gmail.com" className="text-accent underline">tell us</a> — we&apos;ll fix it.
+          </p>
+        </section>
+
+        <section>
           <h2 className="mb-2 text-xl font-semibold text-white">Contact</h2>
           <p>
             Questions, feedback, or partnership inquiries? Reach out at{" "}
@@ -244,6 +262,22 @@ function AboutAr() {
             <li><strong className="text-white/85">إعدادات يتحكم فيها الوالدين</strong> — كل الإعدادات خلف لوحة محمية</li>
             <li><strong className="text-white/85">تصميم متوافق مع COPPA</strong> — مبني مع مراعاة لوائح خصوصية الأطفال</li>
           </ul>
+        </section>
+
+        <section>
+          <h2 className="mb-2 text-xl font-semibold text-white">من يقف وراء عرب فنجرز</h2>
+          <p className="mb-3">
+            عرب فنجرز من بناء وصيانة{" "}
+            <Link href="/ar/author" className="text-accent underline">عيسى تراد</Link>، أب ومطوّر
+            أنشأه بعد معاناته في إيجاد طريقة بسيطة وخالية من الإعلانات لتعريف طفله بالأبجدية العربية.
+            إنه مشروع مستقل ممول ذاتياً — غير مدعوم من أي شركة أو مؤسسة.
+          </p>
+          <p>
+            الأدلة التعليمية على هذا الموقع مكتوبة من منظور أحد الوالدين ومستندة إلى مصادر تطور الطفل
+            المتاحة للعموم، وليست ادعاءً بشهادات أكاديمية أو تدريسية. يعرض كل دليل تاريخ النشر وآخر
+            تحديث، ونراجع المقالات عندما نتعلم شيئاً جديداً أو يصلنا تصحيح من القرّاء. إن وجدت خطأً،{" "}
+            <a href="mailto:ibhartech39@gmail.com" className="text-accent underline">أخبرنا</a> وسنصلحه.
+          </p>
         </section>
 
         <section>

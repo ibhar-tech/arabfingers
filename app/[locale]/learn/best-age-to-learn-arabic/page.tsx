@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
+import { ArticleMeta } from "@/components/ArticleMeta";
 import { isLocale } from "@/lib/locales";
 
 export const metadata: Metadata = {
@@ -16,6 +17,20 @@ export default async function BestAgePage({ params }: { params: Promise<{ locale
 
   return (
     <PageLayout locale={locale}>
+      <ArticleMeta
+        locale={locale}
+        title="Best Age to Start Teaching Arabic"
+        description="What research and experience say about the best age to start teaching Arabic to children, and what to expect at each stage."
+        slug="learn/best-age-to-learn-arabic"
+        datePublished="2026-04-23"
+        dateModified="2026-05-22"
+        section="Parenting"
+        crumbs={[
+          { label: locale === "ar" ? "تعلم" : "Learn", href: `/${locale}/learn` },
+          { label: locale === "ar" ? "أفضل عمر" : "Best Age" },
+        ]}
+      />
+
       {isAr ? <ContentAr /> : <ContentEn />}
       <div className="text-center py-8">
         <Link href={`/${locale}/play`} className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105">

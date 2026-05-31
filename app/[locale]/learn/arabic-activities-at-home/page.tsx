@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
+import { ArticleMeta } from "@/components/ArticleMeta";
 import { isLocale } from "@/lib/locales";
 
 export const metadata: Metadata = {
@@ -16,6 +17,20 @@ export default async function ArabicActivitiesPage({ params }: { params: Promise
 
   return (
     <PageLayout locale={locale}>
+      <ArticleMeta
+        locale={locale}
+        title="10 Fun Activities to Practice Arabic Letters at Home"
+        description="Ten creative, screen-free activities to help your child practice Arabic letters and vocabulary at home."
+        slug="learn/arabic-activities-at-home"
+        datePublished="2026-05-07"
+        dateModified="2026-05-26"
+        section="Activities"
+        crumbs={[
+          { label: locale === "ar" ? "تعلم" : "Learn", href: `/${locale}/learn` },
+          { label: locale === "ar" ? "أنشطة منزلية" : "Home Activities" },
+        ]}
+      />
+
       {isAr ? <ContentAr /> : <ContentEn />}
       <div className="text-center py-8">
         <Link href={`/${locale}/play`} className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105">

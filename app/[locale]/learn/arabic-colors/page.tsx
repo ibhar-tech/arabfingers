@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
+import { ArticleMeta } from "@/components/ArticleMeta";
+import { SpeakButton } from "@/components/SpeakButton";
 import { isLocale } from "@/lib/locales";
 
 export const metadata: Metadata = {
@@ -30,6 +32,20 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
 
   return (
     <PageLayout locale={locale}>
+      <ArticleMeta
+        locale={locale}
+        title="Arabic Colors for Kids"
+        description="Learn colors in Arabic with pronunciation and visual examples. A fun vocabulary guide for kids with English translations."
+        slug="learn/arabic-colors"
+        datePublished="2026-03-19"
+        dateModified="2026-04-30"
+        section="Education"
+        crumbs={[
+          { label: locale === "ar" ? "تعلم" : "Learn", href: `/${locale}/learn` },
+          { label: locale === "ar" ? "الألوان" : "Colors" },
+        ]}
+      />
+
       <h1 className="text-3xl font-semibold text-white mb-2">
         {isAr ? "الألوان بالعربية للأطفال" : "Arabic Colors for Kids"}
       </h1>
@@ -58,13 +74,14 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
               style={{ backgroundColor: c.hex }}
             />
             <div className="flex-1 min-w-0">
-              <div className="flex items-baseline gap-2 mb-1">
+              <div className="flex items-center gap-2 mb-1">
                 <span className="text-lg font-semibold text-white" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
                   {c.ar}
                 </span>
                 <span className="text-white/30">—</span>
                 <span className="text-sm text-white/70">{c.en}</span>
                 <span className="text-xs text-accent/60 italic">({c.pron})</span>
+                <SpeakButton text={c.ar} label={`Listen: ${c.ar}`} className="ms-auto" />
               </div>
               <p className="text-xs text-white/50 leading-relaxed">{c.desc}</p>
             </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
+import { ArticleMeta } from "@/components/ArticleMeta";
 import { isLocale } from "@/lib/locales";
 
 export const metadata: Metadata = {
@@ -62,6 +63,20 @@ export default async function FirstArabicWordsPage({ params }: { params: Promise
 
   return (
     <PageLayout locale={locale}>
+      <ArticleMeta
+        locale={locale}
+        title="First Arabic Words for Kids"
+        description="20 essential first Arabic words for toddlers — family, animals, food, and everyday vocabulary with pronunciation."
+        slug="learn/first-arabic-words"
+        datePublished="2026-03-26"
+        dateModified="2026-05-02"
+        section="Education"
+        crumbs={[
+          { label: locale === "ar" ? "تعلم" : "Learn", href: `/${locale}/learn` },
+          { label: locale === "ar" ? "كلمات أولى" : "First Words" },
+        ]}
+      />
+
       <h1 className="text-3xl font-semibold text-white mb-2">
         {isAr ? "أول ٢٠ كلمة عربية لطفلك" : "First 20 Arabic Words for Your Child"}
       </h1>

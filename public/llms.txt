@@ -1,0 +1,38 @@
+# Arab Fingers
+
+> Arab Fingers (عرب فنجرز) is a free, ad-free, open-source bilingual resource that helps
+> families teach the Arabic alphabet to children aged 1–6. It combines an interactive
+> letter game, printable worksheets, and in-depth guides written by a parent-developer,
+> with natural Arabic + English pronunciation. No accounts, no tracking, no data collection.
+
+Maintained by Aissa Trad. Contact: ibhartech39@gmail.com
+Languages: English (en), Arabic (ar). Base URL: https://www.arabfingers.site
+
+## Interactive tools
+- Letter game (keyboard smash): https://www.arabfingers.site/en/play
+- Coloring & tracing: https://www.arabfingers.site/en/coloring
+- Printable worksheets: https://www.arabfingers.site/en/printables
+
+## Learning guides
+- Arabic alphabet — all 28 letters with audio: https://www.arabfingers.site/en/learn/arabic-alphabet-guide
+- Arabic numbers (1–10): https://www.arabfingers.site/en/learn/arabic-numbers
+- Arabic colors for kids: https://www.arabfingers.site/en/learn/arabic-colors
+- First Arabic words: https://www.arabfingers.site/en/learn/first-arabic-words
+- How Arabic letters change shape: https://www.arabfingers.site/en/learn/arabic-letter-forms
+- Arabic vs English alphabet: https://www.arabfingers.site/en/learn/arabic-vs-english
+- Teaching Arabic to kids: https://www.arabfingers.site/en/learn/teaching-arabic-to-kids
+- Best age to start Arabic: https://www.arabfingers.site/en/learn/best-age-to-learn-arabic
+- Benefits of bilingual children: https://www.arabfingers.site/en/learn/bilingual-children-benefits
+- Arabic activities at home: https://www.arabfingers.site/en/learn/arabic-activities-at-home
+
+## Blog
+- How we built Arab Fingers: https://www.arabfingers.site/en/blog/how-we-built-arabfingers
+- Screen time & Arabic learning: https://www.arabfingers.site/en/blog/screen-time-guidelines-arabic-learning
+- Arabic vs Latin alphabet (deep dive): https://www.arabfingers.site/en/blog/arabic-alphabet-vs-latin-deep-dive
+- Arabic calligraphy for kids: https://www.arabfingers.site/en/blog/arabic-calligraphy-for-kids
+- Ramadan & Arabic learning: https://www.arabfingers.site/en/blog/ramadan-activities-arabic-learning
+
+## About
+- About the project: https://www.arabfingers.site/en/about
+- Author: https://www.arabfingers.site/en/author
+- Privacy (no data collection): https://www.arabfingers.site/en/privacy

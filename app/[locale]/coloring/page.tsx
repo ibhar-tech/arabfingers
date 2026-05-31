@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ColoringLoader } from "./ColoringLoader";
+import { isLocale } from "@/lib/locales";
 
 export const metadata: Metadata = {
   title: "Coloring & Tracing — Learn Arabic Letters | تلوين وتتبع الحروف",
@@ -7,34 +9,89 @@ export const metadata: Metadata = {
     "Free interactive coloring and tracing game for Arabic letters. Let your kids paint, trace, and color the Arabic alphabet with this fun educational tool.",
 };
 
-export default function ColoringPage() {
+export default async function ColoringPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const isAr = isLocale(locale) && locale === "ar";
+
   return (
     <>
       <ColoringLoader />
-      {/* SEO content hidden from UI */}
-      <div className="sr-only" aria-hidden="true">
-        <h1>Arabic Letters Coloring and Tracing Game</h1>
-        <p>
-          Welcome to the ArabFingers Coloring and Tracing Game! This free interactive canvas allows children to 
-          practice their fine motor skills while learning the shapes of Arabic letters. 
-        </p>
-        <h2>Interactive Painting</h2>
-        <p>
-          Select a color from the vibrant palette and use your finger or mouse to paint directly on the screen. 
-          Each of the 28 Arabic letters is displayed as a large outline, encouraging children to trace along the 
-          paths and learn how the letters are formed.
-        </p>
-        <h2>Educational Benefits</h2>
-        <ul>
-          <li>Develops fine motor skills essential for writing.</li>
-          <li>Reinforces Arabic letter recognition and shape memorization.</li>
-          <li>Provides a creative, pressure-free environment for kids.</li>
-          <li>Works smoothly on tablets, phones, and desktop computers.</li>
-        </ul>
-        <p>
-          Letters included: Alef, Ba, Ta, Tha, Jeem, Hha, Kha, Dal, Thal, Ra, Zay, Seen, Sheen, Sad, Dad, Tah, Zah, Ain, Ghain, Fa, Qaf, Kaf, Lam, Meem, Noon, Ha, Waw, Ya.
-        </p>
-      </div>
+
+      {/* Visible content section below the interactive canvas (reachable by scrolling). */}
+      <section
+        dir={isAr ? "rtl" : "ltr"}
+        className="bg-[#050816] text-white/85 border-t border-white/10 print:hidden"
+      >
+        <div className="mx-auto max-w-3xl px-5 py-12 sm:px-6">
+          {isAr ? (
+            <>
+              <h1 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+                لعبة تلوين وتتبع الحروف العربية
+              </h1>
+              <p className="text-sm leading-relaxed text-white/70 mb-6">
+                لوحة رسم تفاعلية مجانية تتيح للأطفال ممارسة مهاراتهم الحركية الدقيقة أثناء تعلم
+                أشكال الحروف العربية. اختر لوناً من اللوحة واستخدم إصبعك أو الفأرة للرسم والتتبع
+                مباشرة على الشاشة.
+              </p>
+
+              <h2 className="text-lg font-semibold text-white mb-2">الفوائد التعليمية</h2>
+              <ul className="list-disc ms-5 space-y-1.5 text-sm text-white/70 mb-8">
+                <li>تنمية المهارات الحركية الدقيقة الأساسية للكتابة</li>
+                <li>تعزيز التعرف على الحروف العربية وحفظ أشكالها</li>
+                <li>بيئة إبداعية خالية من الضغط للأطفال</li>
+                <li>يعمل بسلاسة على الأجهزة اللوحية والهواتف والحواسيب</li>
+              </ul>
+
+              <div className="flex flex-wrap gap-3 text-sm">
+                <Link href={`/${locale}`} className="rounded-lg bg-white/10 px-4 py-2 font-medium text-white hover:bg-white/15 transition">
+                  ← الصفحة الرئيسية
+                </Link>
+                <Link href={`/${locale}/learn/arabic-letter-forms`} className="rounded-lg bg-accent/90 px-4 py-2 font-medium text-slate-950 hover:bg-accent transition">
+                  دليل أشكال الحروف العربية
+                </Link>
+                <Link href={`/${locale}/play`} className="rounded-lg bg-white/10 px-4 py-2 font-medium text-white hover:bg-white/15 transition">
+                  ▶ لعبة الحروف
+                </Link>
+              </div>
+            </>
+          ) : (
+            <>
+              <h1 className="text-2xl sm:text-3xl font-bold text-white mb-4">
+                Arabic Letters Coloring &amp; Tracing Game
+              </h1>
+              <p className="text-sm leading-relaxed text-white/70 mb-6">
+                A free interactive canvas that lets children practise their fine motor skills while
+                learning the shapes of Arabic letters. Pick a colour from the palette and use your
+                finger or mouse to paint and trace directly on the screen.
+              </p>
+
+              <h2 className="text-lg font-semibold text-white mb-2">Educational Benefits</h2>
+              <ul className="list-disc ms-5 space-y-1.5 text-sm text-white/70 mb-8">
+                <li>Develops fine motor skills essential for writing</li>
+                <li>Reinforces Arabic letter recognition and shape memorization</li>
+                <li>Provides a creative, pressure-free environment for kids</li>
+                <li>Works smoothly on tablets, phones, and desktop computers</li>
+              </ul>
+
+              <div className="flex flex-wrap gap-3 text-sm">
+                <Link href={`/${locale}`} className="rounded-lg bg-white/10 px-4 py-2 font-medium text-white hover:bg-white/15 transition">
+                  ← Home
+                </Link>
+                <Link href={`/${locale}/learn/arabic-letter-forms`} className="rounded-lg bg-accent/90 px-4 py-2 font-medium text-slate-950 hover:bg-accent transition">
+                  Arabic Letter Forms Guide
+                </Link>
+                <Link href={`/${locale}/play`} className="rounded-lg bg-white/10 px-4 py-2 font-medium text-white hover:bg-white/15 transition">
+                  ▶ Letter Game
+                </Link>
+              </div>
+            </>
+          )}
+        </div>
+      </section>
     </>
   );
 }

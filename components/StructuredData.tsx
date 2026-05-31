@@ -39,7 +39,8 @@ export function StructuredData() {
     },
     founder: {
       "@type": "Person",
-      name: "Ibrahim",
+      name: "Aissa Trad",
+      url: "https://www.arabfingers.site/en/author",
     },
   };
 

@@ -52,6 +52,7 @@ const footerBlogLinks = [
 
 const footerInfoLinks = [
   { href: "/about", labelEn: "About", labelAr: "عن التطبيق" },
+  { href: "/author", labelEn: "Author", labelAr: "المؤلف" },
   { href: "/printables", labelEn: "Worksheets", labelAr: "أوراق عمل" },
   { href: "/resources", labelEn: "Resources", labelAr: "المصادر" },
   { href: "/contact", labelEn: "Contact", labelAr: "تواصل معنا" },
@@ -251,7 +252,10 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
               © 2026 Arab Fingers. {isAr ? "جميع الحقوق محفوظة." : "All rights reserved."}
             </p>
             <p className="text-xs text-white/65">
-              {isAr ? "صُنع بـ ❤️ بواسطة Ibrahim" : "Made with ❤️ by Ibrahim"}
+              {isAr ? "صُنع بـ ❤️ بواسطة " : "Made with ❤️ by "}
+              <Link href={`/${locale}/author`} className="text-white/80 hover:text-accent transition-colors underline">
+                Aissa Trad
+              </Link>
             </p>
           </div>
         </div>
