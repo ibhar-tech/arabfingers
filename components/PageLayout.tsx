@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useEffect, type ReactNode } from "react";
-import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import dynamic from "next/dynamic";
 import { usePathname, useRouter } from "next/navigation";
 import { useAppStore } from "@/store/useAppStore";
@@ -100,6 +100,16 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
         clearTimeout(handle);
       }
     };
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.innerWidth >= 768) {
+      setFooterOpen({
+        learn: true,
+        blog: true,
+        info: true,
+      });
+    }
   }, []);
 
   const toggleFooterSection = (section: string) => {
@@ -237,98 +247,116 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
 
       {/* Footer */}
       <footer className="mt-auto border-t border-white/8 bg-[#050816] print:hidden relative z-10">
-        <div className="mx-auto max-w-6xl px-5 py-8 sm:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+        <div className="mx-auto max-w-6xl px-5 py-10 sm:px-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
             
             {/* Learn Column */}
-            <div className="border-b border-white/5 md:border-none pb-4 md:pb-0">
+            <div className="bg-[#080d21]/60 border border-white/[0.04] backdrop-blur-md rounded-2xl p-5 hover:border-white/[0.08] transition-all duration-300 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
               <button
                 type="button"
                 onClick={() => toggleFooterSection("learn")}
-                className="w-full flex items-center justify-between text-left md:pointer-events-none md:block focus:outline-none cursor-pointer py-2.5"
+                className="w-full flex items-center justify-between text-start focus:outline-none cursor-pointer py-1 group"
               >
-                <h3 className="text-xs font-semibold text-white/70 uppercase tracking-wider mb-0 md:mb-3">
-                  {isAr ? "تعلم العربية" : "Learn Arabic"}
+                <h3 className="text-xs font-bold text-white/90 group-hover:text-accent transition-colors uppercase tracking-wider">
+                  {isAr ? "🧪 تعلم العربية والعلوم" : "🧪 Learn Arabic & Science"}
                 </h3>
-                <span className="md:hidden text-white/40">
-                  {footerOpen.learn ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                <span className="text-white/40 group-hover:text-accent transition-colors">
+                  <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${footerOpen.learn ? "rotate-180 text-accent" : ""}`} />
                 </span>
               </button>
-              <div className={`${footerOpen.learn ? "flex" : "hidden"} md:flex flex-col gap-3.5 mt-3 md:mt-0`}>
-                {footerLearnLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={`/${locale}${link.href}`}
-                    className="text-xs text-white/75 hover:text-accent transition-colors py-2 px-1 block"
-                  >
-                    {isAr ? link.labelAr : link.labelEn}
-                  </Link>
-                ))}
+              
+              <div className={`grid transition-all duration-300 ease-in-out ${footerOpen.learn ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0 pointer-events-none"}`}>
+                <div className="overflow-hidden">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 pt-1">
+                    {footerLearnLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={`/${locale}${link.href}`}
+                        className="group flex items-center gap-2 text-xs text-white/50 hover:text-accent transition-all duration-200 py-1 hover:ps-1"
+                      >
+                        <span className="h-1.5 w-1.5 rounded-full bg-white/15 group-hover:bg-accent group-hover:scale-125 transition-all duration-200 shrink-0" />
+                        <span className="truncate">{isAr ? link.labelAr : link.labelEn}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Blog Column */}
-            <div className="border-b border-white/5 md:border-none pb-4 md:pb-0">
+            <div className="bg-[#080d21]/60 border border-white/[0.04] backdrop-blur-md rounded-2xl p-5 hover:border-white/[0.08] transition-all duration-300 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
               <button
                 type="button"
                 onClick={() => toggleFooterSection("blog")}
-                className="w-full flex items-center justify-between text-left md:pointer-events-none md:block focus:outline-none cursor-pointer py-2.5"
+                className="w-full flex items-center justify-between text-start focus:outline-none cursor-pointer py-1 group"
               >
-                <h3 className="text-xs font-semibold text-white/70 uppercase tracking-wider mb-0 md:mb-3">
-                  {isAr ? "المدونة" : "Blog"}
+                <h3 className="text-xs font-bold text-white/90 group-hover:text-accent transition-colors uppercase tracking-wider">
+                  {isAr ? "✍️ المدونة والقصص" : "✍️ Blog & Stories"}
                 </h3>
-                <span className="md:hidden text-white/40">
-                  {footerOpen.blog ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                <span className="text-white/40 group-hover:text-accent transition-colors">
+                  <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${footerOpen.blog ? "rotate-180 text-accent" : ""}`} />
                 </span>
               </button>
-              <div className={`${footerOpen.blog ? "flex" : "hidden"} md:flex flex-col gap-3.5 mt-3 md:mt-0`}>
-                {footerBlogLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={`/${locale}${link.href}`}
-                    className="text-xs text-white/75 hover:text-accent transition-colors py-2 px-1 block"
-                  >
-                    {isAr ? link.labelAr : link.labelEn}
-                  </Link>
-                ))}
+              
+              <div className={`grid transition-all duration-300 ease-in-out ${footerOpen.blog ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0 pointer-events-none"}`}>
+                <div className="overflow-hidden">
+                  <div className="flex flex-col gap-2 pt-1">
+                    {footerBlogLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={`/${locale}${link.href}`}
+                        className="group flex items-center gap-2 text-xs text-white/50 hover:text-accent transition-all duration-200 py-1 hover:ps-1"
+                      >
+                        <span className="h-1.5 w-1.5 rounded-full bg-white/15 group-hover:bg-accent group-hover:scale-125 transition-all duration-200 shrink-0" />
+                        <span className="truncate">{isAr ? link.labelAr : link.labelEn}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
 
             {/* Info Column */}
-            <div className="pb-2 md:pb-0">
+            <div className="bg-[#080d21]/60 border border-white/[0.04] backdrop-blur-md rounded-2xl p-5 hover:border-white/[0.08] transition-all duration-300 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
               <button
                 type="button"
                 onClick={() => toggleFooterSection("info")}
-                className="w-full flex items-center justify-between text-left md:pointer-events-none md:block focus:outline-none cursor-pointer py-2.5"
+                className="w-full flex items-center justify-between text-start focus:outline-none cursor-pointer py-1 group"
               >
-                <h3 className="text-xs font-semibold text-white/70 uppercase tracking-wider mb-0 md:mb-3">
-                  {isAr ? "معلومات" : "Info"}
+                <h3 className="text-xs font-bold text-white/90 group-hover:text-accent transition-colors uppercase tracking-wider">
+                  {isAr ? "ℹ️ معلومات هامة" : "ℹ️ Important Info"}
                 </h3>
-                <span className="md:hidden text-white/40">
-                  {footerOpen.info ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                <span className="text-white/40 group-hover:text-accent transition-colors">
+                  <ChevronDown className={`h-4 w-4 transition-transform duration-300 ${footerOpen.info ? "rotate-180 text-accent" : ""}`} />
                 </span>
               </button>
-              <div className={`${footerOpen.info ? "flex" : "hidden"} md:flex flex-col gap-3.5 mt-3 md:mt-0`}>
-                {footerInfoLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={`/${locale}${link.href}`}
-                    className="text-xs text-white/75 hover:text-accent transition-colors py-2 px-1 block"
-                  >
-                    {isAr ? link.labelAr : link.labelEn}
-                  </Link>
-                ))}
+              
+              <div className={`grid transition-all duration-300 ease-in-out ${footerOpen.info ? "grid-rows-[1fr] opacity-100 mt-4" : "grid-rows-[0fr] opacity-0 pointer-events-none"}`}>
+                <div className="overflow-hidden">
+                  <div className="flex flex-col gap-2 pt-1">
+                    {footerInfoLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={`/${locale}${link.href}`}
+                        className="group flex items-center gap-2 text-xs text-white/50 hover:text-accent transition-all duration-200 py-1 hover:ps-1"
+                      >
+                        <span className="h-1.5 w-1.5 rounded-full bg-white/15 group-hover:bg-accent group-hover:scale-125 transition-all duration-200 shrink-0" />
+                        <span className="truncate">{isAr ? link.labelAr : link.labelEn}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
 
           </div>
-          <div className="border-t border-white/5 pt-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-            <p className="text-xs text-white/70">
+          <div className="border-t border-white/5 pt-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p className="text-xs text-white/40">
               © 2026 Arab Fingers. {isAr ? "جميع الحقوق محفوظة." : "All rights reserved."}
             </p>
-            <p className="text-xs text-white/65">
+            <p className="text-xs text-white/45">
               {isAr ? "صُنع بـ ❤️ بواسطة " : "Made with ❤️ by "}
-              <Link href={`/${locale}/author`} className="text-white/80 hover:text-accent transition-colors underline">
+              <Link href={`/${locale}/author`} className="text-white/60 hover:text-accent transition-colors underline">
                 Aissa Trad
               </Link>
             </p>
