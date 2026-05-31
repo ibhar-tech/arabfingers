@@ -167,43 +167,52 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
             </div>
           </Link>
 
-          {/* Teaser Cards Column */}
+          {/* Active Cards Column */}
           <div className="flex flex-col gap-4">
-            <div className="rounded-2xl border border-white/8 bg-white/5 p-4 flex gap-3 items-center opacity-65 hover:opacity-85 transition-opacity">
-              <div className="shrink-0 text-2xl">💧</div>
+            <Link
+              href={`/${locale}/learn/water-cycle`}
+              className="group rounded-2xl border border-accent/20 bg-[#0f1b2d]/60 p-4 flex gap-3 items-center hover:scale-[1.02] hover:border-accent hover:bg-[#0f1b2d] transition duration-200 cursor-pointer shadow-md"
+            >
+              <div className="shrink-0 text-2xl bg-accent/10 p-2 rounded-xl border border-accent/20 group-hover:scale-110 transition-transform">💧</div>
               <div>
-                <h4 className="text-xs font-semibold text-white/90">
-                  {isAr ? "دورة المياه في الطبيعة" : "The Water Cycle"}
+                <h4 className="text-xs font-bold text-white group-hover:text-accent transition-colors">
+                  {isAr ? "دورة المياه في الطبيعة 🌧️" : "The Water Cycle 🌧️"}
                 </h4>
-                <p className="text-[11px] text-white/50 mt-0.5">
-                  {isAr ? "قريباً - رحلة قطرة الماء السحرية!" : "Coming Soon - The magical journey of a water drop!"}
+                <p className="text-[10px] text-accent mt-0.5 font-semibold">
+                  {isAr ? "نشط الآن - العب بالطقس! 🚀" : "Active Now - Play with weather! 🚀"}
                 </p>
               </div>
-            </div>
+            </Link>
 
-            <div className="rounded-2xl border border-white/8 bg-white/5 p-4 flex gap-3 items-center opacity-65 hover:opacity-85 transition-opacity">
-              <div className="shrink-0 text-2xl">🚀</div>
+            <Link
+              href={`/${locale}/learn/solar-system`}
+              className="group rounded-2xl border border-accent/20 bg-[#0f1b2d]/60 p-4 flex gap-3 items-center hover:scale-[1.02] hover:border-accent hover:bg-[#0f1b2d] transition duration-200 cursor-pointer shadow-md"
+            >
+              <div className="shrink-0 text-2xl bg-accent/10 p-2 rounded-xl border border-accent/20 group-hover:scale-110 transition-transform">🚀</div>
               <div>
-                <h4 className="text-xs font-semibold text-white/90">
-                  {isAr ? "نظامنا الشمسي الرائع" : "Our Spectacular Solar System"}
+                <h4 className="text-xs font-bold text-white group-hover:text-accent transition-colors">
+                  {isAr ? "نظامنا الشمسي الرائع 🪐" : "Our Spectacular Solar System 🪐"}
                 </h4>
-                <p className="text-[11px] text-white/50 mt-0.5">
-                  {isAr ? "قريباً - طيران تفاعلي بين الكواكب!" : "Coming Soon - Interactive flight among planets!"}
+                <p className="text-[10px] text-accent mt-0.5 font-semibold">
+                  {isAr ? "نشط الآن - حلق حول الكواكب! ✨" : "Active Now - Orbit the planets! ✨"}
                 </p>
               </div>
-            </div>
+            </Link>
 
-            <div className="rounded-2xl border border-white/8 bg-white/5 p-4 flex gap-3 items-center opacity-65 hover:opacity-85 transition-opacity">
-              <div className="shrink-0 text-2xl">🍎</div>
+            <Link
+              href={`/${locale}/learn/gravity`}
+              className="group rounded-2xl border border-accent/20 bg-[#0f1b2d]/60 p-4 flex gap-3 items-center hover:scale-[1.02] hover:border-accent hover:bg-[#0f1b2d] transition duration-200 cursor-pointer shadow-md"
+            >
+              <div className="shrink-0 text-2xl bg-accent/10 p-2 rounded-xl border border-accent/20 group-hover:scale-110 transition-transform">🍎</div>
               <div>
-                <h4 className="text-xs font-semibold text-white/90">
-                  {isAr ? "كيف تعمل الجاذبية؟" : "How Gravity Works"}
+                <h4 className="text-xs font-bold text-white group-hover:text-accent transition-colors">
+                  {isAr ? "كيف تعمل الجاذبية؟ 🧲" : "How Gravity Works 🧲"}
                 </h4>
-                <p className="text-[11px] text-white/50 mt-0.5">
-                  {isAr ? "قريباً - لماذا تسقط الأشياء للأسفل؟" : "Coming Soon - Why do things fall to the ground?"}
+                <p className="text-[10px] text-accent mt-0.5 font-semibold">
+                  {isAr ? "نشط الآن - اضبط جاذبية الكون! 🌟" : "Active Now - Adjust cosmic pull! 🌟"}
                 </p>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </section>

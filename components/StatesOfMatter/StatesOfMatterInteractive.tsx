@@ -349,7 +349,7 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
 
     const dialogue = isAr ? activeScene.dialogueAr : activeScene.dialogueEn;
     const targetLang = isAr ? "ar" : "en";
-
+ 
     // Stage 3: Standard Local TTS (last resort fallback)
     const speakTTS = () => {
       if (typeof window === "undefined" || !window.speechSynthesis) return;
@@ -370,39 +370,47 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
       } else {
         utterance.pitch = 1.0;
       }
-
+ 
       isSpeakingRef.current = true;
       utterance.onend = () => {
         isSpeakingRef.current = false;
       };
-
-      window.speechSynthesis.speak(utterance);
+ 
+      if (isPlaying) {
+        window.speechSynthesis.speak(utterance);
+      } else {
+        // Queue it but immediately pause it so it starts paused
+        window.speechSynthesis.speak(utterance);
+        window.speechSynthesis.pause();
+      }
     };
-
+ 
     // Stage 2: Google Translate Cloud TTS (high-quality neural voiceover)
     const speakGoogleTTS = () => {
       const googleTtsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${targetLang}&client=tw-ob&q=${encodeURIComponent(dialogue)}`;
       const audio = new Audio(googleTtsUrl);
       audio.playbackRate = playbackSpeed;
       audioRef.current = audio;
-
+ 
       let fallbackTriggered = false;
       const triggerTTSFallback = () => {
         if (fallbackTriggered) return;
         fallbackTriggered = true;
         speakTTS();
       };
-
+ 
       audio.addEventListener("canplaythrough", () => {
-        audio.play().catch(() => {
-          triggerTTSFallback();
-        });
+        if (isPlaying) {
+          audio.play().catch(() => {
+            triggerTTSFallback();
+          });
+        }
       });
-
+ 
       audio.addEventListener("error", () => {
         triggerTTSFallback();
       });
-
+ 
       // Safe cloud connection timeout
       setTimeout(() => {
         if (audio.readyState < 3 && !fallbackTriggered) {
@@ -410,30 +418,32 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
         }
       }, 1200);
     };
-
+ 
     // Stage 1: Local studio pre-recorded MP3
     const audioSrc = `/audio/states-of-matter/scene_${activeScene.id}_${locale}.mp3`;
     const audio = new Audio(audioSrc);
     audio.playbackRate = playbackSpeed;
     audioRef.current = audio;
-
+ 
     let nextStageTriggered = false;
     const triggerGoogleTTS = () => {
       if (nextStageTriggered) return;
       nextStageTriggered = true;
       speakGoogleTTS();
     };
-
+ 
     audio.addEventListener("canplaythrough", () => {
-      audio.play().catch(() => {
-        triggerGoogleTTS();
-      });
+      if (isPlaying) {
+        audio.play().catch(() => {
+          triggerGoogleTTS();
+        });
+      }
     });
-
+ 
     audio.addEventListener("error", () => {
       triggerGoogleTTS();
     });
-
+ 
     // Safe fast local check timeout (if not cached/loaded in 200ms, go to cloud TTS)
     setTimeout(() => {
       if (audio.readyState < 3 && !nextStageTriggered) {
@@ -441,11 +451,11 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
       }
     }, 200);
   };
-
+ 
   const handleSpeechRepeat = () => {
     playDialogue();
   };
-
+ 
   // Handle scene change (speak dialogue, reset progress)
   useEffect(() => {
     setSceneProgress(0);
@@ -461,30 +471,30 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
       // Interactive lab: set based on current temperature slider
       updateInteractiveStateByTemp(temperature);
     }
-
+ 
     playDialogue();
-
+ 
     // Trigger confetti blast in the final celebrating scene!
     if (activeScene.id === 9 && !reduceMotion) {
       const duration = 4.5 * 1000;
       const animationEnd = Date.now() + duration;
       const defaults = { startVelocity: 28, spread: 360, ticks: 60, zIndex: 50 };
-
+ 
       const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
-
+ 
       const confettiInterval = setInterval(() => {
         const timeLeft = animationEnd - Date.now();
-
+ 
         if (timeLeft <= 0) {
           return clearInterval(confettiInterval);
         }
-
+ 
         const particleCount = 40 * (timeLeft / duration);
         confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
         confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
       }, 250);
     }
-
+ 
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
@@ -497,6 +507,27 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSceneIndex, soundEnabled, locale]);
 
+  // Synchronize playing state with audio element & speech synthesis
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    if (isPlaying) {
+      if (audioRef.current && audioRef.current.paused) {
+        audioRef.current.play().catch(() => {});
+      }
+      if (window.speechSynthesis && window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+      }
+    } else {
+      if (audioRef.current && !audioRef.current.paused) {
+        audioRef.current.pause();
+      }
+      if (window.speechSynthesis && window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
+        window.speechSynthesis.pause();
+      }
+    }
+  }, [isPlaying]);
+ 
   // Translate labels
   const UI_TXT = {
     play: isAr ? "تشغيل" : "Play",
@@ -773,9 +804,11 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
         </div>
 
         {/* --- CARTOON CHARACTER PLACEMENT (BOTTOM EDGE OF SCREEN) --- */}
-        <div className="relative z-10 w-full px-6 flex justify-between items-end h-[90px] select-none pointer-events-none bg-gradient-to-t from-black/60 to-transparent">
+        <div className="relative z-10 w-full px-6 flex justify-between items-end h-[120px] sm:h-[135px] select-none pointer-events-none bg-gradient-to-t from-black/75 to-transparent">
           {/* Dr Hakim standing */}
-          <div className="w-24 sm:w-28 h-full flex justify-start">
+          <div className={`w-28 sm:w-32 h-full flex justify-start transition-all duration-300 ${
+            hakimTalking ? "scale-110 filter drop-shadow-[0_0_15px_rgba(34,211,238,0.55)]" : "opacity-80"
+          }`}>
             <DrHakim
               mood={hakimTalking ? "talking" : activeScene.hakimMood}
               className="w-full h-full origin-bottom translate-y-3"
@@ -783,10 +816,12 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
           </div>
 
           {/* Simulated Lab Table Surface middle */}
-          <div className="flex-grow border-t border-slate-700 bg-slate-900/40 shadow-inner h-2 mx-6 rounded-t-lg" />
+          <div className="flex-grow border-t border-slate-700 bg-slate-900/40 shadow-inner h-2 mx-6 rounded-t-lg mb-1" />
 
           {/* Anas child standing */}
-          <div className="w-24 sm:w-28 h-full flex justify-end">
+          <div className={`w-28 sm:w-32 h-full flex justify-end transition-all duration-300 ${
+            anasTalking ? "scale-110 filter drop-shadow-[0_0_15px_rgba(253,224,71,0.55)]" : "opacity-80"
+          }`}>
             <AnasChild
               mood={anasTalking ? "talking" : activeScene.anasMood}
               className="w-full h-full origin-bottom translate-y-3"
@@ -862,7 +897,7 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
         {/* Action Buttons list */}
         <div className="w-full flex items-center justify-between px-1">
           {/* Nav buttons */}
-          <div className="flex items-center gap-1.5">
+          <div className={`flex items-center gap-1.5 ${isAr ? "flex-row-reverse" : ""}`}>
             <button
               type="button"
               onClick={handleBackScene}
@@ -870,7 +905,7 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
               className="p-2.5 rounded-xl text-white/60 hover:bg-white/5 hover:text-white disabled:opacity-25 disabled:pointer-events-none transition cursor-pointer"
               title={UI_TXT.back}
             >
-              <SkipBack className="h-5 w-5" />
+              {isAr ? <SkipForward className="h-5 w-5" /> : <SkipBack className="h-5 w-5" />}
             </button>
             <button
               type="button"
@@ -879,7 +914,7 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
               className="p-2.5 rounded-xl text-white/60 hover:bg-white/5 hover:text-white disabled:opacity-25 disabled:pointer-events-none transition cursor-pointer"
               title={UI_TXT.next}
             >
-              <SkipForward className="h-5 w-5" />
+              {isAr ? <SkipBack className="h-5 w-5" /> : <SkipForward className="h-5 w-5" />}
             </button>
           </div>
 
