@@ -60,7 +60,7 @@ export function WaterCycleDiagram({ locale }: { locale: string }) {
         <circle cx="168" cy="108" r="34" fill="#f1f5f9" />
         <rect x="125" y="100" width="92" height="22" rx="11" fill="#f1f5f9" />
       </g>
-      <text x="168" y="60" textAnchor="middle" fontSize="13" fontWeight="700" fill="#ffffff">{L.condensation}</text>
+      <text x="168" y="60" textAnchor="middle" fontSize="13" fontWeight="700" fill="#ffffff" stroke="#0b1d3a" strokeWidth="3.5" paintOrder="stroke" strokeLinejoin="round">{L.condensation}</text>
 
       {/* Rain — drops falling from the cloud, animated */}
       <g fill="#bae6fd">
@@ -77,7 +77,7 @@ export function WaterCycleDiagram({ locale }: { locale: string }) {
           <animateTransform attributeName="transform" type="translate" values="0 0; 0 26; 0 0" dur="1.6s" begin="0.8s" repeatCount="indefinite" />
         </path>
       </g>
-      <text x="168" y="190" textAnchor="middle" fontSize="13" fontWeight="700" fill="#bae6fd">{L.precipitation}</text>
+      <text x="168" y="190" textAnchor="middle" fontSize="13" fontWeight="700" fill="#bae6fd" stroke="#0b1d3a" strokeWidth="3.5" paintOrder="stroke" strokeLinejoin="round">{L.precipitation}</text>
 
       {/* Evaporation — 3 wavy dashed arrows rising from sea toward the cloud */}
       <g stroke="#a5f3fc" strokeWidth="4" strokeLinecap="round" strokeDasharray="2 9" fill="none">
