@@ -6,6 +6,7 @@ import { LessonStructuredData } from "@/components/LessonStructuredData";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
 import StatesOfMatterInteractive from "@/components/StatesOfMatter/StatesOfMatterInteractive";
+import { StatesOfMatterDiagram } from "@/components/illustrations/StatesOfMatterDiagram";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -60,6 +61,52 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
   const transcript = isAr ? transcriptAr : transcriptEn;
   const plainTranscript = transcript.map((t) => `${t.speaker}: ${t.text}`).join(" ");
 
+  const faq = isAr
+    ? [
+        {
+          q: "هل الرمل سائل لأنه ينسكب؟",
+          a: "لا، الرمل ليس سائلاً! كل حبة رمل صغيرة هي جسم صلب قاسٍ بحد ذاته. عندما تصبّ الرمل، تنزلق الحبيبات الصغيرة فوق بعضها فيبدو وكأنه يسيل، لكن كل حبة تحافظ على شكلها الصلب الثابت ولا تتغير أبداً.",
+        },
+        {
+          q: "لماذا يطفو الجليد فوق الماء؟",
+          a: "الماء مادة عجيبة! عندما يتجمد ويصبح جليداً، يصبح أخف من الماء السائل، ولهذا يطفو فوقه. هذه ميزة رائعة، فطبقة الجليد تبقى في الأعلى وتترك الماء دافئاً تحتها، فتعيش الأسماك بأمان أسفل البحيرات المتجمدة في الشتاء.",
+        },
+        {
+          q: "ما هي البلازما؟",
+          a: "البلازما هي الحالة الرابعة للمادة، وهي غاز شديد السخونة ومشحون بالكهرباء. نراها في البرق الذي يلمع في السماء، وفي الشمس الضخمة التي تضيء نهارنا. إنها الحالة الأكثر انتشاراً في الكون كله رغم أننا نادراً ما نراها في بيوتنا.",
+        },
+        {
+          q: "لماذا تذوب الشوكولاتة في يدك ولا يذوب البسكويت؟",
+          a: "لأن نقطة انصهار الشوكولاتة منخفضة جداً، أقل بقليل من حرارة جسمك، فتذوب بمجرد أن تلمسها بيدك الدافئة. أما البسكويت فمصنوع من مواد تحتاج إلى حرارة عالية جداً كي تتغير، لذلك يبقى صلباً ومقرمشاً في يدك.",
+        },
+        {
+          q: "هل يمكن أن يصبح الهواء سائلاً؟",
+          a: "نعم، يمكن ذلك! إذا برّدنا الهواء حتى تصل حرارته إلى نحو مئتي درجة تحت الصفر، فإنه يتحول إلى سائل وينساب كالماء الأزرق الباهت. يستعمل العلماء هذا الهواء السائل البارد جداً في تجارب مذهلة داخل المختبرات.",
+        },
+      ]
+    : [
+        {
+          q: "Is sand a liquid because it pours?",
+          a: "No — sand is not a liquid! Each tiny grain of sand is its own hard, solid object. When you pour sand, the little grains simply slide past one another so it looks like it flows. But every single grain keeps its firm, solid shape and never changes at all.",
+        },
+        {
+          q: "Why does ice float on water?",
+          a: "Water is very special! When it freezes into ice, the solid ice becomes LIGHTER than the liquid water, so it floats on top. This is wonderful, because the floating ice keeps the water below it warmer — that is how fish survive safely under frozen lakes in winter.",
+        },
+        {
+          q: "What is plasma?",
+          a: "Plasma is the fourth state of matter — a super-hot gas that carries an electric charge. We see it in the bright lightning that flashes across the sky and in the giant Sun that lights our day. It is the most common state in the whole universe, even though we rarely see it at home.",
+        },
+        {
+          q: "Why does chocolate melt in your hand but a biscuit doesn't?",
+          a: "Chocolate has a very low melting point — just below your body temperature — so it melts the moment your warm hand touches it. That is on purpose! A biscuit is made of ingredients that need much higher heat to change, so it stays solid and crunchy in your hand.",
+        },
+        {
+          q: "Can air become a liquid?",
+          a: "Yes, it can! If we cool air down until it reaches about minus two hundred degrees Celsius, it turns into a liquid and pours just like pale blue water. Scientists use this very cold liquid air for amazing experiments inside their laboratories.",
+        },
+      ];
+
   return (
     <PageLayout locale={locale}>
       <ArticleMeta
@@ -72,7 +119,7 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
         }
         slug="learn/states-of-matter"
         datePublished="2026-05-31"
-        dateModified="2026-05-31"
+        dateModified="2026-06-11"
         section="Science Education"
         crumbs={[
           { label: isAr ? "تعلم" : "Learn", href: `/${locale}/learn` },
@@ -92,12 +139,20 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
         transcriptText={plainTranscript}
       />
 
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+        "@context": "https://schema.org", "@type": "FAQPage",
+        mainEntity: faq.map((f) => ({
+          "@type": "Question", name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      }) }} />
+
       {/* Title & Description Headers */}
       <div className="mb-6 mt-4">
         <h1 className="text-3xl font-extrabold text-white mb-2" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "حالات المادة للأطفال 🧪✨" : "States of Matter for Kids 🧪✨"}
         </h1>
-        <p className="text-sm text-white/50">
+        <p className="text-base text-white/75">
           {isAr
             ? "انضم إلى أنس والدكتور حكيم في المختبر السحري لاستكشاف الجزيئات وحالات المادة وتحولاتها المذهلة!"
             : "Join Anas and Dr. Hakim in the magical lab to explore molecules, the states of matter, and their amazing transformations!"}
@@ -114,12 +169,12 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
         <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "💡 ملخص حالات المادة الأربع" : "💡 Summary of the Four States of Matter"}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm text-white/70 leading-relaxed">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm sm:text-base text-white/80 leading-relaxed">
           <div className="p-4 rounded-xl border border-white/5 bg-white/5">
             <h3 className="font-bold text-cyan-400 mb-1">
-              {isAr ? "1. المادة الصلبة (Solid)" : "1. Solid Matter"}
+              {isAr ? "١. المادة الصلبة" : "1. Solid Matter"}
             </h3>
-            <p className="text-white/60">
+            <p className="text-white/80">
               {isAr
                 ? "تكون جزيئاتها متقاربة جداً وتترابط بقوة كبيرة، لذا تهتز في مكانها فقط وتحافظ على شكل وحجم ثابتين."
                 : "Molecules are very close and tightly bound together, vibrating in place, which maintains a fixed shape and volume."}
@@ -128,9 +183,9 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
 
           <div className="p-4 rounded-xl border border-white/5 bg-white/5">
             <h3 className="font-bold text-emerald-400 mb-1">
-              {isAr ? "2. المادة السائلة (Liquid)" : "2. Liquid Matter"}
+              {isAr ? "٢. المادة السائلة" : "2. Liquid Matter"}
             </h3>
-            <p className="text-white/60">
+            <p className="text-white/80">
               {isAr
                 ? "تكون جزيئاتها قريبة ولكن يمكنها الحركة والانزلاق فوق بعضها، لذا تأخذ شكل الوعاء الذي توضع فيه ولها حجم ثابت."
                 : "Molecules are close but free to flow and slide over each other. It takes the shape of its container with a fixed volume."}
@@ -139,9 +194,9 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
 
           <div className="p-4 rounded-xl border border-white/5 bg-white/5">
             <h3 className="font-bold text-red-400 mb-1">
-              {isAr ? "3. المادة الغازية (Gas)" : "3. Gaseous Matter"}
+              {isAr ? "٣. المادة الغازية" : "3. Gaseous Matter"}
             </h3>
-            <p className="text-white/60">
+            <p className="text-white/80">
               {isAr
                 ? "تكون جزيئاتها متباعدة جداً وتتحرك بسرعة فائقة في كل الاتجاهات، وليس لها شكل أو حجم ثابت."
                 : "Molecules are spaced far apart and fly rapidly in all directions. It has no fixed shape or volume."}
@@ -150,12 +205,169 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
 
           <div className="p-4 rounded-xl border border-white/5 bg-white/5">
             <h3 className="font-bold text-purple-400 mb-1">
-              {isAr ? "4. حالة البلازما (Plasma)" : "4. Plasma State"}
+              {isAr ? "٤. حالة البلازما" : "4. Plasma State"}
             </h3>
-            <p className="text-white/60">
+            <p className="text-white/80">
               {isAr
                 ? "حالة غازية خارقة مشحونة بالكامل بالطاقة والكهرباء، وتتحرك بسرعة البرق وهي الحالة الأكثر انتشاراً في الكون!"
                 : "A super gaseous state fully charged with electrical energy, zooming at lightning speed. It is the most common state in the universe!"}
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Diagram figure: three states of matter */}
+      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
+        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+          {isAr ? "🧊 رسم توضيحي: حالات المادة الثلاث" : "🧊 Diagram: The Three States of Matter"}
+        </h2>
+        <figure className="m-0">
+          <StatesOfMatterDiagram locale={locale} />
+          <figcaption className="text-sm text-white/75 mt-3 text-center">
+            {isAr
+              ? "الجليد والماء والبخار: نفس الجزيئات بثلاث شخصيات"
+              : "Ice, water, and steam: the same particles with three personalities"}
+          </figcaption>
+        </figure>
+      </section>
+
+      {/* States of matter in your kitchen */}
+      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
+        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+          {isAr ? "🍳 حالات المادة في مطبخك" : "🍳 States of Matter in Your Kitchen"}
+        </h2>
+        <div className="space-y-4 text-sm sm:text-base text-white/80 leading-relaxed">
+          <p className="text-base text-white/80">
+            {isAr
+              ? "لست بحاجة إلى مختبر علمي لترى المادة تغيّر حالتها، فمطبخك مليء بهذه العجائب كل يوم. كلما تغيرت الحرارة، تبدّلت حالة المادة أمام عينيك مباشرة. إليك خمسة مشاهد بسيطة يمكنك أن تلاحظها بنفسك:"
+              : "You do not need a science lab to watch matter change its state — your kitchen is full of these wonders every single day. Whenever the temperature changes, matter switches its state right before your eyes. Here are five simple scenes you can spot for yourself:"}
+          </p>
+          <p>
+            <strong className="text-white">{isAr ? "مكعبات الثلج تذوب في العصير: " : "Ice cubes melt in your juice: "}</strong>
+            {isAr
+              ? "ضع مكعبات الثلج الصلبة في كوب العصير، وراقبها وهي تتقلّص شيئاً فشيئاً حتى تتحول إلى ماء سائل. هذا انصهار: الصلب يصبح سائلاً بفعل الدفء."
+              : "Drop solid ice cubes into a glass of juice and watch them shrink little by little until they turn into liquid water. That is melting — a solid becoming a liquid because of warmth."}
+          </p>
+          <p>
+            <strong className="text-white">{isAr ? "الشوكولاتة تذوب في يدك الدافئة: " : "Chocolate melts in your warm hand: "}</strong>
+            {isAr
+              ? "أمسك قطعة شوكولاتة صلبة في كفك لحظات قليلة، فتبدأ بالليونة ثم تسيل، لأن دفء جسمك كافٍ تماماً لتحويلها من الحالة الصلبة إلى السائلة."
+              : "Hold a solid piece of chocolate in your palm for a few moments and it softens, then turns runny — because the warmth of your body is just enough to change it from solid to liquid."}
+          </p>
+          <p>
+            <strong className="text-white">{isAr ? "البخار يتصاعد من الحساء الساخن: " : "Steam rises from hot soup: "}</strong>
+            {isAr
+              ? "حين يسخن الحساء كثيراً، ترى خيوط بخار رقيقة تتصاعد من سطحه. هذا الماء السائل يتحول إلى غاز ويطير في الهواء بفعل الحرارة العالية."
+              : "When soup gets very hot, you see thin wisps of steam rising from its surface. That liquid water is turning into a gas and floating into the air because of the strong heat."}
+          </p>
+          <p>
+            <strong className="text-white">{isAr ? "الزبدة تذوب في المقلاة الساخنة: " : "Butter melts in a hot pan: "}</strong>
+            {isAr
+              ? "ضع قطعة زبدة صلبة في مقلاة ساخنة، فتنزلق وتسيل بسرعة لتصبح سائلاً ذهبياً لامعاً. الحرارة هي التي غيّرت حالتها من صلبة إلى سائلة."
+              : "Place a solid lump of butter in a hot pan and it quickly slides and flows into a shiny golden liquid. The heat is what changed its state from solid to liquid."}
+          </p>
+          <p>
+            <strong className="text-white">{isAr ? "تجميد العصير ليصبح مصاصة: " : "Freezing juice into popsicles: "}</strong>
+            {isAr
+              ? "صبّ العصير السائل في قالب وضعه في الفريزر، وبعد ساعات يتجمد ويصبح مصاصة صلبة لذيذة. هذا تجمّد: السائل يصبح صلباً بفعل البرد الشديد."
+              : "Pour liquid juice into a mold and place it in the freezer; after a few hours it freezes into a delicious solid popsicle. That is freezing — a liquid becoming a solid because of strong cold."}
+          </p>
+        </div>
+      </section>
+
+      {/* Experiment: the three faces of water */}
+      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
+        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+          {isAr ? "🧪 تجربة: وجوه الماء الثلاثة" : "🧪 Experiment: The Three Faces of Water"}
+        </h2>
+        <ol className="list-decimal ms-5 space-y-3 text-sm sm:text-base text-white/80 leading-relaxed marker:text-accent marker:font-bold">
+          <li>
+            {isAr
+              ? "ضع مكعب ثلج في وعاء صغير وسجّل الوقت، ثم اطلب من الطفل أن يخمّن كم دقيقة سيحتاج كي يذوب تماماً."
+              : "Put an ice cube in a small bowl and write down the time, then ask your child to guess how many minutes it will need to melt completely."}
+          </li>
+          <li>
+            {isAr
+              ? "تفقّد المكعب كل خمس عشرة دقيقة وراقبه وهو يتحول من ثلج صلب إلى ماء سائل، وقارن النتيجة بتخمين الطفل. (صلب ← سائل)"
+              : "Check the cube every fifteen minutes and watch it turn from solid ice into liquid water, then compare the result with the child's guess. (solid → liquid)"}
+          </li>
+          <li>
+            {isAr
+              ? "الآن يغلي شخص بالغ قليلاً من الماء على الموقد، ويراقب الطفل البخار وهو يتصاعد من مسافة آمنة بعيدة. (سائل ← غاز)"
+              : "Now an ADULT boils a little water on the stove while the child watches the steam rise from a safe distance away. (liquid → gas)"}
+          </li>
+          <li>
+            {isAr
+              ? "تنفّس بلطف على نافذة باردة أو مرآة، وراقب كيف يظهر الضباب فوراً على شكل قطرات ماء صغيرة. (غاز ← قطرات سائلة!)"
+              : "Breathe gently onto a cold window or a mirror and watch how fog appears at once as tiny droplets of water. (gas → liquid droplets!)"}
+          </li>
+          <li className="text-sm text-white/75">
+            {isAr
+              ? "🛡️ ملاحظة أمان: يبقى البالغ وحده قرب الموقد، ويظل الطفل على مسافة ذراع كاملة بعيداً عن البخار الساخن طوال التجربة."
+              : "🛡️ Safety note: only an adult stays near the stove, and the child must stay a full arm's length away from the hot steam throughout the experiment."}
+          </li>
+        </ol>
+      </section>
+
+      {/* FAQ — kids' questions, rendered from faq[] for JSON-LD parity */}
+      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
+        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+          {isAr ? "❓ أسئلة يطرحها الأطفال" : "❓ Questions Kids Ask"}
+        </h2>
+        <div className="space-y-4">
+          {faq.map((f, i) => (
+            <div key={i} className="p-4 rounded-xl border border-white/5 bg-white/5">
+              <h3 className="font-bold text-accent mb-1 text-sm sm:text-base">{f.q}</h3>
+              <p className="text-sm sm:text-base text-white/80 leading-relaxed">{f.a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Mini-glossary */}
+      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
+        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+          {isAr ? "📚 قاموس الكلمات العلمية" : "📚 Mini Science Glossary"}
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base text-white/80 leading-relaxed">
+          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
+            <h3 className="font-bold text-cyan-400 mb-1">{isAr ? "الصلب" : "Solid"}</h3>
+            <p className="text-white/80">
+              {isAr
+                ? "حالة المادة التي يكون فيها الجسم قاسياً وثابت الشكل، مثل مكعب الثلج أو الحجر أو قطعة الخشب."
+                : "The state of matter where an object is hard and keeps a fixed shape, like an ice cube, a rock, or a piece of wood."}
+            </p>
+          </div>
+          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
+            <h3 className="font-bold text-emerald-400 mb-1">{isAr ? "السائل" : "Liquid"}</h3>
+            <p className="text-white/80">
+              {isAr
+                ? "حالة المادة التي تسيل وتأخذ شكل الوعاء الذي توضع فيه، مثل الماء والعصير والحليب."
+                : "The state of matter that flows and takes the shape of its container, like water, juice, and milk."}
+            </p>
+          </div>
+          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
+            <h3 className="font-bold text-red-400 mb-1">{isAr ? "الغاز" : "Gas"}</h3>
+            <p className="text-white/80">
+              {isAr
+                ? "حالة المادة التي تنتشر وتملأ كل الفراغ حولها، مثل البخار والهواء الذي نتنفسه."
+                : "The state of matter that spreads out to fill all the space around it, like steam and the air we breathe."}
+            </p>
+          </div>
+          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
+            <h3 className="font-bold text-yellow-400 mb-1">{isAr ? "الانصهار" : "Melting"}</h3>
+            <p className="text-white/80">
+              {isAr
+                ? "تحوّل المادة من الحالة الصلبة إلى السائلة بفعل الحرارة، مثلما يذوب الثلج ويصبح ماءً."
+                : "When matter changes from a solid into a liquid because of heat, like ice melting into water."}
+            </p>
+          </div>
+          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
+            <h3 className="font-bold text-sky-400 mb-1">{isAr ? "التجمد" : "Freezing"}</h3>
+            <p className="text-white/80">
+              {isAr
+                ? "تحوّل المادة من الحالة السائلة إلى الصلبة بفعل البرد، مثلما يتجمد الماء ويصبح ثلجاً."
+                : "When matter changes from a liquid into a solid because of cold, like water freezing into ice."}
             </p>
           </div>
         </div>
@@ -171,7 +383,7 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
             ? "النص الكامل للحوار التعليمي بين الدكتور حكيم وأنس حول حالات المادة."
             : "The complete educational dialogue between Dr. Hakim and Anas about the states of matter."}
         </p>
-        <div className="space-y-3 text-xs sm:text-sm text-white/65 leading-relaxed">
+        <div className="space-y-3 text-sm text-white/80 leading-relaxed">
           {transcript.map((line, i) => (
             <div key={i} className="flex gap-2">
               <span className="shrink-0 font-bold text-white/80 min-w-[70px]">{line.speaker}:</span>
