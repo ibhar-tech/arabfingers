@@ -179,7 +179,7 @@ export const letterGuide: LetterGuideEntry[] = [
     soundHowToEn:
       "Raise the back of your tongue toward the soft roof at the very back of your mouth — almost touching — and force air through the narrow gap so it scrapes. It is the sound of clearing your throat softly, or the 'ch' in the Scottish 'loch' and German 'Bach'.",
     soundHowToAr:
-      "مخرج الخاء من أدنى الحلق ممّا يلي الفم: يرتفع أقصى اللسان نحو أقصى الحنك ويمرّ الهواء خشناً بينهما. اطلب من طفلك أن يتخيّل صوت الغرغرة الخفيفة أو حكّ الحلق برفق، كما في «خروف».",
+      "مخرج الخاء من أدنى الحلق ممّا يلي الفم: يرتفع أقصى اللسان نحو أقصى الحنك ويمرّ الهواء خشناً بينهما. اطلب من طفلك أن يتخيّل صوت التنحنح الخفيف أو حكّ الحلق برفق، كما في «خروف».",
     comparisonEn:
       "No English equivalent, but the Scottish 'loch' or German 'Bach' has it exactly. Learners often substitute a plain 'k' — but 'k' fully blocks the air while خ lets it scrape continuously. Keep the air flowing, don't stop it.",
     comparisonAr:
@@ -190,13 +190,13 @@ export const letterGuide: LetterGuideEntry[] = [
       { word: "خيمة", translit: "khayma", meaningEn: "tent", meaningAr: "بيت من قماش في الصحراء", emoji: "⛺" },
     ],
     mistakeEn:
-      "Turning خ into a hard 'k' (saying 'karuuf' instead of 'kharuuf'). Show that 'k' is a stop and خ is a scrape: have your child make a continuous gargle-like 'khhh', then add the word.",
+      "Turning خ into a hard 'k' (saying 'karuuf' instead of 'kharuuf'). Show that 'k' is a stop and خ is a scrape: have your child make a continuous, rough throat-clearing 'khhh' (like fogging up glasses with a raspy whisper), then add the word.",
     mistakeAr:
-      "أشهر خطأ نطق الخاء كافاً. أسمِع طفلك صوت الغرغرة المستمر «خّخّخ» ثم صِلْه بالكلمة، ليفهم أن الخاء صوت متّصل يجري لا قطع مثل الكاف.",
+      "أشهر خطأ نطق الخاء كافاً. أسمِع طفلك صوت التنحنح الخفيف المستمر «خّخّخ» (كحكّ الحلق برفق) ثم صِلْه بالكلمة، ليفهم أن الخاء صوت متّصل يجري لا قطع مثل الكاف.",
     parentTipEn:
-      "Pretend to be a sleepy dragon clearing its throat before a tiny 'kh' of smoke comes out. Make it silly — the playful gargle is precisely the airflow خ requires.",
+      "Pretend to be a sleepy dragon clearing its throat before a tiny 'kh' of smoke comes out. Make it silly — that rough little throat-clearing is precisely the airflow خ requires.",
     parentTipAr:
-      "تظاهرا بأنكما تنّينان نعسانان يُحدثان صوت «خّ» قبل أن يخرج الدخان. اللعب يجعل صوت الغرغرة الخشن سهلاً، وهو نفسه مخرج الخاء.",
+      "تظاهرا بأنكما تنّينان نعسانان يُحدثان صوت «خّ» قبل أن يخرج الدخان. اللعب يجعل صوت التنحنح الخشن سهلاً، وهو نفسه مخرج الخاء.",
   },
   {
     ar: "د", enName: "Dal", arName: "دال", translit: "dāl", difficulty: "easy",
@@ -207,7 +207,7 @@ export const letterGuide: LetterGuideEntry[] = [
     comparisonEn:
       "Like English 'd' but more dental — the tongue rests right against the teeth, not pulled back. Don't confuse it with the heavy emphatic ض; د is light and forward, ض fills the whole mouth.",
     comparisonAr:
-      "ميّز الدال (نقطة لا تحملها، حرف خفيف) عن الذال (نقطة فوقها). والصوت: الدال خفيفة، أما الضاد فمُفخّمة ثقيلة. قارنا «دار» بـ«ضار» ليسمع الطفل الفرق بين الخفيف والمُفخّم.",
+      "ميّز الدال (بلا نقطة، حرف خفيف) عن الذال (نقطة فوقها). والصوت: الدال خفيفة، أما الضاد فمُفخّمة ثقيلة. قارنا «دار» بـ«ضار» ليسمع الطفل الفرق بين الخفيف والمُفخّم.",
     examples: [
       { word: "دب", translit: "dubb", meaningEn: "bear", meaningAr: "حيوان كبير يحب العسل", emoji: "🐻" },
       { word: "ديك", translit: "diik", meaningEn: "rooster", meaningAr: "يصيح في الصباح الباكر", emoji: "🐓" },
@@ -255,7 +255,7 @@ export const letterGuide: LetterGuideEntry[] = [
     comparisonEn:
       "Not the English 'r' in 'red' — that one glides with the tongue pulled back. Arabic ر is a tapped/rolled 'r' where the tongue tip vibrates against the ridge. Think of a purring cat or a small motor.",
     comparisonAr:
-      "ميّز الراء (نقطة لا تحملها) عن الزاي (نقطة فوقها) شكلاً. والصوت: الراء مكرّرة يرتجف فيها اللسان، أما الزاي فصفير ثابت. كرّرا «ر ر ر» مثل صوت محرّك صغير ليتقن الطفل التكرار.",
+      "ميّز الراء (بلا نقطة) عن الزاي (نقطة فوقها) شكلاً. والصوت: الراء مكرّرة يرتجف فيها اللسان، أما الزاي فصفير ثابت. كرّرا «ر ر ر» مثل صوت محرّك صغير ليتقن الطفل التكرار.",
     examples: [
       { word: "ريشة", translit: "riisha", meaningEn: "feather", meaningAr: "ريشة طائر ناعمة وخفيفة", emoji: "🪶" },
       { word: "ربيع", translit: "rabiiʿ", meaningEn: "spring (season)", meaningAr: "فصل الزهور والخُضرة", emoji: "🌸" },
@@ -265,20 +265,20 @@ export const letterGuide: LetterGuideEntry[] = [
     mistakeAr:
       "ينطق بعض الأطفال الراء كالراء الإنجليزية المنزلقة. درّب طفلك أولاً على طرقات سريعة بطرف اللسان «دددد» خلف الأسنان، ثم أَضِف الصوت لتصير راءً مكرّرة.",
     parentTipEn:
-      "Pretend to be a purring cat or a revving motorbike: 'rrrr-rummaan!'. The playful trill builds the tongue vibration far more easily than asking a child to 'roll the r'.",
+      "Pretend to be a purring cat or a revving motorbike: 'rrrr-riisha!'. The playful trill builds the tongue vibration far more easily than asking a child to 'roll the r'.",
     parentTipAr:
       "تظاهرا بأنكما قطة تخرخر أو دراجة نارية: «ررر — ريشة!». الخرخرة المرحة تبني ارتجاف اللسان أسهل بكثير من مجرد طلب «كرّر الراء».",
   },
   {
     ar: "ز", enName: "Zay", arName: "زاي", translit: "zāy", difficulty: "easy",
     soundHowToEn:
-      "Bring the tip of your tongue close to the ridge behind your lower front teeth and push a buzzing stream of air through — like the 'z' in 'zebra' or 'zoo'. The voice is on and the air hisses with a buzz.",
+      "Bring the tip of your tongue just behind your top front teeth, with the air aimed down at your lower teeth, and push a buzzing stream of air through — like the 'z' in 'zebra' or 'zoo'. The voice is on and the air hisses with a buzz.",
     soundHowToAr:
       "مخرج الزاي من طرف اللسان قريباً من الثنايا السفلى: يقترب طرف اللسان منها ويمرّ الهواء بصفير مجهور. وهو من حروف الصفير، كما في «زرافة».",
     comparisonEn:
       "Same as English 'z'. It is the voiced partner of 's': identical tongue position, but the voice buzzes for z and stays off for s. Don't let it harden into 's' at the ends of words.",
     comparisonAr:
-      "ميّز الزاي (نقطة فوقها) عن الراء (بلا نقطة) شكلاً، وعن السين صوتاً: الزاي مجهورة فيها اهتزاز، والسين مهموسة بلا اهتزاز. قارنا «زين» بـ«سين» ليسمع الطفل الفرق.",
+      "ميّز الزاي (نقطة فوقها) عن الراء (بلا نقطة) شكلاً، وعن السين صوتاً: الزاي مجهورة فيها اهتزاز، والسين مهموسة بلا اهتزاز. قارنا «زار» بـ«سار» ليسمع الطفل الفرق.",
     examples: [
       { word: "زرافة", translit: "zaraafa", meaningEn: "giraffe", meaningAr: "حيوان طويل الرقبة جداً", emoji: "🦒" },
       { word: "زهرة", translit: "zahra", meaningEn: "flower", meaningAr: "نبتة جميلة ملوّنة", emoji: "🌷" },
@@ -296,7 +296,7 @@ export const letterGuide: LetterGuideEntry[] = [
   {
     ar: "س", enName: "Seen", arName: "سين", translit: "sīn", difficulty: "easy",
     soundHowToEn:
-      "Bring the tip of your tongue near the ridge behind your lower front teeth and hiss a thin stream of air through the narrow gap — the 's' in 'sun' or 'snake'. The voice stays off; it is a clean, light hiss.",
+      "Bring the tip of your tongue just behind your top front teeth, with the air aimed down at your lower teeth, and hiss a thin stream of air through the narrow gap — the 's' in 'sun' or 'snake'. The voice stays off; it is a clean, light hiss.",
     soundHowToAr:
       "مخرج السين من طرف اللسان قريباً من الثنايا السفلى: يقترب طرف اللسان منها ويمرّ الهواء بصفير خفيف مهموس. وهو من حروف الصفير، كما في «سمكة».",
     comparisonEn:
@@ -422,7 +422,7 @@ export const letterGuide: LetterGuideEntry[] = [
     comparisonEn:
       "No English equivalent — it is the 'th' of 'this' made heavy and dark. Don't flatten it into a plain voiced 'th' or a 'z'; keep the tongue between the teeth and the mouth full and deep.",
     comparisonAr:
-      "ميّز الظاء (نقطة فوق الطاء، يخرج فيها اللسان بين الأسنان) عن الذال (مرقّقة) صوتاً. قارنا «ظِلّ» بـ«ذلّ»: الظاء مُفخّمة ممتلئة والذال خفيفة. وفي الشكل تشبه الطاء مع نقطة فوقها.",
+      "ميّز الظاء (نقطة فوق الطاء، يخرج فيها اللسان بين الأسنان) عن الذال (مرقّقة) صوتاً، فهما حرفان متقاربان في السمع. قارنا «ظَهْر» بـ«ذَهَب»: الظاء مُفخّمة ممتلئة والذال خفيفة. وفي الشكل تشبه الظاء الطاء مع نقطة فوقها.",
     examples: [
       { word: "ظبي", translit: "Zaby", meaningEn: "gazelle", meaningAr: "حيوان رشيق سريع العَدْو", emoji: "🦌" },
       { word: "ظل", translit: "Zill", meaningEn: "shadow", meaningAr: "ما يتكوّن خلفنا في الشمس", emoji: "🌑" },
@@ -479,7 +479,7 @@ export const letterGuide: LetterGuideEntry[] = [
     mistakeEn:
       "Hardening غ into a 'g' stop. Have your child gargle a little water first, then say the word without water — the gargling muscle memory produces the continuous غ instead of a clipped 'g'.",
     mistakeAr:
-      "أشهر خطأ نطق الغين كافاً مُعقّدة أو قطعاً يابساً. اطلب من طفلك أن يتغرغر بقليل من الماء أولاً، ثم ينطق الكلمة بلا ماء، فيخرج صوت الغين المتّصل لا القطع.",
+      "أشهر خطأ أن يقطع الطفل صوت الغين فينطقها كافاً معقودة (مثل g). اطلب منه أن يتغرغر بالهواء برفق ليشعر أن الغين صوت متّصل يجري ولا ينقطع.",
     parentTipEn:
       "Make it a bathroom game: gargle 'ghhh' at the sink, then chase it with 'ghazaal!'. The real gargle teaches the throat exactly where غ lives, with plenty of laughs.",
     parentTipAr:
@@ -494,7 +494,7 @@ export const letterGuide: LetterGuideEntry[] = [
     comparisonEn:
       "Identical to English 'f'. The one thing to watch: Arabic has no 'v' sound, so don't let voicing creep in and turn 'f' into 'v' — keep the throat silent, only the breath hisses.",
     comparisonAr:
-      "الفاء صوت واضح قريب من نطق كثير من اللغات، وميزته في الشكل النقطة الواحدة فوقه. درّب طفلك على ملامسة الأسنان العليا للشفة السفلى مع نفخ الهواء، فهذا يضمن نطقاً صحيحاً.",
+      "شكل الفاء بنقطة واحدة فوقها، والقاف بنقطتين — علّم طفلك: «نقطة واحدة فاء، نقطتان قاف». وصوت الفاء يخرج من باطن الشفة السفلى مع أطراف الثنايا العليا.",
     examples: [
       { word: "فيل", translit: "fiil", meaningEn: "elephant", meaningAr: "أكبر حيوان على اليابسة", emoji: "🐘" },
       { word: "فراشة", translit: "faraasha", meaningEn: "butterfly", meaningAr: "حشرة جميلة ملوّنة الأجنحة", emoji: "🦋" },
@@ -503,7 +503,7 @@ export const letterGuide: LetterGuideEntry[] = [
     mistakeEn:
       "Adding voice and saying 'v' instead of 'f' (there is no 'v' in Arabic). Place a hand on the throat — for 'f' there should be no buzz at all, only a quiet stream of air.",
     mistakeAr:
-      "نادراً ما يُخطئ الأطفال في الفاء، لكن قد يُدخلون عليها صوتاً. ضعا يد الطفل على الحلق ليتأكّد أنه لا اهتزاز، بل نفَس هادئ فقط بين الأسنان والشفة.",
+      "كثير من الصغار ينطقون الثاء فاءً فيقولون «فعلب» بدل «ثعلب». إذا سمعت ذلك فذكّر طفلك أن الثاء يخرج فيها اللسان بين الأسنان، أما الفاء فتعضّ فيها الأسنانُ الشفةَ السفلى برفق.",
     parentTipEn:
       "Pretend to blow out birthday candles with a long 'ffff' before naming a butterfly (faraasha). The blowing action sets up the teeth-on-lip airflow perfectly.",
     parentTipAr:
@@ -518,7 +518,7 @@ export const letterGuide: LetterGuideEntry[] = [
     comparisonEn:
       "There is no English equivalent — it is like 'k' but made much deeper, from the throat rather than the mouth. The common mistake is saying a plain 'k'; ق sits far back and sounds dark and hollow, while 'k' is forward and light.",
     comparisonAr:
-      "ميّز القاف (من أقصى الحلق، عميقة مُفخّمة) عن الكاف (من أقرب إلى الفم، خفيفة) صوتاً. قارنا «قلب» بـ«كلب»: القاف عميقة والكاف خفيفة. علّم طفلك أن يستشعر عمق الصوت في حلقه.",
+      "ميّز القاف (من أقصى اللسان مع ما فوقه من الحنك، عميقة مفخّمة) عن الكاف (من أقصى اللسان مما يلي الفم، خفيفة مرقّقة). كرّرا الثنائية «كلب/قلب» حتى يسمع طفلك الفرق بوضوح. علّم طفلك أن يستشعر عمق الصوت في حلقه.",
     examples: [
       { word: "قمر", translit: "qamar", meaningEn: "moon", meaningAr: "يضيء السماء في الليل", emoji: "🌙" },
       { word: "قطة", translit: "qiTTa", meaningEn: "cat", meaningAr: "حيوان أليف يموء", emoji: "🐱" },
@@ -566,7 +566,7 @@ export const letterGuide: LetterGuideEntry[] = [
     comparisonEn:
       "Very close to English 'l'. Keep it light and clear (the 'l' in 'leaf', not the darker 'l' at the end of 'ball'). In Arabic, ل stays bright and forward in most words.",
     comparisonAr:
-      "اللام صوت واضح سلس، ويميّزه شكله الطويل النازل. درّب طفلك على ملامسة طرف اللسان للثة العليا مع جريان الصوت، وانتبها لئلا يقلبها نوناً عند بعض الصغار.",
+      "اللام صوت واضح سلس، ويميّزه شكله الطويل الصاعد فوق السطر كخطّاف طويل، بينما النون كأسٌ صغير قصير فوقه نقطة. درّب طفلك على ملامسة طرف اللسان للثة العليا مع جريان الصوت، وانتبها لئلا يقلبها نوناً عند بعض الصغار.",
     examples: [
       { word: "ليمون", translit: "laymuun", meaningEn: "lemon", meaningAr: "فاكهة صفراء حامضة", emoji: "🍋" },
       { word: "لبن", translit: "laban", meaningEn: "milk / yogurt", meaningAr: "شراب أبيض من الحليب", emoji: "🥛" },
@@ -638,7 +638,7 @@ export const letterGuide: LetterGuideEntry[] = [
     comparisonEn:
       "Identical to the soft English 'h' in 'hello'. The key is to keep it gentle — don't tighten the throat into the rasping ح. ه is relaxed and breathy; ح is squeezed and strong.",
     comparisonAr:
-      "ميّز الهاء (من أقصى الحلق، نفَس خفيف لطيف) عن الحاء (من وسط الحلق، نفَس قويّ مشدود). قارنا «هواء» بـ«حصان»: الهاء رخوة سهلة والحاء مشدودة قوية. لا تشدّا الحلق عند الهاء.",
+      "ميّز الهاء (من أقصى الحلق، نفَس خفيف لطيف) عن الحاء (من وسط الحلق، نفَس قويّ مشدود). قارنا «هَرّ» بـ«حَرّ»: الهاء رخوة سهلة والحاء مشدودة قوية. لا تشدّا الحلق عند الهاء.",
     examples: [
       { word: "هدهد", translit: "hudhud", meaningEn: "hoopoe (bird)", meaningAr: "طائر جميل له تاج من الريش", emoji: "🐦" },
       { word: "هلال", translit: "hilaal", meaningEn: "crescent", meaningAr: "القمر في أول الشهر", emoji: "🌙" },
@@ -658,7 +658,7 @@ export const letterGuide: LetterGuideEntry[] = [
     soundHowToEn:
       "Round your lips into a small circle and let the voice glide out — the 'w' in 'water' or the long 'oo' in 'moon' when it stretches. The lips push forward and round; no teeth or tongue contact is needed.",
     soundHowToAr:
-      "مخرج الواو من الشفتين مع انضمامهما: تستديران إلى الأمام ويجري الصوت مجهوراً. وهو حرف مدّ إذا أُشبع (ووو) وحرف لِين إذا تحرّك (وَ)، كما في «وردة».",
+      "مخرج الواو من الشفتين مع انضمامهما: تستديران إلى الأمام ويجري الصوت مجهوراً. وهو حرف مدّ إذا سكن وقبله ضمة كما في «نور»، وحرف عاديّ متحرّك كما في «وَلَد».",
     comparisonEn:
       "Like English 'w' (consonant, as in 'window') or long 'oo' (vowel, as in 'food'). The only caution: Arabic has no 'v', so never let و turn into a 'v' — keep the lips rounded, not biting the lip.",
     comparisonAr:
@@ -671,7 +671,7 @@ export const letterGuide: LetterGuideEntry[] = [
     mistakeEn:
       "Confusing the consonant و ('w') with the long vowel و ('oo'), or shortening the long one. Have your child round the lips and stretch 'ooo' for two beats whenever و is a vowel of length.",
     mistakeAr:
-      "قد يخلط الأطفال بين الواو الساكنة المتحرّكة وواو المدّ. علّم طفلك أن يضمّ شفتيه ويمدّ «ووو» حركتين كلما كانت الواو ممدودة كما في «نور» و«فول».",
+      "قد يخلط الأطفال بين الواو المتحرّكة وواو المدّ. علّم طفلك أن يضمّ شفتيه ويمدّ «ووو» حركتين كلما كانت الواو ممدودة كما في «نور» و«فول».",
     parentTipEn:
       "Smell a rose (warda) and say a long 'wooo' as if catching the scent. Rounding the lips to 'smell' naturally forms the واو shape and links it to a lovely word.",
     parentTipAr:
@@ -682,14 +682,14 @@ export const letterGuide: LetterGuideEntry[] = [
     soundHowToEn:
       "Raise the middle of your tongue toward the roof of your mouth and let the voice glide out — the 'y' in 'yes' or the long 'ee' in 'see' when it stretches. The lips are relaxed and slightly spread; the tongue body does the work.",
     soundHowToAr:
-      "مخرج الياء من وسط اللسان مع وسط الحنك الأعلى: يرتفع وسط اللسان نحو سقف الفم ويجري الصوت مجهوراً. وهي حرف مدّ إذا أُشبعت (ييي) وحرف لِين إذا تحرّكت (يَ)، كما في «يد».",
+      "مخرج الياء من وسط اللسان مع وسط الحنك الأعلى: يرتفع وسط اللسان نحو سقف الفم ويجري الصوت مجهوراً. وهي حرف مدّ إذا سكنت وقبلها كسرة كما في «فيل»، وحرف عاديّ متحرّك كما في «يَد».",
     comparisonEn:
       "Like English 'y' (consonant, as in 'yellow') or long 'ee' (vowel, as in 'green'). The caution: don't shorten the long vowel — Arabic vowel length changes meaning, so stretch 'ee' for two beats when ي lengthens.",
     comparisonAr:
       "الياء صوت سهل، وتميّزها نقطتان تحتها في الشكل. ميّزا بين الياء المتحرّكة «يَ» وياء المدّ الممدودة «ييي» كما في «فيل»؛ علّما طفلك إطالة المدّ حركتين حين تكون ممدودة.",
     examples: [
       { word: "يد", translit: "yad", meaningEn: "hand", meaningAr: "نمسك بها الأشياء", emoji: "✋" },
-      { word: "يمامة", translit: "yamaama", meaningEn: "dove", meaningAr: "طائر أبيض رمز السلام", emoji: "🕊️" },
+      { word: "يمامة", translit: "yamaama", meaningEn: "dove", meaningAr: "طائر أبيض جميل هادئ", emoji: "🕊️" },
       { word: "ياسمين", translit: "yaasamiin", meaningEn: "jasmine", meaningAr: "زهرة بيضاء عطرة", emoji: "🌼" },
     ],
     mistakeEn:
