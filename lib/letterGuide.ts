@@ -190,7 +190,7 @@ export const letterGuide: LetterGuideEntry[] = [
       { word: "خيمة", translit: "khayma", meaningEn: "tent", meaningAr: "بيت من قماش في الصحراء", emoji: "⛺" },
     ],
     mistakeEn:
-      "Turning خ into a hard 'k' (saying 'karuuf' instead of 'kharuuf'). Show that 'k' is a stop and خ is a scrape: have your child make a continuous, rough throat-clearing 'khhh' (like fogging up glasses with a raspy whisper), then add the word.",
+      "Turning خ into a hard 'k' (saying 'karuuf' instead of 'kharuuf'). Show that 'k' is a stop and خ is a scrape: have your child make a continuous, rough throat-clearing 'khhh' (like a cat's raspy hiss from the back of the throat), then add the word.",
     mistakeAr:
       "أشهر خطأ نطق الخاء كافاً. أسمِع طفلك صوت التنحنح الخفيف المستمر «خّخّخ» (كحكّ الحلق برفق) ثم صِلْه بالكلمة، ليفهم أن الخاء صوت متّصل يجري لا قطع مثل الكاف.",
     parentTipEn:
@@ -566,7 +566,7 @@ export const letterGuide: LetterGuideEntry[] = [
     comparisonEn:
       "Very close to English 'l'. Keep it light and clear (the 'l' in 'leaf', not the darker 'l' at the end of 'ball'). In Arabic, ل stays bright and forward in most words.",
     comparisonAr:
-      "اللام صوت واضح سلس، ويميّزه شكله الطويل الصاعد فوق السطر كخطّاف طويل، بينما النون كأسٌ صغير قصير فوقه نقطة. درّب طفلك على ملامسة طرف اللسان للثة العليا مع جريان الصوت، وانتبها لئلا يقلبها نوناً عند بعض الصغار.",
+      "اللام صوت واضح سلس، ويميّزه شكله الطويل الصاعد فوق السطر كخطّاف طويل، بينما النون كأسٌ صغيرةٌ قصيرةٌ فوقها نقطة. درّب طفلك على ملامسة طرف اللسان للثة العليا مع جريان الصوت، وانتبها لئلا يقلبها نوناً عند بعض الصغار.",
     examples: [
       { word: "ليمون", translit: "laymuun", meaningEn: "lemon", meaningAr: "فاكهة صفراء حامضة", emoji: "🍋" },
       { word: "لبن", translit: "laban", meaningEn: "milk / yogurt", meaningAr: "شراب أبيض من الحليب", emoji: "🥛" },
