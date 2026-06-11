@@ -485,7 +485,7 @@ export default function GravityInteractive({ locale = "ar" }: GravityInteractive
             <div className="w-full h-full flex items-center justify-center gap-3 sm:gap-4 animate-fade-in px-2">
               <div className="hidden sm:flex items-end w-28 lg:w-36 h-40 shrink-0 pointer-events-none"><DrHakim mood="waving" className="w-full h-full origin-bottom" /></div>
               <div className="text-center flex flex-col items-center justify-center min-w-0">
-                <div className="w-full max-w-[260px] sm:max-w-[300px] mb-2"><GravityDiagram locale={locale} /></div>
+                <div className="hidden sm:block w-full sm:max-w-[300px] mb-2"><GravityDiagram locale={locale} /></div>
                 <h1 className="text-2xl sm:text-4xl font-extrabold bg-gradient-to-r from-accent via-emerald-300 to-teal-400 bg-clip-text text-transparent mb-1" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
                   {isAr ? "كيف تعمل الجاذبية؟" : "How Gravity Works"}
                 </h1>
@@ -623,7 +623,7 @@ export default function GravityInteractive({ locale = "ar" }: GravityInteractive
         </div>
 
         {/* --- CARTOON CHARACTER PLACEMENT --- */}
-        <div className="relative z-10 w-full px-6 flex justify-between items-end h-[120px] sm:h-[135px] select-none pointer-events-none bg-gradient-to-t from-black/75 to-transparent">
+        <div className={`relative z-10 w-full px-6 flex justify-between items-end h-[120px] sm:h-[135px] select-none pointer-events-none bg-gradient-to-t from-black/75 to-transparent ${activeScene.customGraphic === "intro" ? "hidden" : ""}`}>
           <div className={`w-28 sm:w-32 h-full flex justify-start transition-all duration-300 ${
             hakimTalking ? "scale-110 filter drop-shadow-[0_0_15px_rgba(34,211,238,0.55)]" : "opacity-80"
           }`}>
