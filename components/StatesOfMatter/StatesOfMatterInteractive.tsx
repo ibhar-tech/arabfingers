@@ -6,6 +6,7 @@ import confetti from "canvas-confetti";
 import { useAppStore } from "@/store/useAppStore";
 import DrHakim from "./DrHakim";
 import AnasChild from "./AnasChild";
+import { StatesOfMatterDiagram } from "../illustrations/StatesOfMatterDiagram";
 import ParticleSimulator from "./ParticleSimulator";
 
 interface Scene {
@@ -559,25 +560,29 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
           
           {/* 1. Custom Graphic Overlay: INTRO SCREEN */}
           {activeScene.customGraphic === "intro" && (
-            <div className="text-center flex flex-col items-center justify-center animate-fade-in w-full h-full">
-              <div className="text-5xl sm:text-7xl mb-3 animate-bounce">🧪✨</div>
-              <h1 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-accent via-cyan-400 to-indigo-400 bg-clip-text text-transparent mb-2 drop-shadow-[0_2px_10px_rgba(159,225,203,0.3)]" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
-                {isAr ? "حالات المادة" : "States of Matter"}
-              </h1>
-              <p className="text-xs sm:text-sm text-white/60 tracking-wider font-medium max-w-md mt-1">
-                {isAr ? activeScene.subTextAr : activeScene.subTextEn}
-              </p>
-              
-              {/* Click to start manual nudge */}
-              {!isPlaying && (
-                <button
-                  type="button"
-                  onClick={() => setIsPlaying(true)}
-                  className="mt-4 px-6 py-2 bg-accent hover:scale-105 transition rounded-2xl text-[#050816] font-bold text-sm shadow-lg shadow-accent/20 cursor-pointer"
-                >
-                  {isAr ? "ابدأ الرحلة 🚀" : "Start Journey 🚀"}
-                </button>
-              )}
+            <div className="w-full h-full flex items-center justify-center gap-3 sm:gap-4 animate-fade-in px-2">
+              <div className="hidden sm:flex items-end w-28 lg:w-36 h-40 shrink-0 pointer-events-none"><DrHakim mood="waving" className="w-full h-full origin-bottom" /></div>
+              <div className="text-center flex flex-col items-center justify-center min-w-0">
+                <div className="w-full max-w-[260px] sm:max-w-[300px] mb-2"><StatesOfMatterDiagram locale={locale} /></div>
+                <h1 className="text-2xl sm:text-4xl font-extrabold bg-gradient-to-r from-accent via-cyan-400 to-indigo-400 bg-clip-text text-transparent mb-1 drop-shadow-[0_2px_10px_rgba(159,225,203,0.3)]" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+                  {isAr ? "حالات المادة" : "States of Matter"}
+                </h1>
+                <p className="hidden sm:block text-xs sm:text-sm text-white/70 tracking-wider font-medium max-w-md">
+                  {isAr ? activeScene.subTextAr : activeScene.subTextEn}
+                </p>
+
+                {/* Click to start manual nudge */}
+                {!isPlaying && (
+                  <button
+                    type="button"
+                    onClick={() => setIsPlaying(true)}
+                    className="mt-3 px-6 py-2 bg-accent hover:scale-105 transition rounded-2xl text-[#050816] font-bold text-sm shadow-lg shadow-accent/20 cursor-pointer"
+                  >
+                    {isAr ? "ابدأ الرحلة 🚀" : "Start Journey 🚀"}
+                  </button>
+                )}
+              </div>
+              <div className="hidden sm:flex items-end w-24 lg:w-28 h-40 shrink-0 pointer-events-none"><AnasChild mood="waving" className="w-full h-full origin-bottom" /></div>
             </div>
           )}
 
