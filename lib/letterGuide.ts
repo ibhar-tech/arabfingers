@@ -251,15 +251,14 @@ export const letterGuide: LetterGuideEntry[] = [
     soundHowToEn:
       "Tap or trill the tip of your tongue against the ridge behind your top teeth — a quick flick, like the rolled 'r' in Spanish 'perro' or the tapped 'r' in 'butter' said quickly. Let the tongue tip bounce; it never glides like the English 'r'.",
     soundHowToAr:
-      "مخرج الراء من طرف اللسان قريباً من ظهره: يرتفع طرف اللسان إلى ما خلف الثنايا العليا ويرتجف ارتجافة خفيفة (تكرار). وهو حرف مجهور مكرّر، كما في «رمان».",
+      "مخرج الراء من طرف اللسان قريباً من ظهره: يرتفع طرف اللسان إلى ما خلف الثنايا العليا ويرتجف ارتجافة خفيفة (تكرار). وهو حرف مجهور مكرّر، كما في «ريشة».",
     comparisonEn:
       "Not the English 'r' in 'red' — that one glides with the tongue pulled back. Arabic ر is a tapped/rolled 'r' where the tongue tip vibrates against the ridge. Think of a purring cat or a small motor.",
     comparisonAr:
       "ميّز الراء (نقطة لا تحملها) عن الزاي (نقطة فوقها) شكلاً. والصوت: الراء مكرّرة يرتجف فيها اللسان، أما الزاي فصفير ثابت. كرّرا «ر ر ر» مثل صوت محرّك صغير ليتقن الطفل التكرار.",
     examples: [
-      { word: "رمان", translit: "rummaan", meaningEn: "pomegranate", meaningAr: "فاكهة حمراء بحبّات كثيرة", emoji: "🍎" },
-      { word: "رأس", translit: "raʾs", meaningEn: "head", meaningAr: "أعلى الجسم وفيه الوجه", emoji: "🧠" },
-      { word: "ربيع", translit: "rabiiʿ", meaningEn: "spring (season)", meaningAr: "فصل الأزهار والدفء", emoji: "🌸" },
+      { word: "ريشة", translit: "riisha", meaningEn: "feather", meaningAr: "ريشة طائر ناعمة وخفيفة", emoji: "🪶" },
+      { word: "ربيع", translit: "rabiiʿ", meaningEn: "spring (season)", meaningAr: "فصل الزهور والخُضرة", emoji: "🌸" },
     ],
     mistakeEn:
       "Using the soft English 'r' that glides instead of taps. Have your child say a fast 'tdtdtd' against the ridge first, then turn on the voice — the tapping muscle memory becomes the rolled ر.",
@@ -268,7 +267,7 @@ export const letterGuide: LetterGuideEntry[] = [
     parentTipEn:
       "Pretend to be a purring cat or a revving motorbike: 'rrrr-rummaan!'. The playful trill builds the tongue vibration far more easily than asking a child to 'roll the r'.",
     parentTipAr:
-      "تظاهرا بأنكما قطة تخرخر أو دراجة نارية: «ررر — رمان!». الخرخرة المرحة تبني ارتجاف اللسان أسهل بكثير من مجرد طلب «كرّر الراء».",
+      "تظاهرا بأنكما قطة تخرخر أو دراجة نارية: «ررر — ريشة!». الخرخرة المرحة تبني ارتجاف اللسان أسهل بكثير من مجرد طلب «كرّر الراء».",
   },
   {
     ar: "ز", enName: "Zay", arName: "زاي", translit: "zāy", difficulty: "easy",
@@ -307,7 +306,7 @@ export const letterGuide: LetterGuideEntry[] = [
     examples: [
       { word: "سمكة", translit: "samaka", meaningEn: "fish", meaningAr: "تعيش في الماء وتسبح", emoji: "🐟" },
       { word: "سيارة", translit: "sayyaara", meaningEn: "car", meaningAr: "مركبة تسير على الطريق", emoji: "🚗" },
-      { word: "سماء", translit: "samaaʾ", meaningEn: "sky", meaningAr: "ما فوقنا وفيه الشمس والنجوم", emoji: "☁️" },
+      { word: "سماء", translit: "samaaʾ", meaningEn: "sky", meaningAr: "ما فوقنا وفيه الشمس والنجوم", emoji: "🌤️" },
     ],
     mistakeEn:
       "Letting س drift into the heavy ص. Keep a slight smile and a thin airstream; if the vowel after it sounds dark and round, the child has slipped into the emphatic by mistake.",
@@ -643,7 +642,7 @@ export const letterGuide: LetterGuideEntry[] = [
     examples: [
       { word: "هدهد", translit: "hudhud", meaningEn: "hoopoe (bird)", meaningAr: "طائر جميل له تاج من الريش", emoji: "🐦" },
       { word: "هلال", translit: "hilaal", meaningEn: "crescent", meaningAr: "القمر في أول الشهر", emoji: "🌙" },
-      { word: "هرم", translit: "haram", meaningEn: "pyramid", meaningAr: "بناء قديم ضخم في مصر", emoji: "🏔️" },
+      { word: "هدية", translit: "hadiyya", meaningEn: "gift", meaningAr: "شيء جميل نقدمه لمن نحب", emoji: "🎁" },
     ],
     mistakeEn:
       "Over-tightening ه into the harsh ح. Have your child sigh as if relieved ('haah') with a relaxed open throat — that easy breath is exactly the gentle ه, with no strain at all.",
