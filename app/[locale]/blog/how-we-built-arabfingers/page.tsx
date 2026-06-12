@@ -72,7 +72,7 @@ function ContentEn() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-white mb-1">How We Built ArabFingers: The Story Behind the App</h1>
-      <p className="text-sm text-white/50">From a parent&apos;s frustration to a free tool for families worldwide</p>
+      <p className="text-base text-white/75">From a parent&apos;s frustration to a free tool for families worldwide</p>
       <AuthorBlock />
 
       <div className="space-y-8 text-sm leading-relaxed text-white/80">
@@ -191,7 +191,7 @@ function ContentAr() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-white mb-1">كيف بنينا عرب فنجرز: القصة وراء التطبيق</h1>
-      <p className="text-sm text-white/50">من إحباط أحد الوالدين إلى أداة مجانية للعائلات حول العالم</p>
+      <p className="text-base text-white/75">من إحباط أحد الوالدين إلى أداة مجانية للعائلات حول العالم</p>
       <AuthorBlock isAr />
 
       <div className="space-y-8 text-sm leading-relaxed text-white/80">

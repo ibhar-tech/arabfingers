@@ -132,7 +132,7 @@ function ContentEn() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-white mb-2">What&apos;s the Best Age to Start Teaching Arabic?</h1>
-      <p className="text-sm text-white/55 mb-8">A stage-by-stage guide for parents and educators</p>
+      <p className="text-base text-white/75 mb-8">A stage-by-stage guide for parents and educators</p>
 
       <div className="space-y-8 text-sm leading-relaxed text-white/80">
         <section>
@@ -198,7 +198,7 @@ function ContentAr() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-white mb-2">ما أفضل عمر لبدء تعليم العربية؟</h1>
-      <p className="text-sm text-white/55 mb-8">دليل مرحلة بمرحلة للوالدين والمعلّمين</p>
+      <p className="text-base text-white/75 mb-8">دليل مرحلة بمرحلة للوالدين والمعلّمين</p>
 
       <div className="space-y-8 text-sm leading-relaxed text-white/80">
         <section>

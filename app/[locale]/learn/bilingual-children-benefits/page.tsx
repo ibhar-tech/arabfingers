@@ -100,7 +100,7 @@ function ContentEn() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-white mb-2">Benefits of Raising Bilingual Arabic-English Children</h1>
-      <p className="text-sm text-white/55 mb-8">Why giving your child both languages is one of the best gifts you can offer</p>
+      <p className="text-base text-white/75 mb-8">Why giving your child both languages is one of the best gifts you can offer</p>
 
       <div className="space-y-8 text-sm leading-relaxed text-white/80">
         <section>
@@ -176,7 +176,7 @@ function ContentAr() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-white mb-2">فوائد تربية الطفل على العربية والإنجليزية معاً</h1>
-      <p className="text-sm text-white/55 mb-8">لماذا يُعدّ منح طفلك اللغتين من أحسن ما تهديه إيّاه</p>
+      <p className="text-base text-white/75 mb-8">لماذا يُعدّ منح طفلك اللغتين من أحسن ما تهديه إيّاه</p>
 
       <div className="space-y-8 text-sm leading-relaxed text-white/80">
         <section>

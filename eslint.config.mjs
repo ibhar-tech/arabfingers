@@ -18,6 +18,8 @@ const eslintConfig = [
       "out/**",
       "build/**",
       "next-env.d.ts",
+      // Node CLI helpers (voiceover generation) — CommonJS by design, not app code
+      "scripts/**",
     ],
   },
 ];

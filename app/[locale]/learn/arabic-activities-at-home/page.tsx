@@ -182,7 +182,7 @@ export default async function ArabicActivitiesPage({ params }: { params: Promise
       <h1 className="text-3xl font-semibold text-white mb-2">
         {isAr ? "١٠ أنشطة لتعلّم الحروف العربية في البيت" : "10 Fun Activities to Practice Arabic Letters at Home"}
       </h1>
-      <p className="text-sm text-white/55 mb-8">
+      <p className="text-base text-white/75 mb-8">
         {isAr ? "وصفاتٌ صغيرة بموادّها وخطواتها وعمرها المناسب" : "Mini-recipes with materials, steps, and age ranges"}
       </p>
 

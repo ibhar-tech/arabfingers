@@ -72,7 +72,7 @@ function ContentEn() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-white mb-1">Arabic Calligraphy for Kids: A Beginner&apos;s Introduction</h1>
-      <p className="text-sm text-white/50">Where language meets art — making Arabic beautiful for young learners</p>
+      <p className="text-base text-white/75">Where language meets art — making Arabic beautiful for young learners</p>
       <AuthorBlock />
 
       <div className="space-y-8 text-sm leading-relaxed text-white/80">
@@ -193,7 +193,7 @@ function ContentAr() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-white mb-1">الخط العربي للأطفال: مقدمة للمبتدئين</h1>
-      <p className="text-sm text-white/50">حيث تلتقي اللغة بالفن — جعل العربية جميلة للمتعلمين الصغار</p>
+      <p className="text-base text-white/75">حيث تلتقي اللغة بالفن — جعل العربية جميلة للمتعلمين الصغار</p>
       <AuthorBlock isAr />
 
       <div className="space-y-8 text-sm leading-relaxed text-white/80">

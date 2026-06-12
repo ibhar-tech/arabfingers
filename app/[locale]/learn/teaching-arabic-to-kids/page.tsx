@@ -175,7 +175,7 @@ function ContentEn() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-white mb-2">Teaching Arabic to Kids: A Parent&apos;s Guide</h1>
-      <p className="text-sm text-white/55 mb-8">Practical, step-by-step ways to introduce Arabic to toddlers and pre-schoolers</p>
+      <p className="text-base text-white/75 mb-8">Practical, step-by-step ways to introduce Arabic to toddlers and pre-schoolers</p>
 
       <div className="space-y-8 text-sm leading-relaxed text-white/80">
         <section>
@@ -247,7 +247,7 @@ function ContentAr() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-white mb-2">تعليم العربية للأطفال: دليل الوالدين</h1>
-      <p className="text-sm text-white/55 mb-8">طرائق عملية خطوةً خطوة لتعريف الصغار بالعربية</p>
+      <p className="text-base text-white/75 mb-8">طرائق عملية خطوةً خطوة لتعريف الصغار بالعربية</p>
 
       <div className="space-y-8 text-sm leading-relaxed text-white/80">
         <section>

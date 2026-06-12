@@ -72,7 +72,7 @@ function ContentEn() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-white mb-1">Arabic vs Latin Alphabet: A Linguistic Deep Dive</h1>
-      <p className="text-sm text-white/50">Understanding what makes Arabic unique — and why it matters for learning</p>
+      <p className="text-base text-white/75">Understanding what makes Arabic unique — and why it matters for learning</p>
       <AuthorBlock />
 
       <div className="space-y-8 text-sm leading-relaxed text-white/80">
@@ -215,7 +215,7 @@ function ContentAr() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-white mb-1">الأبجدية العربية مقابل اللاتينية: غوص لغوي عميق</h1>
-      <p className="text-sm text-white/50">فهم ما يجعل العربية فريدة — ولماذا يهم ذلك للتعلم</p>
+      <p className="text-base text-white/75">فهم ما يجعل العربية فريدة — ولماذا يهم ذلك للتعلم</p>
       <AuthorBlock isAr />
 
       <div className="space-y-8 text-sm leading-relaxed text-white/80">

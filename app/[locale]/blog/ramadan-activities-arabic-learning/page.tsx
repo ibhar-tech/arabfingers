@@ -72,7 +72,7 @@ function ContentEn() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-white mb-1">Ramadan &amp; Arabic Learning: Activities That Connect Language to Culture</h1>
-      <p className="text-sm text-white/50">Using the holiest month as a springboard for Arabic vocabulary and letter recognition</p>
+      <p className="text-base text-white/75">Using the holiest month as a springboard for Arabic vocabulary and letter recognition</p>
       <AuthorBlock />
 
       <div className="space-y-8 text-sm leading-relaxed text-white/80">
@@ -197,7 +197,7 @@ function ContentAr() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-white mb-1">رمضان وتعلم العربية: أنشطة تربط اللغة بالثقافة</h1>
-      <p className="text-sm text-white/50">استخدام الشهر الكريم كنقطة انطلاق لتعلم المفردات والحروف العربية</p>
+      <p className="text-base text-white/75">استخدام الشهر الكريم كنقطة انطلاق لتعلم المفردات والحروف العربية</p>
       <AuthorBlock isAr />
 
       <div className="space-y-8 text-sm leading-relaxed text-white/70">

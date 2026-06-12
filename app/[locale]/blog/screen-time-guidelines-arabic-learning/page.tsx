@@ -72,7 +72,7 @@ function ContentEn() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-white mb-1">Screen Time &amp; Arabic Learning: An Evidence-Based Guide for Parents</h1>
-      <p className="text-sm text-white/50">How to balance digital tools with healthy development</p>
+      <p className="text-base text-white/75">How to balance digital tools with healthy development</p>
       <AuthorBlock />
 
       <div className="space-y-8 text-sm leading-relaxed text-white/80">
@@ -186,7 +186,7 @@ function ContentAr() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-white mb-1">وقت الشاشة وتعلم العربية: دليل مبني على الأدلة للوالدين</h1>
-      <p className="text-sm text-white/50">كيف توازن بين الأدوات الرقمية والنمو الصحي</p>
+      <p className="text-base text-white/75">كيف توازن بين الأدوات الرقمية والنمو الصحي</p>
       <AuthorBlock isAr />
 
       <div className="space-y-8 text-sm leading-relaxed text-white/80">

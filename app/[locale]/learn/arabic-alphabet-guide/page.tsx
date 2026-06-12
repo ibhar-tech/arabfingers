@@ -36,8 +36,12 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
     <PageLayout locale={locale}>
       <ArticleMeta
         locale={locale}
-        title="Arabic Alphabet: Complete Guide to All 28 Letters"
-        description="Learn all 28 Arabic letters with pronunciation, English equivalents, and writing tips. A complete guide for beginners and kids."
+        title={isAr ? "دليل الأبجدية العربية الكامل: الحروف الـ٢٨ بالنطق والأمثلة" : "Arabic Alphabet: Complete Guide to All 28 Letters"}
+        description={
+          isAr
+            ? "تعلم جميع الحروف العربية الـ٢٨ مع مخرج كل حرف وكلمات للأمثلة وأخطاء الأطفال الشائعة ونصائح عملية للوالدين."
+            : "Learn all 28 Arabic letters with pronunciation, English equivalents, and writing tips. A complete guide for beginners and kids."
+        }
         slug="learn/arabic-alphabet-guide"
         datePublished="2026-03-05"
         dateModified="2026-06-11"
