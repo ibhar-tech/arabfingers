@@ -213,7 +213,7 @@ function MiniPlayground({ isAr }: { isAr: boolean }) {
         <h2 className="text-xl font-bold text-white">
           {isAr ? "لوحة اللعب التفاعلية الصغيرة" : "Try Our On-Page Kids Demo!"}
         </h2>
-        <p className="text-xs text-white/50 max-w-md mx-auto mt-1 leading-relaxed">
+        <p className="text-sm text-white/75 max-w-md mx-auto mt-1 leading-relaxed">
           {isAr
             ? "انقر على أي حرف أدناه لتشغيل الصوت، ورؤية الانفجار، واستكشاف تجربة اللعب بشكل مبسط!"
             : "Click any letter below to trigger voice sounds, cute bursts, and preview the full preschool experience!"}
@@ -361,7 +361,7 @@ function ScreenPinningGuide({ isAr }: { isAr: boolean }) {
         <h2 className="text-lg font-bold text-white">
           {isAr ? "دليل اللعب الآمن للوالدين" : "Safe Play Area Settings"}
         </h2>
-        <p className="text-xs text-white/70 mt-1 leading-relaxed">
+        <p className="text-sm text-white/80 mt-1 leading-relaxed">
           {isAr
             ? "كيف تقفل شاشة جهازك حتى يتمكن طفلك من سحق المفاتيح بأمان دون الخروج من الصفحة."
             : "Learn how to pin or lock your screen so your baby can smash keys without closing the app."}

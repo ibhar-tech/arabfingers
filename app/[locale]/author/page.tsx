@@ -4,15 +4,22 @@ import Image from "next/image";
 import { PageLayout } from "@/components/PageLayout";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { isLocale } from "@/lib/locales";
+import { generatePageMetadata } from "@/lib/seo";
 import { AUTHOR_NAME, AUTHOR_EMAIL, AUTHOR_PHOTO } from "@/components/AuthorByline";
 
 const SITE_URL = "https://www.arabfingers.site";
 
-export const metadata: Metadata = {
-  title: `${AUTHOR_NAME} — Author & Founder | عن المؤلف`,
-  description:
-    "Aissa Trad is the parent and developer behind Arab Fingers, a free, open-source bilingual Arabic learning resource for families raising children aged 1–6.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata(locale, "/author", {
+    titleEn: `${AUTHOR_NAME} — Author & Founder of Arab Fingers`,
+    titleAr: `${AUTHOR_NAME} — مؤلف ومؤسس عرب فنجرز`,
+    descriptionEn:
+      "Aissa Trad is the parent and developer behind Arab Fingers, a free, open-source bilingual Arabic learning resource for families raising children aged 1–6.",
+    descriptionAr:
+      "عيسى تراد هو الأب والمطوّر الذي بنى عرب فنجرز، مورد تعليمي عربي مجاني ومفتوح المصدر ثنائي اللغة للعائلات التي تربي أطفالاً من عمر سنة إلى ٦ سنوات.",
+  });
+}
 
 export default async function AuthorPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -75,7 +82,7 @@ export default async function AuthorPage({ params }: { params: Promise<{ locale:
         </div>
       </div>
 
-      <div className="mt-8 space-y-6 text-sm leading-relaxed text-white/70 max-w-2xl">
+      <div className="mt-8 space-y-6 text-sm leading-relaxed text-white/80 max-w-2xl">
         {isAr ? (
           <>
             <p>

@@ -32,14 +32,14 @@ export default async function ColoringPage({
               <h1 className="text-2xl sm:text-3xl font-bold text-white mb-4">
                 لعبة تلوين وتتبع الحروف العربية
               </h1>
-              <p className="text-sm leading-relaxed text-white/70 mb-6">
+              <p className="text-sm leading-relaxed text-white/80 mb-6">
                 لوحة رسم تفاعلية مجانية تتيح للأطفال ممارسة مهاراتهم الحركية الدقيقة أثناء تعلم
                 أشكال الحروف العربية. اختر لوناً من اللوحة واستخدم إصبعك أو الفأرة للرسم والتتبع
                 مباشرة على الشاشة.
               </p>
 
               <h2 className="text-lg font-semibold text-white mb-2">الفوائد التعليمية</h2>
-              <ul className="list-disc ms-5 space-y-1.5 text-sm text-white/70 mb-8">
+              <ul className="list-disc ms-5 space-y-1.5 text-sm text-white/80 mb-8">
                 <li>تنمية المهارات الحركية الدقيقة الأساسية للكتابة</li>
                 <li>تعزيز التعرف على الحروف العربية وحفظ أشكالها</li>
                 <li>بيئة إبداعية خالية من الضغط للأطفال</li>
@@ -63,14 +63,14 @@ export default async function ColoringPage({
               <h1 className="text-2xl sm:text-3xl font-bold text-white mb-4">
                 Arabic Letters Coloring &amp; Tracing Game
               </h1>
-              <p className="text-sm leading-relaxed text-white/70 mb-6">
+              <p className="text-sm leading-relaxed text-white/80 mb-6">
                 A free interactive canvas that lets children practise their fine motor skills while
                 learning the shapes of Arabic letters. Pick a colour from the palette and use your
                 finger or mouse to paint and trace directly on the screen.
               </p>
 
               <h2 className="text-lg font-semibold text-white mb-2">Educational Benefits</h2>
-              <ul className="list-disc ms-5 space-y-1.5 text-sm text-white/70 mb-8">
+              <ul className="list-disc ms-5 space-y-1.5 text-sm text-white/80 mb-8">
                 <li>Develops fine motor skills essential for writing</li>
                 <li>Reinforces Arabic letter recognition and shape memorization</li>
                 <li>Provides a creative, pressure-free environment for kids</li>

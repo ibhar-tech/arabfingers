@@ -56,7 +56,7 @@ function HomeEn() {
         <h1 className="text-3xl sm:text-5xl font-bold text-white leading-tight">
           Learn the Arabic Alphabet — Free, Playful &amp; Bilingual
         </h1>
-        <p className="mt-4 text-base sm:text-lg text-white/70 leading-relaxed">
+        <p className="mt-4 text-base sm:text-lg text-white/80 leading-relaxed">
           Arab Fingers is a free, ad-free Arabic learning resource for families raising bilingual
           kids aged 1–6. Explore an interactive letter game, printable worksheets, and in-depth
           guides to the Arabic alphabet, numbers, and first words — all with natural pronunciation
@@ -87,19 +87,19 @@ function HomeEn() {
         <h2 className="text-2xl font-semibold text-white mb-4">
           What is ArabFingers?
         </h2>
-        <p className="text-sm leading-relaxed text-white/70 mb-3">
+        <p className="text-sm leading-relaxed text-white/80 mb-3">
           ArabFingers is a free, bilingual keyboard smash toy designed specifically for toddlers and
           pre-schoolers aged 1 to 6 years old. When children press any key on the keyboard or tap
           anywhere on a touch screen, they see a beautiful, large Arabic letter appear on screen with
           its English equivalent displayed side by side.
         </p>
-        <p className="text-sm leading-relaxed text-white/70 mb-3">
+        <p className="text-sm leading-relaxed text-white/80 mb-3">
           Each letter is accompanied by natural-sounding pronunciation in both Arabic and English,
           helping children associate the visual shape of each letter with its correct sound. The app
           features colorful 3D animated floating objects in the background, emoji bursts that explode
           from the point of interaction, and confetti celebrations at milestone key counts.
         </p>
-        <p className="text-sm leading-relaxed text-white/70">
+        <p className="text-sm leading-relaxed text-white/80">
           ArabFingers was created for bilingual Arab families who want their children to be exposed to
           the Arabic alphabet in a fun, pressure-free environment. There are no tests, no scores, and
           no wrong answers — just pure sensory joy and letter recognition through play.
@@ -123,7 +123,7 @@ function HomeEn() {
             <div key={f.title} className="rounded-xl border border-white/10 bg-white/5 p-4">
               <div className="text-2xl mb-2">{f.icon}</div>
               <h3 className="text-sm font-semibold text-white mb-1">{f.title}</h3>
-              <p className="text-xs text-white/60 leading-relaxed">{f.desc}</p>
+              <p className="text-sm text-white/75 leading-relaxed">{f.desc}</p>
             </div>
           ))}
         </div>
@@ -132,7 +132,7 @@ function HomeEn() {
       {/* How it works */}
       <section className="mb-10">
         <h2 className="text-2xl font-semibold text-white mb-4">How It Works</h2>
-        <div className="space-y-4 text-sm text-white/70 leading-relaxed">
+        <div className="space-y-4 text-sm text-white/80 leading-relaxed">
           <div className="flex gap-3">
             <span className="shrink-0 flex h-7 w-7 items-center justify-center rounded-full bg-accent/20 text-accent text-xs font-bold">1</span>
             <p><strong className="text-white/90">Open the app</strong> — Visit the play page or install ArabFingers as a PWA on your device. The app goes fullscreen automatically for an immersive experience.</p>
@@ -165,7 +165,7 @@ function HomeEn() {
               <span className="text-xl shrink-0">{item.icon}</span>
               <div>
                 <h3 className="text-sm font-semibold text-white mb-1">{item.title}</h3>
-                <p className="text-xs text-white/55 leading-relaxed">{item.desc}</p>
+                <p className="text-sm text-white/75 leading-relaxed">{item.desc}</p>
               </div>
             </div>
           ))}
@@ -189,7 +189,7 @@ function HomeEn() {
           ].map((faq) => (
             <div key={faq.q} className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="text-sm font-semibold text-white mb-2">{faq.q}</h3>
-              <p className="text-xs text-white/60 leading-relaxed">{faq.a}</p>
+              <p className="text-sm text-white/75 leading-relaxed">{faq.a}</p>
             </div>
           ))}
         </div>
@@ -244,7 +244,7 @@ function HomeAr() {
         <h1 className="text-3xl sm:text-5xl font-bold text-white leading-tight">
           تعلّم الحروف العربية — مجاناً، باللعب، وثنائي اللغة
         </h1>
-        <p className="mt-4 text-base sm:text-lg text-white/70 leading-relaxed">
+        <p className="mt-4 text-base sm:text-lg text-white/80 leading-relaxed">
           عرب فنجرز هو مورد تعليمي عربي مجاني وخالٍ من الإعلانات للعائلات التي تربي أطفالاً ثنائيي
           اللغة من عمر سنة إلى ٦ سنوات. استكشف لعبة حروف تفاعلية، وأوراق عمل قابلة للطباعة، وأدلة
           متعمقة للأبجدية العربية والأرقام والكلمات الأولى — كلها بنطق طبيعي بالعربية والإنجليزية.
@@ -272,17 +272,17 @@ function HomeAr() {
       {/* What is ArabFingers */}
       <section className="mb-10">
         <h2 className="text-2xl font-semibold text-white mb-4">ما هو عرب فنجرز؟</h2>
-        <p className="text-sm leading-relaxed text-white/70 mb-3">
+        <p className="text-sm leading-relaxed text-white/80 mb-3">
           عرب فنجرز هو لعبة لوحة مفاتيح مجانية ثنائية اللغة مصممة خصيصاً للأطفال الصغار من عمر سنة
           إلى ٦ سنوات. عندما يضغط الأطفال على أي مفتاح في لوحة المفاتيح أو يلمسون أي مكان على الشاشة،
           يظهر حرف عربي كبير وجميل على الشاشة مع مقابله الإنجليزي جنباً إلى جنب.
         </p>
-        <p className="text-sm leading-relaxed text-white/70 mb-3">
+        <p className="text-sm leading-relaxed text-white/80 mb-3">
           كل حرف مصحوب بنطق طبيعي بالعربية والإنجليزية، مما يساعد الأطفال على ربط الشكل المرئي لكل
           حرف بصوته الصحيح. يتميز التطبيق بأشكال ثلاثية الأبعاد متحركة ملونة في الخلفية، وانفجارات
           رموز تعبيرية من نقطة التفاعل، واحتفالات بالقصاصات الملونة عند الوصول لعدد معين من الضغطات.
         </p>
-        <p className="text-sm leading-relaxed text-white/70">
+        <p className="text-sm leading-relaxed text-white/80">
           تم إنشاء عرب فنجرز للعائلات العربية ثنائية اللغة التي تريد تعريض أطفالها للأبجدية العربية
           في بيئة ممتعة وخالية من الضغط. لا توجد اختبارات، لا نقاط، ولا إجابات خاطئة — فقط متعة
           حسية خالصة وتعرف على الحروف من خلال اللعب.
@@ -306,7 +306,7 @@ function HomeAr() {
             <div key={f.title} className="rounded-xl border border-white/10 bg-white/5 p-4">
               <div className="text-2xl mb-2">{f.icon}</div>
               <h3 className="text-sm font-semibold text-white mb-1">{f.title}</h3>
-              <p className="text-xs text-white/60 leading-relaxed">{f.desc}</p>
+              <p className="text-sm text-white/75 leading-relaxed">{f.desc}</p>
             </div>
           ))}
         </div>
@@ -315,7 +315,7 @@ function HomeAr() {
       {/* How it works */}
       <section className="mb-10">
         <h2 className="text-2xl font-semibold text-white mb-4">كيف يعمل</h2>
-        <div className="space-y-4 text-sm text-white/70 leading-relaxed">
+        <div className="space-y-4 text-sm text-white/80 leading-relaxed">
           <div className="flex gap-3">
             <span className="shrink-0 flex h-7 w-7 items-center justify-center rounded-full bg-accent/20 text-accent text-xs font-bold">١</span>
             <p><strong className="text-white/90">افتح التطبيق</strong> — زر صفحة اللعب أو ثبّت عرب فنجرز كتطبيق على جهازك. يدخل التطبيق وضع ملء الشاشة تلقائياً لتجربة غامرة.</p>
@@ -346,7 +346,7 @@ function HomeAr() {
               <span className="text-xl shrink-0">{item.icon}</span>
               <div>
                 <h3 className="text-sm font-semibold text-white mb-1">{item.title}</h3>
-                <p className="text-xs text-white/55 leading-relaxed">{item.desc}</p>
+                <p className="text-sm text-white/75 leading-relaxed">{item.desc}</p>
               </div>
             </div>
           ))}
@@ -366,7 +366,7 @@ function HomeAr() {
           ].map((faq) => (
             <div key={faq.q} className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="text-sm font-semibold text-white mb-2">{faq.q}</h3>
-              <p className="text-xs text-white/60 leading-relaxed">{faq.a}</p>
+              <p className="text-sm text-white/75 leading-relaxed">{faq.a}</p>
             </div>
           ))}
         </div>

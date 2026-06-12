@@ -92,7 +92,7 @@ export function PrintablesClient({ locale }: PrintablesClientProps) {
         <h1 className="text-2xl font-bold text-white mb-2">
           {isAr ? "أوراق عمل وكراسات تلوين للأطفال مجاناً" : "Free Children's Printables & Tracing Books"}
         </h1>
-        <p className="text-xs text-white/55 leading-relaxed max-w-xl mx-auto mb-6">
+        <p className="text-sm text-white/75 leading-relaxed max-w-xl mx-auto mb-6">
           {isAr
             ? "اختر تصنيفاً من التبويبات أدناه واضغط على زر الطباعة للحصول على كراسة أنشطة خالية من الشاشات ومثالية للمنزل أو الحضانة!"
             : "Looking for engaging, screen-free educational activities? Pick a worksheet category below and click print to create a gorgeous, custom physical activity booklet for your toddler!"}

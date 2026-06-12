@@ -23,7 +23,7 @@ function TermsEn() {
     <>
       <h1 className="text-3xl font-semibold text-white">Terms of Service</h1>
       <p className="mt-1 text-sm text-white/40">Last updated: April 2026</p>
-      <div className="mt-8 space-y-6 text-sm leading-relaxed text-white/70">
+      <div className="mt-8 space-y-6 text-sm leading-relaxed text-white/80">
         <section>
           <h2 className="mb-2 text-lg font-medium text-white/90">Acceptance of Terms</h2>
           <p>By accessing and using ArabFingers, you agree to these terms. If you do not agree, please do not use the Service.</p>
@@ -66,7 +66,7 @@ function TermsAr() {
     <>
       <h1 className="text-3xl font-semibold text-white">شروط الاستخدام</h1>
       <p className="mt-1 text-sm text-white/40">آخر تحديث: أبريل ٢٠٢٦</p>
-      <div className="mt-8 space-y-6 text-sm leading-relaxed text-white/70">
+      <div className="mt-8 space-y-6 text-sm leading-relaxed text-white/80">
         <section>
           <h2 className="mb-2 text-lg font-medium text-white/90">قبول الشروط</h2>
           <p>باستخدامك لتطبيق عرب فنجرز، فإنك توافق على شروط الاستخدام هذه. إذا كنت لا توافق، يرجى عدم استخدام الخدمة.</p>

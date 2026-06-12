@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import { PageLayout } from "@/components/PageLayout";
 import { isLocale } from "@/lib/locales";
+import { generatePageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Contact Us | تواصل معنا",
-  description: "Contact the ArabFingers team for questions, feedback, or support.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata(locale, "/contact", {
+    titleEn: "Contact Us — Arab Fingers",
+    titleAr: "تواصل معنا — عرب فنجرز",
+    descriptionEn: "Contact the Arab Fingers team for questions, feedback, or support.",
+    descriptionAr: "تواصل مع فريق عرب فنجرز للأسئلة أو الملاحظات أو الدعم.",
+  });
+}
 
 export default async function ContactPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -22,7 +28,7 @@ function ContactEn() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-white">Contact Us</h1>
-      <div className="mt-8 space-y-6 text-sm leading-relaxed text-white/70">
+      <div className="mt-8 space-y-6 text-sm leading-relaxed text-white/80">
         <p>
           We would love to hear from you. Whether you have a question, feedback, a bug report,
           or a suggestion for ArabFingers, feel free to reach out.
@@ -59,7 +65,7 @@ function ContactAr() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-white">تواصل معنا</h1>
-      <div className="mt-8 space-y-6 text-sm leading-relaxed text-white/70">
+      <div className="mt-8 space-y-6 text-sm leading-relaxed text-white/80">
         <p>
           يسعدنا سماع رأيك. سواء كان لديك سؤال أو ملاحظة أو تقرير عن خطأ أو اقتراح لعرب فنجرز،
           لا تتردد في التواصل معنا.

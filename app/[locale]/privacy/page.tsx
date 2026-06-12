@@ -23,7 +23,7 @@ function PrivacyEn() {
     <>
       <h1 className="text-3xl font-semibold text-white">Privacy Policy</h1>
       <p className="mt-1 text-sm text-white/40">Last updated: April 2026</p>
-      <div className="mt-8 space-y-6 text-sm leading-relaxed text-white/70">
+      <div className="mt-8 space-y-6 text-sm leading-relaxed text-white/80">
         <section>
           <h2 className="mb-2 text-lg font-medium text-white/90">Overview</h2>
           <p>
@@ -85,7 +85,7 @@ function PrivacyAr() {
     <>
       <h1 className="text-3xl font-semibold text-white">سياسة الخصوصية</h1>
       <p className="mt-1 text-sm text-white/40">آخر تحديث: أبريل ٢٠٢٦</p>
-      <div className="mt-8 space-y-6 text-sm leading-relaxed text-white/70">
+      <div className="mt-8 space-y-6 text-sm leading-relaxed text-white/80">
         <section>
           <h2 className="mb-2 text-lg font-medium text-white/90">نظرة عامة</h2>
           <p>

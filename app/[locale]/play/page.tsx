@@ -35,21 +35,21 @@ export default async function PlayPage({
               <h1 className="text-2xl sm:text-3xl font-bold text-white mb-4">
                 لعبة تعلم الحروف العربية التفاعلية
               </h1>
-              <p className="text-sm leading-relaxed text-white/70 mb-6">
+              <p className="text-sm leading-relaxed text-white/80 mb-6">
                 عرب فنجرز هو لعبة لوحة مفاتيح مجانية ثنائية اللغة مصممة للأطفال الصغار من عمر سنة
                 إلى ٦ سنوات. اضغط أي مفتاح على لوحة المفاتيح أو المس الشاشة لترى حرفاً عربياً كبيراً
                 وجميلاً يظهر مع مقابله الإنجليزي ونطقه الصوتي.
               </p>
 
               <h2 className="text-lg font-semibold text-white mb-2">كيف تلعب</h2>
-              <p className="text-sm leading-relaxed text-white/70 mb-6">
+              <p className="text-sm leading-relaxed text-white/80 mb-6">
                 ببساطة اضغط أي مفتاح على لوحة المفاتيح أو المس الشاشة. كل ضغطة تكشف أحد الحروف
                 العربية الـ ٢٨ مع نطق طبيعي بالعربية والإنجليزية. يتعلم الأطفال من خلال التكرار —
                 كلما لعبوا أكثر، أصبحوا أكثر إلماماً بأشكال الحروف العربية وأصواتها.
               </p>
 
               <h2 className="text-lg font-semibold text-white mb-2">المميزات</h2>
-              <ul className="list-disc ms-5 space-y-1.5 text-sm text-white/70 mb-6">
+              <ul className="list-disc ms-5 space-y-1.5 text-sm text-white/80 mb-6">
                 <li>الأبجدية العربية كاملة (٢٨ حرفاً) مع نطق طبيعي</li>
                 <li>عرض ثنائي اللغة يظهر الحرف العربي والإنجليزي جنباً إلى جنب</li>
                 <li>٥ ثيمات بصرية: الفضاء، الصحراء، الغابة، تحت الماء، ورمضان</li>
@@ -60,7 +60,7 @@ export default async function PlayPage({
               </ul>
 
               <h2 className="text-lg font-semibold text-white mb-2">الأبجدية العربية</h2>
-              <p className="text-sm leading-relaxed text-white/70 mb-8">
+              <p className="text-sm leading-relaxed text-white/80 mb-8">
                 تتكون الأبجدية العربية من ٢٨ حرفاً تُكتب من اليمين إلى اليسار. يُعرض كل حرف بشكله
                 المنفصل — الشكل الأساسي الذي يتعلمه الأطفال أولاً. الحروف هي: {arabicLetterList}.
               </p>
@@ -82,14 +82,14 @@ export default async function PlayPage({
               <h1 className="text-2xl sm:text-3xl font-bold text-white mb-4">
                 Interactive Arabic Letter Learning Game
               </h1>
-              <p className="text-sm leading-relaxed text-white/70 mb-6">
+              <p className="text-sm leading-relaxed text-white/80 mb-6">
                 ArabFingers is a free, bilingual keyboard smash toy designed for toddlers and
                 pre-schoolers aged 1 to 6. Press any key or tap the screen to see a beautiful,
                 large Arabic letter appear with its English equivalent and spoken pronunciation.
               </p>
 
               <h2 className="text-lg font-semibold text-white mb-2">How to Play</h2>
-              <p className="text-sm leading-relaxed text-white/70 mb-6">
+              <p className="text-sm leading-relaxed text-white/80 mb-6">
                 Simply press any key on your keyboard or tap the screen. Each keypress reveals one
                 of the 28 Arabic letters with natural-sounding pronunciation in both Arabic and
                 English. Children learn through repetition — the more they play, the more familiar
@@ -97,7 +97,7 @@ export default async function PlayPage({
               </p>
 
               <h2 className="text-lg font-semibold text-white mb-2">Features</h2>
-              <ul className="list-disc ms-5 space-y-1.5 text-sm text-white/70 mb-6">
+              <ul className="list-disc ms-5 space-y-1.5 text-sm text-white/80 mb-6">
                 <li>Full 28-letter Arabic alphabet with natural pronunciation</li>
                 <li>Bilingual display showing Arabic and English letters side by side</li>
                 <li>5 visual themes: Space, Desert, Jungle, Underwater, and Ramadan</li>
@@ -108,7 +108,7 @@ export default async function PlayPage({
               </ul>
 
               <h2 className="text-lg font-semibold text-white mb-2">The Arabic Alphabet</h2>
-              <p className="text-sm leading-relaxed text-white/70 mb-8">
+              <p className="text-sm leading-relaxed text-white/80 mb-8">
                 The Arabic alphabet consists of 28 letters written from right to left. Each letter
                 is displayed in its isolated form — the foundational shape children learn first.
                 The letters are: {arabicLetterList}.

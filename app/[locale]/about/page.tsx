@@ -2,12 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
 import { isLocale } from "@/lib/locales";
+import { generatePageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "About ArabFingers | عن عرب فنجرز",
-  description:
-    "ArabFingers is a free, open-source bilingual Arabic & English keyboard smash toy for toddlers aged 1–6. Learn about our mission, methodology, and child safety commitment.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata(locale, "/about", {
+    titleEn: "About Arab Fingers — Our Mission & Method",
+    titleAr: "عن عرب فنجرز — مهمتنا ومنهجنا",
+    descriptionEn:
+      "Arab Fingers is a free, open-source bilingual Arabic & English keyboard smash toy for toddlers aged 1–6. Learn about our mission, methodology, and child safety commitment.",
+    descriptionAr:
+      "عرب فنجرز هو لعبة لوحة مفاتيح مجانية ومفتوحة المصدر ثنائية اللغة بالعربية والإنجليزية للأطفال من عمر سنة إلى ٦ سنوات. تعرّف على مهمتنا ومنهجنا التعليمي والتزامنا بسلامة الأطفال.",
+  });
+}
 
 export default async function AboutPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -26,7 +33,7 @@ function AboutEn() {
       <h1 className="text-3xl font-semibold text-white">About ArabFingers</h1>
       <p className="mt-1 text-sm text-white/50">The fun way for kids to discover the Arabic alphabet</p>
 
-      <div className="mt-8 space-y-8 text-sm leading-relaxed text-white/70">
+      <div className="mt-8 space-y-8 text-sm leading-relaxed text-white/80">
         <section>
           <h2 className="mb-2 text-xl font-semibold text-white">Our Mission</h2>
           <p className="mb-3">
@@ -64,15 +71,15 @@ function AboutEn() {
           <div className="space-y-3">
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">Multi-Sensory Learning</h3>
-              <p className="text-white/60">Children learn best when multiple senses are engaged simultaneously. ArabFingers combines visual (seeing the letter shape), auditory (hearing the letter name), and kinesthetic (pressing keys or tapping) input to create stronger neural connections and better retention.</p>
+              <p className="text-white/80">Children learn best when multiple senses are engaged simultaneously. ArabFingers combines visual (seeing the letter shape), auditory (hearing the letter name), and kinesthetic (pressing keys or tapping) input to create stronger neural connections and better retention.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">Repetition Through Joy</h3>
-              <p className="text-white/60">Letter recognition requires repeated exposure. Instead of drilling, ArabFingers makes each interaction rewarding with animations, sounds, and celebrations. Children naturally repeat activities they enjoy, and each repetition reinforces letter recognition without feeling like work.</p>
+              <p className="text-white/80">Letter recognition requires repeated exposure. Instead of drilling, ArabFingers makes each interaction rewarding with animations, sounds, and celebrations. Children naturally repeat activities they enjoy, and each repetition reinforces letter recognition without feeling like work.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">Zero Pressure Environment</h3>
-              <p className="text-white/60">There are no tests, no scores, no wrong answers, and no failure states in ArabFingers. Every interaction produces a positive response. This pressure-free design builds positive associations with Arabic and encourages children to explore freely.</p>
+              <p className="text-white/80">There are no tests, no scores, no wrong answers, and no failure states in ArabFingers. Every interaction produces a positive response. This pressure-free design builds positive associations with Arabic and encourages children to explore freely.</p>
             </div>
           </div>
         </section>
@@ -101,19 +108,19 @@ function AboutEn() {
           <div className="space-y-3">
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">Toddlers (Ages 1–3)</h3>
-              <p className="text-white/60">At this age, children enjoy the sensory experience — pressing keys and seeing colorful, animated responses. They&apos;re building familiarity with Arabic letter shapes and sounds through cause-and-effect play.</p>
+              <p className="text-white/80">At this age, children enjoy the sensory experience — pressing keys and seeing colorful, animated responses. They&apos;re building familiarity with Arabic letter shapes and sounds through cause-and-effect play.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">Pre-Schoolers (Ages 4–6)</h3>
-              <p className="text-white/60">Older children begin recognizing and naming letters, matching Arabic letters to their English equivalents, and engaging with the guided mode for sequential learning.</p>
+              <p className="text-white/80">Older children begin recognizing and naming letters, matching Arabic letters to their English equivalents, and engaging with the guided mode for sequential learning.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">Bilingual Families</h3>
-              <p className="text-white/60">Families who speak Arabic at home and want their children to see Arabic and English as equal, natural parts of their world.</p>
+              <p className="text-white/80">Families who speak Arabic at home and want their children to see Arabic and English as equal, natural parts of their world.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">Parents &amp; Educators</h3>
-              <p className="text-white/60">Adults looking for a safe, ad-free play area with parental controls, or teachers seeking a classroom-friendly Arabic introduction tool.</p>
+              <p className="text-white/80">Adults looking for a safe, ad-free play area with parental controls, or teachers seeking a classroom-friendly Arabic introduction tool.</p>
             </div>
           </div>
         </section>
@@ -185,7 +192,7 @@ function AboutAr() {
       <h1 className="text-3xl font-semibold text-white">عن عرب فنجرز</h1>
       <p className="mt-1 text-sm text-white/50">الطريقة الممتعة للأطفال لاكتشاف الأبجدية العربية</p>
 
-      <div className="mt-8 space-y-8 text-sm leading-relaxed text-white/70">
+      <div className="mt-8 space-y-8 text-sm leading-relaxed text-white/80">
         <section>
           <h2 className="mb-2 text-xl font-semibold text-white">مهمتنا</h2>
           <p className="mb-3">
@@ -221,15 +228,15 @@ function AboutAr() {
           <div className="space-y-3">
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">تعلم متعدد الحواس</h3>
-              <p className="text-white/60">الأطفال يتعلمون أفضل عندما يتم إشراك حواس متعددة في وقت واحد. عرب فنجرز يجمع بين المدخلات البصرية والسمعية والحركية لإنشاء اتصالات عصبية أقوى.</p>
+              <p className="text-white/80">الأطفال يتعلمون أفضل عندما يتم إشراك حواس متعددة في وقت واحد. عرب فنجرز يجمع بين المدخلات البصرية والسمعية والحركية لإنشاء اتصالات عصبية أقوى.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">التكرار من خلال الفرح</h3>
-              <p className="text-white/60">التعرف على الحروف يتطلب تعرضاً متكرراً. بدلاً من التلقين، يجعل عرب فنجرز كل تفاعل مكافئاً بالرسوم المتحركة والأصوات والاحتفالات.</p>
+              <p className="text-white/80">التعرف على الحروف يتطلب تعرضاً متكرراً. بدلاً من التلقين، يجعل عرب فنجرز كل تفاعل مكافئاً بالرسوم المتحركة والأصوات والاحتفالات.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">بيئة بدون ضغط</h3>
-              <p className="text-white/60">لا اختبارات ولا درجات ولا إجابات خاطئة ولا حالات فشل. كل تفاعل ينتج استجابة إيجابية. هذا التصميم يبني ارتباطات إيجابية مع العربية.</p>
+              <p className="text-white/80">لا اختبارات ولا درجات ولا إجابات خاطئة ولا حالات فشل. كل تفاعل ينتج استجابة إيجابية. هذا التصميم يبني ارتباطات إيجابية مع العربية.</p>
             </div>
           </div>
         </section>

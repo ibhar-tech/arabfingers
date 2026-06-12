@@ -312,7 +312,7 @@ export default function ColoringClient() {
               <h2 className="text-2xl font-bold text-white mb-2">
                 {isAr ? "عمل رائع!" : "Great Job!"}
               </h2>
-              <p className="text-white/60">
+              <p className="text-white/80">
                 {isAr ? "لقد لونت الحرف بنجاح." : "You've successfully colored the letter."}
               </p>
             </div>

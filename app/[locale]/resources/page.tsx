@@ -2,12 +2,19 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
 import { isLocale } from "@/lib/locales";
+import { generatePageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Bilingual Learning Resources | مصادر التعلم ثنائية اللغة",
-  description:
-    "Explore recommended websites, games, and tools for kids and beginners learning Arabic and English. Hand-picked educational portals.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata(locale, "/resources", {
+    titleEn: "Recommended Bilingual Learning Resources for Kids",
+    titleAr: "مصادر التعلم ثنائية اللغة الموصى بها للأطفال",
+    descriptionEn:
+      "Explore recommended websites, games, and tools for kids and beginners learning Arabic and English. Hand-picked educational portals.",
+    descriptionAr:
+      "اكتشف مواقع وألعاب وأدوات موصى بها للأطفال والمبتدئين لتعلم العربية والإنجليزية. منصات تعليمية مختارة بعناية.",
+  });
+}
 
 export default async function ResourcesPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -94,7 +101,7 @@ function ResourcesEn() {
                       {res.name} <span className="inline-block text-xs font-normal opacity-50 group-hover:translate-x-1 transition-transform">→</span>
                     </a>
                   </h3>
-                  <p className="text-xs text-white/60 leading-relaxed">{res.desc}</p>
+                  <p className="text-sm text-white/75 leading-relaxed">{res.desc}</p>
                 </div>
               </div>
             </div>
@@ -120,7 +127,7 @@ function ResourcesEn() {
                       {res.name} <span className="inline-block text-xs font-normal opacity-50 group-hover:translate-x-1 transition-transform">→</span>
                     </a>
                   </h3>
-                  <p className="text-xs text-white/60 leading-relaxed">{res.desc}</p>
+                  <p className="text-sm text-white/75 leading-relaxed">{res.desc}</p>
                 </div>
               </div>
             </div>
@@ -130,7 +137,7 @@ function ResourcesEn() {
 
       <div className="mt-10 rounded-2xl border border-dashed border-white/15 bg-white/2 p-6 text-center">
         <h3 className="text-sm font-semibold text-white mb-2">💡 Parent Teaching Tip</h3>
-        <p className="text-xs text-white/60 leading-relaxed max-w-lg mx-auto">
+        <p className="text-sm text-white/75 leading-relaxed max-w-lg mx-auto">
           Combining sensory keyboard games (like <strong>ArabFingers</strong> or <strong>TinyFingers</strong>) with phonics-based reading guides (like <strong>Starfall</strong>) offers a robust foundation. Introduce learning in short, daily, playful blocks rather than formal drilling sessions.
         </p>
       </div>
@@ -218,7 +225,7 @@ function ResourcesAr() {
                       {res.name} <span className="inline-block text-xs font-normal opacity-50 group-hover:translate-x-1 transition-transform">←</span>
                     </a>
                   </h3>
-                  <p className="text-xs text-white/60 leading-relaxed">{res.desc}</p>
+                  <p className="text-sm text-white/75 leading-relaxed">{res.desc}</p>
                 </div>
               </div>
             </div>
@@ -244,7 +251,7 @@ function ResourcesAr() {
                       {res.name} <span className="inline-block text-xs font-normal opacity-50 group-hover:translate-x-1 transition-transform">←</span>
                     </a>
                   </h3>
-                  <p className="text-xs text-white/60 leading-relaxed">{res.desc}</p>
+                  <p className="text-sm text-white/75 leading-relaxed">{res.desc}</p>
                 </div>
               </div>
             </div>
@@ -254,7 +261,7 @@ function ResourcesAr() {
 
       <div className="mt-10 rounded-2xl border border-dashed border-white/15 bg-white/2 p-6 text-center">
         <h3 className="text-sm font-semibold text-white mb-2">💡 نصيحة تعليمية للوالدين</h3>
-        <p className="text-xs text-white/60 leading-relaxed max-w-lg mx-auto">
+        <p className="text-sm text-white/75 leading-relaxed max-w-lg mx-auto">
           الدمج بين ألعاب لوحة المفاتيح الحسية (مثل <strong>عرب فنجرز</strong> أو <strong>تايني فنجرز</strong>) والمواقع التفاعلية لتعليم الصوتيات (مثل <strong>ستارفال</strong>) يبني أساساً متيناً للطفل. قدّم هذا التعلم في فترات لعب يومية قصيرة وممتعة بدلاً من الحصص الدراسية الرسمية والملل.
         </p>
       </div>
