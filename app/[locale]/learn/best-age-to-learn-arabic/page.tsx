@@ -3,12 +3,61 @@ import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
 import { ArticleMeta } from "@/components/ArticleMeta";
 import { isLocale } from "@/lib/locales";
+import { generatePageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Best Age to Start Teaching Arabic | أفضل عمر لبدء تعليم العربية",
-  description:
-    "Research-backed guidance on when to introduce Arabic to children. Learn about critical language acquisition periods and age-appropriate strategies for teaching Arabic letters.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata(locale, "/learn/best-age-to-learn-arabic", {
+    titleEn: "Best Age to Start Teaching Arabic to Kids (Stage-by-Stage Guide)",
+    titleAr: "أفضل عمر لبدء تعليم العربية للأطفال — دليل مرحلة بمرحلة",
+    descriptionEn:
+      "When should a child start Arabic? A stage-by-stage age guide (0-2 listening, 2-4 sounds and play, 4-6 letters, 6+ reading), what early exposure does for the brain, and why it's never too late.",
+    descriptionAr:
+      "متى يبدأ الطفل تعلّم العربية؟ دليل بحسب العمر (٠–٢ الإصغاء، ٢–٤ الأصوات واللعب، ٤–٦ الحروف، ٦+ القراءة)، وأثر التعريض المبكّر في الدماغ، ولماذا لا يفوت الأوان أبداً.",
+    ogType: "article",
+    publishedTime: "2026-04-23",
+    modifiedTime: "2026-06-12",
+    keywords: [
+      "best age to learn arabic", "أفضل عمر لتعلم العربية",
+      "when to teach arabic", "متى نعلم الطفل العربية",
+      "early language exposure", "التعرض المبكر للغة",
+    ],
+  });
+}
+
+const stages = [
+  { ageEn: "0–2 years", ageAr: "٠–٢ سنة", focusEn: "Listening", focusAr: "الإصغاء", doEn: "Speak and sing Arabic around your baby; play nursery rhymes; read board books aloud.", doAr: "تحدّث وغنِّ بالعربية حول رضيعك، وشغّل الأناشيد، واقرأ الكتب المصوّرة بصوتٍ عالٍ." },
+  { ageEn: "2–4 years", ageAr: "٢–٤ سنوات", focusEn: "Sounds & play", focusAr: "الأصوات واللعب", doEn: "Free, pressure-free play with ArabFingers; name letters casually; point out Arabic around you.", doAr: "لعب حرّ بلا ضغط مع عرب فنجرز، وتسمية الحروف عَرَضاً، والإشارة إلى العربية من حولكما." },
+  { ageEn: "4–6 years", ageAr: "٤–٦ سنوات", focusEn: "Letters", focusAr: "الحروف", doEn: "Recognise and name most letters; trace shapes in sand or on paper; sing the alphabet.", doAr: "معرفة أكثر الحروف وتسميتها، وتتبّع أشكالها في الرمل أو على الورق، وغناء نشيد الأبجدية." },
+  { ageEn: "6+ years", ageAr: "٦ سنوات فأكثر", focusEn: "Reading", focusAr: "القراءة", doEn: "Connect letters into words; read short sentences; begin diacritics (harakat).", doAr: "وصل الحروف كلماتٍ، وقراءة جمل قصيرة، والبدء بالحركات (الضبط بالشكل)." },
+];
+
+const faqs = [
+  {
+    qEn: "Is my child too young to start?",
+    qAr: "هل طفلي أصغر من أن يبدأ؟",
+    aEn: "No. From birth, babies are building a sound library from everything they hear. You can't start the listening stage too early — even an infant benefits from hearing Arabic spoken and sung around them.",
+    aAr: "لا. فالرضيع منذ ولادته يبني مكتبة أصوات ممّا يسمعه. ولا يكون البدء بمرحلة الإصغاء مبكّراً أبداً؛ فحتى الرضيع ينتفع بسماع العربية تُقال وتُنشد حوله.",
+  },
+  {
+    qEn: "My child only speaks English. Is it too late?",
+    qAr: "طفلي لا يتكلّم إلا الإنجليزية، فهل فات الأوان؟",
+    aEn: "It is never too late. Earlier is easier for accent-free pronunciation, but a five- or six-year-old can absolutely begin with letter recognition and build a strong foundation before formal Arabic study.",
+    aAr: "لا يفوت الأوان أبداً. فالبدء المبكّر أيسر في سلامة النطق، لكنّ ابن الخامسة أو السادسة يستطيع تماماً أن يبدأ بمعرفة الحروف ويبني أساساً متيناً قبل الدراسة النظامية.",
+  },
+  {
+    qEn: "How many minutes a day are enough?",
+    qAr: "كم دقيقة في اليوم تكفي؟",
+    aEn: "For toddlers, five to ten minutes of play is plenty. For pre-schoolers, fifteen to twenty minutes mixing play and activities. Consistency matters far more than length — five minutes daily beats an hour once a week.",
+    aAr: "للصغار خمس إلى عشر دقائق من اللعب تكفي. ولأطفال الروضة خمس عشرة إلى عشرين دقيقة تجمع اللعب والنشاط. والاستمرار أهمّ من الطول بكثير؛ فخمس دقائق كلّ يوم خير من ساعة في الأسبوع.",
+  },
+  {
+    qEn: "Won't two languages confuse or delay my child?",
+    qAr: "ألا تربك اللغتان طفلي أو تؤخّران كلامه؟",
+    aEn: "No. Bilingual children build a separate track for each language. Brief mixing is normal and passes, and bilingualism does not delay overall language development.",
+    aAr: "لا. فالطفل ثنائيّ اللغة يبني مساراً مستقلاً لكلّ لغة. والخلط اليسير طبيعيّ ويزول، وثنائية اللغة لا تؤخّر نموّ اللغة في مجمله.",
+  },
+];
 
 export default async function BestAgePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -23,7 +72,7 @@ export default async function BestAgePage({ params }: { params: Promise<{ locale
         description="What research and experience say about the best age to start teaching Arabic to children, and what to expect at each stage."
         slug="learn/best-age-to-learn-arabic"
         datePublished="2026-04-23"
-        dateModified="2026-05-22"
+        dateModified="2026-06-12"
         section="Parenting"
         crumbs={[
           { label: locale === "ar" ? "تعلم" : "Learn", href: `/${locale}/learn` },
@@ -32,6 +81,19 @@ export default async function BestAgePage({ params }: { params: Promise<{ locale
       />
 
       {isAr ? <ContentAr /> : <ContentEn />}
+
+      <section className="mt-2 mb-8">
+        <h2 className="text-xl font-semibold text-white mb-4">{isAr ? "أسئلة شائعة للوالدين" : "Frequently Asked Questions"}</h2>
+        <div className="space-y-3">
+          {faqs.map((f) => (
+            <div key={f.qEn} className="rounded-xl border border-white/8 bg-white/5 p-4">
+              <h3 className="text-base font-semibold text-white mb-1">{isAr ? f.qAr : f.qEn}</h3>
+              <p className="text-sm text-white/80 leading-relaxed">{isAr ? f.aAr : f.aEn}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <div className="text-center py-8">
         <Link href={`/${locale}/play`} className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105">
           🚀 {isAr ? "ابدأ التعلم الآن" : "Start Learning Now"}
@@ -41,78 +103,91 @@ export default async function BestAgePage({ params }: { params: Promise<{ locale
   );
 }
 
+function StageTable({ isAr }: { isAr: boolean }) {
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full text-sm">
+        <thead>
+          <tr className="border-b border-white/10">
+            <th className="py-2 px-3 text-start text-white/70 font-medium">{isAr ? "العمر" : "Age"}</th>
+            <th className="py-2 px-3 text-start text-white/70 font-medium">{isAr ? "التركيز" : "Focus"}</th>
+            <th className="py-2 px-3 text-start text-white/70 font-medium">{isAr ? "ماذا تفعل" : "What to do"}</th>
+          </tr>
+        </thead>
+        <tbody className="text-white/80">
+          {stages.map((s) => (
+            <tr key={s.ageEn} className="border-b border-white/5">
+              <td className="py-2.5 px-3 text-white/85 font-medium whitespace-nowrap">{isAr ? s.ageAr : s.ageEn}</td>
+              <td className="py-2.5 px-3 text-accent/90 whitespace-nowrap">{isAr ? s.focusAr : s.focusEn}</td>
+              <td className="py-2.5 px-3">{isAr ? s.doAr : s.doEn}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 function ContentEn() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-white mb-2">What&apos;s the Best Age to Start Teaching Arabic?</h1>
-      <p className="text-sm text-white/50 mb-8">Research-backed guidance for parents and educators</p>
+      <p className="text-sm text-white/55 mb-8">A stage-by-stage guide for parents and educators</p>
 
-      <div className="space-y-8 text-sm leading-relaxed text-white/70">
+      <div className="space-y-8 text-sm leading-relaxed text-white/80">
         <section>
           <h2 className="text-xl font-semibold text-white mb-3">The Short Answer: As Early as Possible</h2>
-          <p className="mb-3">Language researchers agree: there is no &quot;too early&quot; when it comes to language exposure. Babies begin processing language sounds from birth — and possibly even before birth in the womb. The earlier a child is exposed to Arabic sounds and letter shapes, the more naturally they will acquire the language.</p>
-          <p>However, &quot;teaching&quot; Arabic to a one-year-old looks very different from teaching it to a five-year-old. The key is matching your approach to your child&apos;s developmental stage. This guide breaks down what to expect and how to approach Arabic learning at each age.</p>
+          <p className="mb-3">Language experts broadly agree: there is no &quot;too early&quot; when it comes to language exposure. Babies begin processing language sounds from birth — and likely even in the womb. The earlier a child meets Arabic sounds and letter shapes, the more naturally they acquire the language.</p>
+          <p>But &quot;teaching&quot; Arabic to a one-year-old looks very different from teaching it to a five-year-old. The key is matching your approach to your child&apos;s stage. This guide breaks down what to expect and how to approach Arabic at each age.</p>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">The Critical Period for Language Learning</h2>
-          <p className="mb-3">Neuroscience research has identified a &quot;critical period&quot; for language acquisition that extends roughly from birth to age 7. During this window, the brain is extraordinarily receptive to new language input. Children can distinguish phonetic differences that adults struggle to hear, and they can acquire native-like pronunciation with minimal effort.</p>
-          <p className="mb-3">After approximately age 7, the brain begins &quot;pruning&quot; neural connections for sounds it doesn&apos;t regularly hear. This doesn&apos;t mean older children can&apos;t learn Arabic — they absolutely can — but the process becomes more effortful and accent-free pronunciation becomes harder to achieve.</p>
-          <p>This is why tools like ArabFingers are designed for the 1-6 age range. Every exposure to Arabic letter sounds during this period builds neural pathways that make formal Arabic education significantly easier later.</p>
+          <h2 className="text-xl font-semibold text-white mb-3">Age-Window Table</h2>
+          <StageTable isAr={false} />
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">Age-by-Age Guide</h2>
+          <h2 className="text-xl font-semibold text-white mb-3">What Early Exposure Does for the Brain</h2>
+          <p className="mb-3">Researchers describe a &quot;sensitive period&quot; for language that runs from birth to roughly age seven. During this window the brain is extraordinarily open to new language input. Young children can hear and reproduce sound distinctions that adults struggle with, and they pick up native-like pronunciation with little effort.</p>
+          <p className="mb-3">As children grow, the brain gradually tunes itself to the sounds it hears most and becomes less sensitive to sounds it rarely meets. This doesn&apos;t mean older children can&apos;t learn Arabic — they absolutely can — but accent-free pronunciation becomes a little harder to reach. Every early exposure to Arabic sounds is, in effect, keeping a door open.</p>
+          <p>This is why tools like ArabFingers are built for the 1–6 range. Each time a child hears an Arabic letter sound in these years, they strengthen the pathways that make later, formal Arabic much easier.</p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-white mb-3">Stage-by-Stage Guide</h2>
           <div className="space-y-4">
             <div className="rounded-xl border border-white/8 bg-white/5 p-5">
-              <h3 className="font-semibold text-white mb-2">Ages 0-1: Sound Exposure</h3>
-              <p className="text-white/60 mb-2">At this age, babies are absorbing the sounds of their environment. They can&apos;t produce language yet, but they&apos;re building a sound library in their brain. Every Arabic conversation, song, or Quran recitation they hear is building neural connections.</p>
-              <p className="text-white/60"><strong className="text-white/80">What to do:</strong> Speak Arabic around your baby. Play Arabic nursery rhymes and songs. Read Arabic board books aloud, even if they can&apos;t understand the words yet. The rhythm and sounds of Arabic are what matters at this stage.</p>
+              <h3 className="font-semibold text-white mb-2">Ages 0–2: Listening</h3>
+              <p className="text-white/80 mb-2">At this age, babies are absorbing the sounds of their environment. They can&apos;t produce language yet, but they&apos;re building a sound library in the brain. Every Arabic conversation, song, or recitation they hear lays down connections.</p>
+              <p className="text-white/80"><strong className="text-white/90">What to do:</strong> Speak Arabic around your baby. Play Arabic nursery rhymes. Read Arabic board books aloud, even before they understand the words. The rhythm and sounds are what matter now.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-5">
-              <h3 className="font-semibold text-white mb-2">Ages 1-2: Sensory Exploration</h3>
-              <p className="text-white/60 mb-2">Toddlers learn through cause-and-effect interactions. They love pressing buttons and seeing things happen. This is the perfect age for ArabFingers — the keyboard smash format lets them explore Arabic letters through play without any expectations or pressure.</p>
-              <p className="text-white/60"><strong className="text-white/80">What to do:</strong> Let your child play with ArabFingers freely. Don&apos;t quiz them or ask them to identify letters. Simply let them enjoy the sensory experience of seeing colorful letters and hearing Arabic sounds. Name letters casually as they appear: &quot;Oh, that&apos;s Ba!&quot;</p>
+              <h3 className="font-semibold text-white mb-2">Ages 2–4: Sounds &amp; Play</h3>
+              <p className="text-white/80 mb-2">Toddlers learn through cause and effect. They love pressing things and seeing what happens — the perfect age for ArabFingers. The keyboard-smash format lets them explore Arabic letters through play with no expectations.</p>
+              <p className="text-white/80"><strong className="text-white/90">What to do:</strong> Let your child play freely. Don&apos;t quiz them. Name letters casually as they appear: &quot;Oh, that&apos;s Ba!&quot; Start pointing out Arabic letters on packages, signs, and book covers.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-5">
-              <h3 className="font-semibold text-white mb-2">Ages 2-4: Recognition Begins</h3>
-              <p className="text-white/60 mb-2">This is when children start recognizing and naming familiar shapes, including letters. They may begin saying letter names, identifying letters they&apos;ve seen repeatedly, and showing favorites. &quot;I want to find the ب!&quot; is a wonderful sign of emerging literacy.</p>
-              <p className="text-white/60"><strong className="text-white/80">What to do:</strong> Continue casual play with ArabFingers. Start pointing out Arabic letters in the environment — on food packages, street signs, and book covers. Sing the Arabic alphabet song. Introduce Arabic letter puzzles and magnetic letters for tactile learning.</p>
+              <h3 className="font-semibold text-white mb-2">Ages 4–6: Letters</h3>
+              <p className="text-white/80 mb-2">Pre-schoolers can engage in more structured learning. They can name most letters, understand that letters carry sounds, and start tracing shapes. This is when gentle, formal letter work can begin alongside continued play.</p>
+              <p className="text-white/80"><strong className="text-white/90">What to do:</strong> Trace Arabic letters in sand, salt trays, or on paper. Sing the alphabet. Read simple Arabic words together. Keep play as the main mode of learning.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-5">
-              <h3 className="font-semibold text-white mb-2">Ages 4-6: Active Learning</h3>
-              <p className="text-white/60 mb-2">Pre-schoolers can engage in more structured learning. They can name most letters, understand that letters represent sounds, begin connecting letters to words, and start tracing letter shapes. This is when formal Arabic letter instruction can begin alongside continued play.</p>
-              <p className="text-white/60"><strong className="text-white/80">What to do:</strong> Use ArabFingers guided mode for sequential letter practice. Introduce writing practice — tracing Arabic letters in sand, salt trays, or on paper. Read simple Arabic words together. Start a structured Arabic curriculum if desired, but keep play as the primary mode of learning.</p>
-            </div>
-            <div className="rounded-xl border border-white/8 bg-white/5 p-5">
-              <h3 className="font-semibold text-white mb-2">Ages 6+: Reading Readiness</h3>
-              <p className="text-white/60 mb-2">Children who had early exposure to Arabic are now ready for reading instruction. They can recognize most letters in their various forms, understand how letters connect in words, begin reading simple words and short sentences, and start learning diacritics (harakat) for proper pronunciation.</p>
-              <p className="text-white/60"><strong className="text-white/80">What to do:</strong> Transition to reading-focused Arabic programs. Continue using ArabFingers for fun review and reinforcement. Read Arabic children&apos;s books together daily. Consider formal Arabic classes or tutoring.</p>
+              <h3 className="font-semibold text-white mb-2">Ages 6+: Reading</h3>
+              <p className="text-white/80 mb-2">Children with early exposure are ready for reading. They recognise most letters in their connected forms, see how letters join in words, and begin reading short words and sentences — and learning diacritics for precise pronunciation.</p>
+              <p className="text-white/80"><strong className="text-white/90">What to do:</strong> Move to reading-focused programs. Keep ArabFingers for fun review. Read Arabic children&apos;s books daily. Consider classes or a tutor.</p>
             </div>
           </div>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">Common Concerns</h2>
-          <div className="space-y-4">
-            <div className="rounded-xl border border-white/8 bg-white/5 p-4">
-              <h3 className="font-semibold text-white mb-1">&quot;Won&apos;t two writing systems confuse my child?&quot;</h3>
-              <p className="text-white/60">No. Research consistently shows that bilingual children do not get confused by multiple writing systems. They develop separate &quot;tracks&quot; for each language and switch between them naturally. Temporary mixing (writing some Arabic letters backwards or inserting English letters into Arabic) is normal and resolves naturally.</p>
-            </div>
-            <div className="rounded-xl border border-white/8 bg-white/5 p-4">
-              <h3 className="font-semibold text-white mb-1">&quot;My child only speaks English at home. Is it too late?&quot;</h3>
-              <p className="text-white/60">It&apos;s never too late to start. While earlier is better for pronunciation, children can begin learning Arabic letters at any age. Even starting at 5 or 6 — with tools like ArabFingers for letter recognition — gives them a strong foundation before formal Arabic instruction.</p>
-            </div>
-            <div className="rounded-xl border border-white/8 bg-white/5 p-4">
-              <h3 className="font-semibold text-white mb-1">&quot;How much time per day is needed?&quot;</h3>
-              <p className="text-white/60">For toddlers: 5-10 minutes of play per day is plenty. For pre-schoolers: 15-20 minutes combining play and structured activities. Consistency matters more than duration. Five minutes every day is far more effective than an hour once a week.</p>
-            </div>
-          </div>
+          <h2 className="text-xl font-semibold text-white mb-3">It&apos;s Never Too Late</h2>
+          <p className="mb-3">If your child is already six, seven, or older, take heart: the &quot;sensitive period&quot; describes when learning is easiest, not a deadline after which it becomes impossible. Older children bring real advantages — longer attention spans, the ability to follow explanations, and the capacity to study patterns deliberately.</p>
+          <p>What matters most at any age is steady, positive exposure. A child who starts later and enjoys Arabic will go far past a child who started early but came to resent it. Begin where your child is today, keep it light, and let progress build.</p>
         </section>
 
         <section>
           <h2 className="text-xl font-semibold text-white mb-3">The Bottom Line</h2>
-          <p>The best time to start teaching Arabic is now — whatever your child&apos;s age. For babies and toddlers, that means sound exposure through conversation and play. For pre-schoolers, it means interactive letter recognition through tools like ArabFingers combined with environmental exposure. The foundation you build in these early years will make Arabic literacy dramatically easier when formal instruction begins.</p>
+          <p>The best time to start teaching Arabic is now — whatever your child&apos;s age. For babies and toddlers, that means sound exposure through conversation and play. For pre-schoolers, interactive letter recognition through tools like ArabFingers combined with everyday exposure. The foundation you build in these early years makes Arabic literacy dramatically easier when formal instruction begins.</p>
         </section>
       </div>
     </>
@@ -122,51 +197,63 @@ function ContentEn() {
 function ContentAr() {
   return (
     <>
-      <h1 className="text-3xl font-semibold text-white mb-2">ما هو أفضل عمر لبدء تعليم العربية؟</h1>
-      <p className="text-sm text-white/50 mb-8">إرشادات مدعومة بالأبحاث للوالدين والمعلمين</p>
+      <h1 className="text-3xl font-semibold text-white mb-2">ما أفضل عمر لبدء تعليم العربية؟</h1>
+      <p className="text-sm text-white/55 mb-8">دليل مرحلة بمرحلة للوالدين والمعلّمين</p>
 
-      <div className="space-y-8 text-sm leading-relaxed text-white/70">
+      <div className="space-y-8 text-sm leading-relaxed text-white/80">
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">الإجابة القصيرة: في أقرب وقت ممكن</h2>
-          <p className="mb-3">يتفق الباحثون في مجال اللغة: لا يوجد &quot;مبكر جداً&quot; عندما يتعلق الأمر بالتعرض للغة. يبدأ الأطفال في معالجة أصوات اللغة منذ الولادة — وربما حتى قبل الولادة في الرحم. كلما تعرض الطفل للأصوات العربية وأشكال الحروف مبكراً، كلما اكتسب اللغة بشكل أكثر طبيعية.</p>
-          <p>لكن &quot;تعليم&quot; العربية لطفل عمره سنة يبدو مختلفاً جداً عن تعليمها لطفل عمره خمس سنوات. المفتاح هو مطابقة أسلوبك مع المرحلة التطورية لطفلك.</p>
+          <h2 className="text-xl font-semibold text-white mb-3">الجواب المختصر: في أبكر وقت ممكن</h2>
+          <p className="mb-3">يكاد أهل اللغة يجمعون على أنّه لا &quot;مبكّر جداً&quot; حين يكون الحديث عن التعريض للّغة. فالطفل يبدأ معالجة أصوات اللغة منذ ولادته، بل لعلّه في بطن أمّه كذلك. وكلّما بكّرنا في تعريضه لأصوات العربية وأشكال حروفها، اكتسبها أيسر وأقرب إلى الطبع.</p>
+          <p>على أنّ &quot;تعليم&quot; العربية لابن السنة يختلف اختلافاً كبيراً عن تعليمها لابن الخامسة. والمفتاح أن توائم بين أسلوبك ومرحلة طفلك. وهذا الدليل يبيّن لك ما تتوقّعه وكيف تتعامل مع العربية في كلّ عمر.</p>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">الفترة الحرجة لتعلم اللغة</h2>
-          <p className="mb-3">حددت أبحاث علم الأعصاب &quot;فترة حرجة&quot; لاكتساب اللغة تمتد تقريباً من الولادة إلى سن السابعة. خلال هذه النافذة، يكون الدماغ مستقبلاً بشكل استثنائي للمدخلات اللغوية الجديدة. يمكن للأطفال تمييز الفروقات الصوتية التي يجد الكبار صعوبة في سماعها، ويمكنهم اكتساب نطق شبيه بالمتحدثين الأصليين بأقل جهد.</p>
-          <p>بعد سن السابعة تقريباً، يبدأ الدماغ في &quot;تقليم&quot; الاتصالات العصبية للأصوات التي لا يسمعها بانتظام. هذا لا يعني أن الأطفال الأكبر لا يمكنهم تعلم العربية — بالتأكيد يمكنهم ذلك — لكن العملية تصبح أكثر جهداً.</p>
+          <h2 className="text-xl font-semibold text-white mb-3">جدول مراحل العمر</h2>
+          <StageTable isAr={true} />
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">دليل حسب العمر</h2>
+          <h2 className="text-xl font-semibold text-white mb-3">ماذا يصنع التعريض المبكّر في الدماغ؟</h2>
+          <p className="mb-3">يصف الباحثون &quot;مرحلة حسّاسة&quot; لاكتساب اللغة تمتدّ من الولادة إلى نحو السابعة. وفي هذه النافذة يكون الدماغ منفتحاً انفتاحاً عظيماً على المدخلات اللغوية الجديدة؛ فالطفل يسمع فروقاً صوتية دقيقة يعجز عنها الكبير، ويكتسب نطقاً قريباً من نطق أهل اللغة بأقلّ جهد.</p>
+          <p className="mb-3">وكلّما كبر الطفل، ضبط دماغه نفسه على الأصوات التي يسمعها أكثر، وقلّت حساسيته للأصوات النادرة عليه. وهذا لا يعني أنّ الأكبر لا يستطيع تعلّم العربية — بل يستطيع قطعاً — لكنّ سلامة النطق تصير أصعب قليلاً. فكلّ تعريض مبكّر لأصوات العربية هو في حقيقته إبقاء للباب مفتوحاً.</p>
+          <p>ولهذا صُمّمت أدوات مثل عرب فنجرز لمن هم بين الواحدة والسادسة؛ فكلّما سمع الطفل صوت حرف عربيّ في هذه السنوات، قوّى المسارات التي تجعل تعلّمه النظاميّ للعربية أيسر فيما بعد.</p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-white mb-3">دليل مرحلة بمرحلة</h2>
           <div className="space-y-4">
             <div className="rounded-xl border border-white/8 bg-white/5 p-5">
-              <h3 className="font-semibold text-white mb-2">عمر ٠-١: التعرض للأصوات</h3>
-              <p className="text-white/60 mb-2">في هذا العمر، يمتص الأطفال أصوات بيئتهم. لا يمكنهم إنتاج اللغة بعد، لكنهم يبنون مكتبة أصوات في دماغهم.</p>
-              <p className="text-white/60"><strong className="text-white/80">ماذا تفعل:</strong> تحدث بالعربية حول طفلك. شغّل أناشيد وأغاني عربية. اقرأ كتب عربية بصوت عالٍ.</p>
+              <h3 className="font-semibold text-white mb-2">٠–٢ سنة: الإصغاء</h3>
+              <p className="text-white/80 mb-2">في هذا العمر يمتصّ الطفل أصوات ما حوله. لا يقدر على النطق بعد، لكنّه يبني مكتبة أصوات في دماغه. وكلّ حديث عربيّ أو نشيد أو تلاوة يسمعها يُرسي وصلات في عقله.</p>
+              <p className="text-white/80"><strong className="text-white/90">ماذا تفعل:</strong> تحدّث بالعربية حوله، وشغّل الأناشيد العربية، واقرأ الكتب المصوّرة بصوتٍ عالٍ ولو قبل أن يفهم الكلمات؛ فالإيقاع والأصوات هما المهمّ الآن.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-5">
-              <h3 className="font-semibold text-white mb-2">عمر ١-٢: استكشاف حسي</h3>
-              <p className="text-white/60 mb-2">الأطفال الصغار يتعلمون من خلال تفاعلات السبب والنتيجة. هذا هو العمر المثالي لعرب فنجرز — يتيح لهم استكشاف الحروف العربية من خلال اللعب.</p>
-              <p className="text-white/60"><strong className="text-white/80">ماذا تفعل:</strong> دع طفلك يلعب بعرب فنجرز بحرية. لا تختبره. ببساطة دعه يستمتع بالتجربة الحسية.</p>
+              <h3 className="font-semibold text-white mb-2">٢–٤ سنوات: الأصوات واللعب</h3>
+              <p className="text-white/80 mb-2">الطفل في هذا السنّ يتعلّم بالسبب والنتيجة، ويحبّ أن يضغط فيرى ما يحدث، وهو العمر الأمثل لعرب فنجرز؛ إذ يستكشف الحروف العربية باللعب بلا توقّعات.</p>
+              <p className="text-white/80"><strong className="text-white/90">ماذا تفعل:</strong> دعه يلعب بحرّية، ولا تختبره، وسمِّ الحروف عَرَضاً كلّما ظهرت: &quot;انظر، هذه باء!&quot;، وابدأ بالإشارة إلى الحروف العربية على العبوات واللافتات وأغلفة الكتب.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-5">
-              <h3 className="font-semibold text-white mb-2">عمر ٢-٤: بداية التعرف</h3>
-              <p className="text-white/60 mb-2">هذا هو الوقت الذي يبدأ فيه الأطفال التعرف على الأشكال المألوفة بما في ذلك الحروف. قد يبدأون في قول أسماء الحروف والتعرف على الحروف التي رأوها مراراً.</p>
-              <p className="text-white/60"><strong className="text-white/80">ماذا تفعل:</strong> استمر في اللعب مع عرب فنجرز. ابدأ بالإشارة إلى الحروف العربية في البيئة المحيطة.</p>
+              <h3 className="font-semibold text-white mb-2">٤–٦ سنوات: الحروف</h3>
+              <p className="text-white/80 mb-2">أطفال الروضة يقدرون على تعلّم أكثر تنظيماً؛ يسمّون أكثر الحروف، ويدركون أنّ الحرف يحمل صوتاً، ويبدأون بتتبّع الأشكال. وهنا يبدأ العمل اللطيف على الحروف بجانب استمرار اللعب.</p>
+              <p className="text-white/80"><strong className="text-white/90">ماذا تفعل:</strong> تتبّعوا الحروف في الرمل أو صينية الملح أو على الورق، وغنّوا نشيد الأبجدية، واقرآ كلمات عربية بسيطة معاً، واجعل اللعب هو الأساس.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-5">
-              <h3 className="font-semibold text-white mb-2">عمر ٤-٦: تعلم نشط</h3>
-              <p className="text-white/60 mb-2">أطفال ما قبل المدرسة يمكنهم المشاركة في تعلم أكثر تنظيماً. يمكنهم تسمية معظم الحروف وفهم أن الحروف تمثل أصواتاً.</p>
-              <p className="text-white/60"><strong className="text-white/80">ماذا تفعل:</strong> استخدم الوضع الموجّه في عرب فنجرز. قدّم تمارين الكتابة — تتبع الحروف العربية في الرمل أو على الورق.</p>
+              <h3 className="font-semibold text-white mb-2">٦ سنوات فأكثر: القراءة</h3>
+              <p className="text-white/80 mb-2">الطفل الذي عُرّض مبكّراً صار مهيّأً للقراءة؛ يعرف أكثر الحروف في أشكالها المتّصلة، ويرى كيف تتّصل في الكلمات، ويبدأ بقراءة كلمات وجمل قصيرة، وبتعلّم الحركات لضبط النطق.</p>
+              <p className="text-white/80"><strong className="text-white/90">ماذا تفعل:</strong> انتقلوا إلى برامج تركّز على القراءة، وأبقِ عرب فنجرز للمراجعة الممتعة، واقرآ كتب الأطفال العربية يومياً، وفكّر في الدروس أو معلّم.</p>
             </div>
           </div>
         </section>
 
         <section>
+          <h2 className="text-xl font-semibold text-white mb-3">لا يفوت الأوان أبداً</h2>
+          <p className="mb-3">إن كان طفلك بلغ السادسة أو السابعة أو أكثر، فطِب نفساً؛ فـ&quot;المرحلة الحسّاسة&quot; تصف متى يكون التعلّم أيسر، لا حدّاً يستحيل التعلّم بعده. بل للأكبر مزايا حقيقية: انتباه أطول، وقدرة على متابعة الشرح، وملكة على تأمّل القواعد عن قصد.</p>
+          <p>والأهمّ في كلّ عمر هو التعريض الثابت المحبَّب. فالطفل الذي يبدأ متأخّراً ويحبّ العربية يسبق من بدأ مبكّراً ثمّ كرهها. ابدأ من حيث طفلك اليوم، واجعل الأمر خفيفاً، ودَع التقدّم يتراكم.</p>
+        </section>
+
+        <section>
           <h2 className="text-xl font-semibold text-white mb-3">الخلاصة</h2>
-          <p>أفضل وقت لبدء تعليم العربية هو الآن — مهما كان عمر طفلك. للرضع والأطفال الصغار، يعني ذلك التعرض للأصوات من خلال المحادثة واللعب. لأطفال ما قبل المدرسة، يعني التعرف التفاعلي على الحروف من خلال أدوات مثل عرب فنجرز مع التعرض البيئي. الأساس الذي تبنيه في هذه السنوات المبكرة سيجعل محو الأمية العربية أسهل بشكل كبير.</p>
+          <p>أفضل وقتٍ لبدء تعليم العربية هو الآن، مهما كان عمر طفلك. فللرضّع والصغار يكون ذلك بالتعريض للأصوات بالحديث واللعب، ولأطفال الروضة بمعرفة الحروف تفاعلياً بأدوات مثل عرب فنجرز مع التعريض اليوميّ من حولهم. والأساس الذي تبنيه في هذه السنوات المبكّرة يجعل القراءة والكتابة بالعربية أيسر بكثير حين يبدأ التعليم النظاميّ.</p>
         </section>
       </div>
     </>
