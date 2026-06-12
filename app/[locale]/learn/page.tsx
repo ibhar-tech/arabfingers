@@ -2,6 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
 import { isLocale } from "@/lib/locales";
+import {
+  AlphabetIcon,
+  NumbersIcon,
+  ColorsIcon,
+  WordsIcon,
+  ScienceIcon,
+  ParentingIcon,
+} from "@/components/illustrations/HubIcons";
+
+type HubIcon = ({ className }: { className?: string }) => React.JSX.Element;
 
 export const metadata: Metadata = {
   title: "Learn Arabic — Guides & Resources | تعلم العربية",
@@ -9,86 +19,113 @@ export const metadata: Metadata = {
     "Free Arabic learning resources for kids and parents. Alphabet guides, pronunciation tips, numbers, colors, first words, and teaching strategies for bilingual families.",
 };
 
-const articles = [
+const articles: {
+  slug: string;
+  Icon: HubIcon;
+  titleEn: string;
+  titleAr: string;
+  descEn: string;
+  descAr: string;
+}[] = [
   {
     slug: "arabic-alphabet-guide",
-    icon: "📖",
+    Icon: AlphabetIcon,
     titleEn: "Arabic Alphabet Complete Guide",
     titleAr: "دليل الأبجدية العربية الكامل",
-    descEn: "Learn all 28 Arabic letters with pronunciation, English equivalents, and descriptions.",
-    descAr: "تعلم جميع الحروف العربية الـ ٢٨ مع النطق والمعادلات الإنجليزية.",
+    descEn:
+      "You'll learn all 28 Arabic letters with their sounds, English equivalents, and an example word for each. Start here if your child is brand new to Arabic — it is the foundation every other guide builds on.",
+    descAr:
+      "ستتعلم الحروف العربية الـ ٢٨ كاملة مع أصواتها وما يقابلها في الإنجليزية وكلمة مثال لكل حرف. ابدأ من هنا إن كان طفلك جديداً على العربية، فهذا الأساس الذي تُبنى عليه بقية الأدلة.",
   },
   {
     slug: "teaching-arabic-to-kids",
-    icon: "👶",
+    Icon: ParentingIcon,
     titleEn: "Teaching Arabic to Kids: A Parent's Guide",
     titleAr: "تعليم العربية للأطفال: دليل الوالدين",
-    descEn: "Practical tips and age-appropriate strategies for introducing Arabic to toddlers and pre-schoolers.",
-    descAr: "نصائح عملية واستراتيجيات مناسبة لتعريف الأطفال الصغار بالعربية.",
+    descEn:
+      "You'll find practical, age-appropriate strategies for introducing Arabic to toddlers and pre-schoolers without pressure. It is written for parents who don't speak fluent Arabic themselves and want a clear daily routine.",
+    descAr:
+      "ستجد استراتيجيات عملية مناسبة للعمر لتعريف الأطفال الصغار بالعربية دون ضغط. وهو مكتوب للوالدين الذين لا يتقنون العربية بطلاقة ويبحثون عن روتين يومي واضح.",
   },
   {
     slug: "arabic-numbers",
-    icon: "🔢",
+    Icon: NumbersIcon,
     titleEn: "Arabic Numbers 0–10 for Kids",
     titleAr: "الأرقام العربية ٠–١٠ للأطفال",
-    descEn: "Learn to count in Arabic with Eastern Arabic-Indic numerals used across the Arab world.",
-    descAr: "تعلم العد بالعربية مع الأرقام العربية الشرقية.",
+    descEn:
+      "You'll learn to count from zero to ten using the Eastern Arabic-Indic numerals used across the Arab world, with pronunciation for each. Use it once your child knows a few letters and is ready for a fun, fast win.",
+    descAr:
+      "ستتعلم العدّ من صفر إلى عشرة بالأرقام العربية الشرقية المستخدمة في العالم العربي مع نطق كل رقم. استعمله بعد أن يتعرّف طفلك على بعض الحروف ويصبح جاهزاً لإنجاز ممتع وسريع.",
   },
   {
     slug: "arabic-colors",
-    icon: "🎨",
+    Icon: ColorsIcon,
     titleEn: "Arabic Colors for Kids",
     titleAr: "الألوان بالعربية للأطفال",
-    descEn: "Learn color names in Arabic with pronunciation and cultural context.",
-    descAr: "تعلم أسماء الألوان بالعربية مع النطق والسياق الثقافي.",
+    descEn:
+      "You'll learn the names of everyday colors in Arabic with pronunciation and a little cultural context for each. It is perfect for early talkers aged 1–4, since colors are easy to spot and name around the house.",
+    descAr:
+      "ستتعلم أسماء الألوان اليومية بالعربية مع النطق وبعض السياق الثقافي لكل لون. وهو مثالي للأطفال في بداية الكلام بين عام وأربعة أعوام، لأن الألوان سهلة الملاحظة والتسمية في أرجاء البيت.",
   },
   {
     slug: "first-arabic-words",
-    icon: "💬",
+    Icon: WordsIcon,
     titleEn: "First Arabic Words for Kids",
     titleAr: "أول كلمات عربية للأطفال",
-    descEn: "Essential Arabic vocabulary for toddlers — family, animals, food, and everyday words.",
-    descAr: "مفردات عربية أساسية للأطفال — العائلة والحيوانات والطعام والكلمات اليومية.",
+    descEn:
+      "You'll get the essential first vocabulary toddlers need — family, animals, food, and everyday words they hear most. Use it alongside the alphabet guide so letters and real words grow together.",
+    descAr:
+      "ستحصل على المفردات الأولى الأساسية التي يحتاجها الطفل — العائلة والحيوانات والطعام والكلمات اليومية الأكثر تكراراً. استعمله إلى جانب دليل الأبجدية لتنمو الحروف والكلمات الحقيقية معاً.",
   },
   {
     slug: "arabic-letter-forms",
-    icon: "✍️",
+    Icon: AlphabetIcon,
     titleEn: "How Arabic Letters Change Shape",
     titleAr: "كيف تتغير أشكال الحروف العربية",
-    descEn: "Visual guide to Arabic letter forms — how each letter looks at the beginning, middle, and end of a word.",
-    descAr: "دليل بصري لأشكال الحروف العربية — كيف يبدو كل حرف في بداية ووسط ونهاية الكلمة.",
+    descEn:
+      "You'll see how each letter changes its shape at the beginning, middle, and end of a word, with clear visual examples. It is for children aged 5 and up who already know the basic letters and are ready to start reading whole words.",
+    descAr:
+      "سترى كيف يغيّر كل حرف شكله في بداية الكلمة ووسطها ونهايتها مع أمثلة بصرية واضحة. وهو موجّه للأطفال من عمر خمس سنوات فأكثر ممن يعرفون الحروف الأساسية واستعدوا لقراءة الكلمات الكاملة.",
   },
   {
     slug: "arabic-vs-english",
-    icon: "🔄",
+    Icon: AlphabetIcon,
     titleEn: "Arabic vs English Alphabet: Key Differences",
     titleAr: "الأبجدية العربية مقابل الإنجليزية: الفروقات الرئيسية",
-    descEn: "Side-by-side comparison of Arabic and English writing systems for parents and educators.",
-    descAr: "مقارنة جنباً إلى جنب بين نظامي الكتابة العربية والإنجليزية.",
+    descEn:
+      "You'll get a side-by-side comparison of the two writing systems — direction, letter shapes, and sounds that have no English match. It helps parents and educators of bilingual children anticipate where kids get confused.",
+    descAr:
+      "ستحصل على مقارنة جنباً إلى جنب بين نظامي الكتابة — الاتجاه وأشكال الحروف والأصوات التي لا مقابل لها في الإنجليزية. يساعد الوالدين والمعلمين للأطفال ثنائيي اللغة على توقّع المواضع التي يقع فيها اللبس.",
   },
   {
     slug: "best-age-to-learn-arabic",
-    icon: "🧒",
+    Icon: ParentingIcon,
     titleEn: "What's the Best Age to Start Teaching Arabic?",
     titleAr: "ما هو أفضل عمر لبدء تعليم العربية؟",
-    descEn: "Research-backed guidance on when and how to introduce Arabic to children.",
-    descAr: "إرشادات مدعومة بالأبحاث حول متى وكيف يتم تعريف الأطفال بالعربية.",
+    descEn:
+      "You'll get research-backed guidance on when and how to introduce Arabic, and why earlier exposure makes pronunciation easier. Read it before you build a plan, so your expectations match your child's stage.",
+    descAr:
+      "ستحصل على إرشادات مدعومة بالأبحاث حول متى وكيف تُقدّم العربية، ولماذا يجعل التعرّض المبكر النطق أسهل. اقرأه قبل وضع خطتك حتى تتوافق توقعاتك مع مرحلة طفلك العمرية.",
   },
   {
     slug: "bilingual-children-benefits",
-    icon: "🌍",
+    Icon: ParentingIcon,
     titleEn: "Benefits of Raising Bilingual Arabic-English Children",
     titleAr: "فوائد تربية أطفال ثنائيي اللغة عربي-إنجليزي",
-    descEn: "Cognitive, social, and cultural benefits of bilingualism backed by child development research.",
-    descAr: "الفوائد المعرفية والاجتماعية والثقافية لثنائية اللغة.",
+    descEn:
+      "You'll learn the cognitive, social, and cultural advantages of bilingualism, backed by child-development research. It is for parents weighing whether the daily effort of two languages is worth it — the evidence says yes.",
+    descAr:
+      "ستتعرّف على الفوائد المعرفية والاجتماعية والثقافية لثنائية اللغة، مدعومةً بأبحاث نمو الطفل. وهو للوالدين الذين يوازنون بين جهد لغتين يومياً ومردوده، والأدلة تؤكد أنه يستحق العناء.",
   },
   {
     slug: "arabic-activities-at-home",
-    icon: "🏠",
+    Icon: ParentingIcon,
     titleEn: "10 Fun Activities to Practice Arabic Letters at Home",
     titleAr: "١٠ أنشطة ممتعة لممارسة الحروف العربية في المنزل",
-    descEn: "Creative, screen-free and digital activities to reinforce Arabic letter learning at home.",
-    descAr: "أنشطة إبداعية لتعزيز تعلم الحروف العربية في المنزل.",
+    descEn:
+      "You'll get ten creative activities — both screen-free and digital — that reinforce letter learning through play. Use them on days you want to step away from the app and practice with your hands and voice.",
+    descAr:
+      "ستحصل على عشرة أنشطة إبداعية — بعيدة عن الشاشة وأخرى رقمية — تعزّز تعلّم الحروف عبر اللعب. استعملها في الأيام التي تريد فيها الابتعاد عن التطبيق والتدرّب بيديك وصوتك.",
   },
 ];
 
@@ -102,13 +139,13 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
       <h1 className="text-3xl font-semibold text-white mb-2">
         {isAr ? "تعلم العربية — أدلة وموارد" : "Learn Arabic — Guides & Resources"}
       </h1>
-      <p className="text-sm text-white/50 mb-8">
+      <p className="text-base text-white/75 mb-8">
         {isAr
           ? "موارد مجانية لتعلم العربية للأطفال والوالدين. أدلة الأبجدية، نصائح النطق، الأرقام، الألوان، والكلمات الأولى."
           : "Free Arabic learning resources for kids and parents. Alphabet guides, pronunciation tips, numbers, colors, first words, and teaching strategies."}
       </p>
 
-      <div className="space-y-8 text-sm leading-relaxed text-white/70 mb-10">
+      <div className="space-y-6 text-base leading-relaxed text-white/80 mb-10">
         <p>
           {isAr
             ? "تعلم اللغة العربية يبدأ بالأساسيات — الحروف والأصوات والكلمات البسيطة. سواء كنت والداً يريد تعريف طفله بالعربية أو معلماً يبحث عن موارد، فإن هذه الأدلة المجانية تغطي كل ما تحتاج لمعرفته. كل دليل متاح باللغتين العربية والإنجليزية ومصمم ليكون عملياً ومناسباً للعمر."
@@ -121,6 +158,53 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
         </p>
       </div>
 
+      {/* Start-here learning path, organized by child age */}
+      <section className="mb-12 rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-7">
+        <h2 className="text-2xl font-bold text-white mb-2">
+          {isAr ? "ابدأ من هنا: مسار التعلم حسب العمر" : "Start Here: A Learning Path by Age"}
+        </h2>
+        <p className="text-base text-white/80 mb-6 leading-relaxed">
+          {isAr
+            ? "ليس كل دليل مناسباً لكل طفل في الوقت نفسه. اختر نقطة البداية حسب عمر طفلك، ثم تدرّج صعوداً مع نموّه."
+            : "Not every guide suits every child at once. Pick a starting point that matches your child's age, then move up the path as they grow."}
+        </p>
+
+        <div className="space-y-6">
+          <div>
+            <h3 className="text-lg font-bold text-white mb-1.5">
+              {isAr ? "من عام إلى ٣ أعوام: أصوات الحروف عبر اللعب" : "Ages 1–3: Letter Sounds Through Play"}
+            </h3>
+            <p className="text-base text-white/80 leading-relaxed">
+              {isAr
+                ? "في هذه المرحلة المبكرة يتعلّم الطفل بالأذن لا بالقلم. افتح شبكة الصوت في دليل الأبجدية العربية واستمعا معاً إلى أصوات الحروف، ثم انتقلا إلى دليل الألوان لتسمية ما يحيط بكما في البيت. اجعل الجلسة قصيرة — دقائق معدودة لا ساعات — وكرّرها مراراً في اليوم. وتُكمّل هذه القراءة جلسةٌ خفيفة في تطبيق عرب فنجرز، حيث يلمس الطفل الحرف فيسمع صوته، فيربط الأذن بالإصبع وهو يلعب."
+                : "At this early stage children learn by ear, not by pen. Open the audio grid in the Arabic Alphabet Guide and listen to the letter sounds together, then move to the Colors guide to name what you see around the house. Keep each session short — a few minutes, not hours — and repeat it often through the day. Pair this reading with a light session in the ArabFingers play app, where tapping a letter plays its sound so ear and finger connect through play."}
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-bold text-white mb-1.5">
+              {isAr ? "من ٣ إلى ٥ أعوام: الأبجدية والأرقام والكلمات الأولى" : "Ages 3–5: Alphabet, Numbers, and First Words"}
+            </h3>
+            <p className="text-base text-white/80 leading-relaxed">
+              {isAr
+                ? "حين يطول تركيز الطفل، اعمل بدليل الأبجدية العربية بانتظام حرفاً بعد حرف، ثم أضِف دليل الأرقام العربية ودليل أول كلمات عربية لتربط الحروف بكلمات حقيقية. هذه هي السن التي تبدأ فيها بإدخال أوراق التدريب المطبوعة لتدريب خارج الشاشة: يتتبّع الطفل الحرف بقلمه فترسخ صورته في يده. والأفضل أن تتناوبا بين التطبيق التفاعلي للّعب والورقة المطبوعة للكتابة، فيجمع الطفل بين متعة الشاشة وثبات الخط."
+                : "When attention spans lengthen, work through the Arabic Alphabet Guide systematically, one letter at a time, then add the Arabic Numbers guide and First Arabic Words to tie letters to real vocabulary. This is the age to introduce printables for off-screen practice: tracing a letter with a pencil fixes its shape in the hand. Alternate between the interactive play app and the printed sheet, so your child gets both the fun of the screen and the muscle memory of writing."}
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-lg font-bold text-white mb-1.5">
+              {isAr ? "٥ أعوام فأكثر: أشكال الحروف والمقارنة والعلوم" : "Ages 5+: Letter Forms, Comparison, and Science"}
+            </h3>
+            <p className="text-base text-white/80 leading-relaxed">
+              {isAr
+                ? "بعد إتقان الحروف منفردةً، انتقل إلى دليل كيف تتغير أشكال الحروف العربية ليفهم الطفل كيف تتّصل الحروف في كلمة واحدة، ثم استعن بدليل المقارنة بين العربية والإنجليزية إن كان طفلك ثنائيّ اللغة. في هذه السن تُصبح الدروس العلمية التفاعلية الأربعة — حالات المادة ودورة المياه والنظام الشمسي والجاذبية — وسيلةً رائعة لقراءة العربية في سياق ممتع. واجعل أوراق التدريب المطبوعة رفيقاً لهذه الدروس: يكتب الطفل ما تعلّمه بيده بعد أن لعب به على الشاشة."
+                : "Once individual letters are mastered, move to How Arabic Letters Change Shape so your child understands how letters connect into a single word, then use the Arabic vs English comparison if your child is bilingual. At this age the four interactive science lessons — states of matter, the water cycle, the solar system, and gravity — become a wonderful way to read Arabic in a fun context. Keep printables as their companion: your child writes down what they learned after playing with it on screen."}
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Interactive Cartoon Lessons Dashboard */}
       <section className="mb-12">
         <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
@@ -129,7 +213,7 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
             {isAr ? "جديد" : "NEW"}
           </span>
         </h2>
-        <p className="text-sm text-white/60 mb-6">
+        <p className="text-base text-white/80 mb-6">
           {isAr
             ? "شاهد وتحكم في قصص علمية كرتونية مذهلة! ساعد أصدقاءك في فهم أسرار الكون من خلال تجارب تفاعلية شيقة."
             : "Watch and control spectacular interactive science cartoons! Help your cartoon friends discover the universe."}
@@ -146,15 +230,15 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
             </div>
             
             <div className="flex flex-col sm:flex-row gap-5 items-start h-full">
-              <div className="shrink-0 flex items-center justify-center w-16 h-16 rounded-2xl bg-accent/15 border border-accent/30 text-3xl shadow-inner group-hover:scale-110 transition-transform duration-300">
-                🧪
+              <div className="shrink-0 flex items-center justify-center w-16 h-16 rounded-2xl bg-accent/15 border border-accent/30 shadow-inner group-hover:scale-110 transition-transform duration-300">
+                <ScienceIcon className="w-9 h-9" />
               </div>
               <div className="flex-grow flex flex-col justify-between h-full">
                 <div>
                   <h3 className="text-lg font-bold text-white mb-2 group-hover:text-accent transition-colors flex items-center gap-2">
                     {isAr ? "حالات المادة (حكاية علمية)" : "States of Matter (Science Story)"}
                   </h3>
-                  <p className="text-sm text-white/70 leading-relaxed mb-4">
+                  <p className="text-sm text-white/80 leading-relaxed mb-4">
                     {isAr
                       ? "انضم إلى أنس والدكتور حكيم في مختبرهم السحري! استكشف الحالات الأربع للمادة (الصلبة، السائلة، الغازية، والبلازما) وتحكم في حرارة الجزيئات بنفسك لتراها تتجمد، تنصهر، وتتبخر!"
                       : "Join Anas and Dr. Hakim in their magical lab! Explore the four states of matter (Solid, Liquid, Gas, and Plasma) and adjust the temperature slider yourself to watch molecules freeze, melt, or vaporize!"}
@@ -175,10 +259,10 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
             >
               <div className="shrink-0 text-2xl bg-accent/10 p-2 rounded-xl border border-accent/20 group-hover:scale-110 transition-transform">💧</div>
               <div>
-                <h4 className="text-xs font-bold text-white group-hover:text-accent transition-colors">
+                <h4 className="text-sm font-bold text-white group-hover:text-accent transition-colors">
                   {isAr ? "دورة المياه في الطبيعة 🌧️" : "The Water Cycle 🌧️"}
                 </h4>
-                <p className="text-[10px] text-accent mt-0.5 font-semibold">
+                <p className="text-xs text-accent mt-0.5 font-semibold">
                   {isAr ? "نشط الآن - العب بالطقس! 🚀" : "Active Now - Play with weather! 🚀"}
                 </p>
               </div>
@@ -190,10 +274,10 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
             >
               <div className="shrink-0 text-2xl bg-accent/10 p-2 rounded-xl border border-accent/20 group-hover:scale-110 transition-transform">🚀</div>
               <div>
-                <h4 className="text-xs font-bold text-white group-hover:text-accent transition-colors">
+                <h4 className="text-sm font-bold text-white group-hover:text-accent transition-colors">
                   {isAr ? "نظامنا الشمسي الرائع 🪐" : "Our Spectacular Solar System 🪐"}
                 </h4>
-                <p className="text-[10px] text-accent mt-0.5 font-semibold">
+                <p className="text-xs text-accent mt-0.5 font-semibold">
                   {isAr ? "نشط الآن - حلق حول الكواكب! ✨" : "Active Now - Orbit the planets! ✨"}
                 </p>
               </div>
@@ -205,10 +289,10 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
             >
               <div className="shrink-0 text-2xl bg-accent/10 p-2 rounded-xl border border-accent/20 group-hover:scale-110 transition-transform">🍎</div>
               <div>
-                <h4 className="text-xs font-bold text-white group-hover:text-accent transition-colors">
+                <h4 className="text-sm font-bold text-white group-hover:text-accent transition-colors">
                   {isAr ? "كيف تعمل الجاذبية؟ 🧲" : "How Gravity Works 🧲"}
                 </h4>
-                <p className="text-[10px] text-accent mt-0.5 font-semibold">
+                <p className="text-xs text-accent mt-0.5 font-semibold">
                   {isAr ? "نشط الآن - اضبط جاذبية الكون! 🌟" : "Active Now - Adjust cosmic pull! 🌟"}
                 </p>
               </div>
@@ -229,11 +313,11 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
             href={`/${locale}/learn/${article.slug}`}
             className="group rounded-xl border border-white/10 bg-white/5 p-5 transition hover:bg-white/8 hover:border-white/15"
           >
-            <div className="text-2xl mb-2">{article.icon}</div>
-            <h2 className="text-sm font-semibold text-white mb-1 group-hover:text-accent transition-colors">
+            <article.Icon className="w-10 h-10 mb-3" />
+            <h3 className="text-base font-semibold text-white mb-1.5 group-hover:text-accent transition-colors">
               {isAr ? article.titleAr : article.titleEn}
-            </h2>
-            <p className="text-xs text-white/50 leading-relaxed">
+            </h3>
+            <p className="text-sm text-white/75 leading-relaxed">
               {isAr ? article.descAr : article.descEn}
             </p>
           </Link>
