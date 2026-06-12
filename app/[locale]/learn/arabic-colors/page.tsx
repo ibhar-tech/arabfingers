@@ -4,25 +4,50 @@ import { PageLayout } from "@/components/PageLayout";
 import { ArticleMeta } from "@/components/ArticleMeta";
 import { SpeakButton } from "@/components/SpeakButton";
 import { isLocale } from "@/lib/locales";
+import { generatePageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Arabic Colors for Kids | الألوان بالعربية للأطفال",
-  description: "Learn colors in Arabic with pronunciation and visual examples. A fun guide for kids learning Arabic vocabulary with English translations.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata(locale, "/learn/arabic-colors", {
+    titleEn: "Arabic Colors for Kids: 12 Colors with Pronunciation, Nature Examples & Games",
+    titleAr: "الألوان بالعربية للأطفال: ١٢ لوناً مع النطق وأمثلة من الطبيعة وألعاب",
+    descriptionEn:
+      "Learn 12 colors in Arabic with a quick reference table, pronunciation, colors in nature, the masculine/feminine forms explained simply, and a color-hunt game.",
+    descriptionAr:
+      "تعلّم ١٢ لوناً بالعربية مع جدول مرجعي سريع، والنطق، وأمثلة من الطبيعة، وشرح بسيط للمذكّر والمؤنّث، ولعبة البحث عن الألوان.",
+    ogType: "article",
+    publishedTime: "2026-03-19",
+    modifiedTime: "2026-06-12",
+    keywords: [
+      "arabic colors for kids", "الألوان بالعربية للأطفال",
+      "colors in arabic", "أسماء الألوان بالعربية",
+      "arabic vocabulary for children", "مفردات عربية للأطفال",
+    ],
+  });
+}
 
 const colors = [
-  { ar: "أحمر", en: "Red", pron: "Ahmar", hex: "#EF4444", desc: "The color of strawberries, fire trucks, and hearts. One of the first colors children learn to recognize." },
-  { ar: "أزرق", en: "Blue", pron: "Azraq", hex: "#3B82F6", desc: "The color of the sky and the sea. Arabic has different words for light blue (سماوي) and dark blue (كحلي)." },
-  { ar: "أخضر", en: "Green", pron: "Akhdar", hex: "#22C55E", desc: "The color of nature, trees, and grass. Green holds special significance in Arab and Islamic culture." },
-  { ar: "أصفر", en: "Yellow", pron: "Asfar", hex: "#EAB308", desc: "The color of the sun, bananas, and desert sand. A bright, cheerful color that children love." },
-  { ar: "برتقالي", en: "Orange", pron: "Burtuqaali", hex: "#F97316", desc: "Named after the fruit! The Arabic word for orange (the fruit) is برتقال, and the color takes the same name." },
-  { ar: "بنفسجي", en: "Purple", pron: "Banafsaji", hex: "#A855F7", desc: "Named after the violet flower (بنفسج). A royal color associated with luxury in many cultures." },
-  { ar: "وردي", en: "Pink", pron: "Wardi", hex: "#EC4899", desc: "Derived from ورد (ward) meaning 'rose'. Literally means 'rose-colored' in Arabic." },
-  { ar: "أبيض", en: "White", pron: "Abyad", hex: "#F8FAFC", desc: "The color of clouds, snow, and milk. In Arabic culture, white symbolizes purity and peace." },
-  { ar: "أسود", en: "Black", pron: "Aswad", hex: "#1E293B", desc: "The color of night and the pupil of the eye. The Arabic word for pupil is إنسان العين (the person of the eye)." },
-  { ar: "بني", en: "Brown", pron: "Bunni", hex: "#92400E", desc: "The color of chocolate, coffee, and earth. Derived from بن (bunn) meaning 'coffee beans'." },
-  { ar: "رمادي", en: "Gray", pron: "Ramaadi", hex: "#6B7280", desc: "The color of clouds on a rainy day and elephants. Derived from رماد (ramaad) meaning 'ash'." },
-  { ar: "ذهبي", en: "Gold", pron: "Dhahabi", hex: "#D97706", desc: "The color of gold and treasure. Derived from ذهب (dhahab) meaning 'gold' — one of the most beautiful Arabic words." },
+  { ar: "أحمر", en: "Red", pron: "Ahmar", hex: "#EF4444", descEn: "The color of strawberries, fire trucks, and hearts — one of the first colors children recognize.", descAr: "لون الفراولة وسيارة الإطفاء والقلب، وهو من أوّل الألوان التي يميّزها الأطفال." },
+  { ar: "أزرق", en: "Blue", pron: "Azraq", hex: "#3B82F6", descEn: "The color of the sky and the sea. Arabic even has words for light blue (سماوي) and navy (كحلي).", descAr: "لون السماء والبحر. وللعربية كلمات للأزرق الفاتح (سماوي) والأزرق الغامق (كحلي)." },
+  { ar: "أخضر", en: "Green", pron: "Akhdar", hex: "#22C55E", descEn: "The color of trees and grass, and a color with special meaning in Arab and Islamic culture.", descAr: "لون الأشجار والعشب، وله مكانة خاصة في الثقافة العربية والإسلامية." },
+  { ar: "أصفر", en: "Yellow", pron: "Asfar", hex: "#EAB308", descEn: "The color of the sun, bananas, and desert sand — a bright, cheerful color children love.", descAr: "لون الشمس والموز ورمل الصحراء، لون مرح يحبّه الأطفال." },
+  { ar: "برتقالي", en: "Orange", pron: "Burtuqaali", hex: "#F97316", descEn: "Named after the fruit! The Arabic for the fruit is برتقال, and the color borrows the same name.", descAr: "مأخوذ من اسم الفاكهة! فالبرتقال فاكهة، ولون البرتقالي يأخذ اسمه منها." },
+  { ar: "بنفسجي", en: "Purple", pron: "Banafsaji", hex: "#A855F7", descEn: "Named after the violet flower (بنفسج) — a color long linked with royalty and luxury.", descAr: "مأخوذ من زهرة البنفسج، وهو لون ارتبط قديماً بالملوك والفخامة." },
+  { ar: "وردي", en: "Pink", pron: "Wardi", hex: "#EC4899", descEn: "From ورد (ward) meaning \"rose\" — so wardi literally means \"rose-colored\".", descAr: "من كلمة وَرد، فكلمة \"وردي\" تعني حرفياً \"بلون الوردة\"." },
+  { ar: "أبيض", en: "White", pron: "Abyad", hex: "#F8FAFC", descEn: "The color of clouds, snow, and milk, and a symbol of purity and peace in Arab culture.", descAr: "لون الغيوم والثلج والحليب، ورمز للنقاء والسلام في الثقافة العربية." },
+  { ar: "أسود", en: "Black", pron: "Aswad", hex: "#1E293B", descEn: "The color of the night sky and the pupil of the eye.", descAr: "لون سماء الليل وبؤبؤ العين." },
+  { ar: "بني", en: "Brown", pron: "Bunni", hex: "#92400E", descEn: "The color of chocolate, coffee, and soil — from بن (bunn) meaning \"coffee beans\".", descAr: "لون الشوكولاتة والقهوة والتراب، من كلمة \"بُنّ\" أي حبوب القهوة." },
+  { ar: "رمادي", en: "Gray", pron: "Ramaadi", hex: "#6B7280", descEn: "The color of rain clouds and elephants — from رماد (ramaad) meaning \"ash\".", descAr: "لون غيوم المطر والفِيَلة، من كلمة \"رماد\"." },
+  { ar: "ذهبي", en: "Gold", pron: "Dhahabi", hex: "#D97706", descEn: "The color of gold and treasure — from ذهب (dhahab) meaning \"gold\".", descAr: "لون الذهب والكنوز، من كلمة \"ذهب\"." },
+];
+
+const natureExamples = [
+  { emoji: "☁️", en: "The sky is azraq (blue)", ar: "السماء زرقاء" },
+  { emoji: "🌳", en: "The grass is akhdar (green)", ar: "العشب أخضر" },
+  { emoji: "☀️", en: "The sun is asfar (yellow)", ar: "الشمس صفراء" },
+  { emoji: "🍓", en: "The strawberry is ahmar (red)", ar: "الفراولة حمراء" },
+  { emoji: "🌙", en: "The night is aswad (black)", ar: "الليل أسود" },
+  { emoji: "🐘", en: "The elephant is ramaadi (gray)", ar: "الفيل رمادي" },
 ];
 
 export default async function ArabicColorsPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -35,10 +60,10 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
       <ArticleMeta
         locale={locale}
         title="Arabic Colors for Kids"
-        description="Learn colors in Arabic with pronunciation and visual examples. A fun vocabulary guide for kids with English translations."
+        description="Learn 12 colors in Arabic with a reference table, pronunciation, nature examples, masculine/feminine forms, and a color-hunt game."
         slug="learn/arabic-colors"
         datePublished="2026-03-19"
-        dateModified="2026-04-30"
+        dateModified="2026-06-12"
         section="Education"
         crumbs={[
           { label: locale === "ar" ? "تعلم" : "Learn", href: `/${locale}/learn` },
@@ -49,23 +74,54 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
       <h1 className="text-3xl font-semibold text-white mb-2">
         {isAr ? "الألوان بالعربية للأطفال" : "Arabic Colors for Kids"}
       </h1>
-      <p className="text-sm text-white/50 mb-8">
-        {isAr ? "تعلم أسماء الألوان بالعربية مع النطق والأمثلة" : "Learn color names in Arabic with pronunciation and examples"}
+      <p className="text-base text-white/75 mb-8">
+        {isAr ? "تعلّم أسماء الألوان بالعربية مع النطق وأمثلة من الطبيعة وألعاب" : "Learn color names in Arabic with pronunciation, nature examples, and games"}
       </p>
 
-      <div className="text-sm leading-relaxed text-white/70 mb-8 space-y-3">
+      <div className="text-base leading-relaxed text-white/80 mb-8 space-y-3">
         <p>
           {isAr
-            ? "تعلم الألوان هو من أوائل المهارات اللغوية التي يكتسبها الأطفال. الألوان موجودة في كل مكان — في الطعام والملابس والطبيعة والألعاب. تعليم طفلك أسماء الألوان بالعربية يفتح باباً واسعاً لبناء المفردات، لأن الألوان تُستخدم لوصف كل شيء تقريباً."
-            : "Learning colors is one of the first vocabulary skills children acquire. Colors are everywhere — in food, clothes, nature, and toys. Teaching your child color names in Arabic opens a wide door to vocabulary building, because colors are used to describe almost everything."}
+            ? "تعلّم الألوان من أوائل المهارات اللغوية التي يكتسبها الأطفال، فالألوان موجودة في كل مكان: في الطعام والملابس والطبيعة والألعاب. وتعليم طفلك أسماء الألوان بالعربية يفتح باباً واسعاً لبناء المفردات، لأن الألوان تُستخدم لوصف كل شيء تقريباً: التفاحة حمراء، والسماء زرقاء، والعشب أخضر."
+            : "Learning colors is one of the first vocabulary skills children acquire — colors are everywhere: in food, clothes, nature, and toys. Teaching your child color names in Arabic opens a wide door to vocabulary building, because colors describe almost everything: the apple is red, the sky is blue, the grass is green."}
         </p>
         <p>
           {isAr
-            ? "في العربية، تتغير أسماء الألوان حسب جنس الاسم الموصوف (مذكر أو مؤنث). الأسماء المذكورة هنا هي الشكل المذكر الأساسي الذي يتعلمه الأطفال أولاً."
-            : "In Arabic, color names change based on the gender of the noun they describe (masculine or feminine). The names listed here are the basic masculine form that children learn first."}
+            ? "في العربية تتغيّر أسماء الألوان حسب جنس الاسم الموصوف (مذكّر أو مؤنّث). الأسماء المذكورة هنا هي الشكل المذكّر الأساسي الذي يتعلّمه الأطفال أولاً، وسنشرح المؤنّث ببساطة بعد قليل."
+            : "In Arabic, color names change based on the gender of the noun they describe (masculine or feminine). The names listed here are the basic masculine form that children learn first; we'll explain the feminine simply in a moment."}
         </p>
       </div>
 
+      <h2 className="text-xl font-semibold text-white mb-4">
+        {isAr ? "جدول الألوان المرجعي" : "Quick Color Reference Table"}
+      </h2>
+      <div className="overflow-x-auto mb-10">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-white/10">
+              <th className="py-2 px-3 text-center text-white/70 font-medium">{isAr ? "اللون" : "Color"}</th>
+              <th className="py-2 px-3 text-start text-white/70 font-medium">{isAr ? "بالعربية" : "Arabic"}</th>
+              <th className="py-2 px-3 text-start text-white/70 font-medium">{isAr ? "بالإنجليزية" : "English"}</th>
+              <th className="py-2 px-3 text-start text-white/70 font-medium">{isAr ? "النطق" : "Pronunciation"}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {colors.map((c) => (
+              <tr key={c.en} className="border-b border-white/5 hover:bg-white/5 transition">
+                <td className="py-2.5 px-3 text-center">
+                  <span className="inline-block w-6 h-6 rounded-md border border-white/15 align-middle" style={{ backgroundColor: c.hex }} />
+                </td>
+                <td className="py-2.5 px-3 text-start text-base text-white" style={{ fontFamily: "var(--font-noto-naskh), var(--font-ibm-plex-arabic), sans-serif" }}>{c.ar}</td>
+                <td className="py-2.5 px-3 text-start text-sm text-white/80">{c.en}</td>
+                <td className="py-2.5 px-3 text-start text-sm text-accent/80 italic">{c.pron}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2 className="text-xl font-semibold text-white mb-4">
+        {isAr ? "الألوان واحداً واحداً" : "Each Color, One by One"}
+      </h2>
       <div className="space-y-4 mb-10">
         {colors.map((c) => (
           <div key={c.en} className="rounded-xl border border-white/8 bg-white/5 p-4 flex gap-4 items-start">
@@ -79,41 +135,82 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
                   {c.ar}
                 </span>
                 <span className="text-white/30">—</span>
-                <span className="text-sm text-white/70">{c.en}</span>
-                <span className="text-xs text-accent/60 italic">({c.pron})</span>
+                <span className="text-sm text-white/80">{c.en}</span>
+                <span className="text-sm text-accent/80 italic">({c.pron})</span>
                 <SpeakButton text={c.ar} label={`Listen: ${c.ar}`} className="ms-auto" />
               </div>
-              <p className="text-xs text-white/50 leading-relaxed">{c.desc}</p>
+              <p className="text-sm text-white/75 leading-relaxed">{isAr ? c.descAr : c.descEn}</p>
             </div>
           </div>
         ))}
       </div>
 
+      <section className="mb-10">
+        <h2 className="text-xl font-semibold text-white mb-2">
+          {isAr ? "الألوان في الطبيعة" : "Colors in Nature"}
+        </h2>
+        <p className="text-base text-white/80 leading-relaxed mb-4">
+          {isAr
+            ? "أسهل طريقة لتثبيت لون في ذهن الطفل هي ربطه بشيء يراه كل يوم. اربط كل لون بمثال من الطبيعة، وكرّره عند الخروج للنزهة."
+            : "The easiest way to fix a color in a child's mind is to tie it to something they see every day. Link each color to a nature example, and repeat it on your walks."}
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {natureExamples.map((ex) => (
+            <div key={ex.en} className="rounded-xl border border-white/8 bg-white/5 p-3 flex items-center gap-3">
+              <span className="text-2xl shrink-0">{ex.emoji}</span>
+              <span className="text-sm text-white/80 leading-relaxed">{isAr ? ex.ar : ex.en}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="mb-10">
+        <h2 className="text-xl font-semibold text-white mb-2">
+          {isAr ? "المذكّر والمؤنّث — شرح بسيط للوالدين" : "Masculine & Feminine — Simply Explained for Parents"}
+        </h2>
+        <div className="text-base text-white/80 leading-relaxed space-y-3">
+          <p>
+            {isAr
+              ? "في العربية لكل لون أساسي شكلان: واحد للمذكّر وواحد للمؤنّث. فنقول \"قلم أحمر\" لأن القلم مذكّر، ونقول \"سيارة حمراء\" لأن السيارة مؤنّثة. اللون نفسه، لكن النهاية تتغيّر: أحمر تصبح حمراء، وأزرق تصبح زرقاء، وأخضر تصبح خضراء، وأصفر تصبح صفراء."
+              : "In Arabic, each basic color has two forms: one for masculine and one for feminine nouns. We say \"qalam ahmar\" (a red pen) because pen is masculine, and \"sayyaara hamraa\" (a red car) because car is feminine. Same color, but the ending changes: ahmar becomes hamraa, azraq becomes zarqaa, akhdar becomes khadraa, asfar becomes safraa."}
+          </p>
+          <p>
+            {isAr
+              ? "لا تشغل طفلك الصغير بهذه القاعدة في البداية. ابدأ بالشكل المذكّر فقط (أحمر، أزرق، أخضر)، فهو يكفي تماماً في السنوات الأولى. ومع الوقت سيسمع طفلك المؤنّث في الكلام اليومي ويلتقطه تلقائياً، تماماً كما يفعل أطفال العرب."
+              : "Don't burden a young child with this rule at first. Start with the masculine form only (ahmar, azraq, akhdar) — it is plenty for the early years. Over time your child will hear the feminine form in everyday speech and pick it up naturally, just as Arab children do."}
+          </p>
+        </div>
+      </section>
+
       <section className="mb-8">
         <h2 className="text-xl font-semibold text-white mb-3">
-          {isAr ? "أنشطة ممتعة لتعلم الألوان" : "Fun Activities to Learn Colors"}
+          {isAr ? "أنشطة ممتعة لتعلّم الألوان" : "Fun Activities to Learn Colors"}
         </h2>
-        <div className="space-y-3 text-sm text-white/70 leading-relaxed">
+        <div className="space-y-3 text-base text-white/80 leading-relaxed">
           <div className="rounded-xl border border-white/8 bg-white/5 p-4">
-            <h3 className="font-semibold text-white mb-1">{isAr ? "🎨 لعبة 'أنا أرى'" : "🎨 'I Spy' Game"}</h3>
-            <p className="text-white/60">{isAr ? "قل 'أنا أرى شيئاً أحمر!' ودع طفلك يبحث عن أشياء حمراء في الغرفة." : "Say 'I spy something ahmar (red)!' and let your child find red objects in the room."}</p>
+            <h3 className="font-semibold text-white mb-1">{isAr ? "🎨 لعبة \"أنا أرى\"" : "🎨 'I Spy' Game"}</h3>
+            <p className="text-sm text-white/75">{isAr ? "قل \"أنا أرى شيئاً أحمر!\" ودع طفلك يبحث عن أشياء حمراء في الغرفة. ثم بدّلا الأدوار." : "Say \"I spy something ahmar (red)!\" and let your child find red objects in the room. Then swap roles."}</p>
+          </div>
+          <div className="rounded-xl border border-white/8 bg-white/5 p-4">
+            <h3 className="font-semibold text-white mb-1">{isAr ? "🔍 رحلة البحث عن الألوان" : "🔍 Color Hunt"}</h3>
+            <p className="text-sm text-white/75">{isAr ? "اختر لوناً واحداً لليوم، مثلاً الأزرق، وابحثا عنه معاً طوال اليوم: كوب أزرق، قميص أزرق، سماء زرقاء. سمِّ كل شيء بالعربية عند رؤيته." : "Pick one color for the day, say blue, and hunt for it together all day: a blue cup, a blue shirt, a blue sky. Name each one in Arabic as you spot it."}</p>
           </div>
           <div className="rounded-xl border border-white/8 bg-white/5 p-4">
             <h3 className="font-semibold text-white mb-1">{isAr ? "🖍️ التلوين بالعربية" : "🖍️ Coloring in Arabic"}</h3>
-            <p className="text-white/60">{isAr ? "أثناء التلوين، سمّ كل لون بالعربية. 'هيا نستخدم الأزرق للسماء!'" : "While coloring, name each color in Arabic. 'Let's use azraq for the sky!'"}</p>
+            <p className="text-sm text-white/75">{isAr ? "أثناء التلوين، سمِّ كل لون بالعربية: \"هيا نستخدم الأزرق للسماء!\"" : "While coloring, name each color in Arabic: \"Let's use azraq for the sky!\""}</p>
           </div>
           <div className="rounded-xl border border-white/8 bg-white/5 p-4">
             <h3 className="font-semibold text-white mb-1">{isAr ? "🍎 ألوان الطعام" : "🍎 Food Colors"}</h3>
-            <p className="text-white/60">{isAr ? "أثناء الوجبات، تحدث عن ألوان الطعام بالعربية. 'الموز أصفر! التفاحة حمراء!'" : "During meals, talk about food colors in Arabic. 'The banana is asfar! The apple is ahmar!'"}</p>
+            <p className="text-sm text-white/75">{isAr ? "أثناء الوجبات، تحدّثا عن ألوان الطعام بالعربية: \"الموز أصفر! التفاحة حمراء!\"" : "During meals, talk about food colors in Arabic: \"The banana is asfar! The apple is ahmar!\""}</p>
           </div>
         </div>
       </section>
 
       <div className="flex flex-wrap gap-3 mb-8">
-        <Link href={`/${locale}/learn/arabic-numbers`} className="text-xs text-accent underline">
+        <Link href={`/${locale}/learn/arabic-numbers`} className="text-sm text-accent underline">
           {isAr ? "← الأرقام العربية" : "← Arabic Numbers"}
         </Link>
-        <Link href={`/${locale}/learn/first-arabic-words`} className="text-xs text-accent underline">
+        <Link href={`/${locale}/learn/first-arabic-words`} className="text-sm text-accent underline">
           {isAr ? "أول كلمات عربية →" : "First Arabic Words →"}
         </Link>
       </div>
