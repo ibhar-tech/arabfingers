@@ -4,12 +4,28 @@ import { PageLayout } from "@/components/PageLayout";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ArticleStructuredData } from "@/components/ArticleStructuredData";
 import { isLocale } from "@/lib/locales";
+import { generatePageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "How We Built ArabFingers: The Story Behind the App",
-  description:
-    "The personal story of why and how ArabFingers was created. From a parent's frustration with finding Arabic learning tools for toddlers to building a free bilingual app.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata(locale, "/blog/how-we-built-arabfingers", {
+    titleEn: "How We Built ArabFingers: The Story Behind the App",
+    titleAr: "كيف بنينا عرب فنجرز: القصة وراء التطبيق",
+    descriptionEn:
+      "The personal story of why and how ArabFingers was created — from a parent's frustration finding Arabic tools for toddlers to building a free bilingual app used worldwide.",
+    descriptionAr:
+      "القصة الشخصية لسبب وكيفية إنشاء عرب فنجرز — من إحباط أحد الوالدين في البحث عن أدوات عربية للأطفال الصغار إلى بناء تطبيق مجاني ثنائي اللغة تستخدمه العائلات حول العالم.",
+    ogType: "article",
+    publishedTime: "2026-04-15",
+    modifiedTime: "2026-06-12",
+    keywords: [
+      "how arabfingers was built", "كيف بنينا عرب فنجرز",
+      "arabic learning app for toddlers", "تطبيق تعلم العربية للأطفال الصغار",
+      "free arabic app for kids", "تطبيق عربي مجاني للأطفال",
+      "bilingual parenting story", "قصة التربية ثنائية اللغة",
+    ],
+  });
+}
 
 export default async function HowWeBuiltPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -23,7 +39,7 @@ export default async function HowWeBuiltPage({ params }: { params: Promise<{ loc
         slug="blog/how-we-built-arabfingers"
         locale={locale}
         datePublished="2026-04-15"
-        dateModified="2026-05-20"
+        dateModified="2026-06-12"
       />
       <Breadcrumbs
         locale={locale}
@@ -59,7 +75,7 @@ function ContentEn() {
       <p className="text-sm text-white/50">From a parent&apos;s frustration to a free tool for families worldwide</p>
       <AuthorBlock />
 
-      <div className="space-y-8 text-sm leading-relaxed text-white/70">
+      <div className="space-y-8 text-sm leading-relaxed text-white/80">
         <section>
           <h2 className="text-xl font-semibold text-white mb-3">The Problem: Arabic Learning for Toddlers Is Broken</h2>
           <p className="mb-3">
@@ -107,19 +123,19 @@ function ContentEn() {
           <div className="space-y-4">
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">No navigation, no menus, no buttons</h3>
-              <p className="text-white/60">The play area has zero UI elements. A toddler cannot accidentally navigate away, close the app, or change settings. Every tap and every keypress produces a letter. The entire screen is the toy.</p>
+              <p className="text-white/75">The play area has zero UI elements. A toddler cannot accidentally navigate away, close the app, or change settings. Every tap and every keypress produces a letter. The entire screen is the toy.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">Hidden parent panel with hold gesture</h3>
-              <p className="text-white/60">Parents access settings by pressing and holding a small corner icon for 2 seconds — a gesture no toddler would discover accidentally. We also added an optional PIN lock for extra safety. This means parents can configure themes, sounds, and keyboard layouts without their child ever seeing a settings screen.</p>
+              <p className="text-white/75">Parents access settings by pressing and holding a small corner icon for 2 seconds — a gesture no toddler would discover accidentally. We also added an optional PIN lock for extra safety. This means parents can configure themes, sounds, and keyboard layouts without their child ever seeing a settings screen.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">Bilingual display, always</h3>
-              <p className="text-white/60">Every Arabic letter is shown alongside its English phonetic equivalent. This serves two audiences: Arabic-speaking parents who want their child to learn the Latin equivalents, and English-speaking parents who are learning Arabic alongside their child. Both languages are always visible, normalizing bilingualism from the very first interaction.</p>
+              <p className="text-white/75">Every Arabic letter is shown alongside its English phonetic equivalent. This serves two audiences: Arabic-speaking parents who want their child to learn the Latin equivalents, and English-speaking parents who are learning Arabic alongside their child. Both languages are always visible, normalizing bilingualism from the very first interaction.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">Celebration without competition</h3>
-              <p className="text-white/60">ArabFingers celebrates every keypress with animations and sound, and it celebrates milestones (10 keys, 28 keys, etc.) with confetti and emoji bursts. But there are no scores, no leaderboards, no &quot;you got it wrong&quot; feedback. Every interaction is positive. This builds a love of Arabic letters without anxiety or pressure.</p>
+              <p className="text-white/75">ArabFingers celebrates every keypress with animations and sound, and it celebrates milestones (10 keys, 28 keys, etc.) with confetti and emoji bursts. But there are no scores, no leaderboards, no &quot;you got it wrong&quot; feedback. Every interaction is positive. This builds a love of Arabic letters without anxiety or pressure.</p>
             </div>
           </div>
         </section>
@@ -129,7 +145,7 @@ function ContentEn() {
           <p className="mb-3">
             ArabFingers is built as a Progressive Web App (PWA) using Next.js, React, and Three.js. This technology stack was chosen for specific reasons:
           </p>
-          <ul className="list-disc list-inside space-y-2 text-white/60">
+          <ul className="list-disc list-inside space-y-2 text-white/75">
             <li><strong className="text-white/80">PWA</strong> — Installable on any device without an app store, works offline, and updates automatically. Parents don&apos;t need to deal with App Store approvals or Google Play policies.</li>
             <li><strong className="text-white/80">Next.js</strong> — Server-side rendering ensures the content pages (home, about, learn articles) are fully indexable by search engines, while the interactive play area remains a rich client-side experience.</li>
             <li><strong className="text-white/80">Three.js</strong> — Powers the 3D floating objects in the background. Each theme (Space, Desert, Jungle, Underwater, Ramadan) has unique 3D models that create an immersive, magical atmosphere for children.</li>
@@ -145,7 +161,7 @@ function ContentEn() {
           <p className="mb-3">
             ArabFingers continues to evolve based on feedback from parents and educators. We&apos;re currently exploring:
           </p>
-          <ul className="list-disc list-inside space-y-1.5 text-white/60">
+          <ul className="list-disc list-inside space-y-1.5 text-white/75">
             <li>Additional languages (French, Urdu, Turkish) for families in multilingual communities</li>
             <li>More interactive learning modes beyond keyboard smashing</li>
             <li>Printable worksheets and offline activities to complement the digital experience</li>
@@ -178,7 +194,7 @@ function ContentAr() {
       <p className="text-sm text-white/50">من إحباط أحد الوالدين إلى أداة مجانية للعائلات حول العالم</p>
       <AuthorBlock isAr />
 
-      <div className="space-y-8 text-sm leading-relaxed text-white/70">
+      <div className="space-y-8 text-sm leading-relaxed text-white/80">
         <section>
           <h2 className="text-xl font-semibold text-white mb-3">المشكلة: تعليم العربية للأطفال الصغار بحاجة لحل</h2>
           <p className="mb-3">
@@ -226,27 +242,29 @@ function ContentAr() {
           <div className="space-y-4">
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">لا تنقل، لا قوائم، لا أزرار</h3>
-              <p className="text-white/60">منطقة اللعب خالية تماماً من عناصر الواجهة. لا يمكن للطفل الانتقال بالخطأ أو إغلاق التطبيق أو تغيير الإعدادات. كل لمسة وكل ضغطة تنتج حرفاً.</p>
+              <p className="text-white/75">منطقة اللعب خالية تماماً من عناصر الواجهة. لا يمكن للطفل الانتقال بالخطأ أو إغلاق التطبيق أو تغيير الإعدادات. كل لمسة وكل ضغطة تنتج حرفاً.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">لوحة والدين مخفية بإيماءة ضغط مطول</h3>
-              <p className="text-white/60">يصل الوالدان للإعدادات بالضغط المطول على أيقونة صغيرة في الزاوية لمدة ثانيتين — إيماءة لن يكتشفها أي طفل صغير بالصدفة. أضفنا أيضاً قفل PIN اختياري لأمان إضافي.</p>
+              <p className="text-white/75">يصل الوالدان للإعدادات بالضغط المطول على أيقونة صغيرة في الزاوية لمدة ثانيتين — إيماءة لن يكتشفها أي طفل صغير بالصدفة. أضفنا أيضاً قفل PIN اختياري لأمان إضافي.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">عرض ثنائي اللغة، دائماً</h3>
-              <p className="text-white/60">كل حرف عربي يُعرض بجانب مقابله الصوتي الإنجليزي. هذا يخدم جمهورين: الوالدين الناطقين بالعربية الذين يريدون لطفلهم تعلم المقابلات اللاتينية، والوالدين الناطقين بالإنجليزية الذين يتعلمون العربية مع طفلهم.</p>
+              <p className="text-white/75">كل حرف عربي يُعرض بجانب مقابله الصوتي الإنجليزي. هذا يخدم جمهورين: الوالدين الناطقين بالعربية الذين يريدون لطفلهم تعلم المقابلات اللاتينية، والوالدين الناطقين بالإنجليزية الذين يتعلمون العربية مع طفلهم.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">احتفال بدون منافسة</h3>
-              <p className="text-white/60">عرب فنجرز يحتفل بكل ضغطة بالرسوم المتحركة والصوت. لكن لا توجد نقاط ولا لوحات متصدرين ولا ردود فعل &quot;أخطأت&quot;. كل تفاعل إيجابي.</p>
+              <p className="text-white/75">عرب فنجرز يحتفل بكل ضغطة بالرسوم المتحركة والصوت. لكن لا توجد نقاط ولا لوحات متصدرين ولا ردود فعل &quot;أخطأت&quot;. كل تفاعل إيجابي.</p>
             </div>
           </div>
         </section>
 
         <section>
           <h2 className="text-xl font-semibold text-white mb-3">ما التالي</h2>
-          <p className="mb-3">يستمر عرب فنجرز في التطور بناءً على ملاحظات الوالدين والمعلمين. نستكشف حالياً:</p>
-          <ul className="list-disc list-inside space-y-1.5 text-white/60">
+          <p className="mb-3">
+            يستمر عرب فنجرز في التطور بناءً على ملاحظات الوالدين والمعلمين. لم يكن في نيتي يوماً أن أبني &quot;منتجاً&quot; بقدر ما أردت حلّ مشكلة واجهتها بنفسي مع أطفالي، ثم اكتشفت أن آلاف العائلات حول العالم تواجه المشكلة ذاتها. كل رسالة تصلني من أمٍّ أو معلّمٍ تذكّرني لماذا بدأت، وتشكّل ما سيأتي لاحقاً. نستكشف حالياً:
+          </p>
+          <ul className="list-disc list-inside space-y-1.5 text-white/75">
             <li>لغات إضافية (الفرنسية، الأردية، التركية) للعائلات في المجتمعات متعددة اللغات</li>
             <li>أوضاع تعلم تفاعلية إضافية</li>
             <li>أوراق عمل قابلة للطباعة وأنشطة بدون شاشة</li>

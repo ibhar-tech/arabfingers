@@ -4,12 +4,28 @@ import { PageLayout } from "@/components/PageLayout";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ArticleStructuredData } from "@/components/ArticleStructuredData";
 import { isLocale } from "@/lib/locales";
+import { generatePageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Screen Time & Arabic Learning: Evidence-Based Guide | وقت الشاشة وتعلم العربية",
-  description:
-    "How to balance screen time with meaningful Arabic learning for toddlers and preschoolers. Research-backed guidelines from pediatric and educational experts.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata(locale, "/blog/screen-time-guidelines-arabic-learning", {
+    titleEn: "Screen Time & Arabic Learning: An Evidence-Based Guide for Parents",
+    titleAr: "وقت الشاشة وتعلم العربية: دليل مبني على الأدلة للوالدين",
+    descriptionEn:
+      "How to balance screen time with meaningful Arabic learning for toddlers and preschoolers. Research-backed guidelines from pediatric and educational experts.",
+    descriptionAr:
+      "كيف توازن بين وقت الشاشة والتعلم الهادف للعربية للأطفال الصغار وما قبل المدرسة. إرشادات مبنية على أبحاث طب الأطفال والخبراء التربويين.",
+    ogType: "article",
+    publishedTime: "2026-04-28",
+    modifiedTime: "2026-06-12",
+    keywords: [
+      "screen time arabic learning", "وقت الشاشة وتعلم العربية",
+      "screen time guidelines toddlers", "إرشادات وقت الشاشة للأطفال الصغار",
+      "educational apps for kids", "تطبيقات تعليمية للأطفال",
+      "active vs passive screen time", "وقت الشاشة النشط مقابل السلبي",
+    ],
+  });
+}
 
 export default async function ScreenTimePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -23,7 +39,7 @@ export default async function ScreenTimePage({ params }: { params: Promise<{ loc
         slug="blog/screen-time-guidelines-arabic-learning"
         locale={locale}
         datePublished="2026-04-28"
-        dateModified="2026-05-18"
+        dateModified="2026-06-12"
       />
       <Breadcrumbs
         locale={locale}
@@ -59,7 +75,7 @@ function ContentEn() {
       <p className="text-sm text-white/50">How to balance digital tools with healthy development</p>
       <AuthorBlock />
 
-      <div className="space-y-8 text-sm leading-relaxed text-white/70">
+      <div className="space-y-8 text-sm leading-relaxed text-white/80">
         <section>
           <h2 className="text-xl font-semibold text-white mb-3">The Screen Time Debate</h2>
           <p className="mb-3">
@@ -78,15 +94,15 @@ function ContentEn() {
           <div className="space-y-4">
             <div className="rounded-xl border border-white/8 bg-white/5 p-5">
               <h3 className="font-semibold text-white mb-2">Under 18 months</h3>
-              <p className="text-white/60">The AAP recommends avoiding screen media other than video chatting for children under 18 months. At this age, babies learn best through direct human interaction, physical exploration, and face-to-face communication. Their brains are not yet developed enough to transfer learning from 2D screens to 3D reality effectively. This is known as the &quot;transfer deficit&quot; in developmental psychology.</p>
+              <p className="text-white/75">The AAP recommends avoiding screen media other than video chatting for children under 18 months. At this age, babies learn best through direct human interaction, physical exploration, and face-to-face communication. Their brains are not yet developed enough to transfer learning from 2D screens to 3D reality effectively. This is known as the &quot;transfer deficit&quot; in developmental psychology.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-5">
               <h3 className="font-semibold text-white mb-2">18-24 months</h3>
-              <p className="text-white/60">For children 18-24 months, the AAP recommends introducing high-quality digital media with a critical caveat: <strong className="text-white/80">parents should co-view and interact alongside their child</strong>. At this age, children can begin to learn from screen-based media, but only when a caregiver is actively mediating the experience — pointing at things, naming objects, asking questions, and making connections to the real world.</p>
+              <p className="text-white/75">For children 18-24 months, the AAP recommends introducing high-quality digital media with a critical caveat: <strong className="text-white/80">parents should co-view and interact alongside their child</strong>. At this age, children can begin to learn from screen-based media, but only when a caregiver is actively mediating the experience — pointing at things, naming objects, asking questions, and making connections to the real world.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-5">
               <h3 className="font-semibold text-white mb-2">2-5 years</h3>
-              <p className="text-white/60">For children aged 2-5, the AAP recommends limiting screen time to 1 hour per day of high-quality programming. The WHO guidelines are similar, recommending no more than 1 hour of sedentary screen time. However, both organizations emphasize that the <strong className="text-white/80">quality and context</strong> of screen time matters more than the raw number of minutes.</p>
+              <p className="text-white/75">For children aged 2-5, the AAP recommends limiting screen time to 1 hour per day of high-quality programming. The WHO guidelines are similar, recommending no more than 1 hour of sedentary screen time. However, both organizations emphasize that the <strong className="text-white/80">quality and context</strong> of screen time matters more than the raw number of minutes.</p>
             </div>
           </div>
         </section>
@@ -110,23 +126,23 @@ function ContentEn() {
           <div className="space-y-4">
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">1. Co-play whenever possible</h3>
-              <p className="text-white/60">Sit with your child during ArabFingers sessions. Name the letters together, celebrate when they recognize one, and connect letters to real-world objects. &quot;Look, ب — that&apos;s Ba, like بيت, which means house!&quot; Research shows co-viewing multiplies the educational benefit by 2-3x.</p>
+              <p className="text-white/75">Sit with your child during ArabFingers sessions. Name the letters together, celebrate when they recognize one, and connect letters to real-world objects. &quot;Look, ب — that&apos;s Ba, like بيت, which means house!&quot; Research shows co-viewing multiplies the educational benefit by 2-3x.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">2. Keep sessions short and child-led</h3>
-              <p className="text-white/60">Let your child determine the length of each session. Toddlers naturally disengage when they&apos;re done — they&apos;ll climb off your lap, look away, or start doing something else. Follow their lead. Typical productive sessions are 3-10 minutes.</p>
+              <p className="text-white/75">Let your child determine the length of each session. Toddlers naturally disengage when they&apos;re done — they&apos;ll climb off your lap, look away, or start doing something else. Follow their lead. Typical productive sessions are 3-10 minutes.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">3. Balance with offline Arabic activities</h3>
-              <p className="text-white/60">Screen-based Arabic learning should complement, not replace, real-world exposure. Read Arabic picture books, sing Arabic songs, label household objects in Arabic, and use Arabic in daily conversation. The combination of digital and physical experiences creates the strongest learning foundation.</p>
+              <p className="text-white/75">Screen-based Arabic learning should complement, not replace, real-world exposure. Read Arabic picture books, sing Arabic songs, label household objects in Arabic, and use Arabic in daily conversation. The combination of digital and physical experiences creates the strongest learning foundation.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">4. No screens before bedtime</h3>
-              <p className="text-white/60">Avoid using ArabFingers or any screen-based tool in the hour before bedtime. The blue light from screens can interfere with melatonin production and disrupt sleep patterns. Morning and early afternoon are the best times for screen-based learning.</p>
+              <p className="text-white/75">Avoid using ArabFingers or any screen-based tool in the hour before bedtime. The blue light from screens can interfere with melatonin production and disrupt sleep patterns. Morning and early afternoon are the best times for screen-based learning.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">5. Evaluate apps critically</h3>
-              <p className="text-white/60">Not all &quot;educational&quot; apps are actually educational. Look for apps that are ad-free in the play area, don&apos;t collect data, don&apos;t have distracting notifications, and encourage active participation rather than passive watching. ArabFingers was designed specifically with these criteria in mind.</p>
+              <p className="text-white/75">Not all &quot;educational&quot; apps are actually educational. Look for apps that are ad-free in the play area, don&apos;t collect data, don&apos;t have distracting notifications, and encourage active participation rather than passive watching. ArabFingers was designed specifically with these criteria in mind.</p>
             </div>
           </div>
         </section>
@@ -173,7 +189,7 @@ function ContentAr() {
       <p className="text-sm text-white/50">كيف توازن بين الأدوات الرقمية والنمو الصحي</p>
       <AuthorBlock isAr />
 
-      <div className="space-y-8 text-sm leading-relaxed text-white/70">
+      <div className="space-y-8 text-sm leading-relaxed text-white/80">
         <section>
           <h2 className="text-xl font-semibold text-white mb-3">نقاش وقت الشاشة</h2>
           <p className="mb-3">
@@ -190,17 +206,30 @@ function ContentAr() {
           <div className="space-y-4">
             <div className="rounded-xl border border-white/8 bg-white/5 p-5">
               <h3 className="font-semibold text-white mb-2">أقل من ١٨ شهراً</h3>
-              <p className="text-white/60">توصي الأكاديمية الأمريكية لطب الأطفال بتجنب وسائل الإعلام على الشاشة للأطفال دون ١٨ شهراً (باستثناء مكالمات الفيديو). في هذا العمر، يتعلم الأطفال أفضل من خلال التفاعل البشري المباشر والاستكشاف البدني.</p>
+              <p className="text-white/75">توصي الأكاديمية الأمريكية لطب الأطفال بتجنب وسائل الإعلام على الشاشة للأطفال دون ١٨ شهراً (باستثناء مكالمات الفيديو). في هذا العمر، يتعلم الأطفال أفضل من خلال التفاعل البشري المباشر والاستكشاف البدني.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-5">
               <h3 className="font-semibold text-white mb-2">١٨-٢٤ شهراً</h3>
-              <p className="text-white/60">للأطفال ١٨-٢٤ شهراً، توصي الأكاديمية بتقديم وسائط رقمية عالية الجودة مع تحذير مهم: <strong className="text-white/80">يجب على الوالدين المشاهدة والتفاعل مع طفلهم</strong>. في هذا العمر، يمكن للأطفال البدء في التعلم من وسائط الشاشة، لكن فقط عندما يكون مقدم الرعاية يتوسط التجربة بنشاط.</p>
+              <p className="text-white/75">للأطفال ١٨-٢٤ شهراً، توصي الأكاديمية بتقديم وسائط رقمية عالية الجودة مع تحذير مهم: <strong className="text-white/80">يجب على الوالدين المشاهدة والتفاعل مع طفلهم</strong>. في هذا العمر، يمكن للأطفال البدء في التعلم من وسائط الشاشة، لكن فقط عندما يكون مقدم الرعاية يتوسط التجربة بنشاط.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-5">
               <h3 className="font-semibold text-white mb-2">٢-٥ سنوات</h3>
-              <p className="text-white/60">للأطفال ٢-٥ سنوات، توصي الأكاديمية بتحديد وقت الشاشة بساعة واحدة يومياً من البرامج عالية الجودة. لكن كلتا المنظمتين تؤكدان أن <strong className="text-white/80">جودة وسياق</strong> وقت الشاشة أهم من عدد الدقائق الخام.</p>
+              <p className="text-white/75">للأطفال ٢-٥ سنوات، توصي الأكاديمية بتحديد وقت الشاشة بساعة واحدة يومياً من البرامج عالية الجودة. لكن كلتا المنظمتين تؤكدان أن <strong className="text-white/80">جودة وسياق</strong> وقت الشاشة أهم من عدد الدقائق الخام.</p>
             </div>
           </div>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-white mb-3">وقت الشاشة النشط مقابل السلبي</h2>
+          <p className="mb-3">
+            يفرّق الباحثون بين <strong className="text-white/90">الاستهلاك السلبي</strong> (مشاهدة الفيديوهات والتمرير المتواصل) و<strong className="text-white/90">التفاعل النشط</strong> (الاستجابة للمؤثرات، وإنشاء المحتوى، وحل المشكلات). تُظهر الأدلة باستمرار أن وقت الشاشة النشط والتفاعلي ينتج نتائج تعلم أفضل بكثير من المشاهدة السلبية.
+          </p>
+          <p className="mb-3">
+            راجعت دراسة تحليلية نُشرت عام ٢٠٢٠ في دورية &quot;JAMA Pediatrics&quot; سبعاً وثمانين بحثاً شملت أكثر من ١٥٩ ألف طفل، ووجدت أن العلاقة بين وقت الشاشة ونمو الطفل تعتمد بشكل كبير على نوع المحتوى وطريقة استخدامه. ارتبطت التطبيقات التعليمية التفاعلية إيجابياً بتطور اللغة، بينما ارتبطت مشاهدة الفيديو السلبية بنتائج سلبية.
+          </p>
+          <p>
+            تطبيقات تعلم العربية مثل عرب فنجرز تقع ضمن فئة &quot;التفاعل النشط&quot;: الطفل يبدأ كل تفاعل بنفسه (بالضغط على مفتاح أو لمس الشاشة)، ويتلقى تغذية راجعة فورية متعددة الحواس (حرف مرئي، ونطق صوتي، ورسوم متحركة)، ويتحكم في إيقاع التجربة. هذا يختلف جوهرياً عن مشاهدة فيديو للأبجدية العربية على يوتيوب.
+          </p>
         </section>
 
         <section>
@@ -208,21 +237,35 @@ function ContentAr() {
           <div className="space-y-4">
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">١. العب مع طفلك كلما أمكن</h3>
-              <p className="text-white/60">اجلس مع طفلك أثناء جلسات عرب فنجرز. سمّ الحروف معاً، احتفل عندما يتعرف على حرف، واربط الحروف بأشياء واقعية. الأبحاث تُظهر أن المشاركة تضاعف الفائدة التعليمية ٢-٣ مرات.</p>
+              <p className="text-white/75">اجلس مع طفلك أثناء جلسات عرب فنجرز. سمّ الحروف معاً، احتفل عندما يتعرف على حرف، واربط الحروف بأشياء واقعية. الأبحاث تُظهر أن المشاركة تضاعف الفائدة التعليمية ٢-٣ مرات.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">٢. اجعل الجلسات قصيرة وموجّهة من الطفل</h3>
-              <p className="text-white/60">دع طفلك يحدد طول كل جلسة. الأطفال الصغار ينسحبون بشكل طبيعي عندما ينتهون. اتبع قيادتهم. الجلسات الإنتاجية النموذجية ٣-١٠ دقائق.</p>
+              <p className="text-white/75">دع طفلك يحدد طول كل جلسة. الأطفال الصغار ينسحبون بشكل طبيعي عندما ينتهون. اتبع قيادتهم. الجلسات الإنتاجية النموذجية ٣-١٠ دقائق.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">٣. وازن مع أنشطة عربية بدون شاشة</h3>
-              <p className="text-white/60">تعلم العربية بالشاشة يجب أن يكمّل، لا يحل محل، التعرض في العالم الحقيقي. اقرأ كتب صور عربية، غنّ أغاني عربية، سمّ أشياء المنزل بالعربية، واستخدم العربية في المحادثات اليومية.</p>
+              <p className="text-white/75">تعلم العربية بالشاشة يجب أن يكمّل، لا يحل محل، التعرض في العالم الحقيقي. اقرأ كتب صور عربية، غنّ أغاني عربية، سمّ أشياء المنزل بالعربية، واستخدم العربية في المحادثات اليومية.</p>
             </div>
             <div className="rounded-xl border border-white/8 bg-white/5 p-4">
               <h3 className="font-semibold text-white mb-1">٤. لا شاشات قبل النوم</h3>
-              <p className="text-white/60">تجنب استخدام أي أداة شاشة في الساعة قبل النوم. الضوء الأزرق من الشاشات يمكن أن يتداخل مع إنتاج الميلاتونين ويعطل أنماط النوم.</p>
+              <p className="text-white/75">تجنب استخدام أي أداة شاشة في الساعة قبل النوم. الضوء الأزرق من الشاشات يمكن أن يتداخل مع إنتاج الميلاتونين ويعطل أنماط النوم. الصباح وبداية فترة الظهيرة هما أفضل وقت للتعلم عبر الشاشة.</p>
+            </div>
+            <div className="rounded-xl border border-white/8 bg-white/5 p-4">
+              <h3 className="font-semibold text-white mb-1">٥. قيّم التطبيقات بعين ناقدة</h3>
+              <p className="text-white/75">ليست كل التطبيقات &quot;التعليمية&quot; تعليمية فعلاً. ابحث عن تطبيقات خالية من الإعلانات في منطقة اللعب، لا تجمع بيانات، ليس فيها إشعارات مشتتة، وتشجع المشاركة النشطة بدلاً من المشاهدة السلبية. صُمّم عرب فنجرز خصيصاً وفق هذه المعايير.</p>
             </div>
           </div>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-white mb-3">ميزة ثنائية اللغة في سياق وقت الشاشة</h2>
+          <p className="mb-3">
+            بالنسبة للعائلات ثنائية اللغة، يكتسب وقت الشاشة أهمية إضافية. غالباً ما يحصل الأطفال في البيوت العربية الإنجليزية على تعرّض للعربية أقل بكثير من الإنجليزية، خاصة في البلدان التي تغلب عليها الإنجليزية. هذا يخلق ما يسميه اللغويون &quot;فجوة المدخلات&quot; — يسمع الطفل ويرى عربية أقل بكثير من الإنجليزية، مما قد يجعل العربية لغته الأضعف.
+          </p>
+          <p>
+            في هذا السياق، تؤدي الأدوات الرقمية العربية عالية الجودة دوراً مهماً: فهي تكمّل المدخلات العربية التي يتلقاها الطفل في المنزل. بضع دقائق من عرب فنجرز يومياً لن تغني عن الحاجة للعربية المحكية، لكنها تعزز التعرف على الحروف، وتطبّع رؤية النص العربي، وتبني ارتباطات إيجابية باللغة. هذا التعرض التكميلي يمكن أن يُحدث فرقاً حقيقياً في الحفاظ على توازن اللغتين.
+          </p>
         </section>
 
         <section>

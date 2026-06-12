@@ -4,12 +4,19 @@ import { PageLayout } from "@/components/PageLayout";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { isLocale } from "@/lib/locales";
 import { blogPosts } from "@/lib/blog-data";
+import { generatePageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Blog — Arabic Learning Tips & Insights | مدونة عرب فنجرز",
-  description:
-    "Expert articles on teaching Arabic to children, bilingual parenting, Arabic calligraphy, screen time guidelines, and more. Updated regularly with fresh insights.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata(locale, "/blog", {
+    titleEn: "ArabFingers Blog — Arabic Learning Tips & Insights",
+    titleAr: "مدونة عرب فنجرز — نصائح ورؤى حول تعلم العربية",
+    descriptionEn:
+      "Expert articles on teaching Arabic to children, bilingual parenting, Arabic calligraphy, screen time guidelines, and more. Updated regularly with fresh insights.",
+    descriptionAr:
+      "مقالات متخصصة حول تعليم العربية للأطفال، والتربية ثنائية اللغة، والخط العربي، وإرشادات وقت الشاشة، والمزيد. نحدّثها باستمرار برؤى جديدة.",
+  });
+}
 
 export default async function BlogIndexPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -31,7 +38,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ loca
           ? "مقالات ونصائح حول تعليم العربية للأطفال، التربية ثنائية اللغة، والمزيد"
           : "Articles and tips on teaching Arabic to kids, bilingual parenting, and more"}
       </p>
-      <p className="text-sm text-white/60 leading-relaxed mb-10">
+      <p className="text-sm text-white/75 leading-relaxed mb-10">
         {isAr
           ? "مرحباً بك في مدونة عرب فنجرز. هنا نشارك رؤى مبنية على الأبحاث حول تعليم الأطفال الصغار اللغة العربية، وفوائد ثنائية اللغة، وأنشطة عملية يمكنك تجربتها في المنزل. نؤمن بأن كل طفل يستحق فرصة التواصل مع اللغة العربية — وهذه المقالات هنا لمساعدتك في تحقيق ذلك."
           : "Welcome to the ArabFingers blog. Here we share research-backed insights on teaching young children Arabic, the benefits of bilingualism, and practical activities you can try at home. We believe every child deserves the chance to connect with the Arabic language — and these articles are here to help you make that happen."}
@@ -50,7 +57,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ loca
                 <h2 className="text-base font-semibold text-white mb-1 group-hover:text-accent transition-colors">
                   {isAr ? post.titleAr : post.titleEn}
                 </h2>
-                <p className="text-xs text-white/50 leading-relaxed mb-2">
+                <p className="text-sm text-white/75 leading-relaxed mb-2">
                   {isAr ? post.descAr : post.descEn}
                 </p>
                 <div className="flex items-center gap-3 text-[11px] text-white/30">
@@ -86,7 +93,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ loca
         <h2 className="text-xl font-semibold text-white mb-3">
           {isAr ? "أدلة التعلم" : "Learning Guides"}
         </h2>
-        <p className="text-sm text-white/60 mb-4">
+        <p className="text-sm text-white/75 mb-4">
           {isAr
             ? "بالإضافة إلى المدونة، لدينا أدلة تعليمية شاملة لمساعدتك في تعليم طفلك العربية."
             : "In addition to the blog, we have comprehensive learning guides to help you teach your child Arabic."}

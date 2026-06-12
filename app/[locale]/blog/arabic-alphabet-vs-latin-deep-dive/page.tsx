@@ -4,12 +4,28 @@ import { PageLayout } from "@/components/PageLayout";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ArticleStructuredData } from "@/components/ArticleStructuredData";
 import { isLocale } from "@/lib/locales";
+import { generatePageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Arabic vs Latin Alphabet: A Linguistic Deep Dive | الأبجدية العربية مقابل اللاتينية",
-  description:
-    "A comprehensive comparison of Arabic and Latin writing systems. Explore letter connectivity, diacritics, morphology, and how these differences affect language learning.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata(locale, "/blog/arabic-alphabet-vs-latin-deep-dive", {
+    titleEn: "Arabic vs Latin Alphabet: A Linguistic Deep Dive",
+    titleAr: "الأبجدية العربية مقابل اللاتينية: غوص لغوي عميق",
+    descriptionEn:
+      "A comprehensive comparison of Arabic and Latin writing systems. Explore letter connectivity, diacritics, morphology, and how these differences affect language learning.",
+    descriptionAr:
+      "مقارنة شاملة بين نظامي الكتابة العربي واللاتيني. استكشف اتصال الحروف والتشكيل والصرف، وكيف تؤثر هذه الفروقات على تعلم اللغة لدى الأطفال ثنائيي اللغة.",
+    ogType: "article",
+    publishedTime: "2026-05-05",
+    modifiedTime: "2026-06-12",
+    keywords: [
+      "arabic vs latin alphabet", "الأبجدية العربية مقابل اللاتينية",
+      "arabic writing system", "نظام الكتابة العربية",
+      "arabic letter forms", "أشكال الحروف العربية",
+      "arabic diacritics tashkeel", "التشكيل في اللغة العربية",
+    ],
+  });
+}
 
 export default async function ArabicVsLatinPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -23,7 +39,7 @@ export default async function ArabicVsLatinPage({ params }: { params: Promise<{ 
         slug="blog/arabic-alphabet-vs-latin-deep-dive"
         locale={locale}
         datePublished="2026-05-05"
-        dateModified="2026-05-22"
+        dateModified="2026-06-12"
       />
       <Breadcrumbs
         locale={locale}
@@ -59,7 +75,7 @@ function ContentEn() {
       <p className="text-sm text-white/50">Understanding what makes Arabic unique — and why it matters for learning</p>
       <AuthorBlock />
 
-      <div className="space-y-8 text-sm leading-relaxed text-white/70">
+      <div className="space-y-8 text-sm leading-relaxed text-white/80">
         <section>
           <h2 className="text-xl font-semibold text-white mb-3">Two of the World&apos;s Most Important Scripts</h2>
           <p className="mb-3">
@@ -156,8 +172,8 @@ function ContentEn() {
               <div key={s.letter} className="rounded-xl border border-white/8 bg-white/5 p-4 flex gap-3 items-start">
                 <span className="text-2xl text-accent shrink-0" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{s.letter}</span>
                 <div>
-                  <span className="font-semibold text-white text-xs">{s.name}</span>
-                  <p className="text-xs text-white/50 mt-0.5">{s.desc}</p>
+                  <span className="font-semibold text-white text-sm">{s.name}</span>
+                  <p className="text-sm text-white/75 mt-0.5">{s.desc}</p>
                 </div>
               </div>
             ))}
@@ -202,7 +218,7 @@ function ContentAr() {
       <p className="text-sm text-white/50">فهم ما يجعل العربية فريدة — ولماذا يهم ذلك للتعلم</p>
       <AuthorBlock isAr />
 
-      <div className="space-y-8 text-sm leading-relaxed text-white/70">
+      <div className="space-y-8 text-sm leading-relaxed text-white/80">
         <section>
           <h2 className="text-xl font-semibold text-white mb-3">نظامان من أهم أنظمة الكتابة في العالم</h2>
           <p className="mb-3">
@@ -226,20 +242,78 @@ function ContentAr() {
         <section>
           <h2 className="text-xl font-semibold text-white mb-3">اتصال الحروف: متصل بطبيعته</h2>
           <p className="mb-3">
-            في الإنجليزية، تُطبع الحروف عادة كوحدات منفصلة ومنقطعة. الكتابة المتصلة (cursive) تربطها، لكن هذا يُعتبر مهارة منفصلة. في العربية، <strong className="text-white/90">الحروف متصلة دائماً في شكلها الطبيعي</strong>.
+            في الإنجليزية، تُطبع الحروف عادة كوحدات منفصلة ومنقطعة، والكتابة المتصلة تربطها لكنها تُعتبر مهارة منفصلة. في العربية، <strong className="text-white/90">الحروف متصلة دائماً في شكلها الطبيعي</strong>؛ فكتابة العربية بحروف منفصلة أشبه بكتابة الإنجليزية بأحرف كبيرة مع فراغ بين كل حرف وآخر — مقروءة تقنياً لكنها غير طبيعية.
           </p>
+          <p className="mb-3">
+            هذا يعني أن كل حرف عربي له حتى أربعة أشكال حسب موقعه: منفصل، وأول الكلمة، ووسطها، وآخرها. خذ مثلاً حرف العين (ع) كيف يتغير شكله في كل موضع:
+          </p>
+          <div className="grid grid-cols-4 gap-3 my-4">
+            {[
+              { pos: "منفصل", form: "ع" },
+              { pos: "أول", form: "عـ" },
+              { pos: "وسط", form: "ـعـ" },
+              { pos: "آخر", form: "ـع" },
+            ].map((f) => (
+              <div key={f.pos} className="rounded-lg border border-white/8 bg-white/5 p-3 text-center">
+                <span className="text-2xl text-white block mb-1" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{f.form}</span>
+                <span className="text-[10px] text-white/40">{f.pos}</span>
+              </div>
+            ))}
+          </div>
           <p>
-            هذا يعني أن كل حرف عربي له حتى أربعة أشكال حسب موقعه: منفصل، بداية الكلمة، وسط الكلمة، ونهاية الكلمة. لهذا يُعلّم عرب فنجرز الشكل المنفصل أولاً — إنه الشكل الأساسي الذي يحتاج الأطفال للتعرف عليه قبل تعلم الأشكال المتصلة.
+            لهذا يُعلّم عرب فنجرز الشكل المنفصل أولاً — إنه الشكل الأساسي الذي يحتاج الأطفال للتعرف عليه قبل تعلم الأشكال المتصلة. ما إن يعرف الطفل شكل العين منفصلاً، حتى يبدأ في رصده داخل الكلمات.
           </p>
         </section>
 
         <section>
           <h2 className="text-xl font-semibold text-white mb-3">الحروف الصوتية: صريحة مقابل ضمنية</h2>
           <p className="mb-3">
-            الإنجليزية تستخدم ٥ أحرف صوتية (A, E, I, O, U) موجودة دائماً في النص المكتوب. العربية تعمل بشكل مختلف تماماً. الأبجدية العربية هي تقنياً <strong className="text-white/90">أبجد</strong> — نظام كتابة حيث الحروف الساكنة هي الأساسية والحروف الصوتية اختيارية.
+            الإنجليزية تستخدم خمسة أحرف صوتية موجودة دائماً في النص المكتوب؛ فلا يمكنك قراءة كلمة &quot;cat&quot; لو كُتبت &quot;ct&quot; لأن الحرف الصوتي ضروري لفك الرمز. العربية تعمل بشكل مختلف تماماً. الأبجدية العربية هي تقنياً <strong className="text-white/90">أبجد</strong> — نظام كتابة فيه الحروف الساكنة أساسية والحركات الصوتية اختيارية.
           </p>
+          <p className="mb-3">
+            في النص العربي اليومي (الصحف والكتب واللافتات)، لا تُكتب الحركات القصيرة، ويستنتجها القراء من السياق. فكلمة &quot;كتاب&quot; تُكتب دون أي إشارة صريحة لمواضع الحركات. وعندما تُكتب الحركات صراحة، تظهر كعلامات صغيرة تُسمى <strong className="text-white/90">التشكيل</strong> فوق الحروف أو تحتها:
+          </p>
+          <div className="grid grid-cols-3 gap-3 my-4">
+            {[
+              { name: "فتحة", mark: "كَ" },
+              { name: "ضمة", mark: "كُ" },
+              { name: "كسرة", mark: "كِ" },
+            ].map((v) => (
+              <div key={v.name} className="rounded-lg border border-white/8 bg-white/5 p-3 text-center">
+                <span className="text-3xl text-white block mb-1" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{v.mark}</span>
+                <span className="text-[10px] text-white/40">{v.name}</span>
+              </div>
+            ))}
+          </div>
           <p>
-            في النص العربي اليومي، لا تُكتب الحركات القصيرة. القراء يستنتجونها من السياق. عندما تُكتب الحركات صراحة، تظهر كعلامات صغيرة تُسمى <strong className="text-white/90">التشكيل</strong> فوق أو تحت الحروف. لمواد تعلم الأطفال والقرآن، تُكتب الحركات دائماً.
+            في مواد تعلم الأطفال والمصحف الشريف، تُكتب الحركات دائماً، فهي للمبتدئين دليل ضروري. ومع نمو الطلاقة ينتقل القارئ تلقائياً إلى النص الخالي من الحركات — تماماً كما يفهم القارئ المتمرّس النص المختصر.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-semibold text-white mb-3">المخزون الصوتي: أصوات لا وجود لها في الإنجليزية</h2>
+          <p className="mb-3">
+            تحتوي العربية على عدة أصوات ساكنة لا مقابل لها في الإنجليزية، منها أصوات حلقية وبلعومية تُنطق من أعماق الحلق — أصوات لم يحتج الناطق بالإنجليزية يوماً لإخراجها:
+          </p>
+          <div className="space-y-2 my-4">
+            {[
+              { letter: "ع", name: "العين", desc: "صوت احتكاكي بلعومي مجهور لا مقابل له في الإنجليزية، يُنطق بقبض عضلات الحلق." },
+              { letter: "ح", name: "الحاء", desc: "صوت احتكاكي بلعومي مهموس، أعمق من الـ H الإنجليزية، كزفير ثقيل من مؤخرة الحلق." },
+              { letter: "خ", name: "الخاء", desc: "صوت احتكاكي لهوي، يشبه نطق ch في الكلمة الاسكتلندية loch." },
+              { letter: "غ", name: "الغين", desc: "صوت احتكاكي لهوي مجهور، قريب من الراء الفرنسية أو صوت الغرغرة." },
+              { letter: "ق", name: "القاف", desc: "صوت انفجاري لهوي مهموس، كالكاف لكن من موضع أعمق في الحلق." },
+            ].map((s) => (
+              <div key={s.letter} className="rounded-xl border border-white/8 bg-white/5 p-4 flex gap-3 items-start">
+                <span className="text-2xl text-accent shrink-0" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{s.letter}</span>
+                <div>
+                  <span className="font-semibold text-white text-sm">{s.name}</span>
+                  <p className="text-sm text-white/75 mt-0.5">{s.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p>
+            وفي المقابل، للإنجليزية أصوات لا توجد في العربية الفصحى، مثل صوت P (تستبدله العربية بالباء)، وصوت V، والجيم القاهرية الصلبة (وإن وُجدت بعضها في لهجات عربية). هذا التباين الصوتي مهم أن يدركه الوالدان: فطفلهما سيتعلم أصواتاً لا توفرها أيٌّ من اللغتين بمفردها.
           </p>
         </section>
 
@@ -248,8 +322,11 @@ function ContentAr() {
           <p className="mb-3">
             إذا كان طفلك يتعلم العربية والإنجليزية معاً، فهو يفعل شيئاً مذهلاً: إتقان نظامي كتابة مختلفين جذرياً في وقت واحد. هذا أصعب من تعلم لغتين تشتركان في نفس الخط (مثل الإنجليزية والإسبانية)، لكن الفوائد المعرفية أكبر أيضاً.
           </p>
+          <p className="mb-3">
+            أدوات مثل عرب فنجرز تبسّط هذه الرحلة بعرض الحروف العربية في أبسط صورها — منفصلة، مع نطق واضح، إلى جانب مقابلها الصوتي الإنجليزي. وبرؤية الخطّين جنباً إلى جنب، يبني الأطفال روابط بين اللغتين تسرّع التعلم في كلتيهما.
+          </p>
           <p>
-            النقطة الرئيسية: العربية والإنجليزية مختلفتان، لكن تلك الفروقات ميزات وليست عيوباً. كل فرق يتنقل فيه طفلك يبني بنية إدراكية أقوى مدى الحياة.
+            النقطة الرئيسية: العربية والإنجليزية مختلفتان، لكن تلك الفروقات ميزات وليست عيوباً. فكل مرة ينتقل فيها دماغ طفلك بين اتجاه الكتابة، وبين الحروف المتصلة والمنفصلة، وبين الأصوات الحلقية والأصوات اللاتينية، يدرّب مرونته الذهنية. وقد أظهرت أبحاث ثنائية اللغة أن هذه المرونة تنعكس على مهارات أخرى تماماً، من حل المشكلات إلى التركيز. كل فرق يتنقل فيه طفلك يبني بنية إدراكية أقوى تبقى معه مدى الحياة.
           </p>
         </section>
       </div>
