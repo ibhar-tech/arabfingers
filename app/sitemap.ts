@@ -38,31 +38,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...localizedUrls("/coloring", 0.8),
     ...localizedUrls("/printables", 0.8),
 
-    // Science interactive lessons
-    ...localizedUrls("/learn/states-of-matter", 0.8, "monthly", d("2026-05-31")),
-    ...localizedUrls("/learn/water-cycle", 0.8, "monthly", d("2026-05-31")),
-    ...localizedUrls("/learn/solar-system", 0.8, "monthly", d("2026-05-31")),
-    ...localizedUrls("/learn/gravity", 0.8, "monthly", d("2026-05-31")),
+    // Science interactive lessons (expanded into full articles 2026-06-11)
+    ...localizedUrls("/learn/states-of-matter", 0.8, "monthly", d("2026-06-11")),
+    ...localizedUrls("/learn/water-cycle", 0.8, "monthly", d("2026-06-11")),
+    ...localizedUrls("/learn/solar-system", 0.8, "monthly", d("2026-06-11")),
+    ...localizedUrls("/learn/gravity", 0.8, "monthly", d("2026-06-11")),
 
-    // Blog (real last-updated dates)
+    // Blog (real last-updated dates — localization & readability pass 2026-06-12)
     ...localizedUrls("/blog", 0.9, "weekly"),
-    ...localizedUrls("/blog/how-we-built-arabfingers", 0.8, "monthly", d("2026-05-20")),
-    ...localizedUrls("/blog/screen-time-guidelines-arabic-learning", 0.8, "monthly", d("2026-05-18")),
-    ...localizedUrls("/blog/arabic-alphabet-vs-latin-deep-dive", 0.8, "monthly", d("2026-05-22")),
-    ...localizedUrls("/blog/arabic-calligraphy-for-kids", 0.8, "monthly", d("2026-05-25")),
-    ...localizedUrls("/blog/ramadan-activities-arabic-learning", 0.8, "monthly", d("2026-05-25")),
+    ...localizedUrls("/blog/how-we-built-arabfingers", 0.8, "monthly", d("2026-06-12")),
+    ...localizedUrls("/blog/screen-time-guidelines-arabic-learning", 0.8, "monthly", d("2026-06-12")),
+    ...localizedUrls("/blog/arabic-alphabet-vs-latin-deep-dive", 0.8, "monthly", d("2026-06-12")),
+    ...localizedUrls("/blog/arabic-calligraphy-for-kids", 0.8, "monthly", d("2026-06-12")),
+    ...localizedUrls("/blog/ramadan-activities-arabic-learning", 0.8, "monthly", d("2026-06-12")),
 
-    // Learn articles (real last-updated dates)
-    ...localizedUrls("/learn/arabic-alphabet-guide", 0.8, "monthly", d("2026-05-12")),
-    ...localizedUrls("/learn/teaching-arabic-to-kids", 0.8, "monthly", d("2026-05-20")),
-    ...localizedUrls("/learn/arabic-numbers", 0.8, "monthly", d("2026-05-08")),
-    ...localizedUrls("/learn/arabic-colors", 0.8, "monthly", d("2026-04-30")),
-    ...localizedUrls("/learn/first-arabic-words", 0.8, "monthly", d("2026-05-02")),
-    ...localizedUrls("/learn/arabic-letter-forms", 0.8, "monthly", d("2026-05-15")),
-    ...localizedUrls("/learn/arabic-vs-english", 0.8, "monthly", d("2026-05-18")),
-    ...localizedUrls("/learn/best-age-to-learn-arabic", 0.8, "monthly", d("2026-05-22")),
-    ...localizedUrls("/learn/bilingual-children-benefits", 0.8, "monthly", d("2026-05-24")),
-    ...localizedUrls("/learn/arabic-activities-at-home", 0.8, "monthly", d("2026-05-26")),
+    // Learn articles (real last-updated dates — content deepening pass June 2026)
+    ...localizedUrls("/learn/arabic-alphabet-guide", 0.8, "monthly", d("2026-06-11")),
+    ...localizedUrls("/learn/teaching-arabic-to-kids", 0.8, "monthly", d("2026-06-12")),
+    ...localizedUrls("/learn/arabic-numbers", 0.8, "monthly", d("2026-06-12")),
+    ...localizedUrls("/learn/arabic-colors", 0.8, "monthly", d("2026-06-12")),
+    ...localizedUrls("/learn/first-arabic-words", 0.8, "monthly", d("2026-06-12")),
+    ...localizedUrls("/learn/arabic-letter-forms", 0.8, "monthly", d("2026-06-12")),
+    ...localizedUrls("/learn/arabic-vs-english", 0.8, "monthly", d("2026-06-12")),
+    ...localizedUrls("/learn/best-age-to-learn-arabic", 0.8, "monthly", d("2026-06-12")),
+    ...localizedUrls("/learn/bilingual-children-benefits", 0.8, "monthly", d("2026-06-12")),
+    ...localizedUrls("/learn/arabic-activities-at-home", 0.8, "monthly", d("2026-06-12")),
 
     // Info pages
     ...localizedUrls("/about", 0.7),
