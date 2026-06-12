@@ -212,7 +212,7 @@ export default async function ArabicLetterFormsPage({ params }: { params: Promis
         {sampleLetters.map((l) => (
           <p key={l.name} className="text-sm text-white/75 leading-relaxed">
             <span className="text-accent" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.wordAr}</span>
-            <span className="text-white/50"> ({l.wordEn})</span> — {isAr ? l.noteAr : l.noteEn}
+            <span className="text-white/65"> ({l.wordEn})</span> — {isAr ? l.noteAr : l.noteEn}
           </p>
         ))}
       </div>
@@ -235,7 +235,7 @@ export default async function ArabicLetterFormsPage({ params }: { params: Promis
           <tbody>
             {letterForms.map((l) => (
               <tr key={l.name} className="border-b border-white/5 hover:bg-white/5 transition">
-                <td className="py-2.5 px-3 text-white/80 text-xs">{isAr ? l.arName : l.name}</td>
+                <td className="py-2.5 px-3 text-white/80 text-sm">{isAr ? l.arName : l.name}</td>
                 <td className="py-2.5 px-3 text-center text-2xl text-white" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.isolated}</td>
                 <td className="py-2.5 px-3 text-center text-2xl text-white" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.initial}</td>
                 <td className="py-2.5 px-3 text-center text-2xl text-white" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.medial}</td>
