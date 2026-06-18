@@ -85,21 +85,19 @@ export function PrintablesClient({ locale }: PrintablesClientProps) {
   return (
     <>
       {/* 1. Print Controller & Instructions */}
-      <div className="print:hidden rounded-3xl border border-accent/20 bg-white/2 p-6 mb-8 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-accent/5 via-transparent to-accent/5 opacity-30 pointer-events-none" />
-        
+      <div className="print:hidden card-stock card-stock-saffron p-6 mb-8 text-center relative overflow-hidden">
         <span className="text-5xl mb-3 block animate-bounce">🖨️✨</span>
-        <h1 className="text-2xl font-bold text-white mb-2">
+        <h1 className="font-display text-2xl font-extrabold text-ink mb-2">
           {isAr ? "أوراق عمل وكراسات تلوين للأطفال مجاناً" : "Free Children's Printables & Tracing Books"}
         </h1>
-        <p className="text-sm text-white/75 leading-relaxed max-w-xl mx-auto mb-6">
+        <p className="text-sm text-ink/75 leading-relaxed max-w-xl mx-auto mb-6">
           {isAr
             ? "اختر تصنيفاً من التبويبات أدناه واضغط على زر الطباعة للحصول على كراسة أنشطة خالية من الشاشات ومثالية للمنزل أو الحضانة!"
             : "Looking for engaging, screen-free educational activities? Pick a worksheet category below and click print to create a gorgeous, custom physical activity booklet for your toddler!"}
         </p>
 
         {/* Tab Selector */}
-        <div className="flex flex-wrap justify-center gap-2 mb-6 border-b border-white/10 pb-4">
+        <div className="flex flex-wrap justify-center gap-2 mb-6 border-b border-ink/10 pb-4">
           {[
             { id: "letters", labelEn: "🔤 Letters Tracing", labelAr: "🔤 تتبع الحروف" },
             { id: "numbers", labelEn: "🔢 Numbers & Fingers", labelAr: "🔢 الأرقام والأصابع" },
@@ -109,10 +107,10 @@ export function PrintablesClient({ locale }: PrintablesClientProps) {
             <button
               key={tab.id}
               onClick={() => setActiveTab(tab.id as ActiveTab)}
-              className={`px-4 py-2 rounded-xl text-xs font-semibold cursor-pointer transition active:scale-95 ${
+              className={`px-4 py-2 rounded-full text-xs font-bold cursor-pointer transition active:scale-95 border-2 ${
                 activeTab === tab.id
-                  ? "bg-accent text-[#050816] shadow-lg"
-                  : "bg-white/5 text-white/60 hover:bg-white/10 hover:text-white"
+                  ? "bg-saffron border-ink text-ink shadow-[0_3px_0_0_var(--ink)]"
+                  : "bg-saffron-soft/50 border-ink/15 text-ink/60 hover:border-ink hover:text-ink"
               }`}
             >
               {isAr ? tab.labelAr : tab.labelEn}
@@ -120,10 +118,7 @@ export function PrintablesClient({ locale }: PrintablesClientProps) {
           ))}
         </div>
 
-        <button
-          onClick={handlePrint}
-          className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3.5 text-xs font-bold text-[#050816] shadow-[0_6px_24px_rgba(159,225,203,0.3)] hover:scale-105 transition cursor-pointer"
-        >
+        <button onClick={handlePrint} className="btn-chunky cursor-pointer">
           🖨️ {isAr ? "اطبع التصنيف المحدد الآن" : "Print Current Category Now"}
         </button>
       </div>
@@ -152,15 +147,15 @@ export function PrintablesClient({ locale }: PrintablesClientProps) {
             {arabicLetters.map((letter) => (
               <div
                 key={letter.ar}
-                className="rounded-2xl border border-white/8 bg-white/3 p-5 flex flex-col justify-between print:bg-white print:border-black/20 print:text-black print:shadow-none"
+                className="rounded-2xl border border-ink/8 bg-card p-5 flex flex-col justify-between print:bg-white print:border-black/20 print:text-black print:shadow-none"
               >
-                <div className="flex items-center justify-between border-b border-white/5 pb-3 mb-4 print:border-black/5">
+                <div className="flex items-center justify-between border-b border-ink/5 pb-3 mb-4 print:border-black/5">
                   <div>
                     <span className="text-xs font-semibold text-accent print:text-black/60 uppercase">
                       {isAr ? `حرف ${letter.soundId}` : `Letter ${letter.soundId}`}
                     </span>
-                    <h3 className="text-lg font-bold text-white print:text-black mt-0.5">
-                      {letter.arName} <span className="text-xs font-normal text-white/45 print:text-black/40">({letter.enName})</span>
+                    <h3 className="text-lg font-bold text-ink print:text-black mt-0.5">
+                      {letter.arName} <span className="text-xs font-normal text-ink/45 print:text-black/40">({letter.enName})</span>
                     </h3>
                   </div>
                   <div className="text-4xl font-bold font-arabic text-accent print:text-black">
@@ -171,29 +166,29 @@ export function PrintablesClient({ locale }: PrintablesClientProps) {
                 {/* Tracing Grid */}
                 <div className="flex items-center justify-between gap-2 mt-2">
                   <div className="flex flex-col items-center gap-1">
-                    <span className="text-[9px] text-white/30 print:text-black/30 font-semibold uppercase">{isAr ? "دليل" : "Guide"}</span>
-                    <div className="w-12 h-12 rounded-lg border-2 border-dashed border-accent/20 flex items-center justify-center bg-white/2 print:bg-black/2 print:border-black/20">
-                      <span className="text-3xl font-bold font-arabic text-white/25 print:text-black/25 select-none">{letter.ar}</span>
+                    <span className="text-[9px] text-ink/30 print:text-black/30 font-semibold uppercase">{isAr ? "دليل" : "Guide"}</span>
+                    <div className="w-12 h-12 rounded-lg border-2 border-dashed border-accent/20 flex items-center justify-center bg-card print:bg-black/2 print:border-black/20">
+                      <span className="text-3xl font-bold font-arabic text-ink/25 print:text-black/25 select-none">{letter.ar}</span>
                     </div>
                   </div>
 
                   <div className="flex flex-col items-center gap-1">
-                    <span className="text-[9px] text-white/30 print:text-black/30 font-semibold uppercase">{isAr ? "تتبع" : "Trace"}</span>
-                    <div className="w-12 h-12 rounded-lg border-2 border-dashed border-white/10 flex items-center justify-center bg-white/1 print:border-black/15">
-                      <span className="text-3xl font-bold font-arabic text-white/10 print:text-black/10 select-none">{letter.ar}</span>
+                    <span className="text-[9px] text-ink/30 print:text-black/30 font-semibold uppercase">{isAr ? "تتبع" : "Trace"}</span>
+                    <div className="w-12 h-12 rounded-lg border-2 border-dashed border-ink/10 flex items-center justify-center bg-card print:border-black/15">
+                      <span className="text-3xl font-bold font-arabic text-ink/10 print:text-black/10 select-none">{letter.ar}</span>
                     </div>
                   </div>
 
                   <div className="flex flex-col items-center gap-1">
-                    <span className="text-[9px] text-white/30 print:text-black/30 font-semibold uppercase">{isAr ? "تتبع" : "Trace"}</span>
-                    <div className="w-12 h-12 rounded-lg border-2 border-dashed border-white/10 flex items-center justify-center bg-white/1 print:border-black/15">
-                      <span className="text-3xl font-bold font-arabic text-white/10 print:text-black/10 select-none">{letter.ar}</span>
+                    <span className="text-[9px] text-ink/30 print:text-black/30 font-semibold uppercase">{isAr ? "تتبع" : "Trace"}</span>
+                    <div className="w-12 h-12 rounded-lg border-2 border-dashed border-ink/10 flex items-center justify-center bg-card print:border-black/15">
+                      <span className="text-3xl font-bold font-arabic text-ink/10 print:text-black/10 select-none">{letter.ar}</span>
                     </div>
                   </div>
 
                   <div className="flex flex-col items-center gap-1">
-                    <span className="text-[9px] text-white/30 print:text-black/30 font-semibold uppercase">{isAr ? "اكتب" : "Write"}</span>
-                    <div className="w-12 h-12 rounded-lg border-2 border-solid border-white/5 flex items-center justify-center bg-white/1 print:border-black/10" />
+                    <span className="text-[9px] text-ink/30 print:text-black/30 font-semibold uppercase">{isAr ? "اكتب" : "Write"}</span>
+                    <div className="w-12 h-12 rounded-lg border-2 border-solid border-ink/5 flex items-center justify-center bg-card print:border-black/10" />
                   </div>
                 </div>
               </div>
@@ -207,12 +202,12 @@ export function PrintablesClient({ locale }: PrintablesClientProps) {
             {numbersData.map((item) => (
               <div
                 key={item.en}
-                className="rounded-2xl border border-white/8 bg-white/3 p-5 flex flex-col justify-between print:bg-white print:border-black/20 print:text-black print:shadow-none"
+                className="rounded-2xl border border-ink/8 bg-card p-5 flex flex-col justify-between print:bg-white print:border-black/20 print:text-black print:shadow-none"
               >
-                <div className="flex items-center justify-between border-b border-white/5 pb-3 mb-4 print:border-black/5">
+                <div className="flex items-center justify-between border-b border-ink/5 pb-3 mb-4 print:border-black/5">
                   <div>
-                    <h3 className="text-lg font-bold text-white print:text-black">
-                      {item.arName} <span className="text-xs font-normal text-white/45 print:text-black/40">({item.enName})</span>
+                    <h3 className="text-lg font-bold text-ink print:text-black">
+                      {item.arName} <span className="text-xs font-normal text-ink/45 print:text-black/40">({item.enName})</span>
                     </h3>
                     <span className="text-[10px] font-semibold text-accent print:text-black/60 uppercase">
                       {isAr ? item.countTextAr : item.countText}
@@ -220,16 +215,16 @@ export function PrintablesClient({ locale }: PrintablesClientProps) {
                   </div>
                   <div className="text-4xl font-bold font-arabic text-accent print:text-black flex gap-2">
                     <span>{item.num}</span>
-                    <span className="text-xs text-white/30 print:text-black/30 self-center">/</span>
-                    <span className="font-sans text-white/80 print:text-black/80">{item.en}</span>
+                    <span className="text-xs text-ink/30 print:text-black/30 self-center">/</span>
+                    <span className="font-sans text-ink/80 print:text-black/80">{item.en}</span>
                   </div>
                 </div>
 
                 {/* Interactive finger counting coloring graphic */}
                 <div className="flex items-center justify-between gap-4 mt-2">
                   <div className="flex flex-col items-center gap-1">
-                    <span className="text-[9px] text-white/30 print:text-black/30 font-semibold uppercase">{isAr ? "عد ولون" : "Count & Color"}</span>
-                    <div className="w-20 h-12 rounded-lg border border-dashed border-accent/20 flex items-center justify-center bg-white/2 print:bg-black/2 print:border-black/15 text-2xl filter grayscale print:grayscale-0">
+                    <span className="text-[9px] text-ink/30 print:text-black/30 font-semibold uppercase">{isAr ? "عد ولون" : "Count & Color"}</span>
+                    <div className="w-20 h-12 rounded-lg border border-dashed border-accent/20 flex items-center justify-center bg-card print:bg-black/2 print:border-black/15 text-2xl filter grayscale print:grayscale-0">
                       {item.fingers}
                     </div>
                   </div>
@@ -237,20 +232,20 @@ export function PrintablesClient({ locale }: PrintablesClientProps) {
                   {/* Tracing Grid */}
                   <div className="flex-1 flex justify-around gap-1.5">
                     <div className="flex flex-col items-center gap-1">
-                      <span className="text-[9px] text-white/30 print:text-black/30 font-semibold uppercase">{isAr ? "تتبع" : "Trace"}</span>
-                      <div className="w-12 h-12 rounded-lg border-2 border-dashed border-white/10 flex items-center justify-center bg-white/1 print:border-black/15">
-                        <span className="text-2xl font-extrabold text-white/15 print:text-black/15 select-none">{item.num}</span>
+                      <span className="text-[9px] text-ink/30 print:text-black/30 font-semibold uppercase">{isAr ? "تتبع" : "Trace"}</span>
+                      <div className="w-12 h-12 rounded-lg border-2 border-dashed border-ink/10 flex items-center justify-center bg-card print:border-black/15">
+                        <span className="text-2xl font-extrabold text-ink/15 print:text-black/15 select-none">{item.num}</span>
                       </div>
                     </div>
                     <div className="flex flex-col items-center gap-1">
-                      <span className="text-[9px] text-white/30 print:text-black/30 font-semibold uppercase">{isAr ? "تتبع" : "Trace"}</span>
-                      <div className="w-12 h-12 rounded-lg border-2 border-dashed border-white/10 flex items-center justify-center bg-white/1 print:border-black/15">
-                        <span className="text-2xl font-extrabold text-white/15 print:text-black/15 select-none">{item.num}</span>
+                      <span className="text-[9px] text-ink/30 print:text-black/30 font-semibold uppercase">{isAr ? "تتبع" : "Trace"}</span>
+                      <div className="w-12 h-12 rounded-lg border-2 border-dashed border-ink/10 flex items-center justify-center bg-card print:border-black/15">
+                        <span className="text-2xl font-extrabold text-ink/15 print:text-black/15 select-none">{item.num}</span>
                       </div>
                     </div>
                     <div className="flex flex-col items-center gap-1">
-                      <span className="text-[9px] text-white/30 print:text-black/30 font-semibold uppercase">{isAr ? "اكتب" : "Write"}</span>
-                      <div className="w-12 h-12 rounded-lg border-2 border-solid border-white/5 flex items-center justify-center bg-white/1 print:border-black/10" />
+                      <span className="text-[9px] text-ink/30 print:text-black/30 font-semibold uppercase">{isAr ? "اكتب" : "Write"}</span>
+                      <div className="w-12 h-12 rounded-lg border-2 border-solid border-ink/5 flex items-center justify-center bg-card print:border-black/10" />
                     </div>
                   </div>
                 </div>
@@ -265,12 +260,12 @@ export function PrintablesClient({ locale }: PrintablesClientProps) {
             {colorsData.map((color) => (
               <div
                 key={color.en}
-                className="rounded-2xl border border-white/8 bg-white/3 p-5 flex flex-col justify-between print:bg-white print:border-black/20 print:text-black print:shadow-none"
+                className="rounded-2xl border border-ink/8 bg-card p-5 flex flex-col justify-between print:bg-white print:border-black/20 print:text-black print:shadow-none"
               >
-                <div className="flex items-center justify-between border-b border-white/5 pb-3 mb-4 print:border-black/5">
+                <div className="flex items-center justify-between border-b border-ink/5 pb-3 mb-4 print:border-black/5">
                   <div>
-                    <h3 className="text-lg font-bold text-white print:text-black">
-                      {color.ar} <span className="text-xs font-normal text-white/45 print:text-black/40">({color.en})</span>
+                    <h3 className="text-lg font-bold text-ink print:text-black">
+                      {color.ar} <span className="text-xs font-normal text-ink/45 print:text-black/40">({color.en})</span>
                     </h3>
                     <span className="text-[10px] font-semibold text-accent print:text-black/60 uppercase">
                       {isAr ? `تلوين شكل: ${color.shapeAr}` : `Color the shape: ${color.shape}`}
@@ -282,12 +277,12 @@ export function PrintablesClient({ locale }: PrintablesClientProps) {
                 <div className="flex items-center justify-between gap-4 mt-2">
                   {/* Outer hollow shape to color */}
                   <div className="flex-1 flex flex-col items-center gap-1">
-                    <span className="text-[9px] text-white/30 print:text-black/30 font-semibold uppercase">{isAr ? "تلوين" : "Color"}</span>
-                    <div className="w-full h-16 rounded-xl border-2 border-dashed border-white/10 flex items-center justify-center bg-white/1 print:border-black/20 relative overflow-hidden group">
+                    <span className="text-[9px] text-ink/30 print:text-black/30 font-semibold uppercase">{isAr ? "تلوين" : "Color"}</span>
+                    <div className="w-full h-16 rounded-xl border-2 border-dashed border-ink/10 flex items-center justify-center bg-card print:border-black/20 relative overflow-hidden group">
                       <span className="absolute text-4xl filter grayscale opacity-15 print:opacity-20 select-none transition-transform duration-300 group-hover:scale-110">
                         {color.outlineEmoji}
                       </span>
-                      <span className="relative z-10 text-[10px] font-bold text-white/40 print:text-black/50 uppercase tracking-widest">
+                      <span className="relative z-10 text-[10px] font-bold text-ink/40 print:text-black/50 uppercase tracking-widest">
                         {isAr ? color.ar : color.en}
                       </span>
                     </div>
@@ -296,15 +291,15 @@ export function PrintablesClient({ locale }: PrintablesClientProps) {
                   {/* Tracing Arabic and English names */}
                   <div className="flex flex-col gap-1.5">
                     <div className="flex items-center gap-2">
-                      <span className="text-[9px] text-white/30 print:text-black/30 font-semibold uppercase w-10">{isAr ? "عربي" : "AR"}</span>
-                      <div className="w-24 h-8 rounded-lg border border-dashed border-white/10 flex items-center justify-center bg-white/1 print:border-black/15">
-                        <span className="text-sm font-bold text-white/15 print:text-black/15 select-none font-arabic">{color.ar}</span>
+                      <span className="text-[9px] text-ink/30 print:text-black/30 font-semibold uppercase w-10">{isAr ? "عربي" : "AR"}</span>
+                      <div className="w-24 h-8 rounded-lg border border-dashed border-ink/10 flex items-center justify-center bg-card print:border-black/15">
+                        <span className="text-sm font-bold text-ink/15 print:text-black/15 select-none font-arabic">{color.ar}</span>
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-[9px] text-white/30 print:text-black/30 font-semibold uppercase w-10">{isAr ? "إنجليزي" : "EN"}</span>
-                      <div className="w-24 h-8 rounded-lg border border-dashed border-white/10 flex items-center justify-center bg-white/1 print:border-black/15">
-                        <span className="text-xs font-semibold text-white/15 print:text-black/15 select-none">{color.en}</span>
+                      <span className="text-[9px] text-ink/30 print:text-black/30 font-semibold uppercase w-10">{isAr ? "إنجليزي" : "EN"}</span>
+                      <div className="w-24 h-8 rounded-lg border border-dashed border-ink/10 flex items-center justify-center bg-card print:border-black/15">
+                        <span className="text-xs font-semibold text-ink/15 print:text-black/15 select-none">{color.en}</span>
                       </div>
                     </div>
                   </div>
@@ -320,14 +315,14 @@ export function PrintablesClient({ locale }: PrintablesClientProps) {
             {animalsData.map((animal) => (
               <div
                 key={animal.enName}
-                className="rounded-2xl border border-white/8 bg-white/3 p-5 flex flex-col justify-between print:bg-white print:border-black/20 print:text-black print:shadow-none"
+                className="rounded-2xl border border-ink/8 bg-card p-5 flex flex-col justify-between print:bg-white print:border-black/20 print:text-black print:shadow-none"
               >
-                <div className="flex items-center justify-between border-b border-white/5 pb-3 mb-4 print:border-black/5">
+                <div className="flex items-center justify-between border-b border-ink/5 pb-3 mb-4 print:border-black/5">
                   <div>
-                    <h3 className="text-lg font-bold text-white print:text-black">
-                      {animal.arName} <span className="text-xs font-normal text-white/45 print:text-black/40">({animal.enName})</span>
+                    <h3 className="text-lg font-bold text-ink print:text-black">
+                      {animal.arName} <span className="text-xs font-normal text-ink/45 print:text-black/40">({animal.enName})</span>
                     </h3>
-                    <p className="text-[10px] text-white/50 print:text-black/55 mt-0.5 font-medium leading-tight">
+                    <p className="text-[10px] text-ink/50 print:text-black/55 mt-0.5 font-medium leading-tight">
                       {isAr ? animal.descAr : animal.desc}
                     </p>
                   </div>
@@ -337,8 +332,8 @@ export function PrintablesClient({ locale }: PrintablesClientProps) {
                 <div className="flex items-center justify-between gap-4 mt-2">
                   {/* Outer hollow frame for coloring child drawings */}
                   <div className="flex-1 flex flex-col items-center gap-1">
-                    <span className="text-[9px] text-white/30 print:text-black/30 font-semibold uppercase">{isAr ? "لون حيوان الـ" : "Color The"} {animal.enName}</span>
-                    <div className="w-full h-20 rounded-2xl border-2 border-dashed border-white/10 flex items-center justify-center bg-white/1 print:border-black/20 overflow-hidden relative group">
+                    <span className="text-[9px] text-ink/30 print:text-black/30 font-semibold uppercase">{isAr ? "لون حيوان الـ" : "Color The"} {animal.enName}</span>
+                    <div className="w-full h-20 rounded-2xl border-2 border-dashed border-ink/10 flex items-center justify-center bg-card print:border-black/20 overflow-hidden relative group">
                       <span className="text-5xl filter grayscale opacity-20 print:opacity-25 select-none transition-transform duration-300 group-hover:scale-110">
                         {animal.emoji}
                       </span>
@@ -348,15 +343,15 @@ export function PrintablesClient({ locale }: PrintablesClientProps) {
                   {/* Tracing Grid */}
                   <div className="flex flex-col gap-2">
                     <div className="flex flex-col items-center gap-0.5">
-                      <span className="text-[9px] text-white/30 print:text-black/30 font-semibold uppercase">{isAr ? "تتبع بالعربية" : "Trace Arabic"}</span>
-                      <div className="w-28 h-8 rounded-lg border border-dashed border-white/10 flex items-center justify-center bg-white/1 print:border-black/15">
-                        <span className="text-sm font-bold text-white/15 print:text-black/15 select-none font-arabic">{animal.arName}</span>
+                      <span className="text-[9px] text-ink/30 print:text-black/30 font-semibold uppercase">{isAr ? "تتبع بالعربية" : "Trace Arabic"}</span>
+                      <div className="w-28 h-8 rounded-lg border border-dashed border-ink/10 flex items-center justify-center bg-card print:border-black/15">
+                        <span className="text-sm font-bold text-ink/15 print:text-black/15 select-none font-arabic">{animal.arName}</span>
                       </div>
                     </div>
                     <div className="flex flex-col items-center gap-0.5">
-                      <span className="text-[9px] text-white/30 print:text-black/30 font-semibold uppercase">{isAr ? "تتبع بالإنجليزية" : "Trace English"}</span>
-                      <div className="w-28 h-8 rounded-lg border border-dashed border-white/10 flex items-center justify-center bg-white/1 print:border-black/15">
-                        <span className="text-xs font-semibold text-white/15 print:text-black/15 select-none">{animal.enName}</span>
+                      <span className="text-[9px] text-ink/30 print:text-black/30 font-semibold uppercase">{isAr ? "تتبع بالإنجليزية" : "Trace English"}</span>
+                      <div className="w-28 h-8 rounded-lg border border-dashed border-ink/10 flex items-center justify-center bg-card print:border-black/15">
+                        <span className="text-xs font-semibold text-ink/15 print:text-black/15 select-none">{animal.enName}</span>
                       </div>
                     </div>
                   </div>
@@ -379,7 +374,7 @@ export function PrintablesClient({ locale }: PrintablesClientProps) {
 
       {/* screen layout footer direct links */}
       <div className="print:hidden text-center py-8 relative z-10">
-        <Link href={`/${locale}/play`} className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105">
+        <Link href={`/${locale}/play`} className="btn-chunky">
           🚀 {isAr ? "جاهز للعب التفاعلي؟ افتح شاشة اللعب والتعلم" : "Screen Time Ready? Open interactive Play Mode"}
         </Link>
       </div>

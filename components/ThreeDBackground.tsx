@@ -1,13 +1,14 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Float, MeshWobbleMaterial } from "@react-three/drei";
+import { Float, Sparkles } from "@react-three/drei";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { MathUtils, type Mesh } from "three";
+import { MathUtils, Shape, ExtrudeGeometry, type Mesh, type BufferGeometry } from "three";
 import { themes, type ThemeName } from "@/lib/themes";
 import { useAppStore } from "@/store/useAppStore";
 
-type GeometryKind = "sphere" | "box" | "torus" | "octahedron" | "cone";
+// Friendly, instantly-recognizable kid shapes — balloons, stars, donuts, blocks, gems.
+type GeometryKind = "balloon" | "star" | "donut" | "block" | "gem";
 
 type SceneObject = {
   id: string;
@@ -16,6 +17,7 @@ type SceneObject = {
   position: [number, number, number];
   scale: number;
   speed: number;
+  ring: boolean;
 };
 
 type FloatingShapeProps = {
@@ -24,13 +26,7 @@ type FloatingShapeProps = {
   reduceMotion: boolean;
 };
 
-const geometryKinds: GeometryKind[] = [
-  "sphere",
-  "box",
-  "torus",
-  "octahedron",
-  "cone",
-];
+const geometryKinds: GeometryKind[] = ["balloon", "star", "donut", "block", "gem"];
 
 function mulberry32(seed: number) {
   return function random() {
@@ -41,8 +37,33 @@ function mulberry32(seed: number) {
   };
 }
 
+// Extruded 5-point star, built once and shared.
+function makeStar(): BufferGeometry {
+  const s = new Shape();
+  const outer = 0.85;
+  const inner = 0.36;
+  const pts = 5;
+  for (let i = 0; i < pts * 2; i++) {
+    const r = i % 2 === 0 ? outer : inner;
+    const a = (i * Math.PI) / pts - Math.PI / 2;
+    const x = Math.cos(a) * r;
+    const y = Math.sin(a) * r;
+    if (i === 0) s.moveTo(x, y);
+    else s.lineTo(x, y);
+  }
+  s.closePath();
+  return new ExtrudeGeometry(s, {
+    depth: 0.32,
+    bevelEnabled: true,
+    bevelThickness: 0.14,
+    bevelSize: 0.12,
+    bevelSegments: 4,
+    curveSegments: 12,
+  }).center();
+}
+
 const themeObjectCounts: Record<ThemeName, number> = {
-  space: 14,
+  space: 13,
   desert: 10,
   jungle: 12,
   underwater: 11,
@@ -52,7 +73,7 @@ const themeObjectCounts: Record<ThemeName, number> = {
 function buildObjects(themeName: ThemeName, subtle: boolean) {
   const random = mulberry32(7643);
   const palette = themes[themeName].palette;
-  const count = subtle ? 4 : themeObjectCounts[themeName]; // Only 4 slow-drifting background shapes for marketing layouts to preserve CPU/GPU performance!
+  const count = subtle ? 4 : themeObjectCounts[themeName];
 
   return Array.from({ length: count }, (_, index) => {
     const geometry = geometryKinds[Math.floor(random() * geometryKinds.length)];
@@ -65,142 +86,92 @@ function buildObjects(themeName: ThemeName, subtle: boolean) {
       geometry,
       color: palette[index % palette.length],
       position: [x, y, z] as [number, number, number],
-      scale: 0.55 + random() * 0.85,
-      speed: subtle ? 0.35 + random() * 0.45 : 0.6 + random() * 1.2, // Slower drift for subtle backgrounds
+      scale: 0.6 + random() * 0.8,
+      speed: subtle ? 0.35 + random() * 0.45 : 0.6 + random() * 1.0,
+      ring: random() > 0.65, // only a few get a fun accent ring — not every shape
     };
   });
 }
 
-function Geometry({ kind }: { kind: GeometryKind }) {
+function Geometry({ kind, star }: { kind: GeometryKind; star: BufferGeometry }) {
   switch (kind) {
-    case "sphere":
-      return <sphereGeometry args={[0.78, 32, 32]} />;
-    case "box":
-      return <boxGeometry args={[1.1, 1.1, 1.1, 4, 4, 4]} />;
-    case "torus":
-      return <torusGeometry args={[0.68, 0.22, 16, 64]} />;
-    case "octahedron":
-      return <octahedronGeometry args={[0.85, 1]} />;
-    case "cone":
-      return <coneGeometry args={[0.8, 1.3, 32, 4]} />;
+    case "balloon":
+      return <sphereGeometry args={[0.8, 32, 32]} />;
+    case "star":
+      return <primitive object={star} attach="geometry" />;
+    case "donut":
+      return <torusGeometry args={[0.62, 0.3, 20, 40]} />;
+    case "block":
+      return <boxGeometry args={[1.05, 1.05, 1.05, 2, 2, 2]} />;
+    case "gem":
+      return <octahedronGeometry args={[0.92, 0]} />;
     default:
       return null;
   }
 }
 
-function FloatingShape({
-  object,
-  pulseToken,
-  reduceMotion,
-}: FloatingShapeProps) {
+function FloatingShape({ object, pulseToken, reduceMotion }: FloatingShapeProps) {
   const meshRef = useRef<Mesh>(null);
   const ringRef = useRef<Mesh>(null);
   const pulseRef = useRef(1);
-
-  // Dynamic feedback parameters for key-smashing excitement
   const spinBoost = useRef(0);
-  const glowBoost = useRef(0);
-  const wobbleBoost = useRef(0);
+
+  const star = useMemo(() => makeStar(), []);
 
   useEffect(() => {
-    pulseRef.current = 1.6;
-    if (pulseToken > 0) {
-      spinBoost.current = 14.0;    // Spins rapidly like a wobbly top
-      glowBoost.current = 3.5;     // Lights up intensely inside its shell
-      wobbleBoost.current = 0.75;  // Wiggles playfully in excitement
-    }
+    pulseRef.current = 1.5;
+    if (pulseToken > 0) spinBoost.current = 10;
   }, [pulseToken]);
 
   useFrame((_, delta) => {
     const mesh = meshRef.current;
-    if (!mesh) {
-      return;
-    }
+    if (!mesh) return;
 
-    // Dampen scaling and boost factors back to normal
-    pulseRef.current = MathUtils.damp(
-      pulseRef.current,
-      1,
-      reduceMotion ? 6 : 9,
-      delta,
-    );
-
-    spinBoost.current = MathUtils.damp(spinBoost.current, 0, reduceMotion ? 10 : 4.2, delta);
-    glowBoost.current = MathUtils.damp(glowBoost.current, 0, reduceMotion ? 12 : 3.5, delta);
-    wobbleBoost.current = MathUtils.damp(wobbleBoost.current, 0, reduceMotion ? 12 : 3.8, delta);
+    pulseRef.current = MathUtils.damp(pulseRef.current, 1, reduceMotion ? 6 : 9, delta);
+    spinBoost.current = MathUtils.damp(spinBoost.current, 0, reduceMotion ? 12 : 4.2, delta);
 
     mesh.scale.setScalar(object.scale * pulseRef.current);
-
-    // Apply rotation including standard drift and the keypress spin boost
     mesh.rotation.x += (object.speed * 0.15 + (reduceMotion ? 0 : spinBoost.current)) * delta;
     mesh.rotation.y += (object.speed * 0.25 + (reduceMotion ? 0 : spinBoost.current * 0.7)) * delta;
-    mesh.rotation.z += (object.speed * 0.08) * delta;
 
-    // Rotate planetary ring on its own axis around the shape
     const ring = ringRef.current;
-    if (ring && !reduceMotion) {
-      ring.rotation.z += (object.speed * 0.8 + spinBoost.current * 1.4) * delta;
-    }
+    if (ring && !reduceMotion) ring.rotation.z += (object.speed * 0.8 + spinBoost.current) * delta;
   });
 
   return (
     <Float
       speed={reduceMotion ? Math.max(0.2, object.speed * 0.25) : object.speed}
-      rotationIntensity={reduceMotion ? 0.15 : 1.6}
-      floatIntensity={reduceMotion ? 0.25 : 2.6}
+      rotationIntensity={reduceMotion ? 0.15 : 1.2}
+      floatIntensity={reduceMotion ? 0.25 : 2.2}
     >
       <group position={object.position}>
         <mesh ref={meshRef}>
-          {/* 1. Inner solid metallic wobbly core */}
-          <mesh>
-            <Geometry kind={object.geometry} />
-            <MeshWobbleMaterial
-              color={object.color}
-              factor={reduceMotion ? 0.05 : (0.42 + wobbleBoost.current)}
-              speed={reduceMotion ? 0.35 : (2.6 + wobbleBoost.current * 2.2)}
-              roughness={0.12}
-              metalness={0.88}
-              emissive={object.color}
-              emissiveIntensity={reduceMotion ? 0.05 : (0.35 + glowBoost.current * 1.2)}
-            />
-          </mesh>
-
-          {/* 2. Outer highly refractive, iridescent glass bubble shell */}
-          <mesh scale={[1.2, 1.2, 1.2]}>
-            <Geometry kind={object.geometry} />
-            <meshPhysicalMaterial
-              color={object.color}
-              transparent
-              opacity={0.72}
-              roughness={0.08}
-              metalness={0.15}
-              clearcoat={1.0}
-              clearcoatRoughness={0.02}
-              transmission={0.45}
-              thickness={1.6}
-              ior={1.52}
-              iridescence={reduceMotion ? 0 : 1.0}
-              iridescenceIOR={1.38}
-              iridescenceThicknessRange={[100, 400]}
-              emissive={object.color}
-              emissiveIntensity={0.18}
-            />
-          </mesh>
+          <Geometry kind={object.geometry} star={star} />
+          {/* Bright, glossy candy material — clear color, soft glow, no murky glass. */}
+          <meshPhysicalMaterial
+            color={object.color}
+            roughness={0.34}
+            metalness={0}
+            clearcoat={0.7}
+            clearcoatRoughness={0.25}
+            sheen={0.5}
+            sheenColor="#ffffff"
+            emissive={object.color}
+            emissiveIntensity={0.18}
+          />
+          {/* tiny tie on balloons */}
+          {object.geometry === "balloon" && (
+            <mesh position={[0, -0.85, 0]} scale={0.32}>
+              <coneGeometry args={[0.5, 0.7, 12]} />
+              <meshStandardMaterial color={object.color} roughness={0.4} />
+            </mesh>
+          )}
         </mesh>
 
-        {/* 3. Outer planetary Saturn-like orbit ring */}
-        {!reduceMotion && (
-          <mesh ref={ringRef} rotation={[Math.PI / 3, Math.PI / 6, 0]} scale={[1.35, 1.35, 1.35]}>
-            <torusGeometry args={[0.9, 0.028, 8, 32]} />
-            <meshStandardMaterial
-              color={object.color}
-              transparent
-              opacity={0.65}
-              emissive={object.color}
-              emissiveIntensity={1.4}
-              roughness={0.1}
-              metalness={0.9}
-            />
+        {object.ring && !reduceMotion && (
+          <mesh ref={ringRef} rotation={[Math.PI / 3, Math.PI / 6, 0]} scale={1.4}>
+            <torusGeometry args={[0.95, 0.05, 12, 36]} />
+            <meshStandardMaterial color="#fff7ec" roughness={0.3} metalness={0.1} emissive="#fff7ec" emissiveIntensity={0.3} />
           </mesh>
         )}
       </group>
@@ -217,35 +188,22 @@ export default function ThreeDBackground({ subtle = false, className = "z-0" }: 
   const objects = useMemo(() => buildObjects(theme, subtle), [theme, subtle]);
 
   useEffect(() => {
-    if (!currentKey) {
-      return;
-    }
+    if (!currentKey) return;
 
     const sceneX = (currentKey.normalizedX - 0.5) * 11;
     const sceneY = (0.5 - currentKey.normalizedY) * 7;
 
     const nearest = [...objects]
       .sort((left, right) => {
-        const leftDistance = Math.hypot(
-          left.position[0] - sceneX,
-          left.position[1] - sceneY,
-        );
-        const rightDistance = Math.hypot(
-          right.position[0] - sceneX,
-          right.position[1] - sceneY,
-        );
-
-        return leftDistance - rightDistance;
+        const ld = Math.hypot(left.position[0] - sceneX, left.position[1] - sceneY);
+        const rd = Math.hypot(right.position[0] - sceneX, right.position[1] - sceneY);
+        return ld - rd;
       })
       .slice(0, 2);
 
     setPulseTokens((previous) => {
       const next = { ...previous };
-
-      for (const item of nearest) {
-        next[item.id] = currentKey.id;
-      }
-
+      for (const item of nearest) next[item.id] = currentKey.id;
       return next;
     });
   }, [currentKey, objects]);
@@ -253,21 +211,24 @@ export default function ThreeDBackground({ subtle = false, className = "z-0" }: 
   return (
     <div
       className={`fixed inset-0 pointer-events-none print:hidden transition-opacity duration-700 ${className} ${
-        subtle ? "opacity-30" : "opacity-75"
+        subtle ? "opacity-35" : "opacity-95"
       }`}
       aria-hidden="true"
     >
       <Canvas
         camera={{ position: [0, 0, 8], fov: 60 }}
-        dpr={[1, 1.2]}
-        gl={{ alpha: true, antialias: false, powerPreference: "high-performance" }}
+        dpr={[1, 1.4]}
+        gl={{ alpha: true, antialias: true, powerPreference: "high-performance" }}
         style={{ position: "fixed", inset: 0, pointerEvents: "none" }}
       >
-        <ambientLight intensity={0.4} />
-        <pointLight position={[10, 10, 10]} intensity={1.5} color="#ffffff" />
-        <pointLight position={[-10, -10, -5]} intensity={2.2} color="#ff007f" /> {/* Neon Hot Pink rim light */}
-        <pointLight position={[10, -10, 5]} intensity={2.2} color="#00f0ff" />  {/* Neon Cyan rim light */}
-        <pointLight position={[0, 10, -5]} intensity={1.6} color="#ffaa00" />   {/* Neon Gold top light */}
+        {/* Bright, cheerful daylight — shapes read as clear candy colors, not murky metal. */}
+        <hemisphereLight args={["#ffffff", "#ffd9a8", 1.15]} />
+        <ambientLight intensity={0.55} />
+        <directionalLight position={[5, 8, 5]} intensity={1.4} color="#ffffff" />
+        <pointLight position={[-6, -3, 4]} intensity={0.7} color="#bfe9ff" />
+        {!reduceMotion && (
+          <Sparkles count={subtle ? 18 : 50} scale={[12, 8, 5]} size={3} speed={0.4} opacity={0.7} color="#ffffff" />
+        )}
         {objects.map((object) => (
           <FloatingShape
             key={object.id}
