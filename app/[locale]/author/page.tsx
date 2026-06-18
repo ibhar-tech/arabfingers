@@ -58,23 +58,23 @@ export default async function AuthorPage({ params }: { params: Promise<{ locale:
         crumbs={[{ label: isAr ? "المؤلف" : "Author", href: `/${locale}/author` }]}
       />
 
-      <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 mt-6">
+      <div className="card-stock p-6 flex flex-col sm:flex-row items-center sm:items-start gap-6 mt-6">
         <Image
           src={AUTHOR_PHOTO}
           alt={AUTHOR_NAME}
           width={120}
           height={120}
           unoptimized
-          className="h-28 w-28 rounded-full object-cover bg-white/10 shrink-0"
+          className="h-28 w-28 rounded-full object-cover bg-saffron-soft shrink-0"
         />
         <div className="text-center sm:text-start">
-          <h1 className="text-3xl font-bold text-white">{AUTHOR_NAME}</h1>
+          <h1 className="text-3xl font-bold text-ink font-display">{AUTHOR_NAME}</h1>
           <p className="mt-1 text-sm text-accent/90">
             {isAr ? "مطوّر ومؤسس عرب فنجرز" : "Developer & Founder of Arab Fingers"}
           </p>
           <a
             href={`mailto:${AUTHOR_EMAIL}`}
-            className="mt-3 inline-block text-sm text-white/60 underline hover:text-accent"
+            className="mt-3 inline-block text-sm text-ink/60 underline hover:text-accent"
             dir="ltr"
           >
             {AUTHOR_EMAIL}
@@ -82,11 +82,11 @@ export default async function AuthorPage({ params }: { params: Promise<{ locale:
         </div>
       </div>
 
-      <div className="mt-8 space-y-6 text-sm leading-relaxed text-white/80 max-w-2xl">
+      <div className="mt-8 space-y-6 text-sm leading-relaxed text-ink/80 max-w-2xl">
         {isAr ? (
           <>
             <p>
-              أنا عيسى، الأب والمطوّر الذي بنى <strong className="text-white/90">عرب فنجرز</strong>.
+              أنا عيسى، الأب والمطوّر الذي بنى <strong className="text-ink/90">عرب فنجرز</strong>.
               بدأ المشروع من تجربة شخصية: البحث عن أداة بسيطة وممتعة تساعد طفلي على التعرف على الحروف
               العربية دون ضغط أو اشتراكات أو إعلانات تستهدف الأطفال — ولم أجد ما يناسبني، فقررت بناءه.
             </p>
@@ -104,7 +104,7 @@ export default async function AuthorPage({ params }: { params: Promise<{ locale:
           <>
             <p>
               I&apos;m Aissa, the parent and developer who built{" "}
-              <strong className="text-white/90">Arab Fingers</strong>. The project started from a
+              <strong className="text-ink/90">Arab Fingers</strong>. The project started from a
               personal need: I was looking for a simple, joyful way to help my own child recognise
               Arabic letters — without pressure, subscriptions, or ads aimed at kids — and couldn&apos;t
               find one I liked, so I built it.
@@ -124,10 +124,10 @@ export default async function AuthorPage({ params }: { params: Promise<{ locale:
         )}
 
         <div className="flex flex-wrap gap-3 pt-2">
-          <Link href={`/${locale}/about`} className="rounded-lg bg-white/10 px-4 py-2 font-medium text-white hover:bg-white/15 transition">
+          <Link href={`/${locale}/about`} className="btn-chunky-ghost rounded-lg px-4 py-2 font-medium">
             {isAr ? "عن المشروع" : "About the project"}
           </Link>
-          <Link href={`/${locale}/learn`} className="rounded-lg bg-accent/90 px-4 py-2 font-medium text-slate-950 hover:bg-accent transition">
+          <Link href={`/${locale}/learn`} className="btn-chunky rounded-lg px-4 py-2 font-medium">
             {isAr ? "أدلة التعلم" : "Learning guides"}
           </Link>
         </div>

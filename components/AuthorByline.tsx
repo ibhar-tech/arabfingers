@@ -28,23 +28,23 @@ function formatDate(date: string, locale: string) {
 export function AuthorByline({ locale, datePublished, dateModified }: AuthorBylineProps) {
   const isAr = locale === "ar";
   return (
-    <div className="flex items-center gap-3 border-y border-white/8 py-4 my-6">
+    <div className="flex items-center gap-3 border-y-2 border-ink/10 py-4 my-6">
       <Image
         src={AUTHOR_PHOTO}
         alt={AUTHOR_NAME}
         width={44}
         height={44}
         unoptimized
-        className="h-11 w-11 rounded-full object-cover bg-white/10"
+        className="h-11 w-11 rounded-full object-cover border-2 border-ink bg-saffron-soft"
       />
       <div className="text-sm">
-        <div className="text-white/80">
+        <div className="text-ink/70 font-semibold">
           {isAr ? "بقلم " : "By "}
-          <Link href={`/${locale}/author`} className="font-semibold text-white hover:text-accent transition">
+          <Link href={`/${locale}/author`} className="font-extrabold text-ink hover:text-qalam transition">
             {AUTHOR_NAME}
           </Link>
         </div>
-        <div className="text-xs text-white/50">
+        <div className="text-xs text-ink/55">
           {datePublished && (
             <span>
               {isAr ? "نُشر " : "Published "}

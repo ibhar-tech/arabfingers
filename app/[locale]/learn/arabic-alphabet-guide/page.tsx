@@ -52,14 +52,14 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
         ]}
       />
 
-      <h1 className="text-3xl font-semibold text-white mb-2">
+      <h1 className="text-3xl font-semibold text-ink mb-2">
         {isAr ? "دليل الأبجدية العربية الكامل" : "The Arabic Alphabet: A Complete Guide"}
       </h1>
-      <p className="text-base text-white/75 mb-8">
+      <p className="text-base text-ink/75 mb-8">
         {isAr ? "تعلم جميع الحروف العربية الـ ٢٨ مع النطق والأمثلة" : "Learn all 28 Arabic letters with pronunciation and examples"}
       </p>
 
-      <div className="text-base leading-relaxed text-white/80 mb-8 space-y-3">
+      <div className="text-base leading-relaxed text-ink/80 mb-8 space-y-3">
         <p>
           {isAr
             ? "الأبجدية العربية هي واحدة من أكثر أنظمة الكتابة استخداماً في العالم. تتكون من ٢٨ حرفاً تُكتب من اليمين إلى اليسار. على عكس الأبجدية اللاتينية، تتغير أشكال الحروف العربية حسب موقعها في الكلمة — بداية أو وسط أو نهاية."
@@ -80,7 +80,7 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
       <InteractiveAlphabet locale={locale} />
 
       <div className="rounded-xl border border-accent/20 bg-accent/5 p-4 mb-10 flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm text-white/70">
+        <p className="text-sm text-ink/70">
           {isAr
             ? "تريد التدرّب بعيداً عن الشاشة؟ اطبع أوراق عمل الحروف العربية مجاناً."
             : "Want to practice off-screen? Print free Arabic letter worksheets."}
@@ -93,45 +93,45 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
         </Link>
       </div>
 
-      <h2 className="text-2xl font-semibold text-white mb-4">
+      <h2 className="text-2xl font-semibold text-ink mb-4">
         {isAr ? "كل حرف بالتفصيل" : "Every Letter in Detail"}
       </h2>
       <div className="space-y-6 mb-10">
         {letterGuide.map((l, i) => (
-          <article key={l.ar} id={`letter-${l.enName.toLowerCase()}`} className="rounded-2xl border border-white/10 bg-white/5 p-5 grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-5">
+          <article key={l.ar} id={`letter-${l.enName.toLowerCase()}`} className="rounded-2xl border border-ink/10 bg-white/5 p-5 grid grid-cols-1 sm:grid-cols-[180px_1fr] gap-5">
             <div className="mx-auto w-44 sm:w-full">
               <LetterCard entry={l} index={i} locale={locale} />
             </div>
             <div className="min-w-0 space-y-3">
-              <h3 className="text-lg font-bold text-white">
+              <h3 className="text-lg font-bold text-ink">
                 {isAr ? `حرف ال${l.arName}` : `${l.enName} (${l.arName})`}{" "}
-                <span className="text-sm font-normal text-white/60">
+                <span className="text-sm font-normal text-ink/60">
                   {isAr
                     ? l.difficulty === "easy" ? "— سهل النطق" : l.difficulty === "medium" ? "— متوسط" : "— يحتاج تدريباً"
                     : l.difficulty === "easy" ? "— easy" : l.difficulty === "medium" ? "— medium" : "— challenging"}
                 </span>
               </h3>
-              <p className="text-sm leading-relaxed text-white/80">
+              <p className="text-sm leading-relaxed text-ink/80">
                 <strong className="text-accent">{isAr ? "كيف ننطقه: " : "How to say it: "}</strong>
                 {isAr ? l.soundHowToAr : l.soundHowToEn}
               </p>
-              <p className="text-sm leading-relaxed text-white/80">
+              <p className="text-sm leading-relaxed text-ink/80">
                 <strong className="text-accent">{isAr ? "ميّزه عن أشباهه: " : "Compared to English: "}</strong>
                 {isAr ? l.comparisonAr : l.comparisonEn}
               </p>
               <div className="flex flex-wrap gap-2">
                 {l.examples.map((ex) => (
-                  <span key={ex.word} className="rounded-xl border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-white/85">
+                  <span key={ex.word} className="rounded-xl border border-ink/10 bg-white/5 px-3 py-1.5 text-sm text-ink/85">
                     {ex.emoji} <span style={{ fontFamily: "var(--font-noto-naskh), serif" }}>{ex.word}</span>{" "}
-                    <span className="text-white/60">{isAr ? `— ${ex.meaningAr}` : `(${ex.translit} — ${ex.meaningEn})`}</span>
+                    <span className="text-ink/60">{isAr ? `— ${ex.meaningAr}` : `(${ex.translit} — ${ex.meaningEn})`}</span>
                   </span>
                 ))}
               </div>
-              <p className="text-sm leading-relaxed text-white/80">
+              <p className="text-sm leading-relaxed text-ink/80">
                 <strong className="text-rose-300">{isAr ? "الخطأ الشائع: " : "Common mistake: "}</strong>
                 {isAr ? l.mistakeAr : l.mistakeEn}
               </p>
-              <p className="text-sm leading-relaxed text-white/80">
+              <p className="text-sm leading-relaxed text-ink/80">
                 <strong className="text-emerald-300">{isAr ? "نصيحة للوالدين: " : "Parent tip: "}</strong>
                 {isAr ? l.parentTipAr : l.parentTipEn}
               </p>
@@ -143,14 +143,14 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
       <div className="text-center py-6">
         <Link
           href={`/${locale}/play`}
-          className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105"
+          className="btn-chunky inline-flex items-center gap-2 px-6 py-3 text-base transition hover:scale-105"
         >
           🚀 {isAr ? "تدرب على الحروف في عرب فنجرز" : "Practice Letters in ArabFingers"}
         </Link>
       </div>
 
-      <section className="mt-6 border-t border-white/8 pt-6">
-        <h2 className="text-lg font-semibold text-white mb-3">
+      <section className="mt-6 border-t border-ink/10 pt-6">
+        <h2 className="text-lg font-semibold text-ink mb-3">
           {isAr ? "أدلة ذات صلة" : "Related guides"}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -160,7 +160,7 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
             { href: "/learn/arabic-vs-english", en: "Arabic vs English alphabet", ar: "الأبجدية العربية مقابل الإنجليزية" },
             { href: "/learn/teaching-arabic-to-kids", en: "Teaching Arabic to kids", ar: "تعليم العربية للأطفال" },
           ].map((r) => (
-            <Link key={r.href} href={`/${locale}${r.href}`} className="rounded-xl border border-white/8 bg-white/5 p-3 text-sm text-white/75 hover:bg-white/10 hover:text-accent transition">
+            <Link key={r.href} href={`/${locale}${r.href}`} className="rounded-xl border border-ink/10 bg-white/5 p-3 text-sm text-ink/75 hover:bg-white/10 hover:text-accent transition">
               {isAr ? r.ar : r.en} →
             </Link>
           ))}

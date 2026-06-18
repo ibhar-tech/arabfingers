@@ -148,10 +148,10 @@ export default async function SolarSystemPage({ params }: { params: Promise<{ lo
 
       {/* Title & Description Headers */}
       <div className="mb-6 mt-4">
-        <h1 className="text-3xl font-extrabold text-white mb-2" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+        <h1 className="text-3xl font-extrabold text-ink mb-2" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "النظام الشمسي وكواكبه للأطفال 🚀✨" : "Our Spectacular Solar System 🚀✨"}
         </h1>
-        <p className="text-base text-white/75">
+        <p className="text-base text-ink/75">
           {isAr
             ? "حلق في مغامرة فضائية مذهلة! استكشف أسرار كواكبنا الأربعة القريبة وتحكم في جاذبية الشمس لتغيير سرعة المدارات وتفادي كويكباتك الخاصة!"
             : "Fly on a spectacular space adventure! Explore our neighboring planets and adjust solar gravity to control orbital speeds and launch custom asteroids!"}
@@ -164,49 +164,49 @@ export default async function SolarSystemPage({ params }: { params: Promise<{ lo
       </div>
 
       {/* Immersive Educational Summary details below the video */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "💡 ملخص كواكب مجموعتنا الشمسية" : "💡 Neighbors of Our Solar System"}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm sm:text-base text-white/80 leading-relaxed">
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm sm:text-base text-ink/80 leading-relaxed">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-slate-400 mb-1">
               {isAr ? "١. كوكب عطارد" : "1. Mercury"}
             </h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "الكوكب الأقرب للشمس وسريع الدوران جداً لئلا تسحبه جاذبيتها. صخري وحجمه صغير للغاية ولا يمتلك أي قمر."
                 : "The closest planet to the sun. It orbits at lightning speeds to resist solar pull. Small, rocky, and moonless."}
             </p>
           </div>
 
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-yellow-300 mb-1">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-saffron-ink mb-1">
               {isAr ? "٢. كوكب الزهرة" : "2. Venus"}
             </h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "الكوكب الأكثر حرارة وسخونة في نظامنا؛ غيومه السميكة والغازية تحبس حرارة الشمس كصوبة دافئة لا تحتمل."
                 : "The hottest planet in our system, wrapped in thick atmosphere that traps solar rays like a greenhouse."}
             </p>
           </div>
 
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-sky-400 mb-1">
               {isAr ? "٣. كوكب الأرض" : "3. Earth"}
             </h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "موطننا الجميل المليء بالماء والهواء والبحار والغابات والحياة، ويمتلك قمراً لطيفاً واحداً ينير ليلنا السعيد."
                 : "Our spectacular blue home, overflowing with oceans, oxygen, and life, orbited by a single glowing moon."}
             </p>
           </div>
 
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-red-400 mb-1">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-rose mb-1">
               {isAr ? "٤. كوكب المريخ" : "4. Mars"}
             </h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "الكوكب الأحمر المليء بالصدأ والحديد، ونرسل إليه روبوتات ومركبات فضاء ذكية تبحث عن آثار مياه قديمة."
                 : "The rusty red planet covered in iron dust, actively explored by smart robotic rovers seeking water hints."}
@@ -216,13 +216,13 @@ export default async function SolarSystemPage({ params }: { params: Promise<{ lo
       </section>
 
       {/* Diagram figure: the Sun's family of planets */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "🪐 رسم توضيحي: عائلة الشمس" : "🪐 Diagram: The Sun's Family"}
         </h2>
         <figure className="m-0">
           <SolarSystemDiagram locale={locale} />
-          <figcaption className="text-sm text-white/75 mt-3 text-center">
+          <figcaption className="text-sm text-ink/75 mt-3 text-center">
             {isAr
               ? "عائلة الشمس: ثمانية كواكب في رحلة دائمة"
               : "The Sun's family: eight planets on an endless journey"}
@@ -231,36 +231,36 @@ export default async function SolarSystemPage({ params }: { params: Promise<{ lo
       </section>
 
       {/* The solar system from your window */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "🔭 النظام الشمسي من نافذتك" : "🔭 The Solar System From Your Window"}
         </h2>
-        <div className="space-y-4 text-sm sm:text-base text-white/80 leading-relaxed">
-          <p className="text-base text-white/80">
+        <div className="space-y-4 text-sm sm:text-base text-ink/80 leading-relaxed">
+          <p className="text-base text-ink/80">
             {isAr
               ? "لست بحاجة إلى صاروخ لترى النظام الشمسي، فبعض أعضائه يطلّون عليك من نافذتك كل يوم. تأمل السماء بهدوء وستكتشف أربعة أشياء رائعة بنفسك:"
               : "You do not need a rocket to meet the solar system — some of its members greet you from your own window every day. Look up calmly and you will discover four wonderful things for yourself:"}
           </p>
           <p>
-            <strong className="text-white">{isAr ? "الشمس نجمٌ حقيقي: " : "The Sun is a real star: "}</strong>
+            <strong className="text-ink">{isAr ? "الشمس نجمٌ حقيقي: " : "The Sun is a real star: "}</strong>
             {isAr
               ? "الشمس ليست مجرد قرص لامع، بل هي نجمنا الذي يضيء في النهار. إنها قريبة منا كثيراً مقارنة ببقية النجوم، ولهذا تضيء كل شيء حولنا وتدفئ كوكبنا بالكامل."
               : "The Sun is not just a shiny disk — it is our very own star, the one that shines in the daytime. It is so much closer to us than the other stars, which is why it lights up everything around us and warms our whole planet."}
           </p>
           <p>
-            <strong className="text-white">{isAr ? "القمر يغيّر شكله: " : "The Moon changes shape: "}</strong>
+            <strong className="text-ink">{isAr ? "القمر يغيّر شكله: " : "The Moon changes shape: "}</strong>
             {isAr
               ? "القمر يدور حول الأرض، ويمكنك أن تراقب شكله وهو «يتغير» ليلة بعد ليلة، فيصبح هلالاً رفيعاً ثم نصف دائرة ثم بدراً كاملاً مستديراً. هذه التغيرات تُسمى أطوار القمر."
               : "The Moon orbits the Earth, and you can watch its shape seem to 'change' night after night — a thin crescent, then a half circle, then a full round disk. These changes are called the phases of the Moon."}
           </p>
           <p>
-            <strong className="text-white">{isAr ? "الزهرة نجمة المساء: " : "Venus, the evening star: "}</strong>
+            <strong className="text-ink">{isAr ? "الزهرة نجمة المساء: " : "Venus, the evening star: "}</strong>
             {isAr
               ? "بعد غروب الشمس مباشرة، كثيراً ما يلمع كوكب الزهرة في الأفق كأنه نجمة براقة كبيرة. لمعانه القوي جعل الناس قديماً يسمّونه «نجمة المساء»، رغم أنه كوكب وليس نجماً."
               : "Just after the Sun sets, Venus often shines on the horizon like a big, brilliant jewel. Its strong glow led people long ago to call it the 'evening star,' even though it is really a planet, not a star at all."}
           </p>
           <p>
-            <strong className="text-white">{isAr ? "درب التبانة مجرّتنا: " : "The Milky Way is our galaxy: "}</strong>
+            <strong className="text-ink">{isAr ? "درب التبانة مجرّتنا: " : "The Milky Way is our galaxy: "}</strong>
             {isAr
               ? "في ليلة صافية بعيدة عن أضواء المدينة، قد ترى شريطاً باهتاً من الضوء يمتد عبر السماء. هذا الشريط هو مجرّتنا «درب التبانة»، ونحن نراها من الداخل لأننا نعيش بين نجومها."
               : "On a clear, dark night far from city lights, you might see a faint band of light stretching across the sky. That band is our own galaxy, the Milky Way, and we see it from the inside because we live among its stars."}
@@ -269,11 +269,11 @@ export default async function SolarSystemPage({ params }: { params: Promise<{ lo
       </section>
 
       {/* Try it at home: orbit in the living room */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "🧪 جرّبها في البيت: مدار في غرفة الجلوس" : "🧪 Try It at Home: Orbit in the Living Room"}
         </h2>
-        <ol className="list-decimal ms-5 space-y-3 text-sm sm:text-base text-white/80 leading-relaxed marker:text-accent marker:font-bold">
+        <ol className="list-decimal ms-5 space-y-3 text-sm sm:text-base text-ink/80 leading-relaxed marker:text-accent marker:font-bold">
           <li>
             {isAr
               ? "ضع مصباحاً مضيئاً في منتصف الغرفة، وتخيّل أنه الشمس التي تقف ثابتة في مركز نظامنا الشمسي بينما تدور الكواكب حولها."
@@ -294,7 +294,7 @@ export default async function SolarSystemPage({ params }: { params: Promise<{ lo
               ? "الآن أمسك برتقالة (هي القمر) وسلّط عليها ضوء مصباح يدوي (هو الشمس). ستلاحظ أن النصف المضاء فقط هو الذي يظهر، فحرّك البرتقالة حول رأسك لترى «أطوار» القمر تتغير."
               : "Now hold an orange (that is the Moon) and shine a flashlight (the Sun) on it. Only the lit half shows. Move the orange around your head to watch the Moon's 'phases' change before your eyes."}
           </li>
-          <li className="text-sm text-white/75">
+          <li className="text-sm text-ink/75">
             {isAr
               ? "🛡️ ملاحظة أمان: تأكد أن مسار مشيك حول المصباح خالٍ من الأثاث والألعاب قبل أن تبدأ الدوران حتى لا تتعثر."
               : "🛡️ Safety note: make sure the path you walk around the lamp is clear of furniture and toys before you start spinning, so you do not trip."}
@@ -303,61 +303,61 @@ export default async function SolarSystemPage({ params }: { params: Promise<{ lo
       </section>
 
       {/* FAQ — kids' questions, rendered from faq[] for JSON-LD parity */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "❓ أسئلة يطرحها الأطفال" : "❓ Questions Kids Ask"}
         </h2>
         <div className="space-y-4">
           {faq.map((f, i) => (
-            <div key={i} className="p-4 rounded-xl border border-white/5 bg-white/5">
+            <div key={i} className="p-4 rounded-xl border border-ink/5 bg-card">
               <h3 className="font-bold text-accent mb-1 text-sm sm:text-base">{f.q}</h3>
-              <p className="text-sm sm:text-base text-white/80 leading-relaxed">{f.a}</p>
+              <p className="text-sm sm:text-base text-ink/80 leading-relaxed">{f.a}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Mini-glossary */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "📚 قاموس الكلمات العلمية" : "📚 Mini Science Glossary"}
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base text-white/80 leading-relaxed">
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-emerald-400 mb-1">{isAr ? "الكوكب" : "Planet"}</h3>
-            <p className="text-white/80">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base text-ink/80 leading-relaxed">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-qalam mb-1">{isAr ? "الكوكب" : "Planet"}</h3>
+            <p className="text-ink/80">
               {isAr
                 ? "جرم كبير مستدير يدور حول الشمس في مدار ثابت، مثل الأرض التي نعيش عليها وكوكب المريخ الأحمر."
                 : "A large round world that travels around the Sun in a steady path, like our own Earth or the red planet Mars."}
             </p>
           </div>
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-yellow-400 mb-1">{isAr ? "المدار" : "Orbit"}</h3>
-            <p className="text-white/80">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-saffron-ink mb-1">{isAr ? "المدار" : "Orbit"}</h3>
+            <p className="text-ink/80">
               {isAr
                 ? "المسار الدائري الذي يسلكه جسم وهو يدور حول جسم آخر، مثل دوران الأرض حول الشمس دون توقف."
                 : "The curved path an object follows as it circles another, like the way the Earth keeps looping around the Sun."}
             </p>
           </div>
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-orange-400 mb-1">{isAr ? "النجم" : "Star"}</h3>
-            <p className="text-white/80">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-saffron-ink mb-1">{isAr ? "النجم" : "Star"}</h3>
+            <p className="text-ink/80">
               {isAr
                 ? "كرة ضخمة من الغاز المتوهج تضيء وتدفئ بنفسها، وشمسنا هي أقرب نجم إلينا في الكون الواسع."
                 : "A giant ball of glowing gas that shines and gives out its own heat. Our Sun is the closest star to us."}
             </p>
           </div>
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-sky-400 mb-1">{isAr ? "القمر" : "Moon"}</h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "جرم يدور حول كوكب وليس حول الشمس مباشرة، وقمر الأرض هو الذي ينير سماءنا في الليل."
                 : "A world that circles a planet instead of the Sun. Earth's Moon is the bright light in our night sky."}
             </p>
           </div>
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-purple-400 mb-1">{isAr ? "التلسكوب" : "Telescope"}</h3>
-            <p className="text-white/80">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-violet mb-1">{isAr ? "التلسكوب" : "Telescope"}</h3>
+            <p className="text-ink/80">
               {isAr
                 ? "أداة خاصة تقرّب الأجرام البعيدة فتبدو أكبر وأوضح، فنرى بها الكواكب والنجوم البعيدة عنا جداً."
                 : "A special tool that makes far-away objects look bigger and clearer, so we can study distant planets and stars."}
@@ -367,19 +367,19 @@ export default async function SolarSystemPage({ params }: { params: Promise<{ lo
       </section>
 
       {/* Full Lesson Transcript — crawlable by Google for SEO */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "📝 نص الدرس الكامل" : "📝 Full Lesson Transcript"}
         </h2>
-        <p className="text-xs text-white/40 mb-4">
+        <p className="text-xs text-ink/40 mb-4">
           {isAr
             ? "النص الكامل للحوار التعليمي بين الدكتور حكيم وأنس حول النظام الشمسي والكواكب."
             : "The complete educational dialogue between Dr. Hakim and Anas about the solar system and its planets."}
         </p>
-        <div className="space-y-3 text-sm text-white/80 leading-relaxed">
+        <div className="space-y-3 text-sm text-ink/80 leading-relaxed">
           {transcript.map((line, i) => (
             <div key={i} className="flex gap-2">
-              <span className="shrink-0 font-bold text-white/80 min-w-[70px]">{line.speaker}:</span>
+              <span className="shrink-0 font-bold text-ink/80 min-w-[70px]">{line.speaker}:</span>
               <p>{line.text}</p>
             </div>
           ))}
@@ -388,24 +388,24 @@ export default async function SolarSystemPage({ params }: { params: Promise<{ lo
 
       {/* Related Science Lessons — cross-linking */}
       <section className="mb-8">
-        <h2 className="text-lg font-bold text-white mb-3">
+        <h2 className="text-lg font-bold text-ink mb-3">
           {isAr ? "🔬 دروس علمية أخرى" : "🔬 More Science Lessons"}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <Link href={`/${locale}/learn/states-of-matter`} className="rounded-xl border border-white/8 bg-white/5 p-4 text-sm hover:bg-white/10 hover:text-accent transition">
+          <Link href={`/${locale}/learn/states-of-matter`} className="rounded-xl border border-ink/8 bg-card p-4 text-sm hover:bg-card hover:text-accent transition">
             <span className="text-2xl block mb-1">🧪</span>
-            <span className="font-semibold text-white">{isAr ? "حالات المادة" : "States of Matter"}</span>
-            <p className="text-xs text-white/50 mt-1">{isAr ? "استكشف الحالات الأربع للمادة" : "Explore solid, liquid, gas, and plasma"}</p>
+            <span className="font-semibold text-ink">{isAr ? "حالات المادة" : "States of Matter"}</span>
+            <p className="text-xs text-ink/50 mt-1">{isAr ? "استكشف الحالات الأربع للمادة" : "Explore solid, liquid, gas, and plasma"}</p>
           </Link>
-          <Link href={`/${locale}/learn/water-cycle`} className="rounded-xl border border-white/8 bg-white/5 p-4 text-sm hover:bg-white/10 hover:text-accent transition">
+          <Link href={`/${locale}/learn/water-cycle`} className="rounded-xl border border-ink/8 bg-card p-4 text-sm hover:bg-card hover:text-accent transition">
             <span className="text-2xl block mb-1">💧</span>
-            <span className="font-semibold text-white">{isAr ? "دورة المياه" : "Water Cycle"}</span>
-            <p className="text-xs text-white/50 mt-1">{isAr ? "رحلة قطرة الماء في الطبيعة" : "Follow a water drop's journey"}</p>
+            <span className="font-semibold text-ink">{isAr ? "دورة المياه" : "Water Cycle"}</span>
+            <p className="text-xs text-ink/50 mt-1">{isAr ? "رحلة قطرة الماء في الطبيعة" : "Follow a water drop's journey"}</p>
           </Link>
-          <Link href={`/${locale}/learn/gravity`} className="rounded-xl border border-white/8 bg-white/5 p-4 text-sm hover:bg-white/10 hover:text-accent transition">
+          <Link href={`/${locale}/learn/gravity`} className="rounded-xl border border-ink/8 bg-card p-4 text-sm hover:bg-card hover:text-accent transition">
             <span className="text-2xl block mb-1">🍎</span>
-            <span className="font-semibold text-white">{isAr ? "الجاذبية" : "Gravity"}</span>
-            <p className="text-xs text-white/50 mt-1">{isAr ? "القوة الخفية للكون" : "The invisible force of the cosmos"}</p>
+            <span className="font-semibold text-ink">{isAr ? "الجاذبية" : "Gravity"}</span>
+            <p className="text-xs text-ink/50 mt-1">{isAr ? "القوة الخفية للكون" : "The invisible force of the cosmos"}</p>
           </Link>
         </div>
       </section>

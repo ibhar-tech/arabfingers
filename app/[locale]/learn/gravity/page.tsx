@@ -146,10 +146,10 @@ export default async function GravityPage({ params }: { params: Promise<{ locale
 
       {/* Title & Description Headers */}
       <div className="mb-6 mt-4">
-        <h1 className="text-3xl font-extrabold text-white mb-2" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+        <h1 className="text-3xl font-extrabold text-ink mb-2" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "كيف تعمل الجاذبية للأطفال؟ 🍎✨" : "How Gravity Works for Kids 🍎✨"}
         </h1>
-        <p className="text-base text-white/75">
+        <p className="text-base text-ink/75">
           {isAr
             ? "اكتشف القوة الخفية للكون! تحكم في شريط الجاذبية لجعل الأجسام تطفو بخفة في الفضاء أو تسقط وتتحطم تحت تأثير الجاذبية الثقيلة للمشتري!"
             : "Explore the invisible force of the cosmos! Adjust the gravity slider to make objects float weightlessly or crash instantly under heavy gravity settings!"}
@@ -162,49 +162,49 @@ export default async function GravityPage({ params }: { params: Promise<{ locale
       </div>
 
       {/* Immersive Educational Summary details below the video */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "💡 ملخص حقائق الجاذبية الرائعة" : "💡 Cool Gravity Facts Summary"}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm sm:text-base text-white/80 leading-relaxed">
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-emerald-400 mb-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm sm:text-base text-ink/80 leading-relaxed">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-qalam mb-1">
               {isAr ? "١. ما هي الجاذبية؟" : "1. What is Gravity?"}
             </h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "قوة جذب غير مرئية يمتلكها كل جسم له كتلة أو وزن. الأرض لأنها ضخمة للغاية، تسحب كل شيء نحو مركزها وتثبت أقدامنا."
                 : "An invisible pulling force that every object with mass possesses. Earth, being huge, pulls us down to stand firmly."}
             </p>
           </div>
 
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-yellow-400 mb-1">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-saffron-ink mb-1">
               {isAr ? "٢. قصة تفاحة نيوتن" : "2. Isaac Newton's Discovery"}
             </h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "العالم إسحاق نيوتن أول من فسر الجاذبية بعدما سقطت تفاحة من شجرة فوق رأسه وتفكر لماذا سقطت للأسفل ولم تطر للأعلى."
                 : "Isaac Newton was the first to explain gravity after seeing an apple fall from a tree, thinking why it dropped straight down."}
             </p>
           </div>
 
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-sky-400 mb-1">
               {isAr ? "٣. الجاذبية في الفضاء" : "3. Floating in Space"}
             </h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "في الفضاء المتباعد، لا توجد كتل ضخمة قريبة لتسحب الأجسام، مما يجعل رواد الفضاء يطفون بخفة متناهية وانعدام تام للوزن."
                 : "In deep space, there is no nearby massive body to exert pull, causing astronauts and tools to float weightlessly."}
             </p>
           </div>
 
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-purple-400 mb-1">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-violet mb-1">
               {isAr ? "٤. الكتلة تحدد القوة" : "4. Mass and Planet Size"}
             </h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "كلما زادت كتلة ووزن الكوكب، زادت جاذبيته. المشتري كوكب ضخم جداً وجاذبيته ثقيلة وصعبة، بينما القمر خفيف وجاذبيته ضعيفة."
                 : "The heavier the planet, the stronger its pull. Jupiter is massive with heavy gravity, while our Moon is light with low gravity."}
@@ -214,13 +214,13 @@ export default async function GravityPage({ params }: { params: Promise<{ locale
       </section>
 
       {/* Diagram figure: three gravity worlds */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "🪐 رسم توضيحي: عوالم الجاذبية" : "🪐 Diagram: The Worlds of Gravity"}
         </h2>
         <figure className="m-0">
           <GravityDiagram locale={locale} />
-          <figcaption className="text-sm text-white/75 mt-3 text-center">
+          <figcaption className="text-sm text-ink/75 mt-3 text-center">
             {isAr
               ? "ثلاثة عوالم للجاذبية: الأرض والفضاء والمشتري"
               : "Three worlds of gravity: Earth, deep space, and Jupiter"}
@@ -229,36 +229,36 @@ export default async function GravityPage({ params }: { params: Promise<{ locale
       </section>
 
       {/* Gravity in your home */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "🏠 الجاذبية في بيتك" : "🏠 Gravity in Your Home"}
         </h2>
-        <div className="space-y-4 text-sm sm:text-base text-white/80 leading-relaxed">
-          <p className="text-base text-white/80">
+        <div className="space-y-4 text-sm sm:text-base text-ink/80 leading-relaxed">
+          <p className="text-base text-ink/80">
             {isAr
               ? "لست بحاجة إلى صاروخ أو مختبر لترى الجاذبية، فهي تعمل من حولك في كل لحظة داخل المنزل. إليك أربعة أشياء بسيطة يمكنك أن تجرّبها بنفسك اليوم:"
               : "You do not need a rocket or a laboratory to see gravity — it is working all around you, every single moment, right inside your home. Here are four simple things you can check for yourself today:"}
           </p>
           <p>
-            <strong className="text-white">{isAr ? "الملعقة تسقط دائماً للأسفل: " : "A dropped spoon always falls down: "}</strong>
+            <strong className="text-ink">{isAr ? "الملعقة تسقط دائماً للأسفل: " : "A dropped spoon always falls down: "}</strong>
             {isAr
               ? "حين تنفلت ملعقة من يدك على المائدة، فإنها تهبط نحو الأرض في كل مرة، ولا تطير أبداً نحو السقف. الجاذبية هي التي تسحبها للأسفل."
               : "When a spoon slips out of your hand at the table, it drops toward the floor every single time. It never flies up to the ceiling — gravity always pulls it down."}
           </p>
           <p>
-            <strong className="text-white">{isAr ? "العصير ينسكب نحو الأسفل: " : "Juice pours DOWN into the cup: "}</strong>
+            <strong className="text-ink">{isAr ? "العصير ينسكب نحو الأسفل: " : "Juice pours DOWN into the cup: "}</strong>
             {isAr
               ? "عندما تصبّ العصير من الإبريق، فإنه ينساب نزولاً ليملأ الكوب، ولا يتسلق العصير للأعلى. الجاذبية تقود السائل دائماً إلى أسفل."
               : "When you pour juice from a jug, it flows downward to fill the cup. The juice never climbs upward — gravity always guides the liquid down into the glass."}
           </p>
           <p>
-            <strong className="text-white">{isAr ? "الكرة تعود إليك: " : "A thrown ball comes back: "}</strong>
+            <strong className="text-ink">{isAr ? "الكرة تعود إليك: " : "A thrown ball comes back: "}</strong>
             {isAr
               ? "إذا رميت كرة عالياً في الهواء، فستبطئ حركتها شيئاً فشيئاً، ثم تتوقف لحظة، ثم تعود ساقطة نحوك. الجاذبية تسحبها إلى الأرض من جديد."
               : "If you toss a ball high into the air, it slows down little by little, stops for a moment, and then comes falling back toward you. Gravity pulls it back to the ground."}
           </p>
           <p>
-            <strong className="text-white">{isAr ? "نحن ننزلق إلى الأسفل: " : "We slide DOWN slides: "}</strong>
+            <strong className="text-ink">{isAr ? "نحن ننزلق إلى الأسفل: " : "We slide DOWN slides: "}</strong>
             {isAr
               ? "في الحديقة، تنزلق دائماً من أعلى الزحليقة إلى أسفلها، ولا تنزلق صاعداً أبداً. هذه هي الجاذبية تسحبك بلطف نحو الأرض."
               : "At the park, you always slide from the top of the slide down to the bottom — never upward. That is gravity gently pulling you toward the ground."}
@@ -267,11 +267,11 @@ export default async function GravityPage({ params }: { params: Promise<{ locale
       </section>
 
       {/* Try it at home: the great drop race */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "🧪 جرّبها في البيت: سباق السقوط الكبير" : "🧪 Try It at Home: The Great Drop Race"}
         </h2>
-        <ol className="list-decimal ms-5 space-y-3 text-sm sm:text-base text-white/80 leading-relaxed marker:text-accent marker:font-bold">
+        <ol className="list-decimal ms-5 space-y-3 text-sm sm:text-base text-ink/80 leading-relaxed marker:text-accent marker:font-bold">
           <li>
             {isAr
               ? "أحضر قطعة نقود معدنية وورقة مسطّحة من ورق الطباعة. أمسكهما معاً على ارتفاع عالٍ فوق رأسك."
@@ -297,7 +297,7 @@ export default async function GravityPage({ params }: { params: Promise<{ locale
               ? "ماذا تعلّمنا؟ الجاذبية تسحب كل الأجسام بالقوة نفسها مهما اختلف وزنها. كان الهواء هو الفرق الوحيد بين السقطتين، فحين أزلناه باختفاء سطح الورقة، تساوى كل شيء."
               : "What did we learn? Gravity pulls all objects equally, no matter their weight. The air was the only difference — once we removed its effect by crumpling the paper, both objects fell together."}
           </li>
-          <li className="text-sm text-white/75">
+          <li className="text-sm text-ink/75">
             {isAr
               ? "🛡️ ملاحظة أمان: استعمل أشياء غير قابلة للكسر فقط، وتأكد أن الأرض أمامك خالية ونظيفة قبل أن تبدأ التجربة."
               : "🛡️ Safety note: use only objects that cannot break, and make sure the floor in front of you is clear and clean before you begin the experiment."}
@@ -306,61 +306,61 @@ export default async function GravityPage({ params }: { params: Promise<{ locale
       </section>
 
       {/* FAQ — kids' questions, rendered from faq[] for JSON-LD parity */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "❓ أسئلة يطرحها الأطفال" : "❓ Questions Kids Ask"}
         </h2>
         <div className="space-y-4">
           {faq.map((f, i) => (
-            <div key={i} className="p-4 rounded-xl border border-white/5 bg-white/5">
+            <div key={i} className="p-4 rounded-xl border border-ink/5 bg-card">
               <h3 className="font-bold text-accent mb-1 text-sm sm:text-base">{f.q}</h3>
-              <p className="text-sm sm:text-base text-white/80 leading-relaxed">{f.a}</p>
+              <p className="text-sm sm:text-base text-ink/80 leading-relaxed">{f.a}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Mini-glossary */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "📚 قاموس الكلمات العلمية" : "📚 Mini Science Glossary"}
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base text-white/80 leading-relaxed">
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-emerald-400 mb-1">{isAr ? "الجاذبية" : "Gravity"}</h3>
-            <p className="text-white/80">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base text-ink/80 leading-relaxed">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-qalam mb-1">{isAr ? "الجاذبية" : "Gravity"}</h3>
+            <p className="text-ink/80">
               {isAr
                 ? "القوة الخفية التي تسحب كل الأشياء نحو الأرض، وهي التي تجعل التفاحة تسقط من الشجرة."
                 : "The invisible force that pulls everything toward the Earth — it is what makes an apple fall from a tree."}
             </p>
           </div>
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-yellow-400 mb-1">{isAr ? "الكتلة" : "Mass"}</h3>
-            <p className="text-white/80">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-saffron-ink mb-1">{isAr ? "الكتلة" : "Mass"}</h3>
+            <p className="text-ink/80">
               {isAr
                 ? "مقدار المادة الموجودة داخل الجسم، وتبقى الكتلة نفسها سواء كنت على الأرض أو على القمر."
                 : "How much 'stuff' is inside an object. Your mass stays the same whether you are on Earth or on the Moon."}
             </p>
           </div>
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-sky-400 mb-1">{isAr ? "الوزن" : "Weight"}</h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "مقدار قوة الجاذبية التي تسحب جسمك للأسفل، ولهذا يكون وزنك على القمر أخف منه على الأرض."
                 : "How hard gravity pulls your body down. That is why you weigh less on the Moon than you do here on Earth."}
             </p>
           </div>
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-purple-400 mb-1">{isAr ? "انعدام الوزن" : "Weightlessness"}</h3>
-            <p className="text-white/80">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-violet mb-1">{isAr ? "انعدام الوزن" : "Weightlessness"}</h3>
+            <p className="text-ink/80">
               {isAr
                 ? "الشعور بالطفو والخفّة الذي يحسّ به رواد الفضاء حين يدورون حول الأرض ويسقطون سقوطاً حراً."
                 : "The floating feeling astronauts have when they orbit the Earth and fall freely around it."}
             </p>
           </div>
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-pink-400 mb-1">{isAr ? "المدار" : "Orbit"}</h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "المسار الدائري الذي يدور فيه جسم حول جسم آخر، مثل دوران القمر حول الأرض دون توقف."
                 : "The curved path one object travels as it circles another, like the way the Moon endlessly circles the Earth."}
@@ -370,19 +370,19 @@ export default async function GravityPage({ params }: { params: Promise<{ locale
       </section>
 
       {/* Full Lesson Transcript — crawlable by Google for SEO */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "📝 نص الدرس الكامل" : "📝 Full Lesson Transcript"}
         </h2>
-        <p className="text-xs text-white/40 mb-4">
+        <p className="text-xs text-ink/40 mb-4">
           {isAr
             ? "النص الكامل للحوار التعليمي بين الدكتور حكيم وأنس حول الجاذبية وسقوط الأجسام."
             : "The complete educational dialogue between Dr. Hakim and Anas about gravity and falling objects."}
         </p>
-        <div className="space-y-3 text-sm text-white/80 leading-relaxed">
+        <div className="space-y-3 text-sm text-ink/80 leading-relaxed">
           {transcript.map((line, i) => (
             <div key={i} className="flex gap-2">
-              <span className="shrink-0 font-bold text-white/80 min-w-[70px]">{line.speaker}:</span>
+              <span className="shrink-0 font-bold text-ink/80 min-w-[70px]">{line.speaker}:</span>
               <p>{line.text}</p>
             </div>
           ))}
@@ -391,24 +391,24 @@ export default async function GravityPage({ params }: { params: Promise<{ locale
 
       {/* Related Science Lessons — cross-linking */}
       <section className="mb-8">
-        <h2 className="text-lg font-bold text-white mb-3">
+        <h2 className="text-lg font-bold text-ink mb-3">
           {isAr ? "🔬 دروس علمية أخرى" : "🔬 More Science Lessons"}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <Link href={`/${locale}/learn/states-of-matter`} className="rounded-xl border border-white/8 bg-white/5 p-4 text-sm hover:bg-white/10 hover:text-accent transition">
+          <Link href={`/${locale}/learn/states-of-matter`} className="rounded-xl border border-ink/8 bg-card p-4 text-sm hover:bg-card hover:text-accent transition">
             <span className="text-2xl block mb-1">🧪</span>
-            <span className="font-semibold text-white">{isAr ? "حالات المادة" : "States of Matter"}</span>
-            <p className="text-xs text-white/50 mt-1">{isAr ? "استكشف الحالات الأربع للمادة" : "Explore solid, liquid, gas, and plasma"}</p>
+            <span className="font-semibold text-ink">{isAr ? "حالات المادة" : "States of Matter"}</span>
+            <p className="text-xs text-ink/50 mt-1">{isAr ? "استكشف الحالات الأربع للمادة" : "Explore solid, liquid, gas, and plasma"}</p>
           </Link>
-          <Link href={`/${locale}/learn/water-cycle`} className="rounded-xl border border-white/8 bg-white/5 p-4 text-sm hover:bg-white/10 hover:text-accent transition">
+          <Link href={`/${locale}/learn/water-cycle`} className="rounded-xl border border-ink/8 bg-card p-4 text-sm hover:bg-card hover:text-accent transition">
             <span className="text-2xl block mb-1">💧</span>
-            <span className="font-semibold text-white">{isAr ? "دورة المياه" : "Water Cycle"}</span>
-            <p className="text-xs text-white/50 mt-1">{isAr ? "رحلة قطرة الماء في الطبيعة" : "Follow a water drop's journey"}</p>
+            <span className="font-semibold text-ink">{isAr ? "دورة المياه" : "Water Cycle"}</span>
+            <p className="text-xs text-ink/50 mt-1">{isAr ? "رحلة قطرة الماء في الطبيعة" : "Follow a water drop's journey"}</p>
           </Link>
-          <Link href={`/${locale}/learn/solar-system`} className="rounded-xl border border-white/8 bg-white/5 p-4 text-sm hover:bg-white/10 hover:text-accent transition">
+          <Link href={`/${locale}/learn/solar-system`} className="rounded-xl border border-ink/8 bg-card p-4 text-sm hover:bg-card hover:text-accent transition">
             <span className="text-2xl block mb-1">🚀</span>
-            <span className="font-semibold text-white">{isAr ? "النظام الشمسي" : "Solar System"}</span>
-            <p className="text-xs text-white/50 mt-1">{isAr ? "استكشف الكواكب والمدارات" : "Explore planets and orbits"}</p>
+            <span className="font-semibold text-ink">{isAr ? "النظام الشمسي" : "Solar System"}</span>
+            <p className="text-xs text-ink/50 mt-1">{isAr ? "استكشف الكواكب والمدارات" : "Explore planets and orbits"}</p>
           </Link>
         </div>
       </section>

@@ -149,10 +149,10 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
 
       {/* Title & Description Headers */}
       <div className="mb-6 mt-4">
-        <h1 className="text-3xl font-extrabold text-white mb-2" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+        <h1 className="text-3xl font-extrabold text-ink mb-2" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "حالات المادة للأطفال 🧪✨" : "States of Matter for Kids 🧪✨"}
         </h1>
-        <p className="text-base text-white/75">
+        <p className="text-base text-ink/75">
           {isAr
             ? "انضم إلى أنس والدكتور حكيم في المختبر السحري لاستكشاف الجزيئات وحالات المادة وتحولاتها المذهلة!"
             : "Join Anas and Dr. Hakim in the magical lab to explore molecules, the states of matter, and their amazing transformations!"}
@@ -165,49 +165,49 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
       </div>
 
       {/* Immersive Educational Summary details below the video */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "💡 ملخص حالات المادة الأربع" : "💡 Summary of the Four States of Matter"}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm sm:text-base text-white/80 leading-relaxed">
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm sm:text-base text-ink/80 leading-relaxed">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-cyan-400 mb-1">
               {isAr ? "١. المادة الصلبة" : "1. Solid Matter"}
             </h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "تكون جزيئاتها متقاربة جداً وتترابط بقوة كبيرة، لذا تهتز في مكانها فقط وتحافظ على شكل وحجم ثابتين."
                 : "Molecules are very close and tightly bound together, vibrating in place, which maintains a fixed shape and volume."}
             </p>
           </div>
 
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-emerald-400 mb-1">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-qalam mb-1">
               {isAr ? "٢. المادة السائلة" : "2. Liquid Matter"}
             </h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "تكون جزيئاتها قريبة ولكن يمكنها الحركة والانزلاق فوق بعضها، لذا تأخذ شكل الوعاء الذي توضع فيه ولها حجم ثابت."
                 : "Molecules are close but free to flow and slide over each other. It takes the shape of its container with a fixed volume."}
             </p>
           </div>
 
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-red-400 mb-1">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-rose mb-1">
               {isAr ? "٣. المادة الغازية" : "3. Gaseous Matter"}
             </h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "تكون جزيئاتها متباعدة جداً وتتحرك بسرعة فائقة في كل الاتجاهات، وليس لها شكل أو حجم ثابت."
                 : "Molecules are spaced far apart and fly rapidly in all directions. It has no fixed shape or volume."}
             </p>
           </div>
 
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-purple-400 mb-1">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-violet mb-1">
               {isAr ? "٤. حالة البلازما" : "4. Plasma State"}
             </h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "حالة غازية خارقة مشحونة بالكامل بالطاقة والكهرباء، وتتحرك بسرعة البرق وهي الحالة الأكثر انتشاراً في الكون!"
                 : "A super gaseous state fully charged with electrical energy, zooming at lightning speed. It is the most common state in the universe!"}
@@ -217,13 +217,13 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
       </section>
 
       {/* Diagram figure: three states of matter */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "🧊 رسم توضيحي: حالات المادة الثلاث" : "🧊 Diagram: The Three States of Matter"}
         </h2>
         <figure className="m-0">
           <StatesOfMatterDiagram locale={locale} />
-          <figcaption className="text-sm text-white/75 mt-3 text-center">
+          <figcaption className="text-sm text-ink/75 mt-3 text-center">
             {isAr
               ? "الجليد والماء والبخار: نفس الجزيئات بثلاث شخصيات"
               : "Ice, water, and steam: the same particles with three personalities"}
@@ -232,42 +232,42 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
       </section>
 
       {/* States of matter in your kitchen */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "🍳 حالات المادة في مطبخك" : "🍳 States of Matter in Your Kitchen"}
         </h2>
-        <div className="space-y-4 text-sm sm:text-base text-white/80 leading-relaxed">
-          <p className="text-base text-white/80">
+        <div className="space-y-4 text-sm sm:text-base text-ink/80 leading-relaxed">
+          <p className="text-base text-ink/80">
             {isAr
               ? "لست بحاجة إلى مختبر علمي لترى المادة تغيّر حالتها، فمطبخك مليء بهذه العجائب كل يوم. كلما تغيرت الحرارة، تبدّلت حالة المادة أمام عينيك مباشرة. إليك خمسة مشاهد بسيطة يمكنك أن تلاحظها بنفسك:"
               : "You do not need a science lab to watch matter change its state — your kitchen is full of these wonders every single day. Whenever the temperature changes, matter switches its state right before your eyes. Here are five simple scenes you can spot for yourself:"}
           </p>
           <p>
-            <strong className="text-white">{isAr ? "مكعبات الثلج تذوب في العصير: " : "Ice cubes melt in your juice: "}</strong>
+            <strong className="text-ink">{isAr ? "مكعبات الثلج تذوب في العصير: " : "Ice cubes melt in your juice: "}</strong>
             {isAr
               ? "ضع مكعبات الثلج الصلبة في كوب العصير، وراقبها وهي تتقلّص شيئاً فشيئاً حتى تتحول إلى ماء سائل. هذا انصهار: الصلب يصبح سائلاً بفعل الدفء."
               : "Drop solid ice cubes into a glass of juice and watch them shrink little by little until they turn into liquid water. That is melting — a solid becoming a liquid because of warmth."}
           </p>
           <p>
-            <strong className="text-white">{isAr ? "الشوكولاتة تذوب في يدك الدافئة: " : "Chocolate melts in your warm hand: "}</strong>
+            <strong className="text-ink">{isAr ? "الشوكولاتة تذوب في يدك الدافئة: " : "Chocolate melts in your warm hand: "}</strong>
             {isAr
               ? "أمسك قطعة شوكولاتة صلبة في كفك لحظات قليلة، فتبدأ بالليونة ثم تسيل، لأن دفء جسمك كافٍ تماماً لتحويلها من الحالة الصلبة إلى السائلة."
               : "Hold a solid piece of chocolate in your palm for a few moments and it softens, then turns runny — because the warmth of your body is just enough to change it from solid to liquid."}
           </p>
           <p>
-            <strong className="text-white">{isAr ? "البخار يتصاعد من الحساء الساخن: " : "Steam rises from hot soup: "}</strong>
+            <strong className="text-ink">{isAr ? "البخار يتصاعد من الحساء الساخن: " : "Steam rises from hot soup: "}</strong>
             {isAr
               ? "حين يسخن الحساء كثيراً، ترى خيوط بخار رقيقة تتصاعد من سطحه. هذا الماء السائل يتحول إلى غاز ويطير في الهواء بفعل الحرارة العالية."
               : "When soup gets very hot, you see thin wisps of steam rising from its surface. That liquid water is turning into a gas and floating into the air because of the strong heat."}
           </p>
           <p>
-            <strong className="text-white">{isAr ? "الزبدة تذوب في المقلاة الساخنة: " : "Butter melts in a hot pan: "}</strong>
+            <strong className="text-ink">{isAr ? "الزبدة تذوب في المقلاة الساخنة: " : "Butter melts in a hot pan: "}</strong>
             {isAr
               ? "ضع قطعة زبدة صلبة في مقلاة ساخنة، فتنزلق وتسيل بسرعة لتصبح سائلاً ذهبياً لامعاً. الحرارة هي التي غيّرت حالتها من صلبة إلى سائلة."
               : "Place a solid lump of butter in a hot pan and it quickly slides and flows into a shiny golden liquid. The heat is what changed its state from solid to liquid."}
           </p>
           <p>
-            <strong className="text-white">{isAr ? "تجميد العصير ليصبح مصاصة: " : "Freezing juice into popsicles: "}</strong>
+            <strong className="text-ink">{isAr ? "تجميد العصير ليصبح مصاصة: " : "Freezing juice into popsicles: "}</strong>
             {isAr
               ? "صبّ العصير السائل في قالب وضعه في الفريزر، وبعد ساعات يتجمد ويصبح مصاصة صلبة لذيذة. هذا تجمّد: السائل يصبح صلباً بفعل البرد الشديد."
               : "Pour liquid juice into a mold and place it in the freezer; after a few hours it freezes into a delicious solid popsicle. That is freezing — a liquid becoming a solid because of strong cold."}
@@ -276,11 +276,11 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
       </section>
 
       {/* Experiment: the three faces of water */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "🧪 تجربة: وجوه الماء الثلاثة" : "🧪 Experiment: The Three Faces of Water"}
         </h2>
-        <ol className="list-decimal ms-5 space-y-3 text-sm sm:text-base text-white/80 leading-relaxed marker:text-accent marker:font-bold">
+        <ol className="list-decimal ms-5 space-y-3 text-sm sm:text-base text-ink/80 leading-relaxed marker:text-accent marker:font-bold">
           <li>
             {isAr
               ? "ضع مكعب ثلج في وعاء صغير وسجّل الوقت، ثم اطلب من الطفل أن يخمّن كم دقيقة سيحتاج كي يذوب تماماً."
@@ -301,7 +301,7 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
               ? "تنفّس بلطف على نافذة باردة أو مرآة، وراقب كيف يظهر الضباب فوراً على شكل قطرات ماء صغيرة. (غاز ← قطرات سائلة!)"
               : "Breathe gently onto a cold window or a mirror and watch how fog appears at once as tiny droplets of water. (gas → liquid droplets!)"}
           </li>
-          <li className="text-sm text-white/75">
+          <li className="text-sm text-ink/75">
             {isAr
               ? "🛡️ ملاحظة أمان: يبقى البالغ وحده قرب الموقد، ويظل الطفل على مسافة ذراع كاملة بعيداً عن البخار الساخن طوال التجربة."
               : "🛡️ Safety note: only an adult stays near the stove, and the child must stay a full arm's length away from the hot steam throughout the experiment."}
@@ -310,61 +310,61 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
       </section>
 
       {/* FAQ — kids' questions, rendered from faq[] for JSON-LD parity */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "❓ أسئلة يطرحها الأطفال" : "❓ Questions Kids Ask"}
         </h2>
         <div className="space-y-4">
           {faq.map((f, i) => (
-            <div key={i} className="p-4 rounded-xl border border-white/5 bg-white/5">
+            <div key={i} className="p-4 rounded-xl border border-ink/5 bg-card">
               <h3 className="font-bold text-accent mb-1 text-sm sm:text-base">{f.q}</h3>
-              <p className="text-sm sm:text-base text-white/80 leading-relaxed">{f.a}</p>
+              <p className="text-sm sm:text-base text-ink/80 leading-relaxed">{f.a}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Mini-glossary */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "📚 قاموس الكلمات العلمية" : "📚 Mini Science Glossary"}
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base text-white/80 leading-relaxed">
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base text-ink/80 leading-relaxed">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-cyan-400 mb-1">{isAr ? "الصلب" : "Solid"}</h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "حالة المادة التي يكون فيها الجسم قاسياً وثابت الشكل، مثل مكعب الثلج أو الحجر أو قطعة الخشب."
                 : "The state of matter where an object is hard and keeps a fixed shape, like an ice cube, a rock, or a piece of wood."}
             </p>
           </div>
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-emerald-400 mb-1">{isAr ? "السائل" : "Liquid"}</h3>
-            <p className="text-white/80">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-qalam mb-1">{isAr ? "السائل" : "Liquid"}</h3>
+            <p className="text-ink/80">
               {isAr
                 ? "حالة المادة التي تسيل وتأخذ شكل الوعاء الذي توضع فيه، مثل الماء والعصير والحليب."
                 : "The state of matter that flows and takes the shape of its container, like water, juice, and milk."}
             </p>
           </div>
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-red-400 mb-1">{isAr ? "الغاز" : "Gas"}</h3>
-            <p className="text-white/80">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-rose mb-1">{isAr ? "الغاز" : "Gas"}</h3>
+            <p className="text-ink/80">
               {isAr
                 ? "حالة المادة التي تنتشر وتملأ كل الفراغ حولها، مثل البخار والهواء الذي نتنفسه."
                 : "The state of matter that spreads out to fill all the space around it, like steam and the air we breathe."}
             </p>
           </div>
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-yellow-400 mb-1">{isAr ? "الانصهار" : "Melting"}</h3>
-            <p className="text-white/80">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-saffron-ink mb-1">{isAr ? "الانصهار" : "Melting"}</h3>
+            <p className="text-ink/80">
               {isAr
                 ? "تحوّل المادة من الحالة الصلبة إلى السائلة بفعل الحرارة، مثلما يذوب الثلج ويصبح ماءً."
                 : "When matter changes from a solid into a liquid because of heat, like ice melting into water."}
             </p>
           </div>
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-sky-400 mb-1">{isAr ? "التجمد" : "Freezing"}</h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "تحوّل المادة من الحالة السائلة إلى الصلبة بفعل البرد، مثلما يتجمد الماء ويصبح ثلجاً."
                 : "When matter changes from a liquid into a solid because of cold, like water freezing into ice."}
@@ -374,19 +374,19 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
       </section>
 
       {/* Full Lesson Transcript — crawlable by Google for SEO */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "📝 نص الدرس الكامل" : "📝 Full Lesson Transcript"}
         </h2>
-        <p className="text-xs text-white/40 mb-4">
+        <p className="text-xs text-ink/40 mb-4">
           {isAr
             ? "النص الكامل للحوار التعليمي بين الدكتور حكيم وأنس حول حالات المادة."
             : "The complete educational dialogue between Dr. Hakim and Anas about the states of matter."}
         </p>
-        <div className="space-y-3 text-sm text-white/80 leading-relaxed">
+        <div className="space-y-3 text-sm text-ink/80 leading-relaxed">
           {transcript.map((line, i) => (
             <div key={i} className="flex gap-2">
-              <span className="shrink-0 font-bold text-white/80 min-w-[70px]">{line.speaker}:</span>
+              <span className="shrink-0 font-bold text-ink/80 min-w-[70px]">{line.speaker}:</span>
               <p>{line.text}</p>
             </div>
           ))}
@@ -395,24 +395,24 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
 
       {/* Related Science Lessons — cross-linking */}
       <section className="mb-8">
-        <h2 className="text-lg font-bold text-white mb-3">
+        <h2 className="text-lg font-bold text-ink mb-3">
           {isAr ? "🔬 دروس علمية أخرى" : "🔬 More Science Lessons"}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <Link href={`/${locale}/learn/water-cycle`} className="rounded-xl border border-white/8 bg-white/5 p-4 text-sm hover:bg-white/10 hover:text-accent transition">
+          <Link href={`/${locale}/learn/water-cycle`} className="rounded-xl border border-ink/8 bg-card p-4 text-sm hover:bg-card hover:text-accent transition">
             <span className="text-2xl block mb-1">💧</span>
-            <span className="font-semibold text-white">{isAr ? "دورة المياه" : "Water Cycle"}</span>
-            <p className="text-xs text-white/50 mt-1">{isAr ? "رحلة قطرة الماء في الطبيعة" : "Follow a water drop's journey"}</p>
+            <span className="font-semibold text-ink">{isAr ? "دورة المياه" : "Water Cycle"}</span>
+            <p className="text-xs text-ink/50 mt-1">{isAr ? "رحلة قطرة الماء في الطبيعة" : "Follow a water drop's journey"}</p>
           </Link>
-          <Link href={`/${locale}/learn/solar-system`} className="rounded-xl border border-white/8 bg-white/5 p-4 text-sm hover:bg-white/10 hover:text-accent transition">
+          <Link href={`/${locale}/learn/solar-system`} className="rounded-xl border border-ink/8 bg-card p-4 text-sm hover:bg-card hover:text-accent transition">
             <span className="text-2xl block mb-1">🚀</span>
-            <span className="font-semibold text-white">{isAr ? "النظام الشمسي" : "Solar System"}</span>
-            <p className="text-xs text-white/50 mt-1">{isAr ? "استكشف الكواكب والمدارات" : "Explore planets and orbits"}</p>
+            <span className="font-semibold text-ink">{isAr ? "النظام الشمسي" : "Solar System"}</span>
+            <p className="text-xs text-ink/50 mt-1">{isAr ? "استكشف الكواكب والمدارات" : "Explore planets and orbits"}</p>
           </Link>
-          <Link href={`/${locale}/learn/gravity`} className="rounded-xl border border-white/8 bg-white/5 p-4 text-sm hover:bg-white/10 hover:text-accent transition">
+          <Link href={`/${locale}/learn/gravity`} className="rounded-xl border border-ink/8 bg-card p-4 text-sm hover:bg-card hover:text-accent transition">
             <span className="text-2xl block mb-1">🍎</span>
-            <span className="font-semibold text-white">{isAr ? "الجاذبية" : "Gravity"}</span>
-            <p className="text-xs text-white/50 mt-1">{isAr ? "القوة الخفية للكون" : "The invisible force of the cosmos"}</p>
+            <span className="font-semibold text-ink">{isAr ? "الجاذبية" : "Gravity"}</span>
+            <p className="text-xs text-ink/50 mt-1">{isAr ? "القوة الخفية للكون" : "The invisible force of the cosmos"}</p>
           </Link>
         </div>
       </section>
@@ -425,7 +425,7 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
       </div>
 
       <div className="text-center py-6">
-        <Link href={`/${locale}/play`} className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105">
+        <Link href={`/${locale}/play`} className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-ink transition hover:scale-105">
           🚀 {isAr ? "العب وتدرب الآن" : "Play & Practice Now"}
         </Link>
       </div>

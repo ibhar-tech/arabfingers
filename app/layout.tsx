@@ -1,34 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Fredoka, IBM_Plex_Sans_Arabic, Noto_Naskh_Arabic } from "next/font/google";
-import { StructuredData } from "@/components/StructuredData";
-import { AdSenseLoader } from "@/components/AdSenseLoader";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
-const fredoka = Fredoka({
-  variable: "--font-fredoka",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const ibmPlexArabic = IBM_Plex_Sans_Arabic({
-  variable: "--font-ibm-plex-arabic",
-  subsets: ["arabic", "latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const notoNaskhArabic = Noto_Naskh_Arabic({
-  variable: "--font-noto-naskh",
-  subsets: ["arabic"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.arabfingers.site";
+// Force the canonical www host even if NEXT_PUBLIC_SITE_URL is set to the bare
+// apex on Vercel — the apex 307-redirects, so emitting it in canonical/OG tags
+// makes Google ignore our canonical. Pages set their own per-locale canonical
+// via lib/seo.ts; this is only the metadataBase + global defaults.
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.arabfingers.site").replace(
+  "://arabfingers.site",
+  "://www.arabfingers.site",
+);
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Arab Fingers — لعبة الحروف العربية | Arabic Keyboard Smash Toy for Kids",
+    default: "Arab Fingers — Arabic Alphabet Game for Kids",
     template: "%s | Arab Fingers",
   },
   description:
@@ -53,7 +38,6 @@ export const metadata: Metadata = {
     "Arabic for toddlers",
     "العربية للأطفال",
   ],
-
   applicationName: "Arab Fingers",
   authors: [{ name: "Aissa Trad", url: "https://www.arabfingers.site/en/author" }],
   creator: "Aissa Trad",
@@ -62,7 +46,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: "Arab Fingers",
-    title: "Arab Fingers — لعبة الحروف العربية | Arabic Keyboard Smash Toy",
+    title: "Arab Fingers — Arabic Alphabet Game for Kids",
     description:
       "Free bilingual Arabic & English keyboard smash toy for toddlers. Animated letters, 3D objects, sound effects & 5 themes. لعبة مجانية ثنائية اللغة للأطفال.",
     locale: "en_US",
@@ -80,7 +64,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Arab Fingers — Arabic Keyboard Smash Toy for Kids",
+    title: "Arab Fingers — Arabic Alphabet Game for Kids",
     description:
       "Free bilingual Arabic & English keyboard smash toy for toddlers with 3D animations and letter pronunciation.",
     images: ["/og-image.png"],
@@ -96,21 +80,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  alternates: {
-    canonical: siteUrl,
-    languages: {
-      "en": `${siteUrl}/en`,
-      "ar": `${siteUrl}/ar`,
-      "x-default": `${siteUrl}/en`,
-    },
-  },
   icons: {
-    icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
-    ],
-    apple: [
-      { url: "/icon.svg", type: "image/svg+xml" },
-    ],
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/icon.svg", type: "image/svg+xml" }],
   },
   other: {
     "mobile-web-app-capable": "yes",
@@ -121,35 +93,16 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#050816",
+  themeColor: "#FFF7EC",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
   viewportFit: "cover",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html suppressHydrationWarning lang="en" dir="ltr">
-      <head>
-        <meta name="google-adsense-account" content="ca-pub-9623110963718326" />
-        <link rel="manifest" href="/manifest.json" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `if(typeof window.__pwaPrompt==="undefined"){window.__pwaPrompt=null;}window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();window.__pwaPrompt=e});if("serviceWorker"in navigator){navigator.serviceWorker.register("/sw.js")}`,
-          }}
-        />
-      </head>
-      <body className={`${fredoka.variable} ${ibmPlexArabic.variable} ${notoNaskhArabic.variable} antialiased`}>
-        <StructuredData />
-        {children}
-        <AdSenseLoader />
-        <SpeedInsights />
-      </body>
-    </html>
-  );
+// ponytail: the <html>/<body> shell lives in app/[locale]/layout.tsx so lang/dir
+// are set per-locale in the server HTML (Googlebot needs lang="ar" dir="rtl" for
+// the Arabic half). The root layout only carries global metadata + passes through.
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return children;
 }

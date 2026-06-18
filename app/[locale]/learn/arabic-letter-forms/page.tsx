@@ -116,16 +116,16 @@ export default async function ArabicLetterFormsPage({ params }: { params: Promis
         ]}
       />
 
-      <h1 className="text-3xl font-semibold text-white mb-2">
+      <h1 className="text-3xl font-semibold text-ink mb-2">
         {isAr ? "كيف تتغير أشكال الحروف العربية" : "How Arabic Letters Change Shape"}
       </h1>
-      <p className="text-base text-white/75 mb-8">
+      <p className="text-base text-ink/75 mb-8">
         {isAr ? "دليل بصري لأشكال الحروف في بداية ووسط ونهاية الكلمة" : "A visual guide to letter forms at the beginning, middle, and end of words"}
       </p>
 
-      <div className="space-y-6 text-base leading-relaxed text-white/80 mb-10">
+      <div className="space-y-6 text-base leading-relaxed text-ink/80 mb-10">
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">
+          <h2 className="text-xl font-semibold text-ink mb-3">
             {isAr ? "لماذا تتغير أشكال الحروف؟" : "Why Do Arabic Letters Change Shape?"}
           </h2>
           <p className="mb-3">
@@ -146,7 +146,7 @@ export default async function ArabicLetterFormsPage({ params }: { params: Promis
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">
+          <h2 className="text-xl font-semibold text-ink mb-3">
             {isAr ? "الحروف غير المتصلة" : "Non-Connecting Letters"}
           </h2>
           <p className="mb-3">
@@ -162,22 +162,22 @@ export default async function ArabicLetterFormsPage({ params }: { params: Promis
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">
+          <h2 className="text-xl font-semibold text-ink mb-3">
             {isAr ? "نصائح لتعلم أشكال الحروف" : "Tips for Learning Letter Forms"}
           </h2>
-          <ul className="list-disc list-inside space-y-2 text-white/75">
-            <li><strong className="text-white/80">{isAr ? "ابدأ بالشكل المنفصل" : "Start with isolated forms"}</strong> — {isAr ? "هذا هو ما يعلمه عرب فنجرز. بمجرد أن يتعرف طفلك على الأشكال الأساسية، سيتعرف عليها داخل الكلمات." : "This is what ArabFingers teaches. Once your child recognizes the basic shapes, they'll spot them inside words."}</li>
-            <li><strong className="text-white/80">{isAr ? "ابحث عن الأنماط" : "Look for patterns"}</strong> — {isAr ? "كثير من الحروف تتغير بنفس الطريقة. حروف مثل ب ت ث تتبع نفس النمط مع اختلاف النقاط فقط." : "Many letters change in the same way. Letters like ب ت ث follow the same pattern with only the dots changing."}</li>
-            <li><strong className="text-white/80">{isAr ? "لا تتعجل" : "Don't rush"}</strong> — {isAr ? "الأطفال يتعلمون الأشكال المنفصلة أولاً (عمر ٣-٥)، ثم الأشكال المتصلة لاحقاً (عمر ٥-٧). هذا تطور طبيعي." : "Children learn isolated forms first (ages 3-5), then connected forms later (ages 5-7). This is a natural progression."}</li>
-            <li><strong className="text-white/80">{isAr ? "استخدم كلمات حقيقية" : "Use real words"}</strong> — {isAr ? "عندما يكون طفلك مستعداً، أره كيف تبدو الحروف التي يعرفها داخل كلمات بسيطة مثل بَاب (باب) أو كِتَاب (كتاب)." : "When your child is ready, show them how letters they know look inside simple words like بَاب (door) or كِتَاب (book)."}</li>
+          <ul className="list-disc list-inside space-y-2 text-ink/75">
+            <li><strong className="text-ink/80">{isAr ? "ابدأ بالشكل المنفصل" : "Start with isolated forms"}</strong> — {isAr ? "هذا هو ما يعلمه عرب فنجرز. بمجرد أن يتعرف طفلك على الأشكال الأساسية، سيتعرف عليها داخل الكلمات." : "This is what ArabFingers teaches. Once your child recognizes the basic shapes, they'll spot them inside words."}</li>
+            <li><strong className="text-ink/80">{isAr ? "ابحث عن الأنماط" : "Look for patterns"}</strong> — {isAr ? "كثير من الحروف تتغير بنفس الطريقة. حروف مثل ب ت ث تتبع نفس النمط مع اختلاف النقاط فقط." : "Many letters change in the same way. Letters like ب ت ث follow the same pattern with only the dots changing."}</li>
+            <li><strong className="text-ink/80">{isAr ? "لا تتعجل" : "Don't rush"}</strong> — {isAr ? "الأطفال يتعلمون الأشكال المنفصلة أولاً (عمر ٣-٥)، ثم الأشكال المتصلة لاحقاً (عمر ٥-٧). هذا تطور طبيعي." : "Children learn isolated forms first (ages 3-5), then connected forms later (ages 5-7). This is a natural progression."}</li>
+            <li><strong className="text-ink/80">{isAr ? "استخدم كلمات حقيقية" : "Use real words"}</strong> — {isAr ? "عندما يكون طفلك مستعداً، أره كيف تبدو الحروف التي يعرفها داخل كلمات بسيطة مثل بَاب (باب) أو كِتَاب (كتاب)." : "When your child is ready, show them how letters they know look inside simple words like بَاب (door) or كِتَاب (book)."}</li>
           </ul>
         </section>
       </div>
 
-      <h2 className="text-xl font-semibold text-white mb-3">
+      <h2 className="text-xl font-semibold text-ink mb-3">
         {isAr ? "أمثلة عملية: ثلاثة حروف بأشكالها الأربعة" : "Worked Examples: Three Letters in All Four Forms"}
       </h2>
-      <p className="text-base text-white/80 leading-relaxed mb-4">
+      <p className="text-base text-ink/80 leading-relaxed mb-4">
         {isAr
           ? "قبل الجدول الكامل، لنرَ ثلاثة حروف شائعة عن قرب: الباء، والعين، والكاف. لاحظ كيف يبقى \"جسم\" الحرف معروفاً في كل أشكاله، وكيف يظهر داخل كلمة بسيطة يعرفها طفلك."
             : "Before the full table, let's look closely at three common letters: Ba, Ain, and Kaf. Notice how the \"body\" of each letter stays recognizable across all its forms, and how it appears inside a simple word your child knows."}
@@ -185,23 +185,23 @@ export default async function ArabicLetterFormsPage({ params }: { params: Promis
       <div className="overflow-x-auto mb-6">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-white/10">
-              <th className="py-2 px-3 text-start text-white/70 font-medium">{isAr ? "الحرف" : "Letter"}</th>
-              <th className="py-2 px-3 text-center text-white/70 font-medium">{isAr ? "منفصل" : "Isolated"}</th>
-              <th className="py-2 px-3 text-center text-white/70 font-medium">{isAr ? "بداية" : "Initial"}</th>
-              <th className="py-2 px-3 text-center text-white/70 font-medium">{isAr ? "وسط" : "Medial"}</th>
-              <th className="py-2 px-3 text-center text-white/70 font-medium">{isAr ? "نهاية" : "Final"}</th>
-              <th className="py-2 px-3 text-center text-white/70 font-medium">{isAr ? "في كلمة" : "In a word"}</th>
+            <tr className="border-b border-ink/10">
+              <th className="py-2 px-3 text-start text-ink/70 font-medium">{isAr ? "الحرف" : "Letter"}</th>
+              <th className="py-2 px-3 text-center text-ink/70 font-medium">{isAr ? "منفصل" : "Isolated"}</th>
+              <th className="py-2 px-3 text-center text-ink/70 font-medium">{isAr ? "بداية" : "Initial"}</th>
+              <th className="py-2 px-3 text-center text-ink/70 font-medium">{isAr ? "وسط" : "Medial"}</th>
+              <th className="py-2 px-3 text-center text-ink/70 font-medium">{isAr ? "نهاية" : "Final"}</th>
+              <th className="py-2 px-3 text-center text-ink/70 font-medium">{isAr ? "في كلمة" : "In a word"}</th>
             </tr>
           </thead>
           <tbody>
             {sampleLetters.map((l) => (
-              <tr key={l.name} className="border-b border-white/5 hover:bg-white/5 transition">
-                <td className="py-2.5 px-3 text-start text-sm text-white/80">{isAr ? l.arName : l.name}</td>
-                <td className="py-2.5 px-3 text-center text-2xl text-white" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.isolated}</td>
-                <td className="py-2.5 px-3 text-center text-2xl text-white" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.initial}</td>
-                <td className="py-2.5 px-3 text-center text-2xl text-white" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.medial}</td>
-                <td className="py-2.5 px-3 text-center text-2xl text-white" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.final}</td>
+              <tr key={l.name} className="border-b border-ink/10 hover:bg-white/5 transition">
+                <td className="py-2.5 px-3 text-start text-sm text-ink/80">{isAr ? l.arName : l.name}</td>
+                <td className="py-2.5 px-3 text-center text-2xl text-ink" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.isolated}</td>
+                <td className="py-2.5 px-3 text-center text-2xl text-ink" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.initial}</td>
+                <td className="py-2.5 px-3 text-center text-2xl text-ink" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.medial}</td>
+                <td className="py-2.5 px-3 text-center text-2xl text-ink" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.final}</td>
                 <td className="py-2.5 px-3 text-center text-xl text-accent" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.wordAr}</td>
               </tr>
             ))}
@@ -210,36 +210,36 @@ export default async function ArabicLetterFormsPage({ params }: { params: Promis
       </div>
       <div className="space-y-2 mb-10">
         {sampleLetters.map((l) => (
-          <p key={l.name} className="text-sm text-white/75 leading-relaxed">
+          <p key={l.name} className="text-sm text-ink/75 leading-relaxed">
             <span className="text-accent" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.wordAr}</span>
-            <span className="text-white/65"> ({l.wordEn})</span> — {isAr ? l.noteAr : l.noteEn}
+            <span className="text-ink/65"> ({l.wordEn})</span> — {isAr ? l.noteAr : l.noteEn}
           </p>
         ))}
       </div>
 
-      <h2 className="text-xl font-semibold text-white mb-4">
+      <h2 className="text-xl font-semibold text-ink mb-4">
         {isAr ? "جميع أشكال الحروف العربية الـ ٢٨" : "All 28 Arabic Letter Forms"}
       </h2>
 
       <div className="overflow-x-auto mb-10">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-white/10">
-              <th className="py-2 px-3 text-left text-white/60 font-medium">{isAr ? "الاسم" : "Name"}</th>
-              <th className="py-2 px-3 text-center text-white/60 font-medium">{isAr ? "منفصل" : "Isolated"}</th>
-              <th className="py-2 px-3 text-center text-white/60 font-medium">{isAr ? "بداية" : "Initial"}</th>
-              <th className="py-2 px-3 text-center text-white/60 font-medium">{isAr ? "وسط" : "Medial"}</th>
-              <th className="py-2 px-3 text-center text-white/60 font-medium">{isAr ? "نهاية" : "Final"}</th>
+            <tr className="border-b border-ink/10">
+              <th className="py-2 px-3 text-left text-ink/60 font-medium">{isAr ? "الاسم" : "Name"}</th>
+              <th className="py-2 px-3 text-center text-ink/60 font-medium">{isAr ? "منفصل" : "Isolated"}</th>
+              <th className="py-2 px-3 text-center text-ink/60 font-medium">{isAr ? "بداية" : "Initial"}</th>
+              <th className="py-2 px-3 text-center text-ink/60 font-medium">{isAr ? "وسط" : "Medial"}</th>
+              <th className="py-2 px-3 text-center text-ink/60 font-medium">{isAr ? "نهاية" : "Final"}</th>
             </tr>
           </thead>
           <tbody>
             {letterForms.map((l) => (
-              <tr key={l.name} className="border-b border-white/5 hover:bg-white/5 transition">
-                <td className="py-2.5 px-3 text-white/80 text-sm">{isAr ? l.arName : l.name}</td>
-                <td className="py-2.5 px-3 text-center text-2xl text-white" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.isolated}</td>
-                <td className="py-2.5 px-3 text-center text-2xl text-white" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.initial}</td>
-                <td className="py-2.5 px-3 text-center text-2xl text-white" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.medial}</td>
-                <td className="py-2.5 px-3 text-center text-2xl text-white" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.final}</td>
+              <tr key={l.name} className="border-b border-ink/10 hover:bg-white/5 transition">
+                <td className="py-2.5 px-3 text-ink/80 text-sm">{isAr ? l.arName : l.name}</td>
+                <td className="py-2.5 px-3 text-center text-2xl text-ink" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.isolated}</td>
+                <td className="py-2.5 px-3 text-center text-2xl text-ink" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.initial}</td>
+                <td className="py-2.5 px-3 text-center text-2xl text-ink" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.medial}</td>
+                <td className="py-2.5 px-3 text-center text-2xl text-ink" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{l.final}</td>
               </tr>
             ))}
           </tbody>
@@ -247,7 +247,7 @@ export default async function ArabicLetterFormsPage({ params }: { params: Promis
       </div>
 
       <div className="text-center py-6">
-        <Link href={`/${locale}/play`} className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105">
+        <Link href={`/${locale}/play`} className="btn-chunky inline-flex items-center gap-2 px-6 py-3 text-base transition hover:scale-105">
           🚀 {isAr ? "تدرب على الحروف في عرب فنجرز" : "Practice Letters in ArabFingers"}
         </Link>
       </div>

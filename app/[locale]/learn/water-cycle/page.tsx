@@ -146,10 +146,10 @@ export default async function WaterCyclePage({ params }: { params: Promise<{ loc
 
       {/* Title & Description Headers */}
       <div className="mb-6 mt-4">
-        <h1 className="text-3xl font-extrabold text-white mb-2" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+        <h1 className="text-3xl font-extrabold text-ink mb-2" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "دورة المياه في الطبيعة للأطفال 💧✨" : "The Water Cycle for Kids 💧✨"}
         </h1>
-        <p className="text-base text-white/75">
+        <p className="text-base text-ink/75">
           {isAr
             ? "رافق قطرة الماء الصغيرة في رحلتها الدائرية المذهلة! تحكم في حرارة الطقس لتبخير المياه، تكثيف السحب، وإنزال المطر!"
             : "Accompany the tiny water drop on its spectacular circular journey! Control weather heat to evaporate water, condense clouds, and spawn rain!"}
@@ -162,49 +162,49 @@ export default async function WaterCyclePage({ params }: { params: Promise<{ loc
       </div>
 
       {/* Immersive Educational Summary details below the video */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "💡 ملخص دورة المياه الأربع" : "💡 Summary of the Water Cycle"}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm sm:text-base text-white/80 leading-relaxed">
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-yellow-400 mb-1">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm sm:text-base text-ink/80 leading-relaxed">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-saffron-ink mb-1">
               {isAr ? "١. التبخر" : "1. Evaporation Stage"}
             </h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "تقوم أشعة الشمس الدافئة بتسخين مياه المحيطات والأنهار، فتحولها إلى بخار ماء خفيف غير مرئي يرتفع عالياً في السماء."
                 : "Warm sun rays heat up surface water, turning it into light, invisible vapor that drifts high into the atmosphere."}
             </p>
           </div>
 
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-sky-400 mb-1">
               {isAr ? "٢. التكاثف" : "2. Condensation Stage"}
             </h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "عندما يرتفع البخار عالياً حيث الجو بارد جداً، يبرد ويتجمع معاً ليشكل غيوماً بيضاء ناعمة وجميلة."
                 : "When vapor rises to cold high altitudes, it cools down and clusters together to form fluffy white cartoon clouds."}
             </p>
           </div>
 
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-blue-400 mb-1">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-qalam mb-1">
               {isAr ? "٣. الهطول" : "3. Precipitation Stage"}
             </h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "عندما تصبح السحب ثقيلة للغاية ومحملة بالمياه، تسقط قطرات الماء على شكل مطر منعش أو بلورات ثلج براقة."
                 : "When clouds become extremely heavy with accumulated water, they release it as refreshing rain or shiny snowflakes."}
             </p>
           </div>
 
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-emerald-400 mb-1">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-qalam mb-1">
               {isAr ? "٤. الجريان والتجميع" : "4. Collection & Runoff"}
             </h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "تتدفق المياه عبر الجداول والأنهار عائدة إلى المحيطات والبحار السعيدة، لتستقر وتستعد لبدء دورة مائية جديدة."
                 : "Rainwater streams through rivers and runoff valleys back to the ocean, where it settles to prepare for a new cycle."}
@@ -214,13 +214,13 @@ export default async function WaterCyclePage({ params }: { params: Promise<{ loc
       </section>
 
       {/* Diagram figure: a water drop's circular journey */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "🌧️ رسم توضيحي: رحلة دورة الماء" : "🌧️ Diagram: The Water Cycle Journey"}
         </h2>
         <figure className="m-0">
           <WaterCycleDiagram locale={locale} />
-          <figcaption className="text-sm text-white/75 mt-3 text-center">
+          <figcaption className="text-sm text-ink/75 mt-3 text-center">
             {isAr
               ? "رحلة قطرة الماء التي لا تنتهي"
               : "The never-ending journey of a water drop"}
@@ -229,36 +229,36 @@ export default async function WaterCyclePage({ params }: { params: Promise<{ loc
       </section>
 
       {/* The water cycle in your home */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "🏠 دورة الماء في بيتك" : "🏠 The Water Cycle in Your Home"}
         </h2>
-        <div className="space-y-4 text-sm sm:text-base text-white/80 leading-relaxed">
-          <p className="text-base text-white/80">
+        <div className="space-y-4 text-sm sm:text-base text-ink/80 leading-relaxed">
+          <p className="text-base text-ink/80">
             {isAr
               ? "لست بحاجة إلى محيط أو غيمة لترى دورة الماء، فهي تحدث أمامك في بيتك كل يوم! الماء يتبخر، ثم يتكاثف، ثم يعود قطرات، تماماً كما يفعل في السماء. تأمّل هذه المشاهد الأربعة وابحث عنها بنفسك:"
               : "You do not need an ocean or a cloud to see the water cycle — it is happening right inside your home every single day! Water evaporates, then condenses, then turns back into drops, just like it does in the sky. Watch for these four moments yourself:"}
           </p>
           <p>
-            <strong className="text-white">{isAr ? "البخار الصاعد من القِدر: " : "Steam rising from a kettle: "}</strong>
+            <strong className="text-ink">{isAr ? "البخار الصاعد من القِدر: " : "Steam rising from a kettle: "}</strong>
             {isAr
               ? "حين يغلي الماء في الإبريق أو في قِدر الطبخ، ترى بخاراً أبيض يتصاعد إلى الأعلى. هذا هو التبخر بعينه: الماء الساخن يتحول إلى بخار يطير في الهواء."
               : "When water boils in a kettle or a cooking pot, you see white steam rising upward. That is evaporation in action: the hot water turns into vapor that floats away into the air."}
           </p>
           <p>
-            <strong className="text-white">{isAr ? "ضباب مرآة الحمّام: " : "The bathroom mirror fogging up: "}</strong>
+            <strong className="text-ink">{isAr ? "ضباب مرآة الحمّام: " : "The bathroom mirror fogging up: "}</strong>
             {isAr
               ? "بعد حمّام دافئ، تتغطى المرآة بطبقة ضبابية من قطرات صغيرة. هذا هو التكاثف: بخار الماء الدافئ يلمس المرآة الباردة فيعود ماءً من جديد."
               : "After a warm shower, the mirror gets covered with a misty layer of tiny drops. That is condensation: the warm water vapor touches the cold mirror and turns back into liquid water."}
           </p>
           <p>
-            <strong className="text-white">{isAr ? "تعرّق زجاجة المشروب البارد: " : "A cold drink bottle 'sweating': "}</strong>
+            <strong className="text-ink">{isAr ? "تعرّق زجاجة المشروب البارد: " : "A cold drink bottle 'sweating': "}</strong>
             {isAr
               ? "في يوم حار، تظهر قطرات ماء على زجاجة المشروب البارد من الخارج. لم تتسرب من الداخل، بل تكاثف بخار الهواء الدافئ حين لامس الزجاجة الباردة."
               : "On a hot day, droplets appear on the outside of a cold drink bottle. They did not leak from inside — the warm air's vapor condensed when it touched the cold bottle."}
           </p>
           <p>
-            <strong className="text-white">{isAr ? "البِرَك تختفي بعد المطر: " : "Puddles shrinking after rain: "}</strong>
+            <strong className="text-ink">{isAr ? "البِرَك تختفي بعد المطر: " : "Puddles shrinking after rain: "}</strong>
             {isAr
               ? "بعد المطر تبقى برك صغيرة في الشارع، لكنها تصغر شيئاً فشيئاً حتى تختفي تماماً. الشمس بخّرت ماءها وأعادته إلى السماء ليبدأ دورة جديدة."
               : "After rain, little puddles stay on the street, but they grow smaller and smaller until they vanish completely. The sun evaporated their water and lifted it back to the sky for a new cycle."}
@@ -267,16 +267,16 @@ export default async function WaterCyclePage({ params }: { params: Promise<{ loc
       </section>
 
       {/* Experiment: make a cloud in a jar */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "🧪 جرّبها: اصنع غيمة في برطمان" : "🧪 Experiment: Make a Cloud in a Jar"}
         </h2>
-        <p className="mb-4 text-sm sm:text-base text-white/80 leading-relaxed">
+        <p className="mb-4 text-sm sm:text-base text-ink/80 leading-relaxed">
           {isAr
             ? "هل تعلم أنك تستطيع أن تصنع غيمة حقيقية صغيرة داخل برطمان زجاجي؟ بهذه التجربة الممتعة سترى التبخر والتكاثف والهطول كلها أمام عينيك في دقائق!"
             : "Did you know you can make a real tiny cloud inside a glass jar? With this fun experiment you will see evaporation, condensation, and precipitation happen right before your eyes in just minutes!"}
         </p>
-        <ol className="list-decimal ms-5 space-y-3 text-sm sm:text-base text-white/80 leading-relaxed marker:text-accent marker:font-bold">
+        <ol className="list-decimal ms-5 space-y-3 text-sm sm:text-base text-ink/80 leading-relaxed marker:text-accent marker:font-bold">
           <li>
             {isAr
               ? "اطلب من شخص بالغ أن يسكب ماءً ساخناً (وليس مغلياً) في برطمان زجاجي شفاف، بعمق بضعة سنتيمترات فقط في القاع."
@@ -302,7 +302,7 @@ export default async function WaterCyclePage({ params }: { params: Promise<{ loc
               ? "ارفع الصحن بلطف، وستجد قطرات ماء صغيرة قد تجمّعت على وجهه السفلي، ثم تسقط نازلة مثل مطر صغير. هكذا تماماً تُمطر الغيوم في السماء!"
               : "Gently lift the plate, and you will find tiny water drops have gathered on its underside, then 'rain' back down. That is exactly how clouds make rain up in the sky!"}
           </li>
-          <li className="text-sm text-white/75">
+          <li className="text-sm text-ink/75">
             {isAr
               ? "🛡️ ملاحظة أمان: الشخص البالغ وحده هو من يتعامل مع الماء الساخن. لا تلمس الماء الساخن أو البرطمان بنفسك أبداً."
               : "🛡️ Safety note: ONLY an adult handles the hot water. Never touch the hot water or the jar yourself."}
@@ -311,61 +311,61 @@ export default async function WaterCyclePage({ params }: { params: Promise<{ loc
       </section>
 
       {/* FAQ — kids' questions, rendered from faq[] for JSON-LD parity */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "❓ أسئلة يطرحها الأطفال" : "❓ Questions Kids Ask"}
         </h2>
         <div className="space-y-4">
           {faq.map((f, i) => (
-            <div key={i} className="p-4 rounded-xl border border-white/5 bg-white/5">
+            <div key={i} className="p-4 rounded-xl border border-ink/5 bg-card">
               <h3 className="font-bold text-accent mb-1 text-sm sm:text-base">{f.q}</h3>
-              <p className="text-sm sm:text-base text-white/80 leading-relaxed">{f.a}</p>
+              <p className="text-sm sm:text-base text-ink/80 leading-relaxed">{f.a}</p>
             </div>
           ))}
         </div>
       </section>
 
       {/* Mini-glossary */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "📚 قاموس الكلمات العلمية" : "📚 Mini Science Glossary"}
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base text-white/80 leading-relaxed">
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-yellow-400 mb-1">{isAr ? "التبخر" : "Evaporation"}</h3>
-            <p className="text-white/80">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm sm:text-base text-ink/80 leading-relaxed">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-saffron-ink mb-1">{isAr ? "التبخر" : "Evaporation"}</h3>
+            <p className="text-ink/80">
               {isAr
                 ? "حين تسخّن الشمس الماء فيتحول إلى بخار خفيف يصعد إلى السماء، مثل البخار المتصاعد من كوب الشاي الساخن."
                 : "When the sun heats water and it turns into light vapor that rises into the sky — like the steam rising from a hot cup of tea."}
             </p>
           </div>
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-sky-400 mb-1">{isAr ? "التكاثف" : "Condensation"}</h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "حين يبرد بخار الماء ويتحول إلى قطرات صغيرة، تماماً كما تتكوّن قطرات الماء على مرآة الحمّام بعد الاستحمام الدافئ."
                 : "When water vapor cools down and turns back into tiny drops, just like the droplets that form on the bathroom mirror after a warm shower."}
             </p>
           </div>
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-blue-400 mb-1">{isAr ? "الهطول" : "Precipitation"}</h3>
-            <p className="text-white/80">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-qalam mb-1">{isAr ? "الهطول" : "Precipitation"}</h3>
+            <p className="text-ink/80">
               {isAr
                 ? "نزول الماء من السحب إلى الأرض على شكل مطر أو ثلج أو بَرَد، حين تثقل الغيمة بالماء فلا تستطيع حمله."
                 : "Water falling from the clouds to the ground as rain, snow, or hail, when a cloud grows too heavy with water to hold it any longer."}
             </p>
           </div>
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-cyan-300 mb-1">{isAr ? "بخار الماء" : "Water Vapor"}</h3>
-            <p className="text-white/80">
+            <p className="text-ink/80">
               {isAr
                 ? "الماء في حالته الغازية الخفيفة غير المرئية التي يصعد بها إلى السماء، وهو ما نراه أحياناً كضباب أبيض فوق الماء الساخن."
                 : "Water in its light, invisible gas form that rises into the sky — the same thing we sometimes see as a white mist above hot water."}
             </p>
           </div>
-          <div className="p-4 rounded-xl border border-white/5 bg-white/5">
-            <h3 className="font-bold text-emerald-400 mb-1">{isAr ? "السحابة" : "Cloud"}</h3>
-            <p className="text-white/80">
+          <div className="p-4 rounded-xl border border-ink/5 bg-card">
+            <h3 className="font-bold text-qalam mb-1">{isAr ? "السحابة" : "Cloud"}</h3>
+            <p className="text-ink/80">
               {isAr
                 ? "تجمّع ضخم من ملايين قطرات الماء الصغيرة جداً وبلورات الجليد العائمة عالياً في السماء، ومنها ينزل المطر."
                 : "A huge gathering of millions of very tiny water drops and floating ice crystals high up in the sky — and rain falls from it."}
@@ -375,19 +375,19 @@ export default async function WaterCyclePage({ params }: { params: Promise<{ loc
       </section>
 
       {/* Full Lesson Transcript — crawlable by Google for SEO */}
-      <section className="mb-10 p-6 rounded-2xl border border-white/8 bg-white/5">
-        <h2 className="text-lg font-bold text-white mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+      <section className="mb-10 p-6 rounded-2xl border border-ink/8 bg-card">
+        <h2 className="text-lg font-bold text-ink mb-3" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
           {isAr ? "📝 نص الدرس الكامل" : "📝 Full Lesson Transcript"}
         </h2>
-        <p className="text-xs text-white/40 mb-4">
+        <p className="text-xs text-ink/40 mb-4">
           {isAr
             ? "النص الكامل للحوار التعليمي بين الدكتور حكيم وأنس حول دورة المياه."
             : "The complete educational dialogue between Dr. Hakim and Anas about the water cycle."}
         </p>
-        <div className="space-y-3 text-sm text-white/80 leading-relaxed">
+        <div className="space-y-3 text-sm text-ink/80 leading-relaxed">
           {transcript.map((line, i) => (
             <div key={i} className="flex gap-2">
-              <span className="shrink-0 font-bold text-white/80 min-w-[70px]">{line.speaker}:</span>
+              <span className="shrink-0 font-bold text-ink/80 min-w-[70px]">{line.speaker}:</span>
               <p>{line.text}</p>
             </div>
           ))}
@@ -396,24 +396,24 @@ export default async function WaterCyclePage({ params }: { params: Promise<{ loc
 
       {/* Related Science Lessons — cross-linking */}
       <section className="mb-8">
-        <h2 className="text-lg font-bold text-white mb-3">
+        <h2 className="text-lg font-bold text-ink mb-3">
           {isAr ? "🔬 دروس علمية أخرى" : "🔬 More Science Lessons"}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <Link href={`/${locale}/learn/states-of-matter`} className="rounded-xl border border-white/8 bg-white/5 p-4 text-sm hover:bg-white/10 hover:text-accent transition">
+          <Link href={`/${locale}/learn/states-of-matter`} className="rounded-xl border border-ink/8 bg-card p-4 text-sm hover:bg-card hover:text-accent transition">
             <span className="text-2xl block mb-1">🧪</span>
-            <span className="font-semibold text-white">{isAr ? "حالات المادة" : "States of Matter"}</span>
-            <p className="text-xs text-white/50 mt-1">{isAr ? "استكشف الحالات الأربع للمادة" : "Explore solid, liquid, gas, and plasma"}</p>
+            <span className="font-semibold text-ink">{isAr ? "حالات المادة" : "States of Matter"}</span>
+            <p className="text-xs text-ink/50 mt-1">{isAr ? "استكشف الحالات الأربع للمادة" : "Explore solid, liquid, gas, and plasma"}</p>
           </Link>
-          <Link href={`/${locale}/learn/solar-system`} className="rounded-xl border border-white/8 bg-white/5 p-4 text-sm hover:bg-white/10 hover:text-accent transition">
+          <Link href={`/${locale}/learn/solar-system`} className="rounded-xl border border-ink/8 bg-card p-4 text-sm hover:bg-card hover:text-accent transition">
             <span className="text-2xl block mb-1">🚀</span>
-            <span className="font-semibold text-white">{isAr ? "النظام الشمسي" : "Solar System"}</span>
-            <p className="text-xs text-white/50 mt-1">{isAr ? "استكشف الكواكب والمدارات" : "Explore planets and orbits"}</p>
+            <span className="font-semibold text-ink">{isAr ? "النظام الشمسي" : "Solar System"}</span>
+            <p className="text-xs text-ink/50 mt-1">{isAr ? "استكشف الكواكب والمدارات" : "Explore planets and orbits"}</p>
           </Link>
-          <Link href={`/${locale}/learn/gravity`} className="rounded-xl border border-white/8 bg-white/5 p-4 text-sm hover:bg-white/10 hover:text-accent transition">
+          <Link href={`/${locale}/learn/gravity`} className="rounded-xl border border-ink/8 bg-card p-4 text-sm hover:bg-card hover:text-accent transition">
             <span className="text-2xl block mb-1">🍎</span>
-            <span className="font-semibold text-white">{isAr ? "الجاذبية" : "Gravity"}</span>
-            <p className="text-xs text-white/50 mt-1">{isAr ? "القوة الخفية للكون" : "The invisible force of the cosmos"}</p>
+            <span className="font-semibold text-ink">{isAr ? "الجاذبية" : "Gravity"}</span>
+            <p className="text-xs text-ink/50 mt-1">{isAr ? "القوة الخفية للكون" : "The invisible force of the cosmos"}</p>
           </Link>
         </div>
       </section>

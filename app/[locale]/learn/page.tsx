@@ -136,16 +136,16 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
 
   return (
     <PageLayout locale={locale}>
-      <h1 className="text-3xl font-semibold text-white mb-2">
+      <h1 className="font-display text-3xl font-semibold text-ink mb-2">
         {isAr ? "تعلم العربية — أدلة وموارد" : "Learn Arabic — Guides & Resources"}
       </h1>
-      <p className="text-base text-white/75 mb-8">
+      <p className="text-base text-ink/75 mb-8">
         {isAr
           ? "موارد مجانية لتعلم العربية للأطفال والوالدين. أدلة الأبجدية، نصائح النطق، الأرقام، الألوان، والكلمات الأولى."
           : "Free Arabic learning resources for kids and parents. Alphabet guides, pronunciation tips, numbers, colors, first words, and teaching strategies."}
       </p>
 
-      <div className="space-y-6 text-base leading-relaxed text-white/80 mb-10">
+      <div className="space-y-6 text-base leading-relaxed text-ink/80 mb-10">
         <p>
           {isAr
             ? "تعلم اللغة العربية يبدأ بالأساسيات — الحروف والأصوات والكلمات البسيطة. سواء كنت والداً يريد تعريف طفله بالعربية أو معلماً يبحث عن موارد، فإن هذه الأدلة المجانية تغطي كل ما تحتاج لمعرفته. كل دليل متاح باللغتين العربية والإنجليزية ومصمم ليكون عملياً ومناسباً للعمر."
@@ -159,11 +159,11 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
       </div>
 
       {/* Start-here learning path, organized by child age */}
-      <section className="mb-12 rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-7">
-        <h2 className="text-2xl font-bold text-white mb-2">
+      <section className="card-stock card-stock-saffron mb-12 p-6 sm:p-7">
+        <h2 className="font-display text-2xl font-bold text-ink mb-2">
           {isAr ? "ابدأ من هنا: مسار التعلم حسب العمر" : "Start Here: A Learning Path by Age"}
         </h2>
-        <p className="text-base text-white/80 mb-6 leading-relaxed">
+        <p className="text-base text-ink/80 mb-6 leading-relaxed">
           {isAr
             ? "ليس كل دليل مناسباً لكل طفل في الوقت نفسه. اختر نقطة البداية حسب عمر طفلك، ثم تدرّج صعوداً مع نموّه."
             : "Not every guide suits every child at once. Pick a starting point that matches your child's age, then move up the path as they grow."}
@@ -171,10 +171,10 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
 
         <div className="space-y-6">
           <div>
-            <h3 className="text-lg font-bold text-white mb-1.5">
+            <h3 className="text-lg font-bold text-ink mb-1.5">
               {isAr ? "من عام إلى ٣ أعوام: أصوات الحروف عبر اللعب" : "Ages 1–3: Letter Sounds Through Play"}
             </h3>
-            <p className="text-base text-white/80 leading-relaxed">
+            <p className="text-base text-ink/80 leading-relaxed">
               {isAr
                 ? "في هذه المرحلة المبكرة يتعلّم الطفل بالأذن لا بالقلم. افتح شبكة الصوت في دليل الأبجدية العربية واستمعا معاً إلى أصوات الحروف، ثم انتقلا إلى دليل الألوان لتسمية ما يحيط بكما في البيت. اجعل الجلسة قصيرة — دقائق معدودة لا ساعات — وكرّرها مراراً في اليوم. وتُكمّل هذه القراءة جلسةٌ خفيفة في تطبيق عرب فنجرز، حيث يلمس الطفل الحرف فيسمع صوته، فيربط الأذن بالإصبع وهو يلعب."
                 : "At this early stage children learn by ear, not by pen. Open the audio grid in the Arabic Alphabet Guide and listen to the letter sounds together, then move to the Colors guide to name what you see around the house. Keep each session short — a few minutes, not hours — and repeat it often through the day. Pair this reading with a light session in the ArabFingers play app, where tapping a letter plays its sound so ear and finger connect through play."}
@@ -182,10 +182,10 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
           </div>
 
           <div>
-            <h3 className="text-lg font-bold text-white mb-1.5">
+            <h3 className="text-lg font-bold text-ink mb-1.5">
               {isAr ? "من ٣ إلى ٥ أعوام: الأبجدية والأرقام والكلمات الأولى" : "Ages 3–5: Alphabet, Numbers, and First Words"}
             </h3>
-            <p className="text-base text-white/80 leading-relaxed">
+            <p className="text-base text-ink/80 leading-relaxed">
               {isAr
                 ? "حين يطول تركيز الطفل، اعمل بدليل الأبجدية العربية بانتظام حرفاً بعد حرف، ثم أضِف دليل الأرقام العربية ودليل أول كلمات عربية لتربط الحروف بكلمات حقيقية. هذه هي السن التي تبدأ فيها بإدخال أوراق التدريب المطبوعة لتدريب خارج الشاشة: يتتبّع الطفل الحرف بقلمه فترسخ صورته في يده. والأفضل أن تتناوبا بين التطبيق التفاعلي للّعب والورقة المطبوعة للكتابة، فيجمع الطفل بين متعة الشاشة وثبات الخط."
                 : "When attention spans lengthen, work through the Arabic Alphabet Guide systematically, one letter at a time, then add the Arabic Numbers guide and First Arabic Words to tie letters to real vocabulary. This is the age to introduce printables for off-screen practice: tracing a letter with a pencil fixes its shape in the hand. Alternate between the interactive play app and the printed sheet, so your child gets both the fun of the screen and the muscle memory of writing."}
@@ -193,10 +193,10 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
           </div>
 
           <div>
-            <h3 className="text-lg font-bold text-white mb-1.5">
+            <h3 className="text-lg font-bold text-ink mb-1.5">
               {isAr ? "٥ أعوام فأكثر: أشكال الحروف والمقارنة والعلوم" : "Ages 5+: Letter Forms, Comparison, and Science"}
             </h3>
-            <p className="text-base text-white/80 leading-relaxed">
+            <p className="text-base text-ink/80 leading-relaxed">
               {isAr
                 ? "بعد إتقان الحروف منفردةً، انتقل إلى دليل كيف تتغير أشكال الحروف العربية ليفهم الطفل كيف تتّصل الحروف في كلمة واحدة، ثم استعن بدليل المقارنة بين العربية والإنجليزية إن كان طفلك ثنائيّ اللغة. في هذه السن تُصبح الدروس العلمية التفاعلية الأربعة — حالات المادة ودورة المياه والنظام الشمسي والجاذبية — وسيلةً رائعة لقراءة العربية في سياق ممتع. واجعل أوراق التدريب المطبوعة رفيقاً لهذه الدروس: يكتب الطفل ما تعلّمه بيده بعد أن لعب به على الشاشة."
                 : "Once individual letters are mastered, move to How Arabic Letters Change Shape so your child understands how letters connect into a single word, then use the Arabic vs English comparison if your child is bilingual. At this age the four interactive science lessons — states of matter, the water cycle, the solar system, and gravity — become a wonderful way to read Arabic in a fun context. Keep printables as their companion: your child writes down what they learned after playing with it on screen."}
@@ -207,13 +207,13 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
 
       {/* Interactive Cartoon Lessons Dashboard */}
       <section className="mb-12">
-        <h2 className="text-2xl font-bold text-white mb-2 flex items-center gap-2">
+        <h2 className="font-display text-2xl font-bold text-ink mb-2 flex items-center gap-2">
           {isAr ? "🎬 الدروس الكرتونية التفاعلية" : "🎬 Interactive Cartoon Lessons"}
           <span className="text-xs bg-accent/20 text-accent font-semibold px-2.5 py-0.5 rounded-full animate-pulse border border-accent/20">
             {isAr ? "جديد" : "NEW"}
           </span>
         </h2>
-        <p className="text-base text-white/80 mb-6">
+        <p className="text-base text-ink/80 mb-6">
           {isAr
             ? "شاهد وتحكم في قصص علمية كرتونية مذهلة! ساعد أصدقاءك في فهم أسرار الكون من خلال تجارب تفاعلية شيقة."
             : "Watch and control spectacular interactive science cartoons! Help your cartoon friends discover the universe."}
@@ -223,22 +223,22 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
           {/* Active Flagship Lesson Card */}
           <Link
             href={`/${locale}/learn/states-of-matter`}
-            className="md:col-span-2 group relative overflow-hidden rounded-2xl border border-accent/30 bg-gradient-to-br from-[#0f1b2d] to-[#0a101f] p-6 shadow-[0_12px_30px_rgba(159,225,203,0.1)] transition-all hover:scale-[1.01] hover:border-accent hover:shadow-[0_12px_40px_rgba(159,225,203,0.18)]"
+            className="md:col-span-2 group relative overflow-hidden card-stock card-stock-qalam p-6 transition-all hover:scale-[1.01]"
           >
-            <div className="absolute top-0 right-0 bg-accent text-[#050816] text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">
+            <div className="absolute top-0 right-0 bg-accent text-ink text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">
               {isAr ? "نشط الآن ✨" : "Active Now ✨"}
             </div>
-            
+
             <div className="flex flex-col sm:flex-row gap-5 items-start h-full">
               <div className="shrink-0 flex items-center justify-center w-16 h-16 rounded-2xl bg-accent/15 border border-accent/30 shadow-inner group-hover:scale-110 transition-transform duration-300">
                 <ScienceIcon className="w-9 h-9" />
               </div>
               <div className="flex-grow flex flex-col justify-between h-full">
                 <div>
-                  <h3 className="text-lg font-bold text-white mb-2 group-hover:text-accent transition-colors flex items-center gap-2">
+                  <h3 className="font-display text-lg font-bold text-ink mb-2 group-hover:text-qalam transition-colors flex items-center gap-2">
                     {isAr ? "حالات المادة (حكاية علمية)" : "States of Matter (Science Story)"}
                   </h3>
-                  <p className="text-sm text-white/80 leading-relaxed mb-4">
+                  <p className="text-sm text-ink/80 leading-relaxed mb-4">
                     {isAr
                       ? "انضم إلى أنس والدكتور حكيم في مختبرهم السحري! استكشف الحالات الأربع للمادة (الصلبة، السائلة، الغازية، والبلازما) وتحكم في حرارة الجزيئات بنفسك لتراها تتجمد، تنصهر، وتتبخر!"
                       : "Join Anas and Dr. Hakim in their magical lab! Explore the four states of matter (Solid, Liquid, Gas, and Plasma) and adjust the temperature slider yourself to watch molecules freeze, melt, or vaporize!"}
@@ -255,11 +255,11 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
           <div className="flex flex-col gap-4">
             <Link
               href={`/${locale}/learn/water-cycle`}
-              className="group rounded-2xl border border-accent/20 bg-[#0f1b2d]/60 p-4 flex gap-3 items-center hover:scale-[1.02] hover:border-accent hover:bg-[#0f1b2d] transition duration-200 cursor-pointer shadow-md"
+              className="group card-stock card-stock-qalam p-4 flex gap-3 items-center hover:scale-[1.02] transition duration-200 cursor-pointer"
             >
               <div className="shrink-0 text-2xl bg-accent/10 p-2 rounded-xl border border-accent/20 group-hover:scale-110 transition-transform">💧</div>
               <div>
-                <h4 className="text-sm font-bold text-white group-hover:text-accent transition-colors">
+                <h4 className="text-sm font-bold text-ink group-hover:text-qalam transition-colors">
                   {isAr ? "دورة المياه في الطبيعة 🌧️" : "The Water Cycle 🌧️"}
                 </h4>
                 <p className="text-xs text-accent mt-0.5 font-semibold">
@@ -270,11 +270,11 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
 
             <Link
               href={`/${locale}/learn/solar-system`}
-              className="group rounded-2xl border border-accent/20 bg-[#0f1b2d]/60 p-4 flex gap-3 items-center hover:scale-[1.02] hover:border-accent hover:bg-[#0f1b2d] transition duration-200 cursor-pointer shadow-md"
+              className="group card-stock card-stock-violet p-4 flex gap-3 items-center hover:scale-[1.02] transition duration-200 cursor-pointer"
             >
               <div className="shrink-0 text-2xl bg-accent/10 p-2 rounded-xl border border-accent/20 group-hover:scale-110 transition-transform">🚀</div>
               <div>
-                <h4 className="text-sm font-bold text-white group-hover:text-accent transition-colors">
+                <h4 className="text-sm font-bold text-ink group-hover:text-qalam transition-colors">
                   {isAr ? "نظامنا الشمسي الرائع 🪐" : "Our Spectacular Solar System 🪐"}
                 </h4>
                 <p className="text-xs text-accent mt-0.5 font-semibold">
@@ -285,11 +285,11 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
 
             <Link
               href={`/${locale}/learn/gravity`}
-              className="group rounded-2xl border border-accent/20 bg-[#0f1b2d]/60 p-4 flex gap-3 items-center hover:scale-[1.02] hover:border-accent hover:bg-[#0f1b2d] transition duration-200 cursor-pointer shadow-md"
+              className="group card-stock card-stock-rose p-4 flex gap-3 items-center hover:scale-[1.02] transition duration-200 cursor-pointer"
             >
               <div className="shrink-0 text-2xl bg-accent/10 p-2 rounded-xl border border-accent/20 group-hover:scale-110 transition-transform">🍎</div>
               <div>
-                <h4 className="text-sm font-bold text-white group-hover:text-accent transition-colors">
+                <h4 className="text-sm font-bold text-ink group-hover:text-qalam transition-colors">
                   {isAr ? "كيف تعمل الجاذبية؟ 🧲" : "How Gravity Works 🧲"}
                 </h4>
                 <p className="text-xs text-accent mt-0.5 font-semibold">
@@ -302,7 +302,7 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
       </section>
 
       {/* Standard Articles Section */}
-      <h2 className="text-xl font-bold text-white mb-4">
+      <h2 className="text-xl font-bold text-ink mb-4">
         {isAr ? "📚 أدلة ومقالات تعليمية" : "📚 Educational Guides & Articles"}
       </h2>
 
@@ -311,13 +311,13 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
           <Link
             key={article.slug}
             href={`/${locale}/learn/${article.slug}`}
-            className="group rounded-xl border border-white/10 bg-white/5 p-5 transition hover:bg-white/8 hover:border-white/15"
+            className="group rounded-xl border border-ink/10 bg-card p-5 transition hover:bg-card hover:border-ink/15"
           >
             <article.Icon className="w-10 h-10 mb-3" />
-            <h3 className="text-base font-semibold text-white mb-1.5 group-hover:text-accent transition-colors">
+            <h3 className="text-base font-semibold text-ink mb-1.5 group-hover:text-accent transition-colors">
               {isAr ? article.titleAr : article.titleEn}
             </h3>
-            <p className="text-sm text-white/75 leading-relaxed">
+            <p className="text-sm text-ink/75 leading-relaxed">
               {isAr ? article.descAr : article.descEn}
             </p>
           </Link>
@@ -327,7 +327,7 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
       <div className="text-center py-6">
         <Link
           href={`/${locale}/play`}
-          className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105"
+          className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-ink transition hover:scale-105"
         >
           🚀 {isAr ? "جرب عرب فنجرز الآن" : "Try ArabFingers Now"}
         </Link>

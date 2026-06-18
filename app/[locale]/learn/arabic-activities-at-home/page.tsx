@@ -179,14 +179,14 @@ export default async function ArabicActivitiesPage({ params }: { params: Promise
         ]}
       />
 
-      <h1 className="text-3xl font-semibold text-white mb-2">
+      <h1 className="text-3xl font-semibold text-ink mb-2">
         {isAr ? "١٠ أنشطة لتعلّم الحروف العربية في البيت" : "10 Fun Activities to Practice Arabic Letters at Home"}
       </h1>
-      <p className="text-base text-white/75 mb-8">
+      <p className="text-base text-ink/75 mb-8">
         {isAr ? "وصفاتٌ صغيرة بموادّها وخطواتها وعمرها المناسب" : "Mini-recipes with materials, steps, and age ranges"}
       </p>
 
-      <div className="space-y-3 text-sm leading-relaxed text-white/80 mb-10">
+      <div className="space-y-3 text-sm leading-relaxed text-ink/80 mb-10">
         <p>
           {isAr
             ? "تعلّم الحروف العربية لا ينبغي أن يقتصر على الكتب والبطاقات. وأنفع تعلّمٍ للصغار ما كان عملياً متعدّد الحواس يشبه اللعب. وقد رتّبنا هذه الأنشطة العشرة في ثلاث مجموعات — فنّية، وحركية، وهادئة — وكتبنا كلّ نشاطٍ كوصفةٍ صغيرة فيها موادّه وخطواته وعمره المناسب، لتختاروا ما يلائم لحظتكم."
@@ -196,19 +196,19 @@ export default async function ArabicActivitiesPage({ params }: { params: Promise
 
       {groups.map((grp) => (
         <section key={grp.id} className="mb-10">
-          <h2 className="text-xl font-semibold text-white mb-4">{isAr ? grp.titleAr : grp.titleEn.replace("&amp;", "&")}</h2>
+          <h2 className="text-xl font-semibold text-ink mb-4">{isAr ? grp.titleAr : grp.titleEn.replace("&amp;", "&")}</h2>
           <div className="space-y-5">
             {grp.items.map((a) => (
-              <div key={a.n} className="rounded-2xl border border-white/8 bg-white/5 p-5">
+              <div key={a.n} className="rounded-2xl border border-ink/8 bg-card p-5">
                 <div className="flex items-center justify-between gap-3 mb-3">
-                  <h3 className="text-lg font-semibold text-white">{a.n}. {isAr ? a.titleAr : a.titleEn.replace("&amp;", "&")}</h3>
+                  <h3 className="text-lg font-semibold text-ink">{a.n}. {isAr ? a.titleAr : a.titleEn.replace("&amp;", "&")}</h3>
                   <span className="shrink-0 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-medium text-accent">{isAr ? a.ageAr : a.ageEn}</span>
                 </div>
-                <p className="text-sm text-white/80 mb-3">
-                  <strong className="text-white/90">{isAr ? "ما تحتاجه: " : "You'll need: "}</strong>
+                <p className="text-sm text-ink/80 mb-3">
+                  <strong className="text-ink/90">{isAr ? "ما تحتاجه: " : "You'll need: "}</strong>
                   {isAr ? a.materialsAr : a.materialsEn}
                 </p>
-                <ol className="list-decimal list-inside space-y-1.5 text-sm text-white/80 leading-relaxed">
+                <ol className="list-decimal list-inside space-y-1.5 text-sm text-ink/80 leading-relaxed">
                   {a.steps.map((s, i) => <li key={i}>{isAr ? s.ar : s.en}</li>)}
                 </ol>
               </div>
@@ -218,33 +218,33 @@ export default async function ArabicActivitiesPage({ params }: { params: Promise
       ))}
 
       <section className="mb-10">
-        <h2 className="text-xl font-semibold text-white mb-3">{isAr ? "نصائح لربطها بأوراق العمل القابلة للطباعة" : "Pairing with Printable Worksheets"}</h2>
-        <ul className="list-disc list-inside space-y-2 text-sm text-white/80 leading-relaxed">
+        <h2 className="text-xl font-semibold text-ink mb-3">{isAr ? "نصائح لربطها بأوراق العمل القابلة للطباعة" : "Pairing with Printable Worksheets"}</h2>
+        <ul className="list-disc list-inside space-y-2 text-sm text-ink/80 leading-relaxed">
           <li>{isAr ? "اطبع ورقة الحرف نفسه الذي شكّلتموه بالمعجون أو طبعتموه بالأختام، ليتّصل العمل اليدويّ بالكتابة." : "Print the worksheet for the same letter you shaped in playdough or stamped, so the hands-on work connects to writing."}</li>
           <li>{isAr ? "اجعل ورقة \"حرف الأسبوع\" على الثلاجة بجانب الحرف المغناطيسيّ." : "Put the \"letter-of-the-week\" sheet on the fridge beside its magnetic letter."}</li>
           <li>{isAr ? "بعد رحلة البحث عن الحروف، لوّنوا الورقة المطبوعة لذلك الحرف مكافأةً." : "After a letter hunt, colour the printed sheet for that letter as a reward."}</li>
           <li>{isAr ? "احتفظوا بالأوراق في ملفّ ليرى الطفل تقدّمه يتراكم أسبوعاً بعد أسبوع." : "Keep the sheets in a folder so your child sees progress pile up week by week."}</li>
         </ul>
         <div className="mt-4">
-          <Link href={`/${locale}/printables`} className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-slate-950 hover:scale-105 transition">
+          <Link href={`/${locale}/printables`} className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-ink hover:scale-105 transition">
             {isAr ? "📄 أوراق العمل المجانية" : "📄 Free Printable Worksheets"}
           </Link>
         </div>
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-white mb-3">{isAr ? "نصائح للنجاح" : "Tips for Success"}</h2>
-        <ul className="list-disc list-inside space-y-2 text-sm text-white/80 leading-relaxed">
-          <li><strong className="text-white/90">{isAr ? "اجعلها قصيرة" : "Keep it short"}</strong> — {isAr ? "خمس إلى عشر دقائق للنشاط تكفي الصغار. توقّفوا قبل أن يملّوا." : "5–10 minutes per activity is plenty for toddlers. Stop before they lose interest."}</li>
-          <li><strong className="text-white/90">{isAr ? "اتبعوا ميلهم" : "Follow their lead"}</strong> — {isAr ? "إن أحبّ طفلك نشاطاً، أكثِروا منه؛ فالمتعة تقود التعلّم." : "If your child loves one activity, do more of it. Enjoyment drives learning."}</li>
-          <li><strong className="text-white/90">{isAr ? "امزجوا الرقميّ والماديّ" : "Mix digital and physical"}</strong> — {isAr ? "اجمعوا بين عرب فنجرز والأنشطة العملية لأفضل النتائج." : "Combine ArabFingers with hands-on activities for the best results."}</li>
-          <li><strong className="text-white/90">{isAr ? "داوِموا" : "Be consistent"}</strong> — {isAr ? "بضع دقائق كلّ يومٍ خيرٌ من جلسةٍ طويلةٍ مرّةً في الأسبوع." : "A few minutes every day beats a long session once a week."}</li>
-          <li><strong className="text-white/90">{isAr ? "احتفلوا بكلّ شيء" : "Celebrate everything"}</strong> — {isAr ? "كلّ حرفٍ يُعرف تقدّمٌ يستحقّ الاحتفال." : "Every letter recognised is progress worth celebrating."}</li>
+        <h2 className="text-xl font-semibold text-ink mb-3">{isAr ? "نصائح للنجاح" : "Tips for Success"}</h2>
+        <ul className="list-disc list-inside space-y-2 text-sm text-ink/80 leading-relaxed">
+          <li><strong className="text-ink/90">{isAr ? "اجعلها قصيرة" : "Keep it short"}</strong> — {isAr ? "خمس إلى عشر دقائق للنشاط تكفي الصغار. توقّفوا قبل أن يملّوا." : "5–10 minutes per activity is plenty for toddlers. Stop before they lose interest."}</li>
+          <li><strong className="text-ink/90">{isAr ? "اتبعوا ميلهم" : "Follow their lead"}</strong> — {isAr ? "إن أحبّ طفلك نشاطاً، أكثِروا منه؛ فالمتعة تقود التعلّم." : "If your child loves one activity, do more of it. Enjoyment drives learning."}</li>
+          <li><strong className="text-ink/90">{isAr ? "امزجوا الرقميّ والماديّ" : "Mix digital and physical"}</strong> — {isAr ? "اجمعوا بين عرب فنجرز والأنشطة العملية لأفضل النتائج." : "Combine ArabFingers with hands-on activities for the best results."}</li>
+          <li><strong className="text-ink/90">{isAr ? "داوِموا" : "Be consistent"}</strong> — {isAr ? "بضع دقائق كلّ يومٍ خيرٌ من جلسةٍ طويلةٍ مرّةً في الأسبوع." : "A few minutes every day beats a long session once a week."}</li>
+          <li><strong className="text-ink/90">{isAr ? "احتفلوا بكلّ شيء" : "Celebrate everything"}</strong> — {isAr ? "كلّ حرفٍ يُعرف تقدّمٌ يستحقّ الاحتفال." : "Every letter recognised is progress worth celebrating."}</li>
         </ul>
       </section>
 
       <div className="text-center py-8">
-        <Link href={`/${locale}/play`} className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105">
+        <Link href={`/${locale}/play`} className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-ink transition hover:scale-105">
           🚀 {isAr ? "جرب عرب فنجرز" : "Try ArabFingers"}
         </Link>
       </div>

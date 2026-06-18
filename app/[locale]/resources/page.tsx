@@ -78,8 +78,8 @@ function ResourcesEn() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold text-white">Recommended Educational Resources</h1>
-      <p className="mt-1 text-sm text-white/50">
+      <h1 className="text-3xl font-bold text-ink">Recommended Educational Resources</h1>
+      <p className="mt-1 text-sm text-ink/50">
         Hand-picked, high-quality websites to support your child&apos;s learning journey in Arabic, English, and computer play.
       </p>
 
@@ -90,18 +90,18 @@ function ResourcesEn() {
         </h2>
         <div className="grid grid-cols-1 gap-4">
           {arabicResources.map((res) => (
-            <div key={res.name} className="group rounded-2xl border border-white/8 bg-white/5 p-5 transition hover:bg-white/10 hover:border-white/15">
+            <div key={res.name} className="group rounded-2xl border border-ink/8 bg-card p-5 transition hover:bg-card hover:border-ink/15">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <span className="inline-block text-[10px] font-semibold text-accent bg-accent/10 px-2 py-0.5 rounded-full mb-2">
                     {res.badge}
                   </span>
-                  <h3 className="text-base font-bold text-white mb-2 group-hover:text-accent transition">
+                  <h3 className="text-base font-bold text-ink mb-2 group-hover:text-accent transition">
                     <a href={res.url} target="_blank" rel="nofollow noopener noreferrer" className="focus:outline-none focus:underline">
                       {res.name} <span className="inline-block text-xs font-normal opacity-50 group-hover:translate-x-1 transition-transform">→</span>
                     </a>
                   </h3>
-                  <p className="text-sm text-white/75 leading-relaxed">{res.desc}</p>
+                  <p className="text-sm text-ink/75 leading-relaxed">{res.desc}</p>
                 </div>
               </div>
             </div>
@@ -116,18 +116,18 @@ function ResourcesEn() {
         </h2>
         <div className="grid grid-cols-1 gap-4">
           {kidsResources.map((res) => (
-            <div key={res.name} className="group rounded-2xl border border-white/8 bg-white/5 p-5 transition hover:bg-white/10 hover:border-white/15">
+            <div key={res.name} className="group rounded-2xl border border-ink/8 bg-card p-5 transition hover:bg-card hover:border-ink/15">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <span className="inline-block text-[10px] font-semibold text-accent bg-accent/10 px-2 py-0.5 rounded-full mb-2">
                     {res.badge}
                   </span>
-                  <h3 className="text-base font-bold text-white mb-2 group-hover:text-accent transition">
+                  <h3 className="text-base font-bold text-ink mb-2 group-hover:text-accent transition">
                     <a href={res.url} target="_blank" rel="nofollow noopener noreferrer" className="focus:outline-none focus:underline">
                       {res.name} <span className="inline-block text-xs font-normal opacity-50 group-hover:translate-x-1 transition-transform">→</span>
                     </a>
                   </h3>
-                  <p className="text-sm text-white/75 leading-relaxed">{res.desc}</p>
+                  <p className="text-sm text-ink/75 leading-relaxed">{res.desc}</p>
                 </div>
               </div>
             </div>
@@ -135,15 +135,15 @@ function ResourcesEn() {
         </div>
       </section>
 
-      <div className="mt-10 rounded-2xl border border-dashed border-white/15 bg-white/2 p-6 text-center">
-        <h3 className="text-sm font-semibold text-white mb-2">💡 Parent Teaching Tip</h3>
-        <p className="text-sm text-white/75 leading-relaxed max-w-lg mx-auto">
+      <div className="mt-10 rounded-2xl border border-dashed border-ink/15 bg-card p-6 text-center">
+        <h3 className="text-sm font-semibold text-ink mb-2">💡 Parent Teaching Tip</h3>
+        <p className="text-sm text-ink/75 leading-relaxed max-w-lg mx-auto">
           Combining sensory keyboard games (like <strong>ArabFingers</strong> or <strong>TinyFingers</strong>) with phonics-based reading guides (like <strong>Starfall</strong>) offers a robust foundation. Introduce learning in short, daily, playful blocks rather than formal drilling sessions.
         </p>
       </div>
 
       <div className="text-center py-8">
-        <Link href="/en/play" className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105">
+        <Link href="/en/play" className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-ink transition hover:scale-105">
           🚀 Ready to Play? Open ArabFingers Free
         </Link>
       </div>
@@ -202,8 +202,8 @@ function ResourcesAr() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold text-white">مصادر التعلم الموصى بها</h1>
-      <p className="mt-1 text-sm text-white/50">
+      <h1 className="text-3xl font-bold text-ink">مصادر التعلم الموصى بها</h1>
+      <p className="mt-1 text-sm text-ink/50">
         مجموعة مختارة بعناية من منصات وألعاب الويب عالية الجودة لدعم مسيرة طفلك التعليمية في اللغتين العربية والإنجليزية.
       </p>
 
@@ -214,18 +214,18 @@ function ResourcesAr() {
         </h2>
         <div className="grid grid-cols-1 gap-4">
           {arabicResources.map((res) => (
-            <div key={res.name} className="group rounded-2xl border border-white/8 bg-white/5 p-5 transition hover:bg-white/10 hover:border-white/15">
+            <div key={res.name} className="group rounded-2xl border border-ink/8 bg-card p-5 transition hover:bg-card hover:border-ink/15">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <span className="inline-block text-[10px] font-semibold text-accent bg-accent/10 px-2 py-0.5 rounded-full mb-2">
                     {res.badge}
                   </span>
-                  <h3 className="text-base font-bold text-white mb-2 group-hover:text-accent transition">
+                  <h3 className="text-base font-bold text-ink mb-2 group-hover:text-accent transition">
                     <a href={res.url} target="_blank" rel="nofollow noopener noreferrer" className="focus:outline-none focus:underline">
                       {res.name} <span className="inline-block text-xs font-normal opacity-50 group-hover:translate-x-1 transition-transform">←</span>
                     </a>
                   </h3>
-                  <p className="text-sm text-white/75 leading-relaxed">{res.desc}</p>
+                  <p className="text-sm text-ink/75 leading-relaxed">{res.desc}</p>
                 </div>
               </div>
             </div>
@@ -240,18 +240,18 @@ function ResourcesAr() {
         </h2>
         <div className="grid grid-cols-1 gap-4">
           {kidsResources.map((res) => (
-            <div key={res.name} className="group rounded-2xl border border-white/8 bg-white/5 p-5 transition hover:bg-white/10 hover:border-white/15">
+            <div key={res.name} className="group rounded-2xl border border-ink/8 bg-card p-5 transition hover:bg-card hover:border-ink/15">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <span className="inline-block text-[10px] font-semibold text-accent bg-accent/10 px-2 py-0.5 rounded-full mb-2">
                     {res.badge}
                   </span>
-                  <h3 className="text-base font-bold text-white mb-2 group-hover:text-accent transition">
+                  <h3 className="text-base font-bold text-ink mb-2 group-hover:text-accent transition">
                     <a href={res.url} target="_blank" rel="nofollow noopener noreferrer" className="focus:outline-none focus:underline">
                       {res.name} <span className="inline-block text-xs font-normal opacity-50 group-hover:translate-x-1 transition-transform">←</span>
                     </a>
                   </h3>
-                  <p className="text-sm text-white/75 leading-relaxed">{res.desc}</p>
+                  <p className="text-sm text-ink/75 leading-relaxed">{res.desc}</p>
                 </div>
               </div>
             </div>
@@ -259,15 +259,15 @@ function ResourcesAr() {
         </div>
       </section>
 
-      <div className="mt-10 rounded-2xl border border-dashed border-white/15 bg-white/2 p-6 text-center">
-        <h3 className="text-sm font-semibold text-white mb-2">💡 نصيحة تعليمية للوالدين</h3>
-        <p className="text-sm text-white/75 leading-relaxed max-w-lg mx-auto">
+      <div className="mt-10 rounded-2xl border border-dashed border-ink/15 bg-card p-6 text-center">
+        <h3 className="text-sm font-semibold text-ink mb-2">💡 نصيحة تعليمية للوالدين</h3>
+        <p className="text-sm text-ink/75 leading-relaxed max-w-lg mx-auto">
           الدمج بين ألعاب لوحة المفاتيح الحسية (مثل <strong>عرب فنجرز</strong> أو <strong>تايني فنجرز</strong>) والمواقع التفاعلية لتعليم الصوتيات (مثل <strong>ستارفال</strong>) يبني أساساً متيناً للطفل. قدّم هذا التعلم في فترات لعب يومية قصيرة وممتعة بدلاً من الحصص الدراسية الرسمية والملل.
         </p>
       </div>
 
       <div className="text-center py-8">
-        <Link href="/ar/play" className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105">
+        <Link href="/ar/play" className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-ink transition hover:scale-105">
           🚀 هل أنت جاهز للّعب؟ افتح عرب فنجرز مجاناً
         </Link>
       </div>

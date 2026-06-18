@@ -106,14 +106,14 @@ export default async function ArabicNumbersPage({ params }: { params: Promise<{ 
         ]}
       />
 
-      <h1 className="text-3xl font-semibold text-white mb-2">
+      <h1 className="text-3xl font-semibold text-ink mb-2">
         {isAr ? "الأرقام العربية للأطفال (٠–١٠)" : "Arabic Numbers for Kids (0–10)"}
       </h1>
-      <p className="text-base text-white/75 mb-8">
+      <p className="text-base text-ink/75 mb-8">
         {isAr ? "تعلّم العدّ بالعربية مع النطق والجدول وألعاب ممتعة للوالدين" : "Learn to count in Arabic with pronunciation, a table, and fun games for parents"}
       </p>
 
-      <div className="text-base leading-relaxed text-white/80 mb-8 space-y-3">
+      <div className="text-base leading-relaxed text-ink/80 mb-8 space-y-3">
         <p>
           {isAr
             ? "الأرقام من أوّل ما ينبغي أن يتعلّمه طفلك مبكراً، لأنها تظهر في كل مكان: على الساعة، وفي العدّ، وفي الألعاب، وفي تقسيم الطعام. والنظام العددي العربي (٠–٩) هو الأساس الذي يستخدمه العالم كله اليوم. في هذا الدليل نتعلّم الأرقام من ٠ إلى ١٠ بالعربية مع النطق الصحيح وحقيقة ممتعة لكل رقم، ثم نلعب معاً."
@@ -126,25 +126,25 @@ export default async function ArabicNumbersPage({ params }: { params: Promise<{ 
         </p>
       </div>
 
-      <h2 className="text-xl font-semibold text-white mb-4">
+      <h2 className="text-xl font-semibold text-ink mb-4">
         {isAr ? "جدول الأرقام: ٠–٩ مقابل 0–9" : "Numeral Table: ٠–٩ vs 0–9"}
       </h2>
       <div className="overflow-x-auto mb-10">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-white/10">
-              <th className="py-2 px-3 text-center text-white/70 font-medium">{isAr ? "عربي شرقي" : "Eastern"}</th>
-              <th className="py-2 px-3 text-center text-white/70 font-medium">{isAr ? "عربي غربي" : "Western"}</th>
-              <th className="py-2 px-3 text-start text-white/70 font-medium">{isAr ? "الاسم" : "Arabic name"}</th>
-              <th className="py-2 px-3 text-start text-white/70 font-medium">{isAr ? "النطق" : "Pronunciation"}</th>
+            <tr className="border-b border-ink/10">
+              <th className="py-2 px-3 text-center text-ink/70 font-medium">{isAr ? "عربي شرقي" : "Eastern"}</th>
+              <th className="py-2 px-3 text-center text-ink/70 font-medium">{isAr ? "عربي غربي" : "Western"}</th>
+              <th className="py-2 px-3 text-start text-ink/70 font-medium">{isAr ? "الاسم" : "Arabic name"}</th>
+              <th className="py-2 px-3 text-start text-ink/70 font-medium">{isAr ? "النطق" : "Pronunciation"}</th>
             </tr>
           </thead>
           <tbody>
             {numbers.map((n) => (
-              <tr key={n.en} className="border-b border-white/5 hover:bg-white/5 transition">
+              <tr key={n.en} className="border-b border-ink/10 hover:bg-white/5 transition">
                 <td className="py-2.5 px-3 text-center text-2xl text-accent">{n.ar}</td>
-                <td className="py-2.5 px-3 text-center text-xl text-white/80">{n.en}</td>
-                <td className="py-2.5 px-3 text-start text-base text-white" style={{ fontFamily: "var(--font-noto-naskh), var(--font-ibm-plex-arabic), sans-serif" }}>{n.arWord}</td>
+                <td className="py-2.5 px-3 text-center text-xl text-ink/80">{n.en}</td>
+                <td className="py-2.5 px-3 text-start text-base text-ink" style={{ fontFamily: "var(--font-noto-naskh), var(--font-ibm-plex-arabic), sans-serif" }}>{n.arWord}</td>
                 <td className="py-2.5 px-3 text-start text-sm text-accent/80 italic">{n.enPron}</td>
               </tr>
             ))}
@@ -152,56 +152,56 @@ export default async function ArabicNumbersPage({ params }: { params: Promise<{ 
         </table>
       </div>
 
-      <h2 className="text-xl font-semibold text-white mb-4">
+      <h2 className="text-xl font-semibold text-ink mb-4">
         {isAr ? "الأرقام واحداً واحداً" : "Each Number, One by One"}
       </h2>
       <div className="space-y-4 mb-10">
         {numbers.map((n) => (
-          <div key={n.en} className="rounded-xl border border-white/8 bg-white/5 p-5">
+          <div key={n.en} className="rounded-xl border border-ink/10 bg-white/5 p-5">
             <div className="flex items-center justify-between gap-4 mb-3">
               <div className="flex items-center gap-3">
                 <span className="text-4xl font-bold text-accent">{n.ar}</span>
-                <span className="text-2xl text-white/30">/</span>
-                <span className="text-3xl font-bold text-white/80">{n.en}</span>
+                <span className="text-2xl text-ink/30">/</span>
+                <span className="text-3xl font-bold text-ink/80">{n.en}</span>
               </div>
               <SpeakButton text={n.arWord} label={`Listen: ${n.arWord}`} />
             </div>
             <div className="mb-2">
-              <span className="text-base font-semibold text-white">{isAr ? n.arWord : n.enWord}</span>
-              <span className="text-white/40 mx-2">—</span>
-              <span className="text-sm text-white/70">{isAr ? n.enWord : n.arWord}</span>
-              <span className="text-white/30 mx-2">·</span>
+              <span className="text-base font-semibold text-ink">{isAr ? n.arWord : n.enWord}</span>
+              <span className="text-ink/40 mx-2">—</span>
+              <span className="text-sm text-ink/70">{isAr ? n.enWord : n.arWord}</span>
+              <span className="text-ink/30 mx-2">·</span>
               <span className="text-sm text-accent/80 italic">{n.enPron}</span>
             </div>
-            <p className="text-sm text-white/75 leading-relaxed">{isAr ? n.factAr : n.factEn}</p>
+            <p className="text-sm text-ink/75 leading-relaxed">{isAr ? n.factAr : n.factEn}</p>
           </div>
         ))}
       </div>
 
       <section className="mb-10">
-        <h2 className="text-xl font-semibold text-white mb-2">
+        <h2 className="text-xl font-semibold text-ink mb-2">
           {isAr ? "ثلاث ألعاب عدّ يلعبها الوالدان" : "Three Counting Games for Parents"}
         </h2>
-        <p className="text-base text-white/80 leading-relaxed mb-4">
+        <p className="text-base text-ink/80 leading-relaxed mb-4">
           {isAr
             ? "أفضل طريقة لترسيخ الأرقام ليست الحفظ، بل اللعب اليومي. جرّب هذه الألعاب الثلاث البسيطة التي لا تحتاج إلى أدوات."
             : "The best way to make numbers stick is not memorising but daily play. Try these three simple games that need no materials."}
         </p>
         <div className="space-y-3">
           {games.map((g) => (
-            <div key={g.titleEn} className="rounded-xl border border-white/8 bg-white/5 p-4">
-              <h3 className="font-semibold text-white mb-1">{g.emoji} {isAr ? g.titleAr : g.titleEn}</h3>
-              <p className="text-sm text-white/75 leading-relaxed">{isAr ? g.bodyAr : g.bodyEn}</p>
+            <div key={g.titleEn} className="rounded-xl border border-ink/10 bg-white/5 p-4">
+              <h3 className="font-semibold text-ink mb-1">{g.emoji} {isAr ? g.titleAr : g.titleEn}</h3>
+              <p className="text-sm text-ink/75 leading-relaxed">{isAr ? g.bodyAr : g.bodyEn}</p>
             </div>
           ))}
         </div>
       </section>
 
       <section className="mb-10">
-        <h2 className="text-xl font-semibold text-white mb-2">
+        <h2 className="text-xl font-semibold text-ink mb-2">
           {isAr ? "سرّ ممتع: الأرقام تسير عكس الكلمات" : "A Fun Quirk: Numbers Go the Other Way"}
         </h2>
-        <p className="text-base text-white/80 leading-relaxed">
+        <p className="text-base text-ink/80 leading-relaxed">
           {isAr
             ? "يلاحظ كثير من الآباء شيئاً غريباً: النصّ العربي يُكتب ويُقرأ من اليمين إلى اليسار، لكن الأرقام داخله تُقرأ من اليسار إلى اليمين، مثل الإنجليزية تماماً. فإذا رأى طفلك العدد ٢٥، يبدأ من اليسار: \"اثنان ثم خمسة\". هذه ليست قاعدة معقّدة بل لُطفة في اللغة، وغالباً ما يستوعبها الأطفال دون أن يلاحظوها أصلاً. أشِر إليها بابتسامة عند العدّ، فهي تجعل التعلّم أكثر متعة."
             : "Many parents notice something curious: Arabic text is written and read right-to-left, yet numbers inside it read left-to-right, exactly like English. So when your child sees ٢٥, they start from the left: \"two then five\". This isn't a complicated rule — it's a charming quirk of the language, and children usually absorb it without even noticing. Point it out with a smile while counting; it makes learning more fun."}
@@ -209,24 +209,24 @@ export default async function ArabicNumbersPage({ params }: { params: Promise<{ 
       </section>
 
       <section className="mb-10">
-        <h2 className="text-xl font-semibold text-white mb-4">
+        <h2 className="text-xl font-semibold text-ink mb-4">
           {isAr ? "أسئلة شائعة للوالدين" : "Frequently Asked Questions"}
         </h2>
         <div className="space-y-4">
           {faqs.map((f) => (
-            <div key={f.qEn} className="rounded-xl border border-white/8 bg-white/5 p-4">
-              <h3 className="text-base font-semibold text-white mb-1">{isAr ? f.qAr : f.qEn}</h3>
-              <p className="text-sm text-white/75 leading-relaxed">{isAr ? f.aAr : f.aEn}</p>
+            <div key={f.qEn} className="rounded-xl border border-ink/10 bg-white/5 p-4">
+              <h3 className="text-base font-semibold text-ink mb-1">{isAr ? f.qAr : f.qEn}</h3>
+              <p className="text-sm text-ink/75 leading-relaxed">{isAr ? f.aAr : f.aEn}</p>
             </div>
           ))}
         </div>
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-white mb-3">
+        <h2 className="text-xl font-semibold text-ink mb-3">
           {isAr ? "نصائح سريعة لتعليم الأرقام" : "Quick Tips for Teaching Numbers"}
         </h2>
-        <div className="space-y-2 text-base text-white/80 leading-relaxed">
+        <div className="space-y-2 text-base text-ink/80 leading-relaxed">
           <p>{isAr ? "• عدّ الأشياء اليومية بالعربية — أصابع، فواكه، ألعاب" : "• Count everyday objects in Arabic — fingers, fruits, toys"}</p>
           <p>{isAr ? "• غنِّ أغاني العدّ بالعربية مع طفلك، فالإيقاع يثبّت الترتيب" : "• Sing counting songs in Arabic — rhythm fixes the order"}</p>
           <p>{isAr ? "• استخدم الأرقام في الروتين اليومي — \"أعطني ٣ تفاحات\"" : "• Use numbers in daily routines — \"give me 3 apples\""}</p>
@@ -244,7 +244,7 @@ export default async function ArabicNumbersPage({ params }: { params: Promise<{ 
       </div>
 
       <div className="text-center py-6">
-        <Link href={`/${locale}/play`} className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105">
+        <Link href={`/${locale}/play`} className="btn-chunky inline-flex items-center gap-2 px-6 py-3 text-base transition hover:scale-105">
           🚀 {isAr ? "تدرب في عرب فنجرز" : "Practice in ArabFingers"}
         </Link>
       </div>

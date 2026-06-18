@@ -27,14 +27,14 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
 function ContactEn() {
   return (
     <>
-      <h1 className="text-3xl font-semibold text-white">Contact Us</h1>
-      <div className="mt-8 space-y-6 text-sm leading-relaxed text-white/80">
+      <h1 className="text-3xl font-semibold text-ink">Contact Us</h1>
+      <div className="mt-8 space-y-6 text-sm leading-relaxed text-ink/80">
         <p>
           We would love to hear from you. Whether you have a question, feedback, a bug report,
           or a suggestion for ArabFingers, feel free to reach out.
         </p>
         <section>
-          <h2 className="mb-2 text-lg font-medium text-white/90">Email</h2>
+          <h2 className="mb-2 text-lg font-medium text-ink/90">Email</h2>
           <p>
             <a href="mailto:ibhartech39@gmail.com" className="text-accent underline text-base">
               ibhartech39@gmail.com
@@ -42,7 +42,7 @@ function ContactEn() {
           </p>
         </section>
         <section>
-          <h2 className="mb-2 text-lg font-medium text-white/90">What you can contact us about</h2>
+          <h2 className="mb-2 text-lg font-medium text-ink/90">What you can contact us about</h2>
           <ul className="list-disc list-inside space-y-1.5">
             <li>General questions about ArabFingers</li>
             <li>Bug reports or technical issues</li>
@@ -53,7 +53,7 @@ function ContactEn() {
           </ul>
         </section>
         <section>
-          <h2 className="mb-2 text-lg font-medium text-white/90">Response Time</h2>
+          <h2 className="mb-2 text-lg font-medium text-ink/90">Response Time</h2>
           <p>We aim to respond to all inquiries within 48 hours.</p>
         </section>
       </div>
@@ -64,14 +64,14 @@ function ContactEn() {
 function ContactAr() {
   return (
     <>
-      <h1 className="text-3xl font-semibold text-white">تواصل معنا</h1>
-      <div className="mt-8 space-y-6 text-sm leading-relaxed text-white/80">
+      <h1 className="text-3xl font-semibold text-ink">تواصل معنا</h1>
+      <div className="mt-8 space-y-6 text-sm leading-relaxed text-ink/80">
         <p>
           يسعدنا سماع رأيك. سواء كان لديك سؤال أو ملاحظة أو تقرير عن خطأ أو اقتراح لعرب فنجرز،
           لا تتردد في التواصل معنا.
         </p>
         <section>
-          <h2 className="mb-2 text-lg font-medium text-white/90">البريد الإلكتروني</h2>
+          <h2 className="mb-2 text-lg font-medium text-ink/90">البريد الإلكتروني</h2>
           <p>
             <a href="mailto:ibhartech39@gmail.com" className="text-accent underline text-base" dir="ltr">
               ibhartech39@gmail.com
@@ -79,7 +79,7 @@ function ContactAr() {
           </p>
         </section>
         <section>
-          <h2 className="mb-2 text-lg font-medium text-white/90">يمكنك التواصل معنا بخصوص</h2>
+          <h2 className="mb-2 text-lg font-medium text-ink/90">يمكنك التواصل معنا بخصوص</h2>
           <ul className="list-disc list-inside space-y-1.5">
             <li>أسئلة عامة حول عرب فنجرز</li>
             <li>تقارير الأخطاء أو المشاكل التقنية</li>
@@ -90,7 +90,7 @@ function ContactAr() {
           </ul>
         </section>
         <section>
-          <h2 className="mb-2 text-lg font-medium text-white/90">وقت الاستجابة</h2>
+          <h2 className="mb-2 text-lg font-medium text-ink/90">وقت الاستجابة</h2>
           <p>نهدف للرد على جميع الاستفسارات خلال ٤٨ ساعة.</p>
         </section>
       </div>

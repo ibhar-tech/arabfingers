@@ -2,12 +2,23 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import PlayLoader from "./PlayLoader";
 import { isLocale } from "@/lib/locales";
+import { generatePageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Play — Learn Arabic Letters | العب وتعلم الحروف العربية",
-  description:
-    "Press any key or tap the screen to see animated Arabic letters with natural pronunciation. A free, interactive keyboard smash toy for toddlers aged 1–6. All 28 Arabic letters with bilingual display.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata(locale, "/play", {
+    titleEn: "Play — Arabic Letters Game for Kids",
+    titleAr: "العب وتعلّم الحروف العربية",
+    descriptionEn:
+      "Tap a letter or press any key to see animated Arabic letters with natural pronunciation. A free, interactive game for toddlers aged 1–6 — all 28 Arabic letters, bilingual display.",
+    descriptionAr:
+      "المس أي حرف أو اضغط أي مفتاح لترى الحروف العربية المتحركة مع النطق الطبيعي. لعبة مجانية تفاعلية للأطفال من ١ إلى ٦ سنوات — كل الحروف الـ٢٨ بعرض ثنائي اللغة.",
+  });
+}
 
 const arabicLetterList =
   "Alef (ا), Ba (ب), Ta (ت), Tha (ث), Jeem (ج), Hha (ح), Kha (خ), Dal (د), Thal (ذ), Ra (ر), Zay (ز), Seen (س), Sheen (ش), Sad (ص), Dad (ض), Tah (ط), Zah (ظ), Ain (ع), Ghain (غ), Fa (ف), Qaf (ق), Kaf (ك), Lam (ل), Meem (م), Noon (ن), Ha (ه), Waw (و), Ya (ي)";

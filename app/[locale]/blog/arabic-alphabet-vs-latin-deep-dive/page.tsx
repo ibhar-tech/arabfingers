@@ -55,10 +55,10 @@ export default async function ArabicVsLatinPage({ params }: { params: Promise<{ 
 
 function AuthorBlock({ isAr }: { isAr?: boolean }) {
   return (
-    <div className="flex items-center gap-3 mt-2 mb-8 text-xs text-white/40">
+    <div className="flex items-center gap-3 mt-2 mb-8 text-xs text-ink/40">
       <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent text-sm font-bold">A</div>
       <div>
-        <Link href={`/${isAr ? "ar" : "en"}/author`} className="text-white/70 font-medium hover:text-accent transition">Aissa Trad</Link>
+        <Link href={`/${isAr ? "ar" : "en"}/author`} className="text-ink/70 font-medium hover:text-accent transition">Aissa Trad</Link>
         <span className="mx-2">·</span>
         <time dateTime="2026-05-05">{isAr ? "٥ مايو ٢٠٢٦" : "May 5, 2026"}</time>
         <span className="mx-2">·</span>
@@ -71,13 +71,13 @@ function AuthorBlock({ isAr }: { isAr?: boolean }) {
 function ContentEn() {
   return (
     <>
-      <h1 className="text-3xl font-semibold text-white mb-1">Arabic vs Latin Alphabet: A Linguistic Deep Dive</h1>
-      <p className="text-base text-white/75">Understanding what makes Arabic unique — and why it matters for learning</p>
+      <h1 className="text-3xl font-semibold text-ink mb-1">Arabic vs Latin Alphabet: A Linguistic Deep Dive</h1>
+      <p className="text-base text-ink/75">Understanding what makes Arabic unique — and why it matters for learning</p>
       <AuthorBlock />
 
-      <div className="space-y-8 text-sm leading-relaxed text-white/80">
+      <div className="space-y-8 text-sm leading-relaxed text-ink/80">
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">Two of the World&apos;s Most Important Scripts</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">Two of the World&apos;s Most Important Scripts</h2>
           <p className="mb-3">
             The Arabic and Latin alphabets are, by usage, two of the most significant writing systems in human history. The Latin alphabet (used by English, French, Spanish, German, and dozens of other languages) is used by approximately 3.6 billion people. The Arabic script (used by Arabic, Persian, Urdu, Pashto, and others) serves approximately 1.4 billion people across 28 countries.
           </p>
@@ -90,7 +90,7 @@ function ContentEn() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">Direction: Right-to-Left vs. Left-to-Right</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">Direction: Right-to-Left vs. Left-to-Right</h2>
           <p className="mb-3">
             The most immediately obvious difference is reading direction. English and other Latin-script languages read left-to-right (LTR). Arabic reads right-to-left (RTL). This isn&apos;t just a cosmetic difference — it affects everything from page layout to how children scan text to how books are bound.
           </p>
@@ -103,9 +103,9 @@ function ContentEn() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">Letter Connectivity: Cursive by Default</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">Letter Connectivity: Cursive by Default</h2>
           <p className="mb-3">
-            In English, letters are typically printed as separate, disconnected units: C-A-T. Cursive writing connects them, but this is considered a separate skill. In Arabic, <strong className="text-white/90">letters are always connected in their natural form</strong>. Printing Arabic in disconnected letters would be like writing English in all capitals with spaces between each letter — technically readable but unnatural.
+            In English, letters are typically printed as separate, disconnected units: C-A-T. Cursive writing connects them, but this is considered a separate skill. In Arabic, <strong className="text-ink/90">letters are always connected in their natural form</strong>. Printing Arabic in disconnected letters would be like writing English in all capitals with spaces between each letter — technically readable but unnatural.
           </p>
           <p className="mb-3">
             This means each Arabic letter has up to four forms depending on its position: isolated, initial (beginning of word), medial (middle), and final (end). For example, the letter ع (Ain) looks different in each position:
@@ -117,27 +117,27 @@ function ContentEn() {
               { pos: "Medial", form: "ـعـ" },
               { pos: "Final", form: "ـع" },
             ].map((f) => (
-              <div key={f.pos} className="rounded-lg border border-white/8 bg-white/5 p-3 text-center">
-                <span className="text-2xl text-white block mb-1" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{f.form}</span>
-                <span className="text-[10px] text-white/40">{f.pos}</span>
+              <div key={f.pos} className="rounded-lg border border-ink/8 bg-card p-3 text-center">
+                <span className="text-2xl text-ink block mb-1" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{f.form}</span>
+                <span className="text-[10px] text-ink/40">{f.pos}</span>
               </div>
             ))}
           </div>
           <p>
-            This is why ArabFingers teaches the <strong className="text-white/90">isolated form</strong> first — it&apos;s the base shape that children need to recognize before learning the connected variations. Once a child knows what ع looks like in isolation, they can learn to spot it inside words.
+            This is why ArabFingers teaches the <strong className="text-ink/90">isolated form</strong> first — it&apos;s the base shape that children need to recognize before learning the connected variations. Once a child knows what ع looks like in isolation, they can learn to spot it inside words.
           </p>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">Vowels: Explicit vs. Implicit</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">Vowels: Explicit vs. Implicit</h2>
           <p className="mb-3">
             English uses 5 vowel letters (A, E, I, O, U) that are always present in written text. You cannot read &quot;cat&quot; if it&apos;s written as &quot;ct&quot; — the vowel is essential for decoding.
           </p>
           <p className="mb-3">
-            Arabic works very differently. The Arabic alphabet is technically an <strong className="text-white/90">abjad</strong> — a writing system where consonants are primary and vowels are optional. In everyday Arabic text (newspapers, books, signs), short vowels are <em>not written</em>. Readers infer them from context. The word for &quot;book&quot; (kitāb) might be written as كتاب — with no explicit indication of where the &quot;i&quot; and &quot;ā&quot; sounds go.
+            Arabic works very differently. The Arabic alphabet is technically an <strong className="text-ink/90">abjad</strong> — a writing system where consonants are primary and vowels are optional. In everyday Arabic text (newspapers, books, signs), short vowels are <em>not written</em>. Readers infer them from context. The word for &quot;book&quot; (kitāb) might be written as كتاب — with no explicit indication of where the &quot;i&quot; and &quot;ā&quot; sounds go.
           </p>
           <p className="mb-3">
-            When vowels are explicitly written, they appear as small marks called <strong className="text-white/90">diacritics</strong> (tashkīl / تشكيل) above or below the letters:
+            When vowels are explicitly written, they appear as small marks called <strong className="text-ink/90">diacritics</strong> (tashkīl / تشكيل) above or below the letters:
           </p>
           <div className="grid grid-cols-3 gap-3 my-4">
             {[
@@ -145,9 +145,9 @@ function ContentEn() {
               { name: "Damma (u)", mark: "كُ" },
               { name: "Kasra (i)", mark: "كِ" },
             ].map((v) => (
-              <div key={v.name} className="rounded-lg border border-white/8 bg-white/5 p-3 text-center">
-                <span className="text-3xl text-white block mb-1" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{v.mark}</span>
-                <span className="text-[10px] text-white/40">{v.name}</span>
+              <div key={v.name} className="rounded-lg border border-ink/8 bg-card p-3 text-center">
+                <span className="text-3xl text-ink block mb-1" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{v.mark}</span>
+                <span className="text-[10px] text-ink/40">{v.name}</span>
               </div>
             ))}
           </div>
@@ -157,7 +157,7 @@ function ContentEn() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">Phonetic Inventory: Sounds That Don&apos;t Exist in English</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">Phonetic Inventory: Sounds That Don&apos;t Exist in English</h2>
           <p className="mb-3">
             Arabic contains several consonant sounds that have no English equivalent. These include guttural and pharyngeal sounds produced deep in the throat — sounds that English speakers have never needed to make:
           </p>
@@ -169,11 +169,11 @@ function ContentEn() {
               { letter: "غ", name: "Ghain", desc: "Similar to the French 'R' or a gargling sound. A voiced uvular fricative." },
               { letter: "ق", name: "Qaf", desc: "A deep 'K' produced much further back in the throat than the English 'K'. A voiceless uvular stop." },
             ].map((s) => (
-              <div key={s.letter} className="rounded-xl border border-white/8 bg-white/5 p-4 flex gap-3 items-start">
+              <div key={s.letter} className="rounded-xl border border-ink/8 bg-card p-4 flex gap-3 items-start">
                 <span className="text-2xl text-accent shrink-0" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{s.letter}</span>
                 <div>
-                  <span className="font-semibold text-white text-sm">{s.name}</span>
-                  <p className="text-sm text-white/75 mt-0.5">{s.desc}</p>
+                  <span className="font-semibold text-ink text-sm">{s.name}</span>
+                  <p className="text-sm text-ink/75 mt-0.5">{s.desc}</p>
                 </div>
               </div>
             ))}
@@ -184,7 +184,7 @@ function ContentEn() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">What This Means for Your Child</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">What This Means for Your Child</h2>
           <p className="mb-3">
             If your child is learning both Arabic and English, they&apos;re doing something remarkable: mastering two fundamentally different writing systems simultaneously. This is harder than learning two languages that share the same script (like English and Spanish), but the cognitive benefits are also greater.
           </p>
@@ -203,7 +203,7 @@ function ContentEn() {
       </div>
 
       <div className="text-center py-6">
-        <Link href="/en/play" className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105">
+        <Link href="/en/play" className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-ink transition hover:scale-105">
           🚀 Try ArabFingers Now
         </Link>
       </div>
@@ -214,13 +214,13 @@ function ContentEn() {
 function ContentAr() {
   return (
     <>
-      <h1 className="text-3xl font-semibold text-white mb-1">الأبجدية العربية مقابل اللاتينية: غوص لغوي عميق</h1>
-      <p className="text-base text-white/75">فهم ما يجعل العربية فريدة — ولماذا يهم ذلك للتعلم</p>
+      <h1 className="text-3xl font-semibold text-ink mb-1">الأبجدية العربية مقابل اللاتينية: غوص لغوي عميق</h1>
+      <p className="text-base text-ink/75">فهم ما يجعل العربية فريدة — ولماذا يهم ذلك للتعلم</p>
       <AuthorBlock isAr />
 
-      <div className="space-y-8 text-sm leading-relaxed text-white/80">
+      <div className="space-y-8 text-sm leading-relaxed text-ink/80">
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">نظامان من أهم أنظمة الكتابة في العالم</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">نظامان من أهم أنظمة الكتابة في العالم</h2>
           <p className="mb-3">
             الأبجديتان العربية واللاتينية هما، من حيث الاستخدام، من أهم أنظمة الكتابة في تاريخ البشرية. الأبجدية اللاتينية يستخدمها حوالي ٣.٦ مليار شخص. الخط العربي يخدم حوالي ١.٤ مليار شخص عبر ٢٨ دولة.
           </p>
@@ -230,7 +230,7 @@ function ContentAr() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">الاتجاه: من اليمين لليسار مقابل اليسار لليمين</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">الاتجاه: من اليمين لليسار مقابل اليسار لليمين</h2>
           <p className="mb-3">
             الفرق الأكثر وضوحاً هو اتجاه القراءة. الإنجليزية تُقرأ من اليسار لليمين. العربية تُقرأ من اليمين لليسار. هذا ليس فرقاً شكلياً فحسب — إنه يؤثر على كل شيء من تخطيط الصفحة إلى كيفية مسح الأطفال للنص.
           </p>
@@ -240,9 +240,9 @@ function ContentAr() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">اتصال الحروف: متصل بطبيعته</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">اتصال الحروف: متصل بطبيعته</h2>
           <p className="mb-3">
-            في الإنجليزية، تُطبع الحروف عادة كوحدات منفصلة ومنقطعة، والكتابة المتصلة تربطها لكنها تُعتبر مهارة منفصلة. في العربية، <strong className="text-white/90">الحروف متصلة دائماً في شكلها الطبيعي</strong>؛ فكتابة العربية بحروف منفصلة أشبه بكتابة الإنجليزية بأحرف كبيرة مع فراغ بين كل حرف وآخر — مقروءة تقنياً لكنها غير طبيعية.
+            في الإنجليزية، تُطبع الحروف عادة كوحدات منفصلة ومنقطعة، والكتابة المتصلة تربطها لكنها تُعتبر مهارة منفصلة. في العربية، <strong className="text-ink/90">الحروف متصلة دائماً في شكلها الطبيعي</strong>؛ فكتابة العربية بحروف منفصلة أشبه بكتابة الإنجليزية بأحرف كبيرة مع فراغ بين كل حرف وآخر — مقروءة تقنياً لكنها غير طبيعية.
           </p>
           <p className="mb-3">
             هذا يعني أن كل حرف عربي له حتى أربعة أشكال حسب موقعه: منفصل، وأول الكلمة، ووسطها، وآخرها. خذ مثلاً حرف العين (ع) كيف يتغير شكله في كل موضع:
@@ -254,9 +254,9 @@ function ContentAr() {
               { pos: "وسط", form: "ـعـ" },
               { pos: "آخر", form: "ـع" },
             ].map((f) => (
-              <div key={f.pos} className="rounded-lg border border-white/8 bg-white/5 p-3 text-center">
-                <span className="text-2xl text-white block mb-1" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{f.form}</span>
-                <span className="text-[10px] text-white/40">{f.pos}</span>
+              <div key={f.pos} className="rounded-lg border border-ink/8 bg-card p-3 text-center">
+                <span className="text-2xl text-ink block mb-1" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{f.form}</span>
+                <span className="text-[10px] text-ink/40">{f.pos}</span>
               </div>
             ))}
           </div>
@@ -266,12 +266,12 @@ function ContentAr() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">الحروف الصوتية: صريحة مقابل ضمنية</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">الحروف الصوتية: صريحة مقابل ضمنية</h2>
           <p className="mb-3">
-            الإنجليزية تستخدم خمسة أحرف صوتية موجودة دائماً في النص المكتوب؛ فلا يمكنك قراءة كلمة &quot;cat&quot; لو كُتبت &quot;ct&quot; لأن الحرف الصوتي ضروري لفك الرمز. العربية تعمل بشكل مختلف تماماً. الأبجدية العربية هي تقنياً <strong className="text-white/90">أبجد</strong> — نظام كتابة فيه الحروف الساكنة أساسية والحركات الصوتية اختيارية.
+            الإنجليزية تستخدم خمسة أحرف صوتية موجودة دائماً في النص المكتوب؛ فلا يمكنك قراءة كلمة &quot;cat&quot; لو كُتبت &quot;ct&quot; لأن الحرف الصوتي ضروري لفك الرمز. العربية تعمل بشكل مختلف تماماً. الأبجدية العربية هي تقنياً <strong className="text-ink/90">أبجد</strong> — نظام كتابة فيه الحروف الساكنة أساسية والحركات الصوتية اختيارية.
           </p>
           <p className="mb-3">
-            في النص العربي اليومي (الصحف والكتب واللافتات)، لا تُكتب الحركات القصيرة، ويستنتجها القراء من السياق. فكلمة &quot;كتاب&quot; تُكتب دون أي إشارة صريحة لمواضع الحركات. وعندما تُكتب الحركات صراحة، تظهر كعلامات صغيرة تُسمى <strong className="text-white/90">التشكيل</strong> فوق الحروف أو تحتها:
+            في النص العربي اليومي (الصحف والكتب واللافتات)، لا تُكتب الحركات القصيرة، ويستنتجها القراء من السياق. فكلمة &quot;كتاب&quot; تُكتب دون أي إشارة صريحة لمواضع الحركات. وعندما تُكتب الحركات صراحة، تظهر كعلامات صغيرة تُسمى <strong className="text-ink/90">التشكيل</strong> فوق الحروف أو تحتها:
           </p>
           <div className="grid grid-cols-3 gap-3 my-4">
             {[
@@ -279,9 +279,9 @@ function ContentAr() {
               { name: "ضمة", mark: "كُ" },
               { name: "كسرة", mark: "كِ" },
             ].map((v) => (
-              <div key={v.name} className="rounded-lg border border-white/8 bg-white/5 p-3 text-center">
-                <span className="text-3xl text-white block mb-1" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{v.mark}</span>
-                <span className="text-[10px] text-white/40">{v.name}</span>
+              <div key={v.name} className="rounded-lg border border-ink/8 bg-card p-3 text-center">
+                <span className="text-3xl text-ink block mb-1" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{v.mark}</span>
+                <span className="text-[10px] text-ink/40">{v.name}</span>
               </div>
             ))}
           </div>
@@ -291,7 +291,7 @@ function ContentAr() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">المخزون الصوتي: أصوات لا وجود لها في الإنجليزية</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">المخزون الصوتي: أصوات لا وجود لها في الإنجليزية</h2>
           <p className="mb-3">
             تحتوي العربية على عدة أصوات ساكنة لا مقابل لها في الإنجليزية، منها أصوات حلقية وبلعومية تُنطق من أعماق الحلق — أصوات لم يحتج الناطق بالإنجليزية يوماً لإخراجها:
           </p>
@@ -303,11 +303,11 @@ function ContentAr() {
               { letter: "غ", name: "الغين", desc: "صوت احتكاكي لهوي مجهور، قريب من الراء الفرنسية أو صوت الغرغرة." },
               { letter: "ق", name: "القاف", desc: "صوت انفجاري لهوي مهموس، كالكاف لكن من موضع أعمق في الحلق." },
             ].map((s) => (
-              <div key={s.letter} className="rounded-xl border border-white/8 bg-white/5 p-4 flex gap-3 items-start">
+              <div key={s.letter} className="rounded-xl border border-ink/8 bg-card p-4 flex gap-3 items-start">
                 <span className="text-2xl text-accent shrink-0" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{s.letter}</span>
                 <div>
-                  <span className="font-semibold text-white text-sm">{s.name}</span>
-                  <p className="text-sm text-white/75 mt-0.5">{s.desc}</p>
+                  <span className="font-semibold text-ink text-sm">{s.name}</span>
+                  <p className="text-sm text-ink/75 mt-0.5">{s.desc}</p>
                 </div>
               </div>
             ))}
@@ -318,7 +318,7 @@ function ContentAr() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">ماذا يعني هذا لطفلك</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">ماذا يعني هذا لطفلك</h2>
           <p className="mb-3">
             إذا كان طفلك يتعلم العربية والإنجليزية معاً، فهو يفعل شيئاً مذهلاً: إتقان نظامي كتابة مختلفين جذرياً في وقت واحد. هذا أصعب من تعلم لغتين تشتركان في نفس الخط (مثل الإنجليزية والإسبانية)، لكن الفوائد المعرفية أكبر أيضاً.
           </p>
@@ -337,7 +337,7 @@ function ContentAr() {
       </div>
 
       <div className="text-center py-6">
-        <Link href="/ar/play" className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105">
+        <Link href="/ar/play" className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-ink transition hover:scale-105">
           🚀 جرب عرب فنجرز الآن
         </Link>
       </div>

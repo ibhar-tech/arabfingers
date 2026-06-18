@@ -55,10 +55,10 @@ export default async function RamadanPage({ params }: { params: Promise<{ locale
 
 function AuthorBlock({ isAr }: { isAr?: boolean }) {
   return (
-    <div className="flex items-center gap-3 mt-2 mb-8 text-xs text-white/40">
+    <div className="flex items-center gap-3 mt-2 mb-8 text-xs text-ink/40">
       <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent text-sm font-bold">A</div>
       <div>
-        <Link href={`/${isAr ? "ar" : "en"}/author`} className="text-white/70 font-medium hover:text-accent transition">Aissa Trad</Link>
+        <Link href={`/${isAr ? "ar" : "en"}/author`} className="text-ink/70 font-medium hover:text-accent transition">Aissa Trad</Link>
         <span className="mx-2">·</span>
         <time dateTime="2026-05-20">{isAr ? "٢٠ مايو ٢٠٢٦" : "May 20, 2026"}</time>
         <span className="mx-2">·</span>
@@ -71,13 +71,13 @@ function AuthorBlock({ isAr }: { isAr?: boolean }) {
 function ContentEn() {
   return (
     <>
-      <h1 className="text-3xl font-semibold text-white mb-1">Ramadan &amp; Arabic Learning: Activities That Connect Language to Culture</h1>
-      <p className="text-base text-white/75">Using the holiest month as a springboard for Arabic vocabulary and letter recognition</p>
+      <h1 className="text-3xl font-semibold text-ink mb-1">Ramadan &amp; Arabic Learning: Activities That Connect Language to Culture</h1>
+      <p className="text-base text-ink/75">Using the holiest month as a springboard for Arabic vocabulary and letter recognition</p>
       <AuthorBlock />
 
-      <div className="space-y-8 text-sm leading-relaxed text-white/80">
+      <div className="space-y-8 text-sm leading-relaxed text-ink/80">
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">Why Ramadan Is Perfect for Arabic Learning</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">Why Ramadan Is Perfect for Arabic Learning</h2>
           <p className="mb-3">
             Ramadan is the most culturally rich month in the Islamic calendar. For families — especially those living in non-Muslim-majority countries — it&apos;s a time when Arabic language and culture become especially present in daily life. Greetings are exchanged in Arabic (&quot;Ramadan Mubarak! رمضان مبارك&quot;), prayers are recited in Arabic, and traditional Arabic foods appear on the table.
           </p>
@@ -90,7 +90,7 @@ function ContentEn() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">Ramadan Vocabulary for Kids</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">Ramadan Vocabulary for Kids</h2>
           <p className="mb-3">Start by introducing these essential Ramadan words. Practice saying them together and point them out whenever they come up naturally during the month:</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[
@@ -107,56 +107,56 @@ function ContentEn() {
               { ar: "زكاة", en: "Charity", pron: "Zakah", desc: "Giving to those in need" },
               { ar: "عيد", en: "Eid", pron: "Eid", desc: "The celebration after Ramadan" },
             ].map((word) => (
-              <div key={word.ar} className="rounded-lg border border-white/8 bg-white/5 p-3">
+              <div key={word.ar} className="rounded-lg border border-ink/8 bg-card p-3">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-lg text-accent font-semibold" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{word.ar}</span>
-                  <span className="text-white/30">—</span>
-                  <span className="text-xs text-white/60">{word.en}</span>
+                  <span className="text-ink/30">—</span>
+                  <span className="text-xs text-ink/60">{word.en}</span>
                 </div>
-                <p className="text-[11px] text-white/40"><em>{word.pron}</em> · {word.desc}</p>
+                <p className="text-[11px] text-ink/40"><em>{word.pron}</em> · {word.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">Activities for Different Ages</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">Activities for Different Ages</h2>
 
-          <h3 className="text-base font-semibold text-white/90 mt-5 mb-3">🧒 Ages 1-3: Sensory Ramadan</h3>
+          <h3 className="text-base font-semibold text-ink/90 mt-5 mb-3">🧒 Ages 1-3: Sensory Ramadan</h3>
           <div className="space-y-3">
-            <div className="rounded-xl border border-white/8 bg-white/5 p-4">
-              <h4 className="font-semibold text-white mb-1">🌙 Crescent Moon Letter Hunt</h4>
-              <p className="text-white/75">Cut crescent moon shapes from yellow paper and write one Arabic letter on each. Hide them around the room and let your toddler find them. When they find one, say the letter name together. &quot;You found هاء! Ha! Like هلال — hilal — crescent!&quot;</p>
+            <div className="rounded-xl border border-ink/8 bg-card p-4">
+              <h4 className="font-semibold text-ink mb-1">🌙 Crescent Moon Letter Hunt</h4>
+              <p className="text-ink/75">Cut crescent moon shapes from yellow paper and write one Arabic letter on each. Hide them around the room and let your toddler find them. When they find one, say the letter name together. &quot;You found هاء! Ha! Like هلال — hilal — crescent!&quot;</p>
             </div>
-            <div className="rounded-xl border border-white/8 bg-white/5 p-4">
-              <h4 className="font-semibold text-white mb-1">🪘 Ramadan Sound Walk</h4>
-              <p className="text-white/75">Take a walk and listen for Ramadan-related sounds: the adhan, greeting exchanges, the clinking of iftar preparation. Name each sound in Arabic. This builds listening skills and creates positive auditory associations with the language.</p>
+            <div className="rounded-xl border border-ink/8 bg-card p-4">
+              <h4 className="font-semibold text-ink mb-1">🪘 Ramadan Sound Walk</h4>
+              <p className="text-ink/75">Take a walk and listen for Ramadan-related sounds: the adhan, greeting exchanges, the clinking of iftar preparation. Name each sound in Arabic. This builds listening skills and creates positive auditory associations with the language.</p>
             </div>
-            <div className="rounded-xl border border-white/8 bg-white/5 p-4">
-              <h4 className="font-semibold text-white mb-1">🕹️ ArabFingers Ramadan Theme</h4>
-              <p className="text-white/75">Switch ArabFingers to the Ramadan theme from the parent panel. The floating 3D objects become crescent moons, stars, and lanterns. This seasonal visual change renews your child&apos;s interest and connects their keyboard play to the Ramadan atmosphere at home.</p>
+            <div className="rounded-xl border border-ink/8 bg-card p-4">
+              <h4 className="font-semibold text-ink mb-1">🕹️ ArabFingers Ramadan Theme</h4>
+              <p className="text-ink/75">Switch ArabFingers to the Ramadan theme from the parent panel. The floating 3D objects become crescent moons, stars, and lanterns. This seasonal visual change renews your child&apos;s interest and connects their keyboard play to the Ramadan atmosphere at home.</p>
             </div>
           </div>
 
-          <h3 className="text-base font-semibold text-white/90 mt-6 mb-3">📚 Ages 4-6: Vocabulary Building</h3>
+          <h3 className="text-base font-semibold text-ink/90 mt-6 mb-3">📚 Ages 4-6: Vocabulary Building</h3>
           <div className="space-y-3">
-            <div className="rounded-xl border border-white/8 bg-white/5 p-4">
-              <h4 className="font-semibold text-white mb-1">📋 Ramadan Word Wall</h4>
-              <p className="text-white/75">Create a large poster with Ramadan vocabulary words in Arabic and English. Each day, practice reading one word together. By the end of Ramadan, your child will know 30 Arabic words connected to real experiences they&apos;ve had that month.</p>
+            <div className="rounded-xl border border-ink/8 bg-card p-4">
+              <h4 className="font-semibold text-ink mb-1">📋 Ramadan Word Wall</h4>
+              <p className="text-ink/75">Create a large poster with Ramadan vocabulary words in Arabic and English. Each day, practice reading one word together. By the end of Ramadan, your child will know 30 Arabic words connected to real experiences they&apos;ve had that month.</p>
             </div>
-            <div className="rounded-xl border border-white/8 bg-white/5 p-4">
-              <h4 className="font-semibold text-white mb-1">🎨 Decorate with Arabic Letters</h4>
-              <p className="text-white/75">Make Ramadan decorations featuring Arabic calligraphy. Write &quot;رمضان مبارك&quot; (Ramadan Mubarak) on a banner, or let your child decorate paper lanterns with Arabic letters they know. This transforms Arabic writing into festive art.</p>
+            <div className="rounded-xl border border-ink/8 bg-card p-4">
+              <h4 className="font-semibold text-ink mb-1">🎨 Decorate with Arabic Letters</h4>
+              <p className="text-ink/75">Make Ramadan decorations featuring Arabic calligraphy. Write &quot;رمضان مبارك&quot; (Ramadan Mubarak) on a banner, or let your child decorate paper lanterns with Arabic letters they know. This transforms Arabic writing into festive art.</p>
             </div>
-            <div className="rounded-xl border border-white/8 bg-white/5 p-4">
-              <h4 className="font-semibold text-white mb-1">🍽️ Iftar Label Game</h4>
-              <p className="text-white/75">Before iftar, label the dishes with their Arabic names on small cards. &quot;تمر — dates,&quot; &quot;ماء — water,&quot; &quot;حساء — soup.&quot; Let your child match the cards to the correct dishes. This turns mealtime into a vocabulary lesson.</p>
+            <div className="rounded-xl border border-ink/8 bg-card p-4">
+              <h4 className="font-semibold text-ink mb-1">🍽️ Iftar Label Game</h4>
+              <p className="text-ink/75">Before iftar, label the dishes with their Arabic names on small cards. &quot;تمر — dates,&quot; &quot;ماء — water,&quot; &quot;حساء — soup.&quot; Let your child match the cards to the correct dishes. This turns mealtime into a vocabulary lesson.</p>
             </div>
           </div>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">Keeping It Realistic for Busy Parents</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">Keeping It Realistic for Busy Parents</h2>
           <p className="mb-3">
             Ramadan is already a busy month — between fasting, longer prayers, and family obligations, the last thing most parents need is an ambitious learning curriculum to feel guilty about. So my advice, as a parent who has been there, is to keep expectations small and woven into things you are already doing.
           </p>
@@ -169,7 +169,7 @@ function ContentEn() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">Making It a Tradition</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">Making It a Tradition</h2>
           <p className="mb-3">
             The most powerful aspect of Ramadan-based Arabic learning is that it becomes a tradition. When Arabic learning is woven into the fabric of Ramadan — alongside fasting, prayer, charity, and family gatherings — it becomes something children look forward to rather than resist.
           </p>
@@ -185,7 +185,7 @@ function ContentEn() {
       </div>
 
       <div className="text-center py-6">
-        <Link href="/en/play" className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105">
+        <Link href="/en/play" className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-ink transition hover:scale-105">
           🚀 Try ArabFingers — Ramadan Theme 🌙
         </Link>
       </div>
@@ -196,13 +196,13 @@ function ContentEn() {
 function ContentAr() {
   return (
     <>
-      <h1 className="text-3xl font-semibold text-white mb-1">رمضان وتعلم العربية: أنشطة تربط اللغة بالثقافة</h1>
-      <p className="text-base text-white/75">استخدام الشهر الكريم كنقطة انطلاق لتعلم المفردات والحروف العربية</p>
+      <h1 className="text-3xl font-semibold text-ink mb-1">رمضان وتعلم العربية: أنشطة تربط اللغة بالثقافة</h1>
+      <p className="text-base text-ink/75">استخدام الشهر الكريم كنقطة انطلاق لتعلم المفردات والحروف العربية</p>
       <AuthorBlock isAr />
 
-      <div className="space-y-8 text-sm leading-relaxed text-white/70">
+      <div className="space-y-8 text-sm leading-relaxed text-ink/70">
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">لماذا رمضان مثالي لتعلم العربية</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">لماذا رمضان مثالي لتعلم العربية</h2>
           <p className="mb-3">
             رمضان هو الشهر الأغنى ثقافياً في التقويم الإسلامي. بالنسبة للعائلات — خاصة تلك التي تعيش في بلدان ذات أغلبية غير مسلمة — إنه وقت تصبح فيه اللغة والثقافة العربية حاضرة بشكل خاص في الحياة اليومية. التحيات تُتبادل بالعربية (&quot;رمضان مبارك!&quot;)، الصلوات تُتلى بالعربية، والأطعمة العربية التقليدية تظهر على المائدة.
           </p>
@@ -215,7 +215,7 @@ function ContentAr() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">مفردات رمضان للأطفال</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">مفردات رمضان للأطفال</h2>
           <p className="mb-3">ابدأ بتقديم هذه الكلمات الرمضانية الأساسية، وهي مفردات يسمعها طفلك ويراها فعلاً طوال الشهر. تدرّبوا على نطقها معاً، وأشِر إليها كلما وردت طبيعياً في البيت أو على المائدة أو في المسجد، فالكلمة المرتبطة بموقف حقيقي تثبت في الذاكرة أسرع بكثير من الكلمة المجردة:</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[
@@ -232,55 +232,55 @@ function ContentAr() {
               { ar: "زكاة", en: "Charity", desc: "العطاء للمحتاجين" },
               { ar: "عيد", en: "Eid", desc: "الاحتفال بعد رمضان" },
             ].map((word) => (
-              <div key={word.ar} className="rounded-lg border border-white/8 bg-white/5 p-3">
+              <div key={word.ar} className="rounded-lg border border-ink/8 bg-card p-3">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-lg text-accent font-semibold" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{word.ar}</span>
-                  <span className="text-white/30">—</span>
-                  <span className="text-xs text-white/60">{word.en}</span>
+                  <span className="text-ink/30">—</span>
+                  <span className="text-xs text-ink/60">{word.en}</span>
                 </div>
-                <p className="text-[11px] text-white/40">{word.desc}</p>
+                <p className="text-[11px] text-ink/40">{word.desc}</p>
               </div>
             ))}
           </div>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">أنشطة حسب العمر</h2>
-          <h3 className="text-base font-semibold text-white/90 mt-5 mb-3">🧒 عمر ١-٣: رمضان حسي</h3>
+          <h2 className="text-xl font-semibold text-ink mb-3">أنشطة حسب العمر</h2>
+          <h3 className="text-base font-semibold text-ink/90 mt-5 mb-3">🧒 عمر ١-٣: رمضان حسي</h3>
           <div className="space-y-3">
-            <div className="rounded-xl border border-white/8 bg-white/5 p-4">
-              <h4 className="font-semibold text-white mb-1">🌙 صيد حروف هلالية</h4>
-              <p className="text-white/75">اقطع أشكال هلال من ورق أصفر واكتب حرفاً عربياً على كل واحد. خبئها حول الغرفة ودع طفلك يجدها. عندما يجد واحداً، قل اسم الحرف معاً. &quot;وجدتَ الهاء! مثل هلال!&quot;</p>
+            <div className="rounded-xl border border-ink/8 bg-card p-4">
+              <h4 className="font-semibold text-ink mb-1">🌙 صيد حروف هلالية</h4>
+              <p className="text-ink/75">اقطع أشكال هلال من ورق أصفر واكتب حرفاً عربياً على كل واحد. خبئها حول الغرفة ودع طفلك يجدها. عندما يجد واحداً، قل اسم الحرف معاً. &quot;وجدتَ الهاء! مثل هلال!&quot;</p>
             </div>
-            <div className="rounded-xl border border-white/8 bg-white/5 p-4">
-              <h4 className="font-semibold text-white mb-1">🪘 جولة أصوات رمضان</h4>
-              <p className="text-white/75">اخرج في نزهة قصيرة وأنصت مع طفلك لأصوات رمضان: الأذان، وتبادل التهاني، وأصوات تحضير الإفطار. سمِّ كل صوت بالعربية. هذا ينمّي مهارة الإصغاء ويبني عند الطفل ارتباطات سمعية إيجابية باللغة منذ سنواته الأولى.</p>
+            <div className="rounded-xl border border-ink/8 bg-card p-4">
+              <h4 className="font-semibold text-ink mb-1">🪘 جولة أصوات رمضان</h4>
+              <p className="text-ink/75">اخرج في نزهة قصيرة وأنصت مع طفلك لأصوات رمضان: الأذان، وتبادل التهاني، وأصوات تحضير الإفطار. سمِّ كل صوت بالعربية. هذا ينمّي مهارة الإصغاء ويبني عند الطفل ارتباطات سمعية إيجابية باللغة منذ سنواته الأولى.</p>
             </div>
-            <div className="rounded-xl border border-white/8 bg-white/5 p-4">
-              <h4 className="font-semibold text-white mb-1">🕹️ ثيم رمضان في عرب فنجرز</h4>
-              <p className="text-white/75">بدّل عرب فنجرز لثيم رمضان من لوحة الوالدين. الأشكال الثلاثية الأبعاد العائمة تصبح أهلّة ونجوم وفوانيس. هذا التغيير البصري الموسمي يجدد اهتمام طفلك ويربط لعبه بأجواء رمضان في المنزل.</p>
+            <div className="rounded-xl border border-ink/8 bg-card p-4">
+              <h4 className="font-semibold text-ink mb-1">🕹️ ثيم رمضان في عرب فنجرز</h4>
+              <p className="text-ink/75">بدّل عرب فنجرز لثيم رمضان من لوحة الوالدين. الأشكال الثلاثية الأبعاد العائمة تصبح أهلّة ونجوم وفوانيس. هذا التغيير البصري الموسمي يجدد اهتمام طفلك ويربط لعبه بأجواء رمضان في المنزل.</p>
             </div>
           </div>
 
-          <h3 className="text-base font-semibold text-white/90 mt-6 mb-3">📚 عمر ٤-٦: بناء المفردات</h3>
+          <h3 className="text-base font-semibold text-ink/90 mt-6 mb-3">📚 عمر ٤-٦: بناء المفردات</h3>
           <div className="space-y-3">
-            <div className="rounded-xl border border-white/8 bg-white/5 p-4">
-              <h4 className="font-semibold text-white mb-1">📋 جدار كلمات رمضان</h4>
-              <p className="text-white/75">أنشئ ملصقاً كبيراً بكلمات مفردات رمضان بالعربية والإنجليزية. كل يوم، تدرب على قراءة كلمة واحدة معاً. بنهاية رمضان، سيعرف طفلك ٣٠ كلمة عربية مرتبطة بتجارب حقيقية.</p>
+            <div className="rounded-xl border border-ink/8 bg-card p-4">
+              <h4 className="font-semibold text-ink mb-1">📋 جدار كلمات رمضان</h4>
+              <p className="text-ink/75">أنشئ ملصقاً كبيراً بكلمات مفردات رمضان بالعربية والإنجليزية. كل يوم، تدرب على قراءة كلمة واحدة معاً. بنهاية رمضان، سيعرف طفلك ٣٠ كلمة عربية مرتبطة بتجارب حقيقية.</p>
             </div>
-            <div className="rounded-xl border border-white/8 bg-white/5 p-4">
-              <h4 className="font-semibold text-white mb-1">🎨 زيّن بالحروف العربية</h4>
-              <p className="text-white/75">اصنعوا زينة رمضانية تحمل خطاً عربياً. اكتب &quot;رمضان مبارك&quot; على لافتة، أو دع طفلك يزيّن فوانيس ورقية بالحروف التي يعرفها. هكذا يتحوّل الخط العربي إلى فن احتفالي يربط الطفل بجمال لغته دون أن يشعر أنه &quot;يدرس&quot;.</p>
+            <div className="rounded-xl border border-ink/8 bg-card p-4">
+              <h4 className="font-semibold text-ink mb-1">🎨 زيّن بالحروف العربية</h4>
+              <p className="text-ink/75">اصنعوا زينة رمضانية تحمل خطاً عربياً. اكتب &quot;رمضان مبارك&quot; على لافتة، أو دع طفلك يزيّن فوانيس ورقية بالحروف التي يعرفها. هكذا يتحوّل الخط العربي إلى فن احتفالي يربط الطفل بجمال لغته دون أن يشعر أنه &quot;يدرس&quot;.</p>
             </div>
-            <div className="rounded-xl border border-white/8 bg-white/5 p-4">
-              <h4 className="font-semibold text-white mb-1">🍽️ لعبة بطاقات الإفطار</h4>
-              <p className="text-white/75">قبل الإفطار، ضع بطاقات بأسماء الأطباق بالعربية. &quot;تمر&quot;، &quot;ماء&quot;، &quot;حساء&quot;. دع طفلك يطابق البطاقات مع الأطباق الصحيحة.</p>
+            <div className="rounded-xl border border-ink/8 bg-card p-4">
+              <h4 className="font-semibold text-ink mb-1">🍽️ لعبة بطاقات الإفطار</h4>
+              <p className="text-ink/75">قبل الإفطار، ضع بطاقات بأسماء الأطباق بالعربية. &quot;تمر&quot;، &quot;ماء&quot;، &quot;حساء&quot;. دع طفلك يطابق البطاقات مع الأطباق الصحيحة.</p>
             </div>
           </div>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">لتبقى الأمور واقعية للوالدين المشغولين</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">لتبقى الأمور واقعية للوالدين المشغولين</h2>
           <p className="mb-3">
             رمضان شهر مزدحم أصلاً — بين الصيام، وطول الصلوات، والواجبات العائلية، آخر ما يحتاجه أغلب الوالدين منهج تعليمي طموح يشعرون بالذنب إن قصّروا فيه. لذا نصيحتي، كأبٍ مرّ بهذه التجربة، أن تبقي توقعاتك صغيرة ومنسوجة في ما تفعله أصلاً.
           </p>
@@ -293,7 +293,7 @@ function ContentAr() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-white mb-3">اجعلها تقليداً</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">اجعلها تقليداً</h2>
           <p className="mb-3">
             الجانب الأقوى في تعلم العربية القائم على رمضان هو أنه يصبح تقليداً. عندما يُنسج تعلم العربية في نسيج رمضان — جنباً إلى جنب مع الصيام والصلاة والصدقة والتجمعات العائلية — يصبح شيئاً يتطلع إليه الأطفال لا يقاومونه.
           </p>
@@ -309,7 +309,7 @@ function ContentAr() {
       </div>
 
       <div className="text-center py-6">
-        <Link href="/ar/play" className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105">
+        <Link href="/ar/play" className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-ink transition hover:scale-105">
           🚀 جرب عرب فنجرز — ثيم رمضان 🌙
         </Link>
       </div>

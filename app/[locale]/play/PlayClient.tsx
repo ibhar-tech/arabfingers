@@ -12,6 +12,7 @@ import { ParentPanelTrigger } from "@/components/ParentPanelTrigger";
 import { SessionSummary } from "@/components/SessionSummary";
 import { GuidedPrompt } from "@/components/GuidedPrompt";
 import { ThreeDErrorBoundary } from "@/components/ThreeDErrorBoundary";
+import { TouchLetterGrid } from "@/components/TouchLetterGrid";
 import {
   findArabicLetterByArabicChar,
   findArabicLetterByKey,
@@ -19,6 +20,7 @@ import {
   isArabicCharacter,
   isMappedKey,
   arabicLetters,
+  type ArabicLetter,
 } from "@/lib/arabicMap";
 import type { AppLocale } from "@/lib/locales";
 import { playChime, playConfetti, playSmash, primeSounds } from "@/lib/sounds";
@@ -84,6 +86,25 @@ export default function PlayClient() {
   const activate3D = useCallback(() => {
     if (!show3D) setShow3D(true);
   }, [show3D]);
+
+  // Tapping a specific tile on the on-screen letter bar shows THAT letter, with the
+  // same counter/sound/haptics as a key press — intentional learning on touch devices.
+  const showSpecificLetter = useCallback(
+    (letter: ArabicLetter) => {
+      activate3D();
+      void ensureFullscreen();
+      if (typeof window !== "undefined") {
+        const current = parseInt(localStorage.getItem("arab_fingers_total_smashes") || "0", 10);
+        localStorage.setItem("arab_fingers_total_smashes", (current + 1).toString());
+      }
+      playSmash(soundEnabled);
+      if (navigator.vibrate) navigator.vibrate(25);
+      const point = getPoint(window.innerWidth / 2, window.innerHeight * 0.42);
+      registerInteraction({ kind: "letter", letter, pressed: letter.ar, source: "touch", ...point });
+      if (soundEnabled) playLetterSound(letter.soundId, ttsSpeed);
+    },
+    [activate3D, registerInteraction, soundEnabled, ttsSpeed],
+  );
 
   async function ensureFullscreen() {
     if (fullscreenAttemptedRef.current || document.fullscreenElement) {
@@ -365,6 +386,7 @@ export default function PlayClient() {
       <GuidedPrompt />
       <ParentPanel />
       <SessionSummary />
+      <TouchLetterGrid onPick={showSpecificLetter} />
     </main>
   );
 }

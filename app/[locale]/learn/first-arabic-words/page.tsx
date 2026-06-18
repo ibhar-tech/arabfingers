@@ -110,14 +110,14 @@ export default async function FirstArabicWordsPage({ params }: { params: Promise
         ]}
       />
 
-      <h1 className="text-3xl font-semibold text-white mb-2">
+      <h1 className="text-3xl font-semibold text-ink mb-2">
         {isAr ? "أوّل كلمات عربية لطفلك" : "First Arabic Words for Your Child"}
       </h1>
-      <p className="text-base text-white/75 mb-8">
+      <p className="text-base text-ink/75 mb-8">
         {isAr ? "٢٥ كلمة أساسية حسب الموضوع، مع إرشاد عن أيّها يُعلَّم أولاً" : "25 essential words by theme, with guidance on which to teach first"}
       </p>
 
-      <div className="text-base leading-relaxed text-white/80 mb-8 space-y-3">
+      <div className="text-base leading-relaxed text-ink/80 mb-8 space-y-3">
         <p>
           {isAr
             ? "بعد أن يتعلّم طفلك الحروف العربية، تأتي الخطوة التالية: بناء المفردات. هذه القائمة تضمّ ٢٥ كلمة عربية أساسية مقسّمة إلى موضوعات يسهل على الأطفال فهمها — العائلة، والحيوانات، والطعام، وأعضاء الجسم، والكلمات اليومية. اخترنا كلمات قصيرة، قريبة من حياة الطفل، يستطيع أن يراها ويلمسها ويطلبها."
@@ -131,44 +131,44 @@ export default async function FirstArabicWordsPage({ params }: { params: Promise
       </div>
 
       <section className="mb-10">
-        <h2 className="text-xl font-semibold text-white mb-2">
+        <h2 className="text-xl font-semibold text-ink mb-2">
           {isAr ? "أيّ الكلمات تُعلَّم أولاً ولماذا" : "Which Words First, and Why"}
         </h2>
-        <p className="text-base text-white/80 leading-relaxed mb-4">
+        <p className="text-base text-ink/80 leading-relaxed mb-4">
           {isAr
             ? "لا تبدأ بأيّ كلمة عشوائياً. الكلمات الأولى الأفضل هي عالية التكرار وقريبة عاطفياً: أسماء من يحبّهم الطفل، وأشياء يحتاجها كل يوم. هذه الكلمات يسمعها الطفل كثيراً ويملك دافعاً حقيقياً لاستعمالها."
             : "Don't start with just any word. The best first words are high-frequency and emotionally close: the names of people the child loves, and things they need every day. Your child hears these often and has a real reason to use them."}
         </p>
         <div className="space-y-3">
           {firstWordsGuidance.map((g) => (
-            <div key={g.wordEn} className="rounded-xl border border-white/8 bg-white/5 p-4">
-              <h3 className="font-semibold text-white mb-1" style={{ fontFamily: "var(--font-noto-naskh), var(--font-ibm-plex-arabic), sans-serif" }}>{isAr ? g.wordAr : g.wordEn}</h3>
-              <p className="text-sm text-white/75 leading-relaxed">{isAr ? g.whyAr : g.whyEn}</p>
+            <div key={g.wordEn} className="rounded-xl border border-ink/10 bg-white/5 p-4">
+              <h3 className="font-semibold text-ink mb-1" style={{ fontFamily: "var(--font-noto-naskh), var(--font-ibm-plex-arabic), sans-serif" }}>{isAr ? g.wordAr : g.wordEn}</h3>
+              <p className="text-sm text-ink/75 leading-relaxed">{isAr ? g.whyAr : g.whyEn}</p>
             </div>
           ))}
         </div>
       </section>
 
-      <h2 className="text-xl font-semibold text-white mb-4">
+      <h2 className="text-xl font-semibold text-ink mb-4">
         {isAr ? "الكلمات حسب الموضوع" : "Words by Theme"}
       </h2>
       {categories.map((cat) => (
         <section key={cat.titleEn} className="mb-8">
-          <h3 className="text-lg font-semibold text-white mb-4">{isAr ? cat.titleAr : cat.titleEn}</h3>
+          <h3 className="text-lg font-semibold text-ink mb-4">{isAr ? cat.titleAr : cat.titleEn}</h3>
           <div className="space-y-3">
             {cat.words.map((w) => (
-              <div key={w.ar} className="rounded-xl border border-white/8 bg-white/5 p-4 flex items-start gap-4">
+              <div key={w.ar} className="rounded-xl border border-ink/10 bg-white/5 p-4 flex items-start gap-4">
                 <div className="shrink-0 text-center w-16">
-                  <span className="text-2xl text-white font-semibold" style={{ fontFamily: "var(--font-noto-naskh), var(--font-ibm-plex-arabic), sans-serif" }}>
+                  <span className="text-2xl text-ink font-semibold" style={{ fontFamily: "var(--font-noto-naskh), var(--font-ibm-plex-arabic), sans-serif" }}>
                     {w.ar}
                   </span>
                 </div>
                 <div className="flex-1">
                   <div className="flex items-baseline gap-2">
-                    <span className="text-sm font-semibold text-white">{w.en}</span>
+                    <span className="text-sm font-semibold text-ink">{w.en}</span>
                     <span className="text-sm text-accent/80 italic">({w.pron})</span>
                   </div>
-                  <p className="text-sm text-white/75 mt-1 leading-relaxed">{isAr ? w.noteAr : w.noteEn}</p>
+                  <p className="text-sm text-ink/75 mt-1 leading-relaxed">{isAr ? w.noteAr : w.noteEn}</p>
                 </div>
               </div>
             ))}
@@ -177,15 +177,15 @@ export default async function FirstArabicWordsPage({ params }: { params: Promise
       ))}
 
       <section className="mb-10">
-        <h2 className="text-xl font-semibold text-white mb-2">
+        <h2 className="text-xl font-semibold text-ink mb-2">
           {isAr ? "استعمال الكلمات في الروتين اليومي" : "Using Words in the Daily Routine"}
         </h2>
-        <p className="text-base text-white/80 leading-relaxed mb-3">
+        <p className="text-base text-ink/80 leading-relaxed mb-3">
           {isAr
             ? "الكلمات تثبت حين ترتبط بلحظات يعيشها الطفل كل يوم. اربط كل كلمة بوقتها الطبيعي بدل تخصيص \"درس\" منفصل."
             : "Words stick when they are tied to moments the child lives every day. Anchor each word to its natural time instead of setting a separate \"lesson\"."}
         </p>
-        <div className="space-y-2 text-base text-white/80 leading-relaxed">
+        <div className="space-y-2 text-base text-ink/80 leading-relaxed">
           <p>{isAr ? "• عند الاستيقاظ: قل \"صباح الخير\" وأشِر إلى العين والفم في المرآة." : "• On waking: say \"sabaah al-khayr\" and point to the eye and mouth in the mirror."}</p>
           <p>{isAr ? "• عند الوجبة: سمِّ الطعام بالعربية — \"ماء\"، \"حليب\"، \"تفاحة\"." : "• At mealtime: name the food in Arabic — \"maa'\", \"haleeb\", \"tuffaaha\"."}</p>
           <p>{isAr ? "• عند اللعب: أشِر إلى القطة في الكتاب وقل \"قطة!\"." : "• During play: point to the cat in a book and say \"qitta!\"."}</p>
@@ -194,10 +194,10 @@ export default async function FirstArabicWordsPage({ params }: { params: Promise
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-white mb-3">
+        <h2 className="text-xl font-semibold text-ink mb-3">
           {isAr ? "كيف تعلّم هذه الكلمات" : "How to Teach These Words"}
         </h2>
-        <div className="space-y-2 text-base text-white/80 leading-relaxed">
+        <div className="space-y-2 text-base text-ink/80 leading-relaxed">
           <p>• {isAr ? "ابدأ بـ ٣–٥ كلمات فقط في الأسبوع" : "Start with just 3–5 words per week"}</p>
           <p>• {isAr ? "استخدم الكلمات في مواقف حقيقية — أشِر إلى القطة وقل \"قطة!\"" : "Use words in real situations — point to the cat and say \"qitta!\""}</p>
           <p>• {isAr ? "اقرأ كتب أطفال بالعربية تحتوي على هذه الكلمات" : "Read Arabic children's books that contain these words"}</p>
@@ -216,7 +216,7 @@ export default async function FirstArabicWordsPage({ params }: { params: Promise
       </div>
 
       <div className="text-center py-6">
-        <Link href={`/${locale}/play`} className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105">
+        <Link href={`/${locale}/play`} className="btn-chunky inline-flex items-center gap-2 px-6 py-3 text-base transition hover:scale-105">
           🚀 {isAr ? "تدرب على الحروف في عرب فنجرز" : "Practice Letters in ArabFingers"}
         </Link>
       </div>

@@ -71,14 +71,14 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
         ]}
       />
 
-      <h1 className="text-3xl font-semibold text-white mb-2">
+      <h1 className="text-3xl font-semibold text-ink mb-2">
         {isAr ? "الألوان بالعربية للأطفال" : "Arabic Colors for Kids"}
       </h1>
-      <p className="text-base text-white/75 mb-8">
+      <p className="text-base text-ink/75 mb-8">
         {isAr ? "تعلّم أسماء الألوان بالعربية مع النطق وأمثلة من الطبيعة وألعاب" : "Learn color names in Arabic with pronunciation, nature examples, and games"}
       </p>
 
-      <div className="text-base leading-relaxed text-white/80 mb-8 space-y-3">
+      <div className="text-base leading-relaxed text-ink/80 mb-8 space-y-3">
         <p>
           {isAr
             ? "تعلّم الألوان من أوائل المهارات اللغوية التي يكتسبها الأطفال، فالألوان موجودة في كل مكان: في الطعام والملابس والطبيعة والألعاب. وتعليم طفلك أسماء الألوان بالعربية يفتح باباً واسعاً لبناء المفردات، لأن الألوان تُستخدم لوصف كل شيء تقريباً: التفاحة حمراء، والسماء زرقاء، والعشب أخضر."
@@ -91,27 +91,27 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
         </p>
       </div>
 
-      <h2 className="text-xl font-semibold text-white mb-4">
+      <h2 className="text-xl font-semibold text-ink mb-4">
         {isAr ? "جدول الألوان المرجعي" : "Quick Color Reference Table"}
       </h2>
       <div className="overflow-x-auto mb-10">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-white/10">
-              <th className="py-2 px-3 text-center text-white/70 font-medium">{isAr ? "اللون" : "Color"}</th>
-              <th className="py-2 px-3 text-start text-white/70 font-medium">{isAr ? "بالعربية" : "Arabic"}</th>
-              <th className="py-2 px-3 text-start text-white/70 font-medium">{isAr ? "بالإنجليزية" : "English"}</th>
-              <th className="py-2 px-3 text-start text-white/70 font-medium">{isAr ? "النطق" : "Pronunciation"}</th>
+            <tr className="border-b border-ink/10">
+              <th className="py-2 px-3 text-center text-ink/70 font-medium">{isAr ? "اللون" : "Color"}</th>
+              <th className="py-2 px-3 text-start text-ink/70 font-medium">{isAr ? "بالعربية" : "Arabic"}</th>
+              <th className="py-2 px-3 text-start text-ink/70 font-medium">{isAr ? "بالإنجليزية" : "English"}</th>
+              <th className="py-2 px-3 text-start text-ink/70 font-medium">{isAr ? "النطق" : "Pronunciation"}</th>
             </tr>
           </thead>
           <tbody>
             {colors.map((c) => (
-              <tr key={c.en} className="border-b border-white/5 hover:bg-white/5 transition">
+              <tr key={c.en} className="border-b border-ink/10 hover:bg-white/5 transition">
                 <td className="py-2.5 px-3 text-center">
-                  <span className="inline-block w-6 h-6 rounded-md border border-white/15 align-middle" style={{ backgroundColor: c.hex }} />
+                  <span className="inline-block w-6 h-6 rounded-md border border-ink/10 align-middle" style={{ backgroundColor: c.hex }} />
                 </td>
-                <td className="py-2.5 px-3 text-start text-base text-white" style={{ fontFamily: "var(--font-noto-naskh), var(--font-ibm-plex-arabic), sans-serif" }}>{c.ar}</td>
-                <td className="py-2.5 px-3 text-start text-sm text-white/80">{c.en}</td>
+                <td className="py-2.5 px-3 text-start text-base text-ink" style={{ fontFamily: "var(--font-noto-naskh), var(--font-ibm-plex-arabic), sans-serif" }}>{c.ar}</td>
+                <td className="py-2.5 px-3 text-start text-sm text-ink/80">{c.en}</td>
                 <td className="py-2.5 px-3 text-start text-sm text-accent/80 italic">{c.pron}</td>
               </tr>
             ))}
@@ -119,56 +119,56 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
         </table>
       </div>
 
-      <h2 className="text-xl font-semibold text-white mb-4">
+      <h2 className="text-xl font-semibold text-ink mb-4">
         {isAr ? "الألوان واحداً واحداً" : "Each Color, One by One"}
       </h2>
       <div className="space-y-4 mb-10">
         {colors.map((c) => (
-          <div key={c.en} className="rounded-xl border border-white/8 bg-white/5 p-4 flex gap-4 items-start">
+          <div key={c.en} className="rounded-xl border border-ink/10 bg-white/5 p-4 flex gap-4 items-start">
             <div
-              className="shrink-0 w-14 h-14 rounded-xl border border-white/10"
+              className="shrink-0 w-14 h-14 rounded-xl border border-ink/10"
               style={{ backgroundColor: c.hex }}
             />
             <div className="flex-1 min-w-0">
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-lg font-semibold text-white" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+                <span className="text-lg font-semibold text-ink" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
                   {c.ar}
                 </span>
-                <span className="text-white/30">—</span>
-                <span className="text-sm text-white/80">{c.en}</span>
+                <span className="text-ink/30">—</span>
+                <span className="text-sm text-ink/80">{c.en}</span>
                 <span className="text-sm text-accent/80 italic">({c.pron})</span>
                 <SpeakButton text={c.ar} label={`Listen: ${c.ar}`} className="ms-auto" />
               </div>
-              <p className="text-sm text-white/75 leading-relaxed">{isAr ? c.descAr : c.descEn}</p>
+              <p className="text-sm text-ink/75 leading-relaxed">{isAr ? c.descAr : c.descEn}</p>
             </div>
           </div>
         ))}
       </div>
 
       <section className="mb-10">
-        <h2 className="text-xl font-semibold text-white mb-2">
+        <h2 className="text-xl font-semibold text-ink mb-2">
           {isAr ? "الألوان في الطبيعة" : "Colors in Nature"}
         </h2>
-        <p className="text-base text-white/80 leading-relaxed mb-4">
+        <p className="text-base text-ink/80 leading-relaxed mb-4">
           {isAr
             ? "أسهل طريقة لتثبيت لون في ذهن الطفل هي ربطه بشيء يراه كل يوم. اربط كل لون بمثال من الطبيعة، وكرّره عند الخروج للنزهة."
             : "The easiest way to fix a color in a child's mind is to tie it to something they see every day. Link each color to a nature example, and repeat it on your walks."}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {natureExamples.map((ex) => (
-            <div key={ex.en} className="rounded-xl border border-white/8 bg-white/5 p-3 flex items-center gap-3">
+            <div key={ex.en} className="rounded-xl border border-ink/10 bg-white/5 p-3 flex items-center gap-3">
               <span className="text-2xl shrink-0">{ex.emoji}</span>
-              <span className="text-sm text-white/80 leading-relaxed">{isAr ? ex.ar : ex.en}</span>
+              <span className="text-sm text-ink/80 leading-relaxed">{isAr ? ex.ar : ex.en}</span>
             </div>
           ))}
         </div>
       </section>
 
       <section className="mb-10">
-        <h2 className="text-xl font-semibold text-white mb-2">
+        <h2 className="text-xl font-semibold text-ink mb-2">
           {isAr ? "المذكّر والمؤنّث — شرح بسيط للوالدين" : "Masculine & Feminine — Simply Explained for Parents"}
         </h2>
-        <div className="text-base text-white/80 leading-relaxed space-y-3">
+        <div className="text-base text-ink/80 leading-relaxed space-y-3">
           <p>
             {isAr
               ? "في العربية لكل لون أساسي شكلان: واحد للمذكّر وواحد للمؤنّث. فنقول \"قلم أحمر\" لأن القلم مذكّر، ونقول \"سيارة حمراء\" لأن السيارة مؤنّثة. اللون نفسه، لكن النهاية تتغيّر: أحمر تصبح حمراء، وأزرق تصبح زرقاء، وأخضر تصبح خضراء، وأصفر تصبح صفراء."
@@ -183,25 +183,25 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
       </section>
 
       <section className="mb-8">
-        <h2 className="text-xl font-semibold text-white mb-3">
+        <h2 className="text-xl font-semibold text-ink mb-3">
           {isAr ? "أنشطة ممتعة لتعلّم الألوان" : "Fun Activities to Learn Colors"}
         </h2>
-        <div className="space-y-3 text-base text-white/80 leading-relaxed">
-          <div className="rounded-xl border border-white/8 bg-white/5 p-4">
-            <h3 className="font-semibold text-white mb-1">{isAr ? "🎨 لعبة \"أنا أرى\"" : "🎨 'I Spy' Game"}</h3>
-            <p className="text-sm text-white/75">{isAr ? "قل \"أنا أرى شيئاً أحمر!\" ودع طفلك يبحث عن أشياء حمراء في الغرفة. ثم بدّلا الأدوار." : "Say \"I spy something ahmar (red)!\" and let your child find red objects in the room. Then swap roles."}</p>
+        <div className="space-y-3 text-base text-ink/80 leading-relaxed">
+          <div className="rounded-xl border border-ink/10 bg-white/5 p-4">
+            <h3 className="font-semibold text-ink mb-1">{isAr ? "🎨 لعبة \"أنا أرى\"" : "🎨 'I Spy' Game"}</h3>
+            <p className="text-sm text-ink/75">{isAr ? "قل \"أنا أرى شيئاً أحمر!\" ودع طفلك يبحث عن أشياء حمراء في الغرفة. ثم بدّلا الأدوار." : "Say \"I spy something ahmar (red)!\" and let your child find red objects in the room. Then swap roles."}</p>
           </div>
-          <div className="rounded-xl border border-white/8 bg-white/5 p-4">
-            <h3 className="font-semibold text-white mb-1">{isAr ? "🔍 رحلة البحث عن الألوان" : "🔍 Color Hunt"}</h3>
-            <p className="text-sm text-white/75">{isAr ? "اختر لوناً واحداً لليوم، مثلاً الأزرق، وابحثا عنه معاً طوال اليوم: كوب أزرق، قميص أزرق، سماء زرقاء. سمِّ كل شيء بالعربية عند رؤيته." : "Pick one color for the day, say blue, and hunt for it together all day: a blue cup, a blue shirt, a blue sky. Name each one in Arabic as you spot it."}</p>
+          <div className="rounded-xl border border-ink/10 bg-white/5 p-4">
+            <h3 className="font-semibold text-ink mb-1">{isAr ? "🔍 رحلة البحث عن الألوان" : "🔍 Color Hunt"}</h3>
+            <p className="text-sm text-ink/75">{isAr ? "اختر لوناً واحداً لليوم، مثلاً الأزرق، وابحثا عنه معاً طوال اليوم: كوب أزرق، قميص أزرق، سماء زرقاء. سمِّ كل شيء بالعربية عند رؤيته." : "Pick one color for the day, say blue, and hunt for it together all day: a blue cup, a blue shirt, a blue sky. Name each one in Arabic as you spot it."}</p>
           </div>
-          <div className="rounded-xl border border-white/8 bg-white/5 p-4">
-            <h3 className="font-semibold text-white mb-1">{isAr ? "🖍️ التلوين بالعربية" : "🖍️ Coloring in Arabic"}</h3>
-            <p className="text-sm text-white/75">{isAr ? "أثناء التلوين، سمِّ كل لون بالعربية: \"هيا نستخدم الأزرق للسماء!\"" : "While coloring, name each color in Arabic: \"Let's use azraq for the sky!\""}</p>
+          <div className="rounded-xl border border-ink/10 bg-white/5 p-4">
+            <h3 className="font-semibold text-ink mb-1">{isAr ? "🖍️ التلوين بالعربية" : "🖍️ Coloring in Arabic"}</h3>
+            <p className="text-sm text-ink/75">{isAr ? "أثناء التلوين، سمِّ كل لون بالعربية: \"هيا نستخدم الأزرق للسماء!\"" : "While coloring, name each color in Arabic: \"Let's use azraq for the sky!\""}</p>
           </div>
-          <div className="rounded-xl border border-white/8 bg-white/5 p-4">
-            <h3 className="font-semibold text-white mb-1">{isAr ? "🍎 ألوان الطعام" : "🍎 Food Colors"}</h3>
-            <p className="text-sm text-white/75">{isAr ? "أثناء الوجبات، تحدّثا عن ألوان الطعام بالعربية: \"الموز أصفر! التفاحة حمراء!\"" : "During meals, talk about food colors in Arabic: \"The banana is asfar! The apple is ahmar!\""}</p>
+          <div className="rounded-xl border border-ink/10 bg-white/5 p-4">
+            <h3 className="font-semibold text-ink mb-1">{isAr ? "🍎 ألوان الطعام" : "🍎 Food Colors"}</h3>
+            <p className="text-sm text-ink/75">{isAr ? "أثناء الوجبات، تحدّثا عن ألوان الطعام بالعربية: \"الموز أصفر! التفاحة حمراء!\"" : "During meals, talk about food colors in Arabic: \"The banana is asfar! The apple is ahmar!\""}</p>
           </div>
         </div>
       </section>
@@ -216,7 +216,7 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
       </div>
 
       <div className="text-center py-6">
-        <Link href={`/${locale}/play`} className="inline-flex items-center gap-2 rounded-2xl bg-accent px-6 py-3 text-base font-semibold text-[#050816] transition hover:scale-105">
+        <Link href={`/${locale}/play`} className="btn-chunky inline-flex items-center gap-2 px-6 py-3 text-base transition hover:scale-105">
           🚀 {isAr ? "العب في عرب فنجرز" : "Play ArabFingers"}
         </Link>
       </div>

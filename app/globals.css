@@ -7,6 +7,23 @@
   --panel-border: rgba(255, 255, 255, 0.16);
   --muted: rgba(226, 229, 244, 0.72);
   --accent: #9fe1cb;
+
+  /* Warm "parchment & ink" palette — used by the redesigned homepage (.theme-warm). */
+  --ink: #2a1d4e;
+  --canvas: #fff5ef;
+  --card: #ffffff;
+  --saffron: #ffb22e;
+  --saffron-ink: #b06a00;
+  --saffron-soft: #ffe9c7;
+  --qalam: #10a39a;
+  --qalam-soft: #d4f3ef;
+  --rose: #f4607d;
+  --rose-soft: #ffdfe7;
+  /* brighter candy accents (Bloomly energy) */
+  --violet: #8b3df5;
+  --violet-soft: #ede0ff;
+  --bubblegum: #ff5da2;
+  --bubblegum-soft: #ffe0ee;
 }
 
 @theme inline {
@@ -16,7 +33,25 @@
   --color-panel-border: var(--panel-border);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
+
+  --color-ink: var(--ink);
+  --color-canvas: var(--canvas);
+  --color-card: var(--card);
+  --color-saffron: var(--saffron);
+  --color-saffron-ink: var(--saffron-ink);
+  --color-saffron-soft: var(--saffron-soft);
+  --color-qalam: var(--qalam);
+  --color-qalam-soft: var(--qalam-soft);
+  --color-rose: var(--rose);
+  --color-rose-soft: var(--rose-soft);
+  --color-violet: var(--violet);
+  --color-violet-soft: var(--violet-soft);
+  --color-bubblegum: var(--bubblegum);
+  --color-bubblegum-soft: var(--bubblegum-soft);
+
   --font-sans: var(--font-fredoka);
+  --font-display: var(--font-baloo);
+  --font-body: var(--font-nunito);
   --font-arabic: var(--font-ibm-plex-arabic);
   --font-arabic-display: var(--font-noto-naskh);
 }
@@ -145,4 +180,132 @@ textarea {
 }
 .animate-float-slowest {
   animation: float-slow 20s ease-in-out infinite;
+}
+
+/* ============================================================
+   Warm "parchment & ink" theme — scoped to the redesigned homepage.
+   Self-contained so the dark play/learn/blog pages stay untouched.
+   ============================================================ */
+.theme-warm {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-body), var(--font-nunito), sans-serif;
+  -webkit-user-select: text;
+  user-select: text;
+}
+.theme-warm :where(h1, h2, h3, .font-display) {
+  font-family: var(--font-display), var(--font-baloo), sans-serif;
+}
+.theme-warm[dir="rtl"],
+.theme-warm[dir="rtl"] :where(h1, h2, h3) {
+  font-family: var(--font-arabic), var(--font-ibm-plex-arabic), sans-serif;
+}
+.theme-warm ::selection {
+  background: var(--saffron-soft);
+  color: var(--ink);
+}
+
+/* PageLayout content pages opt in with .site-warm. The accent override flips every
+   `*-accent` utility from the old mint to teal automatically; the rest of each page is
+   converted to ink-on-parchment + cardstock per-element. */
+.site-warm { --accent: var(--qalam); }
+
+/* Chunky "cardstock" primary button — thick ink edge + hard stacked shadow that
+   presses down on :active. Direction-neutral (downward offset), so RTL is fine. */
+.btn-chunky {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 2.5px solid var(--ink);
+  background: var(--saffron);
+  color: var(--ink);
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  padding: 0.85rem 1.6rem;
+  box-shadow: 0 6px 0 0 var(--ink);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.2s ease;
+}
+.btn-chunky:hover { background: #ffc04d; }
+.btn-chunky:active { transform: translateY(6px); box-shadow: 0 0 0 0 var(--ink); }
+
+.btn-chunky-ghost {
+  background: var(--card);
+  color: var(--ink);
+}
+.btn-chunky-ghost:hover { background: var(--saffron-soft); }
+
+/* White cardstock surface: thick ink border + offset hard accent shadow. */
+.card-stock {
+  background: var(--card);
+  border: 2.5px solid var(--ink);
+  border-radius: 1.75rem;
+  box-shadow: 6px 6px 0 0 var(--ink);
+}
+.card-stock-saffron { box-shadow: 6px 6px 0 0 var(--saffron); }
+.card-stock-qalam { box-shadow: 6px 6px 0 0 var(--qalam); }
+.card-stock-rose { box-shadow: 6px 6px 0 0 var(--rose); }
+.card-stock-violet { box-shadow: 6px 6px 0 0 var(--violet); }
+.card-stock-bubblegum { box-shadow: 6px 6px 0 0 var(--bubblegum); }
+.theme-warm[dir="rtl"] .card-stock { box-shadow: -6px 6px 0 0 var(--ink); }
+.theme-warm[dir="rtl"] .card-stock-saffron { box-shadow: -6px 6px 0 0 var(--saffron); }
+.theme-warm[dir="rtl"] .card-stock-qalam { box-shadow: -6px 6px 0 0 var(--qalam); }
+.theme-warm[dir="rtl"] .card-stock-rose { box-shadow: -6px 6px 0 0 var(--rose); }
+.theme-warm[dir="rtl"] .card-stock-violet { box-shadow: -6px 6px 0 0 var(--violet); }
+.theme-warm[dir="rtl"] .card-stock-bubblegum { box-shadow: -6px 6px 0 0 var(--bubblegum); }
+
+/* Bright gradient primary button (Bloomly-style candy pop). */
+.btn-pop {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 9999px;
+  border: 2.5px solid var(--ink);
+  background: linear-gradient(135deg, var(--bubblegum), var(--violet));
+  color: #fff;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 800;
+  padding: 0.85rem 1.6rem;
+  box-shadow: 0 6px 0 0 var(--ink);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.2s ease;
+}
+.btn-pop:hover { filter: saturate(1.15) brightness(1.05); }
+.btn-pop:active { transform: translateY(6px); box-shadow: 0 0 0 0 var(--ink); }
+
+/* Eyebrow "sticker" pill. */
+.sticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border-radius: 9999px;
+  border: 2px solid var(--ink);
+  background: var(--card);
+  padding: 0.3rem 0.85rem;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 700;
+  font-size: 0.8rem;
+  box-shadow: 3px 3px 0 0 var(--ink);
+}
+
+/* The "أ that breathes" — gentle idle motion for the signature glyph fallback. */
+@keyframes breathe {
+  0%, 100% { transform: translateY(0) rotate(-1.5deg); }
+  50% { transform: translateY(-10px) rotate(1.5deg); }
+}
+.breathe { animation: breathe 6s ease-in-out infinite; }
+
+/* Mascot motion. */
+@keyframes mascot-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@keyframes mascot-sway { 0%, 100% { transform: rotate(-7deg); } 50% { transform: rotate(7deg); } }
+@keyframes mascot-spin { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+.mascot-bob { animation: mascot-bob 5s ease-in-out infinite; }
+.mascot-sway { animation: mascot-sway 6s ease-in-out infinite; transform-origin: 50% 90%; }
+.mascot-spin { animation: mascot-spin 26s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .breathe, .mascot-bob, .mascot-sway, .mascot-spin,
+  .animate-float-slow, .animate-float-medium,
+  .animate-float-fast, .animate-float-slowest { animation: none !important; }
 }
