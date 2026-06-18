@@ -98,7 +98,7 @@ function isMilestone(count: number): boolean {
 export const useAppStore = create<AppState>((set) => ({
   currentKey: null,
   keyCount: 0,
-  theme: "space",
+  theme: "daylight",
   locale: "en",
   soundEnabled: true,
   reduceMotion: false,
@@ -106,7 +106,7 @@ export const useAppStore = create<AppState>((set) => ({
   displayMode: "both",
   parentPanelOpen: false,
   keyboardLayout: "arabic-standard",
-  ttsSpeed: 0.9,
+  ttsSpeed: 1,
   parentPin: null,
   sessionSummaryOpen: false,
   milestone: null,

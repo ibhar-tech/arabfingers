@@ -53,6 +53,7 @@
   --font-display: var(--font-baloo);
   --font-body: var(--font-nunito);
   --font-arabic: var(--font-ibm-plex-arabic);
+  --font-arabic-rounded: var(--font-baloo-arabic);
   --font-arabic-display: var(--font-noto-naskh);
 }
 
@@ -196,9 +197,13 @@ textarea {
 .theme-warm :where(h1, h2, h3, .font-display) {
   font-family: var(--font-display), var(--font-baloo), sans-serif;
 }
-.theme-warm[dir="rtl"],
-.theme-warm[dir="rtl"] :where(h1, h2, h3) {
+.theme-warm[dir="rtl"] {
   font-family: var(--font-arabic), var(--font-ibm-plex-arabic), sans-serif;
+}
+/* Rounded, bubbly Baloo Bhaijaan for Arabic headings/display — friendlier for kids
+   than Plex; body paragraphs stay on the highly-legible Plex Arabic above. */
+.theme-warm[dir="rtl"] :where(h1, h2, h3, .font-display) {
+  font-family: var(--font-arabic-rounded), var(--font-ibm-plex-arabic), sans-serif;
 }
 .theme-warm ::selection {
   background: var(--saffron-soft);

@@ -21,7 +21,9 @@ function getLetterSound(soundId: string, lang: "ar" | "en"): Howl {
 
 let debounceTimer: ReturnType<typeof setTimeout> | null = null;
 
-export function playLetterSound(soundId: string, rate: number = 0.9) {
+// Default rate 1.0 = the recording's natural pitch; slowing it (0.9) pitch-shifts
+// the audio and makes it sound more robotic.
+export function playLetterSound(soundId: string, rate: number = 1.0) {
   // Stop any currently playing letter sounds
   for (const howl of cache.values()) {
     howl.stop();

@@ -1,4 +1,5 @@
 export type ThemeName =
+  | "daylight"
   | "space"
   | "desert"
   | "jungle"
@@ -10,9 +11,21 @@ type ThemeConfig = {
   emojis: string[];
   background: string;
   veil: string;
+  /** Light backgrounds need dark (ink) letters + cards instead of white. */
+  isLight?: boolean;
 };
 
 export const themes: Record<ThemeName, ThemeConfig> = {
+  // Bright, on-brand default — warm parchment sky so the candy 3D shapes + letters pop.
+  daylight: {
+    palette: ["#8b3df5", "#10a39a", "#f4607d", "#ffb22e", "#ff5da2"],
+    emojis: ["🎈", "⭐", "🌈", "🍭", "✨"],
+    background:
+      "radial-gradient(circle at 18% 18%, rgba(255,178,46,0.35), transparent 34%), radial-gradient(circle at 82% 14%, rgba(139,61,245,0.22), transparent 32%), radial-gradient(circle at 50% 92%, rgba(16,163,154,0.22), transparent 42%), linear-gradient(180deg, #fff7ec 0%, #ffe7d4 52%, #ffd9c4 100%)",
+    veil:
+      "linear-gradient(180deg, rgba(255,247,236,0) 0%, rgba(255,237,214,0.12) 60%, rgba(255,217,196,0.28) 100%)",
+    isLight: true,
+  },
   space: {
     palette: ["#7F77DD", "#534AB7", "#9FE1CB", "#1D9E75", "#FAC775"],
     emojis: ["🚀", "⭐", "🌟", "🪐", "✨"],

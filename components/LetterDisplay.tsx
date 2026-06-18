@@ -14,6 +14,9 @@ export function LetterDisplay() {
   const locale = useLocale();
   const accent = themes[theme].palette[2];
   const showBoth = displayMode === "both";
+  const isLight = themes[theme].isLight ?? false;
+  // On light (daylight) themes the big letter + UI text must be ink, not white.
+  const onSurface = isLight ? "#2a1d4e" : "#ffffff";
 
   return (
     <>
@@ -32,11 +35,13 @@ export function LetterDisplay() {
                 y: { type: "spring", stiffness: 240, damping: 14 },
               }}
               style={{
-                boxShadow: reduceMotion
-                  ? "0 20px 60px rgba(0,0,0,0.4)"
-                  : `0 0 60px 15px ${accent}30, 0 30px 100px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.25)`,
-                border: `3.5px solid ${accent}60`,
-                background: "rgba(255, 255, 255, 0.16)",
+                boxShadow: isLight
+                  ? `0 0 50px 10px ${accent}25, 0 18px 50px rgba(42,29,78,0.18)`
+                  : reduceMotion
+                    ? "0 20px 60px rgba(0,0,0,0.4)"
+                    : `0 0 60px 15px ${accent}30, 0 30px 100px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.25)`,
+                border: isLight ? `3.5px solid ${accent}` : `3.5px solid ${accent}60`,
+                background: isLight ? "rgba(255, 255, 255, 0.85)" : "rgba(255, 255, 255, 0.16)",
               }}
               className="relative flex items-end justify-center gap-4 sm:gap-6 rounded-3xl px-8 py-8 sm:px-12 sm:py-10 backdrop-blur-lg overflow-hidden"
             >
@@ -48,13 +53,14 @@ export function LetterDisplay() {
                 <>
                   {displayMode !== "english" ? (
                     <div
-                      className="leading-none text-white font-bold"
+                      className="leading-none font-bold"
                       style={{
+                        color: onSurface,
                         fontFamily: "var(--font-noto-naskh), var(--font-ibm-plex-arabic), sans-serif",
                         fontSize: showBoth
                           ? "clamp(4.5rem, 20vw, 11rem)"
                           : "clamp(5.5rem, 26vw, 15rem)",
-                        textShadow: reduceMotion ? "none" : `0 0 45px ${accent}50, 0 10px 20px rgba(0,0,0,0.35)`,
+                        textShadow: reduceMotion || isLight ? "none" : `0 0 45px ${accent}50, 0 10px 20px rgba(0,0,0,0.35)`,
                       }}
                     >
                       {currentKey.letter.ar}
@@ -84,10 +90,10 @@ export function LetterDisplay() {
                     {currentKey.emoji}
                   </div>
                   <div className="mt-3 space-y-0.5 text-center">
-                    <div className="text-xl sm:text-3xl font-semibold text-white">
+                    <div className="text-xl sm:text-3xl font-semibold" style={{ color: onSurface }}>
                       {t("freePlayTitle")}
                     </div>
-                    <div className="text-xs sm:text-sm text-white/65">
+                    <div className="text-xs sm:text-sm" style={{ color: onSurface, opacity: 0.65 }}>
                       {t("freePlaySubtitle")}
                     </div>
                   </div>
@@ -100,7 +106,7 @@ export function LetterDisplay() {
               className="flex flex-col items-center gap-4 text-center"
             >
               <div className="text-6xl sm:text-8xl animate-bounce">🎹</div>
-              <div className="text-xl sm:text-2xl font-semibold text-white/80">
+              <div className="text-xl sm:text-2xl font-semibold" style={{ color: onSurface, opacity: 0.85 }}>
                 {t("startHint")}
               </div>
             </div>

@@ -63,6 +63,7 @@ function makeStar(): BufferGeometry {
 }
 
 const themeObjectCounts: Record<ThemeName, number> = {
+  daylight: 12,
   space: 13,
   desert: 10,
   jungle: 12,

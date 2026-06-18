@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fredoka, IBM_Plex_Sans_Arabic, Noto_Naskh_Arabic, Baloo_2, Nunito } from "next/font/google";
+import { Fredoka, IBM_Plex_Sans_Arabic, Noto_Naskh_Arabic, Baloo_2, Baloo_Bhaijaan_2, Nunito } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
@@ -14,6 +14,8 @@ import enMessages from "../../messages/en.json";
 // Display + body faces for the warm "parchment & ink" redesign. Fredoka/IBM Plex
 // Arabic/Noto Naskh stay as fallbacks and for the taught letterforms.
 const baloo = Baloo_2({ variable: "--font-baloo", subsets: ["latin"], weight: ["500", "600", "700", "800"] });
+// Rounded, bubbly Arabic display face for kids — the Arabic match to Baloo 2.
+const balooArabic = Baloo_Bhaijaan_2({ variable: "--font-baloo-arabic", subsets: ["arabic", "latin"], weight: ["500", "600", "700", "800"] });
 const nunito = Nunito({ variable: "--font-nunito", subsets: ["latin"], weight: ["400", "600", "700", "800"] });
 const fredoka = Fredoka({ variable: "--font-fredoka", subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 const ibmPlexArabic = IBM_Plex_Sans_Arabic({
@@ -60,7 +62,7 @@ export async function generateMetadata({ params }: LocaleLayoutProps): Promise<M
   return localeMetadata[locale];
 }
 
-const fontVars = `${baloo.variable} ${nunito.variable} ${fredoka.variable} ${ibmPlexArabic.variable} ${notoNaskhArabic.variable}`;
+const fontVars = `${baloo.variable} ${balooArabic.variable} ${nunito.variable} ${fredoka.variable} ${ibmPlexArabic.variable} ${notoNaskhArabic.variable}`;
 
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
   const { locale } = await params;
