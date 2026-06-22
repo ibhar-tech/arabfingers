@@ -2,8 +2,27 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
 import { ArticleMeta } from "@/components/ArticleMeta";
+import { FaqSection } from "@/components/FaqSection";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
+
+// Targets real GSC queries: "easy/basic/baby arabic words for kids",
+// "arabic words for kids to learn", "my first arabic words".
+const wordsFaqEn = [
+  { q: "What are some easy Arabic words for kids to learn first?", a: "Start with words your child hears every day: mama (mother), baba (dad), maa' (water), khubz (bread), qitta (cat), kalb (dog), and shukran (thank you). Short, useful words that come up in daily routines stick fastest." },
+  { q: "What are good first Arabic words for a baby or toddler?", a: "Babies usually say mama and baba first. Add simple naming words next — qitta (cat), kalb (dog), tuffaha (apple), and body parts like yad (hand) and ayn (eye). Keep to one- and two-syllable words at this age." },
+  { q: "How many Arabic words should a young child learn?", a: "There is no quota. Aim for a handful of new words a week, tied to real moments — naming food at meals, animals in a book, body parts at bath time. Repetition in context matters far more than the total count." },
+  { q: "How do you say thank you and please in Arabic for kids?", a: "Thank you is shukran (شكراً) and please is min fadlak (من فضلك) to a boy or min fadlik (من فضلكِ) to a girl. Polite words are some of the most useful first words because children use them many times a day." },
+  { q: "What is the best way to teach a toddler Arabic words?", a: "Name things in Arabic during everyday routines, repeat the word warmly, and don't correct harshly — just gently repeat the correct word. Books, songs, and play reinforce it. Consistency beats long lessons." },
+];
+
+const wordsFaqAr = [
+  { q: "ما هي أسهل الكلمات العربية التي يتعلّمها الأطفال أولاً؟", a: "ابدأ بالكلمات التي يسمعها طفلك يومياً: ماما، بابا، ماء، خبز، قطة، كلب، شكراً. الكلمات القصيرة المفيدة التي تتكرّر في الروتين اليومي تثبت أسرع." },
+  { q: "ما هي أوّل الكلمات العربية المناسبة للرضيع أو الطفل الصغير؟", a: "عادةً ينطق الأطفال «ماما» و«بابا» أولاً، ثم أضف كلمات التسمية البسيطة: قطة، كلب، تفاحة، وأعضاء الجسم مثل يد وعين. التزم بالكلمات ذات المقطع أو المقطعين في هذا العمر." },
+  { q: "كم كلمة عربية ينبغي أن يتعلّمها الطفل الصغير؟", a: "لا يوجد عدد محدّد. اهدف إلى بضع كلمات جديدة أسبوعياً مرتبطة بمواقف حقيقية — تسمية الطعام، والحيوانات في القصص، وأعضاء الجسم. التكرار في سياق أهمّ بكثير من العدد." },
+  { q: "كيف نقول «شكراً» و«من فضلك» بالعربية للأطفال؟", a: "شكراً للتعبير عن الامتنان، ومن فضلك (للولد) أو من فضلكِ (للبنت) للطلب بأدب. كلمات الأدب من أكثر الكلمات فائدة لأن الطفل يستعملها مرّات كثيرة في اليوم." },
+  { q: "ما أفضل طريقة لتعليم الطفل الصغير الكلمات العربية؟", a: "سمِّ الأشياء بالعربية أثناء الروتين اليومي، وكرّر الكلمة بحنان، ولا تصحّح بقسوة بل أعد الكلمة الصحيحة بلطف. القصص والأغاني واللعب تعزّز ذلك، والاستمرارية أهمّ من الدروس الطويلة." },
+];
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -19,8 +38,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     modifiedTime: "2026-06-12",
     keywords: [
       "first arabic words for kids", "أول كلمات عربية للأطفال",
+      "easy arabic words for kids", "basic arabic words for kids",
+      "baby arabic words", "arabic words for kids to learn",
       "arabic vocabulary toddlers", "مفردات عربية للأطفال الصغار",
-      "teach arabic words", "تعليم كلمات عربية",
+      "teach arabic words", "تعليم كلمات عربية", "كلمات عربية سهلة للأطفال",
     ],
   });
 }
@@ -205,6 +226,12 @@ export default async function FirstArabicWordsPage({ params }: { params: Promise
           <p>• {isAr ? "لا تصحّح بقسوة — كرّر الكلمة الصحيحة بلطف" : "Don't correct harshly — gently repeat the correct word"}</p>
         </div>
       </section>
+
+      <FaqSection
+        locale={locale}
+        title={isAr ? "أسئلة شائعة عن أول الكلمات العربية" : "Frequently Asked Questions About First Arabic Words"}
+        items={isAr ? wordsFaqAr : wordsFaqEn}
+      />
 
       <div className="flex flex-wrap gap-3 mb-8">
         <Link href={`/${locale}/learn/arabic-colors`} className="text-sm text-accent underline">

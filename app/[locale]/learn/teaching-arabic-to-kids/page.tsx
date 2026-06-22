@@ -2,8 +2,28 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
 import { ArticleMeta } from "@/components/ArticleMeta";
+import { FaqSection } from "@/components/FaqSection";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
+
+// Targets parent-intent GSC queries: "how to learn arabic for kids",
+// "how to structure arabic lessons for kids", "teaching arabic to a child",
+// "arabic tips for toddlers", "how old is the arabic language".
+const teachFaqEn = [
+  { q: "How do I start teaching my child Arabic at home?", a: "Start with sounds, not writing. Speak simple Arabic words during daily routines, play letter games, and read short books together. Move from sounds to letters to words to short phrases, a little every day. You do not need to be fluent yourself to give your child a strong start." },
+  { q: "How should I structure Arabic lessons for kids?", a: "Keep each session to about 10 minutes and follow a simple weekly rhythm: a couple of days on letter sounds, a couple on new words, one on a song or story, and one on review. Short, frequent, playful sessions beat long lessons. End while your child is still enjoying it." },
+  { q: "What is the best age to start teaching a child Arabic?", a: "The earlier the exposure the better, even from infancy through speech and songs. Between 2 and 6, children absorb sounds and letter shapes naturally through play. Older children can start too; they just rely a little more on structured practice." },
+  { q: "How can I teach Arabic if I don't speak it well myself?", a: "Learn alongside your child. Use audio so they hear correct native pronunciation, focus on a handful of words at a time, and keep it playful. Tools like the Arab Fingers letter game and printable worksheets carry the pronunciation so you can simply join in and encourage." },
+  { q: "How much Arabic practice does a young child need each day?", a: "Around 10 minutes a day, most days, is plenty for young children — far more effective than an occasional long session. Consistency and warmth matter more than duration. Weave Arabic into things you already do: meals, bath time, the drive home." },
+];
+
+const teachFaqAr = [
+  { q: "كيف أبدأ بتعليم طفلي العربية في البيت؟", a: "ابدأ بالأصوات لا بالكتابة. تحدّث بكلمات عربية بسيطة أثناء الروتين اليومي، والعب ألعاب الحروف، واقرآ كتباً قصيرة معاً. انتقل من الأصوات إلى الحروف إلى الكلمات إلى الجمل القصيرة، قليلاً كل يوم. ولست بحاجة لأن تكون متقناً بنفسك لتمنح طفلك بداية قوية." },
+  { q: "كيف أنظّم دروس العربية للأطفال؟", a: "اجعل كل جلسة نحو ١٠ دقائق، واتبع إيقاعاً أسبوعياً بسيطاً: يومان لأصوات الحروف، ويومان لكلمات جديدة، ويوم لأغنية أو قصة، ويوم للمراجعة. الجلسات القصيرة المتكرّرة الممتعة أفضل من الدروس الطويلة، وأنهِ الجلسة والطفل لا يزال مستمتعاً." },
+  { q: "ما أفضل عمر لبدء تعليم الطفل العربية؟", a: "كلما كان التعرّض أبكر كان أفضل، حتى من الرضاعة عبر الكلام والأغاني. وبين سنتين وستّ سنوات يلتقط الأطفال الأصوات وأشكال الحروف تلقائياً باللعب. والأكبر يمكنهم البدء أيضاً، لكنّهم يعتمدون قليلاً أكثر على التدريب المنظّم." },
+  { q: "كيف أعلّم العربية إن لم أكن أتقنها جيداً؟", a: "تعلّم مع طفلك. استخدم الصوت ليسمع النطق الصحيح من ناطق أصلي، وركّز على بضع كلمات في كل مرة، وحافظ على المرح. أدوات مثل لعبة عرب فنجرز وأوراق العمل تحمل النطق عنك، فيكفي أن تشارك وتشجّع." },
+  { q: "كم يحتاج الطفل الصغير من تدريب العربية يومياً؟", a: "نحو ١٠ دقائق يومياً في معظم الأيام تكفي تماماً للصغار، وهي أنجع بكثير من جلسة طويلة متفرّقة. الاستمرارية والدفء أهمّ من المدّة. ادمج العربية فيما تفعلونه أصلاً: الوجبات، ووقت الحمّام، والطريق إلى البيت." },
+];
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -161,6 +181,12 @@ export default async function TeachingArabicPage({ params }: { params: Promise<{
           </div>
         </div>
       </section>
+
+      <FaqSection
+        locale={locale}
+        title={isAr ? "أسئلة شائعة عن تعليم العربية للأطفال" : "Frequently Asked Questions About Teaching Arabic to Kids"}
+        items={isAr ? teachFaqAr : teachFaqEn}
+      />
 
       <div className="text-center py-8">
         <Link href={`/${locale}/play`} className="btn-chunky">

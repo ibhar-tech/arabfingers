@@ -3,10 +3,36 @@ import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
 import { ArticleMeta } from "@/components/ArticleMeta";
 import { InteractiveAlphabet } from "@/components/InteractiveAlphabet";
+import { FaqSection } from "@/components/FaqSection";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
 import { letterGuide } from "@/lib/letterGuide";
 import { LetterCard } from "@/components/illustrations/LetterCard";
+
+// Targets the large GSC question cluster: "how many letters in the arabic
+// alphabet" (15+ variants), "first letter of arabic alphabet", "what is the
+// arabic alphabet called", "does arabic have an alphabet", RTL questions.
+const alphabetFaqEn = [
+  { q: "How many letters are in the Arabic alphabet?", a: "The Arabic alphabet has 28 letters. They are written from right to left, and each letter represents a consonant or a long vowel. Short vowels are shown with small marks above or below the letters." },
+  { q: "What is the first letter of the Arabic alphabet?", a: "The first letter is Alef (ا). It is a tall, single vertical stroke and is usually the first letter children learn because of its simple shape." },
+  { q: "Is the Arabic alphabet written right to left?", a: "Yes. Arabic is written and read from right to left, the opposite of English. Numbers, however, are written left to right." },
+  { q: "Do Arabic letters change shape?", a: "Yes. Most Arabic letters have up to four forms depending on their position in a word — isolated, beginning, middle, and end. Children first learn the isolated form, which is the shape shown in this guide." },
+  { q: "What is the Arabic alphabet called?", a: "It is called the Arabic abjad (أبجدية). The word abjad comes from the first few letters, similar to how alphabet comes from alpha and beta." },
+  { q: "How is the Arabic alphabet different from the English alphabet?", a: "Arabic has 28 letters to English's 26, is written right to left, has no capital and lowercase versions, and joins letters in a cursive style where shapes change by position. Several Arabic sounds also have no English equivalent." },
+  { q: "What is the best age to start teaching a child the Arabic alphabet?", a: "Exposure can start as early as age 2 to 3 through sounds, songs, and play. Formal letter recognition usually clicks between 3 and 6. The key at any age is short, playful, repeated sessions rather than long drills." },
+  { q: "How long does it take a child to learn the Arabic alphabet?", a: "With a few minutes of playful practice most days, many children recognize all 28 letters within a few weeks to a few months. Writing them neatly takes longer and comes after recognition." },
+];
+
+const alphabetFaqAr = [
+  { q: "كم عدد حروف الأبجدية العربية؟", a: "تتكوّن الأبجدية العربية من ٢٨ حرفاً، تُكتب من اليمين إلى اليسار، ويمثّل كل حرف صوتاً ساكناً أو حرف مدّ. أمّا الحركات القصيرة فتُكتب علامات صغيرة فوق الحرف أو تحته." },
+  { q: "ما هو أول حرف في الأبجدية العربية؟", a: "أول حرف هو الألف (ا)، وهو خطّ عمودي بسيط، وعادةً يكون أول حرف يتعلّمه الأطفال لسهولة شكله." },
+  { q: "هل تُكتب الأبجدية العربية من اليمين إلى اليسار؟", a: "نعم، تُكتب العربية وتُقرأ من اليمين إلى اليسار عكس الإنجليزية، لكنّ الأرقام تُكتب من اليسار إلى اليمين." },
+  { q: "هل تتغيّر أشكال الحروف العربية؟", a: "نعم، لمعظم الحروف حتى أربعة أشكال حسب موقعها في الكلمة: منفصل، وبداية، ووسط، ونهاية. ويتعلّم الأطفال الشكل المنفصل أولاً، وهو المعروض في هذا الدليل." },
+  { q: "ماذا تُسمّى الأبجدية العربية؟", a: "تُسمّى الأبجدية العربية، وكلمة «أبجد» مأخوذة من أوائل الحروف، تماماً كما جاءت كلمة alphabet من ألفا وبيتا." },
+  { q: "ما الفرق بين الأبجدية العربية والإنجليزية؟", a: "العربية ٢٨ حرفاً والإنجليزية ٢٦، وتُكتب من اليمين إلى اليسار، وليس فيها حروف كبيرة وصغيرة، وتتّصل حروفها وتتغيّر أشكالها حسب الموقع، وفيها أصوات لا مقابل لها في الإنجليزية." },
+  { q: "ما أفضل عمر لبدء تعليم الطفل الحروف العربية؟", a: "يمكن أن يبدأ التعرّض من عمر سنتين أو ثلاث عبر الأصوات والأغاني واللعب، ويتمكّن الطفل عادةً من تمييز الحروف بين ٣ و٦ سنوات. والأهمّ في كل عمر هو الجلسات القصيرة الممتعة المتكرّرة." },
+  { q: "كم يستغرق الطفل لتعلّم الأبجدية العربية؟", a: "مع دقائق من التدريب الممتع في معظم الأيام، يميّز كثير من الأطفال الحروف الـ٢٨ خلال أسابيع إلى أشهر قليلة، أمّا كتابتها بإتقان فتأتي بعد التمييز وتحتاج وقتاً أطول." },
+];
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -156,6 +182,8 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {[
             { href: "/learn/arabic-letter-forms", en: "How Arabic letters change shape", ar: "كيف تتغير أشكال الحروف" },
+            { href: "/learn/first-arabic-words", en: "First Arabic words for kids", ar: "أول كلمات عربية للأطفال" },
+            { href: "/learn/arabic-colors", en: "Colors in Arabic for kids", ar: "الألوان بالعربية للأطفال" },
             { href: "/learn/arabic-numbers", en: "Arabic numbers (1–10)", ar: "الأرقام العربية (١–١٠)" },
             { href: "/learn/arabic-vs-english", en: "Arabic vs English alphabet", ar: "الأبجدية العربية مقابل الإنجليزية" },
             { href: "/learn/teaching-arabic-to-kids", en: "Teaching Arabic to kids", ar: "تعليم العربية للأطفال" },
@@ -166,6 +194,12 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
           ))}
         </div>
       </section>
+
+      <FaqSection
+        locale={locale}
+        title={isAr ? "أسئلة شائعة عن الأبجدية العربية" : "Frequently Asked Questions About the Arabic Alphabet"}
+        items={isAr ? alphabetFaqAr : alphabetFaqEn}
+      />
 
       <HowToSchema locale={locale} />
     </PageLayout>

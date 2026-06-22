@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
 import { ArticleMeta } from "@/components/ArticleMeta";
 import { SpeakButton } from "@/components/SpeakButton";
+import { FaqSection } from "@/components/FaqSection";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
 
@@ -39,6 +40,30 @@ const colors = [
   { ar: "بني", en: "Brown", pron: "Bunni", hex: "#92400E", descEn: "The color of chocolate, coffee, and soil — from بن (bunn) meaning \"coffee beans\".", descAr: "لون الشوكولاتة والقهوة والتراب، من كلمة \"بُنّ\" أي حبوب القهوة." },
   { ar: "رمادي", en: "Gray", pron: "Ramaadi", hex: "#6B7280", descEn: "The color of rain clouds and elephants — from رماد (ramaad) meaning \"ash\".", descAr: "لون غيوم المطر والفِيَلة، من كلمة \"رماد\"." },
   { ar: "ذهبي", en: "Gold", pron: "Dhahabi", hex: "#D97706", descEn: "The color of gold and treasure — from ذهب (dhahab) meaning \"gold\".", descAr: "لون الذهب والكنوز، من كلمة \"ذهب\"." },
+];
+
+// Targets real GSC question queries: "burtuqaali meaning" (pos 9.8),
+// "yellow/pink/brown/violet/teal in arabic", "colors in arabic for kids".
+const faqEn = [
+  { q: "What does burtuqaali (برتقالي) mean?", a: "Burtuqaali means orange in Arabic. It is named after the fruit — burtuqaal (برتقال) is the Arabic word for an orange, and the color borrows the same name, just like in English." },
+  { q: "How do you say the main colors in Arabic for kids?", a: "Red is ahmar, blue is azraq, green is akhdar, yellow is asfar, orange is burtuqaali, purple is banafsaji, pink is wardi, white is abyad, black is aswad, and brown is bunni." },
+  { q: "What is yellow in Arabic?", a: "Yellow in Arabic is asfar (أصفر) for masculine nouns and safraa (صفراء) for feminine nouns. It is the color of the sun, bananas, and desert sand." },
+  { q: "What is pink in Arabic?", a: "Pink in Arabic is wardi (وردي). It comes from the word ward (ورد) meaning rose, so wardi literally means rose-colored." },
+  { q: "What is purple (violet) in Arabic?", a: "Purple in Arabic is banafsaji (بنفسجي), named after the banafsaj (بنفسج) — the violet flower." },
+  { q: "What is brown in Arabic?", a: "Brown in Arabic is bunni (بني). It comes from bunn (بُنّ) meaning coffee beans." },
+  { q: "How many colors should I teach my child in Arabic first?", a: "Start with four or five basic colors — red, blue, green, yellow, and maybe orange. Use only the masculine form at first (ahmar, azraq, akhdar). Add more colors once those are familiar, and let the feminine forms come naturally through everyday speech." },
+  { q: "Do Arabic color names change for masculine and feminine?", a: "Yes. Each basic color has a masculine and a feminine form — ahmar becomes hamraa, azraq becomes zarqaa. For young children, teach the masculine form only; they will pick up the feminine naturally over time." },
+];
+
+const faqAr = [
+  { q: "ماذا تعني كلمة برتقالي؟", a: "برتقالي هو لون الـ Orange بالعربية، وهو مأخوذ من اسم الفاكهة، فالبرتقال فاكهة، واللون يأخذ اسمه منها تماماً كما في الإنجليزية." },
+  { q: "كيف نقول الألوان الأساسية بالعربية للأطفال؟", a: "الأحمر، والأزرق، والأخضر، والأصفر، والبرتقالي، والبنفسجي، والوردي، والأبيض، والأسود، والبني — هذه هي الألوان الأساسية التي يبدأ بها الأطفال." },
+  { q: "ما هو اللون الأصفر بالعربية؟", a: "الأصفر للمذكّر، وصفراء للمؤنّث. وهو لون الشمس والموز ورمل الصحراء." },
+  { q: "ما هو اللون الوردي بالعربية؟", a: "الوردي مأخوذ من كلمة وَرد، فهو يعني حرفياً «بلون الوردة»." },
+  { q: "ما هو اللون البنفسجي بالعربية؟", a: "البنفسجي مأخوذ من زهرة البنفسج، وهو الـ Purple أو Violet." },
+  { q: "ما هو اللون البني بالعربية؟", a: "البني مأخوذ من كلمة «بُنّ» أي حبوب القهوة، وهو لون الشوكولاتة والتراب." },
+  { q: "كم لوناً أعلّم طفلي بالعربية أولاً؟", a: "ابدأ بأربعة أو خمسة ألوان أساسية: الأحمر والأزرق والأخضر والأصفر وربما البرتقالي، واستخدم الشكل المذكّر فقط في البداية، ثم أضف الباقي تدريجياً." },
+  { q: "هل تتغيّر أسماء الألوان للمذكّر والمؤنّث؟", a: "نعم، فلكل لون أساسي شكلان: أحمر/حمراء، أزرق/زرقاء. علّم طفلك الشكل المذكّر أولاً، وسيلتقط المؤنّث تلقائياً مع الوقت." },
 ];
 
 const natureExamples = [
@@ -206,12 +231,21 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
         </div>
       </section>
 
+      <FaqSection
+        locale={locale}
+        title={isAr ? "أسئلة شائعة عن الألوان بالعربية" : "Frequently Asked Questions About Arabic Colors"}
+        items={isAr ? faqAr : faqEn}
+      />
+
       <div className="flex flex-wrap gap-3 mb-8">
         <Link href={`/${locale}/learn/arabic-numbers`} className="text-sm text-accent underline">
           {isAr ? "← الأرقام العربية" : "← Arabic Numbers"}
         </Link>
         <Link href={`/${locale}/learn/first-arabic-words`} className="text-sm text-accent underline">
           {isAr ? "أول كلمات عربية →" : "First Arabic Words →"}
+        </Link>
+        <Link href={`/${locale}/learn/arabic-alphabet-guide`} className="text-sm text-accent underline">
+          {isAr ? "دليل الأبجدية العربية →" : "Arabic Alphabet Guide →"}
         </Link>
       </div>
 
