@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ArticleStructuredData } from "@/components/ArticleStructuredData";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
+import Image from "next/image";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -45,10 +46,12 @@ export default async function RamadanPage({ params }: { params: Promise<{ locale
         locale={locale}
         crumbs={[
           { label: locale === "ar" ? "المدونة" : "Blog", href: `/${locale}/blog` },
-          { label: locale === "ar" ? "أنشطة رمضان" : "Ramadan Activities" },
+          { label: locale === "ar" ? "أنشطة رمضان" : "Ramadan Activities", href: `/${locale}/blog/ramadan-activities-arabic-learning` },
         ]}
       />
-      {locale === "ar" ? <ContentAr /> : <ContentEn />}
+      <article className="text-ink">
+        {locale === "ar" ? <ContentAr /> : <ContentEn />}
+      </article>
     </PageLayout>
   );
 }
@@ -74,6 +77,17 @@ function ContentEn() {
       <h1 className="text-3xl font-semibold text-ink mb-1">Ramadan &amp; Arabic Learning: Activities That Connect Language to Culture</h1>
       <p className="text-base text-ink/75">Using the holiest month as a springboard for Arabic vocabulary and letter recognition</p>
       <AuthorBlock />
+
+      <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
+        <Image
+          src="/images/blog/blog_ramadan.png"
+          alt="Ramadan & Arabic Learning activities"
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 800px"
+          priority
+        />
+      </div>
 
       <div className="space-y-8 text-sm leading-relaxed text-ink/80">
         <section>
@@ -199,6 +213,17 @@ function ContentAr() {
       <h1 className="text-3xl font-semibold text-ink mb-1">رمضان وتعلم العربية: أنشطة تربط اللغة بالثقافة</h1>
       <p className="text-base text-ink/75">استخدام الشهر الكريم كنقطة انطلاق لتعلم المفردات والحروف العربية</p>
       <AuthorBlock isAr />
+
+      <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
+        <Image
+          src="/images/blog/blog_ramadan.png"
+          alt="رمضان وتعلم العربية للأطفال"
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 800px"
+          priority
+        />
+      </div>
 
       <div className="space-y-8 text-sm leading-relaxed text-ink/70">
         <section>

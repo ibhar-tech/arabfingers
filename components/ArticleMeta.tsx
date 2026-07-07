@@ -30,6 +30,13 @@ export function ArticleMeta({
   section,
   crumbs,
 }: ArticleMetaProps) {
+  const updatedCrumbs = crumbs.map((crumb, i) => {
+    if (i === crumbs.length - 1 && !crumb.href) {
+      return { ...crumb, href: `/${locale}/${slug}` };
+    }
+    return crumb;
+  });
+
   return (
     <>
       <ArticleStructuredData
@@ -41,7 +48,7 @@ export function ArticleMeta({
         dateModified={dateModified}
         section={section}
       />
-      <Breadcrumbs locale={locale} crumbs={crumbs} />
+      <Breadcrumbs locale={locale} crumbs={updatedCrumbs} />
       <AuthorByline locale={locale} datePublished={datePublished} dateModified={dateModified} />
     </>
   );

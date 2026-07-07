@@ -5,6 +5,8 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ArticleStructuredData } from "@/components/ArticleStructuredData";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
+import Image from "next/image";
+import { TableOfContents } from "@/components/TableOfContents";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -45,10 +47,12 @@ export default async function HowWeBuiltPage({ params }: { params: Promise<{ loc
         locale={locale}
         crumbs={[
           { label: locale === "ar" ? "المدونة" : "Blog", href: `/${locale}/blog` },
-          { label: locale === "ar" ? "قصة البناء" : "Our Story" },
+          { label: locale === "ar" ? "قصة البناء" : "Our Story", href: `/${locale}/blog/how-we-built-arabfingers` },
         ]}
       />
-      {locale === "ar" ? <ContentAr /> : <ContentEn />}
+      <article className="text-ink">
+        {locale === "ar" ? <ContentAr /> : <ContentEn />}
+      </article>
     </PageLayout>
   );
 }
@@ -69,15 +73,37 @@ function AuthorBlock({ isAr }: { isAr?: boolean }) {
 }
 
 function ContentEn() {
+  const tocItems = [
+    { id: "problem", text: "The Problem: Arabic Learning is Broken" },
+    { id: "insight", text: "The Insight: Keyboard Smashing is Learning" },
+    { id: "prototype", text: "Building the First Prototype" },
+    { id: "design", text: "Design Decisions That Shaped ArabFingers" },
+    { id: "technical", text: "The Technical Architecture" },
+    { id: "next", text: "What's Next" },
+  ];
+
   return (
     <>
       <h1 className="text-3xl font-semibold text-ink mb-1">How We Built ArabFingers: The Story Behind the App</h1>
       <p className="text-base text-ink/75">From a parent&apos;s frustration to a free tool for families worldwide</p>
       <AuthorBlock />
 
+      <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
+        <Image
+          src="/images/blog/blog_how_we_built.png"
+          alt="How We Built Arab Fingers"
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 800px"
+          priority
+        />
+      </div>
+
+      <TableOfContents locale="en" items={tocItems} />
+
       <div className="space-y-8 text-sm leading-relaxed text-ink/80">
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">The Problem: Arabic Learning for Toddlers Is Broken</h2>
+          <h2 id="problem" className="text-xl font-semibold text-ink mb-3">The Problem: Arabic Learning for Toddlers Is Broken</h2>
           <p className="mb-3">
             If you&apos;re a parent in a bilingual Arab family living outside the Arab world, you&apos;ve probably experienced this: you want your toddler to be exposed to Arabic letters, but every app you find is either low quality, filled with intrusive ads, behind a paywall, or designed for much older children. The situation for toddlers — kids aged 1 to 3 who can&apos;t read yet — is particularly dire.
           </p>
@@ -90,7 +116,7 @@ function ContentEn() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">The Insight: Keyboard Smashing Is Learning</h2>
+          <h2 id="insight" className="text-xl font-semibold text-ink mb-3">The Insight: Keyboard Smashing Is Learning</h2>
           <p className="mb-3">
             The realization that changed everything was simple: <strong className="text-ink/90">toddlers already know how to use keyboards</strong>. They don&apos;t need instructions, tutorials, or onboarding flows. They smash keys. That&apos;s it. And every keypress is a learning opportunity — if you design the response correctly.
           </p>
@@ -103,7 +129,7 @@ function ContentEn() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">Building the First Prototype</h2>
+          <h2 id="prototype" className="text-xl font-semibold text-ink mb-3">Building the First Prototype</h2>
           <p className="mb-3">
             The first version of ArabFingers was built in a weekend. It was embarrassingly simple: a full-screen app that listened for keypresses and showed the corresponding Arabic letter in large text. No animations, no sounds, no themes — just letters.
           </p>
@@ -116,7 +142,7 @@ function ContentEn() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">Design Decisions That Shaped ArabFingers</h2>
+          <h2 id="design" className="text-xl font-semibold text-ink mb-3">Design Decisions That Shaped ArabFingers</h2>
           <p className="mb-3">
             Every design decision in ArabFingers was guided by one principle: <strong className="text-ink/90">what is best for a 1-3 year old?</strong> This led to some unconventional choices:
           </p>
@@ -141,7 +167,7 @@ function ContentEn() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">The Technical Architecture</h2>
+          <h2 id="technical" className="text-xl font-semibold text-ink mb-3">The Technical Architecture</h2>
           <p className="mb-3">
             ArabFingers is built as a Progressive Web App (PWA) using Next.js, React, and Three.js. This technology stack was chosen for specific reasons:
           </p>
@@ -157,7 +183,7 @@ function ContentEn() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">What&apos;s Next</h2>
+          <h2 id="next" className="text-xl font-semibold text-ink mb-3">What&apos;s Next</h2>
           <p className="mb-3">
             ArabFingers continues to evolve based on feedback from parents and educators. We&apos;re currently exploring:
           </p>
@@ -188,15 +214,36 @@ function ContentEn() {
 }
 
 function ContentAr() {
+  const tocItems = [
+    { id: "ar-problem", text: "المشكلة: تعليم العربية بحاجة لحل" },
+    { id: "ar-insight", text: "الرؤية: ضرب المفاتيح هو تعلم" },
+    { id: "ar-prototype", text: "بناء النموذج الأولي" },
+    { id: "ar-design", text: "قرارات التصميم" },
+    { id: "ar-next", text: "ما التالي" },
+  ];
+
   return (
     <>
       <h1 className="text-3xl font-semibold text-ink mb-1">كيف بنينا عرب فنجرز: القصة وراء التطبيق</h1>
       <p className="text-base text-ink/75">من إحباط أحد الوالدين إلى أداة مجانية للعائلات حول العالم</p>
       <AuthorBlock isAr />
 
+      <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
+        <Image
+          src="/images/blog/blog_how_we_built.png"
+          alt="كيف بنينا عرب فنجرز"
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 800px"
+          priority
+        />
+      </div>
+
+      <TableOfContents locale="ar" items={tocItems} />
+
       <div className="space-y-8 text-sm leading-relaxed text-ink/80">
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">المشكلة: تعليم العربية للأطفال الصغار بحاجة لحل</h2>
+          <h2 id="ar-problem" className="text-xl font-semibold text-ink mb-3">المشكلة: تعليم العربية للأطفال الصغار بحاجة لحل</h2>
           <p className="mb-3">
             إذا كنت والداً في عائلة عربية ثنائية اللغة تعيش خارج العالم العربي، فربما عشت هذه التجربة: تريد لطفلك الصغير أن يتعرض للحروف العربية، لكن كل تطبيق تجده إما منخفض الجودة، أو مليء بالإعلانات المزعجة، أو خلف جدار دفع، أو مصمم لأطفال أكبر سناً. الوضع للأطفال الصغار — من عمر سنة إلى ٣ سنوات الذين لا يستطيعون القراءة بعد — صعب بشكل خاص.
           </p>
@@ -209,7 +256,7 @@ function ContentAr() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">الرؤية: ضرب المفاتيح هو تعلم</h2>
+          <h2 id="ar-insight" className="text-xl font-semibold text-ink mb-3">الرؤية: ضرب المفاتيح هو تعلم</h2>
           <p className="mb-3">
             الإدراك الذي غيّر كل شيء كان بسيطاً: <strong className="text-ink/90">الأطفال الصغار يعرفون بالفعل كيف يستخدمون لوحات المفاتيح</strong>. لا يحتاجون تعليمات أو دروس تعريفية. هم يضغطون المفاتيح. هذا كل شيء. وكل ضغطة هي فرصة تعلم — إذا صممت الاستجابة بشكل صحيح.
           </p>
@@ -222,7 +269,7 @@ function ContentAr() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">بناء النموذج الأولي</h2>
+          <h2 id="ar-prototype" className="text-xl font-semibold text-ink mb-3">بناء النموذج الأولي</h2>
           <p className="mb-3">
             النسخة الأولى من عرب فنجرز بُنيت في عطلة نهاية أسبوع. كانت بسيطة بشكل محرج: تطبيق بملء الشاشة يستمع لضغطات المفاتيح ويُظهر الحرف العربي المقابل بخط كبير. لا رسوم متحركة، لا أصوات، لا ثيمات — فقط حروف.
           </p>
@@ -235,7 +282,7 @@ function ContentAr() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">قرارات التصميم التي شكّلت عرب فنجرز</h2>
+          <h2 id="ar-design" className="text-xl font-semibold text-ink mb-3">قرارات التصميم التي شكّلت عرب فنجرز</h2>
           <p className="mb-3">
             كل قرار تصميم في عرب فنجرز كان موجّهاً بمبدأ واحد: <strong className="text-ink/90">ما هو الأفضل لطفل عمره ١-٣ سنوات؟</strong>
           </p>
@@ -260,7 +307,7 @@ function ContentAr() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">ما التالي</h2>
+          <h2 id="ar-next" className="text-xl font-semibold text-ink mb-3">ما التالي</h2>
           <p className="mb-3">
             يستمر عرب فنجرز في التطور بناءً على ملاحظات الوالدين والمعلمين. لم يكن في نيتي يوماً أن أبني &quot;منتجاً&quot; بقدر ما أردت حلّ مشكلة واجهتها بنفسي مع أطفالي، ثم اكتشفت أن آلاف العائلات حول العالم تواجه المشكلة ذاتها. كل رسالة تصلني من أمٍّ أو معلّمٍ تذكّرني لماذا بدأت، وتشكّل ما سيأتي لاحقاً. نستكشف حالياً:
           </p>

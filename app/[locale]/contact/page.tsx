@@ -3,11 +3,13 @@ import { PageLayout } from "@/components/PageLayout";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
 
+import { FaqSection } from "@/components/FaqSection";
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return generatePageMetadata(locale, "/contact", {
-    titleEn: "Contact Us — Arab Fingers",
-    titleAr: "تواصل معنا — عرب فنجرز",
+    titleEn: "Contact Us | Arab Fingers",
+    titleAr: "تواصل معنا | عرب فنجرز",
     descriptionEn: "Contact the Arab Fingers team for questions, feedback, or support.",
     descriptionAr: "تواصل مع فريق عرب فنجرز للأسئلة أو الملاحظات أو الدعم.",
   });
@@ -19,16 +21,32 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
 
   return (
     <PageLayout locale={locale}>
-      {locale === "ar" ? <ContactAr /> : <ContactEn />}
+      <article className="text-ink">
+        {locale === "ar" ? <ContactAr /> : <ContactEn />}
+      </article>
     </PageLayout>
   );
 }
+
+const faqEn = [
+  { q: "Do you store or share my email address?", a: "Absolutely not. We collect zero personal data. We only use the email address you provide to reply to your questions or feedback, and we never share it with third parties." },
+  { q: "How can I contribute to Arab Fingers?", a: "Arab Fingers is open-source and hosted on GitHub. If you are a developer, designer, or educator, you can contribute code, assets, or translations. Send us an email and we'll point you to our repository!" },
+  { q: "How do I report a bug or technical issue?", a: "Please email us at ibhartech39@gmail.com. To help us fix it quickly, please mention the device you are using (e.g., iPhone 15, iPad, Windows PC), the browser (e.g., Safari, Chrome), and a brief description of what happened." },
+  { q: "Are you open to educational partnerships?", a: "Yes! We love collaborating with schools, Arabic language centers, and educators. If you would like to use Arab Fingers in your classroom or suggest educational features, please reach out." },
+];
+
+const faqAr = [
+  { q: "هل تقومون بحفظ أو مشاركة بريدي الإلكتروني؟", a: "بالتأكيد لا. نحن لا نجمع أي بيانات شخصية. نستخدم بريدك الإلكتروني فقط للرد على استفسارك وملاحظاتك، ولا نشاركه أبداً مع أي طرف ثالث." },
+  { q: "كيف يمكنني المساهمة في تطوير عرب فنجرز؟", a: "عرب فنجرز هو مشروع مفتوح المصدر على GitHub. إذا كنت مطوراً أو مصمماً أو معلماً وتريد المساهمة، يسعدنا تواصلك معنا وسنوجهك إلى مستودع المشروع!" },
+  { q: "كيف يمكنني الإبلاغ عن مشكلة تقنية أو خطأ؟", a: "يرجى مراسلتنا على البريد الإلكتروني ibhartech39@gmail.com. لمساعدتنا في حل المشكلة بسرعة، يرجى ذكر نوع الجهاز المتأثر (مثلاً: آيفون، آيباد، كمبيوتر ويندوز)، والمتصفح المستخدم، ووصف بسيط للمشكلة." },
+  { q: "هل تقبلون الشراكات التعليمية؟", a: "نعم! نرحب بالتعاون مع المدارس، ومراكز تعليم اللغة العربية، والمعلمين. إذا كنت ترغب في استخدام عرب فنجرز في فصلك الدراسي أو اقتراح ميزات تعليمية، يرجى مراسلتنا." },
+];
 
 function ContactEn() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-ink">Contact Us</h1>
-      <div className="mt-8 space-y-6 text-sm leading-relaxed text-ink/80">
+      <div className="mt-8 space-y-6 text-sm leading-relaxed text-ink/80 mb-10">
         <p>
           We would love to hear from you. Whether you have a question, feedback, a bug report,
           or a suggestion for ArabFingers, feel free to reach out.
@@ -57,6 +75,12 @@ function ContactEn() {
           <p>We aim to respond to all inquiries within 48 hours.</p>
         </section>
       </div>
+
+      <FaqSection
+        locale="en"
+        title="Contact & Support FAQ"
+        items={faqEn}
+      />
     </>
   );
 }
@@ -65,7 +89,7 @@ function ContactAr() {
   return (
     <>
       <h1 className="text-3xl font-semibold text-ink">تواصل معنا</h1>
-      <div className="mt-8 space-y-6 text-sm leading-relaxed text-ink/80">
+      <div className="mt-8 space-y-6 text-sm leading-relaxed text-ink/80 mb-10">
         <p>
           يسعدنا سماع رأيك. سواء كان لديك سؤال أو ملاحظة أو تقرير عن خطأ أو اقتراح لعرب فنجرز،
           لا تتردد في التواصل معنا.
@@ -94,6 +118,12 @@ function ContactAr() {
           <p>نهدف للرد على جميع الاستفسارات خلال ٤٨ ساعة.</p>
         </section>
       </div>
+
+      <FaqSection
+        locale="ar"
+        title="الأسئلة الشائعة حول التواصل والدعم"
+        items={faqAr}
+      />
     </>
   );
 }

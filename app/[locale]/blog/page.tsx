@@ -27,7 +27,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ loca
     <PageLayout locale={locale}>
       <Breadcrumbs
         locale={locale}
-        crumbs={[{ label: isAr ? "المدونة" : "Blog" }]}
+        crumbs={[{ label: isAr ? "المدونة" : "Blog", href: `/${locale}/blog` }]}
       />
 
       <h1 className="font-display text-3xl font-semibold text-ink mb-2">

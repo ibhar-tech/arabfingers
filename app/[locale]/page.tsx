@@ -15,9 +15,9 @@ export async function generateMetadata({
     titleEn: "Arabic Alphabet for Kids — Free Bilingual Letter Game",
     titleAr: "الحروف العربية للأطفال — لعبة مجانية لتعلم الأبجدية",
     descriptionEn:
-      "Free, ad-free bilingual Arabic learning for toddlers (1–6). Play with all 28 Arabic letters, hear natural pronunciation, and explore guides for parents.",
+      "Free bilingual Arabic learning for toddlers (1–6). Play with all 28 Arabic letters, hear natural pronunciation, and explore guides for parents.",
     descriptionAr:
-      "تعلّم مجاني وبدون إعلانات للأطفال من ١ إلى ٦ سنوات. العب بالحروف العربية الـ٢٨، استمع إلى النطق الطبيعي، واستكشف أدلة مفيدة للآباء.",
+      "تعلّم مجاني للأطفال من ١ إلى ٦ سنوات. العب بالحروف العربية الـ٢٨، استمع إلى النطق الطبيعي، واستكشف أدلة مفيدة للآباء.",
   });
 }
 

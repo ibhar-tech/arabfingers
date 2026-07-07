@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ArticleStructuredData } from "@/components/ArticleStructuredData";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
+import Image from "next/image";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -45,10 +46,12 @@ export default async function ArabicVsLatinPage({ params }: { params: Promise<{ 
         locale={locale}
         crumbs={[
           { label: locale === "ar" ? "المدونة" : "Blog", href: `/${locale}/blog` },
-          { label: locale === "ar" ? "عربي مقابل لاتيني" : "Arabic vs Latin" },
+          { label: locale === "ar" ? "عربي مقابل لاتيني" : "Arabic vs Latin", href: `/${locale}/blog/arabic-alphabet-vs-latin-deep-dive` },
         ]}
       />
-      {locale === "ar" ? <ContentAr /> : <ContentEn />}
+      <article className="text-ink">
+        {locale === "ar" ? <ContentAr /> : <ContentEn />}
+      </article>
     </PageLayout>
   );
 }
@@ -74,6 +77,17 @@ function ContentEn() {
       <h1 className="text-3xl font-semibold text-ink mb-1">Arabic vs Latin Alphabet: A Linguistic Deep Dive</h1>
       <p className="text-base text-ink/75">Understanding what makes Arabic unique — and why it matters for learning</p>
       <AuthorBlock />
+
+      <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
+        <Image
+          src="/images/blog/blog_arabic_vs_latin.png"
+          alt="Arabic vs Latin Alphabet comparison"
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 800px"
+          priority
+        />
+      </div>
 
       <div className="space-y-8 text-sm leading-relaxed text-ink/80">
         <section>
@@ -217,6 +231,17 @@ function ContentAr() {
       <h1 className="text-3xl font-semibold text-ink mb-1">الأبجدية العربية مقابل اللاتينية: غوص لغوي عميق</h1>
       <p className="text-base text-ink/75">فهم ما يجعل العربية فريدة — ولماذا يهم ذلك للتعلم</p>
       <AuthorBlock isAr />
+
+      <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
+        <Image
+          src="/images/blog/blog_arabic_vs_latin.png"
+          alt="الأبجدية العربية مقابل اللاتينية"
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 800px"
+          priority
+        />
+      </div>
 
       <div className="space-y-8 text-sm leading-relaxed text-ink/80">
         <section>

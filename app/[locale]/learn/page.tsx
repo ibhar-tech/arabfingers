@@ -13,11 +13,23 @@ import {
 
 type HubIcon = ({ className }: { className?: string }) => React.JSX.Element;
 
-export const metadata: Metadata = {
-  title: "Learn Arabic — Guides & Resources | تعلم العربية",
-  description:
-    "Free Arabic learning resources for kids and parents. Alphabet guides, pronunciation tips, numbers, colors, first words, and teaching strategies for bilingual families.",
-};
+import { generatePageMetadata } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata(locale, "/learn", {
+    titleEn: "Learn Arabic — Guides & Resources | Arab Fingers",
+    titleAr: "تعلم العربية — الأدلة والمصادر | عرب فنجرز",
+    descriptionEn:
+      "Free Arabic learning resources for kids and parents. Alphabet guides, pronunciation tips, numbers, colors, first words, and teaching strategies for bilingual families.",
+    descriptionAr:
+      "مصادر مجانية لتعلم العربية للأطفال والوالدين. أدلة الأبجدية، نصائح النطق، الأرقام، الألوان، الكلمات الأولى، واستراتيجيات التعليم للعائلات ثنائية اللغة.",
+  });
+}
 
 const articles: {
   slug: string;

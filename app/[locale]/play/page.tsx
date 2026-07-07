@@ -29,14 +29,21 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
-  return generatePageMetadata(locale, "/play", {
-    titleEn: "Play — Arabic Letters Game for Kids",
-    titleAr: "العب وتعلّم الحروف العربية",
+  const baseMetadata = generatePageMetadata(locale, "/play", {
+    titleEn: "Play — Arabic Letters Game for Kids | Arab Fingers",
+    titleAr: "العب وتعلّم الحروف العربية | عرب فنجرز",
     descriptionEn:
       "Tap a letter or press any key to see animated Arabic letters with natural pronunciation. A free, interactive game for toddlers aged 1–6 — all 28 Arabic letters, bilingual display.",
     descriptionAr:
       "المس أي حرف أو اضغط أي مفتاح لترى الحروف العربية المتحركة مع النطق الطبيعي. لعبة مجانية تفاعلية للأطفال من ١ إلى ٦ سنوات — كل الحروف الـ٢٨ بعرض ثنائي اللغة.",
   });
+  return {
+    ...baseMetadata,
+    robots: {
+      index: false,
+      follow: true,
+    },
+  };
 }
 
 const arabicLetterList =

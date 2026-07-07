@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import { PageLayout } from "@/components/PageLayout";
 import { isLocale } from "@/lib/locales";
+import { generatePageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Terms of Service | شروط الاستخدام",
-  description: "ArabFingers terms of service.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata(locale, "/terms", {
+    titleEn: "Terms of Service | Arab Fingers",
+    titleAr: "شروط الاستخدام | عرب فنجرز",
+    descriptionEn: "Terms of service for Arab Fingers.",
+    descriptionAr: "شروط الاستخدام الخاصة بعرب فنجرز.",
+  });
+}
 
 export default async function TermsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

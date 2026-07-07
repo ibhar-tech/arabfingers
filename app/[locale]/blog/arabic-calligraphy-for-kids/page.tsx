@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ArticleStructuredData } from "@/components/ArticleStructuredData";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
+import Image from "next/image";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -45,10 +46,12 @@ export default async function CalligraphyPage({ params }: { params: Promise<{ lo
         locale={locale}
         crumbs={[
           { label: locale === "ar" ? "المدونة" : "Blog", href: `/${locale}/blog` },
-          { label: locale === "ar" ? "الخط العربي" : "Calligraphy" },
+          { label: locale === "ar" ? "الخط العربي" : "Calligraphy", href: `/${locale}/blog/arabic-calligraphy-for-kids` },
         ]}
       />
-      {locale === "ar" ? <ContentAr /> : <ContentEn />}
+      <article className="text-ink">
+        {locale === "ar" ? <ContentAr /> : <ContentEn />}
+      </article>
     </PageLayout>
   );
 }
@@ -74,6 +77,17 @@ function ContentEn() {
       <h1 className="font-display text-3xl font-semibold text-ink mb-1">Arabic Calligraphy for Kids: A Beginner&apos;s Introduction</h1>
       <p className="text-base text-ink/75">Where language meets art — making Arabic beautiful for young learners</p>
       <AuthorBlock />
+
+      <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
+        <Image
+          src="/images/blog/blog_calligraphy.png"
+          alt="Arabic Calligraphy for Kids"
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 800px"
+          priority
+        />
+      </div>
 
       <div className="space-y-8 text-sm leading-relaxed text-ink/80">
         <section>
@@ -195,6 +209,17 @@ function ContentAr() {
       <h1 className="font-display text-3xl font-semibold text-ink mb-1">الخط العربي للأطفال: مقدمة للمبتدئين</h1>
       <p className="text-base text-ink/75">حيث تلتقي اللغة بالفن — جعل العربية جميلة للمتعلمين الصغار</p>
       <AuthorBlock isAr />
+
+      <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
+        <Image
+          src="/images/blog/blog_calligraphy.png"
+          alt="الخط العربي للأطفال"
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 800px"
+          priority
+        />
+      </div>
 
       <div className="space-y-8 text-sm leading-relaxed text-ink/80">
         <section>

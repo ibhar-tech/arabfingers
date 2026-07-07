@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ArticleStructuredData } from "@/components/ArticleStructuredData";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
+import Image from "next/image";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -45,10 +46,12 @@ export default async function ScreenTimePage({ params }: { params: Promise<{ loc
         locale={locale}
         crumbs={[
           { label: locale === "ar" ? "المدونة" : "Blog", href: `/${locale}/blog` },
-          { label: locale === "ar" ? "وقت الشاشة" : "Screen Time" },
+          { label: locale === "ar" ? "وقت الشاشة" : "Screen Time", href: `/${locale}/blog/screen-time-guidelines-arabic-learning` },
         ]}
       />
-      {locale === "ar" ? <ContentAr /> : <ContentEn />}
+      <article className="text-ink">
+        {locale === "ar" ? <ContentAr /> : <ContentEn />}
+      </article>
     </PageLayout>
   );
 }
@@ -74,6 +77,17 @@ function ContentEn() {
       <h1 className="text-3xl font-semibold text-ink mb-1">Screen Time &amp; Arabic Learning: An Evidence-Based Guide for Parents</h1>
       <p className="text-base text-ink/75">How to balance digital tools with healthy development</p>
       <AuthorBlock />
+
+      <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
+        <Image
+          src="/images/blog/blog_screen_time.png"
+          alt="Screen Time and Arabic Learning"
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 800px"
+          priority
+        />
+      </div>
 
       <div className="space-y-8 text-sm leading-relaxed text-ink/80">
         <section>
@@ -188,6 +202,17 @@ function ContentAr() {
       <h1 className="text-3xl font-semibold text-ink mb-1">وقت الشاشة وتعلم العربية: دليل مبني على الأدلة للوالدين</h1>
       <p className="text-base text-ink/75">كيف توازن بين الأدوات الرقمية والنمو الصحي</p>
       <AuthorBlock isAr />
+
+      <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
+        <Image
+          src="/images/blog/blog_screen_time.png"
+          alt="وقت الشاشة وتعلم العربية"
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 800px"
+          priority
+        />
+      </div>
 
       <div className="space-y-8 text-sm leading-relaxed text-ink/80">
         <section>

@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import { PageLayout } from "@/components/PageLayout";
 import { isLocale } from "@/lib/locales";
+import { generatePageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy | سياسة الخصوصية",
-  description: "ArabFingers privacy policy. We collect zero personal data.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  return generatePageMetadata(locale, "/privacy", {
+    titleEn: "Privacy Policy | Arab Fingers",
+    titleAr: "سياسة الخصوصية | عرب فنجرز",
+    descriptionEn: "Privacy policy for Arab Fingers. We collect zero personal data.",
+    descriptionAr: "سياسة الخصوصية الخاصة بعرب فنجرز. نحن لا نجمع أي بيانات شخصية.",
+  });
+}
 
 export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;

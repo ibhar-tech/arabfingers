@@ -3,11 +3,28 @@ import Link from "next/link";
 import { ColoringLoader } from "./ColoringLoader";
 import { isLocale } from "@/lib/locales";
 
-export const metadata: Metadata = {
-  title: "Coloring & Tracing — Learn Arabic Letters | تلوين وتتبع الحروف",
-  description:
-    "Free interactive coloring and tracing game for Arabic letters. Let your kids paint, trace, and color the Arabic alphabet with this fun educational tool.",
-};
+import { generatePageMetadata } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const baseMetadata = generatePageMetadata(locale, "/coloring", {
+    titleEn: "Coloring & Tracing — Learn Arabic Letters | Arab Fingers",
+    titleAr: "تلوين وتتبع الحروف العربية | عرب فنجرز",
+    descriptionEn: "Free interactive coloring and tracing game for Arabic letters. Let your kids paint, trace, and color the Arabic alphabet with this fun educational tool.",
+    descriptionAr: "لعبة تفاعلية مجانية لتلوين وتتبع الحروف العربية. دع أطفالك يرسمون ويتتبعون ويلونون الأبجدية العربية باستخدام هذه الأداة التعليمية الممتعة.",
+  });
+  return {
+    ...baseMetadata,
+    robots: {
+      index: false,
+      follow: true,
+    },
+  };
+}
 
 export default async function ColoringPage({
   params,

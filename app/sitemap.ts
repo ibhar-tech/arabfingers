@@ -6,11 +6,14 @@ const siteUrl = rawUrl.replace("://arabfingers.site", "://www.arabfingers.site")
 
 const locales = ["en", "ar"] as const;
 
+const d = (s: string) => new Date(s);
+const defaultDate = d("2026-07-07");
+
 function localizedUrls(
   path: string,
   priority: number,
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] = "monthly",
-  lastModified: Date = new Date(),
+  lastModified: Date = defaultDate,
 ) {
   return locales.map((locale) => ({
     url: `${siteUrl}/${locale}${path}`,
@@ -25,11 +28,9 @@ function localizedUrls(
   }));
 }
 
-const d = (s: string) => new Date(s);
-
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    { url: siteUrl, lastModified: new Date(), changeFrequency: "monthly", priority: 1 },
+    { url: siteUrl, lastModified: defaultDate, changeFrequency: "monthly", priority: 1 },
 
     // Core pages
     ...localizedUrls("", 1),
