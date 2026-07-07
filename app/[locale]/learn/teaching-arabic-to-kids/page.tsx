@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { RelatedArticles } from "@/components/RelatedArticles";
+import { getRelatedArticles } from "@/lib/related";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
 import { ArticleMeta } from "@/components/ArticleMeta";
@@ -187,6 +189,8 @@ export default async function TeachingArabicPage({ params }: { params: Promise<{
         title={isAr ? "أسئلة شائعة عن تعليم العربية للأطفال" : "Frequently Asked Questions About Teaching Arabic to Kids"}
         items={isAr ? teachFaqAr : teachFaqEn}
       />
+
+      <RelatedArticles locale={locale} articles={getRelatedArticles(locale, "teaching-arabic-to-kids")} />
 
       <div className="text-center py-8">
         <Link href={`/${locale}/play`} className="btn-chunky">

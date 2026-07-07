@@ -157,8 +157,8 @@ export function WarmHome({ locale }: { locale: string }) {
           </h1>
           <p className="mt-5 max-w-md text-lg font-semibold leading-relaxed text-ink/70">
             {tt(
-              "A free, ad-free bilingual letter game for toddlers. Tap any of the 28 Arabic letters, hear natural pronunciation, and grow into guides built for parents.",
-              "لعبة حروف مجانية ثنائية اللغة وبدون إعلانات للأطفال. المس أي حرف من الحروف العربية الـ٢٨، استمع إلى النطق الطبيعي، واستكشف أدلة مصممة للآباء.",
+              "A free bilingual letter game for toddlers. Tap any of the 28 Arabic letters, hear natural pronunciation, and grow into guides built for parents.",
+              "لعبة حروف مجانية ثنائية اللغة للأطفال. المس أي حرف من الحروف العربية الـ٢٨، استمع إلى النطق الطبيعي، واستكشف أدلة مصممة للآباء.",
             )}
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
@@ -168,7 +168,7 @@ export function WarmHome({ locale }: { locale: string }) {
           <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-bold text-ink/60">
             <span className="inline-flex items-center gap-1.5"><Star className="h-4 w-4 text-saffron" /> {tt("4.3M+ letters tapped", "أكثر من ٤ مليون لمسة")}</span>
             <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-qalam" /> {tt("Zero data collected", "بدون جمع بيانات")}</span>
-            <span className="inline-flex items-center gap-1.5"><Heart className="h-4 w-4 text-rose" /> {tt("No ads, no sign-up", "بدون إعلانات أو حساب")}</span>
+            <span className="inline-flex items-center gap-1.5"><Heart className="h-4 w-4 text-rose" /> {tt("Free, no sign-up", "مجاني، بدون حساب")}</span>
           </div>
         </div>
 
@@ -212,7 +212,7 @@ export function WarmHome({ locale }: { locale: string }) {
         <LetterBuddy className="mascot-bob pointer-events-none absolute -top-7 end-6 h-16 w-16 sm:h-20 sm:w-20" />
         <div className="mx-auto max-w-6xl px-5">
         <h2 className="font-display text-3xl font-extrabold text-ink">{tt("What your child explores", "ماذا يكتشف طفلك")}</h2>
-        <p className="mt-2 max-w-xl font-semibold text-ink/60">{tt("Three playful paths, one calm and ad-free place.", "ثلاث مسارات ممتعة، في مكان واحد هادئ وبدون إعلانات.")}</p>
+        <p className="mt-2 max-w-xl font-semibold text-ink/60">{tt("Three playful paths, one calm and safe place.", "ثلاث مسارات ممتعة، في مكان واحد هادئ وآمن.")}</p>
         <div className="mt-7 grid gap-5 sm:grid-cols-3">
           {[
             { icon: KeyRound, tint: "card-stock-saffron", chip: "bg-saffron-soft", t: tt("All 28 letters", "كل الحروف الـ٢٨"), d: tt("Tap or press a key to meet every Arabic letter with natural Arabic + English pronunciation.", "المس أو اضغط مفتاحاً لتلتقي بكل حرف عربي مع نطق طبيعي بالعربية والإنجليزية.") },

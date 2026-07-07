@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { RelatedArticles } from "@/components/RelatedArticles";
+import { getRelatedArticles } from "@/lib/related";
 import Link from "next/link";
+import Image from "next/image";
 import { PageLayout } from "@/components/PageLayout";
 import { ArticleMeta } from "@/components/ArticleMeta";
 import { FaqSection } from "@/components/FaqSection";
@@ -138,6 +141,16 @@ export default async function FirstArabicWordsPage({ params }: { params: Promise
         {isAr ? "٢٥ كلمة أساسية حسب الموضوع، مع إرشاد عن أيّها يُعلَّم أولاً" : "25 essential words by theme, with guidance on which to teach first"}
       </p>
 
+      <div className="mb-10 overflow-hidden rounded-3xl border-[2.5px] border-ink bg-card shadow-[4px_4px_0_0_var(--ink)]">
+        <Image
+          src="/images/learn/learn_first_words.png"
+          alt={isAr ? "أول كلمات عربية" : "First Arabic words guide"}
+          width={1200}
+          height={630}
+          className="w-full object-cover"
+        />
+      </div>
+
       <div className="text-base leading-relaxed text-ink/80 mb-8 space-y-3">
         <p>
           {isAr
@@ -247,6 +260,7 @@ export default async function FirstArabicWordsPage({ params }: { params: Promise
           🚀 {isAr ? "تدرب على الحروف في عرب فنجرز" : "Practice Letters in ArabFingers"}
         </Link>
       </div>
+      <RelatedArticles locale={locale} articles={getRelatedArticles(locale, "first-arabic-words")} />
     </PageLayout>
   );
 }

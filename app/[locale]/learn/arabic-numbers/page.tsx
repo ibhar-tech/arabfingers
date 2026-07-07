@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { RelatedArticles } from "@/components/RelatedArticles";
+import { getRelatedArticles } from "@/lib/related";
 import Link from "next/link";
+import Image from "next/image";
 import { PageLayout } from "@/components/PageLayout";
 import { ArticleMeta } from "@/components/ArticleMeta";
 import { SpeakButton } from "@/components/SpeakButton";
@@ -110,8 +113,18 @@ export default async function ArabicNumbersPage({ params }: { params: Promise<{ 
         {isAr ? "الأرقام العربية للأطفال (٠–١٠)" : "Arabic Numbers for Kids (0–10)"}
       </h1>
       <p className="text-base text-ink/75 mb-8">
-        {isAr ? "تعلّم العدّ بالعربية مع النطق والجدول وألعاب ممتعة للوالدين" : "Learn to count in Arabic with pronunciation, a table, and fun games for parents"}
+        {isAr ? "تعلم الأرقام من ٠ إلى ١٠ مع النطق، وفهم اتجاه القراءة، وألعاب للعد" : "Learn numbers 0 to 10 with pronunciation, the reading direction quirk, and counting games"}
       </p>
+
+      <div className="mb-10 overflow-hidden rounded-3xl border-[2.5px] border-ink bg-card shadow-[4px_4px_0_0_var(--ink)]">
+        <Image
+          src="/images/learn/learn_numbers.png"
+          alt={isAr ? "دليل الأرقام العربية" : "Arabic numbers guide"}
+          width={1200}
+          height={630}
+          className="w-full object-cover"
+        />
+      </div>
 
       <div className="text-base leading-relaxed text-ink/80 mb-8 space-y-3">
         <p>
@@ -248,6 +261,7 @@ export default async function ArabicNumbersPage({ params }: { params: Promise<{ 
           🚀 {isAr ? "تدرب في عرب فنجرز" : "Practice in ArabFingers"}
         </Link>
       </div>
+      <RelatedArticles locale={locale} articles={getRelatedArticles(locale, "arabic-numbers")} />
     </PageLayout>
   );
 }

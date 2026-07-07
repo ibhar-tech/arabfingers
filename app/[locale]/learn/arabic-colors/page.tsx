@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { RelatedArticles } from "@/components/RelatedArticles";
+import { getRelatedArticles } from "@/lib/related";
 import Link from "next/link";
+import Image from "next/image";
 import { PageLayout } from "@/components/PageLayout";
 import { ArticleMeta } from "@/components/ArticleMeta";
 import { SpeakButton } from "@/components/SpeakButton";
@@ -100,8 +103,18 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
         {isAr ? "الألوان بالعربية للأطفال" : "Arabic Colors for Kids"}
       </h1>
       <p className="text-base text-ink/75 mb-8">
-        {isAr ? "تعلّم أسماء الألوان بالعربية مع النطق وأمثلة من الطبيعة وألعاب" : "Learn color names in Arabic with pronunciation, nature examples, and games"}
+        {isAr ? "تعلم ١٢ لوناً أساسياً مع النطق والأمثلة من الطبيعة" : "Learn 12 essential colors with pronunciation and examples from nature"}
       </p>
+
+      <div className="mb-10 overflow-hidden rounded-3xl border-[2.5px] border-ink bg-card shadow-[4px_4px_0_0_var(--ink)]">
+        <Image
+          src="/images/learn/learn_colors.png"
+          alt={isAr ? "دليل الألوان العربية" : "Arabic colors guide"}
+          width={1200}
+          height={630}
+          className="w-full object-cover"
+        />
+      </div>
 
       <div className="text-base leading-relaxed text-ink/80 mb-8 space-y-3">
         <p>
@@ -254,6 +267,7 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
           🚀 {isAr ? "العب في عرب فنجرز" : "Play ArabFingers"}
         </Link>
       </div>
+      <RelatedArticles locale={locale} articles={getRelatedArticles(locale, "arabic-colors")} />
     </PageLayout>
   );
 }

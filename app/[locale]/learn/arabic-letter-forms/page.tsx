@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { RelatedArticles } from "@/components/RelatedArticles";
+import { getRelatedArticles } from "@/lib/related";
 import Link from "next/link";
+import Image from "next/image";
 import { PageLayout } from "@/components/PageLayout";
 import { ArticleMeta } from "@/components/ArticleMeta";
 import { isLocale } from "@/lib/locales";
@@ -122,6 +125,16 @@ export default async function ArabicLetterFormsPage({ params }: { params: Promis
       <p className="text-base text-ink/75 mb-8">
         {isAr ? "دليل بصري لأشكال الحروف في بداية ووسط ونهاية الكلمة" : "A visual guide to letter forms at the beginning, middle, and end of words"}
       </p>
+
+      <div className="mb-10 overflow-hidden rounded-3xl border-[2.5px] border-ink bg-card shadow-[4px_4px_0_0_var(--ink)]">
+        <Image
+          src="/images/learn/learn_letter_forms.png"
+          alt={isAr ? "دليل أشكال الحروف" : "Letter forms guide"}
+          width={1200}
+          height={630}
+          className="w-full object-cover"
+        />
+      </div>
 
       <div className="space-y-6 text-base leading-relaxed text-ink/80 mb-10">
         <section>
@@ -251,6 +264,7 @@ export default async function ArabicLetterFormsPage({ params }: { params: Promis
           🚀 {isAr ? "تدرب على الحروف في عرب فنجرز" : "Practice Letters in ArabFingers"}
         </Link>
       </div>
+      <RelatedArticles locale={locale} articles={getRelatedArticles(locale, "arabic-letter-forms")} />
     </PageLayout>
   );
 }

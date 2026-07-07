@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -22,6 +23,10 @@ export default async function ResourcesPage({ params }: { params: Promise<{ loca
 
   return (
     <PageLayout locale={locale}>
+      <Breadcrumbs
+        locale={locale}
+        crumbs={[{ label: locale === "ar" ? "المصادر" : "Resources", href: `/${locale}/resources` }]}
+      />
       {locale === "ar" ? <ResourcesAr /> : <ResourcesEn />}
     </PageLayout>
   );

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -22,6 +23,10 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
 
   return (
     <PageLayout locale={locale}>
+      <Breadcrumbs
+        locale={locale}
+        crumbs={[{ label: locale === "ar" ? "عن الموقع" : "About", href: `/${locale}/about` }]}
+      />
       {locale === "ar" ? <AboutAr /> : <AboutEn />}
     </PageLayout>
   );
@@ -155,7 +160,7 @@ function AboutEn() {
           <p className="mb-3">
             Arab Fingers is built and maintained by{" "}
             <Link href="/en/author" className="text-accent underline">Aissa Trad</Link>, a parent and
-            developer who created it after struggling to find a simple, ad-free way to introduce his own
+            developer who created it after struggling to find a simple, child-safe way to introduce his own
             child to the Arabic alphabet. It is an independent, self-funded project — not backed by any
             company or institution.
           </p>
@@ -276,7 +281,7 @@ function AboutAr() {
           <p className="mb-3">
             عرب فنجرز من بناء وصيانة{" "}
             <Link href="/ar/author" className="text-accent underline">عيسى تراد</Link>، أب ومطوّر
-            أنشأه بعد معاناته في إيجاد طريقة بسيطة وخالية من الإعلانات لتعريف طفله بالأبجدية العربية.
+            أنشأه بعد معاناته في إيجاد طريقة بسيطة وآمنة لتعريف طفله بالأبجدية العربية.
             إنه مشروع مستقل ممول ذاتياً — غير مدعوم من أي شركة أو مؤسسة.
           </p>
           <p>

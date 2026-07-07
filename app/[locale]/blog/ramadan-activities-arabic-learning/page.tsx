@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { RelatedArticles } from "@/components/RelatedArticles";
+import { getRelatedArticles } from "@/lib/related";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -52,6 +54,7 @@ export default async function RamadanPage({ params }: { params: Promise<{ locale
       <article className="text-ink">
         {locale === "ar" ? <ContentAr /> : <ContentEn />}
       </article>
+      <RelatedArticles locale={locale} articles={getRelatedArticles(locale, "ramadan-activities-arabic-learning")} />
     </PageLayout>
   );
 }

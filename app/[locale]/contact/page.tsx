@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageLayout } from "@/components/PageLayout";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 import { FaqSection } from "@/components/FaqSection";
 
@@ -21,6 +22,10 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
 
   return (
     <PageLayout locale={locale}>
+      <Breadcrumbs
+        locale={locale}
+        crumbs={[{ label: locale === "ar" ? "تواصل معنا" : "Contact", href: `/${locale}/contact` }]}
+      />
       <article className="text-ink">
         {locale === "ar" ? <ContactAr /> : <ContactEn />}
       </article>
