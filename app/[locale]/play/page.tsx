@@ -9,7 +9,7 @@ import { generatePageMetadata } from "@/lib/seo";
 // "arabic teaching for kids", "arabic activities".
 const playFaqEn = [
   { q: "How do you play the Arabic letters game?", a: "Just tap any letter or press any key on your keyboard. Each press shows a large Arabic letter with its English equivalent and plays its real pronunciation in Arabic and English. There is nothing to set up — open the page and play." },
-  { q: "Is this Arabic learning game free?", a: "Yes, Arab Fingers is completely free. There are no logins, no ads in the play area, and no data collection. You can also install it as an app and use it offline." },
+  { q: "Is this Arabic learning game free?", a: "Yes, Arab Fingers is completely free. There are no logins, no paywalls, and no data collection. You can also install it as an app and use it offline." },
   { q: "What age is the Arabic letters game for?", a: "It is designed for toddlers and pre-schoolers aged 1 to 6, but older beginners learning the Arabic alphabet enjoy it too. Younger children love the sounds and colors; older children start recognizing letter shapes and names." },
   { q: "Does it work on a phone or tablet?", a: "Yes. The game works on phones, tablets, and computers. On touch screens children tap the on-screen letters; on a computer they can press keyboard keys. It also installs as an app for offline play." },
   { q: "How can I help my child learn Arabic at home?", a: "Keep sessions short and playful, name letters and objects in Arabic during daily routines, and repeat little and often. Pair the game with the alphabet guide and free printable worksheets so your child sees, hears, and writes each letter." },
@@ -17,7 +17,7 @@ const playFaqEn = [
 
 const playFaqAr = [
   { q: "كيف نلعب لعبة الحروف العربية؟", a: "ببساطة المس أي حرف أو اضغط أي مفتاح في لوحة المفاتيح. كل ضغطة تُظهر حرفاً عربياً كبيراً مع مقابله الإنجليزي وتشغّل نطقه الحقيقي بالعربية والإنجليزية. لا حاجة لأي إعداد — افتح الصفحة والعب." },
-  { q: "هل لعبة تعلّم العربية مجانية؟", a: "نعم، عرب فنجرز مجاني تماماً: بلا تسجيل، وبلا إعلانات في منطقة اللعب، وبلا جمع بيانات. ويمكنك تثبيته كتطبيق واستخدامه دون إنترنت." },
+  { q: "هل لعبة تعلّم العربية مجانية؟", a: "نعم، عرب فنجرز مجاني تماماً: بلا تسجيل، وبلا جدران دفع، وبلا جمع بيانات. ويمكنك تثبيته كتطبيق واستخدامه دون إنترنت." },
   { q: "ما العمر المناسب للعبة الحروف العربية؟", a: "صُمّمت للأطفال من سنة إلى ٦ سنوات، لكن يستمتع بها أيضاً المبتدئون الأكبر الذين يتعلّمون الأبجدية العربية. الصغار يحبّون الأصوات والألوان، والأكبر يبدؤون بتمييز أشكال الحروف وأسمائها." },
   { q: "هل تعمل على الهاتف أو الجهاز اللوحي؟", a: "نعم، تعمل اللعبة على الهواتف والأجهزة اللوحية والحواسيب. على الشاشات اللمسية يلمس الطفل الحروف، وعلى الحاسوب يضغط مفاتيح لوحة المفاتيح، كما يمكن تثبيتها كتطبيق للّعب دون إنترنت." },
   { q: "كيف أساعد طفلي على تعلّم العربية في البيت؟", a: "اجعل الجلسات قصيرة وممتعة، وسمِّ الحروف والأشياء بالعربية أثناء الروتين اليومي، وكرّر قليلاً ومراراً. اجمع بين اللعبة ودليل الأبجدية وأوراق العمل القابلة للطباعة ليرى طفلك كل حرف ويسمعه ويكتبه." },
@@ -93,7 +93,7 @@ export default async function PlayPage({
                 <li>دعم لوحة المفاتيح واللمس على جميع الأجهزة</li>
                 <li>لوحة تحكم أبوية مع قفل PIN اختياري</li>
                 <li>يعمل بدون إنترنت كتطبيق ويب قابل للتثبيت</li>
-                <li>آمن للأطفال مع صفر جمع بيانات ولا إعلانات في منطقة اللعب</li>
+                <li>آمن للأطفال مع صفر جمع بيانات وتصميم نظيف بالكامل</li>
               </ul>
 
               <h2 className="text-lg font-semibold text-ink mb-2">الأبجدية العربية</h2>
@@ -141,7 +141,7 @@ export default async function PlayPage({
                 <li>Keyboard and touch screen support for all devices</li>
                 <li>Parent control panel with optional PIN lock</li>
                 <li>Works offline as an installable Progressive Web App</li>
-                <li>Child-safe — zero data collection and no ads in the play area</li>
+                <li>Child-safe — zero data collection and a clean, distraction-free environment</li>
               </ul>
 
               <h2 className="text-lg font-semibold text-ink mb-2">The Arabic Alphabet</h2>

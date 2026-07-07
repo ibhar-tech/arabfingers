@@ -93,7 +93,7 @@ export function StructuredData() {
         name: "Is it safe for children?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Absolutely. Arab Fingers collects zero personal data, has no ads in the play area, no external links children can click, and the parent panel is protected by a hold gesture and optional PIN lock.",
+          text: "Absolutely. Arab Fingers collects zero personal data, provides a child-friendly play environment, has no external links children can click, and the parent panel is protected by a hold gesture and optional PIN lock.",
         },
       },
       {

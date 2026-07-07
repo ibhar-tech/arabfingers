@@ -279,7 +279,7 @@ export function WarmHome({ locale }: { locale: string }) {
               {[
                 tt("100% free, forever — no subscriptions or in-app purchases.", "مجاني ١٠٠٪ للأبد — بدون اشتراكات أو مشتريات داخل التطبيق."),
                 tt("Zero data collection, no accounts, no tracking.", "بدون أي جمع للبيانات، ولا حسابات، ولا تتبّع."),
-                tt("No ads inside the child play area — ever.", "بدون إعلانات داخل منطقة لعب الطفل — أبداً."),
+                tt("Clean, child-safe design with parental controls.", "تصميم نظيف وآمن للأطفال مع أدوات تحكم للوالدين."),
               ].map((li) => (
                 <li key={li} className="flex items-start gap-3 font-semibold text-ink/75">
                   <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-qalam" /> {li}

@@ -125,7 +125,7 @@ function AboutEn() {
             </div>
             <div className="card-stock p-4">
               <h3 className="font-semibold text-ink mb-1 font-display">Parents &amp; Educators</h3>
-              <p className="text-ink/80">Adults looking for a safe, ad-free play area with parental controls, or teachers seeking a classroom-friendly Arabic introduction tool.</p>
+              <p className="text-ink/80">Adults looking for a safe, distraction-free play area with parental controls, or teachers seeking a classroom-friendly Arabic introduction tool.</p>
             </div>
           </div>
         </section>

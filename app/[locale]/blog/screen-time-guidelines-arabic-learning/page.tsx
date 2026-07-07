@@ -159,7 +159,7 @@ function ContentEn() {
             </div>
             <div className="rounded-xl border border-ink/8 bg-card p-4">
               <h3 className="font-semibold text-ink mb-1">5. Evaluate apps critically</h3>
-              <p className="text-ink/75">Not all &quot;educational&quot; apps are actually educational. Look for apps that are ad-free in the play area, don&apos;t collect data, don&apos;t have distracting notifications, and encourage active participation rather than passive watching. ArabFingers was designed specifically with these criteria in mind.</p>
+              <p className="text-ink/75">Not all &quot;educational&quot; apps are actually educational. Look for apps that are designed for child safety, don&apos;t collect data, don&apos;t have distracting notifications, and encourage active participation rather than passive watching. ArabFingers was designed specifically with these criteria in mind.</p>
             </div>
           </div>
         </section>
@@ -281,7 +281,7 @@ function ContentAr() {
             </div>
             <div className="rounded-xl border border-ink/8 bg-card p-4">
               <h3 className="font-semibold text-ink mb-1">٥. قيّم التطبيقات بعين ناقدة</h3>
-              <p className="text-ink/75">ليست كل التطبيقات &quot;التعليمية&quot; تعليمية فعلاً. ابحث عن تطبيقات خالية من الإعلانات في منطقة اللعب، لا تجمع بيانات، ليس فيها إشعارات مشتتة، وتشجع المشاركة النشطة بدلاً من المشاهدة السلبية. صُمّم عرب فنجرز خصيصاً وفق هذه المعايير.</p>
+              <p className="text-ink/75">ليست كل التطبيقات &quot;التعليمية&quot; تعليمية فعلاً. ابحث عن تطبيقات مصممة لسلامة الأطفال، لا تجمع بيانات، ليس فيها إشعارات مشتتة، وتشجع المشاركة النشطة بدلاً من المشاهدة السلبية. صُمّم عرب فنجرز خصيصاً وفق هذه المعايير.</p>
             </div>
           </div>
         </section>
