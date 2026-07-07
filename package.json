@@ -5,6 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:cloudflare": "opennextjs-cloudflare build",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "start": "next start",
     "lint": "eslint"
   },
@@ -16,7 +19,7 @@
     "framer-motion": "^12.38.0",
     "howler": "^2.2.4",
     "lucide-react": "^1.11.0",
-    "next": "15.5.15",
+    "next": "^15.5.20",
     "next-intl": "^4.9.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
@@ -25,6 +28,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@opennextjs/cloudflare": "^1.20.1",
     "@tailwindcss/postcss": "^4",
     "@types/canvas-confetti": "^1.9.0",
     "@types/howler": "^2.2.12",
@@ -34,12 +38,17 @@
     "eslint": "^9",
     "eslint-config-next": "15.5.15",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.107.0"
   },
   "browserslist": [
     "chrome >= 90",
     "firefox >= 90",
     "safari >= 15",
     "edge >= 90"
-  ]
+  ],
+  "overrides": {
+    "postcss": "^8.5.10"
+  }
 }
+
