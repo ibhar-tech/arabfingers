@@ -9,6 +9,13 @@ import { useAppStore } from "@/store/useAppStore";
 type PageLayoutProps = {
   locale: string;
   children: ReactNode;
+  /**
+   * Drops the centred, padded <main> so a full-width interactive stage (the
+   * /play toy, the /coloring canvas) can bleed edge to edge while still getting
+   * the site header and footer. Without this those pages render as orphans with
+   * no navigation, which reads as an unfinished site to crawlers and visitors.
+   */
+  fullBleed?: boolean;
 };
 
 const navLinks = [
@@ -54,7 +61,7 @@ const footerInfoLinks = [
   { href: "/terms", labelEn: "Terms", labelAr: "الشروط" },
 ];
 
-export function PageLayout({ locale, children }: PageLayoutProps) {
+export function PageLayout({ locale, children, fullBleed = false }: PageLayoutProps) {
   const isAr = locale === "ar";
   const pathname = usePathname();
   const router = useRouter();
@@ -153,7 +160,13 @@ export function PageLayout({ locale, children }: PageLayoutProps) {
       </header>
 
       {/* Content */}
-      <main className="relative z-10 mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 sm:py-10">
+      <main
+        className={
+          fullBleed
+            ? "relative z-10 w-full flex-1"
+            : "relative z-10 mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 sm:py-10"
+        }
+      >
         {children}
       </main>
 

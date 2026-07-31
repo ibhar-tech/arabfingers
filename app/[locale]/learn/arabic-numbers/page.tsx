@@ -8,6 +8,7 @@ import { ArticleMeta } from "@/components/ArticleMeta";
 import { SpeakButton } from "@/components/SpeakButton";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
+import { setRequestLocale } from "next-intl/server";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -90,6 +91,7 @@ const faqs = [
 
 export default async function ArabicNumbersPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   if (!isLocale(locale)) return null;
   const isAr = locale === "ar";
 

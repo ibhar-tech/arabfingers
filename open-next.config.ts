@@ -1,9 +1,15 @@
-// default open-next.config.ts file created by @opennextjs/cloudflare
 import { defineCloudflareConfig } from "@opennextjs/cloudflare";
-// import r2IncrementalCache from "@opennextjs/cloudflare/overrides/incremental-cache/r2-incremental-cache";
+import staticAssetsIncrementalCache from "@opennextjs/cloudflare/overrides/incremental-cache/static-assets-incremental-cache";
 
 export default defineCloudflareConfig({
-	// For best results consider enabling R2 caching
-	// See https://opennext.js.org/cloudflare/caching for more details
-	// incrementalCache: r2IncrementalCache
+  // Without an incremental cache the Worker cannot serve the prerendered HTML,
+  // so every page came back `Cache-Control: private, no-cache, no-store` and was
+  // rendered per request — the TTFB problem PageSpeed was flagging.
+  //
+  // This override reads prerendered pages straight from the Worker's static
+  // assets. Every page here is fully static (no revalidate, no ISR), so it needs
+  // no R2 bucket and no KV namespace.
+  // ponytail: move to r2IncrementalCache only if a route ever needs on-demand
+  // revalidation — none currently do.
+  incrementalCache: staticAssetsIncrementalCache,
 });

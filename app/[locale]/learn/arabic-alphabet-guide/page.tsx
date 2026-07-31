@@ -11,6 +11,7 @@ import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
 import { letterGuide } from "@/lib/letterGuide";
 import { LetterCard } from "@/components/illustrations/LetterCard";
+import { setRequestLocale } from "next-intl/server";
 
 // Targets the large GSC question cluster: "how many letters in the arabic
 // alphabet" (15+ variants), "first letter of arabic alphabet", "what is the
@@ -58,6 +59,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function ArabicAlphabetGuide({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   if (!isLocale(locale)) return null;
   const isAr = locale === "ar";
 

@@ -9,6 +9,7 @@ import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
 import Image from "next/image";
 import { TableOfContents } from "@/components/TableOfContents";
+import { setRequestLocale } from "next-intl/server";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -33,6 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function HowWeBuiltPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   if (!isLocale(locale)) return null;
 
   return (

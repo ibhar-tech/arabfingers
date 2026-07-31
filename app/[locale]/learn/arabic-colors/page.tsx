@@ -9,6 +9,7 @@ import { SpeakButton } from "@/components/SpeakButton";
 import { FaqSection } from "@/components/FaqSection";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
+import { setRequestLocale } from "next-intl/server";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -80,6 +81,7 @@ const natureExamples = [
 
 export default async function ArabicColorsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   if (!isLocale(locale)) return null;
   const isAr = locale === "ar";
 

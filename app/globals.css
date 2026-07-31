@@ -68,10 +68,13 @@ body {
   height: 100%;
 }
 
-/* Play page locks scrolling */
+/* The play surface is a fixed-height stage that must not bounce or pull-to-refresh
+   while a toddler mashes it. It used to set `overflow: hidden` as well, which locked
+   the whole document — so the article, the related links and the site footer below
+   the stage were rendered but unreachable by scrolling. overscroll-behavior alone
+   stops the bounce without trapping the page. */
 html:has(.play-surface),
 html:has(.play-surface) body {
-  overflow: hidden;
   overscroll-behavior: none;
 }
 
@@ -97,16 +100,23 @@ body {
   user-select: none;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+/* These are element resets, so they belong in @layer base. Unlayered CSS beats
+   every layered Tailwind utility regardless of specificity, and while these sat
+   outside a layer `a { color: inherit }` silently overrode text-* on every link
+   on the site — e.g. the white controls over the /coloring canvas rendered in
+   ink on a near-black panel. Inside @layer base, utilities win again. */
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
-button,
-input,
-select,
-textarea {
-  font: inherit;
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
 }
 
 /* Allow text selection only in parent panel inputs */

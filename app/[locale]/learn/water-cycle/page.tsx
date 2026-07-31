@@ -7,6 +7,7 @@ import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
 import WaterCycleInteractive from "@/components/StatesOfMatter/WaterCycleInteractive";
 import { WaterCycleDiagram } from "@/components/illustrations/WaterCycleDiagram";
+import { setRequestLocale } from "next-intl/server";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -53,6 +54,7 @@ const transcriptAr = [
 
 export default async function WaterCyclePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   if (!isLocale(locale)) return null;
   const isAr = locale === "ar";
   const transcript = isAr ? transcriptAr : transcriptEn;

@@ -7,6 +7,7 @@ import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
 import SolarSystemInteractive from "@/components/StatesOfMatter/SolarSystemInteractive";
 import { SolarSystemDiagram } from "@/components/illustrations/SolarSystemDiagram";
+import { setRequestLocale } from "next-intl/server";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -55,6 +56,7 @@ const transcriptAr = [
 
 export default async function SolarSystemPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   if (!isLocale(locale)) return null;
   const isAr = locale === "ar";
   const transcript = isAr ? transcriptAr : transcriptEn;

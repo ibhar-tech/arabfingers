@@ -5,11 +5,11 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { StructuredData } from "@/components/StructuredData";
 import { AdSenseLoader } from "@/components/AdSenseLoader";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import { isLocale, locales, type AppLocale } from "@/lib/locales";
 
 import arMessages from "../../messages/ar.json";
 import enMessages from "../../messages/en.json";
+import { setRequestLocale } from "next-intl/server";
 
 // Display + body faces for the warm "parchment & ink" redesign. Fredoka/IBM Plex
 // Arabic/Noto Naskh stay as fallbacks and for the taught letterforms.
@@ -66,6 +66,7 @@ const fontVars = `${baloo.variable} ${balooArabic.variable} ${nunito.variable} $
 
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
   const { locale } = await params;
+  setRequestLocale(locale);
 
   if (!isLocale(locale)) {
     notFound();
@@ -91,7 +92,6 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
           {children}
         </NextIntlClientProvider>
         <AdSenseLoader />
-        <SpeedInsights />
       </body>
     </html>
   );

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { worksheetSets } from "@/lib/worksheets";
 
 // Always use www to match canonical domain — avoids redirect chains in Google's index
 const rawUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.arabfingers.site";
@@ -15,22 +16,27 @@ function localizedUrls(
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] = "monthly",
   lastModified: Date = defaultDate,
 ) {
+  // hreflang must be reciprocal AND self-referencing — a set that omits the
+  // page's own language is invalid and Google drops the whole cluster. x-default
+  // points at English, which is what the non-Arabic majority of visitors want.
+  const languages = {
+    ...Object.fromEntries(locales.map((l) => [l, `${siteUrl}/${l}${path}`])),
+    "x-default": `${siteUrl}/en${path}`,
+  };
+
   return locales.map((locale) => ({
     url: `${siteUrl}/${locale}${path}`,
     lastModified,
     changeFrequency,
     priority,
-    alternates: {
-      languages: Object.fromEntries(
-        locales.filter((l) => l !== locale).map((l) => [l, `${siteUrl}/${l}${path}`]),
-      ),
-    },
+    alternates: { languages },
   }));
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
-    { url: siteUrl, lastModified: defaultDate, changeFrequency: "monthly", priority: 1 },
+    // The bare root is deliberately absent: it 308s to /en, and listing a
+    // redirecting URL is what produced "Page with redirect" in Search Console.
 
     // Core pages
     ...localizedUrls("", 1),
@@ -64,6 +70,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...localizedUrls("/learn/best-age-to-learn-arabic", 0.8, "monthly", d("2026-06-12")),
     ...localizedUrls("/learn/bilingual-children-benefits", 0.8, "monthly", d("2026-06-12")),
     ...localizedUrls("/learn/arabic-activities-at-home", 0.8, "monthly", d("2026-06-12")),
+
+    // The worksheet PDFs themselves. Google indexes PDFs, and the query that
+    // already earns most of this site's clicks is literally "...pdf free
+    // download" — so the files deserve to be findable directly, not only via
+    // the page that links them.
+    ...worksheetSets.map((s) => ({
+      url: `${siteUrl}/printables/${s.id}.pdf`,
+      lastModified: d("2026-07-31"),
+      changeFrequency: "yearly" as const,
+      priority: 0.7,
+    })),
 
     // Info pages
     ...localizedUrls("/about", 0.7),

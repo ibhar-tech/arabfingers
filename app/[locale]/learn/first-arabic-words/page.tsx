@@ -8,6 +8,7 @@ import { ArticleMeta } from "@/components/ArticleMeta";
 import { FaqSection } from "@/components/FaqSection";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
+import { setRequestLocale } from "next-intl/server";
 
 // Targets real GSC queries: "easy/basic/baby arabic words for kids",
 // "arabic words for kids to learn", "my first arabic words".
@@ -115,6 +116,7 @@ const firstWordsGuidance = [
 
 export default async function FirstArabicWordsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   if (!isLocale(locale)) return null;
   const isAr = locale === "ar";
 

@@ -18,7 +18,11 @@ const eslintConfig = [
       "out/**",
       "build/**",
       "next-env.d.ts",
-      // Node CLI helpers (voiceover generation) — CommonJS by design, not app code
+      // Cloudflare adapter build output. Generated, gitignored, and the source of
+      // every one of the 727 "errors" that used to drown out real findings.
+      ".open-next/**",
+      ".wrangler/**",
+      // Node CLI helpers (voiceover + worksheet generation) — not app code
       "scripts/**",
     ],
   },

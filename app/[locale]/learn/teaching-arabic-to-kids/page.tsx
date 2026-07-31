@@ -7,6 +7,7 @@ import { ArticleMeta } from "@/components/ArticleMeta";
 import { FaqSection } from "@/components/FaqSection";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
+import { setRequestLocale } from "next-intl/server";
 
 // Targets parent-intent GSC queries: "how to learn arabic for kids",
 // "how to structure arabic lessons for kids", "teaching arabic to a child",
@@ -98,6 +99,7 @@ const donts = [
 
 export default async function TeachingArabicPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   if (!isLocale(locale)) return null;
   const isAr = locale === "ar";
 

@@ -366,7 +366,7 @@ export default function PlayClient() {
   return (
     <main
       aria-label={t("screenLabel")}
-      className="play-surface relative h-dvh w-screen overflow-hidden"
+      className="play-surface relative h-dvh w-full overflow-hidden"
       style={{ background: themes[theme].background }}
     >
       <div

@@ -297,6 +297,49 @@ export function WarmHome({ locale }: { locale: string }) {
         </div>
       </section>
 
+      {/* ---------- EDITORIAL ---------- */}
+      <section className="border-t-[2.5px] border-ink/10 bg-saffron-soft/30 py-14">
+        <div className="mx-auto max-w-3xl px-5">
+          <h2 className="font-display text-3xl font-extrabold text-ink">
+            {tt("Teaching Arabic to a child who is growing up elsewhere", "تعليم العربية لطفل ينشأ في بلد آخر")}
+          </h2>
+
+          {[
+            tt(
+              "Most families who find this site are in the same position: Arabic is the language of the grandparents, the household speaks mainly English, and there is no Arabic school within a sensible drive. The child hears the language at family gatherings and understands more than they can say. What is missing is not motivation — it is a low-friction way to practise on an ordinary Tuesday evening.",
+              "أكثر الأسر التي تصل إلى هذا الموقع في الموقف نفسه: العربية لغة الأجداد، والبيت يتكلّم الإنجليزية غالباً، ولا توجد مدرسة عربية على مسافة معقولة. يسمع الطفل اللغة في اجتماعات العائلة ويفهم أكثر ممّا يقول. والناقص ليس الدافع — بل طريقة سهلة للتدرّب في أمسية عادية.",
+            ),
+            tt(
+              "That is what this site is for. It is built around the two things that actually move a young child forward: hearing a letter said clearly, and forming that letter with their own hand. The letter game covers the first — tap any of the 28 letters and hear it spoken. The printable worksheets cover the second, with a full page of graded tracing practice for every letter, free to download as a PDF.",
+              "لهذا وُجد هذا الموقع. بُني حول الأمرين اللذين يقدّمان الطفل الصغير فعلاً: أن يسمع الحرف منطوقاً نطقاً واضحاً، وأن يخطّ ذلك الحرف بيده. لعبة الحروف تغطّي الأوّل — المس أيّ حرف من الـ٢٨ فتسمعه منطوقاً. وأوراق العمل تغطّي الثاني بصفحة كاملة من التتبّع المتدرّج لكلّ حرف، مجانية للتنزيل بصيغة PDF.",
+            ),
+            tt(
+              "Five minutes a day beats an hour on Sunday. Children this age learn scripts through frequent, short, cheerful contact, not through long sessions — and a session that ends while the child still wants more is the one they come back to. Nothing here needs an account, and nothing keeps score, precisely so that stopping early is never a failure.",
+              "خمس دقائق يومياً خير من ساعة يوم الأحد. يتعلّم الأطفال في هذه السنّ الخطوط بملامسة قصيرة متكرّرة مبهجة لا بجلسات طويلة — والجلسة التي تنتهي والطفل ما يزال يريد المزيد هي التي يعود إليها. ولا شيء هنا يحتاج حساباً، ولا شيء يحسب النقاط، حتى لا يكون التوقّف المبكّر إخفاقاً أبداً.",
+            ),
+            tt(
+              "The guides for parents are written for adults who may not read Arabic themselves. They explain what each letter sounds like using English reference points, which mistakes learners reliably make, and what to do about them — so you can help your child even if your own Arabic stopped developing when you were their age.",
+              "أمّا أدلّة الآباء فمكتوبة لبالغين قد لا يقرؤون العربية أنفسهم. تشرح صوت كلّ حرف بمرجعية إنجليزية، والأخطاء التي يقع فيها المتعلّمون عادةً، وكيف تُعالَج — لتستطيع مساعدة طفلك ولو توقّفت عربيتك أنت عند سنّه.",
+            ),
+          ].map((p) => (
+            <p key={p} className="mt-4 leading-relaxed text-ink/75">{p}</p>
+          ))}
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            {[
+              { href: "/printables", t: tt("Free worksheets (PDF)", "أوراق عمل مجانية"), d: tt("53 printable pages, no signup.", "٥٣ صفحة للطباعة، بلا تسجيل.") },
+              { href: "/learn/arabic-alphabet-guide", t: tt("The alphabet guide", "دليل الأبجدية"), d: tt("All 28 letters, sound by sound.", "الحروف الـ٢٨، صوتاً صوتاً.") },
+              { href: "/learn/teaching-arabic-to-kids", t: tt("Advice for parents", "نصائح للآباء"), d: tt("What works at home, and what doesn't.", "ما ينفع في البيت وما لا ينفع.") },
+            ].map((c) => (
+              <Link key={c.href} href={`/${locale}${c.href}`} className="card-stock p-5 transition hover:border-qalam">
+                <h3 className="font-display text-base font-extrabold text-ink">{c.t}</h3>
+                <p className="mt-1 text-sm font-semibold leading-relaxed text-ink/65">{c.d}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ---------- FOOTER ---------- */}
       <footer className="mt-6 border-t-[2.5px] border-ink bg-card">
         <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:grid-cols-2 md:grid-cols-4">

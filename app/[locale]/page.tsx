@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
 import { WarmHome } from "@/components/WarmHome";
+import { setRequestLocale } from "next-intl/server";
 
 export async function generateMetadata({
   params,
@@ -27,6 +28,7 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   if (!isLocale(locale)) return null;
 
   return <WarmHome locale={locale} />;

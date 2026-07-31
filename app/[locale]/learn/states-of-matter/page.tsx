@@ -7,6 +7,7 @@ import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
 import StatesOfMatterInteractive from "@/components/StatesOfMatter/StatesOfMatterInteractive";
 import { StatesOfMatterDiagram } from "@/components/illustrations/StatesOfMatterDiagram";
+import { setRequestLocale } from "next-intl/server";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -56,6 +57,7 @@ const transcriptAr = [
 
 export default async function StatesOfMatterPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   if (!isLocale(locale)) return null;
   const isAr = locale === "ar";
   const transcript = isAr ? transcriptAr : transcriptEn;

@@ -256,7 +256,7 @@ export default function ColoringClient() {
   }, [letterIndex, dimensions]);
 
   return (
-    <div className="relative h-dvh w-screen overflow-hidden bg-[#050816] select-none touch-none">
+    <div className="relative h-dvh w-full overflow-hidden bg-[#050816] select-none touch-none">
       {/* Top Nav */}
       <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-20">
         <Link

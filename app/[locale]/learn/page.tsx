@@ -14,6 +14,7 @@ import {
 type HubIcon = ({ className }: { className?: string }) => React.JSX.Element;
 
 import { generatePageMetadata } from "@/lib/seo";
+import { setRequestLocale } from "next-intl/server";
 
 export async function generateMetadata({
   params,
@@ -143,6 +144,7 @@ const articles: {
 
 export default async function LearnPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   if (!isLocale(locale)) return null;
   const isAr = locale === "ar";
 

@@ -3,7 +3,9 @@ import Link from "next/link";
 import PlayLoader from "./PlayLoader";
 import { FaqSection } from "@/components/FaqSection";
 import { isLocale } from "@/lib/locales";
+import { PageLayout } from "@/components/PageLayout";
 import { generatePageMetadata } from "@/lib/seo";
+import { setRequestLocale } from "next-intl/server";
 
 // Targets "arabic letters game for kids", "how to learn arabic for kids",
 // "arabic teaching for kids", "arabic activities".
@@ -37,13 +39,7 @@ export async function generateMetadata({
     descriptionAr:
       "المس أي حرف أو اضغط أي مفتاح لترى الحروف العربية المتحركة مع النطق الطبيعي. لعبة مجانية تفاعلية للأطفال من ١ إلى ٦ سنوات — كل الحروف الـ٢٨ بعرض ثنائي اللغة.",
   });
-  return {
-    ...baseMetadata,
-    robots: {
-      index: false,
-      follow: true,
-    },
-  };
+  return baseMetadata;
 }
 
 const arabicLetterList =
@@ -55,10 +51,11 @@ export default async function PlayPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const isAr = isLocale(locale) && locale === "ar";
 
   return (
-    <>
+    <PageLayout locale={locale} fullBleed>
       <PlayLoader />
 
       {/* Visible content section below the interactive toy (reachable by scrolling). */}
@@ -174,6 +171,6 @@ export default async function PlayPage({
           </div>
         </div>
       </section>
-    </>
+    </PageLayout>
   );
 }

@@ -1,138 +1,257 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
+import { setRequestLocale } from "next-intl/server";
+
+const CONTACT_EMAIL = "ibhartech39@gmail.com";
+const UPDATED_EN = "31 July 2026";
+const UPDATED_AR = "٣١ يوليو ٢٠٢٦";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return generatePageMetadata(locale, "/privacy", {
     titleEn: "Privacy Policy | Arab Fingers",
     titleAr: "سياسة الخصوصية | عرب فنجرز",
-    descriptionEn: "Privacy policy for Arab Fingers. We collect zero personal data.",
-    descriptionAr: "سياسة الخصوصية الخاصة بعرب فنجرز. نحن لا نجمع أي بيانات شخصية.",
+    descriptionEn:
+      "How Arab Fingers handles data: no accounts, no personal data collection, what your browser stores locally, and exactly which third-party advertising cookies may be set.",
+    descriptionAr:
+      "كيف يتعامل عرب فنجرز مع البيانات: بلا حسابات وبلا جمع بيانات شخصية، وما يخزّنه متصفّحك محلياً، وما ملفّات تعريف الارتباط الإعلانية التي قد تُوضَع.",
   });
 }
 
+type Section = { h: string; body: string[]; list?: string[] };
+
+const en: { title: string; updated: string; intro: string; sections: Section[] } = {
+  title: "Privacy Policy",
+  updated: `Last updated: ${UPDATED_EN}`,
+  intro:
+    "Arab Fingers (“we”, “our”, “us”) runs arabfingers.site, a free bilingual Arabic learning site for young children and their parents. This policy explains, in plain language, what happens to data when you or your child use the site. It applies to every page and to the downloadable worksheet PDFs.",
+  sections: [
+    {
+      h: "The short version",
+      body: [
+        "We do not ask for a name, an email address or a password, because there is nothing on this site to sign up for. We do not build a profile of you or your child, we do not sell data to anyone, and we do not run our own analytics.",
+        "The one exception is advertising. This site is supported by ads served through Google AdSense, and Google — not us — may set cookies in your browser to do that. That is described in full below, including how to turn it off.",
+      ],
+    },
+    {
+      h: "Information we collect ourselves",
+      body: [
+        "None that identifies you. There are no accounts, no login, no newsletter, no comment section and no upload feature. Nothing your child draws on the colouring canvas is transmitted to us or stored on any server — it exists only in the browser tab and disappears when the canvas is cleared or the page is closed.",
+        "Our hosting provider, Cloudflare, processes standard server request data such as IP address, browser type and the page requested, in order to deliver the site and protect it from abuse. We do not use that data to identify individuals and we do not receive it as a report.",
+      ],
+    },
+    {
+      h: "What your browser stores locally",
+      body: [
+        "The site uses your browser's local storage to remember preferences so that the site behaves the way you left it. This information stays on your device, is never sent to us, and can be erased at any time by clearing your browser's site data.",
+      ],
+      list: [
+        "Your chosen language (Arabic or English)",
+        "Sound on or off, and the selected visual theme",
+        "The optional parent-panel PIN, if you set one",
+        "A service worker cache of pages and audio, so the site works offline once installed",
+      ],
+    },
+    {
+      h: "Advertising and third-party cookies",
+      body: [
+        "Arab Fingers displays advertising supplied by Google AdSense. We do not set advertising cookies ourselves, and we do not pass any information about you to advertisers.",
+        "Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this and other websites. Google's use of advertising cookies enables it and its partners to serve ads based on visits to this site and other sites on the internet.",
+        "Users may opt out of personalised advertising by visiting Google's Ads Settings. Alternatively, users may opt out of a third-party vendor's use of cookies for personalised advertising at aboutads.info. Google's own explanation of how it uses data from sites that use its services is published at policies.google.com/technologies/partner-sites.",
+        "Where required by law — in the European Economic Area, the United Kingdom and Switzerland — a consent notice is shown before non-essential advertising cookies are set, and you may withdraw consent at any time.",
+      ],
+    },
+    {
+      h: "Children's privacy (COPPA and GDPR-K)",
+      body: [
+        "This site is written for parents and teachers, and its activities are intended to be used by a child alongside an adult. We do not knowingly collect personal information from anyone under the age of 13, and there is no mechanism on the site through which a child could supply any.",
+        "Because content here is directed at families with young children, ad serving is configured to restrict advertising to non-personalised, family-appropriate categories in the jurisdictions that require it.",
+        "If you believe a child has somehow provided personal information to us, please write to us at the address below and we will delete it immediately.",
+      ],
+    },
+    {
+      h: "Your rights",
+      body: [
+        "Under the GDPR, the UK GDPR and the CCPA you have the right to access, correct, export or delete the personal data an operator holds about you, and to object to its processing. Because we hold no personal data about our visitors, there is in practice nothing for us to return or erase — but you are welcome to write and ask, and we will confirm that in writing.",
+        "Rights relating to data held by Google as an advertising vendor should be exercised through Google directly, using the opt-out links in the advertising section above.",
+      ],
+    },
+    {
+      h: "The worksheet PDFs",
+      body: [
+        "The printable worksheets are ordinary static files. Downloading one does not require an email address, does not create an account, and does not tag your browser. The files contain no tracking pixels and no embedded scripts.",
+      ],
+    },
+    {
+      h: "Links to other sites",
+      body: [
+        "Some pages link to outside resources that we think are useful for families learning Arabic. Those sites have their own privacy policies, which we do not control and are not responsible for. We recommend reading the policy of any site you visit from here.",
+      ],
+    },
+    {
+      h: "Changes to this policy",
+      body: [
+        "If this policy changes in a way that affects what happens to your data — for example if we ever add analytics — we will update the date at the top of this page and describe the change here. We will not make a change retroactive.",
+      ],
+    },
+    {
+      h: "Contact",
+      body: [
+        `Questions about this policy, or a request relating to your data, can be sent to ${CONTACT_EMAIL} and we will reply. The site is operated by Aissa Trad.`,
+      ],
+    },
+  ],
+};
+
+const ar: { title: string; updated: string; intro: string; sections: Section[] } = {
+  title: "سياسة الخصوصية",
+  updated: `آخر تحديث: ${UPDATED_AR}`,
+  intro:
+    "عرب فنجرز («نحن») يدير موقع arabfingers.site، وهو موقع مجاني ثنائي اللغة لتعليم العربية للأطفال الصغار وأهاليهم. توضّح هذه السياسة بلغة مباشرة ما يحدث للبيانات حين تستعمل أنت أو طفلك الموقع، وتسري على كلّ الصفحات وعلى ملفّات أوراق العمل القابلة للتنزيل.",
+  sections: [
+    {
+      h: "الخلاصة باختصار",
+      body: [
+        "لا نطلب اسماً ولا بريداً إلكترونياً ولا كلمة مرور، لأنه لا يوجد في هذا الموقع ما يُسجَّل فيه. ولا نبني ملفّاً عنك أو عن طفلك، ولا نبيع البيانات لأحد، ولا نشغّل تحليلات خاصة بنا.",
+        "الاستثناء الوحيد هو الإعلانات. يُموَّل هذا الموقع بإعلانات تُعرض عبر Google AdSense، وقد تضع Google — لا نحن — ملفّات تعريف ارتباط في متصفّحك لهذا الغرض. وهذا موضّح بالتفصيل أدناه مع طريقة إيقافه.",
+      ],
+    },
+    {
+      h: "المعلومات التي نجمعها بأنفسنا",
+      body: [
+        "لا شيء يعرّف بك. لا حسابات ولا تسجيل دخول ولا نشرة بريدية ولا قسم تعليقات ولا خاصية رفع ملفّات. ولا يُنقل إلينا شيء ممّا يرسمه طفلك على لوحة التلوين ولا يُخزَّن على أيّ خادم — فهو موجود في صفحة المتصفّح وحدها ويزول متى مُسحت اللوحة أو أُغلقت الصفحة.",
+        "أمّا مزوّد الاستضافة Cloudflare فيعالج بيانات الطلبات المعتادة مثل عنوان IP ونوع المتصفّح والصفحة المطلوبة، لتقديم الموقع وحمايته من الإساءة. ولا نستعمل تلك البيانات لتحديد هويّة أحد ولا تصلنا في صورة تقارير.",
+      ],
+    },
+    {
+      h: "ما يخزّنه متصفّحك محلياً",
+      body: [
+        "يستعمل الموقع التخزين المحلي في متصفّحك ليتذكّر تفضيلاتك فيبقى الموقع كما تركته. تبقى هذه المعلومات على جهازك ولا تُرسل إلينا أبداً، ويمكنك محوها متى شئت بمسح بيانات الموقع من متصفّحك.",
+      ],
+      list: [
+        "اللغة التي اخترتها (العربية أو الإنجليزية)",
+        "تشغيل الصوت أو إيقافه، والثيم البصري المختار",
+        "رمز PIN للوحة الوالدين إن أنشأته",
+        "ذاكرة عامل الخدمة للصفحات والأصوات، ليعمل الموقع دون إنترنت بعد تثبيته",
+      ],
+    },
+    {
+      h: "الإعلانات وملفّات تعريف الارتباط من طرف ثالث",
+      body: [
+        "يعرض عرب فنجرز إعلانات تزوّدها Google AdSense. ولا نضع نحن ملفّات تعريف ارتباط إعلانية، ولا نمرّر أيّ معلومات عنك إلى المعلنين.",
+        "يستعمل موردون خارجيون، ومنهم Google، ملفّات تعريف الارتباط لعرض إعلانات مبنيّة على زيارات المستخدم السابقة لهذا الموقع ولمواقع أخرى. واستعمال Google لملفّات الارتباط الإعلانية يمكّنها وشركاءها من عرض إعلانات بناءً على تلك الزيارات.",
+        "يستطيع المستخدمون إلغاء تفعيل الإعلانات المخصّصة من إعدادات إعلانات Google، أو إلغاء استعمال مورد خارجي لملفّات الارتباط من موقع aboutads.info. وتنشر Google شرحها لكيفية استعمالها بيانات المواقع التي تستخدم خدماتها على policies.google.com/technologies/partner-sites.",
+        "وحيث يوجب القانون ذلك — في المنطقة الاقتصادية الأوروبية والمملكة المتحدة وسويسرا — يُعرض إشعار موافقة قبل وضع أيّ ملفّات ارتباط إعلانية غير ضرورية، ويمكنك سحب الموافقة متى شئت.",
+      ],
+    },
+    {
+      h: "خصوصية الأطفال (COPPA وGDPR-K)",
+      body: [
+        "كُتب هذا الموقع للآباء والمعلّمين، وأنشطته موجّهة ليستعملها الطفل بصحبة بالغ. ولا نجمع عن علم معلومات شخصية من أيّ شخص دون الثالثة عشرة، ولا توجد في الموقع وسيلة يستطيع الطفل بها تقديم شيء منها.",
+        "ولأنّ المحتوى هنا موجّه إلى أسر لديها أطفال صغار، فقد ضُبط عرض الإعلانات ليقتصر على فئات غير مخصّصة ومناسبة للعائلة في الولايات القضائية التي تشترط ذلك.",
+        "وإن كنت ترى أنّ طفلاً قدّم إلينا معلومات شخصية بطريقة ما، فراسلنا على العنوان أدناه وسنحذفها فوراً.",
+      ],
+    },
+    {
+      h: "حقوقك",
+      body: [
+        "بموجب النظام الأوروبي العام لحماية البيانات ونظيره البريطاني وقانون CCPA، لك حقّ الاطّلاع على بياناتك الشخصية وتصحيحها وتصديرها وحذفها، وحقّ الاعتراض على معالجتها. ولأنّنا لا نحتفظ ببيانات شخصية عن زوّارنا فلا يوجد عملياً ما نعيده أو نمحوه — ومع ذلك يسعدنا أن تسألنا وسنؤكّد لك ذلك كتابةً.",
+        "أمّا الحقوق المتعلّقة بالبيانات التي تحتفظ بها Google بصفتها مورّد إعلانات فتُمارَس عبر Google مباشرةً، من روابط إلغاء التفعيل المذكورة في قسم الإعلانات أعلاه.",
+      ],
+    },
+    {
+      h: "ملفّات أوراق العمل",
+      body: [
+        "أوراق العمل القابلة للطباعة ملفّات ثابتة عادية. وتنزيل أيّ منها لا يتطلّب بريداً إلكترونياً ولا ينشئ حساباً ولا يضع علامة على متصفّحك. ولا تحتوي الملفّات على بكسلات تتبّع ولا على نصوص برمجية مضمّنة.",
+      ],
+    },
+    {
+      h: "الروابط إلى مواقع أخرى",
+      body: [
+        "تحيل بعض الصفحات إلى مصادر خارجية نراها نافعة للأسر التي تتعلّم العربية. ولتلك المواقع سياسات خصوصية خاصّة بها لا نتحكّم فيها ولا نتحمّل مسؤوليتها. وننصح بقراءة سياسة أيّ موقع تزوره من هنا.",
+      ],
+    },
+    {
+      h: "تغييرات هذه السياسة",
+      body: [
+        "إن تغيّرت هذه السياسة على نحو يمسّ ما يحدث لبياناتك — كأن نضيف تحليلات يوماً ما — فسنحدّث التاريخ في أعلى الصفحة ونصف التغيير هنا. ولن نجعل أيّ تغيير رجعيّ الأثر.",
+      ],
+    },
+    {
+      h: "التواصل",
+      body: [
+        `يمكن إرسال الأسئلة عن هذه السياسة أو أيّ طلب يتعلّق ببياناتك إلى ${CONTACT_EMAIL} وسنردّ عليه. ويدير الموقع عيسى طراد.`,
+      ],
+    },
+  ],
+};
+
 export default async function PrivacyPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   if (!isLocale(locale)) return null;
+  const isAr = locale === "ar";
+  const t = isAr ? ar : en;
 
   return (
     <PageLayout locale={locale}>
-      {locale === "ar" ? <PrivacyAr /> : <PrivacyEn />}
+      <Breadcrumbs locale={locale} crumbs={[{ label: t.title }]} />
+
+      <article className="max-w-3xl">
+        <h1 className="font-display text-3xl font-extrabold text-ink">{t.title}</h1>
+        <p className="mt-1 text-sm text-ink/45">{t.updated}</p>
+        <p className="mt-5 text-[15px] leading-relaxed text-ink/80">{t.intro}</p>
+
+        <div className="mt-10 space-y-9">
+          {t.sections.map((s) => (
+            <section key={s.h}>
+              <h2 className="font-display text-lg font-extrabold text-ink">{s.h}</h2>
+              {s.body.map((p) => (
+                <p key={p} className="mt-2.5 text-sm leading-relaxed text-ink/75">{p}</p>
+              ))}
+              {s.list && (
+                <ul className="mt-3 space-y-1.5">
+                  {s.list.map((li) => (
+                    <li key={li} className="flex gap-2.5 text-sm leading-relaxed text-ink/75">
+                      <span aria-hidden className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-saffron" />
+                      <span>{li}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          ))}
+        </div>
+
+        <div className="mt-10 flex flex-wrap gap-3 border-t-2 border-ink/10 pt-6 text-sm">
+          <Link href={`/${locale}/terms`} className="font-bold text-ink/70 underline hover:text-qalam">
+            {isAr ? "شروط الاستخدام" : "Terms of Use"}
+          </Link>
+          <Link href={`/${locale}/contact`} className="font-bold text-ink/70 underline hover:text-qalam">
+            {isAr ? "تواصل معنا" : "Contact"}
+          </Link>
+          <a
+            href="https://policies.google.com/technologies/partner-sites"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold text-ink/70 underline hover:text-qalam"
+          >
+            {isAr ? "كيف تستعمل Google البيانات" : "How Google uses data"}
+          </a>
+          <a
+            href="https://adssettings.google.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold text-ink/70 underline hover:text-qalam"
+          >
+            {isAr ? "إعدادات إعلانات Google" : "Google Ads Settings"}
+          </a>
+        </div>
+      </article>
     </PageLayout>
-  );
-}
-
-function PrivacyEn() {
-  return (
-    <>
-      <h1 className="text-3xl font-semibold text-ink">Privacy Policy</h1>
-      <p className="mt-1 text-sm text-ink/40">Last updated: April 2026</p>
-      <div className="mt-8 space-y-6 text-sm leading-relaxed text-ink/80">
-        <section>
-          <h2 className="mb-2 text-lg font-medium text-ink/90">Overview</h2>
-          <p>
-            ArabFingers (&quot;we&quot;, &quot;our&quot;, &quot;us&quot;) is a free, open-source educational web application
-            designed for children aged 1–6. We take children&apos;s privacy extremely seriously.
-            This app is designed to collect zero personal data.
-          </p>
-        </section>
-        <section>
-          <h2 className="mb-2 text-lg font-medium text-ink/90">Data We Collect</h2>
-          <p>
-            <strong className="text-ink/85">None.</strong> ArabFingers does not collect, store, transmit,
-            or share any personal information. There are no accounts, no login, no analytics,
-            no cookies (from us), and no tracking of any kind.
-          </p>
-        </section>
-        <section>
-          <h2 className="mb-2 text-lg font-medium text-ink/90">Local Storage</h2>
-          <p>
-            The app may use your browser&apos;s local storage to remember preferences such as theme,
-            sound settings, and language. This data never leaves your device.
-          </p>
-        </section>
-        <section>
-          <h2 className="mb-2 text-lg font-medium text-ink/90">Cookies &amp; Third-Party Services</h2>
-          <p>
-            ArabFingers itself does not set cookies. However, we may display ads through Google AdSense.
-            Google and its partners may use cookies to serve ads based on prior visits. You can opt out at{" "}
-            <a href="https://adssettings.google.com" className="text-accent underline" target="_blank" rel="noopener noreferrer">
-              Google&apos;s Ads Settings
-            </a>.
-          </p>
-        </section>
-        <section>
-          <h2 className="mb-2 text-lg font-medium text-ink/90">Children&apos;s Privacy (COPPA)</h2>
-          <p>
-            This app is designed for use by children under parental supervision.
-            We do not knowingly collect any personal information from children.
-            If you believe any data has been inadvertently collected, please contact us immediately.
-          </p>
-        </section>
-        <section>
-          <h2 className="mb-2 text-lg font-medium text-ink/90">Changes to This Policy</h2>
-          <p>We may update this policy from time to time. Changes will be posted on this page.</p>
-        </section>
-        <section>
-          <h2 className="mb-2 text-lg font-medium text-ink/90">Contact</h2>
-          <p>
-            Questions? <a href="mailto:ibhartech39@gmail.com" className="text-accent underline">ibhartech39@gmail.com</a>
-          </p>
-        </section>
-      </div>
-    </>
-  );
-}
-
-function PrivacyAr() {
-  return (
-    <>
-      <h1 className="text-3xl font-semibold text-ink">سياسة الخصوصية</h1>
-      <p className="mt-1 text-sm text-ink/40">آخر تحديث: أبريل ٢٠٢٦</p>
-      <div className="mt-8 space-y-6 text-sm leading-relaxed text-ink/80">
-        <section>
-          <h2 className="mb-2 text-lg font-medium text-ink/90">نظرة عامة</h2>
-          <p>
-            عرب فنجرز هو تطبيق ويب تعليمي مجاني ومفتوح المصدر مصمم للأطفال من عمر ١ إلى ٦ سنوات.
-            نحن نأخذ خصوصية الأطفال على محمل الجد. هذا التطبيق مصمم لعدم جمع أي بيانات شخصية.
-          </p>
-        </section>
-        <section>
-          <h2 className="mb-2 text-lg font-medium text-ink/90">البيانات التي نجمعها</h2>
-          <p>
-            <strong className="text-ink/85">لا شيء.</strong> لا يقوم عرب فنجرز بجمع أو تخزين أو نقل أو مشاركة أي معلومات شخصية.
-            لا توجد حسابات، لا تسجيل دخول، لا تحليلات، لا ملفات تعريف ارتباط (منا)، ولا تتبع من أي نوع.
-          </p>
-        </section>
-        <section>
-          <h2 className="mb-2 text-lg font-medium text-ink/90">التخزين المحلي</h2>
-          <p>
-            قد يستخدم التطبيق التخزين المحلي في متصفحك لتذكر التفضيلات. هذه البيانات لا تغادر جهازك أبداً.
-          </p>
-        </section>
-        <section>
-          <h2 className="mb-2 text-lg font-medium text-ink/90">ملفات تعريف الارتباط وخدمات الطرف الثالث</h2>
-          <p>
-            عرب فنجرز نفسه لا يضع ملفات تعريف ارتباط. ومع ذلك، قد نعرض إعلانات من خلال Google AdSense.
-            قد تستخدم Google وشركاؤها ملفات تعريف الارتباط لعرض الإعلانات. يمكنك إلغاء الاشتراك من إعدادات إعلانات Google.
-          </p>
-        </section>
-        <section>
-          <h2 className="mb-2 text-lg font-medium text-ink/90">خصوصية الأطفال (COPPA)</h2>
-          <p>
-            هذا التطبيق مصمم للاستخدام من قبل الأطفال تحت إشراف أحد الوالدين.
-            نحن لا نجمع عن قصد أي معلومات شخصية من الأطفال.
-          </p>
-        </section>
-        <section>
-          <h2 className="mb-2 text-lg font-medium text-ink/90">تواصل معنا</h2>
-          <p>
-            أسئلة؟ <a href="mailto:ibhartech39@gmail.com" className="text-accent underline">ibhartech39@gmail.com</a>
-          </p>
-        </section>
-      </div>
-    </>
   );
 }
