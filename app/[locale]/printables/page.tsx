@@ -269,16 +269,33 @@ export default async function PrintablesPage({ params }: { params: Promise<{ loc
             return (
               <li key={s.id} className="card-stock flex gap-4 p-5">
                 {/* The real first page, rendered by the same script that builds the
-                    PDF — so the card cannot advertise a sheet the file does not have. */}
-                <Image
-                  src={`/printables/previews/${s.id}.png`}
-                  alt=""
-                  aria-hidden
-                  width={349}
-                  height={494}
-                  unoptimized
-                  className="hidden h-auto w-24 shrink-0 self-start rounded-lg border-2 border-ink/15 bg-white shadow-[3px_3px_0_0_rgba(42,29,78,0.12)] sm:block"
-                />
+                    PDF — so the card cannot advertise a sheet the file does not have.
+                    The bundle gets sheets stacked behind it: its first page is the
+                    alphabet chart, so on its own the thumbnail looks like a repeat
+                    of the chart card. */}
+                <div className="relative hidden w-24 shrink-0 self-start sm:block">
+                  {s.bundle && (
+                    <>
+                      <span
+                        aria-hidden
+                        className="absolute inset-0 translate-x-2 translate-y-2 rounded-lg border-2 border-ink/10 bg-white"
+                      />
+                      <span
+                        aria-hidden
+                        className="absolute inset-0 translate-x-1 translate-y-1 rounded-lg border-2 border-ink/12 bg-white"
+                      />
+                    </>
+                  )}
+                  <Image
+                    src={`/printables/previews/${s.id}.png`}
+                    alt=""
+                    aria-hidden
+                    width={349}
+                    height={494}
+                    unoptimized
+                    className="relative h-auto w-full rounded-lg border-2 border-ink/15 bg-white shadow-[3px_3px_0_0_rgba(42,29,78,0.12)]"
+                  />
+                </div>
 
                 <div className="flex min-w-0 flex-1 flex-col">
                   <div className="flex items-start gap-3">

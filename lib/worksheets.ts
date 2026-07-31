@@ -19,6 +19,12 @@ export type WorksheetSet = {
   pages: number;
   ageEn: string;
   ageAr: string;
+  /**
+   * True for the pack that simply collects the others. Its first page is the
+   * alphabet chart, so its preview is byte-identical to the chart's — the card
+   * draws stacked sheets behind the thumbnail rather than looking like a repeat.
+   */
+  bundle?: boolean;
 };
 
 /** The packs we generate as real PDFs into /public/printables. */
@@ -100,6 +106,7 @@ export const worksheetSets: WorksheetSet[] = [
     pages: 53,
     ageEn: "Ages 3–7",
     ageAr: "من ٣ إلى ٧ سنوات",
+    bundle: true,
   },
 ];
 
