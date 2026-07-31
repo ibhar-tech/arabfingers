@@ -65,7 +65,7 @@ export function ParentPanelTrigger() {
         data-parent-ui="true"
         aria-label={locale === "ar" ? "الرئيسية" : "Home"}
         title={locale === "ar" ? "الرئيسية" : "Home"}
-        className="group flex items-center justify-center rounded-xl border border-white/15 bg-black/35 px-3 py-2.5 text-white/80 shadow-[0_8px_24px_rgba(0,0,0,0.25)] backdrop-blur-md transition hover:bg-black/45 hover:text-white/95 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none cursor-pointer"
+        className="group flex items-center justify-center rounded-xl stage-chip stage-chip-hover px-3 py-2.5 transition focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none cursor-pointer"
       >
         <Home className="h-5 w-5 group-hover:scale-110 transition-transform" strokeWidth={2} />
         <span className="text-xs font-semibold ml-1.5 hidden md:inline">
@@ -84,7 +84,7 @@ export function ParentPanelTrigger() {
         onPointerUp={reset}
         onPointerLeave={reset}
         onPointerCancel={reset}
-        className="group relative flex items-center gap-2.5 rounded-xl border border-white/15 bg-black/35 px-3.5 py-2.5 text-white/80 shadow-[0_8px_24px_rgba(0,0,0,0.25)] backdrop-blur-md transition hover:bg-black/45 hover:text-white/95"
+        className="group relative flex items-center gap-2.5 rounded-xl stage-chip stage-chip-hover px-3.5 py-2.5 transition"
       >
         <span
           className="absolute inset-0 rounded-xl overflow-hidden"

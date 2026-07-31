@@ -24,6 +24,7 @@ import { numbersData, colorsData, animalsData } from "../lib/worksheets.ts";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT_DIR = join(ROOT, "public", "printables");
+const THUMB_DIR = join(OUT_DIR, "previews");
 const SITE = "arabfingers.site";
 
 /** Chrome shapes these into their contextual forms when wrapped in ZWJ. */
@@ -539,8 +540,42 @@ function renderPdf(tmp, id, html) {
   return { pdfPath, bytes: statSync(pdfPath).size };
 }
 
+/**
+ * First page of each pack as a small PNG, so the download cards can show what is
+ * actually inside instead of asking for a click on faith.
+ *
+ * The window is one A4 sheet at 96dpi (210mm x 297mm = 794 x 1123 CSS px) so the
+ * capture lands exactly on sheet one; the device scale factor shrinks the bitmap
+ * without changing the layout, which keeps each thumbnail well under 100 KB.
+ */
+function renderThumb(tmp, id, html) {
+  const htmlPath = join(tmp, `${id}-thumb.html`);
+  const pngPath = join(THUMB_DIR, `${id}.png`);
+  writeFileSync(htmlPath, html, "utf8");
+
+  execFileSync(
+    CHROME,
+    [
+      "--headless",
+      "--disable-gpu",
+      "--no-sandbox",
+      "--hide-scrollbars",
+      "--window-size=794,1123",
+      "--force-device-scale-factor=0.44",
+      `--screenshot=${pngPath}`,
+      `--virtual-time-budget=10000`,
+      `file://${htmlPath}`,
+    ],
+    { stdio: ["ignore", "ignore", "pipe"] },
+  );
+
+  if (!existsSync(pngPath)) throw new Error(`Chrome produced no preview for ${id}`);
+  return statSync(pngPath).size;
+}
+
 function main() {
   mkdirSync(OUT_DIR, { recursive: true });
+  mkdirSync(THUMB_DIR, { recursive: true });
   const tmp = mkdtempSync(join(tmpdir(), "arabfingers-worksheets-"));
   const manifest = {};
 
@@ -550,14 +585,19 @@ function main() {
       const html = set.html();
       parts.push(html);
       const { bytes } = renderPdf(tmp, set.id, html);
+      const thumb = renderThumb(tmp, set.id, html);
       manifest[set.id] = bytes;
-      console.log(`  ✓ ${set.id}.pdf  (${(bytes / 1024).toFixed(0)} KB)`);
+      console.log(
+        `  ✓ ${set.id}.pdf  (${(bytes / 1024).toFixed(0)} KB, preview ${(thumb / 1024).toFixed(0)} KB)`,
+      );
     }
 
     // The complete workbook is every sheet in teaching order, rendered in one
     // pass — cheaper and more reliable than merging five finished PDFs.
     const bodies = parts.map((h) => h.slice(h.indexOf("<body>") + 6, h.lastIndexOf("</body>"))).join("");
-    const { bytes } = renderPdf(tmp, "arabic-complete-workbook", doc("Complete Arabic Workbook", bodies));
+    const workbook = doc("Complete Arabic Workbook", bodies);
+    const { bytes } = renderPdf(tmp, "arabic-complete-workbook", workbook);
+    renderThumb(tmp, "arabic-complete-workbook", workbook);
     manifest["arabic-complete-workbook"] = bytes;
     console.log(`  ✓ arabic-complete-workbook.pdf  (${(bytes / 1024).toFixed(0)} KB)`);
   } finally {

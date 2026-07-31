@@ -1,403 +1,611 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import confetti from "canvas-confetti";
+import { Brush, Eraser, PaintBucket, RotateCcw, Sticker, Volume2 } from "lucide-react";
+import { arabicLetters } from "@/lib/arabicMap";
+import { playLetterSound, primeLetterSounds } from "@/lib/letterSounds";
 
-const LETTERS = [
-  { char: "ا", name: "Alef" },
-  { char: "ب", name: "Ba" },
-  { char: "ت", name: "Ta" },
-  { char: "ث", name: "Tha" },
-  { char: "ج", name: "Jeem" },
-  { char: "ح", name: "Hha" },
-  { char: "خ", name: "Kha" },
-  { char: "د", name: "Dal" },
-  { char: "ذ", name: "Thal" },
-  { char: "ر", name: "Ra" },
-  { char: "ز", name: "Zay" },
-  { char: "س", name: "Seen" },
-  { char: "ش", name: "Sheen" },
-  { char: "ص", name: "Sad" },
-  { char: "ض", name: "Dad" },
-  { char: "ط", name: "Tah" },
-  { char: "ظ", name: "Zah" },
-  { char: "ع", name: "Ain" },
-  { char: "غ", name: "Ghain" },
-  { char: "ف", name: "Fa" },
-  { char: "ق", name: "Qaf" },
-  { char: "ك", name: "Kaf" },
-  { char: "ل", name: "Lam" },
-  { char: "م", name: "Meem" },
-  { char: "ن", name: "Noon" },
-  { char: "ه", name: "Ha" },
-  { char: "و", name: "Waw" },
-  { char: "ي", name: "Ya" },
-];
+/**
+ * Trace-and-colour sheet. One letter at a time on a paper-coloured stage, with a
+ * brush, a one-tap fill, stickers and an eraser.
+ *
+ * The letters come from lib/arabicMap — the same table the game and the printable
+ * worksheets use — so a letter cannot be right in one place and wrong here.
+ */
 
 const COLORS = [
-  "#ef4444", // Red
-  "#f97316", // Orange
-  "#eab308", // Yellow
-  "#22c55e", // Green
-  "#06b6d4", // Cyan
-  "#3b82f6", // Blue
-  "#a855f7", // Purple
-  "#ec4899", // Pink
-  "#ffffff", // White
+  "#e23d3d", // red
+  "#f97316", // orange
+  "#ffb22e", // saffron
+  "#3aa655", // green
+  "#10a39a", // qalam teal
+  "#3b82f6", // blue
+  "#8b3df5", // violet
+  "#ff5da2", // bubblegum
+  "#2a1d4e", // ink
 ];
+
+const STICKERS = ["⭐", "❤️", "🌸", "🦋", "🎈", "🐠"];
+
+type Tool = "brush" | "fill" | "sticker" | "eraser";
+
+const DONE_KEY = "arab_fingers_colored_letters";
+/** Portion of the glyph that must be covered before the star is awarded. */
+const DONE_AT = 0.7;
 
 export default function ColoringClient() {
   const params = useParams();
   const locale = (params?.locale as string) || "en";
   const isAr = locale === "ar";
 
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [isDrawing, setIsDrawing] = useState(false);
-  const [currentColor, setCurrentColor] = useState(COLORS[0]);
-  const [brushSize, setBrushSize] = useState(20);
-  const [letterIndex, setLetterIndex] = useState(0);
-  const [isCompleted, setIsCompleted] = useState(false);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const paintRef = useRef<HTMLCanvasElement>(null);
+  const outlineRef = useRef<HTMLCanvasElement>(null);
 
-  // Use a ref to store the background layer (the outline) so we don't clear the user's drawing 
-  // when the window resizes, or if we want to redraw the outline on top, we can composite.
-  // Actually, the simplest approach: 
-  // We draw the outline text first, and user paints ON TOP. 
-  // Or user paints BEHIND the outline (using globalCompositeOperation = "destination-over").
-  // Let's draw the user strokes on the main canvas, and have the outline drawn on top always.
-  // We can do this by using two canvases: an offscreen one for user strokes, or just rendering
-  // the text every frame. Since it's a simple drawing app, we can just let them draw *over* the text, 
-  // or draw *under* it using globalCompositeOperation.
+  const [size, setSize] = useState({ width: 0, height: 0 });
+  const [color, setColor] = useState(COLORS[0]);
+  const [brushSize, setBrushSize] = useState(26);
+  const [tool, setTool] = useState<Tool>("brush");
+  const [sticker, setSticker] = useState(STICKERS[0]);
+  const [index, setIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const [done, setDone] = useState(false);
+  const [collected, setCollected] = useState<string[]>([]);
 
-  const drawOutline = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+  /* Pointer state lives in a ref, not state. It used to be state, and because
+     startDrawing set it and called draw() in the same tick, the closure still saw
+     `false` — so a single tap never left a mark. */
+  const drawing = useRef(false);
+  /** Byte offsets of the alpha channel for pixels inside the glyph, sampled once per letter. */
+  const maskOffsets = useRef<Int32Array>(new Int32Array(0));
 
-    // We want the text to act as a stencil or just an outline.
-    // If we want it to be an outline that stays visible above the drawing:
-    // We shouldn't clear the user's drawing. We should just redraw the outline over it? No, then it covers their paint.
-    // If we let them draw *under* the outline:
-    // We can set globalCompositeOperation to 'destination-over' to draw the text behind, but wait, 
-    // if text is behind, it gets covered.
-    // If we want the text outline to stay on top, we could draw it, then set 'destination-over' for user strokes.
-    // Actually, drawing ON TOP is fine (like a coloring book where the black lines stay visible).
-    // To do that easily with a single canvas: 
-    // 1. We draw user strokes as normal.
-    // 2. We don't redraw the outline continuously because that would mean clearing the canvas.
-    // We need 2 canvases overlaid: one for the outline (top, pointer-events: none), one for drawing (bottom).
-  }, [letterIndex]);
-
-  // Let's use two layers for simplicity.
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const letter = arabicLetters[index];
 
   useEffect(() => {
-    const handleResize = () => {
-      setDimensions({ width: window.innerWidth, height: window.innerHeight });
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Clear drawing canvas when letter changes or on clear button
-  const clearCanvas = useCallback(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-  }, []);
-
-  useEffect(() => {
-    clearCanvas();
-  }, [letterIndex, clearCanvas, dimensions]);
-
-  const changeLetter = (delta: number) => {
-    setLetterIndex((prev) => (prev + delta + LETTERS.length) % LETTERS.length);
-    setIsCompleted(false);
-  };
-
-  const checkCompletion = () => {
-    if (isCompleted) return;
-    const canvas = canvasRef.current;
-    if (!canvas || dimensions.width === 0 || dimensions.height === 0) return;
-    const ctx = canvas.getContext("2d", { willReadFrequently: true });
-    if (!ctx) return;
-
-    // Create offscreen canvas for the mask
-    const maskCanvas = document.createElement("canvas");
-    maskCanvas.width = canvas.width;
-    maskCanvas.height = canvas.height;
-    const maskCtx = maskCanvas.getContext("2d", { willReadFrequently: true });
-    if (!maskCtx) return;
-
-    // Draw the text solid
-    const letter = LETTERS[letterIndex].char;
-    const fontSize = Math.min(canvas.width, canvas.height) * 0.6;
-    maskCtx.font = `800 ${fontSize}px "Noto Naskh Arabic", sans-serif`;
-    maskCtx.textAlign = "center";
-    maskCtx.textBaseline = "middle";
-    maskCtx.fillStyle = "#000";
-    
-    // Match the outline area
-    maskCtx.fillText(letter, maskCanvas.width / 2, maskCanvas.height / 2);
-    maskCtx.lineWidth = 8;
-    maskCtx.strokeText(letter, maskCanvas.width / 2, maskCanvas.height / 2);
-
+    primeLetterSounds();
     try {
-      const maskData = maskCtx.getImageData(0, 0, maskCanvas.width, maskCanvas.height).data;
-      const userData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+      const saved = localStorage.getItem(DONE_KEY);
+      if (saved) setCollected(JSON.parse(saved));
+    } catch {
+      // A blocked or corrupt localStorage just means no stars; not worth surfacing.
+    }
+  }, []);
 
-      let targetPixels = 0;
-      let coloredPixels = 0;
+  // ---------------------------------------------------------------- geometry
 
-      // Check every 4th pixel to save performance (stride = 16 bytes)
-      for (let i = 3; i < maskData.length; i += 16) {
-        if (maskData[i] > 128) {
-          targetPixels++;
-          if (userData[i] > 10) { // user colored this pixel
-            coloredPixels++;
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return;
+
+    /* Measure the stage, not the window: the stage is one nav-bar shorter than the
+       viewport, and sizing to innerHeight pushed the letter off centre. */
+    const measure = () => setSize({ width: stage.clientWidth, height: stage.clientHeight });
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(stage);
+    return () => observer.disconnect();
+  }, []);
+
+  /* The letter is centred in the band left over between the title chip and the
+     control stack, not in the stage — centring it in the stage put it behind the
+     controls and wasted the top third of the sheet. */
+  const glyph = useMemo(() => {
+    const { width, height } = size;
+    const top = 64;
+    // Phones carry an extra row for the brush-size slider.
+    const bottom = height - (width < 640 ? 200 : 150);
+    const band = Math.max(120, bottom - top);
+    return {
+      font: Math.min(width * 0.52, band * 0.96),
+      cx: width / 2,
+      bandCenter: (top + bottom) / 2,
+    };
+  }, [size]);
+
+  /* Where the glyph is actually drawn. The em box is not the ink box — alef fills
+     the top of its box and sits visibly high, while ain sits low — so the baseline
+     anchor is nudged by the measured ink bounds. Outline, fill and scoring all read
+     this so they cannot drift apart. */
+  const anchor = useRef({ x: 0, y: 0, font: 0 });
+
+  /** Same font string everywhere, so outline, fill and scoring agree on the shape. */
+  const fontFor = useCallback((px: number) => {
+    const family =
+      typeof window === "undefined"
+        ? ""
+        : getComputedStyle(document.body).getPropertyValue("--font-noto-naskh").trim();
+    return `800 ${px}px ${family || '"Noto Naskh Arabic"'}, serif`;
+  }, []);
+
+  /** Sets the backing store to device pixels so strokes are not soft on a phone. */
+  const fitCanvas = useCallback((canvas: HTMLCanvasElement | null, width: number, height: number) => {
+    if (!canvas || width === 0) return null;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    canvas.style.width = `${width}px`;
+    canvas.style.height = `${height}px`;
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    ctx?.setTransform(dpr, 0, 0, dpr, 0, 0);
+    return ctx;
+  }, []);
+
+  // ------------------------------------------------------------------ layers
+
+  const clearPaint = useCallback(() => {
+    const canvas = paintRef.current;
+    const ctx = canvas?.getContext("2d");
+    if (!canvas || !ctx) return;
+    ctx.save();
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.restore();
+    setProgress(0);
+  }, []);
+
+  // Redraw the outline and rebuild the scoring mask whenever the letter or size changes.
+  useEffect(() => {
+    if (size.width === 0) return;
+
+    const ctx = fitCanvas(outlineRef.current, size.width, size.height);
+    fitCanvas(paintRef.current, size.width, size.height);
+    if (!ctx) return;
+
+    let cancelled = false;
+
+    const render = () => {
+      if (cancelled) return;
+      ctx.clearRect(0, 0, size.width, size.height);
+      ctx.font = fontFor(glyph.font);
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+
+      const m = ctx.measureText(letter.ar);
+      const ascent = m.actualBoundingBoxAscent || glyph.font * 0.5;
+      const descent = m.actualBoundingBoxDescent || glyph.font * 0.2;
+      anchor.current = {
+        x: glyph.cx,
+        y: glyph.bandCenter + (ascent - descent) / 2,
+        font: glyph.font,
+      };
+      const { x, y } = anchor.current;
+
+      // Faint tint inside the glyph so a child can see where to aim before colouring.
+      ctx.fillStyle = "rgba(42, 29, 78, 0.05)";
+      ctx.fillText(letter.ar, x, y);
+
+      ctx.lineWidth = Math.max(5, glyph.font * 0.022);
+      ctx.strokeStyle = "rgba(42, 29, 78, 0.55)";
+      ctx.setLineDash([glyph.font * 0.05, glyph.font * 0.045]);
+      ctx.lineJoin = "round";
+      ctx.strokeText(letter.ar, x, y);
+      ctx.setLineDash([]);
+
+      buildMask();
+    };
+
+    /* Score against a fixed sample of points inside the glyph, taken once. Reading
+       the whole mask on every stroke end was scanning a few million bytes per lift
+       on a retina tablet. */
+    const buildMask = () => {
+      const off = document.createElement("canvas");
+      off.width = size.width;
+      off.height = size.height;
+      const octx = off.getContext("2d", { willReadFrequently: true });
+      if (!octx) return;
+
+      octx.font = fontFor(glyph.font);
+      octx.textAlign = "center";
+      octx.textBaseline = "middle";
+      octx.fillStyle = "#000";
+      octx.fillText(letter.ar, anchor.current.x, anchor.current.y);
+
+      const data = octx.getImageData(0, 0, off.width, off.height).data;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const inside: number[] = [];
+      // Sample on a coarse lattice; ~10k points is plenty to judge coverage.
+      const step = Math.max(2, Math.round(Math.sqrt((off.width * off.height) / 10000)));
+      for (let y = 0; y < off.height; y += step) {
+        for (let x = 0; x < off.width; x += step) {
+          if (data[(y * off.width + x) * 4 + 3] > 128) {
+            // Translate to the paint canvas, which is backed at device resolution.
+            const px = Math.round(x * dpr);
+            const py = Math.round(y * dpr);
+            inside.push((py * Math.round(size.width * dpr) + px) * 4 + 3);
           }
         }
       }
+      maskOffsets.current = Int32Array.from(inside);
+    };
 
-      if (targetPixels > 0) {
-        const percentage = coloredPixels / targetPixels;
-        if (percentage > 0.8) { // 80% filled
-          setIsCompleted(true);
-          confetti({
-            particleCount: 150,
-            spread: 70,
-            origin: { y: 0.6 },
-            colors: COLORS,
-          });
-        }
+    // Canvas cannot resolve a CSS variable font until the webfont has actually loaded.
+    if (document.fonts?.status === "loaded") render();
+    else document.fonts?.ready.then(render).catch(render);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [letter.ar, size, glyph, fitCanvas, fontFor]);
+
+  useEffect(() => {
+    clearPaint();
+    setDone(false);
+  }, [index, size, clearPaint]);
+
+  // ----------------------------------------------------------------- scoring
+
+  const score = useCallback(() => {
+    const canvas = paintRef.current;
+    const ctx = canvas?.getContext("2d", { willReadFrequently: true });
+    const offsets = maskOffsets.current;
+    if (!canvas || !ctx || offsets.length === 0) return;
+
+    let painted = 0;
+    try {
+      const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+      for (let i = 0; i < offsets.length; i++) {
+        if (data[offsets[i]] > 12) painted++;
       }
-    } catch (e) {
-      // Ignore cross-origin canvas errors if any
+    } catch {
+      return;
     }
+
+    const ratio = painted / offsets.length;
+    setProgress(ratio);
+    if (ratio < DONE_AT || done) return;
+
+    setDone(true);
+    confetti({ particleCount: 160, spread: 75, origin: { y: 0.6 }, colors: COLORS });
+    playLetterSound(letter.soundId);
+    setCollected((previous) => {
+      if (previous.includes(letter.ar)) return previous;
+      const next = [...previous, letter.ar];
+      try {
+        localStorage.setItem(DONE_KEY, JSON.stringify(next));
+      } catch {
+        // Nothing to do — the star simply will not survive a reload.
+      }
+      return next;
+    });
+  }, [done, letter.ar, letter.soundId]);
+
+  // ---------------------------------------------------------------- painting
+
+  const pointAt = (event: React.PointerEvent<HTMLCanvasElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    return { x: event.clientX - rect.left, y: event.clientY - rect.top };
   };
 
-  // Handle drawing
-  const startDrawing = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
-    e.preventDefault();
-    setIsDrawing(true);
-    draw(e);
-  };
-
-  const stopDrawing = () => {
-    setIsDrawing(false);
-    const canvas = canvasRef.current;
-    const ctx = canvas?.getContext("2d");
-    if (ctx) ctx.beginPath(); // Reset path so next click doesn't connect
-    
-    checkCompletion();
-  };
-
-  const draw = (e: React.MouseEvent<HTMLCanvasElement> | React.TouchEvent<HTMLCanvasElement>) => {
-    if (!isDrawing) return;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+  const paintAt = (x: number, y: number, continuous: boolean) => {
+    const ctx = paintRef.current?.getContext("2d");
     if (!ctx) return;
 
-    // Get coordinates
-    let x = 0;
-    let y = 0;
-    if ("touches" in e) {
-      const rect = canvas.getBoundingClientRect();
-      x = e.touches[0].clientX - rect.left;
-      y = e.touches[0].clientY - rect.top;
-    } else {
-      x = e.nativeEvent.offsetX;
-      y = e.nativeEvent.offsetY;
+    if (tool === "sticker") {
+      ctx.save();
+      ctx.globalCompositeOperation = "source-over";
+      ctx.font = `${brushSize * 2.6}px serif`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(sticker, x, y);
+      ctx.restore();
+      return;
     }
 
+    ctx.globalCompositeOperation = tool === "eraser" ? "destination-out" : "source-over";
     ctx.lineWidth = brushSize;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
-    ctx.strokeStyle = currentColor;
+    ctx.strokeStyle = color;
 
-    ctx.lineTo(x, y);
-    ctx.stroke();
+    if (continuous) {
+      ctx.lineTo(x, y);
+      ctx.stroke();
+    } else {
+      // A tap should leave a dot, not nothing.
+      ctx.beginPath();
+      ctx.arc(x, y, brushSize / 2, 0, Math.PI * 2);
+      ctx.fillStyle = tool === "eraser" ? "#000" : color;
+      ctx.fill();
+    }
     ctx.beginPath();
     ctx.moveTo(x, y);
   };
 
-  // The outline layer renderer
-  const outlineRef = useRef<HTMLCanvasElement>(null);
-  useEffect(() => {
-    const canvas = outlineRef.current;
-    if (!canvas || dimensions.width === 0) return;
-    const ctx = canvas.getContext("2d");
+  /** One tap floods the whole letter — by far the fastest route to a finished sheet. */
+  const fillLetter = () => {
+    const ctx = paintRef.current?.getContext("2d");
     if (!ctx) return;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    const letter = LETTERS[letterIndex].char;
-    const fontSize = Math.min(canvas.width, canvas.height) * 0.6;
-    
-    ctx.font = `800 ${fontSize}px "Noto Naskh Arabic", sans-serif`;
+    ctx.save();
+    ctx.globalCompositeOperation = "source-over";
+    ctx.font = fontFor(anchor.current.font);
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    
-    // Draw thick dashed outline
-    ctx.lineWidth = 8;
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.4)";
-    ctx.setLineDash([15, 15]);
-    ctx.strokeText(letter, canvas.width / 2, canvas.height / 2);
+    ctx.fillStyle = color;
+    ctx.fillText(letter.ar, anchor.current.x, anchor.current.y);
+    ctx.restore();
+    score();
+  };
 
-    // Draw inner fill very transparently
-    ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
-    ctx.fillText(letter, canvas.width / 2, canvas.height / 2);
-  }, [letterIndex, dimensions]);
+  const onPointerDown = (event: React.PointerEvent<HTMLCanvasElement>) => {
+    event.currentTarget.setPointerCapture(event.pointerId);
+    if (tool === "fill") {
+      fillLetter();
+      return;
+    }
+    drawing.current = true;
+    const { x, y } = pointAt(event);
+    paintAt(x, y, false);
+    if (tool === "sticker") {
+      drawing.current = false;
+      score();
+    }
+  };
+
+  const onPointerMove = (event: React.PointerEvent<HTMLCanvasElement>) => {
+    if (!drawing.current) return;
+    const { x, y } = pointAt(event);
+    paintAt(x, y, true);
+  };
+
+  const onPointerUp = () => {
+    if (!drawing.current) return;
+    drawing.current = false;
+    paintRef.current?.getContext("2d")?.beginPath();
+    score();
+  };
+
+  // ------------------------------------------------------------------- letter
+
+  const goTo = (delta: number) => {
+    setIndex((prev) => (prev + delta + arabicLetters.length) % arabicLetters.length);
+    playLetterSound(arabicLetters[(index + delta + arabicLetters.length) % arabicLetters.length].soundId);
+  };
+
+  const tools: { id: Tool; icon: typeof Brush; label: string }[] = [
+    { id: "brush", icon: Brush, label: isAr ? "فرشاة" : "Brush" },
+    { id: "fill", icon: PaintBucket, label: isAr ? "تعبئة" : "Fill" },
+    { id: "sticker", icon: Sticker, label: isAr ? "ملصقات" : "Stickers" },
+    { id: "eraser", icon: Eraser, label: isAr ? "ممحاة" : "Eraser" },
+  ];
 
   return (
-    <div className="relative h-dvh w-full overflow-hidden bg-[#050816] select-none touch-none">
-      {/* Top Nav */}
-      <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-20">
-        <Link
-          href={`/${locale}`}
-          className="rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur-md transition hover:bg-white/20"
-        >
-          {isAr ? "العودة للرئيسية" : "Back to Home"}
-        </Link>
-        <div className="text-white/50 text-sm font-medium bg-white/5 px-4 py-2 rounded-full backdrop-blur-md">
-          {LETTERS[letterIndex].char} - {LETTERS[letterIndex].name}
+    <div
+      ref={stageRef}
+      dir={isAr ? "rtl" : "ltr"}
+      className="relative h-[calc(100dvh-var(--header-h))] w-full select-none overflow-hidden bg-canvas touch-none"
+    >
+      {/* Paper grain: a couple of very soft blooms so the sheet is not flat white. */}
+      <div className="pointer-events-none absolute inset-0 opacity-70">
+        <div className="absolute -start-16 -top-10 h-72 w-72 rounded-full bg-saffron/20 blur-[90px]" />
+        <div className="absolute -end-16 top-1/3 h-80 w-80 rounded-full bg-violet/15 blur-[100px]" />
+      </div>
+
+      {/* Top bar */}
+      <div className="absolute inset-x-0 top-0 z-30 flex items-start justify-between gap-2 p-3">
+        <div className="card-stock flex items-center gap-2 px-3 py-2">
+          <span className="font-arabic-display text-2xl leading-none text-ink">{letter.ar}</span>
+          <span className="text-sm font-extrabold text-ink/70">
+            {isAr ? letter.arName : letter.enName}
+          </span>
+          <button
+            type="button"
+            onClick={() => playLetterSound(letter.soundId)}
+            aria-label={isAr ? "استمع للحرف" : "Hear the letter"}
+            className="ms-1 rounded-full p-1 text-ink/60 transition hover:bg-saffron-soft hover:text-ink"
+          >
+            <Volume2 className="h-4 w-4" />
+          </button>
         </div>
-        <button
-          onClick={clearCanvas}
-          className="rounded-full bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur-md transition hover:bg-white/20"
-        >
-          {isAr ? "مسح" : "Clear"}
-        </button>
+
+        <div className="flex items-center gap-2">
+          <div className="card-stock hidden items-center gap-1.5 px-3 py-2 text-sm font-extrabold text-ink/70 sm:flex">
+            ⭐ {collected.length}/{arabicLetters.length}
+          </div>
+          <button
+            type="button"
+            onClick={clearPaint}
+            className="card-stock flex items-center gap-1.5 px-3 py-2 text-sm font-extrabold text-ink transition hover:bg-saffron-soft"
+          >
+            <RotateCcw className="h-4 w-4" />
+            {isAr ? "مسح" : "Clear"}
+          </button>
+        </div>
       </div>
 
-      {/* Main Drawing Area */}
-      <div className="absolute inset-0 z-0">
-        {/* User Drawing Canvas (Bottom Layer) */}
-        <canvas
-          ref={canvasRef}
-          width={dimensions.width}
-          height={dimensions.height}
-          className="absolute inset-0 cursor-crosshair z-10"
-          onMouseDown={startDrawing}
-          onMouseMove={draw}
-          onMouseUp={stopDrawing}
-          onMouseOut={stopDrawing}
-          onTouchStart={startDrawing}
-          onTouchMove={draw}
-          onTouchEnd={stopDrawing}
-          onTouchCancel={stopDrawing}
-        />
-        
-        {/* Outline Canvas (Top Layer, Pointer Events None) */}
-        <canvas
-          ref={outlineRef}
-          width={dimensions.width}
-          height={dimensions.height}
-          className="absolute inset-0 pointer-events-none z-15"
-        />
-      </div>
+      {/* Sheet */}
+      <canvas
+        ref={paintRef}
+        className="absolute inset-0 z-10 touch-none"
+        style={{ cursor: tool === "eraser" ? "cell" : "crosshair" }}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
+        onPointerLeave={onPointerUp}
+      />
+      <canvas ref={outlineRef} className="pointer-events-none absolute inset-0 z-20" />
 
-      {/* Completion Modal */}
-      {isCompleted && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-in fade-in duration-500">
-          <div className="flex flex-col items-center gap-6 rounded-3xl bg-[#1a1f3c] p-8 text-center shadow-2xl border border-white/10 mx-4 max-w-sm w-full">
-            <div className="text-6xl animate-bounce">🌟</div>
-            <div>
-              <h2 className="text-2xl font-bold text-white mb-2">
-                {isAr ? "عمل رائع!" : "Great Job!"}
-              </h2>
-              <p className="text-white/80">
-                {isAr ? "لقد لونت الحرف بنجاح." : "You've successfully colored the letter."}
-              </p>
-            </div>
-            <div className="flex gap-4 w-full">
+      {/* Controls */}
+      <div className="absolute inset-x-0 bottom-0 z-30 flex flex-col items-center gap-2 px-3 pb-5">
+        {/* Coverage meter — the child can see the star coming. */}
+        <div className="h-2.5 w-48 overflow-hidden rounded-full border-2 border-ink/15 bg-white/70">
+          <div
+            className="h-full rounded-full transition-[width] duration-200"
+            style={{ width: `${Math.min(100, (progress / DONE_AT) * 100)}%`, background: color }}
+          />
+        </div>
+
+        {tool === "sticker" && (
+          <div className="card-stock flex items-center gap-1.5 px-2.5 py-2">
+            {STICKERS.map((item) => (
               <button
+                key={item}
+                type="button"
+                onClick={() => setSticker(item)}
+                aria-label={item}
+                className={`flex h-10 w-10 items-center justify-center rounded-xl text-2xl transition ${
+                  sticker === item ? "scale-110 bg-saffron-soft" : "hover:bg-saffron-soft/60"
+                }`}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+        )}
+
+        <div className="card-stock flex w-full max-w-2xl flex-wrap items-center justify-center gap-1.5 px-2.5 py-2">
+          {COLORS.map((item) => (
+            <button
+              key={item}
+              type="button"
+              onClick={() => {
+                setColor(item);
+                if (tool === "eraser" || tool === "sticker") setTool("brush");
+              }}
+              aria-label={`${isAr ? "لون" : "Colour"} ${item}`}
+              className={`h-9 w-9 rounded-full border-2 border-ink/20 transition ${
+                color === item ? "scale-110 ring-[3px] ring-ink" : "hover:scale-110"
+              }`}
+              style={{ backgroundColor: item }}
+            />
+          ))}
+
+          <span className="mx-1 hidden h-7 w-0.5 rounded-full bg-ink/10 sm:block" />
+
+          <label className="hidden items-center gap-2 sm:flex">
+            <span className="text-xs font-extrabold text-ink/55">{isAr ? "الحجم" : "Size"}</span>
+            <input
+              type="range"
+              min="8"
+              max="70"
+              value={brushSize}
+              onChange={(event) => setBrushSize(parseInt(event.target.value, 10))}
+              aria-label={isAr ? "حجم الفرشاة" : "Brush size"}
+              className="h-2 w-28 appearance-none rounded-full bg-ink/15 accent-qalam"
+            />
+            <span
+              className="rounded-full border-2 border-ink/20"
+              style={{
+                width: Math.max(8, brushSize / 2.4),
+                height: Math.max(8, brushSize / 2.4),
+                backgroundColor: color,
+              }}
+            />
+          </label>
+        </div>
+
+        <div className="flex w-full max-w-2xl items-center gap-2">
+          <button
+            type="button"
+            onClick={() => goTo(-1)}
+            aria-label={isAr ? "الحرف السابق" : "Previous letter"}
+            className="btn-chunky shrink-0 rounded-full px-4 py-2.5 text-lg"
+          >
+            {isAr ? "→" : "←"}
+          </button>
+
+          <div className="card-stock flex flex-1 items-center justify-center gap-1 px-2 py-1.5">
+            {tools.map((item) => {
+              const Icon = item.icon;
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setTool(item.id)}
+                  title={item.label}
+                  aria-label={item.label}
+                  aria-pressed={tool === item.id}
+                  className={`flex flex-1 items-center justify-center gap-1.5 rounded-xl px-2 py-2 text-xs font-extrabold transition ${
+                    tool === item.id ? "bg-ink text-card" : "text-ink/70 hover:bg-saffron-soft"
+                  }`}
+                >
+                  <Icon className="h-4 w-4" />
+                  <span className="hidden sm:inline">{item.label}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => goTo(1)}
+            aria-label={isAr ? "الحرف التالي" : "Next letter"}
+            className="btn-chunky shrink-0 rounded-full px-4 py-2.5 text-lg"
+          >
+            {isAr ? "←" : "→"}
+          </button>
+        </div>
+
+        {/* Phones do not have room for the slider beside the swatches. */}
+        <div className="card-stock flex w-full max-w-2xl items-center gap-3 px-4 py-2 sm:hidden">
+          <span className="text-xs font-extrabold text-ink/60">{isAr ? "الحجم" : "Size"}</span>
+          <input
+            type="range"
+            min="8"
+            max="70"
+            value={brushSize}
+            onChange={(event) => setBrushSize(parseInt(event.target.value, 10))}
+            aria-label={isAr ? "حجم الفرشاة" : "Brush size"}
+            className="h-2 flex-1 appearance-none rounded-full bg-ink/15 accent-qalam"
+          />
+          <span
+            className="rounded-full border-2 border-ink/20"
+            style={{
+              width: Math.max(8, brushSize / 2.4),
+              height: Math.max(8, brushSize / 2.4),
+              backgroundColor: color,
+            }}
+          />
+        </div>
+      </div>
+
+      {/* Reward */}
+      {done && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-ink/45 px-4 backdrop-blur-sm">
+          <div className="card-stock card-stock-saffron w-full max-w-sm p-7 text-center">
+            <div className="mascot-bob text-6xl">🌟</div>
+            <h2 className="mt-3 font-display text-2xl font-extrabold text-ink">
+              {isAr ? "أحسنت!" : "Great job!"}
+            </h2>
+            <p className="mt-1 text-sm font-semibold text-ink/70">
+              {isAr
+                ? `لوّنت حرف ${letter.arName}. عندك ${collected.length} من ${arabicLetters.length} نجمة.`
+                : `You coloured ${letter.enName}. That is ${collected.length} of ${arabicLetters.length} stars.`}
+            </p>
+            <div className="mt-5 flex gap-2.5">
+              <button
+                type="button"
                 onClick={() => {
-                  clearCanvas();
-                  setIsCompleted(false);
+                  clearPaint();
+                  setDone(false);
                 }}
-                className="flex-1 rounded-2xl bg-white/10 px-6 py-3 font-semibold text-white transition hover:bg-white/20"
+                className="btn-chunky btn-chunky-ghost flex-1 rounded-full px-4 py-2.5 text-sm"
               >
-                {isAr ? "إعادة" : "Replay"}
+                {isAr ? "مرة أخرى" : "Again"}
               </button>
               <button
-                onClick={() => changeLetter(1)}
-                className="flex-1 rounded-2xl bg-accent px-6 py-3 font-semibold text-[#050816] transition hover:scale-105"
+                type="button"
+                onClick={() => {
+                  setDone(false);
+                  goTo(1);
+                }}
+                className="btn-chunky flex-1 rounded-full px-4 py-2.5 text-sm"
               >
-                {isAr ? "التالي" : "Next"}
+                {isAr ? "الحرف التالي" : "Next letter"}
               </button>
             </div>
+            <Link
+              href={`/${locale}/printables`}
+              className="mt-4 inline-block text-xs font-bold text-ink/55 underline hover:text-ink"
+            >
+              {isAr ? "اطبع أوراق التتبع" : "Print the tracing worksheets"}
+            </Link>
           </div>
         </div>
       )}
-
-      {/* Bottom Controls */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 w-[90%] max-w-lg z-20">
-        
-        {/* Navigation */}
-        <div className="flex items-center gap-4 w-full justify-between">
-          <button
-            onClick={() => changeLetter(-1)}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition hover:bg-white/20 active:scale-95 shrink-0"
-            aria-label="Previous Letter"
-          >
-            ←
-          </button>
-          
-          {/* Colors */}
-          <div className="flex flex-1 items-center justify-center gap-2 overflow-x-auto py-2 px-4 rounded-full bg-black/40 backdrop-blur-md border border-white/10">
-            {COLORS.map((color) => (
-              <button
-                key={color}
-                onClick={() => setCurrentColor(color)}
-                className={`h-8 w-8 shrink-0 rounded-full transition-transform ${currentColor === color ? "scale-125 ring-2 ring-white" : "hover:scale-110"}`}
-                style={{ backgroundColor: color }}
-                aria-label={`Select color ${color}`}
-              />
-            ))}
-          </div>
-
-          <button
-            onClick={() => changeLetter(1)}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white backdrop-blur-md transition hover:bg-white/20 active:scale-95 shrink-0"
-            aria-label="Next Letter"
-          >
-            →
-          </button>
-        </div>
-        
-        {/* Brush Size */}
-        <div className="flex items-center gap-3 w-full bg-black/40 backdrop-blur-md border border-white/10 rounded-full px-6 py-2">
-          <span className="text-white/50 text-xs">{isAr ? "حجم الفرشاة" : "Brush"}</span>
-          <input 
-            type="range" 
-            min="5" 
-            max="60" 
-            value={brushSize}
-            onChange={(e) => setBrushSize(parseInt(e.target.value))}
-            className="flex-1 accent-accent h-1.5 rounded-full bg-white/20 appearance-none" 
-          />
-          <div 
-            className="rounded-full bg-white flex items-center justify-center" 
-            style={{ width: 24, height: 24 }}
-          >
-            <div 
-              className="rounded-full" 
-              style={{ 
-                backgroundColor: currentColor, 
-                width: Math.max(4, (brushSize / 60) * 20), 
-                height: Math.max(4, (brushSize / 60) * 20) 
-              }} 
-            />
-          </div>
-        </div>
-      </div>
     </div>
   );
 }

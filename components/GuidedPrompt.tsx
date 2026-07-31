@@ -21,15 +21,15 @@ export function GuidedPrompt() {
 
   return (
     <div className="pointer-events-none absolute left-0 right-0 top-3 sm:top-5 z-20 flex justify-center px-4">
-      <div className="flex items-center gap-3 rounded-2xl border border-white/12 bg-black/50 px-5 py-3 backdrop-blur-md">
+      <div className="flex items-center gap-3 rounded-2xl stage-chip px-5 py-3">
         {/* Progress */}
-        <div className="text-xs text-white/40">
+        <div className="text-xs font-semibold opacity-45">
           {guidedCorrect}/28
         </div>
 
         {/* Prompt */}
         <div className="flex items-center gap-2">
-          <span className="text-sm text-white/70">{t("findLetter")}</span>
+          <span className="text-sm font-semibold opacity-75">{t("findLetter")}</span>
           <span
             className="text-3xl font-bold"
             style={{ color: accent, fontFamily: "var(--font-noto-naskh), sans-serif" }}
@@ -45,7 +45,7 @@ export function GuidedPrompt() {
               initial={{ opacity: 0, x: -5 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0 }}
-              className="text-xs text-white/50"
+              className="text-xs opacity-55"
             >
               ({targetLetter.enName})
             </motion.div>

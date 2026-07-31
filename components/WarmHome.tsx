@@ -166,7 +166,7 @@ export function WarmHome({ locale }: { locale: string }) {
             <Link href={`/${locale}/learn`} className="btn-chunky btn-chunky-ghost"><BookOpen className="h-5 w-5" /> {tt("Learning guides", "أدلة التعلّم")}</Link>
           </div>
           <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-bold text-ink/60">
-            <span className="inline-flex items-center gap-1.5"><Star className="h-4 w-4 text-saffron" /> {tt("4.3M+ letters tapped", "أكثر من ٤ مليون لمسة")}</span>
+            <span className="inline-flex items-center gap-1.5"><Star className="h-4 w-4 text-saffron" /> {tt("All 28 letters, free", "الحروف الـ٢٨ كاملة، مجاناً")}</span>
             <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-qalam" /> {tt("Zero data collected", "بدون جمع بيانات")}</span>
             <span className="inline-flex items-center gap-1.5"><Heart className="h-4 w-4 text-rose" /> {tt("Free, no sign-up", "مجاني، بدون حساب")}</span>
           </div>
@@ -235,8 +235,8 @@ export function WarmHome({ locale }: { locale: string }) {
         <h2 className="font-display text-3xl font-extrabold text-ink">{tt("Built for little hands", "مصمّم للأيدي الصغيرة")}</h2>
         <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {[
-            { icon: Volume2, shadow: "card-stock-saffron", ic: "text-saffron-ink", t: tt("Natural pronunciation", "نطق طبيعي"), d: tt("Real bilingual letter sounds, not robotic text-to-speech.", "أصوات حروف ثنائية اللغة حقيقية، وليست آلية.") },
-            { icon: Palette, shadow: "card-stock-violet", ic: "text-violet", t: tt("5 playful themes", "٥ ثيمات ممتعة"), d: tt("Space, desert, jungle, underwater and Ramadan.", "الفضاء، الصحراء، الغابة، تحت الماء، ورمضان.") },
+            { icon: Volume2, shadow: "card-stock-saffron", ic: "text-saffron-ink", t: tt("Clear letter sounds", "أصوات حروف واضحة"), d: tt("Neural Arabic and English voices, checked by ear before they ship.", "أصوات عربية وإنجليزية عصبية، تُراجَع بالسمع قبل نشرها.") },
+            { icon: Palette, shadow: "card-stock-violet", ic: "text-violet", t: tt("6 playful themes", "٦ ثيمات ممتعة"), d: tt("Daylight, space, desert, jungle, underwater and Ramadan.", "النهار، الفضاء، الصحراء، الغابة، تحت الماء، ورمضان.") },
             { icon: Lock, shadow: "card-stock-qalam", ic: "text-qalam", t: tt("Parent controls", "أدوات الآباء"), d: tt("Optional PIN lock and a safe, contained play area.", "قفل PIN اختياري ومنطقة لعب آمنة ومحصورة.") },
             { icon: WifiOff, shadow: "card-stock-bubblegum", ic: "text-bubblegum", t: tt("Works offline", "يعمل بدون إنترنت"), d: tt("Install it like an app — no store, no account.", "ثبّته كتطبيق — بدون متجر ولا حساب.") },
           ].map((f) => (

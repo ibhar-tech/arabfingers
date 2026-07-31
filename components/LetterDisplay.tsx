@@ -124,21 +124,21 @@ export function LetterDisplay() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 8 }}
               transition={{ duration: 0.2 }}
-              className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/40 px-5 py-3 sm:px-6 sm:py-3.5 backdrop-blur-md"
+              className="stage-chip flex items-center gap-3 rounded-2xl px-5 py-3 sm:px-6 sm:py-3.5"
             >
               {displayMode !== "english" ? (
                 <span
-                  className="text-lg sm:text-2xl text-white/85"
+                  className="text-lg sm:text-2xl font-semibold"
                   style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}
                 >
                   {currentKey.letter.arName}
                 </span>
               ) : null}
               {showBoth ? (
-                <span className="text-white/25 text-lg">·</span>
+                <span className="text-lg opacity-30">·</span>
               ) : null}
               {displayMode !== "arabic" ? (
-                <span className="text-base sm:text-xl text-white/65">
+                <span className="text-base sm:text-xl opacity-70">
                   {currentKey.letter.enName}
                 </span>
               ) : null}

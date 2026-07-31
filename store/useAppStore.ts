@@ -105,7 +105,12 @@ export const useAppStore = create<AppState>((set) => ({
   showCounter: true,
   displayMode: "both",
   parentPanelOpen: false,
-  keyboardLayout: "arabic-standard",
+  /* Phonetic, not standard. On the standard Arabic layout six letter keys map to
+     ligatures and hamza forms that are not among the 28 (b → لا, z → ئ, …), so those
+     presses fell through to the generic "fun" card — while the on-screen tiles label
+     ب as "B". Phonetic covers all 28 and matches those labels. Parents with a real
+     Arabic keyboard can still pick standard or AZERTY in the parent panel. */
+  keyboardLayout: "arabic-phonetic",
   ttsSpeed: 1,
   parentPin: null,
   sessionSummaryOpen: false,

@@ -32,7 +32,7 @@ export function MilestoneMessage() {
               duration: reduceMotion ? 0.18 : 0.32,
               ease: "easeOut",
             }}
-            className="rounded-2xl border border-white/14 bg-black/50 px-8 py-5 sm:px-12 sm:py-6 text-center shadow-[0_16px_48px_rgba(0,0,0,0.4)] backdrop-blur-md"
+            className="stage-chip rounded-3xl px-8 py-5 sm:px-12 sm:py-6 text-center"
           >
             <div
               className="text-4xl sm:text-6xl font-semibold"
@@ -40,7 +40,7 @@ export function MilestoneMessage() {
             >
               {label}
             </div>
-            <div className="mt-2 text-base sm:text-lg text-white/55">🎉 {milestone.count}</div>
+            <div className="mt-2 text-base sm:text-lg font-semibold opacity-60">🎉 {milestone.count}</div>
           </motion.div>
         ) : null}
       </AnimatePresence>

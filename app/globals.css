@@ -24,6 +24,10 @@
   --violet-soft: #ede0ff;
   --bubblegum: #ff5da2;
   --bubblegum-soft: #ffe0ee;
+
+  /* Height of the sticky nav pill. PageLayout overwrites this with the measured
+     value on mount; the literal here just keeps first paint from jumping. */
+  --header-h: 56px;
 }
 
 @theme inline {
@@ -69,7 +73,7 @@ body {
 }
 
 /* The play surface is a fixed-height stage that must not bounce or pull-to-refresh
-   while a toddler mashes it. It used to set `overflow: hidden` as well, which locked
+   while a toddler mashes it. It used to set `overflow: hidden` on <html>, which locked
    the whole document — so the article, the related links and the site footer below
    the stage were rendered but unreachable by scrolling. overscroll-behavior alone
    stops the bounce without trapping the page. */
@@ -77,6 +81,61 @@ html:has(.play-surface),
 html:has(.play-surface) body {
   overscroll-behavior: none;
 }
+
+/* Swiping *on the toy* must not scroll the page out from under a child mid-game.
+   The article below is still reachable — deliberately, via the "read more" cue at
+   the bottom of the stage, and by wheel/keyboard anywhere. */
+.play-surface {
+  touch-action: none;
+}
+
+/* Idle bob for the stage's scroll cue. */
+@keyframes cue-nudge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+.cue-nudge { animation: cue-nudge 1.9s ease-in-out infinite; }
+
+/* ------------------------------------------------------------------
+   Play-stage chrome.
+
+   Every panel over the stage — counter, parent controls, letter bar, prompts —
+   used hard-coded dark glass. Four of the six themes are dark, so that read
+   fine; on the two light ones (daylight is the default) the same panels landed
+   on warm parchment as muddy grey slabs. One class decides the treatment and
+   the stage's data-light flag flips it, so nothing has to thread a theme prop.
+   Children inherit `color` and dim with opacity rather than naming a colour.
+   ------------------------------------------------------------------ */
+.stage-chip {
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  background: rgba(6, 8, 20, 0.42);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.stage-chip-hover:hover { background: rgba(6, 8, 20, 0.58); }
+
+.stage-tile {
+  border: 2px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+.stage-tile:active { background: rgba(255, 255, 255, 0.3); }
+
+.play-surface[data-light="true"] .stage-chip {
+  border-color: rgba(42, 29, 78, 0.14);
+  background: rgba(255, 255, 255, 0.74);
+  color: rgba(42, 29, 78, 0.92);
+  box-shadow: 0 10px 30px rgba(42, 29, 78, 0.14);
+}
+.play-surface[data-light="true"] .stage-chip-hover:hover { background: rgba(255, 255, 255, 0.92); }
+.play-surface[data-light="true"] .stage-tile {
+  border-color: rgba(42, 29, 78, 0.12);
+  background: rgba(42, 29, 78, 0.06);
+  color: var(--ink);
+}
+.play-surface[data-light="true"] .stage-tile:active { background: rgba(42, 29, 78, 0.16); }
 
 .page-scrollable {
   -webkit-user-select: text;
@@ -320,7 +379,7 @@ body {
 .mascot-spin { animation: mascot-spin 26s linear infinite; }
 
 @media (prefers-reduced-motion: reduce) {
-  .breathe, .mascot-bob, .mascot-sway, .mascot-spin,
+  .breathe, .mascot-bob, .mascot-sway, .mascot-spin, .cue-nudge,
   .animate-float-slow, .animate-float-medium,
   .animate-float-fast, .animate-float-slowest { animation: none !important; }
 }

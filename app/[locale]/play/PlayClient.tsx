@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { ChevronDown } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { EmojiBlast } from "@/components/EmojiBlast";
@@ -68,6 +69,7 @@ export default function PlayClient() {
   const keyboardLayout = useAppStore((state) => state.keyboardLayout);
   const playMode = useAppStore((state) => state.playMode);
   const guidedIndex = useAppStore((state) => state.guidedIndex);
+  const hasPlayed = useAppStore((state) => state.keyCount > 0);
   const advanceGuided = useAppStore((state) => state.advanceGuided);
   const markGuidedWrong = useAppStore((state) => state.markGuidedWrong);
   const sequenceRef = useRef("");
@@ -363,10 +365,15 @@ export default function PlayClient() {
     };
   }, [clearMilestone, milestone, soundEnabled]);
 
+  const isLight = themes[theme].isLight ?? false;
+
   return (
-    <main
+    /* A <section>, not a <main>: PageLayout already renders the page's <main>, and
+       nesting one inside another is invalid and confuses screen readers. */
+    <section
       aria-label={t("screenLabel")}
-      className="play-surface relative h-dvh w-full overflow-hidden"
+      data-light={isLight ? "true" : undefined}
+      className="play-surface relative h-[calc(100dvh-var(--header-h))] w-full overflow-hidden"
       style={{ background: themes[theme].background }}
     >
       <div
@@ -387,6 +394,22 @@ export default function PlayClient() {
       <ParentPanel />
       <SessionSummary />
       <TouchLetterGrid onPick={showSpecificLetter} />
-    </main>
+
+      {/* The stage swallows touch gestures so a child cannot scroll the toy away,
+          which means the article below needs an explicit door. It sits in the idle
+          state only — once play starts it is out of the child's way for good. */}
+      {!hasPlayed ? (
+        <div className="pointer-events-none absolute inset-x-0 bottom-28 z-20 flex justify-center px-4">
+          <a
+            href="#about-the-game"
+            data-parent-ui="true"
+            className="stage-chip stage-chip-hover cue-nudge pointer-events-auto flex items-center gap-2 rounded-full px-4 py-2 text-xs font-bold transition"
+          >
+            {t("aboutThisGame")}
+            <ChevronDown className="h-4 w-4" strokeWidth={2.5} />
+          </a>
+        </div>
+      ) : null}
+    </section>
   );
 }

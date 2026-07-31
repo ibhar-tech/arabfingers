@@ -58,10 +58,12 @@ export default async function PlayPage({
     <PageLayout locale={locale} fullBleed>
       <PlayLoader />
 
-      {/* Visible content section below the interactive toy (reachable by scrolling). */}
+      {/* Visible content section below the interactive toy. The stage blocks touch
+          scrolling, so its "about this game" cue links straight to this id. */}
       <section
+        id="about-the-game"
         dir={isAr ? "rtl" : "ltr"}
-        className="bg-canvas text-ink/85 border-t border-ink/10 print:hidden"
+        className="scroll-mt-0 bg-canvas text-ink/85 border-t-4 border-ink/10 print:hidden"
       >
         <div className="mx-auto max-w-3xl px-5 py-12 sm:px-6">
           {isAr ? (

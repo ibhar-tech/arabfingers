@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { PageLayout } from "@/components/PageLayout";
 import { FaqSection } from "@/components/FaqSection";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -266,24 +267,40 @@ export default async function PrintablesPage({ params }: { params: Promise<{ loc
           {worksheetSets.map((s) => {
             const bytes = (fileSizes as Record<string, number>)[s.id];
             return (
-              <li key={s.id} className="card-stock flex flex-col p-5">
-                <div className="flex items-start gap-3">
-                  <span aria-hidden className="text-3xl leading-none">{s.emoji}</span>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="font-display text-base font-extrabold leading-snug text-ink">
-                      {isAr ? s.titleAr : s.titleEn}
-                    </h3>
-                    <p className="mt-0.5 text-xs font-bold uppercase tracking-wide text-ink/45">
-                      {t.pagesLabel(s.pages)} · PDF · {mb(bytes)} · {isAr ? s.ageAr : s.ageEn}
-                    </p>
+              <li key={s.id} className="card-stock flex gap-4 p-5">
+                {/* The real first page, rendered by the same script that builds the
+                    PDF — so the card cannot advertise a sheet the file does not have. */}
+                <Image
+                  src={`/printables/previews/${s.id}.png`}
+                  alt=""
+                  aria-hidden
+                  width={349}
+                  height={494}
+                  unoptimized
+                  className="hidden h-auto w-24 shrink-0 self-start rounded-lg border-2 border-ink/15 bg-white shadow-[3px_3px_0_0_rgba(42,29,78,0.12)] sm:block"
+                />
+
+                <div className="flex min-w-0 flex-1 flex-col">
+                  <div className="flex items-start gap-3">
+                    <span aria-hidden className="text-3xl leading-none sm:hidden">{s.emoji}</span>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-display text-base font-extrabold leading-snug text-ink">
+                        {isAr ? s.titleAr : s.titleEn}
+                      </h3>
+                      <p className="mt-0.5 text-xs font-bold uppercase tracking-wide text-ink/45">
+                        {t.pagesLabel(s.pages)} · PDF · {mb(bytes)} · {isAr ? s.ageAr : s.ageEn}
+                      </p>
+                    </div>
                   </div>
+
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-ink/75">
+                    {isAr ? s.descAr : s.descEn}
+                  </p>
+
+                  <a href={`/printables/${s.id}.pdf`} download className="btn-chunky mt-4 self-start text-sm">
+                    ⬇ {t.download}
+                  </a>
                 </div>
-
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-ink/75">{isAr ? s.descAr : s.descEn}</p>
-
-                <a href={`/printables/${s.id}.pdf`} download className="btn-chunky mt-4 self-start text-sm">
-                  ⬇ {t.download}
-                </a>
               </li>
             );
           })}

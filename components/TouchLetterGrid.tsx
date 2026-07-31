@@ -28,14 +28,14 @@ export function TouchLetterGrid({ onPick }: { onPick: (letter: ArabicLetter) => 
           type="button"
           onClick={() => setOpen((v) => !v)}
           aria-label={isAr ? (open ? "إخفاء الحروف" : "إظهار الحروف") : open ? "Hide letters" : "Show letters"}
-          className="mb-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border-2 border-white/30 bg-black/40 text-white backdrop-blur-md transition active:scale-95"
+          className="stage-chip stage-chip-hover mb-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl transition active:scale-95"
         >
           {open ? <X className="h-5 w-5" /> : <Grid3x3 className="h-5 w-5" />}
         </button>
 
         {open && (
           <div
-            className="flex flex-1 gap-2 overflow-x-auto rounded-3xl border-2 border-white/20 bg-black/35 p-2 backdrop-blur-md"
+            className="stage-chip flex flex-1 gap-2 overflow-x-auto rounded-3xl p-2"
             style={{ touchAction: "pan-x", scrollbarWidth: "none" }}
           >
             {arabicLetters.map((letter) => (
@@ -45,7 +45,7 @@ export function TouchLetterGrid({ onPick }: { onPick: (letter: ArabicLetter) => 
                 type="button"
                 onClick={() => onPick(letter)}
                 aria-label={isAr ? letter.arName : letter.enName}
-                className="flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-2xl border-2 border-white/25 bg-white/10 text-white transition active:scale-90 active:bg-white/25"
+                className="stage-tile flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-2xl transition active:scale-90"
               >
                 <span className="font-arabic-display text-2xl leading-none">{letter.ar}</span>
                 <span className="mt-0.5 text-[10px] font-bold opacity-60">{letter.en}</span>

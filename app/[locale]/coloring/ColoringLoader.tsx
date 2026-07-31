@@ -5,10 +5,12 @@ import dynamic from "next/dynamic";
 const ColoringClient = dynamic(() => import("./ColoringClient"), {
   ssr: false,
   loading: () => (
-    <div className="relative h-dvh w-full overflow-hidden bg-[#050816] flex items-center justify-center">
+    <div className="relative flex h-[calc(100dvh-var(--header-h))] w-full items-center justify-center overflow-hidden bg-canvas">
       <div className="text-center">
-        <div className="text-6xl sm:text-8xl animate-bounce">🎨</div>
-        <div className="text-xl sm:text-2xl font-semibold text-white/80 mt-4">Loading Canvas...</div>
+        <div className="animate-bounce text-6xl sm:text-8xl">🎨</div>
+        <div className="mt-4 font-display text-xl font-extrabold text-ink/70 sm:text-2xl">
+          Loading…
+        </div>
       </div>
     </div>
   ),

@@ -42,10 +42,8 @@ export function InfoMenu() {
         data-parent-ui="true"
         aria-label="Info"
         onClick={() => setOpen((v) => !v)}
-        className={`group flex items-center gap-2 rounded-xl border px-3 py-2.5 shadow-[0_8px_24px_rgba(0,0,0,0.25)] backdrop-blur-md transition ${
-          open
-            ? "border-white/25 bg-black/50 text-white"
-            : "border-white/15 bg-black/35 text-white/80 hover:bg-black/45 hover:text-white/95"
+        className={`stage-chip group flex items-center gap-2 rounded-xl px-3 py-2.5 transition ${
+          open ? "" : "stage-chip-hover"
         }`}
       >
         {open ? (

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, type ReactNode } from "react";
+import { useState, useEffect, useRef, type ReactNode } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAppStore } from "@/store/useAppStore";
@@ -76,6 +76,24 @@ export function PageLayout({ locale, children, fullBleed = false }: PageLayoutPr
   const [menuOpen, setMenuOpen] = useState(false);
   const [footerOpen, setFooterOpen] = useState<Record<string, boolean>>({ learn: false, blog: false, info: false });
 
+  /* The nav sits in flow, so a full-bleed stage sized `100dvh` overshoots the
+     viewport by exactly the nav's height and pushes its own bottom controls (the
+     on-screen letter bar) below the fold. Publish the measured height so those
+     stages can size themselves against it. */
+  const navRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+
+    const publish = () =>
+      document.documentElement.style.setProperty("--header-h", `${nav.offsetHeight}px`);
+
+    publish();
+    const observer = new ResizeObserver(publish);
+    observer.observe(nav);
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth >= 768) {
       setFooterOpen({ learn: true, blog: true, info: true });
@@ -105,7 +123,10 @@ export function PageLayout({ locale, children, fullBleed = false }: PageLayoutPr
 
       {/* Top nav — warm pill */}
       <header className="sticky top-3 z-30 px-3 print:hidden">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-full border-[2.5px] border-ink bg-card/90 px-4 py-2.5 backdrop-blur-md shadow-[0_4px_0_0_var(--ink)]">
+        <nav
+          ref={navRef}
+          className="mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-full border-[2.5px] border-ink bg-card/90 px-4 py-2.5 backdrop-blur-md shadow-[0_4px_0_0_var(--ink)]"
+        >
           <Link href={`/${locale}`} className="flex shrink-0 items-center gap-2 font-display text-lg font-extrabold text-ink">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-ink font-arabic-display text-saffron">ا</span>
             Arab Fingers

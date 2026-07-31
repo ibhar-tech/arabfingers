@@ -60,5 +60,6 @@
   "keyboardLayout": "Keyboard layout",
   "layout_standard": "Arabic standard (QWERTY)",
   "layout_phonetic": "Phonetic",
-  "layout_azerty": "Arabic (AZERTY)"
+  "layout_azerty": "Arabic (AZERTY)",
+  "aboutThisGame": "About this game"
 }
