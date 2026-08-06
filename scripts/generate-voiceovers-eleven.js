@@ -176,6 +176,13 @@ async function resolveVoice(name) {
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+/**
+ * Characters the API has actually billed us for. Counted on every successful
+ * response, including takes later rejected by the duration gate — those cost
+ * credits too, and reporting only the ones that landed understated the spend.
+ */
+let charged = 0;
+
 function probeDuration(file) {
   return parseFloat(execFileSync("ffprobe",
     ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", file]).toString().trim());
@@ -204,6 +211,7 @@ async function generate(job, voiceId) {
     }
     if (res.status === 401) throw new Error("401 — key rejected. Check it, or its Text to Speech permission.");
     if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 240)}`);
+    charged += job.text.length;
 
     const raw = `${abs}.raw`;
     const partial = `${abs}.part`;
@@ -300,7 +308,7 @@ async function main() {
     console.log("\nFinishing the current clip, then stopping. Re-run to resume.");
   });
 
-  let done = 0, failed = 0, spent = 0;
+  let done = 0, failed = 0;
   for (const [i, job] of todo.entries()) {
     if (stopping) break;
     const label = `[${String(i + 1).padStart(3)}/${todo.length}] ${job.file}`;
@@ -310,7 +318,7 @@ async function main() {
         engine: ENGINE, model: MODEL, voice: voiceId, text: job.text, at: new Date().toISOString(),
       };
       fs.writeFileSync(MANIFEST_PATH, JSON.stringify(manifest, null, 2));
-      done++; spent += job.text.length;
+      done++;
       console.log(`${label}  ${seconds.toFixed(2)}s  ${String(bytes).padStart(6)}b`);
     } catch (err) {
       failed++;
@@ -320,7 +328,7 @@ async function main() {
     if (!stopping && i < todo.length - 1) await sleep(300);
   }
 
-  console.log(`\nGenerated ${done}, failed ${failed}, about ${spent} characters spent.`);
+  console.log(`\nGenerated ${done}, failed ${failed}, ${charged} characters billed.`);
   if (failed || stopping) console.log("Re-run the same command to pick up what is left.");
 }
 
