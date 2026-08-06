@@ -6,13 +6,15 @@
 const CACHE_NAME = "arabfingers-v5";
 // Every URL here must exist. cache.addAll is atomic — one 404 rejects the whole
 // call and nothing gets precached at all. This listed /icon-192.png and
-// /icon-512.png, which have never been in public/ (the manifest uses the single
-// /icon.svg), so the precache silently did nothing and the offline promise in
-// the privacy policy was not being kept.
+// /icon-512.png back when neither was in public/, so the precache silently did
+// nothing and the offline promise in the privacy policy was not being kept.
+// They exist now (scripts/build-icons.mjs); check any addition here resolves.
 const PRECACHE_URLS = [
   "/en",
   "/ar",
   "/icon.svg",
+  "/icon-192.png",
+  "/icon-512.png",
   "/sounds/smash.mp3",
   "/sounds/chime.mp3",
   "/sounds/confetti.mp3",

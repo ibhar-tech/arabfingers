@@ -81,8 +81,15 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
-    apple: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    // SVG first for browsers that take it, PNG behind for those that don't.
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+    ],
+    // iOS ignores SVG icons outright — pointing this at icon.svg is why Add to
+    // Home Screen was falling back to a screenshot of the page instead of the
+    // logo. 180x180 PNG, flattened (iOS does not honour alpha).
+    apple: [{ url: "/apple-touch-icon.png", type: "image/png", sizes: "180x180" }],
   },
   other: {
     "mobile-web-app-capable": "yes",
