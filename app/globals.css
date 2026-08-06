@@ -58,7 +58,9 @@
   --font-body: var(--font-nunito);
   --font-arabic: var(--font-ibm-plex-arabic);
   --font-arabic-rounded: var(--font-baloo-arabic);
-  --font-arabic-display: var(--font-noto-naskh);
+  /* The taught letterforms. Amiri is a proper Naskh — the stroke contrast and tooth
+     shapes a child is actually learning to write — with Noto Naskh behind it. */
+  --font-arabic-display: var(--font-amiri), var(--font-noto-naskh), serif;
 }
 
 * {
@@ -397,4 +399,35 @@ body {
   .breathe, .mascot-bob, .mascot-sway, .mascot-spin, .cue-nudge, .cue-ping, .wrong-shake,
   .animate-float-slow, .animate-float-medium,
   .animate-float-fast, .animate-float-slowest { animation: none !important; }
+}
+
+/* The on-screen letter strip in /play. A hidden scrollbar made the alphabet look
+   like it stopped at ز, so the bar now shows its position and fades at whichever
+   end still has letters past it. Colours track .stage-chip, which the stage's
+   data-light flag flips between the dark and light themes. */
+.letter-strip {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.35) transparent;
+  scroll-padding-inline: 2.5rem;
+}
+.letter-strip::-webkit-scrollbar { height: 5px; }
+.letter-strip::-webkit-scrollbar-track { background: transparent; }
+.letter-strip::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+}
+.letter-strip-fade { background: linear-gradient(to left, rgba(6, 8, 20, 0.75), transparent); }
+.letter-strip-fade-end { background: linear-gradient(to right, rgba(6, 8, 20, 0.75), transparent); }
+
+.play-surface[data-light="true"] .letter-strip {
+  scrollbar-color: rgba(42, 29, 78, 0.3) transparent;
+}
+.play-surface[data-light="true"] .letter-strip::-webkit-scrollbar-thumb {
+  background: rgba(42, 29, 78, 0.3);
+}
+.play-surface[data-light="true"] .letter-strip-fade {
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.92), transparent);
+}
+.play-surface[data-light="true"] .letter-strip-fade-end {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.92), transparent);
 }

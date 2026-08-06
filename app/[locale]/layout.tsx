@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fredoka, IBM_Plex_Sans_Arabic, Noto_Naskh_Arabic, Baloo_2, Baloo_Bhaijaan_2, Nunito } from "next/font/google";
+import { Amiri, Fredoka, IBM_Plex_Sans_Arabic, Noto_Naskh_Arabic, Baloo_2, Baloo_Bhaijaan_2, Nunito } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
@@ -22,6 +22,14 @@ const ibmPlexArabic = IBM_Plex_Sans_Arabic({
   variable: "--font-ibm-plex-arabic",
   subsets: ["arabic", "latin"],
   weight: ["400", "500", "600", "700"],
+});
+// The face used for the letterforms a child is actually learning. Amiri is a proper
+// Naskh with the stroke contrast and tooth shapes handwriting is taught from; Noto
+// Naskh stays behind it as the fallback.
+const amiri = Amiri({
+  variable: "--font-amiri",
+  subsets: ["arabic"],
+  weight: ["400", "700"],
 });
 const notoNaskhArabic = Noto_Naskh_Arabic({
   variable: "--font-noto-naskh",
@@ -62,7 +70,7 @@ export async function generateMetadata({ params }: LocaleLayoutProps): Promise<M
   return localeMetadata[locale];
 }
 
-const fontVars = `${baloo.variable} ${balooArabic.variable} ${nunito.variable} ${fredoka.variable} ${ibmPlexArabic.variable} ${notoNaskhArabic.variable}`;
+const fontVars = `${baloo.variable} ${balooArabic.variable} ${nunito.variable} ${fredoka.variable} ${ibmPlexArabic.variable} ${notoNaskhArabic.variable} ${amiri.variable}`;
 
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
   const { locale } = await params;
