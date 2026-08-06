@@ -1,190 +1,315 @@
 /**
- * ElevenLabs AI Voiceover Generator for Arab Fingers
- * 
- * This script uses an ElevenLabs API Key to generate breathtaking,
- * studio-quality AI voiceovers for all 4 educational courses in
- * both Arabic and English, and saves them directly to the public directory.
- * 
+ * ElevenLabs voiceover generator for Arab Fingers.
+ *
+ * Regenerates the spoken words the site says most — 28 letter names in Arabic and
+ * English, 11 numbers, 12 colours — and encodes them to the MP3s the app already
+ * loads. Nothing about the runtime changes: this writes files, and they get committed.
+ *
+ * Scope is deliberate. Letters, numbers and colours total ~692 characters, about 7%
+ * of a free month, and they are the clips that sound most robotic because a lone word
+ * gives a TTS engine no sentence to put a melody on. The four course narrations are
+ * ~9,400 characters — 93% of the budget for the audio that already sounds best. They
+ * are excluded unless you ask for them with --only=courses.
+ *
+ * Resumable and interrupt-safe, sharing scripts/.tts-manifest.json with the Gemini
+ * generator: each clip is recorded with the engine, voice and exact text that made it,
+ * so re-running skips finished work, switching engines regenerates, and a killed run
+ * loses at most the clip in flight.
+ *
  * Usage:
- *   export ELEVEN_API_KEY="your_api_key_here"
+ *   export ELEVEN_API_KEY="..."
+ *   node scripts/generate-voiceovers-eleven.js --dry-run
  *   node scripts/generate-voiceovers-eleven.js
+ *
+ * Flags:
+ *   --dry-run          list the work and the character cost, call nothing
+ *   --only=a,b         any of: letters, numbers, colors, courses
+ *   --limit=N          stop after N clips
+ *   --force            regenerate even if the manifest says it is done
+ *   --voice=NAME       voice name as it appears on the account, default Alice
+ *   --voice-id=ID      skip the name lookup (for keys without Voices:Read)
+ *   --model=ID         default eleven_multilingual_v2; eleven_flash_v2_5 is half price
+ *   --budget=N         refuse to start if the run exceeds N characters, default 1500
+ *   --self-check       exercise the encode path, no API key needed
+ *
+ * Rolling back is `git checkout -- public/sounds`; the previous recordings are committed.
  */
 
 const fs = require("fs");
 const path = require("path");
-const https = require("https");
+const { execFileSync } = require("child_process");
+const { courses, colors, numbers, letters } = require("./tts-content");
+
+// ---------------------------------------------------------------- configuration
+
+const ENGINE = "elevenlabs";
+
+/**
+ * Voice settings are the ones the approved samples were generated with. Do not tune
+ * them without re-listening — the whole point of picking by ear is that the shipped
+ * audio matches what was judged.
+ */
+const VOICE_SETTINGS = { stability: 0.45, similarity_boost: 0.75, style: 0.15, use_speaker_boost: true };
+
+/**
+ * «حرف ألف» rather than a bare «ألف». ElevenLabs takes no style instructions the way
+ * Gemini does, so the wording is the only prosody lever available — and a two-word
+ * phrase is what stops a lone letter name reading as a flat beep.
+ */
+const LETTER_STYLE = "phrase";
+
+const TRIM = "silenceremove=start_periods=1:start_duration=0:start_threshold=-45dB:detection=peak";
+const FILTERS = `${TRIM},areverse,${TRIM},areverse,loudnorm=I=-16:TP=-1.5:LRA=11`;
+const BITRATE = "96k";
+
+// ---------------------------------------------------------------- arg parsing
+
+const argv = process.argv.slice(2);
+const flag = (name, fallback = null) => {
+  const hit = argv.find((a) => a.startsWith(`--${name}=`));
+  return hit ? hit.slice(name.length + 3) : fallback;
+};
+const has = (name) => argv.includes(`--${name}`);
+
+const DRY = has("dry-run");
+const FORCE = has("force");
+const LIMIT = Number(flag("limit", Infinity));
+const BUDGET = Number(flag("budget", 1500));
+const MODEL = flag("model", "eleven_multilingual_v2");
+const VOICE_NAME = flag("voice", "Alice");
+const VOICE_ID = flag("voice-id");
+const ONLY = (flag("only") || "letters,numbers,colors").split(",").map((s) => s.trim());
 
 const API_KEY = process.env.ELEVEN_API_KEY;
-
-if (!API_KEY) {
-  console.error("❌ Error: ELEVEN_API_KEY environment variable is not set.");
+if (!API_KEY && !DRY && !has("self-check")) {
+  console.error("ELEVEN_API_KEY is not set.");
   process.exit(1);
 }
 
-// ----------------------------------------------------
-// STORYBOARDS FOR ALL 4 VIDEOS
-// ----------------------------------------------------
-const courses = {
-  "states-of-matter": [
-    { id: 0, speaker: "narrator", ar: "أهلاً بكم يا أصدقائي في رحلتنا العلمية الممتعة! اليوم سنتعلم معاً عن حالات المادة المذهلة!", en: "Welcome my friends to our fun science journey! Today we will learn all about the amazing states of matter!" },
-    { id: 1, speaker: "hakim", ar: "أهلاً بك يا بطل! أنا الدكتور حكيم، وهذا صديقي المساعد الذكي أنس! نحن سعيدان جداً بوجودكم معنا اليوم!", en: "Hello champion! I am Dr. Hakim, and this is my smart assistant Anas! We are super happy to have you with us today!" },
-    { id: 2, speaker: "anas", ar: "يا دكتور حكيم، أنا متحمس جداً! ولكن ما هي 'المادة' بالضبط؟ وهل كل ما نراه حولنا يعتبر مادة؟", en: "Dr. Hakim, I am so excited! But what exactly is 'matter'? Is everything around us considered matter?" },
-    { id: 3, speaker: "hakim", ar: "سؤال ممتاز يا أنس! المادة هي كل شيء يشغل حيزاً وله وزن. مثل قالب الجليد هذا، إنه في الحالة الصلبة!", en: "Excellent question, Anas! Matter is anything that takes up space and has weight. Like this ice block, it is in a solid state!" },
-    { id: 4, speaker: "anas", ar: "يا إلهي! عندما يسخن الجليد ينصهر ليصبح ماءً سائلاً! انظروا لجزيئات الماء، إنها ترتدي نظارات سباحة وتنزلق بنشاط!", en: "Oh my! When the ice heats up, it melts into liquid water! Look at the water molecules, they are wearing swim goggles and sliding around!" },
-    { id: 5, speaker: "hakim", ar: "رائع يا أنس! وإذا قمنا بتسخين الماء أكثر، فإنه يتبخر ليصبح بخاراً غازياً! تطير الجزيئات هنا وهناك كالأبطال الخارقين!", en: "Wonderful, Anas! And if we heat the water even more, it evaporates into gaseous steam! The molecules fly around like superheroes!" },
-    { id: 6, speaker: "hakim", ar: "والآن مفاجأة! هناك حالة رابعة خارقة تسمى البلازما! نراها في البرق والنجوم الساطعة وشاشات النيون المتوهجة!", en: "And now a surprise! There is a super fourth state called Plasma! We see it in lightning, bright stars, and glowing neon lights!" },
-    { id: 7, speaker: "narrator", ar: "والآن يا أصدقائي الصغار حان دوركم لتجربة المختبر! حركوا شريط درجة الحرارة وشاهدوا كيف تتحول الجزيئات!", en: "Now my little friends, it's your turn in the lab! Slide the temperature bar and watch the molecules transform in real-time!" },
-    { id: 8, speaker: "anas", ar: "يا له من عرض ممتع ومذهل! دعونا نلخص ما تعلمناه اليوم ببطاقات حالات المادة السحرية!", en: "What a spectacular show! Let's summarize what we have learned today with these magical states of matter cards!" },
-    { id: 9, speaker: "hakim", ar: "أحسنتم يا أصدقائي الأذكياء! لقد كنتم علماء رائعين اليوم! استمروا في الاستكشاف والتعلم، ونراكم في مغامرة أخرى!", en: "Outstanding job my clever friends! You were amazing scientists today! Keep exploring and learning, and see you next time!" }
-  ],
-  "water-cycle": [
-    { id: 0, speaker: "narrator", ar: "أهلاً بكم من جديد في مختبرنا الساحر! اليوم سنرافق قطرة ماء صغيرة في رحلتها الدائرية المذهلة في الطبيعة!", en: "Welcome back to our magical lab! Today we will accompany a tiny water drop on its incredible circular journey in nature!" },
-    { id: 1, speaker: "anas", ar: "يا دكتور حكيم، الجو حار جداً اليوم! المياه في كوبي تختفي ببطء، وفي المحيطات أيضاً! أين تذهب يا ترى؟", en: "Dr. Hakim, it's so hot today! The water in my cup is slowly disappearing, and in oceans too! Where does it go?" },
-    { id: 2, speaker: "hakim", ar: "سؤال ذكي كالعادة! عندما تسخن الشمس مياه البحار، تتحول إلى بخار خفيف يرتفع عالياً في السماء! تسمى هذه العملية 'التبخر'!", en: "A smart question as always! When the sun heats up ocean waters, it turns into light vapor rising high into the sky! This is called 'evaporation'!" },
-    { id: 3, speaker: "anas", ar: "يا إلهي! عندما يرتفع البخار عالياً حيث الجو بارد، يجتمع معاً ليشكل سحباً جميلة وناعمة! إنه 'التكاثف'!", en: "Oh my! When the vapor rises high where the air is cold, it gathers together to form beautiful, soft clouds! That's 'condensation'!" },
-    { id: 4, speaker: "hakim", ar: "بالتأكيد! وعندما تصبح الغيوم ثقيلة جداً ومحملة بالمياه، لا تستطيع حملها بعد الآن، فتتساقط كأصوات مطر أو ثلج! إنه 'الهطول'!", en: "Exactly! And when the clouds get too heavy and laden with water, they cannot hold it anymore, and it falls as rain or snow! That is 'precipitation'!" },
-    { id: 5, speaker: "anas", ar: "رائع! تتدفق مياه الأمطار عبر الأنهار والجداول الجبلية، وتعود مجدداً إلى البحار لتستعد لرحلة جديدة! إنها دورة لا تنتهي أبداً!", en: "Wonderful! Rainwater flows through rivers and mountain streams, returning to the oceans to prepare for a new journey! It's a cycle that never ends!" },
-    { id: 6, speaker: "narrator", ar: "والآن حان دوركم لتصبحوا خبراء طقس! حركوا شريط الحرارة وشاهدوا كيف تؤثر على التبخر وسرعة تشكل الغيوم والمطر!", en: "Now it's your turn to become a weather master! Slide the temperature bar and watch how heat affects evaporation, clouds, and rainfall!" },
-    { id: 7, speaker: "anas", ar: "يا له من مغامرة مائية منعشة! دعونا نتذكر محطات قطرتنا الصغيرة الأربع ببطاقات الطقس التفاعلية!", en: "What a refreshing watery adventure! Let's recall the four stages of our little drop with these interactive weather cards!" },
-    { id: 8, speaker: "hakim", ar: "أحسنتم يا أصدقائي المستكشفين الأذكياء! لقد كنتم رائعين في فهم أسرار الطقس اليوم! استمروا في التعلم، ونراكم في مغامرة أخرى!", en: "Outstanding job my clever explorer friends! You were amazing at understanding weather secrets today! Keep learning, and see you next time!" }
-  ],
-  "solar-system": [
-    { id: 0, speaker: "narrator", ar: "اربطوا أحزمة الأمان يا أصدقائي! سننطلق اليوم في رحلة فضائية خارقة بين الكواكب لنكتشف كيف تحافظ الجاذبية عليها تدور بسعادة!", en: "Fasten your seatbelts my friends! Today we will fly on a cosmic space journey among the planets to discover how gravity keeps them orbiting!" },
-    { id: 1, speaker: "anas", ar: "يا دكتور حكيم، الفضاء واسع ومخيف جداً! لماذا تدور كواكبنا في دوائر منتظمة حول الشمس ولا تطير متباعدة في الكون الفسيح؟", en: "Dr. Hakim, space is so vast and scary! Why do our planets spin in perfect circles around the sun instead of flying off into the deep universe?" },
-    { id: 2, speaker: "hakim", ar: "سؤال عميق جداً! الشمس ضخمة وثقيلة للغاية، لذا تمتلك قوة جذب خارقة غير مرئية تسحب الكواكب نحوها وتجعلها تدور حولها كالمغناطيس!", en: "A very deep question! The Sun is extremely massive and heavy, so it possesses a super invisible gravitational pull that grips planets and keeps them orbiting like a magnet!" },
-    { id: 3, speaker: "hakim", ar: "انظروا إلى عطارد، إنه الكوكب الأقرب للشمس! حجمه صغير جداً وهو سريع كالفهد في دورانه لكي لا تسحبه الجاذبية وتسقطه في الشمس الساخنة!", en: "Look at Mercury, it's the closest planet to the sun! It is very small and speeds around like a cheetah so gravity doesn't drag it down into the burning sun!" },
-    { id: 4, speaker: "anas", ar: "يا لها من لمعان! كوكب الزهرة هو الأكثر سخونة وتوهجاً في مجموعتنا لأنه محاط بغيوم سميكة تحبس الحرارة كصوبة دافئة!", en: "What a gorgeous shine! Venus is the hottest and brightest planet because it is wrapped in thick clouds that trap heat like a greenhouse!" },
-    { id: 5, speaker: "hakim", ar: "والآن كوكبنا الرائع الأرض! إنه الكوكب الوحيد المليء بالماء والهواء والحياة، ويدور حوله قمر صغير ينير ليلنا الجميل بسعادة!", en: "And now our wonderful planet, Earth! It is the only planet packed with water, air, and life, and a cute little moon spins around it to light up our night!" },
-    { id: 6, speaker: "anas", ar: "انظروا للون الأحمر الرائع! إنه كوكب المريخ المغطى بالحديد والصدأ، ونحن نرسل مركبات فضاء ذكية لتستكشف جباله الشاهقة ووديانه العميقة!", en: "Look at that spectacular red color! It's Mars, covered in iron rust. We send smart rover robots to explore its giant mountains and deep valleys!" },
-    { id: 7, speaker: "narrator", ar: "والآن حان دوركم للتحكم في جاذبية الشمس! حركوا الشريط لزيادة الجاذبية وشاهدوا كيف تسرع الكواكب، أو خفضوها لتطير الكويكبات بعيداً!", en: "Now it's your turn to control solar gravity! Slide the bar to increase gravity and watch planets speed up, or decrease it to watch asteroids float away!" },
-    { id: 8, speaker: "anas", ar: "يا له من طيران فضائي مذهل! دعونا نلخص خصائص كواكبنا القريبة الأربعة ببطاقات الفضاء التفاعلية!", en: "What a spectacular cosmic flight! Let's summarize our four neighboring planets with these interactive space cards!" },
-    { id: 9, speaker: "hakim", ar: "أحسنتم يا أصدقائي رواد الفضاء الأذكياء! لقد كنتم رائعين في مغامرتنا الكونية اليوم! استمروا في استكشاف النجوم ونراكم قريباً!", en: "Outstanding job my clever astronaut friends! You were amazing on our cosmic adventure today! Keep exploring the stars and see you soon!" }
-  ],
-  "gravity": [
-    { id: 0, speaker: "narrator", ar: "مرحباً بكم يا علماء المستقبل! اليوم سنكتشف قوة خفية مذهلة تمسك بنا على الأرض وتجعل الأشياء تسقط للأسفل! إنها الجاذبية!", en: "Welcome future scientists! Today we will discover a spectacular invisible force that holds us to the ground and makes things fall! It's gravity!" },
-    { id: 1, speaker: "anas", ar: "يا دكتور حكيم، رميت كرتي في الهواء، لكنها عادت وسقطت فوراً على رأسي! لماذا لا تستمر في الطيران للأعلى وتختفي في الفضاء؟", en: "Dr. Hakim, I threw my ball in the air, but it fell right back on my head! Why doesn't it keep flying up and disappear in space?" },
-    { id: 2, speaker: "hakim", ar: "سؤال ذكي يا بطل! منذ زمن طويل، رأى العالم إسحاق نيوتن تفاحة تسقط من شجرة، فأدرك أن الأرض تسحب كل شيء نحوها بقوة تسمى الجاذبية!", en: "A smart question, champion! Long ago, scientist Isaac Newton saw an apple fall from a tree, and realized the Earth pulls everything to its center using gravity!" },
-    { id: 3, speaker: "hakim", ar: "لاحظ يا أنس! الصخور الثقيلة تسقط بقوة وثبات، بينما الأوراق الخفيفة تطفو ببطء بسبب مقاومة الهواء، لكن الجاذبية تسحب كليهما بالتساوي!", en: "Notice, Anas! Heavy rocks drop firmly, while light feathers float slowly due to air resistance, but gravity pulls both down equally in a vacuum!" },
-    { id: 4, speaker: "anas", ar: "يا إلهي! انظروا إلى رواد الفضاء، إنهم يطفون بسعادة في الفضاء الخارجي لعدم وجود جاذبية تسحبهم للأسفل! يبدو ذلك ممتعاً للغاية!", en: "Oh my! Look at the astronauts, they float happily in outer space because there is no gravity dragging them down! That looks like so much fun!" },
-    { id: 5, speaker: "hakim", ar: "صحيح! ولكن انتبهوا، إذا ذهبنا لكوكب المشتري الضخم، فستكون جاذبيته قوية جداً وثقيلة لدرجة تجعل حركتنا بطيئة وصعبة كأننا نحمل صخوراً!", en: "True! But beware, if we go to massive Jupiter, its gravity is so strong and heavy that it makes our movements slow and difficult, as if carrying rocks!" },
-    { id: 6, speaker: "narrator", ar: "والآن حان دوركم لتصبحوا سادة الجاذبية! حركوا الشريط لضبط قوة الجاذبية وشاهدوا الأجسام وهي تطفو أو تسقط بسرعة، واضغطوا عليها لتطلقوها!", en: "Now it's your turn to become gravity masters! Slide the bar to adjust gravity strength and watch items float or fall rapidly, and tap them to launch!" },
-    { id: 7, speaker: "anas", ar: "يا لها من تجربة فيزيائية قوية وممتعة! دعونا نلخص خصائص الجاذبية السحرية بأوراق العلوم التفاعلية اللطيفة!", en: "What a powerful and fun physics experiment! Let's summarize the magic properties of gravity with these cute science cards!" },
-    { id: 8, speaker: "hakim", ar: "أحسنتم يا أصدقائي العلماء الصغار! لقد كنتم رائعين في تحدي الجاذبية اليوم! استمروا في طرح الأسئلة الذكية ونراكم قريباً!", en: "Outstanding job my little junior scientists! You were amazing at challenging gravity today! Keep asking smart questions and see you soon!" }
-  ]
-};
+const PUBLIC = path.join(__dirname, "..", "public");
+const MANIFEST_PATH = path.join(__dirname, ".tts-manifest.json");
 
-// ----------------------------------------------------
-// VOICE ASSIGNMENTS (ELEVENLABS PREMIUM VOICES)
-// ----------------------------------------------------
-const voiceIds = {
-  hakim: "pNInz6obpgfrhhF21wNZ",   // George (Wise deep male)
-  anas: "AZnzlk1XvdvUeBnXmlld",    // Domi (Cute/youthful kid style)
-  narrator: "EXAVITQu4vr4xnSDxMaL" // Bella (Warm female storybook narrator)
-};
+// ---------------------------------------------------------------- the work list
 
-function synthesizeTextEleven(text, voiceId, targetPath) {
-  return new Promise((resolve, reject) => {
-    const postData = JSON.stringify({
-      text: text,
-      model_id: "eleven_multilingual_v2",
-      voice_settings: {
-        stability: 0.45,
-        similarity_boost: 0.75
+function buildJobs() {
+  const jobs = [];
+  const add = (file, text) => jobs.push({ file, text });
+
+  if (ONLY.includes("letters")) {
+    for (const l of letters) {
+      add(`sounds/letters/${l.id}-ar.mp3`, LETTER_STYLE === "phrase" ? `حرف ${l.ar}` : l.ar);
+      add(`sounds/letters/${l.id}-en.mp3`, LETTER_STYLE === "phrase" ? `The letter ${l.en}` : l.en);
+    }
+  }
+  if (ONLY.includes("numbers")) for (const n of numbers) add(`sounds/numbers/${n.id}.mp3`, n.text);
+  if (ONLY.includes("colors")) for (const c of colors) add(`sounds/colors/${c.id}.mp3`, c.text);
+  if (ONLY.includes("courses")) {
+    for (const [course, scenes] of Object.entries(courses)) {
+      for (const scene of scenes) {
+        add(`audio/${course}/scene_${scene.id}_ar.mp3`, scene.ar);
+        add(`audio/${course}/scene_${scene.id}_en.mp3`, scene.en);
       }
-    });
+    }
+  }
+  return jobs;
+}
 
-    const options = {
-      hostname: "api.elevenlabs.io",
-      port: 443,
-      path: `/v1/text-to-speech/${voiceId}`,
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Content-Length": Buffer.byteLength(postData),
-        "xi-api-key": API_KEY
-      }
-    };
+// ---------------------------------------------------------------- manifest
 
-    const req = https.request(options, (res) => {
-      if (res.statusCode !== 200) {
-        let body = "";
-        res.on("data", (chunk) => body += chunk);
-        res.on("end", () => reject(new Error(`ElevenLabs Error ${res.statusCode}: ${body}`)));
-        return;
-      }
+function loadManifest() {
+  try {
+    return JSON.parse(fs.readFileSync(MANIFEST_PATH, "utf8"));
+  } catch {
+    return {};
+  }
+}
 
-      const fileStream = fs.createWriteStream(targetPath);
-      res.pipe(fileStream);
+function isDone(manifest, job, voiceId) {
+  if (FORCE) return false;
+  const e = manifest[job.file];
+  if (!e) return false;
+  if (e.engine !== ENGINE || e.model !== MODEL || e.voice !== voiceId || e.text !== job.text) return false;
+  const abs = path.join(PUBLIC, job.file);
+  return fs.existsSync(abs) && fs.statSync(abs).size > 0;
+}
 
-      fileStream.on("finish", () => {
-        fileStream.close();
-        resolve();
-      });
+// ---------------------------------------------------------------- api
 
-      fileStream.on("error", (err) => {
-        fs.unlink(targetPath, () => {});
-        reject(err);
-      });
-    });
-
-    req.on("error", (err) => reject(err));
-    req.write(postData);
-    req.end();
+const api = (route, init = {}) =>
+  fetch(`https://api.elevenlabs.io/v1${route}`, {
+    ...init,
+    headers: { "xi-api-key": API_KEY, "Content-Type": "application/json", ...init.headers },
   });
+
+/** Resolve a voice name to an id. Stock voices are named "Alice - Clear, Engaging Educator". */
+async function resolveVoice(name) {
+  const res = await api("/voices");
+  if (!res.ok) {
+    throw new Error(`GET /voices returned ${res.status}. If the key lacks Voices:Read, pass --voice-id=`);
+  }
+  const { voices } = await res.json();
+  const want = name.toLowerCase().trim();
+  const hit = voices.find((v) => {
+    const full = v.name.toLowerCase().trim();
+    return full === want || full.split(" - ")[0].trim() === want;
+  });
+  if (!hit) {
+    throw new Error(`No voice named "${name}". Available: ${voices.map((v) => v.name.split(" - ")[0]).join(", ")}`);
+  }
+  return hit.voice_id;
 }
 
-async function generateAll() {
-  console.log("🧪 Starting ElevenLabs Premium Multilingual AI Voiceover Generation...");
-  
-  const publicDir = path.join(__dirname, "../public");
-  const audioBase = path.join(publicDir, "audio");
-  
-  if (!fs.existsSync(audioBase)) {
-    fs.mkdirSync(audioBase, { recursive: true });
-  }
+// ---------------------------------------------------------------- audio
 
-  const courseKeys = Object.keys(courses);
-  let totalGenerated = 0;
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-  for (const course of courseKeys) {
-    console.log(`\n📦 Processing Course: ${course}...`);
-    const courseDir = path.join(audioBase, course);
-    if (!fs.existsSync(courseDir)) {
-      fs.mkdirSync(courseDir, { recursive: true });
-    }
-
-    const scenes = courses[course];
-    for (const scene of scenes) {
-      const voiceId = voiceIds[scene.speaker] || voiceIds.narrator;
-
-      // 1. Generate Arabic MP3
-      const arPath = path.join(courseDir, `scene_${scene.id}_ar.mp3`);
-      try {
-        console.log(`  🗣️ Generating ElevenLabs AR - Scene ${scene.id} (${scene.speaker})...`);
-        await synthesizeTextEleven(scene.ar, voiceId, arPath);
-        totalGenerated++;
-      } catch (err) {
-        console.error(`  ❌ Failed ElevenLabs AR Scene ${scene.id}:`, err.message);
-      }
-
-      // 2. Generate English MP3
-      const enPath = path.join(courseDir, `scene_${scene.id}_en.mp3`);
-      try {
-        console.log(`  🗣️ Generating ElevenLabs EN - Scene ${scene.id} (${scene.speaker})...`);
-        await synthesizeTextEleven(scene.en, voiceId, enPath);
-        totalGenerated++;
-      } catch (err) {
-        console.error(`  ❌ Failed ElevenLabs EN Scene ${scene.id}:`, err.message);
-      }
-
-      // Safe rate-limiting delay
-      await new Promise((r) => setTimeout(r, 600));
-    }
-  }
-
-  console.log(`\n🎉 Breathtaking success! Generated ${totalGenerated} ElevenLabs premium voiceover files!`);
+function probeDuration(file) {
+  return parseFloat(execFileSync("ffprobe",
+    ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", file]).toString().trim());
 }
 
-generateAll().catch((err) => {
-  console.error("💥 Generation crashed:", err);
+function encode(src, dest) {
+  execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-i", src, "-af", FILTERS,
+    "-codec:a", "libmp3lame", "-b:a", BITRATE, "-ac", "1", "-f", "mp3", dest]);
+}
+
+async function generate(job, voiceId) {
+  const abs = path.join(PUBLIC, job.file);
+  fs.mkdirSync(path.dirname(abs), { recursive: true });
+
+  for (let attempt = 1; attempt <= 5; attempt++) {
+    const res = await api(`/text-to-speech/${voiceId}?output_format=mp3_44100_128`, {
+      method: "POST",
+      body: JSON.stringify({ text: job.text, model_id: MODEL, voice_settings: VOICE_SETTINGS }),
+    });
+
+    if (res.status === 429) {
+      const wait = 5000 * attempt;
+      console.log(`      rate limited — waiting ${wait / 1000}s (attempt ${attempt}/5)`);
+      await sleep(wait);
+      continue;
+    }
+    if (res.status === 401) throw new Error("401 — key rejected. Check it, or its Text to Speech permission.");
+    if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 240)}`);
+
+    const raw = `${abs}.raw`;
+    const partial = `${abs}.part`;
+    fs.writeFileSync(raw, Buffer.from(await res.arrayBuffer()));
+    try {
+      encode(raw, partial);
+    } finally {
+      fs.rmSync(raw, { force: true });
+    }
+
+    // ~14 characters a second is normal speech; well outside that is a bad take.
+    const seconds = probeDuration(partial);
+    const expected = job.text.length / 14;
+    if (seconds < Math.max(0.4, expected * 0.35) || seconds > Math.max(4, expected * 3)) {
+      fs.rmSync(partial, { force: true });
+      console.log(`      ${seconds.toFixed(2)}s for ${job.text.length} chars looks wrong, retrying (${attempt}/5)`);
+      await sleep(1000);
+      continue;
+    }
+
+    // Rename last: until here there is no file at the real path to mistake for done.
+    fs.renameSync(partial, abs);
+    return { bytes: fs.statSync(abs).size, seconds };
+  }
+  throw new Error("gave up after 5 attempts");
+}
+
+// ---------------------------------------------------------------- self-check
+
+function selfCheck() {
+  const rate = 24000, seconds = 0.5;
+  const pcm = Buffer.alloc(rate * seconds * 2);
+  for (let i = 0; i < rate * seconds; i++) {
+    pcm.writeInt16LE(Math.round(Math.sin((2 * Math.PI * 440 * i) / rate) * 12000), i * 2);
+  }
+  const h = Buffer.alloc(44);
+  h.write("RIFF", 0); h.writeUInt32LE(pcm.length + 36, 4); h.write("WAVE", 8);
+  h.write("fmt ", 12); h.writeUInt32LE(16, 16); h.writeUInt16LE(1, 20); h.writeUInt16LE(1, 22);
+  h.writeUInt32LE(rate, 24); h.writeUInt32LE(rate * 2, 28); h.writeUInt16LE(2, 32);
+  h.writeUInt16LE(16, 34); h.write("data", 36); h.writeUInt32LE(pcm.length, 40);
+
+  const tmp = path.join(require("os").tmpdir(), `eleven-selfcheck-${process.pid}`);
+  fs.writeFileSync(`${tmp}.wav`, Buffer.concat([h, pcm]));
+  encode(`${tmp}.wav`, `${tmp}.mp3.part`);
+  const wavDur = probeDuration(`${tmp}.wav`), mp3Dur = probeDuration(`${tmp}.mp3.part`);
+  fs.rmSync(`${tmp}.wav`, { force: true });
+  fs.rmSync(`${tmp}.mp3.part`, { force: true });
+
+  const ok = Math.abs(mp3Dur - seconds) < 0.1;
+  console.log(`wav ${wavDur.toFixed(3)}s, mp3 ${mp3Dur.toFixed(3)}s, expected ${seconds}s`);
+  console.log(ok ? "PASS  trim + loudness + encode preserves the audio"
+                 : "FAIL  the filter chain is eating the signal");
+  if (!ok) process.exit(1);
+}
+
+// ---------------------------------------------------------------- run
+
+async function main() {
+  if (has("self-check")) return selfCheck();
+
+  const jobs = buildJobs();
+  const voiceId = DRY ? (VOICE_ID || "(resolved at run time)") : (VOICE_ID || await resolveVoice(VOICE_NAME));
+  const manifest = loadManifest();
+  const pending = jobs.filter((j) => !isDone(manifest, j, voiceId));
+  const todo = pending.slice(0, LIMIT);
+  const chars = todo.reduce((n, j) => n + j.text.length, 0);
+
+  console.log(`Engine   ElevenLabs · ${MODEL}`);
+  console.log(`Voice    ${VOICE_NAME} (${voiceId})`);
+  console.log(`Letters  ${LETTER_STYLE === "phrase" ? "phrase form («حرف ألف»)" : "bare word («ألف»)"}`);
+  console.log(`Sections ${ONLY.join(", ")}`);
+  console.log(`Work     ${todo.length} clips, ${chars} characters, ${jobs.length - pending.length} already done`);
+
+  if (DRY) {
+    for (const j of todo) console.log(`  ${j.file.padEnd(42)} ${j.text.slice(0, 60)}`);
+    console.log("\nDry run — nothing was generated.");
+    return;
+  }
+  if (!todo.length) return console.log("\nNothing to do.");
+
+  // Credits are the scarce thing here, so make an oversized run say so rather than spend.
+  if (chars > BUDGET) {
+    console.error(`\nRefusing to start: ${chars} characters exceeds the ${BUDGET} budget.`);
+    console.error("Raise it with --budget=N if that is genuinely what you want.");
+    process.exit(1);
+  }
+
+  let stopping = false;
+  process.on("SIGINT", () => {
+    if (stopping) process.exit(130);
+    stopping = true;
+    console.log("\nFinishing the current clip, then stopping. Re-run to resume.");
+  });
+
+  let done = 0, failed = 0, spent = 0;
+  for (const [i, job] of todo.entries()) {
+    if (stopping) break;
+    const label = `[${String(i + 1).padStart(3)}/${todo.length}] ${job.file}`;
+    try {
+      const { bytes, seconds } = await generate(job, voiceId);
+      manifest[job.file] = {
+        engine: ENGINE, model: MODEL, voice: voiceId, text: job.text, at: new Date().toISOString(),
+      };
+      fs.writeFileSync(MANIFEST_PATH, JSON.stringify(manifest, null, 2));
+      done++; spent += job.text.length;
+      console.log(`${label}  ${seconds.toFixed(2)}s  ${String(bytes).padStart(6)}b`);
+    } catch (err) {
+      failed++;
+      console.error(`${label}  FAILED — ${err.message}`);
+      if (/401/.test(err.message)) break;
+    }
+    if (!stopping && i < todo.length - 1) await sleep(300);
+  }
+
+  console.log(`\nGenerated ${done}, failed ${failed}, about ${spent} characters spent.`);
+  if (failed || stopping) console.log("Re-run the same command to pick up what is left.");
+}
+
+main().catch((err) => {
+  console.error("Crashed:", err.message);
+  process.exit(1);
 });

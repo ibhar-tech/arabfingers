@@ -1,0 +1,555 @@
+{
+  "sounds/letters/alef-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف ألف",
+    "at": "2026-08-06T12:25:57.711Z"
+  },
+  "sounds/letters/alef-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Alef",
+    "at": "2026-08-06T12:25:58.974Z"
+  },
+  "sounds/letters/ba-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف باء",
+    "at": "2026-08-06T12:26:00.282Z"
+  },
+  "sounds/letters/ba-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Ba",
+    "at": "2026-08-06T12:26:01.534Z"
+  },
+  "sounds/letters/ta-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف تاء",
+    "at": "2026-08-06T12:26:02.855Z"
+  },
+  "sounds/letters/ta-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Ta",
+    "at": "2026-08-06T12:26:04.179Z"
+  },
+  "sounds/letters/tha-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف ثاء",
+    "at": "2026-08-06T12:26:05.522Z"
+  },
+  "sounds/letters/tha-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Tha",
+    "at": "2026-08-06T12:26:06.840Z"
+  },
+  "sounds/letters/jeem-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف جيم",
+    "at": "2026-08-06T12:26:08.186Z"
+  },
+  "sounds/letters/jeem-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Jeem",
+    "at": "2026-08-06T12:26:09.705Z"
+  },
+  "sounds/letters/hha-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف حاء",
+    "at": "2026-08-06T12:26:11.343Z"
+  },
+  "sounds/letters/hha-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Hha",
+    "at": "2026-08-06T12:26:12.584Z"
+  },
+  "sounds/letters/kha-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف خاء",
+    "at": "2026-08-06T12:26:13.910Z"
+  },
+  "sounds/letters/kha-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Kha",
+    "at": "2026-08-06T12:26:15.161Z"
+  },
+  "sounds/letters/dal-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف دال",
+    "at": "2026-08-06T12:26:16.460Z"
+  },
+  "sounds/letters/dal-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Dal",
+    "at": "2026-08-06T12:26:17.725Z"
+  },
+  "sounds/letters/thal-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف ذال",
+    "at": "2026-08-06T12:26:19.030Z"
+  },
+  "sounds/letters/thal-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Thal",
+    "at": "2026-08-06T12:26:20.363Z"
+  },
+  "sounds/letters/ra-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف راء",
+    "at": "2026-08-06T12:26:21.668Z"
+  },
+  "sounds/letters/ra-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Ra",
+    "at": "2026-08-06T12:26:22.946Z"
+  },
+  "sounds/letters/zay-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف زاي",
+    "at": "2026-08-06T12:26:24.249Z"
+  },
+  "sounds/letters/zay-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Zay",
+    "at": "2026-08-06T12:26:25.585Z"
+  },
+  "sounds/letters/seen-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف سين",
+    "at": "2026-08-06T12:26:26.919Z"
+  },
+  "sounds/letters/seen-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Seen",
+    "at": "2026-08-06T12:26:28.263Z"
+  },
+  "sounds/letters/sheen-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف شين",
+    "at": "2026-08-06T12:26:29.521Z"
+  },
+  "sounds/letters/sheen-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Sheen",
+    "at": "2026-08-06T12:26:30.805Z"
+  },
+  "sounds/letters/sad-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف صاد",
+    "at": "2026-08-06T12:26:32.133Z"
+  },
+  "sounds/letters/sad-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Sad",
+    "at": "2026-08-06T12:26:33.479Z"
+  },
+  "sounds/letters/dad-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف ضاد",
+    "at": "2026-08-06T12:26:34.781Z"
+  },
+  "sounds/letters/dad-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Dad",
+    "at": "2026-08-06T12:26:36.234Z"
+  },
+  "sounds/letters/tah-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف طاء",
+    "at": "2026-08-06T12:26:37.483Z"
+  },
+  "sounds/letters/tah-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Tah",
+    "at": "2026-08-06T12:26:38.727Z"
+  },
+  "sounds/letters/zah-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف ظاء",
+    "at": "2026-08-06T12:26:40.024Z"
+  },
+  "sounds/letters/zah-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Zah",
+    "at": "2026-08-06T12:26:41.358Z"
+  },
+  "sounds/letters/ain-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف عين",
+    "at": "2026-08-06T12:26:42.684Z"
+  },
+  "sounds/letters/ain-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Ain",
+    "at": "2026-08-06T12:26:43.962Z"
+  },
+  "sounds/letters/ghain-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف غين",
+    "at": "2026-08-06T12:26:45.233Z"
+  },
+  "sounds/letters/ghain-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Ghain",
+    "at": "2026-08-06T12:26:46.576Z"
+  },
+  "sounds/letters/fa-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف فاء",
+    "at": "2026-08-06T12:26:47.906Z"
+  },
+  "sounds/letters/fa-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Fa",
+    "at": "2026-08-06T12:26:49.238Z"
+  },
+  "sounds/letters/qaf-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف قاف",
+    "at": "2026-08-06T12:26:50.464Z"
+  },
+  "sounds/letters/qaf-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Qaf",
+    "at": "2026-08-06T12:26:51.793Z"
+  },
+  "sounds/letters/kaf-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف كاف",
+    "at": "2026-08-06T12:26:53.062Z"
+  },
+  "sounds/letters/kaf-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Kaf",
+    "at": "2026-08-06T12:26:54.381Z"
+  },
+  "sounds/letters/lam-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف لام",
+    "at": "2026-08-06T12:26:55.697Z"
+  },
+  "sounds/letters/lam-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Lam",
+    "at": "2026-08-06T12:26:57.021Z"
+  },
+  "sounds/letters/meem-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف ميم",
+    "at": "2026-08-06T12:26:58.260Z"
+  },
+  "sounds/letters/meem-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Meem",
+    "at": "2026-08-06T12:26:59.582Z"
+  },
+  "sounds/letters/noon-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف نون",
+    "at": "2026-08-06T12:27:01.028Z"
+  },
+  "sounds/letters/noon-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Noon",
+    "at": "2026-08-06T12:27:02.360Z"
+  },
+  "sounds/letters/ha-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف هاء",
+    "at": "2026-08-06T12:27:03.601Z"
+  },
+  "sounds/letters/ha-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Ha",
+    "at": "2026-08-06T12:27:04.904Z"
+  },
+  "sounds/letters/waw-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف واو",
+    "at": "2026-08-06T12:27:06.133Z"
+  },
+  "sounds/letters/waw-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Waw",
+    "at": "2026-08-06T12:27:07.407Z"
+  },
+  "sounds/letters/ya-ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "حرف ياء",
+    "at": "2026-08-06T12:27:08.652Z"
+  },
+  "sounds/letters/ya-en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "The letter Ya",
+    "at": "2026-08-06T12:27:09.939Z"
+  },
+  "sounds/numbers/zero.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "صفر",
+    "at": "2026-08-06T12:27:11.249Z"
+  },
+  "sounds/numbers/one.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "واحد",
+    "at": "2026-08-06T12:27:12.484Z"
+  },
+  "sounds/numbers/two.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "اثنان",
+    "at": "2026-08-06T12:27:13.713Z"
+  },
+  "sounds/numbers/three.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "ثلاثة",
+    "at": "2026-08-06T12:27:15.041Z"
+  },
+  "sounds/numbers/four.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "أربعة",
+    "at": "2026-08-06T12:27:16.264Z"
+  },
+  "sounds/numbers/five.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "خمسة",
+    "at": "2026-08-06T12:27:17.502Z"
+  },
+  "sounds/numbers/six.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "ستة",
+    "at": "2026-08-06T12:27:19.065Z"
+  },
+  "sounds/numbers/seven.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "سبعة",
+    "at": "2026-08-06T12:27:20.372Z"
+  },
+  "sounds/numbers/eight.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "ثمانية",
+    "at": "2026-08-06T12:27:21.698Z"
+  },
+  "sounds/numbers/nine.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "تسعة",
+    "at": "2026-08-06T12:27:22.923Z"
+  },
+  "sounds/numbers/ten.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "عشرة",
+    "at": "2026-08-06T12:27:24.255Z"
+  },
+  "sounds/colors/red.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "أحمر",
+    "at": "2026-08-06T12:27:25.509Z"
+  },
+  "sounds/colors/blue.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "أزرق",
+    "at": "2026-08-06T12:27:26.833Z"
+  },
+  "sounds/colors/green.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "أخضر",
+    "at": "2026-08-06T12:27:28.056Z"
+  },
+  "sounds/colors/yellow.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "أصفر",
+    "at": "2026-08-06T12:27:29.271Z"
+  },
+  "sounds/colors/orange.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "برتقالي",
+    "at": "2026-08-06T12:27:30.506Z"
+  },
+  "sounds/colors/purple.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "بنفسجي",
+    "at": "2026-08-06T12:27:31.842Z"
+  },
+  "sounds/colors/pink.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "وردي",
+    "at": "2026-08-06T12:27:33.089Z"
+  },
+  "sounds/colors/white.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "أبيض",
+    "at": "2026-08-06T12:27:34.329Z"
+  },
+  "sounds/colors/black.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "أسود",
+    "at": "2026-08-06T12:27:35.550Z"
+  },
+  "sounds/colors/brown.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "بني",
+    "at": "2026-08-06T12:27:36.818Z"
+  },
+  "sounds/colors/gray.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "رمادي",
+    "at": "2026-08-06T12:27:38.043Z"
+  },
+  "sounds/colors/gold.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "ذهبي",
+    "at": "2026-08-06T12:27:39.307Z"
+  }
+}
