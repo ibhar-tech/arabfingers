@@ -6,7 +6,7 @@ import { useState, useRef, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import {
   Sparkles, Play, BookOpen, ShieldCheck, Volume2, Palette, Printer,
-  WifiOff, Menu, X, Star, Lock, Heart, KeyRound, Baby,
+  WifiOff, Menu, X, Star, Lock, Heart, KeyRound, Baby, Gamepad2,
 } from "lucide-react";
 import { useAppStore } from "@/store/useAppStore";
 import { LetterBuddy, Sun, StarMascot, Crescent } from "@/components/Mascots";
@@ -15,6 +15,7 @@ const HeroGlyph = dynamic(() => import("@/components/HeroGlyph"), { ssr: false }
 
 const NAV = [
   { href: "", en: "Home", ar: "الرئيسية" },
+  { href: "/games", en: "Games", ar: "ألعاب" },
   { href: "/play", en: "Play", ar: "العب" },
   { href: "/learn", en: "Learn", ar: "تعلّم" },
   { href: "/printables", en: "Worksheets", ar: "أوراق عمل" },
@@ -162,7 +163,8 @@ export function WarmHome({ locale }: { locale: string }) {
             )}
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Link href={`/${locale}/play`} className="btn-chunky"><Play className="h-5 w-5" /> {tt("Start playing", "ابدأ اللعب")}</Link>
+            <Link href={`/${locale}/games`} className="btn-chunky"><Gamepad2 className="h-5 w-5" /> {tt("Play the games", "العب الألعاب")}</Link>
+            <Link href={`/${locale}/play`} className="btn-chunky btn-chunky-ghost"><Play className="h-5 w-5" /> {tt("Start playing", "ابدأ اللعب")}</Link>
             <Link href={`/${locale}/learn`} className="btn-chunky btn-chunky-ghost"><BookOpen className="h-5 w-5" /> {tt("Learning guides", "أدلة التعلّم")}</Link>
           </div>
           <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-bold text-ink/60">
@@ -325,8 +327,9 @@ export function WarmHome({ locale }: { locale: string }) {
             <p key={p} className="mt-4 leading-relaxed text-ink/75">{p}</p>
           ))}
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {[
+              { href: "/games", t: tt("Alphabet games", "ألعاب الحروف"), d: tt("Trace, listen and tap — earn a star per letter.", "تتبّع واستمع وانقر — نجمة لكلّ حرف.") },
               { href: "/printables", t: tt("Free worksheets (PDF)", "أوراق عمل مجانية"), d: tt("53 printable pages, no signup.", "٥٣ صفحة للطباعة، بلا تسجيل.") },
               { href: "/learn/arabic-alphabet-guide", t: tt("The alphabet guide", "دليل الأبجدية"), d: tt("All 28 letters, sound by sound.", "الحروف الـ٢٨، صوتاً صوتاً.") },
               { href: "/learn/teaching-arabic-to-kids", t: tt("Advice for parents", "نصائح للآباء"), d: tt("What works at home, and what doesn't.", "ما ينفع في البيت وما لا ينفع.") },

@@ -40,6 +40,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Core pages
     ...localizedUrls("", 1),
+    ...localizedUrls("/games", 0.9),
+    ...localizedUrls("/games/trace", 0.8),
+    ...localizedUrls("/games/tap", 0.8),
     ...localizedUrls("/play", 0.9),
     ...localizedUrls("/learn", 0.9),
     ...localizedUrls("/coloring", 0.8),

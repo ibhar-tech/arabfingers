@@ -96,6 +96,21 @@ html:has(.play-surface) body {
 }
 .cue-nudge { animation: cue-nudge 1.9s ease-in-out infinite; }
 
+/* Pulsing ring for the trace game's "start here" hint. */
+@keyframes cue-ping {
+  0% { transform: scale(0.9); opacity: 0.9; }
+  70%, 100% { transform: scale(1.9); opacity: 0; }
+}
+.cue-ping { animation: cue-ping 1.4s ease-out infinite; }
+
+/* Shake for a wrong answer in the tap game. */
+@keyframes wrong-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-7px); }
+  40%, 80% { transform: translateX(7px); }
+}
+.wrong-shake { animation: wrong-shake 0.4s ease-in-out; }
+
 /* ------------------------------------------------------------------
    Play-stage chrome.
 
@@ -379,7 +394,7 @@ body {
 .mascot-spin { animation: mascot-spin 26s linear infinite; }
 
 @media (prefers-reduced-motion: reduce) {
-  .breathe, .mascot-bob, .mascot-sway, .mascot-spin, .cue-nudge,
+  .breathe, .mascot-bob, .mascot-sway, .mascot-spin, .cue-nudge, .cue-ping, .wrong-shake,
   .animate-float-slow, .animate-float-medium,
   .animate-float-fast, .animate-float-slowest { animation: none !important; }
 }

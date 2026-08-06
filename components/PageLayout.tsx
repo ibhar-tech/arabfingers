@@ -20,6 +20,7 @@ type PageLayoutProps = {
 
 const navLinks = [
   { href: "", labelEn: "Home", labelAr: "الرئيسية" },
+  { href: "/games", labelEn: "Games", labelAr: "ألعاب" },
   { href: "/play", labelEn: "Play", labelAr: "العب" },
   { href: "/coloring", labelEn: "Color", labelAr: "تلوين" },
   { href: "/learn", labelEn: "Learn", labelAr: "تعلّم" },
