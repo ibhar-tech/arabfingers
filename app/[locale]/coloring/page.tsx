@@ -65,7 +65,7 @@ const copy = {
     next: [
       { href: "/printables", t: "Printable tracing worksheets (PDF)", d: "The paper version — a full page for every letter, free to download and print." },
       { href: "/learn/arabic-letter-forms", t: "Why Arabic letters change shape", d: "The joining rules that decide how a letter looks in a real word." },
-      { href: "/play", t: "The letter game", d: "Hear every letter pronounced. Good for the sound side of the same letter." },
+      { href: "/play", t: "Free play", d: "Hear every letter pronounced. Good for the sound side of the same letter." },
       { href: "/learn/arabic-alphabet-guide", t: "The complete alphabet guide", d: "All 28 letters, how each one sounds, and the mistakes learners usually make." },
     ],
     faqTitle: "Questions about the tracing canvas",
@@ -113,7 +113,7 @@ const copy = {
     next: [
       { href: "/printables", t: "أوراق التتبّع للطباعة (PDF)", d: "النسخة الورقية — صفحة كاملة لكلّ حرف، مجانية للتنزيل والطباعة." },
       { href: "/learn/arabic-letter-forms", t: "لماذا تتغيّر أشكال الحروف", d: "قواعد الاتّصال التي تحدّد شكل الحرف داخل الكلمة." },
-      { href: "/play", t: "لعبة الحروف", d: "استمع إلى نطق كلّ حرف. مفيدة للجانب الصوتي من الحرف نفسه." },
+      { href: "/play", t: "لعب حر", d: "استمع إلى نطق كلّ حرف. مفيدة للجانب الصوتي من الحرف نفسه." },
       { href: "/learn/arabic-alphabet-guide", t: "دليل الحروف الكامل", d: "الحروف الـ٢٨ كاملة، ونطق كلّ حرف، والأخطاء المعتادة عند المتعلّمين." },
     ],
     faqTitle: "أسئلة عن لوحة التتبّع",

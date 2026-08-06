@@ -1,0 +1,12 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": [
+    "app/**/{page,layout,route,not-found,error,global-error,sitemap,robots,manifest,opengraph-image,twitter-image,icon,apple-icon}.{ts,tsx}",
+    "open-next.config.ts",
+    "scripts/*.{js,mjs}"
+  ],
+  "project": ["**/*.{ts,tsx,js,mjs}"],
+  "ignore": ["public/**"],
+  "ignoreDependencies": ["eslint-config-next", "postcss", "tailwindcss"],
+  "ignoreExportsUsedInFile": true
+}

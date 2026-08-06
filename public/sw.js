@@ -1,4 +1,9 @@
-const CACHE_NAME = "arabfingers-v4";
+// Bump this whenever a file is REPLACED at a path it already occupied. The
+// activate handler deletes every cache that is not this name, so a bump is what
+// forces returning visitors off stale copies. It was still "v4" when all 158
+// audio clips were regenerated in place, which left earlier visitors hearing the
+// old recordings with no way to ever get the new ones.
+const CACHE_NAME = "arabfingers-v5";
 const PRECACHE_URLS = [
   "/en",
   "/ar",
@@ -72,11 +77,13 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Sub-resources: cache-first
+  // Sub-resources: stale-while-revalidate. Serving the cached copy keeps the
+  // instant feel that cache-first gave us, but the background refetch means a
+  // file replaced at the same path (an mp3 re-recorded with a new voice) reaches
+  // the child on their next visit instead of never.
   event.respondWith(
     caches.match(request).then((cached) => {
-      if (cached) return cached;
-      return fetch(request)
+      const fresh = fetch(request)
         .then((response) => {
           if (response.ok) {
             const clone = response.clone();
@@ -84,7 +91,8 @@ self.addEventListener("fetch", (event) => {
           }
           return response;
         })
-        .catch(() => new Response("", { status: 408 }));
+        .catch(() => cached || new Response("", { status: 408 }));
+      return cached || fresh;
     })
   );
 });

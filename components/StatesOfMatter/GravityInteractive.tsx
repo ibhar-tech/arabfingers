@@ -411,7 +411,9 @@ export default function GravityInteractive({ locale = "ar" }: GravityInteractive
               <button
                 type="button"
                 onClick={handleSpeechRepeat}
-                className="p-1 rounded-lg text-white/75 bg-white/10 hover:bg-white/15 cursor-pointer"
+                aria-label={isAr ? "إعادة النطق" : "Repeat the narration"}
+                title={isAr ? "إعادة النطق" : "Repeat the narration"}
+                className="flex h-11 w-11 items-center justify-center rounded-lg text-white/75 bg-white/10 hover:bg-white/15 cursor-pointer"
               >
                 <Volume2 className="h-4 w-4" />
               </button>
@@ -427,9 +429,9 @@ export default function GravityInteractive({ locale = "ar" }: GravityInteractive
               <div className="hidden sm:flex items-end w-28 lg:w-36 h-40 shrink-0 pointer-events-none"><DrHakim mood="waving" className="w-full h-full origin-bottom" /></div>
               <div className="text-center flex flex-col items-center justify-center min-w-0">
                 <div className="hidden sm:block w-full sm:max-w-[300px] mb-2"><GravityDiagram locale={locale} /></div>
-                <h1 className="text-2xl sm:text-4xl font-extrabold bg-gradient-to-r from-accent via-emerald-300 to-teal-400 bg-clip-text text-transparent mb-1" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
+                <h2 className="text-2xl sm:text-4xl font-extrabold bg-gradient-to-r from-accent via-emerald-300 to-teal-400 bg-clip-text text-transparent mb-1" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
                   {isAr ? "كيف تعمل الجاذبية؟" : "How Gravity Works"}
-                </h1>
+                </h2>
                 <p className="hidden sm:block text-xs sm:text-sm text-white/70 font-medium max-w-md">
                   {isAr ? activeScene.subTextAr : activeScene.subTextEn}
                 </p>
@@ -652,6 +654,7 @@ export default function GravityInteractive({ locale = "ar" }: GravityInteractive
               disabled={currentSceneIndex === 0}
               className="p-2.5 rounded-xl text-white/60 hover:bg-white/5 hover:text-white disabled:opacity-25 disabled:pointer-events-none cursor-pointer"
               title={UI_TXT.back}
+              aria-label={UI_TXT.back}
             >
               {isAr ? <SkipForward className="h-5 w-5" /> : <SkipBack className="h-5 w-5" />}
             </button>
@@ -661,6 +664,7 @@ export default function GravityInteractive({ locale = "ar" }: GravityInteractive
               disabled={currentSceneIndex === STORYBOARD.length - 1}
               className="p-2.5 rounded-xl text-white/60 hover:bg-white/5 hover:text-white disabled:opacity-25 disabled:pointer-events-none cursor-pointer"
               title={UI_TXT.next}
+              aria-label={UI_TXT.next}
             >
               {isAr ? <SkipBack className="h-5 w-5" /> : <SkipForward className="h-5 w-5" />}
             </button>
@@ -672,6 +676,7 @@ export default function GravityInteractive({ locale = "ar" }: GravityInteractive
               onClick={() => setIsPlaying(!isPlaying)}
               className="w-12 h-12 flex items-center justify-center rounded-2xl bg-accent hover:scale-105 active:scale-95 text-[#050816] font-bold shadow-xl shadow-accent/20 transition cursor-pointer"
               title={isPlaying ? UI_TXT.pause : UI_TXT.play}
+              aria-label={isPlaying ? UI_TXT.pause : UI_TXT.play}
             >
               {isPlaying ? (
                 <Pause className="h-5.5 w-5.5 fill-[#050816]" strokeWidth={2.5} />
@@ -691,6 +696,7 @@ export default function GravityInteractive({ locale = "ar" }: GravityInteractive
                   : "border-white/10 bg-white/5 text-white/40 hover:bg-white/10"
               }`}
               title={soundEnabled ? UI_TXT.soundOn : UI_TXT.soundOff}
+              aria-label={soundEnabled ? UI_TXT.soundOn : UI_TXT.soundOff}
             >
               {soundEnabled ? (
                 <Volume2 className="h-5 w-5" />

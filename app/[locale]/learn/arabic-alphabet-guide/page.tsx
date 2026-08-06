@@ -96,6 +96,7 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
           alt={isAr ? "دليل الأبجدية العربية" : "Arabic alphabet guide"}
           width={1200}
           height={630}
+          priority
           className="w-full object-cover"
         />
       </div>

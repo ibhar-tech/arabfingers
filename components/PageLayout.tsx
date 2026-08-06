@@ -36,7 +36,7 @@ const footerPlayLinks = [
   { href: "/games/trace", labelEn: "Trace Letters", labelAr: "تتبّع الحروف" },
   { href: "/games/tap", labelEn: "Tap the Letter", labelAr: "انقر الحرف" },
   { href: "/coloring", labelEn: "Coloring", labelAr: "التلوين" },
-  { href: "/play", labelEn: "Letter Game", labelAr: "لعبة الحروف" },
+  { href: "/play", labelEn: "Free Play", labelAr: "لعب حر" },
   { href: "/printables", labelEn: "Worksheets", labelAr: "أوراق عمل" },
 ];
 
@@ -62,10 +62,11 @@ const footerBlogLinks = [
   { href: "/blog/ramadan-activities-arabic-learning", labelEn: "Ramadan Activities", labelAr: "أنشطة رمضان" },
 ];
 
+// Worksheets lives in the Play column; repeating it here gave the same page two
+// footer entries under two different headings.
 const footerInfoLinks = [
   { href: "/about", labelEn: "About", labelAr: "عن الموقع" },
   { href: "/author", labelEn: "Author", labelAr: "المؤلف" },
-  { href: "/printables", labelEn: "Worksheets", labelAr: "أوراق عمل" },
   { href: "/resources", labelEn: "Resources", labelAr: "المصادر" },
   { href: "/contact", labelEn: "Contact", labelAr: "تواصل معنا" },
   { href: "/privacy", labelEn: "Privacy", labelAr: "الخصوصية" },
@@ -165,7 +166,7 @@ export function PageLayout({ locale, children, fullBleed = false }: PageLayoutPr
               type="button"
               aria-label="Toggle navigation menu"
               onClick={() => setMenuOpen((v) => !v)}
-              className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-ink text-ink lg:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-ink text-ink lg:hidden"
             >
               {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -179,14 +180,14 @@ export function PageLayout({ locale, children, fullBleed = false }: PageLayoutPr
                 key={link.href}
                 href={`/${locale}${link.href}`}
                 onClick={() => setMenuOpen(false)}
-                className="block rounded-xl px-3 py-2.5 text-sm font-bold text-ink/80 hover:bg-saffron-soft"
+                className="flex min-h-11 items-center rounded-xl px-3 py-2.5 text-sm font-bold text-ink/80 hover:bg-saffron-soft"
               >
                 {isAr ? link.labelAr : link.labelEn}
               </Link>
             ))}
             <div className="mt-2 flex gap-2 border-t-2 border-ink/10 px-3 pt-3">
-              <button onClick={() => { switchLocale("ar"); setMenuOpen(false); }} className={`rounded-full border-2 border-ink px-3 py-1 text-xs font-bold ${isAr ? "bg-ink text-card" : "text-ink"}`}>العربية</button>
-              <button onClick={() => { switchLocale("en"); setMenuOpen(false); }} className={`rounded-full border-2 border-ink px-3 py-1 text-xs font-bold ${!isAr ? "bg-ink text-card" : "text-ink"}`}>English</button>
+              <button onClick={() => { switchLocale("ar"); setMenuOpen(false); }} className={`rounded-full border-2 border-ink px-4 py-3 text-xs font-bold ${isAr ? "bg-ink text-card" : "text-ink"}`}>العربية</button>
+              <button onClick={() => { switchLocale("en"); setMenuOpen(false); }} className={`rounded-full border-2 border-ink px-4 py-3 text-xs font-bold ${!isAr ? "bg-ink text-card" : "text-ink"}`}>English</button>
             </div>
           </div>
         )}
@@ -212,19 +213,19 @@ export function PageLayout({ locale, children, fullBleed = false }: PageLayoutPr
                 <button
                   type="button"
                   onClick={() => toggleFooterSection(col.key)}
-                  className="group flex w-full items-center justify-between py-1 text-start"
+                  className="group flex min-h-11 w-full items-center justify-between py-3 text-start"
                 >
                   <h3 className="font-display text-sm font-extrabold uppercase tracking-wide text-ink">{col.title}</h3>
                   <ChevronDown className={`h-4 w-4 text-ink/50 transition-transform duration-300 ${footerOpen[col.key] ? "rotate-180" : ""}`} />
                 </button>
                 <div className={`grid transition-all duration-300 ease-in-out ${footerOpen[col.key] ? "mt-4 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
                   <div className="overflow-hidden">
-                    <div className="grid grid-cols-1 gap-x-6 gap-y-1.5 pt-1 sm:grid-cols-2">
+                    <div className="grid grid-cols-1 gap-x-6 gap-y-0.5 pt-1 sm:grid-cols-2">
                       {col.links.map((link) => (
                         <Link
                           key={link.href}
                           href={`/${locale}${link.href}`}
-                          className="truncate py-1 text-sm font-semibold text-ink/60 transition hover:text-qalam"
+                          className="flex min-h-11 items-center truncate py-2 text-sm font-semibold text-ink/60 transition hover:text-qalam"
                         >
                           {isAr ? link.labelAr : link.labelEn}
                         </Link>

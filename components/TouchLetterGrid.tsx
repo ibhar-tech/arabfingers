@@ -86,7 +86,7 @@ export function TouchLetterGrid({ onPick }: { onPick: (letter: ArabicLetter) => 
                 type="button"
                 onClick={() => scrollBy(-1)}
                 aria-label={isAr ? "الحروف السابقة" : "Previous letters"}
-                className="stage-chip absolute right-1 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full transition active:scale-90"
+                className="stage-chip absolute right-1 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full transition active:scale-90"
               >
                 <ChevronRight className="h-5 w-5" />
               </button>
@@ -97,7 +97,7 @@ export function TouchLetterGrid({ onPick }: { onPick: (letter: ArabicLetter) => 
                 type="button"
                 onClick={() => scrollBy(1)}
                 aria-label={isAr ? "الحروف التالية" : "More letters"}
-                className="stage-chip absolute left-1 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full transition active:scale-90"
+                className="stage-chip absolute left-1 top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full transition active:scale-90"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
@@ -108,8 +108,8 @@ export function TouchLetterGrid({ onPick }: { onPick: (letter: ArabicLetter) => 
               // Pad the ends only while an arrow is floating there, so no tile ever
               // sits under one — a child aiming for a letter must not hit a control.
               className={`stage-chip letter-strip flex gap-2 overflow-x-auto rounded-3xl p-2 ${
-                edges.start ? "pr-11" : ""
-              } ${edges.end ? "pl-11" : ""}`}
+                edges.start ? "pr-14" : ""
+              } ${edges.end ? "pl-14" : ""}`}
               style={{ touchAction: "pan-x" }}
             >
               {arabicLetters.map((letter) => (

@@ -55,8 +55,10 @@ const activities: Activity[] = [
   {
     href: "/play",
     emoji: "⌨️",
-    titleEn: "Letter keyboard",
-    titleAr: "لوحة الحروف",
+    // The only unscored activity, so it is named for that rather than for the
+    // keyboard — there is no keyboard on a phone, which is where most kids are.
+    titleEn: "Free play",
+    titleAr: "لعب حر",
     descEn: "No rules, no score — press or tap any letter and hear it said aloud.",
     descAr: "بلا قواعد ولا نقاط — اضغط أو المس أيّ حرف لتسمع نطقه.",
     count: () => null,

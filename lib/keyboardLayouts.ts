@@ -53,8 +53,6 @@ export const keyboardLayouts: KeyboardLayout[] = [
   arabicAzerty,
 ];
 
-export const keyboardLayoutIds = keyboardLayouts.map((l) => l.id);
-
 export function getKeyboardLayout(id: KeyboardLayoutId): KeyboardLayout {
   return keyboardLayouts.find((l) => l.id === id) ?? arabicStandard;
 }

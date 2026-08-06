@@ -130,6 +130,10 @@ html:has(.play-surface) body {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+  /* Every stage control is a touch target for a small child with poor aim, so
+     none of them may fall under the 44px minimum whatever padding they carry. */
+  min-height: 44px;
+  min-width: 44px;
 }
 .stage-chip-hover:hover { background: rgba(6, 8, 20, 0.58); }
 
@@ -430,4 +434,49 @@ body {
 }
 .play-surface[data-light="true"] .letter-strip-fade-end {
   background: linear-gradient(to right, rgba(255, 255, 255, 0.92), transparent);
+}
+
+/* ------------------------------------------------------------------
+   Touch-sized range slider.
+   A range input's hit area is only as tall as its track, so the brush-size
+   slider was an 8px target — unusable for the small hands this site is for.
+   The element is now 44px tall and transparent; the visible track and thumb
+   are drawn by these pseudo-elements, so it looks the same and grabs easily.
+   ------------------------------------------------------------------ */
+.touch-range {
+  --track-h: 8px;
+  --thumb-d: 26px;
+  cursor: pointer;
+}
+.touch-range::-webkit-slider-runnable-track {
+  height: var(--track-h);
+  border-radius: 999px;
+  background: rgba(42, 29, 78, 0.15);
+}
+.touch-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: var(--thumb-d);
+  width: var(--thumb-d);
+  border-radius: 999px;
+  background: var(--qalam);
+  border: 2px solid var(--ink);
+  /* Centre the thumb on the track rather than on the 44px box. */
+  margin-top: calc((var(--track-h) - var(--thumb-d)) / 2);
+}
+.touch-range::-moz-range-track {
+  height: var(--track-h);
+  border-radius: 999px;
+  background: rgba(42, 29, 78, 0.15);
+}
+.touch-range::-moz-range-thumb {
+  height: var(--thumb-d);
+  width: var(--thumb-d);
+  border-radius: 999px;
+  background: var(--qalam);
+  border: 2px solid var(--ink);
+}
+.touch-range:focus-visible {
+  outline: 3px solid var(--qalam);
+  outline-offset: 2px;
 }

@@ -306,9 +306,9 @@ export default function TraceClient() {
             type="button"
             onClick={() => playLetterSound(letter.soundId)}
             aria-label={isAr ? "استمع للحرف" : "Hear the letter"}
-            className="ms-1 rounded-full p-1 text-ink/60 transition hover:bg-saffron-soft hover:text-ink"
+            className="ms-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-ink/60 transition hover:bg-saffron-soft hover:text-ink"
           >
-            <Volume2 className="h-4 w-4" />
+            <Volume2 className="h-5 w-5" />
           </button>
         </div>
 
@@ -319,7 +319,7 @@ export default function TraceClient() {
           <button
             type="button"
             onClick={clearPaint}
-            className="card-stock flex items-center gap-1.5 px-3 py-2 text-sm font-extrabold text-ink transition hover:bg-saffron-soft"
+            className="card-stock flex min-h-11 items-center gap-1.5 px-3 py-2 text-sm font-extrabold text-ink transition hover:bg-saffron-soft"
           >
             <RotateCcw className="h-4 w-4" />
             {isAr ? "مسح" : "Clear"}

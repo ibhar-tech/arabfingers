@@ -394,9 +394,9 @@ export default function ColoringClient() {
             type="button"
             onClick={() => playLetterSound(letter.soundId)}
             aria-label={isAr ? "استمع للحرف" : "Hear the letter"}
-            className="ms-1 rounded-full p-1 text-ink/60 transition hover:bg-saffron-soft hover:text-ink"
+            className="ms-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-ink/60 transition hover:bg-saffron-soft hover:text-ink"
           >
-            <Volume2 className="h-4 w-4" />
+            <Volume2 className="h-5 w-5" />
           </button>
         </div>
 
@@ -407,7 +407,7 @@ export default function ColoringClient() {
           <button
             type="button"
             onClick={clearPaint}
-            className="card-stock flex items-center gap-1.5 px-3 py-2 text-sm font-extrabold text-ink transition hover:bg-saffron-soft"
+            className="card-stock flex min-h-11 items-center gap-1.5 px-3 py-2 text-sm font-extrabold text-ink transition hover:bg-saffron-soft"
           >
             <RotateCcw className="h-4 w-4" />
             {isAr ? "مسح" : "Clear"}
@@ -446,7 +446,7 @@ export default function ColoringClient() {
                 type="button"
                 onClick={() => setSticker(item)}
                 aria-label={item}
-                className={`flex h-10 w-10 items-center justify-center rounded-xl text-2xl transition ${
+                className={`flex h-11 w-11 items-center justify-center rounded-xl text-2xl transition ${
                   sticker === item ? "scale-110 bg-saffron-soft" : "hover:bg-saffron-soft/60"
                 }`}
               >
@@ -466,7 +466,7 @@ export default function ColoringClient() {
                 if (tool === "eraser" || tool === "sticker") setTool("brush");
               }}
               aria-label={`${isAr ? "لون" : "Colour"} ${item}`}
-              className={`h-9 w-9 rounded-full border-2 border-ink/20 transition ${
+              className={`h-11 w-11 rounded-full border-2 border-ink/20 transition ${
                 color === item ? "scale-110 ring-[3px] ring-ink" : "hover:scale-110"
               }`}
               style={{ backgroundColor: item }}
@@ -484,7 +484,7 @@ export default function ColoringClient() {
               value={brushSize}
               onChange={(event) => setBrushSize(parseInt(event.target.value, 10))}
               aria-label={isAr ? "حجم الفرشاة" : "Brush size"}
-              className="h-2 w-28 appearance-none rounded-full bg-ink/15 accent-qalam"
+              className="touch-range h-11 w-28 appearance-none bg-transparent accent-qalam"
             />
             <span
               className="rounded-full border-2 border-ink/20"
@@ -518,7 +518,7 @@ export default function ColoringClient() {
                   title={item.label}
                   aria-label={item.label}
                   aria-pressed={tool === item.id}
-                  className={`flex flex-1 items-center justify-center gap-1.5 rounded-xl px-2 py-2 text-xs font-extrabold transition ${
+                  className={`flex min-h-11 flex-1 items-center justify-center gap-1.5 rounded-xl px-2 py-2 text-xs font-extrabold transition ${
                     tool === item.id ? "bg-ink text-card" : "text-ink/70 hover:bg-saffron-soft"
                   }`}
                 >
@@ -549,7 +549,7 @@ export default function ColoringClient() {
             value={brushSize}
             onChange={(event) => setBrushSize(parseInt(event.target.value, 10))}
             aria-label={isAr ? "حجم الفرشاة" : "Brush size"}
-            className="h-2 flex-1 appearance-none rounded-full bg-ink/15 accent-qalam"
+            className="touch-range h-11 flex-1 appearance-none bg-transparent accent-qalam"
           />
           <span
             className="rounded-full border-2 border-ink/20"

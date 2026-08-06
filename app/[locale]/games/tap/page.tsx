@@ -49,7 +49,7 @@ const copy = {
     nextTitle: "Where to go next",
     next: [
       { href: "/games/trace", t: "Trace the letter", d: "Now write the shape you just learned to hear. The same 28 letters, drawn with a finger." },
-      { href: "/play", t: "The letter game", d: "Press any key to hear a letter spoken. Free exploration of every sound." },
+      { href: "/play", t: "Free play", d: "Press any key to hear a letter spoken. Free exploration of every sound." },
       { href: "/learn/arabic-alphabet-guide", t: "The complete alphabet guide", d: "How each of the 28 letters sounds, with the mistakes learners usually make." },
       { href: "/coloring", t: "Colour the letters", d: "A free painting canvas — the same letters, with colours and stickers." },
     ],
@@ -81,7 +81,7 @@ const copy = {
     nextTitle: "إلى أين بعد ذلك",
     next: [
       { href: "/games/trace", t: "تتبّع الحرف", d: "اكتب الآن الشكل الذي تعلّمت سماعه. الحروف الـ٢٨ نفسها، تُرسم بالإصبع." },
-      { href: "/play", t: "لعبة الحروف", d: "اضغط أيّ مفتاح لتسمع نطق حرف. استكشاف حرّ لكلّ صوت." },
+      { href: "/play", t: "لعب حر", d: "اضغط أيّ مفتاح لتسمع نطق حرف. استكشاف حرّ لكلّ صوت." },
       { href: "/learn/arabic-alphabet-guide", t: "دليل الحروف الكامل", d: "كيف يُنطق كلّ حرف من الحروف الـ٢٨، مع الأخطاء المعتادة عند المتعلّمين." },
       { href: "/coloring", t: "لوّن الحروف", d: "لوحة رسم مجانية — الحروف نفسها، مع الألوان والملصقات." },
     ],

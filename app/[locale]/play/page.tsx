@@ -102,14 +102,14 @@ export default async function PlayPage({
               </p>
 
               <div className="flex flex-wrap gap-3 text-sm">
-                <Link href={`/${locale}`} className="rounded-lg bg-saffron-soft px-4 py-2 font-medium text-ink hover:bg-saffron-soft transition">
+                <Link href={`/${locale}`} className="inline-flex min-h-11 items-center rounded-lg bg-saffron-soft px-4 py-2 font-medium text-ink hover:bg-saffron-soft transition">
                   ← الصفحة الرئيسية
                 </Link>
-                <Link href={`/${locale}/learn/arabic-alphabet-guide`} className="rounded-lg bg-saffron px-4 py-2 font-medium text-ink hover:bg-accent transition">
+                <Link href={`/${locale}/learn/arabic-alphabet-guide`} className="inline-flex min-h-11 items-center rounded-lg bg-saffron px-4 py-2 font-medium text-ink hover:bg-accent transition">
                   دليل الأبجدية العربية الكامل
                 </Link>
-                <Link href={`/${locale}/coloring`} className="rounded-lg bg-saffron-soft px-4 py-2 font-medium text-ink hover:bg-saffron-soft transition">
-                  🎨 لعبة التلوين والتتبع
+                <Link href={`/${locale}/coloring`} className="inline-flex min-h-11 items-center rounded-lg bg-saffron-soft px-4 py-2 font-medium text-ink hover:bg-saffron-soft transition">
+                  🎨 لوّن الحروف
                 </Link>
               </div>
             </>
@@ -151,13 +151,13 @@ export default async function PlayPage({
               </p>
 
               <div className="flex flex-wrap gap-3 text-sm">
-                <Link href={`/${locale}`} className="rounded-lg bg-saffron-soft px-4 py-2 font-medium text-ink hover:bg-saffron-soft transition">
+                <Link href={`/${locale}`} className="inline-flex min-h-11 items-center rounded-lg bg-saffron-soft px-4 py-2 font-medium text-ink hover:bg-saffron-soft transition">
                   ← Home
                 </Link>
-                <Link href={`/${locale}/learn/arabic-alphabet-guide`} className="rounded-lg bg-saffron px-4 py-2 font-medium text-ink hover:bg-accent transition">
+                <Link href={`/${locale}/learn/arabic-alphabet-guide`} className="inline-flex min-h-11 items-center rounded-lg bg-saffron px-4 py-2 font-medium text-ink hover:bg-accent transition">
                   Complete Arabic Alphabet Guide
                 </Link>
-                <Link href={`/${locale}/coloring`} className="rounded-lg bg-saffron-soft px-4 py-2 font-medium text-ink hover:bg-saffron-soft transition">
+                <Link href={`/${locale}/coloring`} className="inline-flex min-h-11 items-center rounded-lg bg-saffron-soft px-4 py-2 font-medium text-ink hover:bg-saffron-soft transition">
                   🎨 Coloring &amp; Tracing Game
                 </Link>
               </div>

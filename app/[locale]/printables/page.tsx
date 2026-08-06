@@ -105,7 +105,7 @@ const copy = {
       { href: "/learn/arabic-alphabet-guide", t: "The Arabic Alphabet: A Complete Guide", d: "How each of the 28 letters sounds, the common mistakes, and how to fix them." },
       { href: "/learn/arabic-letter-forms", t: "Why Arabic Letters Change Shape", d: "The joining rules behind the four forms shown on every worksheet." },
       { href: "/learn/arabic-numbers", t: "Arabic Numbers 1–10", d: "Eastern and Western numerals, and why Arabic uses both." },
-      { href: "/play", t: "The Letter Game", d: "Hear every letter pronounced. Useful right before a tracing session." },
+      { href: "/play", t: "Free play", d: "Hear every letter pronounced. Useful right before a tracing session." },
     ],
 
     faqTitle: "Frequently asked questions about the worksheets",
@@ -185,7 +185,7 @@ const copy = {
       { href: "/learn/arabic-alphabet-guide", t: "دليل الحروف العربية الكامل", d: "كيف يُنطق كلّ حرف من الـ٢٨، والأخطاء الشائعة وطريقة تصحيحها." },
       { href: "/learn/arabic-letter-forms", t: "لماذا تتغيّر أشكال الحروف", d: "قواعد الاتّصال وراء الأشكال الأربعة في كلّ ورقة." },
       { href: "/learn/arabic-numbers", t: "الأرقام العربية ١–١٠", d: "الأرقام المشرقية والغربية، ولماذا تستعمل العربية الاثنين." },
-      { href: "/play", t: "لعبة الحروف", d: "استمع إلى نطق كلّ حرف. مفيدة قبل جلسة التتبّع مباشرة." },
+      { href: "/play", t: "لعب حر", d: "استمع إلى نطق كلّ حرف. مفيدة قبل جلسة التتبّع مباشرة." },
     ],
 
     faqTitle: "أسئلة شائعة عن أوراق العمل",

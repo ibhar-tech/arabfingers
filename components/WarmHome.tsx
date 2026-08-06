@@ -111,7 +111,7 @@ export function WarmHome({ locale }: { locale: string }) {
             <button
               aria-label="Menu"
               onClick={() => setMenuOpen((v) => !v)}
-              className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-ink text-ink md:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-ink text-ink md:hidden"
             >
               {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -354,7 +354,7 @@ export function WarmHome({ locale }: { locale: string }) {
             </p>
           </div>
           {[
-            { h: tt("Play", "العب"), links: [["/play", tt("Letter game", "لعبة الحروف")], ["/coloring", tt("Coloring", "التلوين")], ["/printables", tt("Worksheets", "أوراق عمل")]] },
+            { h: tt("Play", "العب"), links: [["/play", tt("Free play", "لعب حر")], ["/coloring", tt("Coloring", "التلوين")], ["/printables", tt("Worksheets", "أوراق عمل")]] },
             { h: tt("Learn", "تعلّم"), links: [["/learn/arabic-alphabet-guide", tt("Alphabet guide", "دليل الأبجدية")], ["/learn/arabic-numbers", tt("Numbers", "الأرقام")], ["/learn", tt("All guides", "كل الأدلة")]] },
             { h: tt("More", "المزيد"), links: [["/blog", tt("Blog", "المدونة")], ["/about", tt("About", "عن الموقع")], ["/privacy", tt("Privacy", "الخصوصية")]] },
           ].map((col) => (
