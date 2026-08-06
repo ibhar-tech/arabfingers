@@ -45,6 +45,8 @@ export default function TraceClient() {
   const drawing = useRef(false);
   /** Alpha-channel byte offsets for pixels inside the glyph, sampled once per letter. */
   const maskOffsets = useRef<Int32Array>(new Int32Array(0));
+  /** The background, sampled like the glyph. Painting it counts against you. */
+  const maskOutside = useRef<Int32Array>(new Int32Array(0));
   const anchor = useRef({ x: 0, y: 0, font: 0 });
 
   const letter = arabicLetters[index];
@@ -168,17 +170,21 @@ export default function TraceClient() {
       const data = octx.getImageData(0, 0, off.width, off.height).data;
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       const inside: number[] = [];
+      const outside: number[] = [];
       const step = Math.max(2, Math.round(Math.sqrt((off.width * off.height) / 10000)));
       for (let py = 0; py < off.height; py += step) {
         for (let px = 0; px < off.width; px += step) {
-          if (data[(py * off.width + px) * 4 + 3] > 128) {
-            const dx = Math.round(px * dpr);
-            const dy = Math.round(py * dpr);
-            inside.push((dy * Math.round(size.width * dpr) + dx) * 4 + 3);
-          }
+          const dx = Math.round(px * dpr);
+          const dy = Math.round(py * dpr);
+          const offset = (dy * Math.round(size.width * dpr) + dx) * 4 + 3;
+          if (data[(py * off.width + px) * 4 + 3] > 128) inside.push(offset);
+          else outside.push(offset);
         }
       }
       maskOffsets.current = Int32Array.from(inside);
+      // Sampled at the same step as the glyph, so the two coverages are directly
+      // comparable and the background can be subtracted from the score.
+      maskOutside.current = Int32Array.from(outside);
     };
 
     if (document.fonts?.status === "loaded") render();
@@ -203,16 +209,28 @@ export default function TraceClient() {
     if (!canvas || !ctx || offsets.length === 0) return;
 
     let painted = 0;
+    let spilled = 0;
+    const outsideOffsets = maskOutside.current;
     try {
       const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
       for (let i = 0; i < offsets.length; i++) {
         if (data[offsets[i]] > 12) painted++;
       }
+      for (let i = 0; i < outsideOffsets.length; i++) {
+        if (data[outsideOffsets[i]] > 12) spilled++;
+      }
     } catch {
       return;
     }
 
-    const ratio = painted / offsets.length;
+    // Covering the whole sheet used to score 100%, because only pixels inside the
+    // glyph were ever counted. Subtracting how much of the background got painted
+    // means a scribble simply stops filling the bar — the child sees why without
+    // needing to be told. Following the letter costs almost nothing here, since
+    // overshoot is a small share of a large background.
+    const covered = painted / offsets.length;
+    const spill = outsideOffsets.length ? spilled / outsideOffsets.length : 0;
+    const ratio = Math.max(0, covered - spill);
     setProgress(ratio);
     if (ratio < DONE_AT || done) return;
 
