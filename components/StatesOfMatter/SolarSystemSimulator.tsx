@@ -261,7 +261,7 @@ export default function SolarSystemSimulator({
       if (canvas) canvas.removeEventListener("click", handleCanvasClick);
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
     };
-  }, [activePlanet, gravityFactor, isPlaying, locale]);
+  }, [activePlanet, gravityFactor, isPlaying, locale, isAr]);
 
   return (
     <div className="w-full h-full relative rounded-2xl overflow-hidden border border-white/10 bg-[#030712] shadow-2xl">

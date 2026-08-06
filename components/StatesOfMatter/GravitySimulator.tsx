@@ -280,7 +280,7 @@ export default function GravitySimulator({
       if (canvas) canvas.removeEventListener("click", handleCanvasClick);
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
     };
-  }, [activeObject, gravitySlider, isPlaying, locale]);
+  }, [activeObject, gravitySlider, isPlaying, locale, isAr]);
 
   return (
     <div className="w-full h-full relative rounded-2xl overflow-hidden border border-white/10 bg-slate-950 shadow-2xl">

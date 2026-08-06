@@ -298,7 +298,7 @@ export default function WaterCycleSimulator({
       window.removeEventListener("resize", handleResize);
       if (animationRef.current) cancelAnimationFrame(animationRef.current);
     };
-  }, [state, heatLevel, isPlaying, locale]);
+  }, [state, heatLevel, isPlaying, locale, isAr]);
 
   return (
     <div className="w-full h-full relative rounded-2xl overflow-hidden border border-white/10 bg-slate-950/70 backdrop-blur-md shadow-2xl">

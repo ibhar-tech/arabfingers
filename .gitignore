@@ -49,3 +49,6 @@ next-env.d.ts
 .wrangler
 .dev.vars
 
+
+# generated sound-effect variants, promoted with --install
+public/sounds/_preview/
