@@ -7,8 +7,8 @@ import { generatePageMetadata } from "@/lib/seo";
 import { setRequestLocale } from "next-intl/server";
 
 const CONTACT_EMAIL = "ibhartech39@gmail.com";
-const UPDATED_EN = "31 July 2026";
-const UPDATED_AR = "٣١ يوليو ٢٠٢٦";
+const UPDATED_EN = "6 August 2026";
+const UPDATED_AR = "٦ أغسطس ٢٠٢٦";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -60,16 +60,17 @@ const en: { title: string; updated: string; intro: string; sections: Section[] }
       h: "Advertising and third-party cookies",
       body: [
         "Arab Fingers displays advertising supplied by Google AdSense. We do not set advertising cookies ourselves, and we do not pass any information about you to advertisers.",
-        "Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this and other websites. Google's use of advertising cookies enables it and its partners to serve ads based on visits to this site and other sites on the internet.",
-        "Users may opt out of personalised advertising by visiting Google's Ads Settings. Alternatively, users may opt out of a third-party vendor's use of cookies for personalised advertising at aboutads.info. Google's own explanation of how it uses data from sites that use its services is published at policies.google.com/technologies/partner-sites.",
-        "Where required by law — in the European Economic Area, the United Kingdom and Switzerland — a consent notice is shown before non-essential advertising cookies are set, and you may withdraw consent at any time.",
+        "Because this site is made for young children, every ad request it sends is marked non-personalised. Google is instructed not to use any profile of you or your child to choose the ads, and not to add this visit to one. That applies to every visitor, in every country, on every page — not only where the law demands it.",
+        "Google may still set a cookie for purposes that do not depend on a profile, such as counting how often an ad has been shown and detecting fraudulent clicks. Google's own explanation of how it uses data from sites that use its services is published at policies.google.com/technologies/partner-sites, and you can review your ad settings at any time in Google's Ads Settings.",
+        "There are no ads at all on the interactive activities — the keyboard toy, the colouring canvas, the tracing game and the tapping game. Those are the pages a child actually holds, and an ad beside a small finger is an accident waiting to happen.",
+        "In the European Economic Area, the United Kingdom and Switzerland, a consent notice from Google's certified consent management platform appears before any non-essential advertising cookie is set, and you can change or withdraw your answer at any time from the link in that notice.",
       ],
     },
     {
       h: "Children's privacy (COPPA and GDPR-K)",
       body: [
         "This site is written for parents and teachers, and its activities are intended to be used by a child alongside an adult. We do not knowingly collect personal information from anyone under the age of 13, and there is no mechanism on the site through which a child could supply any.",
-        "Because content here is directed at families with young children, ad serving is configured to restrict advertising to non-personalised, family-appropriate categories in the jurisdictions that require it.",
+        "We treat the whole site as directed to children. Ad requests are tagged accordingly, personalised advertising and remarketing are switched off site-wide rather than only where a regulator insists, and the interactive activities carry no advertising at all.",
         "If you believe a child has somehow provided personal information to us, please write to us at the address below and we will delete it immediately.",
       ],
     },
@@ -143,16 +144,17 @@ const ar: { title: string; updated: string; intro: string; sections: Section[] }
       h: "الإعلانات وملفّات تعريف الارتباط من طرف ثالث",
       body: [
         "يعرض عرب فنجرز إعلانات تزوّدها Google AdSense. ولا نضع نحن ملفّات تعريف ارتباط إعلانية، ولا نمرّر أيّ معلومات عنك إلى المعلنين.",
-        "يستعمل موردون خارجيون، ومنهم Google، ملفّات تعريف الارتباط لعرض إعلانات مبنيّة على زيارات المستخدم السابقة لهذا الموقع ولمواقع أخرى. واستعمال Google لملفّات الارتباط الإعلانية يمكّنها وشركاءها من عرض إعلانات بناءً على تلك الزيارات.",
-        "يستطيع المستخدمون إلغاء تفعيل الإعلانات المخصّصة من إعدادات إعلانات Google، أو إلغاء استعمال مورد خارجي لملفّات الارتباط من موقع aboutads.info. وتنشر Google شرحها لكيفية استعمالها بيانات المواقع التي تستخدم خدماتها على policies.google.com/technologies/partner-sites.",
-        "وحيث يوجب القانون ذلك — في المنطقة الاقتصادية الأوروبية والمملكة المتحدة وسويسرا — يُعرض إشعار موافقة قبل وضع أيّ ملفّات ارتباط إعلانية غير ضرورية، ويمكنك سحب الموافقة متى شئت.",
+        "ولأنّ هذا الموقع مصنوع للأطفال الصغار، فكلّ طلب إعلان يرسله موسوم بأنّه غير مخصّص. أي أنّ Google مأمورة بألّا تستعمل أيّ ملفّ عنك أو عن طفلك لاختيار الإعلانات، وبألّا تضيف هذه الزيارة إلى ملفّ. وهذا يسري على كلّ زائر، في كلّ بلد، وفي كلّ صفحة — لا حيث يوجب القانون وحده.",
+        "وقد تظلّ Google تضع ملفّ ارتباط لأغراض لا تعتمد على ملفّ شخصي، مثل إحصاء عدد مرّات عرض الإعلان وكشف النقرات الاحتيالية. وتنشر Google شرحها لكيفية استعمالها بيانات المواقع التي تستخدم خدماتها على policies.google.com/technologies/partner-sites، ويمكنك مراجعة إعداداتك الإعلانية متى شئت من إعدادات إعلانات Google.",
+        "ولا توجد إعلانات إطلاقاً في الأنشطة التفاعلية — لعبة لوحة المفاتيح، ولوحة التلوين، ولعبة التتبّع، ولعبة النقر. فهذه هي الصفحات التي يمسكها الطفل بيده، والإعلان بجوار إصبع صغير حادثة تنتظر وقوعها.",
+        "وفي المنطقة الاقتصادية الأوروبية والمملكة المتحدة وسويسرا، يظهر إشعار موافقة من منصّة إدارة الموافقة المعتمدة من Google قبل وضع أيّ ملفّ ارتباط إعلاني غير ضروري، ويمكنك تغيير إجابتك أو سحبها متى شئت من الرابط في ذلك الإشعار.",
       ],
     },
     {
       h: "خصوصية الأطفال (COPPA وGDPR-K)",
       body: [
         "كُتب هذا الموقع للآباء والمعلّمين، وأنشطته موجّهة ليستعملها الطفل بصحبة بالغ. ولا نجمع عن علم معلومات شخصية من أيّ شخص دون الثالثة عشرة، ولا توجد في الموقع وسيلة يستطيع الطفل بها تقديم شيء منها.",
-        "ولأنّ المحتوى هنا موجّه إلى أسر لديها أطفال صغار، فقد ضُبط عرض الإعلانات ليقتصر على فئات غير مخصّصة ومناسبة للعائلة في الولايات القضائية التي تشترط ذلك.",
+        "نعامل الموقع كلّه على أنّه موجّه إلى الأطفال. فطلبات الإعلانات موسومة بذلك، والإعلانات المخصّصة وإعادة الاستهداف موقوفة في الموقع كلّه لا حيث تشترط جهة تنظيمية ذلك وحسب، والأنشطة التفاعلية لا تحمل أيّ إعلان.",
         "وإن كنت ترى أنّ طفلاً قدّم إلينا معلومات شخصية بطريقة ما، فراسلنا على العنوان أدناه وسنحذفها فوراً.",
       ],
     },
