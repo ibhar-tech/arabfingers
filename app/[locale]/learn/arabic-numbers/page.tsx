@@ -124,6 +124,7 @@ export default async function ArabicNumbersPage({ params }: { params: Promise<{ 
           alt={isAr ? "دليل الأرقام العربية" : "Arabic numbers guide"}
           width={1200}
           height={630}
+          priority
           className="w-full object-cover"
         />
       </div>

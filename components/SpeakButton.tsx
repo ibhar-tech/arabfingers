@@ -71,7 +71,7 @@ export function SpeakButton({
       onClick={speak}
       aria-label={label ?? `Listen: ${text}`}
       title={label ?? "Listen"}
-      className={`inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/15 bg-white/5 text-sm transition hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-accent ${
+      className={`inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-sm transition hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-accent ${
         speaking ? "bg-accent/20 border-accent animate-pulse" : ""
       } ${className}`}
     >

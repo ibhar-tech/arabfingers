@@ -415,7 +415,7 @@ export default function SolarSystemInteractive({ locale = "ar" }: SolarSystemInt
             <button
               type="button"
               onClick={() => setPlaybackSpeed((s) => (s === 0.5 ? 1.0 : s === 1.0 ? 1.5 : s === 1.5 ? 2.0 : 0.5))}
-              className="text-[10px] text-white/70 bg-white/10 hover:bg-white/15 border border-white/10 rounded-lg px-2 py-1 font-semibold cursor-pointer"
+              className="flex min-h-11 items-center text-[10px] text-white/70 bg-white/10 hover:bg-white/15 border border-white/10 rounded-lg px-3 font-semibold cursor-pointer"
             >
               {isAr ? "السرعة" : "Speed"}: {playbackSpeed}x
             </button>
@@ -616,7 +616,7 @@ export default function SolarSystemInteractive({ locale = "ar" }: SolarSystemInt
               <button
                 type="button"
                 onClick={handleSpeechRepeat}
-                className="flex items-center gap-1.5 px-3 py-1 text-[11px] font-semibold rounded-xl bg-white/5 hover:bg-white/10 text-accent transition cursor-pointer"
+                className="flex min-h-11 items-center gap-1.5 px-3 text-[11px] font-semibold rounded-xl bg-white/5 hover:bg-white/10 text-accent transition cursor-pointer"
               >
                 <Volume2 className="h-3.5 w-3.5" />
                 {isAr ? "استمع مجدداً" : "Listen again"}
@@ -664,7 +664,7 @@ export default function SolarSystemInteractive({ locale = "ar" }: SolarSystemInt
               type="button"
               onClick={handleBackScene}
               disabled={currentSceneIndex === 0}
-              className="p-2.5 rounded-xl text-white/60 hover:bg-white/5 hover:text-white disabled:opacity-25 disabled:pointer-events-none cursor-pointer"
+              className="flex min-h-11 min-w-11 items-center justify-center rounded-xl text-white/60 hover:bg-white/5 hover:text-white disabled:opacity-25 disabled:pointer-events-none cursor-pointer"
               title={UI_TXT.back}
               aria-label={UI_TXT.back}
             >
@@ -674,7 +674,7 @@ export default function SolarSystemInteractive({ locale = "ar" }: SolarSystemInt
               type="button"
               onClick={handleNextScene}
               disabled={currentSceneIndex === STORYBOARD.length - 1}
-              className="p-2.5 rounded-xl text-white/60 hover:bg-white/5 hover:text-white disabled:opacity-25 disabled:pointer-events-none cursor-pointer"
+              className="flex min-h-11 min-w-11 items-center justify-center rounded-xl text-white/60 hover:bg-white/5 hover:text-white disabled:opacity-25 disabled:pointer-events-none cursor-pointer"
               title={UI_TXT.next}
               aria-label={UI_TXT.next}
             >
@@ -702,7 +702,7 @@ export default function SolarSystemInteractive({ locale = "ar" }: SolarSystemInt
             <button
               type="button"
               onClick={() => setSoundEnabled(!soundEnabled)}
-              className={`p-2.5 rounded-xl border transition cursor-pointer ${
+              className={`flex min-h-11 min-w-11 items-center justify-center rounded-xl border transition cursor-pointer ${
                 soundEnabled
                   ? "border-accent/20 bg-accent/10 text-accent hover:bg-accent/15"
                   : "border-white/10 bg-white/5 text-white/40 hover:bg-white/10"

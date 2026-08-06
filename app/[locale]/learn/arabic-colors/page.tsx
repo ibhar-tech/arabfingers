@@ -114,6 +114,7 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
           alt={isAr ? "دليل الألوان العربية" : "Arabic colors guide"}
           width={1200}
           height={630}
+          priority
           className="w-full object-cover"
         />
       </div>

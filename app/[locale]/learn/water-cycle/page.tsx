@@ -422,7 +422,7 @@ export default async function WaterCyclePage({ params }: { params: Promise<{ loc
 
       {/* Nav links */}
       <div className="flex flex-wrap gap-3 mb-8">
-        <Link href={`/${locale}/learn`} className="text-xs text-accent underline">
+        <Link href={`/${locale}/learn`} className="inline-flex min-h-11 items-center text-xs text-accent underline">
           {isAr ? "← العودة إلى قائمة الدروس" : "← Back to Learn Menu"}
         </Link>
       </div>

@@ -149,6 +149,7 @@ export default async function FirstArabicWordsPage({ params }: { params: Promise
           alt={isAr ? "أول كلمات عربية" : "First Arabic words guide"}
           width={1200}
           height={630}
+          priority
           className="w-full object-cover"
         />
       </div>

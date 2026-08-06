@@ -159,8 +159,20 @@ export function PageLayout({ locale, children, fullBleed = false }: PageLayoutPr
 
           <div className="flex items-center gap-2">
             <div className="hidden items-center gap-0.5 rounded-full border-2 border-ink p-0.5 text-xs font-bold sm:flex">
-              <button onClick={() => switchLocale("ar")} className={`rounded-full px-2 py-0.5 transition ${isAr ? "bg-ink text-card" : "text-ink/60"}`}>ع</button>
-              <button onClick={() => switchLocale("en")} className={`rounded-full px-2 py-0.5 transition ${!isAr ? "bg-ink text-card" : "text-ink/60"}`}>EN</button>
+              <button
+                onClick={() => switchLocale("ar")}
+                aria-pressed={isAr}
+                className={`flex min-h-10 min-w-10 items-center justify-center rounded-full px-2.5 transition ${isAr ? "bg-ink text-card" : "text-ink/60"}`}
+              >
+                ع
+              </button>
+              <button
+                onClick={() => switchLocale("en")}
+                aria-pressed={!isAr}
+                className={`flex min-h-10 min-w-10 items-center justify-center rounded-full px-2.5 transition ${!isAr ? "bg-ink text-card" : "text-ink/60"}`}
+              >
+                EN
+              </button>
             </div>
             <button
               type="button"

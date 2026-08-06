@@ -134,6 +134,7 @@ export default async function ArabicLetterFormsPage({ params }: { params: Promis
           alt={isAr ? "دليل أشكال الحروف" : "Letter forms guide"}
           width={1200}
           height={630}
+          priority
           className="w-full object-cover"
         />
       </div>
