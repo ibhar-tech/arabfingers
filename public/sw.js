@@ -41,10 +41,18 @@ self.addEventListener("activate", (event) => {
     ])
   );
 
-  // Precache in the background — fire and forget, does NOT block activation
+  // Precache in the background — fire and forget, does NOT block activation.
+  //
+  // Per-URL cache.add, never cache.addAll. addAll is atomic: one failing URL
+  // throws away the whole precache. That has now bitten twice — first when two
+  // listed icons did not exist at all, then when Cloudflare edges held a
+  // week-long cached 404 for those same paths from before they were deployed.
+  // A file that is briefly missing should cost us that one file, not all eight.
   caches
     .open(CACHE_NAME)
-    .then((cache) => cache.addAll(PRECACHE_URLS))
+    .then((cache) =>
+      Promise.all(PRECACHE_URLS.map((url) => cache.add(url).catch(() => {})))
+    )
     .catch(() => {});
 });
 
