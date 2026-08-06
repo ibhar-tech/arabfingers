@@ -551,5 +551,537 @@
     "voice": "Xb7hH8MSUJpSbSDYk0k2",
     "text": "ذهبي",
     "at": "2026-08-06T12:27:39.307Z"
+  },
+  "audio/states-of-matter/scene_0_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "أهلاً بكم يا أصدقائي في رحلتنا العلمية الممتعة! اليوم سنتعلم معاً عن حالات المادة المذهلة!",
+    "at": "2026-08-06T12:42:35.288Z"
+  },
+  "audio/states-of-matter/scene_0_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Welcome my friends to our fun science journey! Today we will learn all about the amazing states of matter!",
+    "at": "2026-08-06T12:42:37.061Z"
+  },
+  "audio/states-of-matter/scene_1_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "أهلاً بك يا بطل! أنا الدكتور حكيم، وهذا صديقي المساعد الذكي أنس! نحن سعيدان جداً بوجودكم معنا اليوم!",
+    "at": "2026-08-06T12:43:59.245Z"
+  },
+  "audio/states-of-matter/scene_1_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Hello champion! I am Dr. Hakim, and this is my smart assistant Anas! We are super happy to have you with us today!",
+    "at": "2026-08-06T12:44:01.163Z"
+  },
+  "audio/states-of-matter/scene_2_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "يا دكتور حكيم، أنا متحمس جداً! ولكن ما هي 'المادة' بالضبط؟ وهل كل ما نراه حولنا يعتبر مادة؟",
+    "at": "2026-08-06T12:44:03.327Z"
+  },
+  "audio/states-of-matter/scene_2_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Dr. Hakim, I am so excited! But what exactly is 'matter'? Is everything around us considered matter?",
+    "at": "2026-08-06T12:44:05.664Z"
+  },
+  "audio/states-of-matter/scene_3_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "سؤال ممتاز يا أنس! المادة هي كل شيء يشغل حيزاً وله وزن. مثل قالب الجليد هذا، إنه في الحالة الصلبة!",
+    "at": "2026-08-06T12:44:07.960Z"
+  },
+  "audio/states-of-matter/scene_3_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Excellent question, Anas! Matter is anything that takes up space and has weight. Like this ice block, it is in a solid state!",
+    "at": "2026-08-06T12:44:09.896Z"
+  },
+  "audio/states-of-matter/scene_4_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "يا إلهي! عندما يسخن الجليد ينصهر ليصبح ماءً سائلاً! انظروا لجزيئات الماء، إنها ترتدي نظارات سباحة وتنزلق بنشاط!",
+    "at": "2026-08-06T12:44:12.167Z"
+  },
+  "audio/states-of-matter/scene_4_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Oh my! When the ice heats up, it melts into liquid water! Look at the water molecules, they are wearing swim goggles and sliding around!",
+    "at": "2026-08-06T12:44:14.694Z"
+  },
+  "audio/states-of-matter/scene_5_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "رائع يا أنس! وإذا قمنا بتسخين الماء أكثر، فإنه يتبخر ليصبح بخاراً غازياً! تطير الجزيئات هنا وهناك كالأبطال الخارقين!",
+    "at": "2026-08-06T12:44:16.805Z"
+  },
+  "audio/states-of-matter/scene_5_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Wonderful, Anas! And if we heat the water even more, it evaporates into gaseous steam! The molecules fly around like superheroes!",
+    "at": "2026-08-06T12:44:19.256Z"
+  },
+  "audio/states-of-matter/scene_6_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "والآن مفاجأة! هناك حالة رابعة خارقة تسمى البلازما! نراها في البرق والنجوم الساطعة وشاشات النيون المتوهجة!",
+    "at": "2026-08-06T12:44:21.773Z"
+  },
+  "audio/states-of-matter/scene_6_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "And now a surprise! There is a super fourth state called Plasma! We see it in lightning, bright stars, and glowing neon lights!",
+    "at": "2026-08-06T12:44:23.639Z"
+  },
+  "audio/states-of-matter/scene_7_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "والآن يا أصدقائي الصغار حان دوركم لتجربة المختبر! حركوا شريط درجة الحرارة وشاهدوا كيف تتحول الجزيئات!",
+    "at": "2026-08-06T12:44:25.767Z"
+  },
+  "audio/states-of-matter/scene_7_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Now my little friends, it's your turn in the lab! Slide the temperature bar and watch the molecules transform in real-time!",
+    "at": "2026-08-06T12:44:28.022Z"
+  },
+  "audio/states-of-matter/scene_8_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "يا له من عرض ممتع ومذهل! دعونا نلخص ما تعلمناه اليوم ببطاقات حالات المادة السحرية!",
+    "at": "2026-08-06T12:44:29.731Z"
+  },
+  "audio/states-of-matter/scene_8_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "What a spectacular show! Let's summarize what we have learned today with these magical states of matter cards!",
+    "at": "2026-08-06T12:44:31.525Z"
+  },
+  "audio/states-of-matter/scene_9_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "أحسنتم يا أصدقائي الأذكياء! لقد كنتم علماء رائعين اليوم! استمروا في الاستكشاف والتعلم، ونراكم في مغامرة أخرى!",
+    "at": "2026-08-06T12:44:33.962Z"
+  },
+  "audio/states-of-matter/scene_9_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Outstanding job my clever friends! You were amazing scientists today! Keep exploring and learning, and see you next time!",
+    "at": "2026-08-06T12:44:36.137Z"
+  },
+  "audio/water-cycle/scene_0_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "أهلاً بكم من جديد في مختبرنا الساحر! اليوم سنرافق قطرة ماء صغيرة في رحلتها الدائرية المذهلة في الطبيعة!",
+    "at": "2026-08-06T12:45:05.812Z"
+  },
+  "audio/water-cycle/scene_0_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Welcome back to our magical lab! Today we will accompany a tiny water drop on its incredible circular journey in nature!",
+    "at": "2026-08-06T12:45:07.918Z"
+  },
+  "audio/water-cycle/scene_1_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "يا دكتور حكيم، الجو حار جداً اليوم! المياه في كوبي تختفي ببطء، وفي المحيطات أيضاً! أين تذهب يا ترى؟",
+    "at": "2026-08-06T12:45:10.013Z"
+  },
+  "audio/water-cycle/scene_1_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Dr. Hakim, it's so hot today! The water in my cup is slowly disappearing, and in oceans too! Where does it go?",
+    "at": "2026-08-06T12:45:12.324Z"
+  },
+  "audio/water-cycle/scene_2_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "سؤال ذكي كالعادة! عندما تسخن الشمس مياه البحار، تتحول إلى بخار خفيف يرتفع عالياً في السماء! تسمى هذه العملية 'التبخر'!",
+    "at": "2026-08-06T12:45:14.949Z"
+  },
+  "audio/water-cycle/scene_2_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "A smart question as always! When the sun heats up ocean waters, it turns into light vapor rising high into the sky! This is called 'evaporation'!",
+    "at": "2026-08-06T12:45:17.118Z"
+  },
+  "audio/water-cycle/scene_3_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "يا إلهي! عندما يرتفع البخار عالياً حيث الجو بارد، يجتمع معاً ليشكل سحباً جميلة وناعمة! إنه 'التكاثف'!",
+    "at": "2026-08-06T12:45:19.352Z"
+  },
+  "audio/water-cycle/scene_3_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Oh my! When the vapor rises high where the air is cold, it gathers together to form beautiful, soft clouds! That's 'condensation'!",
+    "at": "2026-08-06T12:45:21.409Z"
+  },
+  "audio/water-cycle/scene_4_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "بالتأكيد! وعندما تصبح الغيوم ثقيلة جداً ومحملة بالمياه، لا تستطيع حملها بعد الآن، فتتساقط كأصوات مطر أو ثلج! إنه 'الهطول'!",
+    "at": "2026-08-06T12:45:23.886Z"
+  },
+  "audio/water-cycle/scene_4_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Exactly! And when the clouds get too heavy and laden with water, they cannot hold it anymore, and it falls as rain or snow! That is 'precipitation'!",
+    "at": "2026-08-06T12:45:26.078Z"
+  },
+  "audio/water-cycle/scene_5_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "رائع! تتدفق مياه الأمطار عبر الأنهار والجداول الجبلية، وتعود مجدداً إلى البحار لتستعد لرحلة جديدة! إنها دورة لا تنتهي أبداً!",
+    "at": "2026-08-06T12:45:28.421Z"
+  },
+  "audio/water-cycle/scene_5_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Wonderful! Rainwater flows through rivers and mountain streams, returning to the oceans to prepare for a new journey! It's a cycle that never ends!",
+    "at": "2026-08-06T12:45:30.463Z"
+  },
+  "audio/water-cycle/scene_6_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "والآن حان دوركم لتصبحوا خبراء طقس! حركوا شريط الحرارة وشاهدوا كيف تؤثر على التبخر وسرعة تشكل الغيوم والمطر!",
+    "at": "2026-08-06T12:45:32.931Z"
+  },
+  "audio/water-cycle/scene_6_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Now it's your turn to become a weather master! Slide the temperature bar and watch how heat affects evaporation, clouds, and rainfall!",
+    "at": "2026-08-06T12:45:35.036Z"
+  },
+  "audio/water-cycle/scene_7_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "يا له من مغامرة مائية منعشة! دعونا نتذكر محطات قطرتنا الصغيرة الأربع ببطاقات الطقس التفاعلية!",
+    "at": "2026-08-06T12:45:37.226Z"
+  },
+  "audio/water-cycle/scene_7_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "What a refreshing watery adventure! Let's recall the four stages of our little drop with these interactive weather cards!",
+    "at": "2026-08-06T12:45:39.269Z"
+  },
+  "audio/water-cycle/scene_8_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "أحسنتم يا أصدقائي المستكشفين الأذكياء! لقد كنتم رائعين في فهم أسرار الطقس اليوم! استمروا في التعلم، ونراكم في مغامرة أخرى!",
+    "at": "2026-08-06T12:45:41.725Z"
+  },
+  "audio/water-cycle/scene_8_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Outstanding job my clever explorer friends! You were amazing at understanding weather secrets today! Keep learning, and see you next time!",
+    "at": "2026-08-06T12:45:43.784Z"
+  },
+  "audio/solar-system/scene_0_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "اربطوا أحزمة الأمان يا أصدقائي! سننطلق اليوم في رحلة فضائية خارقة بين الكواكب لنكتشف كيف تحافظ الجاذبية عليها تدور بسعادة!",
+    "at": "2026-08-06T12:45:54.859Z"
+  },
+  "audio/solar-system/scene_0_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Fasten your seatbelts my friends! Today we will fly on a cosmic space journey among the planets to discover how gravity keeps them orbiting!",
+    "at": "2026-08-06T12:45:56.826Z"
+  },
+  "audio/solar-system/scene_1_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "يا دكتور حكيم، الفضاء واسع ومخيف جداً! لماذا تدور كواكبنا في دوائر منتظمة حول الشمس ولا تطير متباعدة في الكون الفسيح؟",
+    "at": "2026-08-06T12:45:59.103Z"
+  },
+  "audio/solar-system/scene_1_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Dr. Hakim, space is so vast and scary! Why do our planets spin in perfect circles around the sun instead of flying off into the deep universe?",
+    "at": "2026-08-06T12:46:01.621Z"
+  },
+  "audio/solar-system/scene_2_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "سؤال عميق جداً! الشمس ضخمة وثقيلة للغاية، لذا تمتلك قوة جذب خارقة غير مرئية تسحب الكواكب نحوها وتجعلها تدور حولها كالمغناطيس!",
+    "at": "2026-08-06T12:46:04.146Z"
+  },
+  "audio/solar-system/scene_2_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "A very deep question! The Sun is extremely massive and heavy, so it possesses a super invisible gravitational pull that grips planets and keeps them orbiting like a magnet!",
+    "at": "2026-08-06T12:46:07.572Z"
+  },
+  "audio/solar-system/scene_3_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "انظروا إلى عطارد، إنه الكوكب الأقرب للشمس! حجمه صغير جداً وهو سريع كالفهد في دورانه لكي لا تسحبه الجاذبية وتسقطه في الشمس الساخنة!",
+    "at": "2026-08-06T12:46:11.289Z"
+  },
+  "audio/solar-system/scene_3_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Look at Mercury, it's the closest planet to the sun! It is very small and speeds around like a cheetah so gravity doesn't drag it down into the burning sun!",
+    "at": "2026-08-06T12:46:13.367Z"
+  },
+  "audio/solar-system/scene_4_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "يا لها من لمعان! كوكب الزهرة هو الأكثر سخونة وتوهجاً في مجموعتنا لأنه محاط بغيوم سميكة تحبس الحرارة كصوبة دافئة!",
+    "at": "2026-08-06T12:46:15.774Z"
+  },
+  "audio/solar-system/scene_4_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "What a gorgeous shine! Venus is the hottest and brightest planet because it is wrapped in thick clouds that trap heat like a greenhouse!",
+    "at": "2026-08-06T12:46:18.037Z"
+  },
+  "audio/solar-system/scene_5_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "والآن كوكبنا الرائع الأرض! إنه الكوكب الوحيد المليء بالماء والهواء والحياة، ويدور حوله قمر صغير ينير ليلنا الجميل بسعادة!",
+    "at": "2026-08-06T12:46:20.909Z"
+  },
+  "audio/solar-system/scene_5_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "And now our wonderful planet, Earth! It is the only planet packed with water, air, and life, and a cute little moon spins around it to light up our night!",
+    "at": "2026-08-06T12:46:23.426Z"
+  },
+  "audio/solar-system/scene_6_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "انظروا للون الأحمر الرائع! إنه كوكب المريخ المغطى بالحديد والصدأ، ونحن نرسل مركبات فضاء ذكية لتستكشف جباله الشاهقة ووديانه العميقة!",
+    "at": "2026-08-06T12:46:25.772Z"
+  },
+  "audio/solar-system/scene_6_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Look at that spectacular red color! It's Mars, covered in iron rust. We send smart rover robots to explore its giant mountains and deep valleys!",
+    "at": "2026-08-06T12:46:27.944Z"
+  },
+  "audio/solar-system/scene_7_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "والآن حان دوركم للتحكم في جاذبية الشمس! حركوا الشريط لزيادة الجاذبية وشاهدوا كيف تسرع الكواكب، أو خفضوها لتطير الكويكبات بعيداً!",
+    "at": "2026-08-06T12:46:31.237Z"
+  },
+  "audio/solar-system/scene_7_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Now it's your turn to control solar gravity! Slide the bar to increase gravity and watch planets speed up, or decrease it to watch asteroids float away!",
+    "at": "2026-08-06T12:46:33.332Z"
+  },
+  "audio/solar-system/scene_8_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "يا له من طيران فضائي مذهل! دعونا نلخص خصائص كواكبنا القريبة الأربعة ببطاقات الفضاء التفاعلية!",
+    "at": "2026-08-06T12:46:35.611Z"
+  },
+  "audio/solar-system/scene_8_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "What a spectacular cosmic flight! Let's summarize our four neighboring planets with these interactive space cards!",
+    "at": "2026-08-06T12:46:37.626Z"
+  },
+  "audio/solar-system/scene_9_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "أحسنتم يا أصدقائي رواد الفضاء الأذكياء! لقد كنتم رائعين في مغامرتنا الكونية اليوم! استمروا في استكشاف النجوم ونراكم قريباً!",
+    "at": "2026-08-06T12:46:39.841Z"
+  },
+  "audio/solar-system/scene_9_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Outstanding job my clever astronaut friends! You were amazing on our cosmic adventure today! Keep exploring the stars and see you soon!",
+    "at": "2026-08-06T12:46:42.366Z"
+  },
+  "audio/gravity/scene_0_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "مرحباً بكم يا علماء المستقبل! اليوم سنكتشف قوة خفية مذهلة تمسك بنا على الأرض وتجعل الأشياء تسقط للأسفل! إنها الجاذبية!",
+    "at": "2026-08-06T12:46:53.575Z"
+  },
+  "audio/gravity/scene_0_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Welcome future scientists! Today we will discover a spectacular invisible force that holds us to the ground and makes things fall! It's gravity!",
+    "at": "2026-08-06T12:46:55.659Z"
+  },
+  "audio/gravity/scene_1_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "يا دكتور حكيم، رميت كرتي في الهواء، لكنها عادت وسقطت فوراً على رأسي! لماذا لا تستمر في الطيران للأعلى وتختفي في الفضاء؟",
+    "at": "2026-08-06T12:46:58.657Z"
+  },
+  "audio/gravity/scene_1_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Dr. Hakim, I threw my ball in the air, but it fell right back on my head! Why doesn't it keep flying up and disappear in space?",
+    "at": "2026-08-06T12:47:00.507Z"
+  },
+  "audio/gravity/scene_2_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "سؤال ذكي يا بطل! منذ زمن طويل، رأى العالم إسحاق نيوتن تفاحة تسقط من شجرة، فأدرك أن الأرض تسحب كل شيء نحوها بقوة تسمى الجاذبية!",
+    "at": "2026-08-06T12:47:02.883Z"
+  },
+  "audio/gravity/scene_2_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "A smart question, champion! Long ago, scientist Isaac Newton saw an apple fall from a tree, and realized the Earth pulls everything to its center using gravity!",
+    "at": "2026-08-06T12:47:05.176Z"
+  },
+  "audio/gravity/scene_3_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "لاحظ يا أنس! الصخور الثقيلة تسقط بقوة وثبات، بينما الأوراق الخفيفة تطفو ببطء بسبب مقاومة الهواء، لكن الجاذبية تسحب كليهما بالتساوي!",
+    "at": "2026-08-06T12:47:09.756Z"
+  },
+  "audio/gravity/scene_3_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Notice, Anas! Heavy rocks drop firmly, while light feathers float slowly due to air resistance, but gravity pulls both down equally in a vacuum!",
+    "at": "2026-08-06T12:47:11.848Z"
+  },
+  "audio/gravity/scene_4_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "يا إلهي! انظروا إلى رواد الفضاء، إنهم يطفون بسعادة في الفضاء الخارجي لعدم وجود جاذبية تسحبهم للأسفل! يبدو ذلك ممتعاً للغاية!",
+    "at": "2026-08-06T12:47:14.058Z"
+  },
+  "audio/gravity/scene_4_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Oh my! Look at the astronauts, they float happily in outer space because there is no gravity dragging them down! That looks like so much fun!",
+    "at": "2026-08-06T12:47:16.596Z"
+  },
+  "audio/gravity/scene_5_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "صحيح! ولكن انتبهوا، إذا ذهبنا لكوكب المشتري الضخم، فستكون جاذبيته قوية جداً وثقيلة لدرجة تجعل حركتنا بطيئة وصعبة كأننا نحمل صخوراً!",
+    "at": "2026-08-06T12:47:20.817Z"
+  },
+  "audio/gravity/scene_5_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "True! But beware, if we go to massive Jupiter, its gravity is so strong and heavy that it makes our movements slow and difficult, as if carrying rocks!",
+    "at": "2026-08-06T12:47:22.840Z"
+  },
+  "audio/gravity/scene_6_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "والآن حان دوركم لتصبحوا سادة الجاذبية! حركوا الشريط لضبط قوة الجاذبية وشاهدوا الأجسام وهي تطفو أو تسقط بسرعة، واضغطوا عليها لتطلقوها!",
+    "at": "2026-08-06T12:47:25.179Z"
+  },
+  "audio/gravity/scene_6_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Now it's your turn to become gravity masters! Slide the bar to adjust gravity strength and watch items float or fall rapidly, and tap them to launch!",
+    "at": "2026-08-06T12:47:27.534Z"
+  },
+  "audio/gravity/scene_7_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "يا لها من تجربة فيزيائية قوية وممتعة! دعونا نلخص خصائص الجاذبية السحرية بأوراق العلوم التفاعلية اللطيفة!",
+    "at": "2026-08-06T12:47:29.642Z"
+  },
+  "audio/gravity/scene_7_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "What a powerful and fun physics experiment! Let's summarize the magic properties of gravity with these cute science cards!",
+    "at": "2026-08-06T12:47:31.455Z"
+  },
+  "audio/gravity/scene_8_ar.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "أحسنتم يا أصدقائي العلماء الصغار! لقد كنتم رائعين في تحدي الجاذبية اليوم! استمروا في طرح الأسئلة الذكية ونراكم قريباً!",
+    "at": "2026-08-06T12:47:33.685Z"
+  },
+  "audio/gravity/scene_8_en.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_multilingual_v2",
+    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "text": "Outstanding job my little junior scientists! You were amazing at challenging gravity today! Keep asking smart questions and see you soon!",
+    "at": "2026-08-06T12:47:36.124Z"
   }
 }

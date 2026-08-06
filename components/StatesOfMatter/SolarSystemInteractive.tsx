@@ -45,7 +45,7 @@ const STORYBOARD: Scene[] = [
     showGravitySlider: false,
     defaultGravity: 50,
     customGraphic: "intro",
-    duration: 12
+    duration: 14
   },
   {
     id: 1,

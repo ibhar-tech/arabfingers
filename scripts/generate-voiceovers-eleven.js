@@ -24,6 +24,8 @@
  * Flags:
  *   --dry-run          list the work and the character cost, call nothing
  *   --only=a,b         any of: letters, numbers, colors, courses
+ *   --course=NAME      one course at a time: states-of-matter, water-cycle,
+ *                      solar-system, gravity. Implies --only=courses.
  *   --limit=N          stop after N clips
  *   --force            regenerate even if the manifest says it is done
  *   --voice=NAME       voice name as it appears on the account, default Alice
@@ -78,7 +80,15 @@ const BUDGET = Number(flag("budget", 1500));
 const MODEL = flag("model", "eleven_multilingual_v2");
 const VOICE_NAME = flag("voice", "Alice");
 const VOICE_ID = flag("voice-id");
-const ONLY = (flag("only") || "letters,numbers,colors").split(",").map((s) => s.trim());
+const COURSE = flag("course");
+const ONLY = COURSE
+  ? ["courses"]
+  : (flag("only") || "letters,numbers,colors").split(",").map((s) => s.trim());
+
+if (COURSE && !Object.keys(courses).includes(COURSE)) {
+  console.error(`No course "${COURSE}". Available: ${Object.keys(courses).join(", ")}`);
+  process.exit(1);
+}
 
 const API_KEY = process.env.ELEVEN_API_KEY;
 if (!API_KEY && !DRY && !has("self-check")) {
@@ -104,7 +114,10 @@ function buildJobs() {
   if (ONLY.includes("numbers")) for (const n of numbers) add(`sounds/numbers/${n.id}.mp3`, n.text);
   if (ONLY.includes("colors")) for (const c of colors) add(`sounds/colors/${c.id}.mp3`, c.text);
   if (ONLY.includes("courses")) {
+    // Courses are ~2,200 characters each, so they are worth running one at a time:
+    // a batch that overruns the remaining credits fails the whole run, not one clip.
     for (const [course, scenes] of Object.entries(courses)) {
+      if (COURSE && course !== COURSE) continue;
       for (const scene of scenes) {
         add(`audio/${course}/scene_${scene.id}_ar.mp3`, scene.ar);
         add(`audio/${course}/scene_${scene.id}_en.mp3`, scene.en);
@@ -261,7 +274,7 @@ async function main() {
   console.log(`Engine   ElevenLabs · ${MODEL}`);
   console.log(`Voice    ${VOICE_NAME} (${voiceId})`);
   console.log(`Letters  ${LETTER_STYLE === "phrase" ? "phrase form («حرف ألف»)" : "bare word («ألف»)"}`);
-  console.log(`Sections ${ONLY.join(", ")}`);
+  console.log(`Sections ${COURSE ? `course: ${COURSE}` : ONLY.join(", ")}`);
   console.log(`Work     ${todo.length} clips, ${chars} characters, ${jobs.length - pending.length} already done`);
 
   if (DRY) {
@@ -272,7 +285,9 @@ async function main() {
   if (!todo.length) return console.log("\nNothing to do.");
 
   // Credits are the scarce thing here, so make an oversized run say so rather than spend.
-  if (chars > BUDGET) {
+  // Naming one course is already a deliberate, bounded choice — the guard exists to
+  // catch an accidental "everything" run, not to second-guess an explicit one.
+  if (!COURSE && chars > BUDGET) {
     console.error(`\nRefusing to start: ${chars} characters exceeds the ${BUDGET} budget.`);
     console.error("Raise it with --budget=N if that is genuinely what you want.");
     process.exit(1);
