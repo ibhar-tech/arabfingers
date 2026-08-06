@@ -16,7 +16,6 @@ const HeroGlyph = dynamic(() => import("@/components/HeroGlyph"), { ssr: false }
 const NAV = [
   { href: "", en: "Home", ar: "الرئيسية" },
   { href: "/games", en: "Games", ar: "ألعاب" },
-  { href: "/play", en: "Play", ar: "العب" },
   { href: "/learn", en: "Learn", ar: "تعلّم" },
   { href: "/printables", en: "Worksheets", ar: "أوراق عمل" },
   { href: "/blog", en: "Blog", ar: "المدونة" },
@@ -164,7 +163,6 @@ export function WarmHome({ locale }: { locale: string }) {
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Link href={`/${locale}/games`} className="btn-chunky"><Gamepad2 className="h-5 w-5" /> {tt("Play the games", "العب الألعاب")}</Link>
-            <Link href={`/${locale}/play`} className="btn-chunky btn-chunky-ghost"><Play className="h-5 w-5" /> {tt("Start playing", "ابدأ اللعب")}</Link>
             <Link href={`/${locale}/learn`} className="btn-chunky btn-chunky-ghost"><BookOpen className="h-5 w-5" /> {tt("Learning guides", "أدلة التعلّم")}</Link>
           </div>
           <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-bold text-ink/60">

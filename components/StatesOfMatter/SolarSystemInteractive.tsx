@@ -205,28 +205,6 @@ const STORYBOARD: Scene[] = [
   }
 ];
 
-const getBestVoice = (lang: string): SpeechSynthesisVoice | null => {
-  if (typeof window === "undefined" || !window.speechSynthesis) return null;
-  const voices = window.speechSynthesis.getVoices();
-  const langVoices = voices.filter((v) => v.lang.toLowerCase().startsWith(lang.toLowerCase()));
-  if (langVoices.length === 0) return null;
-  
-  const premiumKeywords = [
-    "natural", "neural", "google", "microsoft", "premium", "edge", 
-    "maged", "hazem", "hoda", "laila", "zariyah", "jenny", "aria", "guy", "salli"
-  ];
-  
-  const sorted = [...langVoices].sort((a, b) => {
-    const aName = a.name.toLowerCase();
-    const bName = b.name.toLowerCase();
-    const aScore = premiumKeywords.reduce((score, kw) => score + (aName.includes(kw) ? 1 : 0), 0);
-    const bScore = premiumKeywords.reduce((score, kw) => score + (bName.includes(kw) ? 1 : 0), 0);
-    return bScore - aScore;
-  });
-
-  return sorted[0];
-};
-
 interface SolarSystemInteractiveProps {
   locale?: string;
 }
@@ -248,7 +226,6 @@ export default function SolarSystemInteractive({ locale = "ar" }: SolarSystemInt
   const [selectedRecapState, setSelectedRecapState] = useState<"mercury" | "venus" | "earth" | "mars" | null>(null);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const isSpeakingRef = useRef(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const activeScene = STORYBOARD[currentSceneIndex];
@@ -312,45 +289,20 @@ export default function SolarSystemInteractive({ locale = "ar" }: SolarSystemInt
       audioRef.current.pause();
       audioRef.current = null;
     }
-    if (typeof window !== "undefined" && window.speechSynthesis) {
-      window.speechSynthesis.cancel();
-    }
-    const dialogue = isAr ? activeScene.dialogueAr : activeScene.dialogueEn;
-    const targetLang = isAr ? "ar" : "en";
-    const speakGoogleTTS = () => {
-      const googleTtsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${targetLang}&client=tw-ob&q=${encodeURIComponent(dialogue)}`;
-      const audio = new Audio(googleTtsUrl);
-      audio.playbackRate = playbackSpeed;
-      audioRef.current = audio;
 
-      audio.addEventListener("canplaythrough", () => {
-        if (isPlaying) {
-          audio.play().catch(() => {});
-        }
-      });
-    };
-
-
-
-    // Pre-recorded fallback
+    // Our own pre-rendered neural narration (scripts/generate-voiceovers-*.js).
+    // ponytail: <audio> not Howler here — these are minutes-long clips and should
+    // stream, not sit decoded in memory like the short letter sounds do.
     const audioSrc = `/audio/solar-system/scene_${activeScene.id}_${locale}.mp3`;
     const audio = new Audio(audioSrc);
     audio.playbackRate = playbackSpeed;
     audioRef.current = audio;
 
-    let nextStageTriggered = false;
-    const triggerGoogleTTS = () => {
-      if (nextStageTriggered) return;
-      nextStageTriggered = true;
-      speakGoogleTTS();
-    };
-
     audio.addEventListener("canplaythrough", () => {
       if (isPlaying) {
-        audio.play().catch(() => triggerGoogleTTS());
+        audio.play().catch(() => {});
       }
     });
-    audio.addEventListener("error", () => triggerGoogleTTS());
   };
 
   const handleSpeechRepeat = () => {
@@ -388,9 +340,6 @@ export default function SolarSystemInteractive({ locale = "ar" }: SolarSystemInt
         audioRef.current.pause();
         audioRef.current = null;
       }
-      if (typeof window !== "undefined" && window.speechSynthesis) {
-        window.speechSynthesis.cancel();
-      }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSceneIndex, soundEnabled, locale]);
@@ -403,15 +352,9 @@ export default function SolarSystemInteractive({ locale = "ar" }: SolarSystemInt
       if (audioRef.current && audioRef.current.paused) {
         audioRef.current.play().catch(() => {});
       }
-      if (window.speechSynthesis && window.speechSynthesis.paused) {
-        window.speechSynthesis.resume();
-      }
     } else {
       if (audioRef.current && !audioRef.current.paused) {
         audioRef.current.pause();
-      }
-      if (window.speechSynthesis && window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
-        window.speechSynthesis.pause();
       }
     }
   }, [isPlaying]);

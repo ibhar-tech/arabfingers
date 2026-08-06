@@ -81,6 +81,7 @@ const colors = [
 ];
 
 const numbers = [
+  { text: "صفر", id: "zero" },
   { text: "واحد", id: "one" },
   { text: "اثنان", id: "two" },
   { text: "ثلاثة", id: "three" },

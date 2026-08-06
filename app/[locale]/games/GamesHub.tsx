@@ -55,10 +55,10 @@ const activities: Activity[] = [
   {
     href: "/play",
     emoji: "⌨️",
-    titleEn: "The letter game",
-    titleAr: "لعبة الحروف",
-    descEn: "Press any key to hear a letter spoken aloud.",
-    descAr: "اضغط أيّ مفتاح لتسمع نطق حرف.",
+    titleEn: "Letter keyboard",
+    titleAr: "لوحة الحروف",
+    descEn: "No rules, no score — press or tap any letter and hear it said aloud.",
+    descAr: "بلا قواعد ولا نقاط — اضغط أو المس أيّ حرف لتسمع نطقه.",
     count: () => null,
   },
 ];

@@ -48,3 +48,31 @@ export function playChime(enabled: boolean) {
 export function playConfetti(enabled: boolean) {
   play("confetti", enabled);
 }
+
+const wordBank = new Map<string, Howl>();
+
+/**
+ * Play a short pre-recorded clip from /public by URL, reusing one decoded Howl per
+ * file. Web Audio here (not `new Audio()`): the clip is decoded once instead of on
+ * every tap, and Howler's autoUnlock handles the mobile first-touch gate for us.
+ *
+ * ponytail: only for short words/letters. Long narration streams via <audio> so we
+ * don't hold minutes of decoded PCM in memory.
+ */
+export function playWord(src: string): Howl | null {
+  if (typeof window === "undefined") return null;
+
+  for (const howl of wordBank.values()) {
+    howl.stop();
+  }
+
+  let howl = wordBank.get(src);
+  if (!howl) {
+    Howler.autoUnlock = true;
+    howl = new Howl({ src: [src], preload: true, html5: false, volume: 0.85 });
+    wordBank.set(src, howl);
+  }
+
+  howl.play();
+  return howl;
+}

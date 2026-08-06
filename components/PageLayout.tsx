@@ -18,16 +18,26 @@ type PageLayoutProps = {
   fullBleed?: boolean;
 };
 
+// /play and /coloring are activities inside /games — listing them here too made the
+// header read like three separate game sections. They stay linked from the hub and
+// the footer, so nothing is orphaned.
 const navLinks = [
   { href: "", labelEn: "Home", labelAr: "الرئيسية" },
   { href: "/games", labelEn: "Games", labelAr: "ألعاب" },
-  { href: "/play", labelEn: "Play", labelAr: "العب" },
-  { href: "/coloring", labelEn: "Color", labelAr: "تلوين" },
   { href: "/learn", labelEn: "Learn", labelAr: "تعلّم" },
   { href: "/printables", labelEn: "Worksheets", labelAr: "أوراق عمل" },
   { href: "/blog", labelEn: "Blog", labelAr: "المدونة" },
   { href: "/resources", labelEn: "Resources", labelAr: "المصادر" },
   { href: "/about", labelEn: "About", labelAr: "عن الموقع" },
+];
+
+const footerPlayLinks = [
+  { href: "/games", labelEn: "All Games", labelAr: "كل الألعاب" },
+  { href: "/games/trace", labelEn: "Trace Letters", labelAr: "تتبّع الحروف" },
+  { href: "/games/tap", labelEn: "Tap the Letter", labelAr: "انقر الحرف" },
+  { href: "/coloring", labelEn: "Coloring", labelAr: "التلوين" },
+  { href: "/play", labelEn: "Letter Game", labelAr: "لعبة الحروف" },
+  { href: "/printables", labelEn: "Worksheets", labelAr: "أوراق عمل" },
 ];
 
 const footerLearnLinks = [
@@ -75,7 +85,7 @@ export function PageLayout({ locale, children, fullBleed = false }: PageLayoutPr
   }
 
   const [menuOpen, setMenuOpen] = useState(false);
-  const [footerOpen, setFooterOpen] = useState<Record<string, boolean>>({ learn: false, blog: false, info: false });
+  const [footerOpen, setFooterOpen] = useState<Record<string, boolean>>({ play: false, learn: false, blog: false, info: false });
 
   /* The nav sits in flow, so a full-bleed stage sized `100dvh` overshoots the
      viewport by exactly the nav's height and pushes its own bottom controls (the
@@ -97,7 +107,7 @@ export function PageLayout({ locale, children, fullBleed = false }: PageLayoutPr
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.innerWidth >= 768) {
-      setFooterOpen({ learn: true, blog: true, info: true });
+      setFooterOpen({ play: true, learn: true, blog: true, info: true });
     }
   }, []);
 
@@ -105,6 +115,7 @@ export function PageLayout({ locale, children, fullBleed = false }: PageLayoutPr
     setFooterOpen((prev) => ({ ...prev, [section]: !prev[section] }));
 
   const footerCols: { key: string; title: string; links: typeof footerLearnLinks }[] = [
+    { key: "play", title: isAr ? "العب" : "Play", links: footerPlayLinks },
     { key: "learn", title: isAr ? "تعلّم العربية" : "Learn Arabic", links: footerLearnLinks },
     { key: "blog", title: isAr ? "المدونة والقصص" : "Blog & Stories", links: footerBlogLinks },
     { key: "info", title: isAr ? "معلومات" : "Important Info", links: footerInfoLinks },
@@ -195,7 +206,7 @@ export function PageLayout({ locale, children, fullBleed = false }: PageLayoutPr
       {/* Footer */}
       <footer className="relative z-10 mt-auto border-t-[2.5px] border-ink bg-card print:hidden">
         <div className="mx-auto max-w-6xl px-5 py-10 sm:px-6">
-          <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
             {footerCols.map((col) => (
               <div key={col.key} className="card-stock card-stock-saffron p-5">
                 <button

@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
+import { playLetterSound } from "@/lib/letterSounds";
 
 type InteractiveHomePartsProps = {
   locale: string;
@@ -126,51 +127,12 @@ function MiniPlayground({ isAr }: { isAr: boolean }) {
   const [activeLetter, setActiveLetter] = useState<DemoLetter | null>(null);
   const [bursts, setBursts] = useState<{ id: number; emoji: string; x: number; y: number }[]>([]);
   const [burstCount, setBurstCount] = useState(0);
-  const activeAudioRef = useRef<HTMLAudioElement | null>(null);
 
   const handleLetterClick = (letter: DemoLetter, e: React.MouseEvent<HTMLButtonElement>) => {
     setActiveLetter(letter);
 
-    // Stop currently playing audio and cancel web speech synthesis
-    if (activeAudioRef.current) {
-      activeAudioRef.current.pause();
-      activeAudioRef.current = null;
-    }
-    const speakFallback = () => {
-      // 100% Free Neural Fallback (No robotic local TTS)
-      const arFallbackUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=ar&client=tw-ob&q=${encodeURIComponent(letter.arName)}`;
-      const fallbackAudio = new Audio(arFallbackUrl);
-      activeAudioRef.current = fallbackAudio;
-      fallbackAudio.play().then(() => {
-        fallbackAudio.onended = () => {
-          const enFallbackUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=en&client=tw-ob&q=${encodeURIComponent(letter.enName)}`;
-          const enFallbackAudio = new Audio(enFallbackUrl);
-          activeAudioRef.current = enFallbackAudio;
-          enFallbackAudio.play().catch(() => {});
-        };
-      }).catch(() => {});
-    };
-
-    // Play high-quality studio pre-recorded MP3
-    const arAudio = new Audio(`/sounds/letters/${letter.soundId}-ar.mp3`);
-    activeAudioRef.current = arAudio;
-
-    arAudio.addEventListener("canplaythrough", () => {
-      arAudio.play().catch(() => speakFallback());
-    });
-
-    arAudio.addEventListener("ended", () => {
-      const enAudio = new Audio(`/sounds/letters/${letter.soundId}-en.mp3`);
-      activeAudioRef.current = enAudio;
-      enAudio.addEventListener("canplaythrough", () => {
-        enAudio.play().catch(() => {});
-      });
-      enAudio.addEventListener("error", () => {});
-    });
-
-    arAudio.addEventListener("error", () => {
-      speakFallback();
-    });
+    // Same audio path as /play, /coloring and the games: our own recordings via Howler.
+    playLetterSound(letter.soundId);
 
     // Trigger emoji burst
     const rect = e.currentTarget.getBoundingClientRect();

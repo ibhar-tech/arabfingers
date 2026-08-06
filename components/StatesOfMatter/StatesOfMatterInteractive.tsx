@@ -203,32 +203,6 @@ const STORYBOARD: Scene[] = [
   },
 ];
 
-const getBestVoice = (lang: string): SpeechSynthesisVoice | null => {
-  if (typeof window === "undefined" || !window.speechSynthesis) return null;
-  const voices = window.speechSynthesis.getVoices();
-  const langVoices = voices.filter((v) => v.lang.toLowerCase().startsWith(lang.toLowerCase()));
-  
-  if (langVoices.length === 0) return null;
-  
-  // Prioritize premium natural neural voices
-  const premiumKeywords = [
-    "natural", "neural", "google", "microsoft", "premium", "edge", 
-    "maged", "hazem", "hoda", "laila", "zariyah", "jenny", "aria", "guy", "salli"
-  ];
-  
-  const sorted = [...langVoices].sort((a, b) => {
-    const aName = a.name.toLowerCase();
-    const bName = b.name.toLowerCase();
-    
-    const aScore = premiumKeywords.reduce((score, kw) => score + (aName.includes(kw) ? 1 : 0), 0);
-    const bScore = premiumKeywords.reduce((score, kw) => score + (bName.includes(kw) ? 1 : 0), 0);
-    
-    return bScore - aScore; // Highest score first
-  });
-
-  return sorted[0];
-};
-
 interface StatesOfMatterInteractiveProps {
   locale?: string;
 }
@@ -253,7 +227,6 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
   const [selectedRecapState, setSelectedRecapState] = useState<"solid" | "liquid" | "gas" | "plasma" | null>(null);
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const isSpeakingRef = useRef(false);
 
   const activeScene = STORYBOARD[currentSceneIndex];
 
@@ -335,61 +308,30 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
     setIsPlaying(true);
   };
 
-  // Advanced dialogue player: tries pre-recorded MP3 first, falls back to Google Cloud TTS, falls back to Web Speech Synthesis
   const playDialogue = () => {
     if (!soundEnabled) return;
 
-    // Stop any active audio and cancel speech synthesis
+    // Stop any active audio
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current = null;
     }
-    if (typeof window !== "undefined" && window.speechSynthesis) {
-      window.speechSynthesis.cancel();
-    }
-
-    const dialogue = isAr ? activeScene.dialogueAr : activeScene.dialogueEn;
-    const targetLang = isAr ? "ar" : "en";
- 
 
  
-    // Stage 2: Google Translate Cloud TTS (high-quality neural voiceover fallback)
-    const speakGoogleTTS = () => {
-      const googleTtsUrl = `https://translate.google.com/translate_tts?ie=UTF-8&tl=${targetLang}&client=tw-ob&q=${encodeURIComponent(dialogue)}`;
-      const audio = new Audio(googleTtsUrl);
-      audio.playbackRate = playbackSpeed;
-      audioRef.current = audio;
-
-      audio.addEventListener("canplaythrough", () => {
-        if (isPlaying) {
-          audio.play().catch(() => {});
-        }
-      });
-    };
  
-    // Stage 1: Local studio pre-recorded MP3
+    // Our own pre-rendered neural narration (scripts/generate-voiceovers-*.js).
+    // ponytail: <audio> not Howler here — these are minutes-long clips and should
+    // stream, not sit decoded in memory like the short letter sounds do.
     const audioSrc = `/audio/states-of-matter/scene_${activeScene.id}_${locale}.mp3`;
     const audio = new Audio(audioSrc);
     audio.playbackRate = playbackSpeed;
     audioRef.current = audio;
  
-    let nextStageTriggered = false;
-    const triggerGoogleTTS = () => {
-      if (nextStageTriggered) return;
-      nextStageTriggered = true;
-      speakGoogleTTS();
-    };
  
     audio.addEventListener("canplaythrough", () => {
       if (isPlaying) {
-        audio.play().catch(() => {
-          triggerGoogleTTS();
-        });
+        audio.play().catch(() => {});
       }
-    });
- 
-    audio.addEventListener("error", () => {
-      triggerGoogleTTS();
     });
   };
  
@@ -441,9 +383,6 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
         audioRef.current.pause();
         audioRef.current = null;
       }
-      if (typeof window !== "undefined" && window.speechSynthesis) {
-        window.speechSynthesis.cancel();
-      }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSceneIndex, soundEnabled, locale]);
@@ -456,15 +395,9 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
       if (audioRef.current && audioRef.current.paused) {
         audioRef.current.play().catch(() => {});
       }
-      if (window.speechSynthesis && window.speechSynthesis.paused) {
-        window.speechSynthesis.resume();
-      }
     } else {
       if (audioRef.current && !audioRef.current.paused) {
         audioRef.current.pause();
-      }
-      if (window.speechSynthesis && window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
-        window.speechSynthesis.pause();
       }
     }
   }, [isPlaying]);
@@ -503,7 +436,6 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
       ? "حالة مشحونة بالطاقة الفائقة والحرارة العالية. تلمع في النجوم والبرق."
       : "A highly energized state of matter. Glows and flashes inside stars and lightning arcs.",
   };
-
 
   return (
     <div className="w-full max-w-4xl mx-auto flex flex-col gap-4">
