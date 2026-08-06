@@ -85,7 +85,7 @@ function ContentEn() {
 
       <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
         <Image
-          src="/images/blog/blog_calligraphy.png"
+          src="/images/blog/blog_calligraphy.jpg"
           alt="Arabic Calligraphy for Kids"
           fill
           className="object-cover"
@@ -217,7 +217,7 @@ function ContentAr() {
 
       <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
         <Image
-          src="/images/blog/blog_calligraphy.png"
+          src="/images/blog/blog_calligraphy.jpg"
           alt="الخط العربي للأطفال"
           fill
           className="object-cover"

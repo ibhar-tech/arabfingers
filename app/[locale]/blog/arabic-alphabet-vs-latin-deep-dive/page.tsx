@@ -85,7 +85,7 @@ function ContentEn() {
 
       <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
         <Image
-          src="/images/blog/blog_arabic_vs_latin.png"
+          src="/images/blog/blog_arabic_vs_latin.jpg"
           alt="Arabic vs Latin Alphabet comparison"
           fill
           className="object-cover"
@@ -239,7 +239,7 @@ function ContentAr() {
 
       <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
         <Image
-          src="/images/blog/blog_arabic_vs_latin.png"
+          src="/images/blog/blog_arabic_vs_latin.jpg"
           alt="الأبجدية العربية مقابل اللاتينية"
           fill
           className="object-cover"

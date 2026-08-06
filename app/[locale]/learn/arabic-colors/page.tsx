@@ -110,7 +110,7 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
 
       <div className="mb-10 overflow-hidden rounded-3xl border-[2.5px] border-ink bg-card shadow-[4px_4px_0_0_var(--ink)]">
         <Image
-          src="/images/learn/learn_colors.png"
+          src="/images/learn/learn_colors.jpg"
           alt={isAr ? "دليل الألوان العربية" : "Arabic colors guide"}
           width={1200}
           height={630}

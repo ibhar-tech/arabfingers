@@ -85,7 +85,7 @@ function ContentEn() {
 
       <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
         <Image
-          src="/images/blog/blog_ramadan.png"
+          src="/images/blog/blog_ramadan.jpg"
           alt="Ramadan & Arabic Learning activities"
           fill
           className="object-cover"
@@ -221,7 +221,7 @@ function ContentAr() {
 
       <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
         <Image
-          src="/images/blog/blog_ramadan.png"
+          src="/images/blog/blog_ramadan.jpg"
           alt="رمضان وتعلم العربية للأطفال"
           fill
           className="object-cover"

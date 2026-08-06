@@ -95,7 +95,7 @@ function ContentEn() {
 
       <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
         <Image
-          src="/images/blog/blog_how_we_built.png"
+          src="/images/blog/blog_how_we_built.jpg"
           alt="How We Built Arab Fingers"
           fill
           className="object-cover"
@@ -235,7 +235,7 @@ function ContentAr() {
 
       <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
         <Image
-          src="/images/blog/blog_how_we_built.png"
+          src="/images/blog/blog_how_we_built.jpg"
           alt="كيف بنينا عرب فنجرز"
           fill
           className="object-cover"

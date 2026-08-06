@@ -130,7 +130,7 @@ export default async function ArabicLetterFormsPage({ params }: { params: Promis
 
       <div className="mb-10 overflow-hidden rounded-3xl border-[2.5px] border-ink bg-card shadow-[4px_4px_0_0_var(--ink)]">
         <Image
-          src="/images/learn/learn_letter_forms.png"
+          src="/images/learn/learn_letter_forms.jpg"
           alt={isAr ? "دليل أشكال الحروف" : "Letter forms guide"}
           width={1200}
           height={630}

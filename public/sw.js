@@ -4,11 +4,15 @@
 // audio clips were regenerated in place, which left earlier visitors hearing the
 // old recordings with no way to ever get the new ones.
 const CACHE_NAME = "arabfingers-v5";
+// Every URL here must exist. cache.addAll is atomic — one 404 rejects the whole
+// call and nothing gets precached at all. This listed /icon-192.png and
+// /icon-512.png, which have never been in public/ (the manifest uses the single
+// /icon.svg), so the precache silently did nothing and the offline promise in
+// the privacy policy was not being kept.
 const PRECACHE_URLS = [
   "/en",
   "/ar",
-  "/icon-192.png",
-  "/icon-512.png",
+  "/icon.svg",
   "/sounds/smash.mp3",
   "/sounds/chime.mp3",
   "/sounds/confetti.mp3",

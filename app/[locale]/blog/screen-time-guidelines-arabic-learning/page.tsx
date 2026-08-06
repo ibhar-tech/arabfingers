@@ -85,7 +85,7 @@ function ContentEn() {
 
       <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
         <Image
-          src="/images/blog/blog_screen_time.png"
+          src="/images/blog/blog_screen_time.jpg"
           alt="Screen Time and Arabic Learning"
           fill
           className="object-cover"
@@ -210,7 +210,7 @@ function ContentAr() {
 
       <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
         <Image
-          src="/images/blog/blog_screen_time.png"
+          src="/images/blog/blog_screen_time.jpg"
           alt="وقت الشاشة وتعلم العربية"
           fill
           className="object-cover"

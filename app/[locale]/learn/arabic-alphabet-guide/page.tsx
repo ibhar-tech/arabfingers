@@ -92,7 +92,7 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
 
       <div className="mb-10 overflow-hidden rounded-3xl border-[2.5px] border-ink bg-card shadow-[4px_4px_0_0_var(--ink)]">
         <Image
-          src="/images/learn/learn_alphabet_guide.png"
+          src="/images/learn/learn_alphabet_guide.jpg"
           alt={isAr ? "دليل الأبجدية العربية" : "Arabic alphabet guide"}
           width={1200}
           height={630}
