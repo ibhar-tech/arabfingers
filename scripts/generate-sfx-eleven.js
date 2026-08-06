@@ -23,6 +23,7 @@
  *   --variants=N       how many takes per sound, default 3
  *   --only=a,b         any of: chime, confetti, smash
  *   --install=NAME:N   copy variant N of NAME over the live file
+ *   --renormalise      re-apply the level chain to existing previews, no credits
  *   --self-check       exercise the encode path, no API key needed
  */
 
@@ -66,8 +67,20 @@ const SOUNDS = {
  * competes with the letter it is celebrating. The speech set sits at I=-16.
  */
 const TRIM = "silenceremove=start_periods=1:start_duration=0:start_threshold=-50dB:detection=peak";
-const FILTERS = `${TRIM},areverse,${TRIM},areverse,loudnorm=I=-18:TP=-2:LRA=9`;
+const LIMIT_DB = -2;
+const CEILING = (10 ** (LIMIT_DB / 20)).toFixed(4); // -2 dBFS as linear amplitude
+const FILTERS =
+  `${TRIM},areverse,${TRIM},areverse,loudnorm=I=-18:TP=${LIMIT_DB}:LRA=9,` +
+  `alimiter=limit=${CEILING}:level=disabled`;
 const BITRATE = "96k";
+
+/**
+ * Re-levelling an existing take must not re-trim it. The trim already ran when the
+ * clip was generated, and running it again eats a little more of the decay each
+ * pass — on a chime that tail is the ring-out, not silence. Levels alone are
+ * idempotent; the trim is not.
+ */
+const RELEVEL_FILTERS = `loudnorm=I=-18:TP=${LIMIT_DB}:LRA=9,alimiter=limit=${CEILING}:level=disabled`;
 
 // ---------------------------------------------------------------- arg parsing
 
@@ -94,8 +107,8 @@ function probeDuration(file) {
     ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", file]).toString().trim());
 }
 
-function encode(src, dest) {
-  execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-i", src, "-af", FILTERS,
+function encode(src, dest, filters = FILTERS) {
+  execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-i", src, "-af", filters,
     "-codec:a", "libmp3lame", "-b:a", BITRATE, "-ac", "1", "-f", "mp3", dest]);
 }
 
@@ -154,15 +167,39 @@ async function main() {
   if (has("self-check")) return selfCheck();
   if (INSTALL) return install(INSTALL);
 
+  if (has("renormalise")) {
+    if (!fs.existsSync(PREVIEW_DIR)) return console.log("No previews to re-process.");
+    for (const f of fs.readdirSync(PREVIEW_DIR).filter((f) => f.endsWith(".mp3"))) {
+      const abs = path.join(PREVIEW_DIR, f);
+      const before = probeDuration(abs);
+      encode(abs, `${abs}.part`, RELEVEL_FILTERS);
+      fs.renameSync(`${abs}.part`, abs);
+      const after = probeDuration(abs);
+      console.log(`  ${f.padEnd(16)} ${after.toFixed(2)}s` +
+        (Math.abs(after - before) > 0.02 ? `  (was ${before.toFixed(2)}s)` : ""));
+    }
+    return console.log("\nRe-processed with the corrected level chain. No credits spent.");
+  }
+
   const chosen = ONLY.filter((n) => SOUNDS[n]);
   if (!chosen.length) {
     console.error(`Nothing to do. Valid sounds: ${Object.keys(SOUNDS).join(", ")}`);
     process.exit(1);
   }
 
-  const cost = chosen.reduce((n, k) => n + Math.ceil(SOUNDS[k].seconds * 40), 0) * VARIANTS;
+  // Count only what will actually be generated: existing previews are skipped and
+  // cost nothing, so including them quotes a price the run will never charge.
+  const pending = [];
+  for (const name of chosen) {
+    for (let v = 1; v <= VARIANTS; v++) {
+      if (!fs.existsSync(path.join(PREVIEW_DIR, `${name}-${v}.mp3`))) pending.push(name);
+    }
+  }
+  const cost = pending.reduce((n, k) => n + Math.ceil(SOUNDS[k].seconds * 40), 0);
+  const skipped = chosen.length * VARIANTS - pending.length;
   console.log(`Sounds    ${chosen.join(", ")}`);
   console.log(`Variants  ${VARIANTS} each`);
+  console.log(`To make   ${pending.length}${skipped ? `, ${skipped} already on disk` : ""}`);
   console.log(`Cost      ~${cost} credits (40 per second of requested duration)`);
 
   if (DRY) {
@@ -187,11 +224,19 @@ async function main() {
       const dest = path.join(PREVIEW_DIR, `${name}-${v}.mp3`);
       if (fs.existsSync(dest)) { console.log(`  ${name}-${v}  skipped (exists)`); continue; }
 
-      const res = await fetch("https://api.elevenlabs.io/v1/sound-generation", {
-        method: "POST",
-        headers: { "xi-api-key": API_KEY, "Content-Type": "application/json" },
-        body: JSON.stringify({ text: prompt, duration_seconds: seconds, prompt_influence: 0.4 }),
-      });
+      let res;
+      for (let attempt = 1; attempt <= 5; attempt++) {
+        res = await fetch("https://api.elevenlabs.io/v1/sound-generation", {
+          method: "POST",
+          headers: { "xi-api-key": API_KEY, "Content-Type": "application/json" },
+          body: JSON.stringify({ text: prompt, duration_seconds: seconds, prompt_influence: 0.4 }),
+        });
+        // "system_busy" is transient and not a quota problem — waiting clears it.
+        if (res.status !== 429) break;
+        const wait = 5000 * attempt;
+        console.log(`  ${name}-${v}  busy, waiting ${wait / 1000}s (attempt ${attempt}/5)`);
+        await new Promise((r) => setTimeout(r, wait));
+      }
 
       if (res.status === 401) {
         console.error("\n401 — the key is missing the Sound Effects permission.");
