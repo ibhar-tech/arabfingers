@@ -11,6 +11,8 @@ import {
 import { useAppStore } from "@/store/useAppStore";
 import { LetterBuddy, Sun, StarMascot, Crescent } from "@/components/Mascots";
 
+import { HERO_LETTERS, type HeroLetter } from "@/lib/heroLetters";
+
 const HeroGlyph = dynamic(() => import("@/components/HeroGlyph"), { ssr: false });
 
 const NAV = [
@@ -22,16 +24,6 @@ const NAV = [
   { href: "/about", en: "About", ar: "عن الموقع" },
 ];
 
-type Letter = { ar: string; en: string; name: string; nameAr: string; id: string; tint: string };
-const LETTERS: Letter[] = [
-  { ar: "أ", en: "A", name: "Alef", nameAr: "ألف", id: "alef", tint: "bg-saffron-soft" },
-  { ar: "ب", en: "B", name: "Ba", nameAr: "باء", id: "ba", tint: "bg-qalam-soft" },
-  { ar: "ت", en: "T", name: "Ta", nameAr: "تاء", id: "ta", tint: "bg-rose-soft" },
-  { ar: "ج", en: "J", name: "Jeem", nameAr: "جيم", id: "jeem", tint: "bg-saffron-soft" },
-  { ar: "د", en: "D", name: "Daal", nameAr: "دال", id: "dal", tint: "bg-qalam-soft" },
-  { ar: "س", en: "S", name: "Seen", nameAr: "سين", id: "seen", tint: "bg-rose-soft" },
-];
-
 export function WarmHome({ locale }: { locale: string }) {
   const isAr = locale === "ar";
   const dir = isAr ? "rtl" : "ltr";
@@ -41,12 +33,13 @@ export function WarmHome({ locale }: { locale: string }) {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [show3D, setShow3D] = useState(false);
-  const [active, setActive] = useState<Letter | null>(null);
+  const [selectedLetter, setSelectedLetter] = useState<HeroLetter>(HERO_LETTERS[0]);
+  const [showAllLetters, setShowAllLetters] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    // Only mount the 3D alef on desktop widths AND when WebGL actually works —
-    // otherwise the breathing-alef fallback shows (no blank slate card).
+    // Mount the 3D toy on desktop widths AND when WebGL actually works —
+    // otherwise the breathing letter fallback shows.
     if (typeof window === "undefined" || window.innerWidth < 768) return;
     try {
       const gl = document.createElement("canvas").getContext("webgl") ||
@@ -63,14 +56,12 @@ export function WarmHome({ locale }: { locale: string }) {
     router.replace(nextPath);
   }
 
-  function playLetter(l: Letter) {
-    setActive(l);
+  function playLetter(l: HeroLetter) {
+    setSelectedLetter(l);
     if (audioRef.current) audioRef.current.pause();
     const a = new Audio(`/sounds/letters/${l.id}-ar.mp3`);
     audioRef.current = a;
     a.play().catch(() => {});
-    window.clearTimeout((playLetter as unknown as { _t?: number })._t);
-    (playLetter as unknown as { _t?: number })._t = window.setTimeout(() => setActive(null), 1800);
   }
 
   const tt = (en: string, ar: string) => (isAr ? ar : en);
@@ -184,33 +175,75 @@ export function WarmHome({ locale }: { locale: string }) {
           </div>
         </div>
 
-        {/* Slate card: 3D alef + tappable letters */}
-        <div className="card-stock card-stock-qalam relative overflow-hidden p-5 sm:p-6">
-          <div className="relative mx-auto h-60 w-full sm:h-72">
+        {/* Slate card: 3D interactive toy letter + tappable alphabet */}
+        <div className="card-stock card-stock-qalam relative overflow-hidden p-5 sm:p-6 transition-all duration-300">
+          <div className="relative mx-auto h-64 w-full sm:h-76">
             {show3D ? (
-              <HeroGlyph />
+              <HeroGlyph
+                letter={selectedLetter}
+                onLetterClick={() => playLetter(selectedLetter)}
+              />
             ) : (
-              <div className="flex h-full items-center justify-center">
-                <span className="breathe font-arabic-display text-[9rem] leading-none text-ink">ا</span>
+              <div
+                onClick={() => playLetter(selectedLetter)}
+                className="flex h-full flex-col items-center justify-center cursor-pointer select-none"
+              >
+                <span className="breathe font-arabic-display text-[8.5rem] leading-none text-ink drop-shadow-md">
+                  {selectedLetter.ar}
+                </span>
               </div>
             )}
-            {active && (
-              <div className="absolute inset-x-0 bottom-0 mx-auto w-fit rounded-2xl border-2 border-ink bg-card px-4 py-1.5 text-center shadow-[3px_3px_0_0_var(--ink)]">
-                <span className="font-arabic-display text-2xl text-ink">{active.ar}</span>
-                <span className="ms-2 text-sm font-bold text-qalam">{isAr ? active.nameAr : active.name}</span>
-              </div>
-            )}
+
+            {/* Active letter badge with sound trigger */}
+            <div className="absolute inset-x-0 bottom-1 mx-auto flex w-fit items-center gap-2.5 rounded-2xl border-2 border-ink bg-card/95 px-4 py-1.5 backdrop-blur-sm shadow-[3px_3px_0_0_var(--ink)]">
+              <span className="font-arabic-display text-2xl font-bold text-ink">{selectedLetter.ar}</span>
+              <span className="text-sm font-bold text-qalam">{isAr ? selectedLetter.nameAr : selectedLetter.name}</span>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  playLetter(selectedLetter);
+                }}
+                aria-label={isAr ? `استمع لنطق حرف ${selectedLetter.nameAr}` : `Listen to ${selectedLetter.name}`}
+                className="ms-1 flex h-7 w-7 items-center justify-center rounded-full bg-saffron-soft text-ink transition hover:scale-110 active:scale-95"
+              >
+                <Volume2 className="h-3.5 w-3.5" />
+              </button>
+            </div>
           </div>
-          <p className="mt-3 text-center text-sm font-bold text-ink/60">
-            {tt("Tap a letter to hear it →", "← المس حرفاً لتسمعه")}
-          </p>
-          <div className="mt-3 grid grid-cols-6 gap-2">
-            {LETTERS.map((l) => (
+
+          <div className="mt-3 flex items-center justify-between">
+            <p className="text-xs sm:text-sm font-bold text-ink/70">
+              {tt("Tap any letter to see it in 3D →", "← المس أي حرف لتراه بالأبعاد الثلاثية")}
+            </p>
+            <button
+              onClick={() => setShowAllLetters((v) => !v)}
+              className="text-xs font-bold text-qalam underline hover:text-ink transition cursor-pointer"
+            >
+              {showAllLetters
+                ? tt("Show 6 featured", "عرض ٦ حروف")
+                : tt("All 28 letters", "كل الـ ٢٨ حرفاً")}
+            </button>
+          </div>
+
+          <div
+            className={`mt-3 grid gap-2 ${
+              showAllLetters
+                ? "grid-cols-7 max-h-48 overflow-y-auto pr-1"
+                : "grid-cols-6"
+            }`}
+          >
+            {(showAllLetters ? HERO_LETTERS : HERO_LETTERS.slice(0, 6)).map((l) => (
               <button
                 key={l.id}
                 onClick={() => playLetter(l)}
                 aria-label={l.name}
-                className={`flex aspect-square items-center justify-center rounded-2xl border-2 border-ink font-arabic-display text-2xl text-ink transition active:translate-y-0.5 hover:-translate-y-0.5 ${l.tint} ${active?.id === l.id ? "ring-4 ring-ink/15" : ""}`}
+                className={`flex aspect-square items-center justify-center rounded-2xl border-2 border-ink font-arabic-display text-xl sm:text-2xl text-ink transition active:translate-y-0.5 hover:-translate-y-0.5 ${
+                  l.tint
+                } ${
+                  selectedLetter.id === l.id
+                    ? "ring-4 ring-ink/20 shadow-inner scale-105"
+                    : "hover:brightness-95"
+                }`}
               >
                 {l.ar}
               </button>
@@ -385,9 +418,6 @@ export function WarmHome({ locale }: { locale: string }) {
         <div className="border-t-2 border-ink/10">
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-5 py-5 text-sm font-semibold text-ink/50 sm:flex-row">
             <p>© 2026 Arab Fingers. {tt("All rights reserved.", "جميع الحقوق محفوظة.")}</p>
-            <p>{tt("Made with ", "صُنع بـ ")}<Heart className="inline h-3.5 w-3.5 text-rose" />{tt(" by ", " بواسطة ")}
-              <Link href={`/${locale}/author`} className="text-ink/70 underline hover:text-qalam">Aissa Trad</Link>
-            </p>
           </div>
         </div>
       </footer>

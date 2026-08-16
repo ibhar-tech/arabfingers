@@ -250,10 +250,6 @@ export function PageLayout({ locale, children, fullBleed = false }: PageLayoutPr
           </div>
           <div className="flex flex-col items-center justify-between gap-3 border-t-2 border-ink/10 pt-5 sm:flex-row">
             <p className="text-sm font-semibold text-ink/50">© 2026 Arab Fingers. {isAr ? "جميع الحقوق محفوظة." : "All rights reserved."}</p>
-            <p className="text-sm font-semibold text-ink/50">
-              {isAr ? "صُنع بـ ❤️ بواسطة " : "Made with ❤️ by "}
-              <Link href={`/${locale}/author`} className="text-ink/70 underline hover:text-qalam">Aissa Trad</Link>
-            </p>
           </div>
         </div>
       </footer>
