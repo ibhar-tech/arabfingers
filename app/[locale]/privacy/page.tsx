@@ -252,6 +252,14 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
           >
             {isAr ? "إعدادات إعلانات Google" : "Google Ads Settings"}
           </a>
+          <a
+            href="https://www.aboutads.info/choices/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-bold text-ink/70 underline hover:text-qalam"
+          >
+            {isAr ? "خيارات الإعلانات (AboutAds)" : "Ad Choices (AboutAds)"}
+          </a>
         </div>
       </article>
     </PageLayout>

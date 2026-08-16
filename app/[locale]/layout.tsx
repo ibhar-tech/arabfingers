@@ -87,6 +87,12 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     <html suppressHydrationWarning lang={locale} dir={dir}>
       <head>
         <meta name="google-adsense-account" content="ca-pub-9623110963718326" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9623110963718326"
+          crossOrigin="anonymous"
+          data-privacy-treatments="disablePersonalization"
+        />
         <link rel="manifest" href="/manifest.json" />
         <script
           dangerouslySetInnerHTML={{
