@@ -7,7 +7,7 @@ import {
   CanvasTexture,
   type Mesh,
   type Group,
-  type MeshPhysicalMaterial as ThreeMeshPhysicalMaterial,
+  DoubleSide,
 } from "three";
 import { HERO_LETTERS, type HeroLetter } from "@/lib/heroLetters";
 
@@ -24,10 +24,10 @@ function useReducedMotion() {
 }
 
 /**
- * Creates high-resolution canvas texture for any Arabic letter with crisp
- * typography, inner bevel gradient, and tactile toy clarity.
+ * Creates high-resolution canvas texture for any Arabic letter with exact
+ * mathematical & visual centering using typographic bounding box metrics.
  */
-function createLetterTexture(letter: HeroLetter): CanvasTexture {
+function createFrontLetterTexture(letter: HeroLetter): CanvasTexture {
   if (typeof window === "undefined") {
     return new CanvasTexture(undefined as unknown as HTMLCanvasElement);
   }
@@ -40,39 +40,56 @@ function createLetterTexture(letter: HeroLetter): CanvasTexture {
   if (ctx) {
     ctx.clearRect(0, 0, size, size);
 
-    // Subtle radial highlight behind glyph for depth
-    const radGlow = ctx.createRadialGradient(size / 2, size / 2, 80, size / 2, size / 2, size / 2);
-    radGlow.addColorStop(0, "rgba(255, 255, 255, 0.35)");
-    radGlow.addColorStop(0.7, "rgba(255, 255, 255, 0.08)");
-    radGlow.addColorStop(1, "rgba(255, 255, 255, 0)");
-    ctx.fillStyle = radGlow;
-    ctx.fillRect(0, 0, size, size);
-
-    // Render large Arabic letter with rich shadow and crisp outline
+    // Initial font setting
+    let fontSize = 720;
+    ctx.font = `bold ${fontSize}px 'Baloo Bhaijaan 2', 'IBM Plex Sans Arabic', 'Amiri', 'Noto Naskh Arabic', sans-serif`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.font = `bold 580px 'Baloo Bhaijaan 2', 'IBM Plex Sans Arabic', 'Amiri', 'Noto Naskh Arabic', sans-serif`;
 
-    // Drop shadow
-    ctx.shadowColor = "rgba(18, 24, 38, 0.35)";
-    ctx.shadowBlur = 36;
+    // Measure exact visual bounding box to ensure bold, perfectly centered glyph
+    let metrics = ctx.measureText(letter.ar);
+    const glyphWidth = metrics.actualBoundingBoxRight + metrics.actualBoundingBoxLeft;
+    const glyphHeight = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
+
+    // Scale font size so every letter fills 72% to 78% of the canvas
+    const maxDimension = Math.max(glyphWidth, glyphHeight);
+    const targetSize = size * 0.74;
+    if (maxDimension > 0) {
+      fontSize = Math.round(fontSize * (targetSize / maxDimension));
+      fontSize = Math.max(480, Math.min(840, fontSize));
+      ctx.font = `bold ${fontSize}px 'Baloo Bhaijaan 2', 'IBM Plex Sans Arabic', 'Amiri', 'Noto Naskh Arabic', sans-serif`;
+      metrics = ctx.measureText(letter.ar);
+    }
+
+    // Precise centering offset
+    const xOffset = (metrics.actualBoundingBoxLeft - metrics.actualBoundingBoxRight) / 2;
+    const yOffset = (metrics.actualBoundingBoxAscent - metrics.actualBoundingBoxDescent) / 2;
+    const drawX = size / 2 + xOffset;
+    const drawY = size / 2 + yOffset;
+
+    // Soft deep drop shadow for realistic 3D tactile elevation
+    ctx.shadowColor = "rgba(10, 15, 30, 0.45)";
+    ctx.shadowBlur = 32;
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 24;
 
-    // Ink letter stroke
-    ctx.fillStyle = "#1e2229";
-    ctx.fillText(letter.ar, size / 2, size / 2 + 30);
+    // Outer thick bright sticker rim
+    ctx.lineWidth = 36;
+    ctx.lineJoin = "round";
+    ctx.lineCap = "round";
+    ctx.strokeStyle = "#FFFFFF";
+    ctx.strokeText(letter.ar, drawX, drawY);
 
-    // Clear shadow for crisp inner highlight
+    // Inner dark crisp ink glyph
     ctx.shadowColor = "transparent";
     ctx.shadowBlur = 0;
-    ctx.shadowOffsetX = 0;
-    ctx.shadowOffsetY = 0;
+    ctx.fillStyle = "#1E2430";
+    ctx.fillText(letter.ar, drawX, drawY);
 
-    // Inner bright rim
-    ctx.lineWidth = 14;
-    ctx.strokeStyle = "rgba(255, 255, 255, 0.4)";
-    ctx.strokeText(letter.ar, size / 2, size / 2 + 30);
+    // Glossy top specular reflection on glyph
+    ctx.lineWidth = 10;
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.55)";
+    ctx.strokeText(letter.ar, drawX, drawY - 4);
   }
 
   const texture = new CanvasTexture(canvas);
@@ -80,7 +97,48 @@ function createLetterTexture(letter: HeroLetter): CanvasTexture {
   return texture;
 }
 
-/** 3D Shiny Candy Bead for Nuqtas & Ambient Pearls */
+/** Creates back texture with English letter and name for 360° spin discovery */
+function createBackLetterTexture(letter: HeroLetter): CanvasTexture {
+  if (typeof window === "undefined") {
+    return new CanvasTexture(undefined as unknown as HTMLCanvasElement);
+  }
+  const size = 1024;
+  const canvas = window.document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext("2d");
+
+  if (ctx) {
+    ctx.clearRect(0, 0, size, size);
+
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
+    // English letter
+    ctx.font = "900 480px 'Nunito', 'Fredoka', sans-serif";
+    ctx.shadowColor = "rgba(10, 15, 30, 0.35)";
+    ctx.shadowBlur = 24;
+    ctx.shadowOffsetY = 16;
+    ctx.lineWidth = 28;
+    ctx.strokeStyle = "#FFFFFF";
+    ctx.strokeText(letter.en, size / 2, size / 2 - 60);
+
+    ctx.shadowColor = "transparent";
+    ctx.fillStyle = "#1E2430";
+    ctx.fillText(letter.en, size / 2, size / 2 - 60);
+
+    // Name badge
+    ctx.font = "bold 130px 'Nunito', 'Fredoka', sans-serif";
+    ctx.fillStyle = "#FFFFFF";
+    ctx.fillText(letter.name, size / 2, size / 2 + 240);
+  }
+
+  const texture = new CanvasTexture(canvas);
+  texture.needsUpdate = true;
+  return texture;
+}
+
+/** 3D Shiny Candy Pearl for Nuqtas & Ambient Floating Beads */
 function CandyBead({
   position,
   color,
@@ -96,23 +154,23 @@ function CandyBead({
   useFrame((state) => {
     if (!ref.current) return;
     const t = state.clock.elapsedTime * speed;
-    ref.current.position.y = position[1] + Math.sin(t) * 0.08;
-    ref.current.rotation.y = t * 0.5;
+    ref.current.position.y = position[1] + Math.sin(t) * 0.1;
+    ref.current.rotation.y = t * 0.6;
   });
 
   return (
     <mesh ref={ref} position={position} scale={scale} castShadow>
-      <sphereGeometry args={[0.26, 32, 32]} />
+      <sphereGeometry args={[0.32, 32, 32]} />
       <meshPhysicalMaterial
         color={color}
-        roughness={0.18}
-        metalness={0.08}
-        clearcoat={1}
-        clearcoatRoughness={0.1}
-        sheen={0.8}
+        roughness={0.15}
+        metalness={0.06}
+        clearcoat={1.0}
+        clearcoatRoughness={0.08}
+        sheen={0.9}
         sheenColor="#ffffff"
         emissive={color}
-        emissiveIntensity={0.2}
+        emissiveIntensity={0.25}
       />
     </mesh>
   );
@@ -131,8 +189,8 @@ function ToyLetterMesh({
   onLetterClick?: () => void;
 }) {
   const groupRef = useRef<Group>(null);
-  const matRef = useRef<ThreeMeshPhysicalMaterial>(null);
-  const texture = useMemo(() => createLetterTexture(letter), [letter]);
+  const frontTexture = useMemo(() => createFrontLetterTexture(letter), [letter]);
+  const backTexture = useMemo(() => createBackLetterTexture(letter), [letter]);
 
   // Spring physics variables for juicy squash & stretch
   const spring = useRef({
@@ -146,8 +204,8 @@ function ToyLetterMesh({
 
   // Trigger squash bounce on letter switch or click
   useEffect(() => {
-    spring.current.scaleY = 0.72;
-    spring.current.scaleXZ = 1.28;
+    spring.current.scaleY = 0.68;
+    spring.current.scaleXZ = 1.32;
     spring.current.spinVel = 6.28; // One joyful full 360 spin
   }, [letter.id, bounceTrigger]);
 
@@ -155,7 +213,7 @@ function ToyLetterMesh({
     if (!groupRef.current) return;
     const dt = Math.min(delta, 0.05);
 
-    // Spring physics integration (stiffness = 180, damping = 12)
+    // Spring physics integration (stiffness = 220, damping = 14)
     const k = 220;
     const d = 14;
 
@@ -169,7 +227,7 @@ function ToyLetterMesh({
 
     // Spin damping
     spring.current.rotY += spring.current.spinVel * dt;
-    spring.current.spinVel *= Math.exp(-4 * dt);
+    spring.current.spinVel *= Math.exp(-4.2 * dt);
 
     // Apply scale
     groupRef.current.scale.set(
@@ -181,12 +239,12 @@ function ToyLetterMesh({
     // Gentle floating idle wobble
     if (!reduced) {
       const t = state.clock.elapsedTime;
-      groupRef.current.rotation.y = spring.current.rotY + Math.sin(t * 0.8) * 0.15;
-      groupRef.current.rotation.z = Math.sin(t * 0.6) * 0.04;
+      groupRef.current.rotation.y = spring.current.rotY + Math.sin(t * 0.8) * 0.18;
+      groupRef.current.rotation.z = Math.sin(t * 0.6) * 0.05;
     }
   });
 
-  // Calculate dynamic 3D dot (nuqta) positions based on letter configuration
+  // Calculate dynamic 3D dot (nuqta) positions
   const dotBeads = useMemo(() => {
     const { count, position } = letter.dots;
     if (count === 0 || position === "none") return [];
@@ -195,24 +253,24 @@ function ToyLetterMesh({
 
     if (position === "above") {
       if (count === 1) {
-        beads.push({ pos: [0, 1.48, 0.36], scale: 1.05 });
+        beads.push({ pos: [0, 2.05, 0.4], scale: 1.15 });
       } else if (count === 2) {
-        beads.push({ pos: [-0.34, 1.48, 0.36], scale: 0.95 });
-        beads.push({ pos: [0.34, 1.48, 0.36], scale: 0.95 });
+        beads.push({ pos: [-0.42, 2.05, 0.4], scale: 1.05 });
+        beads.push({ pos: [0.42, 2.05, 0.4], scale: 1.05 });
       } else if (count === 3) {
-        beads.push({ pos: [-0.34, 1.38, 0.36], scale: 0.9 });
-        beads.push({ pos: [0.34, 1.38, 0.36], scale: 0.9 });
-        beads.push({ pos: [0, 1.82, 0.36], scale: 0.9 });
+        beads.push({ pos: [-0.42, 1.95, 0.4], scale: 0.95 });
+        beads.push({ pos: [0.42, 1.95, 0.4], scale: 0.95 });
+        beads.push({ pos: [0, 2.45, 0.4], scale: 0.95 });
       }
     } else if (position === "below") {
       if (count === 1) {
-        beads.push({ pos: [0, -1.48, 0.36], scale: 1.05 });
+        beads.push({ pos: [0, -2.05, 0.4], scale: 1.15 });
       } else if (count === 2) {
-        beads.push({ pos: [-0.34, -1.48, 0.36], scale: 0.95 });
-        beads.push({ pos: [0.34, -1.48, 0.36], scale: 0.95 });
+        beads.push({ pos: [-0.42, -2.05, 0.4], scale: 1.05 });
+        beads.push({ pos: [0.42, -2.05, 0.4], scale: 1.05 });
       }
     } else if (position === "center") {
-      beads.push({ pos: [0.08, -0.32, 0.36], scale: 1.05 });
+      beads.push({ pos: [0.1, -0.25, 0.42], scale: 1.15 });
     }
 
     return beads;
@@ -232,28 +290,54 @@ function ToyLetterMesh({
         document.body.style.cursor = "auto";
       }}
     >
-      {/* Main 3D Rounded Candy Tablet / Pillow */}
+      {/* 3D Glossy Candy Tablet Base (Solid Vibrant Color) */}
       <RoundedBox
-        args={[2.8, 3.2, 0.6]}
-        radius={0.42}
-        smoothness={8}
+        args={[3.4, 3.6, 0.55]}
+        radius={0.55}
+        smoothness={10}
         castShadow
         receiveShadow
       >
         <meshPhysicalMaterial
-          ref={matRef}
           color={letter.color}
-          map={texture}
-          roughness={0.24}
-          metalness={0.06}
+          roughness={0.16}
+          metalness={0.04}
           clearcoat={1.0}
-          clearcoatRoughness={0.12}
-          sheen={0.7}
-          sheenColor={letter.secondaryColor}
+          clearcoatRoughness={0.08}
+          sheen={0.8}
+          sheenColor="#ffffff"
           emissive={letter.color}
-          emissiveIntensity={0.14}
+          emissiveIntensity={0.18}
         />
       </RoundedBox>
+
+      {/* Front Face: Large, Bold, Perfectly Centered Arabic Letter */}
+      <mesh position={[0, 0, 0.285]}>
+        <planeGeometry args={[3.2, 3.2]} />
+        <meshPhysicalMaterial
+          map={frontTexture}
+          transparent={true}
+          roughness={0.12}
+          clearcoat={1.0}
+          clearcoatRoughness={0.06}
+          depthWrite={false}
+          side={DoubleSide}
+        />
+      </mesh>
+
+      {/* Back Face: English letter + Phonics name for 360° rotation */}
+      <mesh position={[0, 0, -0.285]} rotation={[0, Math.PI, 0]}>
+        <planeGeometry args={[3.2, 3.2]} />
+        <meshPhysicalMaterial
+          map={backTexture}
+          transparent={true}
+          roughness={0.12}
+          clearcoat={1.0}
+          clearcoatRoughness={0.06}
+          depthWrite={false}
+          side={DoubleSide}
+        />
+      </mesh>
 
       {/* Dynamic 3D Nuqta (Dot) Beads */}
       {dotBeads.map((b, idx) => (
@@ -283,7 +367,7 @@ function Scene({
 
   useFrame((state) => {
     if (!group.current || reduced) return;
-    // Parallax toward cursor / touch pointer with smooth damping
+    // Smooth parallax toward pointer
     const { x, y } = state.pointer;
     group.current.rotation.y += (x * 0.35 - group.current.rotation.y) * 0.05;
     group.current.rotation.x += (-y * 0.25 - group.current.rotation.x) * 0.05;
@@ -291,18 +375,18 @@ function Scene({
 
   return (
     <group ref={group}>
-      {/* Studio 3-point lighting setup for rich toy speculars */}
-      <ambientLight intensity={0.8} />
-      <directionalLight position={[4, 6, 5]} intensity={1.6} color="#fff4e0" castShadow />
-      <directionalLight position={[-5, -3, 3]} intensity={0.8} color="#9fe0df" />
-      <directionalLight position={[0, -5, -3]} intensity={0.5} color="#ffd1dc" />
-      <pointLight position={[0, 4, 3]} intensity={0.9} color="#ffffff" />
+      {/* Studio lighting for bright, vibrant 3D candy colors */}
+      <ambientLight intensity={1.1} />
+      <directionalLight position={[4, 6, 5]} intensity={2.2} color="#ffffff" castShadow />
+      <directionalLight position={[-5, -2, 4]} intensity={1.2} color="#bae6fd" />
+      <directionalLight position={[0, -5, -3]} intensity={0.8} color="#fde047" />
+      <pointLight position={[0, 4, 4]} intensity={1.2} color="#ffffff" />
 
       {/* Floating 3D Toy Center */}
       <Float
-        speed={reduced ? 0 : 1.5}
-        rotationIntensity={reduced ? 0 : 0.2}
-        floatIntensity={reduced ? 0 : 0.5}
+        speed={reduced ? 0 : 1.4}
+        rotationIntensity={reduced ? 0 : 0.18}
+        floatIntensity={reduced ? 0 : 0.45}
       >
         <ToyLetterMesh
           letter={letter}
@@ -313,26 +397,26 @@ function Scene({
       </Float>
 
       {/* Ambient Orbiting Candy Pearls */}
-      <Float speed={reduced ? 0 : 2.4} floatIntensity={reduced ? 0 : 1.1}>
-        <CandyBead position={[1.85, 1.2, -0.3]} color={letter.secondaryColor} scale={0.7} speed={1.2} />
+      <Float speed={reduced ? 0 : 2.2} floatIntensity={reduced ? 0 : 1.0}>
+        <CandyBead position={[2.1, 1.4, -0.3]} color={letter.secondaryColor} scale={0.75} speed={1.2} />
       </Float>
-      <Float speed={reduced ? 0 : 1.9} floatIntensity={reduced ? 0 : 0.9}>
-        <CandyBead position={[-1.85, -1.0, 0.2]} color={letter.color} scale={0.8} speed={1.5} />
+      <Float speed={reduced ? 0 : 1.8} floatIntensity={reduced ? 0 : 0.85}>
+        <CandyBead position={[-2.1, -1.2, 0.2]} color={letter.color} scale={0.85} speed={1.5} />
       </Float>
-      <Float speed={reduced ? 0 : 2.1} floatIntensity={reduced ? 0 : 1.0}>
-        <CandyBead position={[1.65, -1.35, 0.4]} color="#ffb22e" scale={0.6} speed={1.8} />
+      <Float speed={reduced ? 0 : 2.0} floatIntensity={reduced ? 0 : 0.95}>
+        <CandyBead position={[1.9, -1.5, 0.4]} color="#ffb22e" scale={0.65} speed={1.7} />
       </Float>
-      <Float speed={reduced ? 0 : 1.7} floatIntensity={reduced ? 0 : 0.8}>
-        <CandyBead position={[-1.6, 1.4, -0.2]} color="#0f8c8c" scale={0.65} speed={1.4} />
+      <Float speed={reduced ? 0 : 1.6} floatIntensity={reduced ? 0 : 0.75}>
+        <CandyBead position={[-1.8, 1.6, -0.2]} color="#0f8c8c" scale={0.7} speed={1.3} />
       </Float>
 
       {/* 3D Star Sparkles in matching letter theme color */}
       <Sparkles
-        count={20}
-        scale={4.5}
-        size={2.8}
-        speed={0.45}
-        opacity={0.7}
+        count={22}
+        scale={4.8}
+        size={3.0}
+        speed={0.4}
+        opacity={0.75}
         color={letter.color}
       />
     </group>
@@ -359,8 +443,8 @@ export default function HeroGlyph({
   return (
     <div className="relative h-full w-full select-none cursor-pointer">
       <Canvas
-        dpr={[1, 1.8]}
-        camera={{ position: [0, 0, 7.2], fov: 40 }}
+        dpr={[1, 2]}
+        camera={{ position: [0, 0, 6.2], fov: 42 }}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         style={{ background: "transparent" }}
         aria-label={`3D Arabic letter ${letter.ar} (${letter.name})`}
