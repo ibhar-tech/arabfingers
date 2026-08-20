@@ -49,7 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...localizedUrls("/printables", 0.9, "monthly"),
     // One landing page per pack — these are the highest-intent pages on the site,
     // so they get the top priority the hub used to hold alone.
-    ...worksheetSets.flatMap((s) => localizedUrls(`/printables/${s.id}`, 0.9, "monthly")),
+    ...worksheetSets.flatMap((s) => localizedUrls(`/printables/${s.id}`, 0.9, "monthly", d("2026-08-20"))),
 
     // Science interactive lessons (expanded into full articles 2026-06-11)
     ...localizedUrls("/learn/states-of-matter", 0.8, "monthly", d("2026-06-11")),
