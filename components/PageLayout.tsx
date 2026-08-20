@@ -23,9 +23,9 @@ type PageLayoutProps = {
 // the footer, so nothing is orphaned.
 const navLinks = [
   { href: "", labelEn: "Home", labelAr: "الرئيسية" },
+  { href: "/printables", labelEn: "Worksheets", labelAr: "أوراق عمل" },
   { href: "/games", labelEn: "Games", labelAr: "ألعاب" },
   { href: "/learn", labelEn: "Learn", labelAr: "تعلّم" },
-  { href: "/printables", labelEn: "Worksheets", labelAr: "أوراق عمل" },
   { href: "/blog", labelEn: "Blog", labelAr: "المدونة" },
   { href: "/resources", labelEn: "Resources", labelAr: "المصادر" },
   { href: "/about", labelEn: "About", labelAr: "عن الموقع" },
@@ -42,6 +42,7 @@ const footerPlayLinks = [
 
 const footerLearnLinks = [
   { href: "/learn", labelEn: "All Guides", labelAr: "جميع الأدلة" },
+  { href: "/glossary", labelEn: "Arabic Word List", labelAr: "قائمة الكلمات" },
   { href: "/learn/arabic-alphabet-guide", labelEn: "Alphabet Guide", labelAr: "دليل الأبجدية" },
   { href: "/learn/arabic-numbers", labelEn: "Numbers", labelAr: "الأرقام" },
   { href: "/learn/arabic-colors", labelEn: "Colors", labelAr: "الألوان" },
@@ -64,7 +65,12 @@ const footerBlogLinks = [
 
 // Worksheets lives in the Play column; repeating it here gave the same page two
 // footer entries under two different headings.
-const footerInfoLinks = [
+/* Exported so WarmHome renders the SAME list. The homepage footer used to carry
+   its own short copy (Blog / About / Privacy only), which left Contact, Terms and
+   Author reachable from every page EXCEPT the one visitors and reviewers land on
+   first. Ad-network and search reviewers both check that contact and policy pages
+   are easy to find from the entry point. */
+export const footerInfoLinks = [
   { href: "/about", labelEn: "About", labelAr: "عن الموقع" },
   { href: "/author", labelEn: "Author", labelAr: "المؤلف" },
   { href: "/resources", labelEn: "Resources", labelAr: "المصادر" },

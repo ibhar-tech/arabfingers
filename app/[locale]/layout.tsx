@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Amiri, Fredoka, IBM_Plex_Sans_Arabic, Noto_Naskh_Arabic, Baloo_2, Baloo_Bhaijaan_2, Nunito } from "next/font/google";
+import { Amiri, IBM_Plex_Sans_Arabic, Noto_Naskh_Arabic, Baloo_2, Baloo_Bhaijaan_2, Nunito } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
@@ -11,17 +11,33 @@ import arMessages from "../../messages/ar.json";
 import enMessages from "../../messages/en.json";
 import { setRequestLocale } from "next-intl/server";
 
-// Display + body faces for the warm "parchment & ink" redesign. Fredoka/IBM Plex
-// Arabic/Noto Naskh stay as fallbacks and for the taught letterforms.
-const baloo = Baloo_2({ variable: "--font-baloo", subsets: ["latin"], weight: ["500", "600", "700", "800"] });
+// Display + body faces for the warm "parchment & ink" redesign. IBM Plex Arabic and
+// Noto Naskh stay as fallbacks and for the taught letterforms.
+/* Font loading rules for this file, both learned from measurement:
+
+   1. Ask for the VARIABLE file, not static instances. Passing a `weight` array to
+      a variable family makes next/font download one woff2 per weight — Baloo 2 at
+      four weights was four files where the variable font is one, covering every
+      weight in between as well. Only Amiri and IBM Plex Arabic are genuinely
+      static upstream, so they are the only two that still name weights.
+
+   2. `preload` only the face that paints above the fold in the Latin UI. next/font
+      preloads every family by default, which put 16 <link rel=preload as=font>
+      tags and 659 KB in the <head> of BOTH locales — English readers were blocking
+      on the Arabic faces and Arabic readers on the Latin ones. With preload:false
+      the @font-face still ships, so the browser fetches the file only if rendered
+      text actually uses it; a page with no Arabic on it now downloads no Arabic
+      font at all. font-display:swap (already set on every declaration) covers the
+      slightly later start for the faces that ARE used. */
+const baloo = Baloo_2({ variable: "--font-baloo", subsets: ["latin"] });
 // Rounded, bubbly Arabic display face for kids — the Arabic match to Baloo 2.
-const balooArabic = Baloo_Bhaijaan_2({ variable: "--font-baloo-arabic", subsets: ["arabic", "latin"], weight: ["500", "600", "700", "800"] });
-const nunito = Nunito({ variable: "--font-nunito", subsets: ["latin"], weight: ["400", "600", "700", "800"] });
-const fredoka = Fredoka({ variable: "--font-fredoka", subsets: ["latin"], weight: ["400", "500", "600", "700"] });
+const balooArabic = Baloo_Bhaijaan_2({ variable: "--font-baloo-arabic", subsets: ["arabic", "latin"], preload: false });
+const nunito = Nunito({ variable: "--font-nunito", subsets: ["latin"], preload: false });
 const ibmPlexArabic = IBM_Plex_Sans_Arabic({
   variable: "--font-ibm-plex-arabic",
   subsets: ["arabic", "latin"],
   weight: ["400", "500", "600", "700"],
+  preload: false,
 });
 // The face used for the letterforms a child is actually learning. Amiri is a proper
 // Naskh with the stroke contrast and tooth shapes handwriting is taught from; Noto
@@ -29,12 +45,15 @@ const ibmPlexArabic = IBM_Plex_Sans_Arabic({
 const amiri = Amiri({
   variable: "--font-amiri",
   subsets: ["arabic"],
-  weight: ["400", "700"],
+  // Regular only. The bold face was a second 98 KB download for display text that
+  // is already large; Noto Naskh behind it in the stack covers any bold Arabic.
+  weight: ["400"],
+  preload: false,
 });
 const notoNaskhArabic = Noto_Naskh_Arabic({
   variable: "--font-noto-naskh",
   subsets: ["arabic"],
-  weight: ["400", "500", "600", "700"],
+  preload: false,
 });
 
 const allMessages: Record<AppLocale, Record<string, string>> = {
@@ -46,7 +65,7 @@ const localeMetadata: Record<AppLocale, Metadata> = {
   en: {
     title: "Arabic Alphabet Game for Kids",
     description:
-      "Free bilingual Arabic & English keyboard smash toy for toddlers (1–6 yrs). Animated letters, 3D objects, pronunciation & 5 themes.",
+      "Free bilingual Arabic learning for children 1–6: parent guides, printable worksheets, and a letter game with recorded pronunciation.",
   },
   ar: {
     title: "لعبة الحروف العربية للأطفال",
@@ -70,7 +89,7 @@ export async function generateMetadata({ params }: LocaleLayoutProps): Promise<M
   return localeMetadata[locale];
 }
 
-const fontVars = `${baloo.variable} ${balooArabic.variable} ${nunito.variable} ${fredoka.variable} ${ibmPlexArabic.variable} ${notoNaskhArabic.variable} ${amiri.variable}`;
+const fontVars = `${baloo.variable} ${balooArabic.variable} ${nunito.variable} ${ibmPlexArabic.variable} ${notoNaskhArabic.variable} ${amiri.variable}`;
 
 export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
   const { locale } = await params;
@@ -87,12 +106,6 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
     <html suppressHydrationWarning lang={locale} dir={dir}>
       <head>
         <meta name="google-adsense-account" content="ca-pub-9623110963718326" />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9623110963718326"
-          crossOrigin="anonymous"
-          data-privacy-treatments="disablePersonalization"
-        />
         <link rel="manifest" href="/manifest.json" />
         <script
           dangerouslySetInnerHTML={{

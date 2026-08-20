@@ -17,11 +17,11 @@ export const metadata: Metadata = {
     template: "%s | Arab Fingers",
   },
   description:
-    "Arab Fingers is a free bilingual Arabic & English keyboard smash toy for toddlers (1–6 yrs). Kids press any key to see animated Arabic letters with pronunciation, 3D floating objects, and confetti celebrations. عرب فنجرز — لعبة تعليمية ثنائية اللغة للأطفال لتعلم الحروف العربية والإنجليزية بالرسوم المتحركة والأصوات.",
+    "Arab Fingers is a free bilingual Arabic learning site for children aged 1–6: guides written for parents, printable worksheets, and a letter game with recorded pronunciation of all 28 letters. عرب فنجرز — موقع مجاني لتعلّم العربية للأطفال: أدلّة للآباء وأوراق عمل ولعبة حروف بنطق مسجّل.",
   keywords: [
     "Arabic letters for kids",
     "حروف عربية للأطفال",
-    "keyboard smash toy",
+    "learn arabic letters",
     "لعبة لوحة المفاتيح",
     "bilingual kids app",
     "تطبيق ثنائي اللغة للأطفال",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     siteName: "Arab Fingers",
     title: "Arab Fingers — Arabic Alphabet Game for Kids",
     description:
-      "Free bilingual Arabic & English keyboard smash toy for toddlers. Animated letters, 3D objects, sound effects & 5 themes. لعبة مجانية ثنائية اللغة للأطفال.",
+      "Free bilingual Arabic learning for kids 1–6: parent guides, printable worksheets and a letter game with real pronunciation. تعلّم مجاني للعربية للأطفال.",
     locale: "en_US",
     alternateLocale: ["ar_SA"],
     url: siteUrl,
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Arab Fingers — Arabic Keyboard Smash Toy for Kids",
+        alt: "Arab Fingers — Learn Arabic Letters, free for kids 1–6",
         type: "image/png",
       },
     ],
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Arab Fingers — Arabic Alphabet Game for Kids",
     description:
-      "Free bilingual Arabic & English keyboard smash toy for toddlers with 3D animations and letter pronunciation.",
+      "Free bilingual Arabic learning for kids 1–6 — parent guides, worksheets and a letter game with real pronunciation.",
     images: ["/og-image.png"],
   },
   robots: {

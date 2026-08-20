@@ -38,6 +38,47 @@ function isStageRoute(pathname: string) {
 
 /** Module scope, so it survives re-renders but resets on a real page load. */
 let configured = false;
+let tagRequested = false;
+
+const ADSENSE_SRC =
+  "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9623110963718326";
+
+/**
+ * Inject the AdSense tag after the page has loaded and gone idle.
+ *
+ * It used to sit in <head>. Measured on a cold load of /en that was 643 KB —
+ * the single largest thing on the page, ahead of every first-party chunk, and
+ * on a phone it was 55% of the whole visit. Async only means "do not block
+ * parsing"; the request still starts immediately and competes with our own CSS,
+ * fonts and JS for the connection.
+ *
+ * Deferring past `load` means ads request once the content a parent came for is
+ * already on screen. The pauseAdRequests flag below is set before this runs, so
+ * toddler stages still never request an ad.
+ */
+function injectAdSense() {
+  if (tagRequested) return;
+  tagRequested = true;
+
+  const add = () => {
+    const el = document.createElement("script");
+    el.async = true;
+    el.src = ADSENSE_SRC;
+    el.crossOrigin = "anonymous";
+    el.dataset.privacyTreatments = "disablePersonalization";
+    document.head.appendChild(el);
+  };
+
+  // ponytail: requestIdleCallback where it exists, a short timer where it does
+  // not (Safari). Either way the tag lands after first paint, which is the point.
+  const schedule = () =>
+    typeof window.requestIdleCallback === "function"
+      ? window.requestIdleCallback(add, { timeout: 3000 })
+      : window.setTimeout(add, 1500);
+
+  if (document.readyState === "complete") schedule();
+  else window.addEventListener("load", schedule, { once: true });
+}
 
 export function AdSenseLoader() {
   const pathname = usePathname();
@@ -53,6 +94,12 @@ export function AdSenseLoader() {
 
     // Stop ad requests on toddler stages
     adsbygoogle.pauseAdRequests = onStage ? 1 : 0;
+
+    // Stages already refuse to request an ad, so on a direct landing there is
+    // nothing for the tag to do — and it was still pulling 775 KB onto the one
+    // page a child actually plays on. Arriving from a content route leaves the
+    // tag already loaded, where pauseAdRequests above keeps it quiet.
+    if (!onStage) injectAdSense();
   }, [pathname]);
 
   return null;

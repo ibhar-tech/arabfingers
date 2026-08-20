@@ -1,14 +1,18 @@
 {
-  "name": "Arab Fingers — Arabic Keyboard Smash Toy",
+  "name": "Arab Fingers — Learn Arabic Letters",
   "short_name": "Arab Fingers",
-  "description": "A bilingual Arabic and English keyboard smash toy for toddlers with 3D animations, letter pronunciation, and themed experiences.",
+  "description": "Free bilingual Arabic learning for children aged 1–6: guides for parents, printable worksheets, and a letter game with real pronunciation.",
   "start_url": "/en",
   "id": "/",
   "display": "standalone",
   "orientation": "any",
   "background_color": "#050816",
   "theme_color": "#050816",
-  "categories": ["education", "kids", "entertainment"],
+  "categories": [
+    "education",
+    "kids",
+    "entertainment"
+  ],
   "lang": "en",
   "dir": "ltr",
   "scope": "/",

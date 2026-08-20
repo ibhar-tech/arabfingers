@@ -13,12 +13,12 @@ export async function generateMetadata({
   // path "" → self-canonical to /{locale} with correct hreflang. The brand is
   // appended by the root title template, so titles stay brand-free here.
   return generatePageMetadata(locale, "", {
-    titleEn: "Arabic Alphabet for Kids — Free Bilingual Letter Game",
-    titleAr: "الحروف العربية للأطفال — لعبة مجانية لتعلم الأبجدية",
+    titleEn: "Free Arabic Worksheets for Kids — Printable PDFs + Letter Game",
+    titleAr: "أوراق عمل عربية مجانية للأطفال — ملفات PDF للطباعة ولعبة حروف",
     descriptionEn:
-      "Free bilingual Arabic learning for toddlers (1–6). Play with all 28 Arabic letters, hear natural pronunciation, and explore guides for parents.",
+      "53 pages of free printable Arabic worksheets — tracing sheets for all 28 letters, numbers, colours and animals. No signup. Plus a free letter game with real pronunciation and guides for parents.",
     descriptionAr:
-      "تعلّم مجاني للأطفال من ١ إلى ٦ سنوات. العب بالحروف العربية الـ٢٨، استمع إلى النطق الطبيعي، واستكشف أدلة مفيدة للآباء.",
+      "٥٣ صفحة من أوراق العمل العربية المجانية للطباعة — أوراق تتبّع للحروف الـ٢٨ والأرقام والألوان والحيوانات، بلا تسجيل. مع لعبة حروف مجانية بنطق حقيقيّ وأدلّة للآباء.",
   });
 }
 

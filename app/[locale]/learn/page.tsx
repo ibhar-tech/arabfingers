@@ -222,15 +222,15 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
       {/* Interactive Cartoon Lessons Dashboard */}
       <section className="mb-12">
         <h2 className="font-display text-2xl font-bold text-ink mb-2 flex items-center gap-2">
-          {isAr ? "🎬 الدروس الكرتونية التفاعلية" : "🎬 Interactive Cartoon Lessons"}
+          {isAr ? "🔬 العلوم بالعربية" : "🔬 Science in Arabic"}
           <span className="text-xs bg-accent/20 text-accent font-semibold px-2.5 py-0.5 rounded-full animate-pulse border border-accent/20">
             {isAr ? "جديد" : "NEW"}
           </span>
         </h2>
         <p className="text-base text-ink/80 mb-6">
           {isAr
-            ? "شاهد وتحكم في قصص علمية كرتونية مذهلة! ساعد أصدقاءك في فهم أسرار الكون من خلال تجارب تفاعلية شيقة."
-            : "Watch and control spectacular interactive science cartoons! Help your cartoon friends discover the universe."}
+            ? "بعد أن يعرف الطفل الحروف، تأتي الخطوة التالية: أن يسمع العربية في جُمَل حقيقية لا في حروف مفردة. هذه أربعة دروس علمية، كلّ مشهد فيها مرويّ بالعربية والإنجليزية معاً، فيلتقط الطفل مفردات العلوم — الماء والبخار والجاذبية والكواكب — في سياق يفهمه ويريد متابعته."
+            : "Once a child knows the letters, the next step is hearing Arabic in real sentences rather than single sounds. These four science lessons are narrated scene by scene in both Arabic and English, so a child picks up science vocabulary — water, vapour, gravity, planets — in a context they follow because they want to know what happens next."}
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

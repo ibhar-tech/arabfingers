@@ -1,11 +1,11 @@
 export function StructuredData() {
   const webApp = {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
+    "@type": "WebSite",
     name: "Arab Fingers",
     alternateName: "عرب فنجرز",
     description:
-      "A free bilingual Arabic and English keyboard smash toy for toddlers with 3D animations, letter pronunciation, and themed experiences.",
+      "Free bilingual Arabic learning for children aged 1–6: parent guides, printable worksheets, and a letter game with recorded pronunciation of all 28 letters.",
     url: "https://www.arabfingers.site",
     applicationCategory: "EducationalApplication",
     operatingSystem: "Any",

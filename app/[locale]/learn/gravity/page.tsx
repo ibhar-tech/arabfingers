@@ -12,10 +12,10 @@ import { setRequestLocale } from "next-intl/server";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return generatePageMetadata(locale, "/learn/gravity", {
-    titleEn: "How Gravity Works for Kids — Interactive Science Lesson",
-    titleAr: "الجاذبية للأطفال — درس علمي تفاعلي",
-    descriptionEn: "An immersive interactive physics lesson teaching children gravity: Isaac Newton's apple story, weightlessness in space, Jupiter gravity, and a drop-chamber sandbox.",
-    descriptionAr: "درس كرتوني تفاعلي شيق يعلم الأطفال أسرار الجاذبية: قصة تفاحة إسحاق نيوتن وانعدام الوزن في الفضاء والجاذبية الثقيلة لكوكب المشتري مع شريط تحكم ممتع.",
+    titleEn: "Gravity in Arabic — Bilingual Science Lesson for Kids",
+    titleAr: "الجاذبية بالعربية — درس علمي ثنائي اللغة للأطفال",
+    descriptionEn: "Learn how gravity works in Arabic and English side by side. Every scene is narrated in both languages — Newton's apple, weightlessness in space, and Jupiter's heavy pull — so a child hears real Arabic sentences, not just single letters.",
+    descriptionAr: "تعلّم كيف تعمل الجاذبية بالعربية والإنجليزية معاً. كلّ مشهد مرويّ باللغتين — تفاحة نيوتن، وانعدام الوزن في الفضاء، وجاذبية المشتري الثقيلة — فيسمع الطفل جُمَلاً عربية حقيقية لا حروفاً مفردة.",
     ogType: "article",
     publishedTime: "2026-05-31",
     keywords: [
@@ -128,8 +128,8 @@ export default async function GravityPage({ params }: { params: Promise<{ locale
 
       <LessonStructuredData
         locale={locale}
-        titleEn="How Gravity Works for Kids — Interactive Science Lesson"
-        titleAr="الجاذبية للأطفال — درس علمي تفاعلي"
+        titleEn="Gravity in Arabic — Bilingual Science Lesson for Kids"
+        titleAr="الجاذبية بالعربية — درس علمي ثنائي اللغة للأطفال"
         descriptionEn="Learn about Newton's apple discovery, mass, and weightlessness in space."
         descriptionAr="تعلم عن اكتشاف الجاذبية وقصة نيوتن والتفاحة وانعدام الوزن في الفضاء."
         slug="gravity"

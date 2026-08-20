@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import dynamic from "next/dynamic";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import {
   Sparkles, Play, BookOpen, ShieldCheck, Volume2, Palette, Printer,
@@ -12,14 +11,19 @@ import { useAppStore } from "@/store/useAppStore";
 import { LetterBuddy, Sun, StarMascot, Crescent } from "@/components/Mascots";
 
 import { HERO_LETTERS, type HeroLetter } from "@/lib/heroLetters";
+import { footerInfoLinks } from "@/components/PageLayout";
+import { learnArticles } from "@/lib/related";
+import { blogPosts } from "@/lib/blog-data";
 
-const HeroGlyph = dynamic(() => import("@/components/HeroGlyph"), { ssr: false });
-
+/* Worksheets sits first because that is what people come for: in the three months
+   to 18 Aug 2026, /printables took 787 of the site's 872 search clicks and 91% of
+   named queries were worksheet intent. The game stays prominent — it is what makes
+   the site worth returning to — but it is not what brings anyone here. */
 const NAV = [
   { href: "", en: "Home", ar: "الرئيسية" },
+  { href: "/printables", en: "Worksheets", ar: "أوراق عمل" },
   { href: "/games", en: "Games", ar: "ألعاب" },
   { href: "/learn", en: "Learn", ar: "تعلّم" },
-  { href: "/printables", en: "Worksheets", ar: "أوراق عمل" },
   { href: "/blog", en: "Blog", ar: "المدونة" },
   { href: "/about", en: "About", ar: "عن الموقع" },
 ];
@@ -32,23 +36,9 @@ export function WarmHome({ locale }: { locale: string }) {
   const setLocale = useAppStore((s) => s.setLocale);
 
   const [menuOpen, setMenuOpen] = useState(false);
-  const [show3D, setShow3D] = useState(false);
   const [selectedLetter, setSelectedLetter] = useState<HeroLetter>(HERO_LETTERS[0]);
   const [showAllLetters, setShowAllLetters] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  useEffect(() => {
-    // Mount the 3D toy on desktop widths AND when WebGL actually works —
-    // otherwise the breathing letter fallback shows.
-    if (typeof window === "undefined" || window.innerWidth < 768) return;
-    try {
-      const gl = document.createElement("canvas").getContext("webgl") ||
-        document.createElement("canvas").getContext("experimental-webgl");
-      if (gl) setShow3D(true);
-    } catch {
-      /* keep fallback */
-    }
-  }, []);
 
   function switchLocale(next: "ar" | "en") {
     const nextPath = pathname.replace(/^\/(ar|en)(?=\/|$)/, `/${next}`);
@@ -145,9 +135,9 @@ export function WarmHome({ locale }: { locale: string }) {
             <Sparkles className="h-4 w-4" /> {tt("Free forever · Ages 1–6", "مجاني للأبد · من ١ إلى ٦ سنوات")}
           </span>
           <h1 className="mt-5 font-display text-4xl font-extrabold leading-[1.05] text-ink sm:text-6xl">
-            {tt("Learn the Arabic", "تعلّم الحروف")}<br />
-            {tt("alphabet by ", "العربية ")}
-            <span className="relative whitespace-nowrap text-qalam">{tt("playing", "باللعب")}
+            {tt("Free Arabic", "أوراق عمل")}<br />
+            {tt("worksheets that ", "عربية مجانية ")}
+            <span className="relative whitespace-nowrap text-qalam">{tt("actually print", "جاهزة للطباعة")}
               <svg className="absolute -bottom-2 start-0 w-full" height="10" viewBox="0 0 200 10" fill="none" preserveAspectRatio="none">
                 <path d="M2 7 C 50 2, 150 2, 198 7" stroke="var(--saffron)" strokeWidth="4" strokeLinecap="round" />
               </svg>
@@ -160,13 +150,13 @@ export function WarmHome({ locale }: { locale: string }) {
           </h1>
           <p className="mt-5 max-w-md text-lg font-semibold leading-relaxed text-ink/70">
             {tt(
-              "A free bilingual letter game for toddlers. Tap any of the 28 Arabic letters, hear natural pronunciation, and grow into guides built for parents.",
-              "لعبة حروف مجانية ثنائية اللغة للأطفال. المس أي حرف من الحروف العربية الـ٢٨، استمع إلى النطق الطبيعي، واستكشف أدلة مصممة للآباء.",
+              "53 pages of printable Arabic worksheets — a tracing sheet for every one of the 28 letters, plus numbers, colours and animals. No email, no signup. And a free letter game with real pronunciation for when the pencil goes down.",
+              "٥٣ صفحة من أوراق العمل العربية للطباعة — ورقة تتبّع لكلّ حرف من الحروف الـ٢٨، مع الأرقام والألوان والحيوانات. بلا بريد إلكتروني وبلا تسجيل. ولعبة حروف مجانية بنطق حقيقيّ حين يُترك القلم.",
             )}
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <Link href={`/${locale}/games`} className="btn-chunky"><Gamepad2 className="h-5 w-5" /> {tt("Play the games", "العب الألعاب")}</Link>
-            <Link href={`/${locale}/learn`} className="btn-chunky btn-chunky-ghost"><BookOpen className="h-5 w-5" /> {tt("Learning guides", "أدلة التعلّم")}</Link>
+            <Link href={`/${locale}/printables`} className="btn-chunky"><Printer className="h-5 w-5" /> {tt("Get the worksheets", "احصل على الأوراق")}</Link>
+            <Link href={`/${locale}/play`} className="btn-chunky btn-chunky-ghost"><Gamepad2 className="h-5 w-5" /> {tt("Play the letter game", "العب لعبة الحروف")}</Link>
           </div>
           <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-bold text-ink/60">
             <span className="inline-flex items-center gap-1.5"><Star className="h-4 w-4 text-saffron" /> {tt("All 28 letters, free", "الحروف الـ٢٨ كاملة، مجاناً")}</span>
@@ -175,24 +165,21 @@ export function WarmHome({ locale }: { locale: string }) {
           </div>
         </div>
 
-        {/* Slate card: 3D interactive toy letter + tappable alphabet */}
+        {/* Slate card: big tappable letter + the alphabet strip */}
         <div className="card-stock card-stock-qalam relative overflow-hidden p-5 sm:p-6 transition-all duration-300">
           <div className="relative mx-auto h-64 w-full sm:h-76">
-            {show3D ? (
-              <HeroGlyph
-                letter={selectedLetter}
-                onLetterClick={() => playLetter(selectedLetter)}
-              />
-            ) : (
-              <div
-                onClick={() => playLetter(selectedLetter)}
-                className="flex h-full flex-col items-center justify-center cursor-pointer select-none"
-              >
-                <span className="breathe font-arabic-display text-[8.5rem] leading-none text-ink drop-shadow-md">
-                  {selectedLetter.ar}
-                </span>
-              </div>
-            )}
+            {/* Deliberately CSS, not WebGL. Mounting HeroGlyph here pulled 867 KB of
+                three.js into the most-landed-on page of the site to animate one letter,
+                and mobile never saw it anyway (the old probe bailed under 768px). The
+                real 3D toy still lives on /play, where it IS the product. */}
+            <div
+              onClick={() => playLetter(selectedLetter)}
+              className="flex h-full flex-col items-center justify-center cursor-pointer select-none"
+            >
+              <span className="breathe font-arabic-display text-[8.5rem] leading-none text-ink drop-shadow-md">
+                {selectedLetter.ar}
+              </span>
+            </div>
 
             {/* Active letter badge with sound trigger */}
             <div className="absolute inset-x-0 bottom-1 mx-auto flex w-fit items-center gap-2.5 rounded-2xl border-2 border-ink bg-card/95 px-4 py-1.5 backdrop-blur-sm shadow-[3px_3px_0_0_var(--ink)]">
@@ -213,7 +200,7 @@ export function WarmHome({ locale }: { locale: string }) {
 
           <div className="mt-3 flex items-center justify-between">
             <p className="text-xs sm:text-sm font-bold text-ink/70">
-              {tt("Tap any letter to see it in 3D →", "← المس أي حرف لتراه بالأبعاد الثلاثية")}
+              {tt("Tap any letter to hear it →", "← المس أي حرف لتسمعه")}
             </p>
             <button
               onClick={() => setShowAllLetters((v) => !v)}
@@ -386,6 +373,90 @@ export function WarmHome({ locale }: { locale: string }) {
         </div>
       </section>
 
+      {/* ---------- LIBRARY ----------
+          The homepage used to end on marketing copy, so nothing above the footer
+          showed that the written guides exist in any quantity. Anyone judging the
+          site from this page alone — a first-time parent or a reviewer — saw a toy
+          and four link cards. Listing the library here is the honest picture: the
+          reading material is the larger half of the site. */}
+      <section className="mx-auto max-w-6xl px-5 py-14">
+        <div className="max-w-2xl">
+          <h2 className="font-display text-3xl font-extrabold text-ink">
+            {tt("Everything written for parents", "كلّ ما كُتب للآباء")}
+          </h2>
+          <p className="mt-3 leading-relaxed text-ink/70">
+            {tt(
+              "The games are for the child. These are for you — plain-language guides written for adults who may not read Arabic themselves, each one covering a single question properly rather than skimming ten.",
+              "الألعاب للطفل. وهذه لك أنت — أدلّة بلغة واضحة مكتوبة لبالغين قد لا يقرؤون العربية، يعالج كلّ دليل سؤالاً واحداً معالجة وافية بدل أن يمرّ على عشرة مروراً سريعاً.",
+            )}
+          </p>
+        </div>
+
+        <h3 className="mt-9 font-display text-sm font-extrabold uppercase tracking-wide text-ink/55">
+          {tt("Learning guides", "أدلّة التعلّم")}
+        </h3>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {learnArticles.map((a) => (
+            <Link
+              key={a.slug}
+              href={`/${locale}/${a.path}/${a.slug}`}
+              className="card-stock flex flex-col p-5 transition hover:border-qalam"
+            >
+              <h4 className="font-display text-base font-extrabold leading-snug text-ink">
+                {tt(a.titleEn, a.titleAr)}
+              </h4>
+              <p className="mt-2 text-sm font-semibold leading-relaxed text-ink/65">
+                {tt(a.descEn, a.descAr)}
+              </p>
+            </Link>
+          ))}
+        </div>
+
+        <h3 className="mt-10 font-display text-sm font-extrabold uppercase tracking-wide text-ink/55">
+          {tt("Longer reads", "مقالات أطول")}
+        </h3>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2">
+          {blogPosts.map((b) => (
+            <Link
+              key={b.slug}
+              href={`/${locale}/blog/${b.slug}`}
+              className="card-stock flex flex-col p-5 transition hover:border-qalam"
+            >
+              <div className="flex items-start gap-3">
+                <span aria-hidden className="text-xl leading-none">{b.icon}</span>
+                <div>
+                  <h4 className="font-display text-base font-extrabold leading-snug text-ink">
+                    {tt(b.titleEn, b.titleAr)}
+                  </h4>
+                  <p className="mt-1 text-xs font-bold uppercase tracking-wide text-ink/45">
+                    {tt(b.readingTimeEn, b.readingTimeAr)}
+                  </p>
+                </div>
+              </div>
+              <p className="mt-2 text-sm font-semibold leading-relaxed text-ink/65">
+                {tt(b.descEn, b.descAr)}
+              </p>
+            </Link>
+          ))}
+        </div>
+
+        <div className="mt-8 flex flex-wrap gap-3">
+          {[
+            ["/learn", tt("All learning guides", "كلّ الأدلّة")],
+            ["/blog", tt("All articles", "كلّ المقالات")],
+            ["/printables", tt("Free worksheets", "أوراق العمل المجانية")],
+          ].map(([href, label]) => (
+            <Link
+              key={href}
+              href={`/${locale}${href}`}
+              className="rounded-2xl border-2 border-ink bg-card px-4 py-2 text-sm font-extrabold text-ink shadow-[3px_3px_0_0_var(--ink)] transition hover:bg-saffron-soft"
+            >
+              {label}
+            </Link>
+          ))}
+        </div>
+      </section>
+
       {/* ---------- FOOTER ---------- */}
       <footer className="mt-6 border-t-[2.5px] border-ink bg-card">
         <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:grid-cols-2 md:grid-cols-4">
@@ -401,7 +472,13 @@ export function WarmHome({ locale }: { locale: string }) {
           {[
             { h: tt("Play", "العب"), links: [["/play", tt("Free play", "لعب حر")], ["/coloring", tt("Coloring", "التلوين")], ["/printables", tt("Worksheets", "أوراق عمل")]] },
             { h: tt("Learn", "تعلّم"), links: [["/learn/arabic-alphabet-guide", tt("Alphabet guide", "دليل الأبجدية")], ["/learn/arabic-numbers", tt("Numbers", "الأرقام")], ["/learn", tt("All guides", "كل الأدلة")]] },
-            { h: tt("More", "المزيد"), links: [["/blog", tt("Blog", "المدونة")], ["/about", tt("About", "عن الموقع")], ["/privacy", tt("Privacy", "الخصوصية")]] },
+            {
+              h: tt("Site", "الموقع"),
+              links: [
+                ["/blog", tt("Blog", "المدونة")] as [string, string],
+                ...footerInfoLinks.map((l) => [l.href, tt(l.labelEn, l.labelAr)] as [string, string]),
+              ],
+            },
           ].map((col) => (
             <div key={col.h}>
               <h4 className="font-display text-sm font-extrabold uppercase tracking-wide text-ink">{col.h}</h4>
@@ -418,6 +495,15 @@ export function WarmHome({ locale }: { locale: string }) {
         <div className="border-t-2 border-ink/10">
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-5 py-5 text-sm font-semibold text-ink/50 sm:flex-row">
             <p>© 2026 Arab Fingers. {tt("All rights reserved.", "جميع الحقوق محفوظة.")}</p>
+            <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
+              {footerInfoLinks
+                .filter((l) => ["/contact", "/privacy", "/terms"].includes(l.href))
+                .map((l) => (
+                  <Link key={l.href} href={`/${locale}${l.href}`} className="transition hover:text-qalam">
+                    {tt(l.labelEn, l.labelAr)}
+                  </Link>
+                ))}
+            </nav>
           </div>
         </div>
       </footer>

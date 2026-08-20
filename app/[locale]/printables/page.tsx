@@ -314,9 +314,18 @@ export default async function PrintablesPage({ params }: { params: Promise<{ loc
                     {isAr ? s.descAr : s.descEn}
                   </p>
 
-                  <a href={`/printables/${s.id}.pdf`} download className="btn-chunky mt-4 self-start text-sm">
-                    ⬇ {t.download}
-                  </a>
+                  <div className="mt-4 flex flex-wrap items-center gap-3">
+                    <Link href={`/${locale}/printables/${s.id}`} className="btn-chunky self-start text-sm">
+                      {isAr ? "التفاصيل والتحميل" : "See it & download"}
+                    </Link>
+                    <a
+                      href={`/printables/${s.id}.pdf`}
+                      download
+                      className="text-sm font-bold text-qalam underline underline-offset-4"
+                    >
+                      ⬇ {t.download}
+                    </a>
+                  </div>
                 </div>
               </li>
             );

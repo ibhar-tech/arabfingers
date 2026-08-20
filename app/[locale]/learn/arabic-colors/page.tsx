@@ -14,7 +14,7 @@ import { setRequestLocale } from "next-intl/server";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return generatePageMetadata(locale, "/learn/arabic-colors", {
-    titleEn: "Arabic Colors for Kids: 12 Colors with Pronunciation, Nature Examples & Games",
+    titleEn: "Arabic Colours for Kids — Names, Audio + Free Printable Worksheet",
     titleAr: "الألوان بالعربية للأطفال: ١٢ لوناً مع النطق وأمثلة من الطبيعة وألعاب",
     descriptionEn:
       "Learn 12 colors in Arabic with a quick reference table, pronunciation, colors in nature, the masculine/feminine forms explained simply, and a color-hunt game.",

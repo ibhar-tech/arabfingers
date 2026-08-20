@@ -53,7 +53,7 @@
   --color-bubblegum: var(--bubblegum);
   --color-bubblegum-soft: var(--bubblegum-soft);
 
-  --font-sans: var(--font-fredoka);
+  --font-sans: var(--font-baloo);
   --font-display: var(--font-baloo);
   --font-body: var(--font-nunito);
   --font-arabic: var(--font-ibm-plex-arabic);
@@ -173,7 +173,7 @@ body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-fredoka), sans-serif;
+  font-family: var(--font-baloo), sans-serif;
   /* Prevent pull-to-refresh and bounce on mobile */
   touch-action: manipulation;
   -webkit-user-select: none;

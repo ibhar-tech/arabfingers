@@ -12,7 +12,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     titleEn: "About Arab Fingers — Our Mission & Method",
     titleAr: "عن عرب فنجرز — مهمتنا ومنهجنا",
     descriptionEn:
-      "Arab Fingers is a free, open-source bilingual Arabic & English keyboard smash toy for toddlers aged 1–6. Learn about our mission, methodology, and child safety commitment.",
+      "Arab Fingers is a free, open-source bilingual Arabic learning site for children aged 1–6 — parent guides, printable worksheets and a letter game. Our mission, methodology and child safety commitment.",
     descriptionAr:
       "عرب فنجرز هو لعبة لوحة مفاتيح مجانية ومفتوحة المصدر ثنائية اللغة بالعربية والإنجليزية للأطفال من عمر سنة إلى ٦ سنوات. تعرّف على مهمتنا ومنهجنا التعليمي والتزامنا بسلامة الأطفال.",
   });
@@ -58,7 +58,7 @@ function AboutEn() {
         <section>
           <h2 className="mb-2 text-xl font-semibold text-ink font-display">What is ArabFingers?</h2>
           <p className="mb-3">
-            ArabFingers is a free, bilingual (Arabic &amp; English) keyboard smash toy designed specifically for toddlers
+            ArabFingers is a free, bilingual (Arabic &amp; English) Arabic learning site built around a letter game, designed specifically for toddlers
             and pre-schoolers aged 1 to 6. When kids press any key on the keyboard or tap the screen, they see beautiful
             animated Arabic letters with natural pronunciation, 3D floating objects, emoji bursts, and confetti celebrations.
           </p>

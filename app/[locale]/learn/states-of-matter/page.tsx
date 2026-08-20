@@ -12,10 +12,10 @@ import { setRequestLocale } from "next-intl/server";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return generatePageMetadata(locale, "/learn/states-of-matter", {
-    titleEn: "States of Matter for Kids — Interactive Science Lesson",
-    titleAr: "حالات المادة للأطفال — درس علمي تفاعلي",
-    descriptionEn: "An immersive interactive science cartoon teaching children the states of matter: Solid, Liquid, Gas, and Plasma with bilingual Arabic-English narration and molecule simulations.",
-    descriptionAr: "درس كرتوني تفاعلي شيق يعلم الأطفال حالات المادة الأربع: الصلبة والسائلة والغازية والبلازما مع سرد ثنائي اللغة ومحاكاة جزيئات ذكية.",
+    titleEn: "States of Matter in Arabic — Bilingual Science Lesson for Kids",
+    titleAr: "حالات المادة بالعربية — درس علمي ثنائي اللغة للأطفال",
+    descriptionEn: "Learn the states of matter in Arabic and English side by side. Every scene is narrated in both languages, so a child picks up the Arabic words for solid, liquid, gas and plasma while heating and cooling the molecules themselves.",
+    descriptionAr: "تعلّم حالات المادة بالعربية والإنجليزية معاً. كلّ مشهد مرويّ باللغتين، فيلتقط الطفل كلمات الصلب والسائل والغاز والبلازما بالعربية وهو يسخّن الجزيئات ويبرّدها بنفسه.",
     ogType: "article",
     publishedTime: "2026-05-31",
     keywords: [
@@ -131,8 +131,8 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
 
       <LessonStructuredData
         locale={locale}
-        titleEn="States of Matter for Kids — Interactive Science Lesson"
-        titleAr="حالات المادة للأطفال — درس علمي تفاعلي"
+        titleEn="States of Matter in Arabic — Bilingual Science Lesson for Kids"
+        titleAr="حالات المادة بالعربية — درس علمي ثنائي اللغة للأطفال"
         descriptionEn="Learn about Solid, Liquid, Gas, and Plasma through an interactive cartoon with Dr. Hakim and Anas."
         descriptionAr="تعلم عن الحالة الصلبة والسائلة والغازية والبلازما من خلال كرتون تفاعلي مع الدكتور حكيم وأنس."
         slug="states-of-matter"

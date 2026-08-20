@@ -63,7 +63,7 @@ const en: { title: string; updated: string; intro: string; sections: Section[] }
         "Because this site is made for young children, every ad request it sends is marked non-personalised. Google is instructed not to use any profile of you or your child to choose the ads, and not to add this visit to one. That applies to every visitor, in every country, on every page — not only where the law demands it.",
         "Google may still set a cookie for purposes that do not depend on a profile, such as counting how often an ad has been shown and detecting fraudulent clicks. Google's own explanation of how it uses data from sites that use its services is published at policies.google.com/technologies/partner-sites, and you can review your ad settings at any time in Google's Ads Settings.",
         "There are no ads at all on the interactive activities — the keyboard toy, the colouring canvas, the tracing game and the tapping game. Those are the pages a child actually holds, and an ad beside a small finger is an accident waiting to happen.",
-        "In the European Economic Area, the United Kingdom and Switzerland, a consent notice from Google's certified consent management platform appears before any non-essential advertising cookie is set, and you can change or withdraw your answer at any time from the link in that notice.",
+        "Where advertising is served in the European Economic Area, the United Kingdom or Switzerland, a consent notice from Google's certified consent management platform is shown before any non-essential advertising cookie is set, and you can change or withdraw your answer at any time from the link in that notice.",
       ],
     },
     {
@@ -147,7 +147,7 @@ const ar: { title: string; updated: string; intro: string; sections: Section[] }
         "ولأنّ هذا الموقع مصنوع للأطفال الصغار، فكلّ طلب إعلان يرسله موسوم بأنّه غير مخصّص. أي أنّ Google مأمورة بألّا تستعمل أيّ ملفّ عنك أو عن طفلك لاختيار الإعلانات، وبألّا تضيف هذه الزيارة إلى ملفّ. وهذا يسري على كلّ زائر، في كلّ بلد، وفي كلّ صفحة — لا حيث يوجب القانون وحده.",
         "وقد تظلّ Google تضع ملفّ ارتباط لأغراض لا تعتمد على ملفّ شخصي، مثل إحصاء عدد مرّات عرض الإعلان وكشف النقرات الاحتيالية. وتنشر Google شرحها لكيفية استعمالها بيانات المواقع التي تستخدم خدماتها على policies.google.com/technologies/partner-sites، ويمكنك مراجعة إعداداتك الإعلانية متى شئت من إعدادات إعلانات Google.",
         "ولا توجد إعلانات إطلاقاً في الأنشطة التفاعلية — لعبة لوحة المفاتيح، ولوحة التلوين، ولعبة التتبّع، ولعبة النقر. فهذه هي الصفحات التي يمسكها الطفل بيده، والإعلان بجوار إصبع صغير حادثة تنتظر وقوعها.",
-        "وفي المنطقة الاقتصادية الأوروبية والمملكة المتحدة وسويسرا، يظهر إشعار موافقة من منصّة إدارة الموافقة المعتمدة من Google قبل وضع أيّ ملفّ ارتباط إعلاني غير ضروري، ويمكنك تغيير إجابتك أو سحبها متى شئت من الرابط في ذلك الإشعار.",
+        "وحيثما تُعرض الإعلانات في المنطقة الاقتصادية الأوروبية أو المملكة المتحدة أو سويسرا، يظهر إشعار موافقة من منصّة إدارة الموافقة المعتمدة من Google قبل وضع أيّ ملفّ ارتباط إعلاني غير ضروري، ويمكنك تغيير إجابتك أو سحبها متى شئت من الرابط في ذلك الإشعار.",
       ],
     },
     {

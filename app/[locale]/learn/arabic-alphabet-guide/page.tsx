@@ -41,12 +41,12 @@ const alphabetFaqAr = [
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return generatePageMetadata(locale, "/learn/arabic-alphabet-guide", {
-    titleEn: "Arabic Alphabet for Kids: Complete Guide to All 28 Letters",
-    titleAr: "دليل الأبجدية العربية الكامل للأطفال — الحروف الـ٢٨ بالنطق والأمثلة",
+    titleEn: "Arabic Alphabet for Kids — All 28 Letters + Free Printable Chart",
+    titleAr: "الأبجدية العربية للأطفال — الحروف الـ٢٨ ولوحة مجانية للطباعة",
     descriptionEn:
-      "Every Arabic letter explained for parents: how to make each sound, example words, the most common mistakes, and a parent tip — with audio and illustrated letter cards.",
+      "Every Arabic letter explained for parents — how to make each sound, example words and common mistakes — plus a free printable alphabet chart and a tracing sheet for all 28 letters.",
     descriptionAr:
-      "شرح كامل لكل حرف عربي: مخرج الحرف وطريقة نطقه، كلمات للأمثلة، أشهر أخطاء الأطفال، ونصيحة عملية للوالدين — مع الصوت وبطاقات مصورة.",
+      "شرح كامل لكل حرف عربي: مخرجه وطريقة نطقه، وكلمات للأمثلة، وأشهر أخطاء الأطفال — مع لوحة حروف مجانية للطباعة وورقة تتبّع لكلّ حرف من الـ٢٨.",
     ogType: "article",
     publishedTime: "2026-03-05",
     keywords: [
@@ -86,9 +86,31 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
       <h1 className="text-3xl font-semibold text-ink mb-2">
         {isAr ? "دليل الأبجدية العربية الكامل" : "The Arabic Alphabet: A Complete Guide"}
       </h1>
-      <p className="text-base text-ink/75 mb-8">
+      <p className="text-base text-ink/75 mb-6">
         {isAr ? "تعلم جميع الحروف العربية الـ ٢٨ مع النطق والأمثلة" : "Learn all 28 Arabic letters with pronunciation and examples"}
       </p>
+
+      {/* This page collected 3,298 search impressions in three months and returned
+          nine clicks — people arriving from search wanted something printable and
+          had to scroll past 6,000 words to find out we had it. Now they don't. */}
+      <div className="mb-9 rounded-2xl border-2 border-ink bg-saffron-soft/40 p-5">
+        <p className="font-display text-base font-extrabold text-ink">
+          {isAr ? "تريد نسخة للطباعة؟" : "Want this on paper?"}
+        </p>
+        <p className="mt-1 text-sm leading-relaxed text-ink/75">
+          {isAr
+            ? "لوحة الحروف الـ٢٨ في صفحة واحدة للتعليق على الجدار، وورقة تتبّع كاملة لكلّ حرف. ملفات PDF مجانية بلا تسجيل."
+            : "All 28 letters on one sheet to pin on the wall, and a full tracing page for every letter. Free PDFs, no signup."}
+        </p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          <Link href={`/${locale}/printables/arabic-alphabet-chart`} className="btn-chunky text-sm">
+            {isAr ? "لوحة الحروف (صفحة)" : "Alphabet chart (1 page)"}
+          </Link>
+          <Link href={`/${locale}/printables/arabic-alphabet-tracing`} className="btn-chunky btn-chunky-ghost text-sm">
+            {isAr ? "أوراق التتبّع (٢٨ صفحة)" : "Tracing sheets (28 pages)"}
+          </Link>
+        </div>
+      </div>
 
       <div className="mb-10 overflow-hidden rounded-3xl border-[2.5px] border-ink bg-card shadow-[4px_4px_0_0_var(--ink)]">
         <Image

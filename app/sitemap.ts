@@ -46,7 +46,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...localizedUrls("/play", 0.9),
     ...localizedUrls("/learn", 0.9),
     ...localizedUrls("/coloring", 0.8),
-    ...localizedUrls("/printables", 0.8),
+    ...localizedUrls("/printables", 0.9, "monthly"),
+    // One landing page per pack — these are the highest-intent pages on the site,
+    // so they get the top priority the hub used to hold alone.
+    ...worksheetSets.flatMap((s) => localizedUrls(`/printables/${s.id}`, 0.9, "monthly")),
 
     // Science interactive lessons (expanded into full articles 2026-06-11)
     ...localizedUrls("/learn/states-of-matter", 0.8, "monthly", d("2026-06-11")),
@@ -73,6 +76,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...localizedUrls("/learn/best-age-to-learn-arabic", 0.8, "monthly", d("2026-06-12")),
     ...localizedUrls("/learn/bilingual-children-benefits", 0.8, "monthly", d("2026-06-12")),
     ...localizedUrls("/learn/arabic-activities-at-home", 0.8, "monthly", d("2026-06-12")),
+    ...localizedUrls("/learn/arabic-keyboard-layout-for-kids", 0.8, "monthly", d("2026-08-20")),
+    ...localizedUrls("/learn/hardest-arabic-letters", 0.8, "monthly", d("2026-08-20")),
+    ...localizedUrls("/glossary", 0.8, "monthly", d("2026-08-20")),
 
     // The worksheet PDFs themselves. Google indexes PDFs, and the query that
     // already earns most of this site's clicks is literally "...pdf free

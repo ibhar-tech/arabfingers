@@ -12,10 +12,10 @@ import { setRequestLocale } from "next-intl/server";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return generatePageMetadata(locale, "/learn/solar-system", {
-    titleEn: "The Solar System for Kids — Interactive Science Lesson",
-    titleAr: "النظام الشمسي للأطفال — درس علمي تفاعلي",
-    descriptionEn: "An immersive interactive space lesson teaching children about the solar system and gravity: Sun, Mercury, Venus, Earth, Mars, and orbital paths with gravity controls.",
-    descriptionAr: "درس كرتوني تفاعلي شيق يعلم الأطفال النظام الشمسي والجاذبية: كواكب عطارد والزهرة والأرض والمريخ مع مدارات تفاعلية ومحاكي جاذبية ممتع.",
+    titleEn: "The Solar System in Arabic — Bilingual Science Lesson for Kids",
+    titleAr: "النظام الشمسي بالعربية — درس علمي ثنائي اللغة للأطفال",
+    descriptionEn: "Learn the solar system in Arabic and English side by side. Every scene is narrated in both languages, so a child learns the Arabic names of the Sun, the planets and their orbits while steering them around.",
+    descriptionAr: "تعلّم النظام الشمسي بالعربية والإنجليزية معاً. كلّ مشهد مرويّ باللغتين، فيتعلّم الطفل أسماء الشمس والكواكب ومداراتها بالعربية وهو يحرّكها بنفسه.",
     ogType: "article",
     publishedTime: "2026-05-31",
     keywords: [
@@ -130,8 +130,8 @@ export default async function SolarSystemPage({ params }: { params: Promise<{ lo
 
       <LessonStructuredData
         locale={locale}
-        titleEn="The Solar System for Kids — Interactive Science Lesson"
-        titleAr="النظام الشمسي للأطفال — درس علمي تفاعلي"
+        titleEn="The Solar System in Arabic — Bilingual Science Lesson for Kids"
+        titleAr="النظام الشمسي بالعربية — درس علمي ثنائي اللغة للأطفال"
         descriptionEn="Learn about neighboring planets and solar gravity through an interactive cartoon."
         descriptionAr="تعلم عن كواكب المجموعة الشمسية وجاذبية الشمس من خلال كرتون تفاعلي شيق."
         slug="solar-system"

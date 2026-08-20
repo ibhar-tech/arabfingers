@@ -12,10 +12,10 @@ import { setRequestLocale } from "next-intl/server";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return generatePageMetadata(locale, "/learn/water-cycle", {
-    titleEn: "The Water Cycle for Kids — Interactive Science Lesson",
-    titleAr: "دورة المياه للأطفال — درس علمي تفاعلي",
-    descriptionEn: "An immersive interactive weather lesson teaching children the water cycle: Evaporation, Condensation, Precipitation, and Collection, with temperature control and rain simulation.",
-    descriptionAr: "درس كرتوني تفاعلي شيق يعلم الأطفال مراحل دورة المياه الأربع: التبخر والتكاثف والهطول والتجميع مع تحكم في الحرارة ومحاكاة الطقس والمطر.",
+    titleEn: "The Water Cycle in Arabic — Bilingual Science Lesson for Kids",
+    titleAr: "دورة المياه بالعربية — درس علمي ثنائي اللغة للأطفال",
+    descriptionEn: "Learn the water cycle in Arabic and English side by side. Every scene is narrated in both languages, so a child picks up the Arabic words for evaporation, condensation, rain and collection while controlling the temperature and making it rain.",
+    descriptionAr: "تعلّم دورة المياه بالعربية والإنجليزية معاً. كلّ مشهد مرويّ باللغتين، فيلتقط الطفل كلمات التبخّر والتكاثف والهطول والتجميع بالعربية وهو يتحكّم في الحرارة ويصنع المطر.",
     ogType: "article",
     publishedTime: "2026-05-31",
     keywords: [
@@ -128,8 +128,8 @@ export default async function WaterCyclePage({ params }: { params: Promise<{ loc
 
       <LessonStructuredData
         locale={locale}
-        titleEn="The Water Cycle for Kids — Interactive Science Lesson"
-        titleAr="دورة المياه للأطفال — درس علمي تفاعلي"
+        titleEn="The Water Cycle in Arabic — Bilingual Science Lesson for Kids"
+        titleAr="دورة المياه بالعربية — درس علمي ثنائي اللغة للأطفال"
         descriptionEn="Learn about Evaporation, Condensation, Precipitation, and Collection through an interactive cartoon."
         descriptionAr="تعلم عن التبخر والتكاثف والهطول والتجميع من خلال كرتون تفاعلي ممتع."
         slug="water-cycle"
