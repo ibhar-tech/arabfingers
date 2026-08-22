@@ -5,7 +5,8 @@ import { Send, CheckCircle, HelpCircle, MessageSquare } from "lucide-react";
 
 export function ContactForm({ locale }: { locale: string }) {
   const isAr = locale === "ar";
-  const [submitted, setSubmitted] = useState(false);
+  const [handoffStarted, setHandoffStarted] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [topic, setTopic] = useState("general");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -21,32 +22,49 @@ export function ContactForm({ locale }: { locale: string }) {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // Prepares mailto with prefilled content as standard client-side fallback
+    // Hand off to the visitor's mail client — this site has no backend, so
+    // there is nothing server-side to submit to.
     const subject = encodeURIComponent(`[ArabFingers ${topic.toUpperCase()}] from ${name || "Visitor"}`);
     const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nTopic: ${topic}\n\nMessage:\n${message}`);
     window.location.href = `mailto:ibhartech39@gmail.com?subject=${subject}&body=${body}`;
-    setSubmitted(true);
+    setHandoffStarted(true);
   }
 
-  if (submitted) {
+  // Not "submitted": we cannot know whether a mail client actually opened or
+  // sent anything. The follow-up state therefore says exactly what happened
+  // and gives the raw address as the reliable fallback.
+  if (handoffStarted) {
     return (
       <div className="card-stock card-stock-qalam p-8 text-center space-y-4">
         <CheckCircle className="h-12 w-12 text-qalam mx-auto" />
         <h3 className="text-2xl font-extrabold text-ink font-display">
-          {isAr ? "شكراً لتواصلك معنا!" : "Thank you for reaching out!"}
+          {isAr ? "جاهز للإرسال من تطبيق بريدك" : "Ready in your email app"}
         </h3>
         <p className="text-sm font-semibold text-ink/75 max-w-md mx-auto leading-relaxed">
           {isAr
-            ? "تم فتح برنامج بريدك الإلكتروني لإرسال الرسالة. سأقوم بمراجعتها والرد عليك في أقرب وقت (عادة خلال ٤٨ ساعة)."
-            : "Your email client was opened to dispatch the message. I will review and reply personally as soon as possible (usually within 48 hours)."}
+            ? "فُتح تطبيق البريد لديك مع رسالتك جاهزة للإرسال. إن لم يفتح أي شيء، راسلنا مباشرة على:"
+            : "Your email app should have opened with your message pre-filled. If nothing opened, write to us directly at:"}
         </p>
         <button
           type="button"
-          onClick={() => setSubmitted(false)}
-          className="btn-chunky-ghost text-sm mt-3"
+          onClick={() => {
+            navigator.clipboard?.writeText("ibhartech39@gmail.com").catch(() => {});
+            setCopied(true);
+          }}
+          className="mx-auto flex items-center gap-2 rounded-full border-2 border-ink bg-card px-4 py-2 text-sm font-extrabold text-ink shadow-[3px_3px_0_0_var(--ink)] transition hover:bg-saffron-soft"
         >
-          {isAr ? "إرسال رسالة أخرى" : "Send another message"}
+          ibhartech39@gmail.com
+          {copied && isAr ? "· نُسخ!" : copied ? " · copied!" : null}
         </button>
+        <div>
+          <button
+            type="button"
+            onClick={() => { setHandoffStarted(false); setCopied(false); }}
+            className="btn-chunky-ghost text-sm mt-3"
+          >
+            {isAr ? "إرسال رسالة أخرى" : "Write another message"}
+          </button>
+        </div>
       </div>
     );
   }

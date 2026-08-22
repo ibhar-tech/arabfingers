@@ -1,5 +1,8 @@
 import type { MetadataRoute } from "next";
 import { worksheetSets } from "@/lib/worksheets";
+import { lastUpdatedFor } from "@/lib/contentDates";
+import { learnArticles } from "@/lib/related";
+import { blogPosts } from "@/lib/blog-data";
 
 // Always use www to match canonical domain — avoids redirect chains in Google's index
 const rawUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.arabfingers.site";
@@ -7,14 +10,15 @@ const siteUrl = rawUrl.replace("://arabfingers.site", "://www.arabfingers.site")
 
 const locales = ["en", "ar"] as const;
 
+// Fallback for pages whose freshness is the site's, not an article's.
+const DEFAULT_LASTMOD = "2026-07-07";
+
 const d = (s: string) => new Date(s);
-const defaultDate = d("2026-07-07");
 
 function localizedUrls(
   path: string,
   priority: number,
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] = "monthly",
-  lastModified: Date = defaultDate,
 ) {
   // hreflang must be reciprocal AND self-referencing — a set that omits the
   // page's own language is invalid and Google drops the whole cluster. x-default
@@ -26,7 +30,7 @@ function localizedUrls(
 
   return locales.map((locale) => ({
     url: `${siteUrl}/${locale}${path}`,
-    lastModified,
+    lastModified: d(lastUpdatedFor(path, DEFAULT_LASTMOD)),
     changeFrequency,
     priority,
     alternates: { languages },
@@ -46,39 +50,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...localizedUrls("/play", 0.9),
     ...localizedUrls("/learn", 0.9),
     ...localizedUrls("/coloring", 0.8),
-    ...localizedUrls("/printables", 0.9, "monthly"),
+    ...localizedUrls("/printables", 0.9),
     // One landing page per pack — these are the highest-intent pages on the site,
-    // so they get the top priority the hub used to hold alone.
-    ...worksheetSets.flatMap((s) => localizedUrls(`/printables/${s.id}`, 0.9, "monthly", d("2026-08-20"))),
+    // so they get the top priority the hub used to hold alone. Dates come from
+    // lib/contentDates via localizedUrls.
+    ...worksheetSets.flatMap((s) => localizedUrls(`/printables/${s.id}`, 0.9)),
 
     // Science interactive lessons (expanded into full articles 2026-06-11)
-    ...localizedUrls("/learn/states-of-matter", 0.8, "monthly", d("2026-06-11")),
-    ...localizedUrls("/learn/water-cycle", 0.8, "monthly", d("2026-06-11")),
-    ...localizedUrls("/learn/solar-system", 0.8, "monthly", d("2026-06-11")),
-    ...localizedUrls("/learn/gravity", 0.8, "monthly", d("2026-06-11")),
+    ...localizedUrls("/learn/states-of-matter", 0.8),
+    ...localizedUrls("/learn/water-cycle", 0.8),
+    ...localizedUrls("/learn/solar-system", 0.8),
+    ...localizedUrls("/learn/gravity", 0.8),
 
-    // Blog (real last-updated dates — localization & readability pass 2026-06-12)
+    // Blog (real last-updated dates live in lib/blog-data.ts)
     ...localizedUrls("/blog", 0.9, "weekly"),
-    ...localizedUrls("/blog/how-we-built-arabfingers", 0.8, "monthly", d("2026-06-12")),
-    ...localizedUrls("/blog/screen-time-guidelines-arabic-learning", 0.8, "monthly", d("2026-06-12")),
-    ...localizedUrls("/blog/arabic-alphabet-vs-latin-deep-dive", 0.8, "monthly", d("2026-06-12")),
-    ...localizedUrls("/blog/arabic-calligraphy-for-kids", 0.8, "monthly", d("2026-06-12")),
-    ...localizedUrls("/blog/ramadan-activities-arabic-learning", 0.8, "monthly", d("2026-06-12")),
+    ...blogUrls(),
 
-    // Learn articles (real last-updated dates — content deepening pass June 2026)
-    ...localizedUrls("/learn/arabic-alphabet-guide", 0.8, "monthly", d("2026-06-11")),
-    ...localizedUrls("/learn/teaching-arabic-to-kids", 0.8, "monthly", d("2026-06-12")),
-    ...localizedUrls("/learn/arabic-numbers", 0.8, "monthly", d("2026-06-12")),
-    ...localizedUrls("/learn/arabic-colors", 0.8, "monthly", d("2026-06-12")),
-    ...localizedUrls("/learn/first-arabic-words", 0.8, "monthly", d("2026-06-12")),
-    ...localizedUrls("/learn/arabic-letter-forms", 0.8, "monthly", d("2026-06-12")),
-    ...localizedUrls("/learn/arabic-vs-english", 0.8, "monthly", d("2026-06-12")),
-    ...localizedUrls("/learn/best-age-to-learn-arabic", 0.8, "monthly", d("2026-06-12")),
-    ...localizedUrls("/learn/bilingual-children-benefits", 0.8, "monthly", d("2026-06-12")),
-    ...localizedUrls("/learn/arabic-activities-at-home", 0.8, "monthly", d("2026-06-12")),
-    ...localizedUrls("/learn/arabic-keyboard-layout-for-kids", 0.8, "monthly", d("2026-08-20")),
-    ...localizedUrls("/learn/hardest-arabic-letters", 0.8, "monthly", d("2026-08-20")),
-    ...localizedUrls("/glossary", 0.8, "monthly", d("2026-08-20")),
+    // Learn articles (dates from lib/contentDates)
+    ...learnUrls(),
 
     // The worksheet PDFs themselves. Google indexes PDFs, and the query that
     // already earns most of this site's clicks is literally "...pdf free
@@ -86,7 +75,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // the page that links them.
     ...worksheetSets.map((s) => ({
       url: `${siteUrl}/printables/${s.id}.pdf`,
-      lastModified: d("2026-07-31"),
+      lastModified: d(lastUpdatedFor(`/printables/${s.id}`, DEFAULT_LASTMOD)),
       changeFrequency: "yearly" as const,
       priority: 0.7,
     })),
@@ -99,4 +88,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...localizedUrls("/privacy", 0.4, "yearly"),
     ...localizedUrls("/terms", 0.4, "yearly"),
   ];
+}
+
+/** Blog article URLs with their real modification dates from blog-data. */
+function blogUrls(): MetadataRoute.Sitemap {
+  return blogPosts.flatMap((post) =>
+    locales.map((locale) => ({
+      url: `${siteUrl}/${locale}/blog/${post.slug}`,
+      lastModified: d(post.dateModified || post.datePublished),
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+      alternates: {
+        languages: {
+          ...Object.fromEntries(locales.map((l) => [l, `${siteUrl}/${l}/blog/${post.slug}`])),
+          "x-default": `${siteUrl}/en/blog/${post.slug}`,
+        },
+      },
+    })),
+  );
+}
+
+/** Learning-guide URLs; dates come from lib/contentDates (single source). */
+function learnUrls(): MetadataRoute.Sitemap {
+  return learnArticles.flatMap((article) => {
+    const path = `/learn/${article.slug}`;
+    return localizedUrls(path, 0.8);
+  });
 }

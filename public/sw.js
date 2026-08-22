@@ -56,6 +56,29 @@ self.addEventListener("activate", (event) => {
     .catch(() => {});
 });
 
+// Runtime page cache cap. Every visited page is cache.put into CACHE_NAME and,
+// without a cap, lives there until the next CACHE_NAME bump. A device that
+// browses the whole site would hold dozens of HTML snapshots forever; this keeps
+// the most recent MAX_RUNTIME_PAGES of them. Precache staples (the locales,
+// icons, sfx) are never evicted — they are what offline mode promises.
+const MAX_RUNTIME_PAGES = 50;
+const PRECACHE_SET = new Set(PRECACHE_URLS);
+
+async function trimRuntimeCache() {
+  const cache = await caches.open(CACHE_NAME);
+  const keys = await cache.keys();
+  let overflow = keys.length - MAX_RUNTIME_PAGES;
+  if (overflow <= 0) return;
+  // cache.keys() returns entries in insertion order in every shipping browser;
+  // deleting from the front evicts the least recently *added* pages first.
+  for (const key of keys) {
+    if (overflow <= 0) break;
+    const path = new URL(key.url).pathname;
+    if (PRECACHE_SET.has(path)) continue;
+    if (await cache.delete(key)) overflow--;
+  }
+}
+
 self.addEventListener("fetch", (event) => {
   const { request } = event;
 
@@ -70,7 +93,10 @@ self.addEventListener("fetch", (event) => {
       fetch(request)
         .then((response) => {
           const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(request, clone));
+          caches
+            .open(CACHE_NAME)
+            .then((cache) => cache.put(request, clone))
+            .then(trimRuntimeCache);
           return response;
         })
         .catch(() =>

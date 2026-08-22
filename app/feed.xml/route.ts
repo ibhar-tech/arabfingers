@@ -1,12 +1,17 @@
 import { blogPosts } from "@/lib/blog-data";
 import { learnArticles } from "@/lib/related";
+import { lastUpdatedFor } from "@/lib/contentDates";
 
 export const dynamic = "force-static";
+
+const LEARN_DATE_FALLBACK = "2026-06-12";
 
 export async function GET() {
   const SITE_URL = "https://www.arabfingers.site";
 
-  // Combine and sort all articles by date
+  // Combine and sort all articles by date. Learn-article dates come from
+  // lib/contentDates — the same source the sitemap uses — so refreshing an
+  // article updates both with one edit.
   const allArticles = [
     ...blogPosts.map((post) => ({
       title: post.titleEn,
@@ -18,9 +23,7 @@ export async function GET() {
       title: article.titleEn,
       description: article.descEn,
       url: `${SITE_URL}/en/learn/${article.slug}`,
-      // Learn articles don't have explicit dates in related.ts, so we'll use a fixed date or today.
-      // In a real app we'd fetch the actual date, but for now we'll set a static one to avoid spamming.
-      date: new Date("2026-06-12"),
+      date: new Date(lastUpdatedFor(`/learn/${article.slug}`, LEARN_DATE_FALLBACK)),
     })),
   ].sort((a, b) => b.date.getTime() - a.date.getTime());
 

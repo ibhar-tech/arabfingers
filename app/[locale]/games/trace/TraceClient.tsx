@@ -8,6 +8,7 @@ import { RotateCcw, Volume2 } from "lucide-react";
 import { arabicLetters } from "@/lib/arabicMap";
 import { playLetterSound, primeLetterSounds } from "@/lib/letterSounds";
 import { award, getProgress } from "@/lib/progress";
+import { isTraceComplete, traceCoverage, TRACE_DONE_AT } from "@/lib/games/scoring";
 
 /**
  * Trace-the-letter game. One glyph at a time as a dashed outline; the child draws
@@ -21,8 +22,6 @@ import { award, getProgress } from "@/lib/progress";
 
 const PEN = "#10a39a"; // qalam teal — high contrast on the cream canvas
 const BRUSH = 24;
-/** Portion of the glyph that must be covered before the star is awarded. */
-const DONE_AT = 0.7;
 
 export default function TraceClient() {
   const params = useParams();
@@ -223,16 +222,14 @@ export default function TraceClient() {
       return;
     }
 
-    // Covering the whole sheet used to score 100%, because only pixels inside the
-    // glyph were ever counted. Subtracting how much of the background got painted
-    // means a scribble simply stops filling the bar — the child sees why without
-    // needing to be told. Following the letter costs almost nothing here, since
-    // overshoot is a small share of a large background.
-    const covered = painted / offsets.length;
-    const spill = outsideOffsets.length ? spilled / outsideOffsets.length : 0;
-    const ratio = Math.max(0, covered - spill);
+    const ratio = traceCoverage({
+      paintedInside: painted,
+      insideTotal: offsets.length,
+      paintedOutside: spilled,
+      outsideTotal: outsideOffsets.length,
+    });
     setProgress(ratio);
-    if (ratio < DONE_AT || done) return;
+    if (!isTraceComplete(ratio) || done) return;
 
     setDone(true);
     confetti({ particleCount: 160, spread: 75, origin: { y: 0.6 }, colors: [PEN, "#ffb22e", "#ff5da2"] });
@@ -375,8 +372,9 @@ export default function TraceClient() {
       <div className="absolute inset-x-0 bottom-0 z-30 flex flex-col items-center gap-3 px-3 pb-5">
         <div className="h-2.5 w-48 overflow-hidden rounded-full border-2 border-ink/15 bg-white/70">
           <div
+            data-testid="trace-progress-fill"
             className="h-full rounded-full bg-qalam transition-[width] duration-200"
-            style={{ width: `${Math.min(100, (progress / DONE_AT) * 100)}%` }}
+            style={{ width: `${Math.min(100, (progress / TRACE_DONE_AT) * 100)}%` }}
           />
         </div>
 

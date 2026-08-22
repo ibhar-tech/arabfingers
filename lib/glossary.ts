@@ -156,6 +156,3 @@ export const glossaryCount = glossaryCategories.reduce(
   (n, c) => n + c.entries.length,
   0,
 );
-
-/** Every entry, flattened — used for the A–Z index. */
-export const glossaryAll: GlossaryEntry[] = glossaryCategories.flatMap((c) => c.entries);

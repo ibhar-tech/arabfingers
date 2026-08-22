@@ -15,6 +15,44 @@ const CANONICAL_HOST = "www.arabfingers.site";
  * site is never reachable over HTTP even if that setting is lost, plus the HSTS
  * header that stops browsers trying HTTP again.
  */
+/**
+ * Security headers applied to every page response. The site loads Google
+ * AdSense (non-personalized, paused on the toddler stages), so the CSP must
+ * allow its script/iframe/beacon origins; everything else is locked to
+ * same-origin. frame-ancestors 'none' matters here specifically: an embedded
+ * copy of a tap-anywhere toy would collect mistimed taps as ad clicks.
+ *
+ * These live in middleware rather than public/_headers because prerendered
+ * HTML is served through the Worker, not the static-asset pipeline that
+ * _headers governs.
+ */
+const CONTENT_SECURITY_POLICY = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://static.cloudflareinsights.com",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob: https://www.google.com https://*.google.com https://*.googlesyndication.com https://*.doubleclick.net",
+  "font-src 'self' data:",
+  "connect-src 'self' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://www.google.com https://cloudflareinsights.com",
+  "frame-src https://googleads.g.doubleclick.net https://*.googlesyndication.com https://www.google.com",
+  "media-src 'self'",
+  "worker-src 'self'",
+  "manifest-src 'self'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'none'",
+].join("; ");
+
+const SECURITY_HEADERS: Record<string, string> = {
+  "Content-Security-Policy": CONTENT_SECURITY_POLICY,
+  "Referrer-Policy": "strict-origin-when-cross-origin",
+  "X-Content-Type-Options": "nosniff",
+  // XFO for older browsers that ignore frame-ancestors.
+  "X-Frame-Options": "DENY",
+  // No feature this site needs; deny by default except what first-party code uses.
+  "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
+};
+
 export function middleware(request: NextRequest) {
   const url = new URL(request.url);
   // Cloudflare terminates TLS, so the original scheme arrives in the header —
@@ -33,6 +71,9 @@ export function middleware(request: NextRequest) {
   }
 
   const response = NextResponse.next();
+  for (const [header, value] of Object.entries(SECURITY_HEADERS)) {
+    response.headers.set(header, value);
+  }
   if (isProductionHost) {
     response.headers.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
   }

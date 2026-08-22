@@ -52,3 +52,9 @@ next-env.d.ts
 
 # generated sound-effect variants, promoted with --install
 public/sounds/_preview/
+
+# playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/

@@ -19,6 +19,8 @@ import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import QRCode from "qrcode";
+
 import { letterGuide } from "../lib/letterGuide.ts";
 import { numbersData, colorsData, animalsData } from "../lib/worksheets.ts";
 
@@ -129,8 +131,65 @@ function head(kicker) {
   </div>`;
 }
 
-function foot(n, total) {
-  return `<div class="foot"><span>${SITE}</span><span>Page ${n} of ${total}</span></div>`;
+function foot(n, total, qr = "") {
+  return `<div class="foot">
+    <span style="display:flex;align-items:center;gap:2.5mm;">
+      ${qr}
+      <span>${SITE}</span>
+    </span>
+    <span>Page ${n} of ${total}</span>
+  </div>`;
+}
+
+// ---------------------------------------------------------------------------
+// Print → screen loop
+//
+// The worksheets are how most families find this site (Search Console: ~90% of
+// clicks land on /printables), yet a printed sheet is a dead end — the child's
+// next step is hearing the letter said aloud, which paper cannot do. Every page
+// footer therefore carries a small QR code to the on-site activity that pairs
+// with that pack: tracing pages link to the letter game, the chart to the
+// alphabet guide, and so on.
+//
+// QRs render as plain <img> data URLs — no network fetch at print time, so
+// headless Chrome needs no network access and the sheets stay reproducible.
+// ---------------------------------------------------------------------------
+
+const PACK_LINKS = {
+  "arabic-alphabet-chart": {
+    url: `${SITE}/en/learn/arabic-alphabet-guide`,
+    captionEn: "Hear every letter:",
+    captionAr: "استمع لكل حرف:",
+  },
+  "arabic-alphabet-tracing": {
+    url: `${SITE}/en/play`,
+    captionEn: "Play & hear it:",
+    captionAr: "العب واسمع:",
+  },
+  "arabic-numbers-tracing": {
+    url: `${SITE}/en/learn/arabic-numbers`,
+    captionEn: "More numbers:",
+    captionAr: "المزيد عن الأرقام:",
+  },
+  "arabic-colors": {
+    url: `${SITE}/en/learn/arabic-colors`,
+    captionEn: "Colours to hear:",
+    captionAr: "الألوان بالنطق:",
+  },
+  "arabic-animals-coloring": {
+    url: `${SITE}/en/glossary`,
+    captionEn: "More words:",
+    captionAr: "كلمات أكثر:",
+  },
+};
+
+/** Small footer QR for one pack; empty string when the pack has no link. */
+async function qrBlock(setId) {
+  const link = PACK_LINKS[setId];
+  if (!link) return "";
+  const png = await QRCode.toDataURL(link.url, { margin: 0, width: 96 });
+  return `<img src="${png}" width="42" height="42" alt="" aria-hidden="true"/>
+    <span>Scan · امسح<br/>${esc(link.captionEn)}<br/>${esc(link.captionAr)}</span>`;
 }
 
 function doc(title, body) {
@@ -259,7 +318,7 @@ function letterForms(ch) {
   ];
 }
 
-function alphabetSheet(entry, i, total) {
+function alphabetSheet(entry, i, total, qr) {
   const forms = letterForms(entry.ar)
     .map(
       (f) => `<div style="flex:1;text-align:center;padding:2mm 0;border-inline-end:1px solid #ececec;">
@@ -317,15 +376,15 @@ function alphabetSheet(entry, i, total) {
       ${words}
     </div>
 
-    ${foot(i + 1, total)}
+    ${foot(i + 1, total, qr)}
   `);
 }
 
-function buildAlphabet() {
+function buildAlphabet(qr) {
   const total = letterGuide.length;
   return doc(
     "Arabic Alphabet Tracing Worksheets",
-    letterGuide.map((e, i) => alphabetSheet(e, i, total)).join(""),
+    letterGuide.map((e, i) => alphabetSheet(e, i, total, qr)).join(""),
   );
 }
 
@@ -333,7 +392,7 @@ function buildAlphabet() {
 // Set 2 — one-page alphabet chart
 // ---------------------------------------------------------------------------
 
-function buildChart() {
+function buildChart(qr) {
   const cells = letterGuide
     .map(
       (e) => `<div style="border:1px solid #ddd;border-radius:2mm;padding:2mm 1mm;text-align:center;">
@@ -356,7 +415,7 @@ function buildChart() {
       <div class="body">
         <div style="margin-top:5mm;flex:1;display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:3mm;" dir="rtl">${cells}</div>
       </div>
-      ${foot(1, 1)}
+      ${foot(1, 1, qr)}
     `),
   );
 }
@@ -365,7 +424,7 @@ function buildChart() {
 // Set 3 — numbers 1-10
 // ---------------------------------------------------------------------------
 
-function buildNumbers() {
+function buildNumbers(qr) {
   const total = numbersData.length;
   const sheets = numbersData
     .map((n, i) => {
@@ -410,7 +469,7 @@ function buildNumbers() {
           <div class="box grow" style="min-height:34mm;"></div>
         </div>
 
-        ${foot(i + 1, total)}
+        ${foot(i + 1, total, qr)}
       `);
     })
     .join("");
@@ -422,7 +481,7 @@ function buildNumbers() {
 // Set 4 — colours & shapes
 // ---------------------------------------------------------------------------
 
-function buildColors() {
+function buildColors(qr) {
   const total = colorsData.length;
   const sheets = colorsData
     .map((c, i) =>
@@ -453,7 +512,7 @@ function buildColors() {
           <div class="box grow" style="min-height:34mm;"></div>
         </div>
 
-        ${foot(i + 1, total)}
+        ${foot(i + 1, total, qr)}
       `),
     )
     .join("");
@@ -465,7 +524,7 @@ function buildColors() {
 // Set 5 — animals colouring
 // ---------------------------------------------------------------------------
 
-function buildAnimals() {
+function buildAnimals(qr) {
   const total = animalsData.length;
   const sheets = animalsData
     .map((a, i) =>
@@ -496,7 +555,7 @@ function buildAnimals() {
           <div class="box grow" style="min-height:30mm;"></div>
         </div>
 
-        ${foot(i + 1, total)}
+        ${foot(i + 1, total, qr)}
       `),
     )
     .join("");
@@ -573,7 +632,7 @@ function renderThumb(tmp, id, html) {
   return statSync(pngPath).size;
 }
 
-function main() {
+async function main() {
   mkdirSync(OUT_DIR, { recursive: true });
   mkdirSync(THUMB_DIR, { recursive: true });
   const tmp = mkdtempSync(join(tmpdir(), "arabfingers-worksheets-"));
@@ -582,7 +641,7 @@ function main() {
   try {
     const parts = [];
     for (const set of SETS) {
-      const html = set.html();
+      const html = await set.html(await qrBlock(set.id));
       parts.push(html);
       const { bytes } = renderPdf(tmp, set.id, html);
       const thumb = renderThumb(tmp, set.id, html);
@@ -615,4 +674,4 @@ function main() {
   console.log(`\nWorksheets written to public/printables/ (manifest: lib/worksheet-files.json)`);
 }
 
-main();
+await main();

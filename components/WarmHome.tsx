@@ -1,50 +1,33 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useRef } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRef, useState } from "react";
 import {
   Sparkles, Play, BookOpen, ShieldCheck, Volume2, Palette, Printer,
-  WifiOff, Menu, X, Star, Lock, Heart, KeyRound, Baby, Gamepad2,
+  WifiOff, Star, Lock, Heart, KeyRound, Baby, Gamepad2,
 } from "lucide-react";
-import { useAppStore } from "@/store/useAppStore";
 import { LetterBuddy, Sun, StarMascot, Crescent } from "@/components/Mascots";
+import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 
 import { HERO_LETTERS, type HeroLetter } from "@/lib/heroLetters";
-import { footerInfoLinks } from "@/components/PageLayout";
+import { StarTotal } from "@/components/StarTotal";
 import { learnArticles } from "@/lib/related";
 import { blogPosts } from "@/lib/blog-data";
 
-/* Worksheets sits first because that is what people come for: in the three months
-   to 18 Aug 2026, /printables took 787 of the site's 872 search clicks and 91% of
-   named queries were worksheet intent. The game stays prominent — it is what makes
-   the site worth returning to — but it is not what brings anyone here. */
-const NAV = [
-  { href: "", en: "Home", ar: "الرئيسية" },
-  { href: "/printables", en: "Worksheets", ar: "أوراق عمل" },
-  { href: "/games", en: "Games", ar: "ألعاب" },
-  { href: "/learn", en: "Learn", ar: "تعلّم" },
-  { href: "/blog", en: "Blog", ar: "المدونة" },
-  { href: "/about", en: "About", ar: "عن الموقع" },
-];
+/* Worksheets sits first in the nav because that is what people come for: in the
+   three months to 18 Aug 2026, /printables took 787 of the site's 872 search
+   clicks and 91% of named queries were worksheet intent. The game stays
+   prominent — it is what makes the site worth returning to — but it is not what
+   brings anyone here. Link order lives in SiteHeader's NAV_LINKS. */
 
 export function WarmHome({ locale }: { locale: string }) {
   const isAr = locale === "ar";
   const dir = isAr ? "rtl" : "ltr";
-  const pathname = usePathname();
-  const router = useRouter();
-  const setLocale = useAppStore((s) => s.setLocale);
 
-  const [menuOpen, setMenuOpen] = useState(false);
   const [selectedLetter, setSelectedLetter] = useState<HeroLetter>(HERO_LETTERS[0]);
   const [showAllLetters, setShowAllLetters] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  function switchLocale(next: "ar" | "en") {
-    const nextPath = pathname.replace(/^\/(ar|en)(?=\/|$)/, `/${next}`);
-    setLocale(next);
-    router.replace(nextPath);
-  }
 
   function playLetter(l: HeroLetter) {
     setSelectedLetter(l);
@@ -67,64 +50,7 @@ export function WarmHome({ locale }: { locale: string }) {
       </div>
 
       {/* ---------- NAV ---------- */}
-      <header className="sticky top-3 z-30 px-3">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between gap-3 rounded-full border-[2.5px] border-ink bg-card/90 px-4 py-2.5 backdrop-blur-md shadow-[0_4px_0_0_var(--ink)]">
-          <Link href={`/${locale}`} className="flex items-center gap-2 font-display text-lg font-extrabold text-ink">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-ink font-arabic-display text-saffron">ا</span>
-            Arab Fingers
-          </Link>
-          <div className="hidden items-center gap-1 md:flex">
-            {NAV.map((n) => (
-              <Link
-                key={n.href}
-                href={`/${locale}${n.href}`}
-                className="rounded-full px-3 py-1.5 text-sm font-bold text-ink/70 transition hover:bg-saffron-soft hover:text-ink"
-              >
-                {isAr ? n.ar : n.en}
-              </Link>
-            ))}
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="hidden items-center gap-0.5 rounded-full border-2 border-ink p-0.5 text-xs font-bold sm:flex">
-              <button
-                onClick={() => switchLocale("ar")}
-                aria-pressed={isAr}
-                className={`flex min-h-10 min-w-10 items-center justify-center rounded-full px-2.5 transition ${isAr ? "bg-ink text-card" : "text-ink/60"}`}
-              >
-                ع
-              </button>
-              <button
-                onClick={() => switchLocale("en")}
-                aria-pressed={!isAr}
-                className={`flex min-h-10 min-w-10 items-center justify-center rounded-full px-2.5 transition ${!isAr ? "bg-ink text-card" : "text-ink/60"}`}
-              >
-                EN
-              </button>
-            </div>
-            <button
-              aria-label="Menu"
-              onClick={() => setMenuOpen((v) => !v)}
-              className="flex h-11 w-11 items-center justify-center rounded-full border-2 border-ink text-ink md:hidden"
-            >
-              {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
-          </div>
-        </nav>
-        {menuOpen && (
-          <div className="mx-auto mt-2 max-w-6xl rounded-3xl border-[2.5px] border-ink bg-card p-3 shadow-[4px_4px_0_0_var(--ink)] md:hidden">
-            {NAV.map((n) => (
-              <Link key={n.href} href={`/${locale}${n.href}`} onClick={() => setMenuOpen(false)}
-                className="block rounded-xl px-3 py-2.5 text-sm font-bold text-ink/80 hover:bg-saffron-soft">
-                {isAr ? n.ar : n.en}
-              </Link>
-            ))}
-            <div className="mt-2 flex gap-2 border-t-2 border-ink/10 px-3 pt-3">
-              <button onClick={() => { switchLocale("ar"); setMenuOpen(false); }} className={`rounded-full border-2 border-ink px-3 py-1 text-xs font-bold ${isAr ? "bg-ink text-card" : "text-ink"}`}>العربية</button>
-              <button onClick={() => { switchLocale("en"); setMenuOpen(false); }} className={`rounded-full border-2 border-ink px-3 py-1 text-xs font-bold ${!isAr ? "bg-ink text-card" : "text-ink"}`}>English</button>
-            </div>
-          </div>
-        )}
-      </header>
+      <SiteHeader locale={locale} />
 
       {/* ---------- HERO ---------- */}
       <section className="relative mx-auto grid max-w-6xl items-center gap-10 px-5 pt-12 pb-8 sm:pt-16 md:grid-cols-2">
@@ -158,9 +84,10 @@ export function WarmHome({ locale }: { locale: string }) {
             <Link href={`/${locale}/printables`} className="btn-chunky"><Printer className="h-5 w-5" /> {tt("Get the worksheets", "احصل على الأوراق")}</Link>
             <Link href={`/${locale}/play`} className="btn-chunky btn-chunky-ghost"><Gamepad2 className="h-5 w-5" /> {tt("Play the letter game", "العب لعبة الحروف")}</Link>
           </div>
+          <StarTotal locale={locale} />
           <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-bold text-ink/60">
             <span className="inline-flex items-center gap-1.5"><Star className="h-4 w-4 text-saffron" /> {tt("All 28 letters, free", "الحروف الـ٢٨ كاملة، مجاناً")}</span>
-            <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-qalam" /> {tt("Zero data collected", "بدون جمع بيانات")}</span>
+            <span className="inline-flex items-center gap-1.5"><ShieldCheck className="h-4 w-4 text-qalam" /> {tt("No accounts, no profiling", "بلا حسابات ولا تنميط")}</span>
             <span className="inline-flex items-center gap-1.5"><Heart className="h-4 w-4 text-rose" /> {tt("Free, no sign-up", "مجاني، بدون حساب")}</span>
           </div>
         </div>
@@ -168,10 +95,11 @@ export function WarmHome({ locale }: { locale: string }) {
         {/* Slate card: big tappable letter + the alphabet strip */}
         <div className="card-stock card-stock-qalam relative overflow-hidden p-5 sm:p-6 transition-all duration-300">
           <div className="relative mx-auto h-64 w-full sm:h-76">
-            {/* Deliberately CSS, not WebGL. Mounting HeroGlyph here pulled 867 KB of
-                three.js into the most-landed-on page of the site to animate one letter,
-                and mobile never saw it anyway (the old probe bailed under 768px). The
-                real 3D toy still lives on /play, where it IS the product. */}
+            {/* Deliberately CSS, not WebGL. A three.js animated hero here once pulled
+                867 KB into the most-landed-on page of the site to animate one letter,
+                and mobile never saw it anyway (the old probe bailed under 768px) — the
+                component was removed, not moved. The real 3D toy still lives on /play,
+                where it IS the product. */}
             <div
               onClick={() => playLetter(selectedLetter)}
               className="flex h-full flex-col items-center justify-center cursor-pointer select-none"
@@ -310,8 +238,8 @@ export function WarmHome({ locale }: { locale: string }) {
             <ul className="mt-5 space-y-3">
               {[
                 tt("100% free, forever — no subscriptions or in-app purchases.", "مجاني ١٠٠٪ للأبد — بدون اشتراكات أو مشتريات داخل التطبيق."),
-                tt("Zero data collection, no accounts, no tracking.", "بدون أي جمع للبيانات، ولا حسابات، ولا تتبّع."),
-                tt("Clean, child-safe design with parental controls.", "تصميم نظيف وآمن للأطفال مع أدوات تحكم للوالدين."),
+                tt("No accounts, no profiling — your child's play stays on your device.", "بلا حسابات ولا تنميط — لعب طفلك يبقى على جهازك."),
+                tt("Ads never appear on the games a child plays; details in the privacy policy.", "لا إعلانات إطلاقاً في الألعاب التي يقودها الطفل؛ والتفاصيل في سياسة الخصوصية."),
               ].map((li) => (
                 <li key={li} className="flex items-start gap-3 font-semibold text-ink/75">
                   <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-qalam" /> {li}
@@ -458,55 +386,9 @@ export function WarmHome({ locale }: { locale: string }) {
       </section>
 
       {/* ---------- FOOTER ---------- */}
-      <footer className="mt-6 border-t-[2.5px] border-ink bg-card">
-        <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:grid-cols-2 md:grid-cols-4">
-          <div className="sm:col-span-2 md:col-span-1">
-            <div className="flex items-center gap-2 font-display text-lg font-extrabold text-ink">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-ink font-arabic-display text-saffron">ا</span>
-              Arab Fingers
-            </div>
-            <p className="mt-3 max-w-xs text-sm font-semibold text-ink/55">
-              {tt("Free bilingual Arabic letters for kids aged 1–6.", "حروف عربية مجانية ثنائية اللغة للأطفال من ١ إلى ٦ سنوات.")}
-            </p>
-          </div>
-          {[
-            { h: tt("Play", "العب"), links: [["/play", tt("Free play", "لعب حر")], ["/coloring", tt("Coloring", "التلوين")], ["/printables", tt("Worksheets", "أوراق عمل")]] },
-            { h: tt("Learn", "تعلّم"), links: [["/learn/arabic-alphabet-guide", tt("Alphabet guide", "دليل الأبجدية")], ["/learn/arabic-numbers", tt("Numbers", "الأرقام")], ["/learn", tt("All guides", "كل الأدلة")]] },
-            {
-              h: tt("Site", "الموقع"),
-              links: [
-                ["/blog", tt("Blog", "المدونة")] as [string, string],
-                ...footerInfoLinks.map((l) => [l.href, tt(l.labelEn, l.labelAr)] as [string, string]),
-              ],
-            },
-          ].map((col) => (
-            <div key={col.h}>
-              <h4 className="font-display text-sm font-extrabold uppercase tracking-wide text-ink">{col.h}</h4>
-              <ul className="mt-3 space-y-2">
-                {col.links.map(([href, label]) => (
-                  <li key={href}>
-                    <Link href={`/${locale}${href}`} className="text-sm font-semibold text-ink/60 transition hover:text-qalam">{label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <div className="border-t-2 border-ink/10">
-          <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-5 py-5 text-sm font-semibold text-ink/50 sm:flex-row">
-            <p>© 2026 Arab Fingers. {tt("All rights reserved.", "جميع الحقوق محفوظة.")}</p>
-            <nav className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
-              {footerInfoLinks
-                .filter((l) => ["/contact", "/privacy", "/terms"].includes(l.href))
-                .map((l) => (
-                  <Link key={l.href} href={`/${locale}${l.href}`} className="transition hover:text-qalam">
-                    {tt(l.labelEn, l.labelAr)}
-                  </Link>
-                ))}
-            </nav>
-          </div>
-        </div>
-      </footer>
+      <div className="mt-6">
+        <SiteFooter locale={locale} />
+      </div>
     </div>
   );
 }

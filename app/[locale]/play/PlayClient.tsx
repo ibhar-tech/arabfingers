@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { ChevronDown } from "lucide-react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { EmojiBlast } from "@/components/EmojiBlast";
 import { KeyCounter } from "@/components/KeyCounter";
@@ -23,11 +23,10 @@ import {
   arabicLetters,
   type ArabicLetter,
 } from "@/lib/arabicMap";
-import type { AppLocale } from "@/lib/locales";
 import { playChime, playConfetti, playSmash, primeSounds } from "@/lib/sounds";
 import { playLetterSound, primeLetterSounds } from "@/lib/letterSounds";
 import { themes } from "@/lib/themes";
-import { useAppStore } from "@/store/useAppStore";
+import { SETTINGS_STORAGE_KEY, useAppStore } from "@/store/useAppStore";
 
 const ThreeDBackground = dynamic(() => import("@/components/ThreeDBackground"), {
   ssr: false,
@@ -56,12 +55,10 @@ function isParentUiTarget(target: EventTarget | null) {
 }
 
 export default function PlayClient() {
-  const locale = useLocale() as AppLocale;
   const t = useTranslations();
   const theme = useAppStore((state) => state.theme);
   const soundEnabled = useAppStore((state) => state.soundEnabled);
   const milestone = useAppStore((state) => state.milestone);
-  const setLocale = useAppStore((state) => state.setLocale);
   const registerInteraction = useAppStore((state) => state.registerInteraction);
   const clearMilestone = useAppStore((state) => state.clearMilestone);
   const setParentPanelOpen = useAppStore((state) => state.setParentPanelOpen);
@@ -91,21 +88,37 @@ export default function PlayClient() {
 
   // Tapping a specific tile on the on-screen letter bar shows THAT letter, with the
   // same counter/sound/haptics as a key press — intentional learning on touch devices.
+  // In guided mode the tap is ANSWERED like a key press: picking the prompted letter
+  // advances, picking any other counts as a miss. Without this check the grid made
+  // guided mode unwinnable-by-design on tablets — every tap advanced the prompt.
   const showSpecificLetter = useCallback(
     (letter: ArabicLetter) => {
       activate3D();
       void ensureFullscreen();
-      if (typeof window !== "undefined") {
-        const current = parseInt(localStorage.getItem("arab_fingers_total_smashes") || "0", 10);
-        localStorage.setItem("arab_fingers_total_smashes", (current + 1).toString());
-      }
       playSmash(soundEnabled);
       if (navigator.vibrate) navigator.vibrate(25);
       const point = getPoint(window.innerWidth / 2, window.innerHeight * 0.42);
+
+      if (playMode === "guided") {
+        const target = arabicLetters[guidedIndex];
+        const correct = letter.ar === target.ar;
+        if (correct) {
+          advanceGuided();
+          registerInteraction({ kind: "letter", letter, pressed: letter.ar, source: "touch", ...point });
+          if (soundEnabled) playLetterSound(letter.soundId, ttsSpeed);
+          if (navigator.vibrate) navigator.vibrate([30, 20, 30]);
+        } else {
+          markGuidedWrong();
+          registerInteraction({ kind: "letter", letter, pressed: letter.ar, source: "touch", ...point });
+          if (soundEnabled) playLetterSound(target.soundId, ttsSpeed);
+        }
+        return;
+      }
+
       registerInteraction({ kind: "letter", letter, pressed: letter.ar, source: "touch", ...point });
       if (soundEnabled) playLetterSound(letter.soundId, ttsSpeed);
     },
-    [activate3D, registerInteraction, soundEnabled, ttsSpeed],
+    [activate3D, advanceGuided, guidedIndex, markGuidedWrong, playMode, registerInteraction, soundEnabled, ttsSpeed],
   );
 
   async function ensureFullscreen() {
@@ -127,19 +140,26 @@ export default function PlayClient() {
   }
 
   useEffect(() => {
-    setLocale(locale);
     primeSounds();
     primeLetterSounds();
     void ensureFullscreen();
 
+    /* Respect the OS prefers-reduced-motion preference, but only until a parent
+       has made an explicit choice: the persisted settings file existing means a
+       parent has been here before, and their stored Reduce-Motion toggle must
+       win over whatever the OS says on this visit. */
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const osPrefersReducedMotion = () =>
+      localStorage.getItem(SETTINGS_STORAGE_KEY) === null && motionQuery.matches;
 
-    if (motionQuery.matches) {
+    if (osPrefersReducedMotion()) {
       useAppStore.getState().setReduceMotion(true);
     }
 
     function onMotionChange(event: MediaQueryListEvent) {
-      useAppStore.getState().setReduceMotion(event.matches);
+      if (osPrefersReducedMotion()) {
+        useAppStore.getState().setReduceMotion(event.matches);
+      }
     }
 
     motionQuery.addEventListener("change", onMotionChange);
@@ -147,7 +167,7 @@ export default function PlayClient() {
     return () => {
       motionQuery.removeEventListener("change", onMotionChange);
     };
-  }, [locale, setLocale]);
+  }, []);
 
   useEffect(() => {
     function updateParentSequence(value: string) {
@@ -173,12 +193,6 @@ export default function PlayClient() {
     ) {
       void ensureFullscreen();
       activate3D();
-
-      // Track total keys smashed to persist in localStorage for homepage stats widget
-      if (typeof window !== "undefined") {
-        const current = parseInt(localStorage.getItem("arab_fingers_total_smashes") || "0", 10);
-        localStorage.setItem("arab_fingers_total_smashes", (current + 1).toString());
-      }
 
       const currentTheme = themes[theme];
 
@@ -212,11 +226,15 @@ export default function PlayClient() {
 
       if (source === "touch") {
         if (playMode === "guided") {
-          // In guided mode, touch shows the target letter
-          const target = arabicLetters[guidedIndex];
-          advanceGuided();
-          registerInteraction({ kind: "letter", letter: target, pressed: target.ar, source, ...point });
-          if (soundEnabled) playLetterSound(target.soundId, ttsSpeed);
+          /* A bare stage tap carries no letter identity, so it cannot be judged —
+             advancing on ANY touch made guided mode meaningless on tablets. The
+             child answers through the letter tiles (showSpecificLetter), which do
+             check against the prompt. Here they still get sensory feedback so the
+             stage never feels dead. */
+          const emoji =
+            currentTheme.emojis[Math.floor(Math.random() * currentTheme.emojis.length)];
+          registerInteraction({ kind: "fun", emoji, pressed: "", source, ...point });
+          playChime(soundEnabled);
           return;
         }
         const letter = getRandomArabicLetter();
@@ -281,9 +299,11 @@ export default function PlayClient() {
       playChime(soundEnabled);
     }
 
+    /* Keys swallowed entirely, kiosk-style: a toddler's palm landing on F5 or
+       BrowserBack must not navigate away mid-play. */
     const trappedKeys = new Set([
       "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12",
-      "Tab", "Escape", "BrowserBack", "BrowserForward", "BrowserHome",
+      "BrowserBack", "BrowserForward", "BrowserHome",
     ]);
 
     const onKeyDown = (event: KeyboardEvent) => {
@@ -291,7 +311,20 @@ export default function PlayClient() {
         return;
       }
 
-      if (trappedKeys.has(event.key) || event.altKey || event.metaKey || event.ctrlKey) {
+      // Never swallow modifier combos: Ctrl/Cmd+C, browser and OS shortcuts
+      // belong to the adult holding the keyboard.
+      if (event.altKey || event.metaKey || event.ctrlKey) {
+        return;
+      }
+
+      // Tab stays navigation — trapping it made the stage inescapable for
+      // keyboard and switch users. Escape reaches the browser so fullscreen can
+      // always be left. Neither is game input.
+      if (event.key === "Tab" || event.key === "Escape") {
+        return;
+      }
+
+      if (trappedKeys.has(event.key)) {
         event.preventDefault();
         return;
       }

@@ -1,9 +1,10 @@
 # Arab Fingers
 
-> Arab Fingers (عرب فنجرز) is a free, open-source bilingual resource that helps
+> Arab Fingers (عرب فنجرز) is a free bilingual resource that helps
 > families teach the Arabic alphabet to children aged 1–6. It combines an interactive
 > letter game, printable worksheets, and in-depth guides written by a parent-developer,
-> with natural Arabic + English pronunciation. No accounts, no tracking, no data collection.
+> with natural Arabic + English pronunciation. No accounts, no profiling, nothing
+> personal collected; advertising appears on reading pages only, never on the games.
 
 Maintained by Aissa Trad. Contact: ibhartech39@gmail.com
 Languages: English (en), Arabic (ar). Base URL: https://www.arabfingers.site

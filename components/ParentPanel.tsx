@@ -16,10 +16,11 @@ import {
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
-import { startTransition, useState, type ReactNode } from "react";
+import { startTransition, useEffect, useState, type ReactNode } from "react";
 import { themeNames, type ThemeName } from "@/lib/themes";
 import { keyboardLayouts, type KeyboardLayoutId } from "@/lib/keyboardLayouts";
 import { useAppStore, type DisplayMode } from "@/store/useAppStore";
+import { hashPin } from "@/lib/pin";
 import { PinGate } from "@/components/PinGate";
 
 type ToggleRowProps = {
@@ -100,7 +101,6 @@ export function ParentPanel() {
   const setShowCounter = useAppStore((state) => state.setShowCounter);
   const setDisplayMode = useAppStore((state) => state.setDisplayMode);
   const setTheme = useAppStore((state) => state.setTheme);
-  const setLocale = useAppStore((state) => state.setLocale);
   const ttsSpeed = useAppStore((state) => state.ttsSpeed);
   const setTtsSpeed = useAppStore((state) => state.setTtsSpeed);
   const parentPin = useAppStore((state) => state.parentPin);
@@ -108,14 +108,30 @@ export function ParentPanel() {
   const setSessionSummaryOpen = useAppStore((state) => state.setSessionSummaryOpen);
   const keyboardLayout = useAppStore((state) => state.keyboardLayout);
   const setKeyboardLayout = useAppStore((state) => state.setKeyboardLayout);
+  // Subscribed (not getState()) so the play-mode highlight and session stats
+  // re-render when the underlying store slices change — reading the store
+  // imperatively during render froze both until an unrelated re-render.
+  const playMode = useAppStore((state) => state.playMode);
+  const setPlayMode = useAppStore((state) => state.setPlayMode);
+  const keyCount = useAppStore((state) => state.keyCount);
+  const uniqueLetterCount = useAppStore((state) => state.uniqueLetters.size);
+  const sessionStartTime = useAppStore((state) => state.sessionStartTime);
   const [pinUnlocked, setPinUnlocked] = useState(false);
   const [pinInput, setPinInput] = useState("");
+  // The elapsed-minutes readout is derived from Date.now(), which React never
+  // observes — tick periodically while the panel is open so "session time"
+  // advances without any interaction. Minute granularity; no need for 1s ticks.
+  const [, tickClock] = useState(0);
+  useEffect(() => {
+    if (!parentPanelOpen) return;
+    const timer = window.setInterval(() => tickClock((n) => n + 1), 30_000);
+    return () => window.clearInterval(timer);
+  }, [parentPanelOpen]);
 
   function switchLocale(nextLocale: "ar" | "en") {
     const nextPath = pathname.replace(/^\/(ar|en)(?=\/|$)/, `/${nextLocale}`);
 
     startTransition(() => {
-      setLocale(nextLocale);
       router.replace(nextPath);
     });
   }
@@ -211,13 +227,13 @@ export function ParentPanel() {
                 <div className="grid grid-cols-2 gap-2">
                   <SegmentedOption
                     label={t("freePlay")}
-                    selected={useAppStore.getState().playMode === "free"}
-                    onClick={() => useAppStore.getState().setPlayMode("free")}
+                    selected={playMode === "free"}
+                    onClick={() => setPlayMode("free")}
                   />
                   <SegmentedOption
                     label={t("guidedPlay")}
-                    selected={useAppStore.getState().playMode === "guided"}
-                    onClick={() => useAppStore.getState().setPlayMode("guided")}
+                    selected={playMode === "guided"}
+                    onClick={() => setPlayMode("guided")}
                   />
                 </div>
               </section>
@@ -335,16 +351,16 @@ export function ParentPanel() {
                 </div>
                 <div className="grid grid-cols-3 gap-2">
                   <div className="rounded-lg border border-white/8 bg-white/5 p-3 text-center">
-                    <div className="text-lg font-semibold text-accent">{useAppStore.getState().keyCount}</div>
+                    <div className="text-lg font-semibold text-accent">{keyCount}</div>
                     <div className="text-[10px] text-white/40">{t("totalPresses")}</div>
                   </div>
                   <div className="rounded-lg border border-white/8 bg-white/5 p-3 text-center">
-                    <div className="text-lg font-semibold text-accent">{useAppStore.getState().uniqueLetters.size}/28</div>
+                    <div className="text-lg font-semibold text-accent">{uniqueLetterCount}/28</div>
                     <div className="text-[10px] text-white/40">{t("lettersFound")}</div>
                   </div>
                   <div className="rounded-lg border border-white/8 bg-white/5 p-3 text-center">
                     <div className="text-lg font-semibold text-accent">
-                      {Math.floor((Date.now() - useAppStore.getState().sessionStartTime) / 60000)}m
+                      {Math.floor((Date.now() - sessionStartTime) / 60000)}m
                     </div>
                     <div className="text-[10px] text-white/40">{t("sessionTime")}</div>
                   </div>
@@ -397,7 +413,7 @@ export function ParentPanel() {
                     <button
                       type="button"
                       disabled={pinInput.length !== 4}
-                      onClick={() => { setParentPin(pinInput); setPinInput(""); }}
+                      onClick={() => { setParentPin(hashPin(pinInput)); setPinInput(""); }}
                       className="rounded-lg border border-white/10 bg-white/10 px-4 py-2 text-sm text-white transition hover:bg-white/15 disabled:opacity-40 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
                     >
                       {t("pinSet")}

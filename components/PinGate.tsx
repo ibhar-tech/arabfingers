@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { useRef, useState } from "react";
+import { verifyPin } from "@/lib/pin";
 import { useAppStore } from "@/store/useAppStore";
 
 type PinGateProps = {
@@ -29,7 +30,7 @@ export function PinGate({ onUnlock }: PinGateProps) {
 
     if (index === 3 && value) {
       const pin = next.join("");
-      if (pin === parentPin) {
+      if (parentPin !== null && verifyPin(pin, parentPin)) {
         onUnlock();
       } else {
         setError(true);

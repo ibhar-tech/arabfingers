@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { StructuredData } from "@/components/StructuredData";
 import { AdSenseLoader } from "@/components/AdSenseLoader";
+import { WebAnalytics } from "@/components/WebAnalytics";
 import { isLocale, locales, type AppLocale } from "@/lib/locales";
 
 import arMessages from "../../messages/ar.json";
@@ -118,6 +119,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
         <NextIntlClientProvider locale={locale} messages={messages}>
           {children}
         </NextIntlClientProvider>
+        <WebAnalytics />
         <AdSenseLoader />
       </body>
     </html>

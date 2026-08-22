@@ -1,7 +1,7 @@
 "use client";
 
 import { create } from "zustand";
-import type { AppLocale } from "@/lib/locales";
+import { createJSONStorage, persist } from "zustand/middleware";
 import type { ThemeName } from "@/lib/themes";
 import type { ArabicLetter } from "@/lib/arabicMap";
 import type { KeyboardLayoutId } from "@/lib/keyboardLayouts";
@@ -48,7 +48,6 @@ type AppState = {
   currentKey: KeyInteraction | null;
   keyCount: number;
   theme: ThemeName;
-  locale: AppLocale;
   soundEnabled: boolean;
   reduceMotion: boolean;
   showCounter: boolean;
@@ -73,7 +72,6 @@ type AppState = {
   markGuidedWrong: () => void;
   setGuidedShowHint: (show: boolean) => void;
   resetGuided: () => void;
-  setLocale: (locale: AppLocale) => void;
   setTheme: (theme: ThemeName) => void;
   setSoundEnabled: (soundEnabled: boolean) => void;
   setReduceMotion: (reduceMotion: boolean) => void;
@@ -95,81 +93,109 @@ function isMilestone(count: number): boolean {
   return count > 0 && (count % 10 === 0 || specialMilestones.has(count as SpecialMilestone));
 }
 
-export const useAppStore = create<AppState>((set) => ({
-  currentKey: null,
-  keyCount: 0,
-  theme: "daylight",
-  locale: "en",
-  soundEnabled: true,
-  reduceMotion: false,
-  showCounter: true,
-  displayMode: "both",
-  parentPanelOpen: false,
-  /* Phonetic, not standard. On the standard Arabic layout six letter keys map to
-     ligatures and hamza forms that are not among the 28 (b → لا, z → ئ, …), so those
-     presses fell through to the generic "fun" card — while the on-screen tiles label
-     ب as "B". Phonetic covers all 28 and matches those labels. Parents with a real
-     Arabic keyboard can still pick standard or AZERTY in the parent panel. */
-  keyboardLayout: "arabic-phonetic",
-  ttsSpeed: 1,
-  parentPin: null,
-  sessionSummaryOpen: false,
-  milestone: null,
-  interactionId: 0,
-  letterStats: {},
-  uniqueLetters: new Set<string>(),
-  sessionStartTime: Date.now(),
-  playMode: "free",
-  guidedIndex: 0,
-  guidedCorrect: 0,
-  guidedWrong: 0,
-  guidedShowHint: false,
-  setPlayMode: (playMode) => set({ playMode, guidedIndex: 0, guidedCorrect: 0, guidedWrong: 0, guidedShowHint: false }),
-  advanceGuided: () => set((s) => ({ guidedIndex: (s.guidedIndex + 1) % 28, guidedCorrect: s.guidedCorrect + 1, guidedShowHint: false })),
-  markGuidedWrong: () => set((s) => ({ guidedWrong: s.guidedWrong + 1, guidedShowHint: true })),
-  setGuidedShowHint: (guidedShowHint) => set({ guidedShowHint }),
-  resetGuided: () => set({ guidedIndex: 0, guidedCorrect: 0, guidedWrong: 0, guidedShowHint: false }),
-  setLocale: (locale) => set({ locale }),
-  setTheme: (theme) => set({ theme }),
-  setSoundEnabled: (soundEnabled) => set({ soundEnabled }),
-  setReduceMotion: (reduceMotion) => set({ reduceMotion }),
-  setShowCounter: (showCounter) => set({ showCounter }),
-  setDisplayMode: (displayMode) => set({ displayMode }),
-  setParentPanelOpen: (parentPanelOpen) => set({ parentPanelOpen }),
-  setKeyboardLayout: (keyboardLayout) => set({ keyboardLayout }),
-  setTtsSpeed: (ttsSpeed) => set({ ttsSpeed }),
-  setParentPin: (parentPin) => set({ parentPin }),
-  setSessionSummaryOpen: (sessionSummaryOpen) => set({ sessionSummaryOpen }),
-  resetSession: () => set({ keyCount: 0, currentKey: null, milestone: null, sessionSummaryOpen: false, interactionId: 0, letterStats: {}, uniqueLetters: new Set(), sessionStartTime: Date.now() }),
-  registerInteraction: (payload) =>
-    set((state) => {
-      const id = state.interactionId + 1;
-      const keyCount = state.keyCount + 1;
-      const milestone = isMilestone(keyCount)
-        ? { count: keyCount, id }
-        : state.milestone;
+/**
+ * localStorage key for the parent-panel settings. Presence of this key also
+ * means a parent has visited before: PlayClient only applies the OS
+ * prefers-reduced-motion preference while it is absent, so an explicit
+ * Reduce-Motion choice survives both reloads and OS changes.
+ */
+export const SETTINGS_STORAGE_KEY = "arabfingers-settings";
 
-      // Track letter stats
-      const letterStats = { ...state.letterStats };
-      const uniqueLetters = new Set(state.uniqueLetters);
-      if (payload.kind === "letter") {
-        const ar = payload.letter.ar;
-        letterStats[ar] = (letterStats[ar] ?? 0) + 1;
-        uniqueLetters.add(ar);
-      }
+export const useAppStore = create<AppState>()(
+  persist(
+    (set) => ({
+      currentKey: null,
+      keyCount: 0,
+      theme: "daylight",
+      soundEnabled: true,
+      reduceMotion: false,
+      showCounter: true,
+      displayMode: "both",
+      parentPanelOpen: false,
+      /* Phonetic, not standard. On the standard Arabic layout six letter keys map to
+         ligatures and hamza forms that are not among the 28 (b → لا, z → ئ, …), so those
+         presses fell through to the generic "fun" card — while the on-screen tiles label
+         ب as "B". Phonetic covers all 28 and matches those labels. Parents with a real
+         Arabic keyboard can still pick standard or AZERTY in the parent panel. */
+      keyboardLayout: "arabic-phonetic",
+      ttsSpeed: 1,
+      parentPin: null,
+      sessionSummaryOpen: false,
+      milestone: null,
+      interactionId: 0,
+      letterStats: {},
+      uniqueLetters: new Set<string>(),
+      sessionStartTime: Date.now(),
+      playMode: "free",
+      guidedIndex: 0,
+      guidedCorrect: 0,
+      guidedWrong: 0,
+      guidedShowHint: false,
+      setPlayMode: (playMode) => set({ playMode, guidedIndex: 0, guidedCorrect: 0, guidedWrong: 0, guidedShowHint: false }),
+      advanceGuided: () => set((s) => ({ guidedIndex: (s.guidedIndex + 1) % 28, guidedCorrect: s.guidedCorrect + 1, guidedShowHint: false })),
+      markGuidedWrong: () => set((s) => ({ guidedWrong: s.guidedWrong + 1, guidedShowHint: true })),
+      setGuidedShowHint: (guidedShowHint) => set({ guidedShowHint }),
+      resetGuided: () => set({ guidedIndex: 0, guidedCorrect: 0, guidedWrong: 0, guidedShowHint: false }),
+      setTheme: (theme) => set({ theme }),
+      setSoundEnabled: (soundEnabled) => set({ soundEnabled }),
+      setReduceMotion: (reduceMotion) => set({ reduceMotion }),
+      setShowCounter: (showCounter) => set({ showCounter }),
+      setDisplayMode: (displayMode) => set({ displayMode }),
+      setParentPanelOpen: (parentPanelOpen) => set({ parentPanelOpen }),
+      setKeyboardLayout: (keyboardLayout) => set({ keyboardLayout }),
+      setTtsSpeed: (ttsSpeed) => set({ ttsSpeed }),
+      setParentPin: (parentPin) => set({ parentPin }),
+      setSessionSummaryOpen: (sessionSummaryOpen) => set({ sessionSummaryOpen }),
+      resetSession: () => set({ keyCount: 0, currentKey: null, milestone: null, sessionSummaryOpen: false, interactionId: 0, letterStats: {}, uniqueLetters: new Set(), sessionStartTime: Date.now() }),
+      registerInteraction: (payload) =>
+        set((state) => {
+          const id = state.interactionId + 1;
+          const keyCount = state.keyCount + 1;
+          const milestone = isMilestone(keyCount)
+            ? { count: keyCount, id }
+            : state.milestone;
 
-      return {
-        interactionId: id,
-        keyCount,
-        milestone,
-        letterStats,
-        uniqueLetters,
-        currentKey: {
-          ...payload,
-          id,
-          timestamp: Date.now(),
-        } as KeyInteraction,
-      };
+          // Track letter stats
+          const letterStats = { ...state.letterStats };
+          const uniqueLetters = new Set(state.uniqueLetters);
+          if (payload.kind === "letter") {
+            const ar = payload.letter.ar;
+            letterStats[ar] = (letterStats[ar] ?? 0) + 1;
+            uniqueLetters.add(ar);
+          }
+
+          return {
+            interactionId: id,
+            keyCount,
+            milestone,
+            letterStats,
+            uniqueLetters,
+            currentKey: {
+              ...payload,
+              id,
+              timestamp: Date.now(),
+            } as KeyInteraction,
+          };
+        }),
+      clearMilestone: () => set({ milestone: null }),
     }),
-  clearMilestone: () => set({ milestone: null }),
-}));
+    {
+      name: SETTINGS_STORAGE_KEY,
+      storage: createJSONStorage(() => localStorage),
+      version: 1,
+      // Persist ONLY the durable parent settings. Everything else is
+      // per-session play state that must start clean on every visit.
+      partialize: (state) => ({
+        theme: state.theme,
+        soundEnabled: state.soundEnabled,
+        reduceMotion: state.reduceMotion,
+        showCounter: state.showCounter,
+        displayMode: state.displayMode,
+        keyboardLayout: state.keyboardLayout,
+        ttsSpeed: state.ttsSpeed,
+        parentPin: state.parentPin,
+        playMode: state.playMode,
+      }),
+    },
+  ),
+);
