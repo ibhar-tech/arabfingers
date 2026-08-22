@@ -9,6 +9,7 @@ import { arabicLetters } from "@/lib/arabicMap";
 import { playLetterSound, primeLetterSounds } from "@/lib/letterSounds";
 import { award, getProgress } from "@/lib/progress";
 import { isTraceComplete, traceCoverage, TRACE_DONE_AT } from "@/lib/games/scoring";
+import { useAppStore } from "@/store/useAppStore";
 
 /**
  * Trace-the-letter game. One glyph at a time as a dashed outline; the child draws
@@ -49,6 +50,10 @@ export default function TraceClient() {
   const anchor = useRef({ x: 0, y: 0, font: 0 });
 
   const letter = arabicLetters[index];
+
+  // The parent-panel Sound toggle must reach the games too, not just /play.
+  // Imperative read: no re-render, and callbacks always see the current value.
+  const soundEnabled = () => useAppStore.getState().soundEnabled;
 
   useEffect(() => {
     primeLetterSounds();
@@ -233,7 +238,7 @@ export default function TraceClient() {
 
     setDone(true);
     confetti({ particleCount: 160, spread: 75, origin: { y: 0.6 }, colors: [PEN, "#ffb22e", "#ff5da2"] });
-    playLetterSound(letter.soundId);
+    if (soundEnabled()) playLetterSound(letter.soundId);
     setTraced(award("traced", letter.ar).traced);
   }, [done, letter.ar, letter.soundId]);
 
@@ -297,7 +302,7 @@ export default function TraceClient() {
   const goTo = (delta: number) => {
     const next = (index + delta + arabicLetters.length) % arabicLetters.length;
     setIndex(next);
-    playLetterSound(arabicLetters[next].soundId);
+    if (soundEnabled()) playLetterSound(arabicLetters[next].soundId);
   };
 
   return (
@@ -319,7 +324,9 @@ export default function TraceClient() {
           <span className="text-sm font-extrabold text-ink/70">{isAr ? letter.arName : letter.enName}</span>
           <button
             type="button"
-            onClick={() => playLetterSound(letter.soundId)}
+            onClick={() => {
+              if (soundEnabled()) playLetterSound(letter.soundId);
+            }}
             aria-label={isAr ? "استمع للحرف" : "Hear the letter"}
             className="ms-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-ink/60 transition hover:bg-saffron-soft hover:text-ink"
           >

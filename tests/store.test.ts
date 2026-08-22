@@ -61,11 +61,13 @@ describe("registerInteraction", () => {
 });
 
 describe("guided mode", () => {
-  it("advances cyclically through all 28 letters counting correct answers", () => {
+  it("advances cyclically through all 28 letters, restarting the score each lap", () => {
     useAppStore.getState().setPlayMode("guided");
     for (let i = 0; i < 30; i++) useAppStore.getState().advanceGuided();
     const s = useAppStore.getState();
-    expect(s.guidedCorrect).toBe(30);
+    // 28 answers complete a lap and restart the score, so the header reads
+    // "3/28" on the second lap — it used to climb to 29/28 and beyond.
+    expect(s.guidedCorrect).toBe(3);
     expect(s.guidedIndex).toBe(30 % 28);
     // Wrapping around the alphabet must not have skipped any letter:
     const visited = new Set<number>();
@@ -134,6 +136,22 @@ describe("persistence", () => {
     // Session fields fall back to defaults.
     expect(s.keyCount).toBe(0);
     // Restore clean state for other tests.
+    localStorage.clear();
+    await useAppStore.persist.rehydrate();
+    freshState();
+  });
+
+  it("migrates the v1 Normal narration speed (0.9 → 1, the natural pitch)", async () => {
+    localStorage.setItem(
+      SETTINGS_STORAGE_KEY,
+      JSON.stringify({
+        state: { theme: "daylight", ttsSpeed: 0.9 },
+        version: 1,
+      }),
+    );
+    await useAppStore.persist.rehydrate();
+    expect(useAppStore.getState().ttsSpeed).toBe(1);
+
     localStorage.clear();
     await useAppStore.persist.rehydrate();
     freshState();

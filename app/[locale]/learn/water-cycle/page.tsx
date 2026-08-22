@@ -5,7 +5,7 @@ import { ArticleMeta } from "@/components/ArticleMeta";
 import { LessonStructuredData } from "@/components/LessonStructuredData";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
-import WaterCycleInteractive from "@/components/StatesOfMatter/WaterCycleInteractive";
+import InteractiveLoader from "./InteractiveLoader";
 import { WaterCycleDiagram } from "@/components/illustrations/WaterCycleDiagram";
 import { setRequestLocale } from "next-intl/server";
 
@@ -160,7 +160,7 @@ export default async function WaterCyclePage({ params }: { params: Promise<{ loc
 
       {/* Main Flagship Interactive Animation Player */}
       <div className="mb-10 w-full">
-        <WaterCycleInteractive locale={locale} />
+        <InteractiveLoader locale={locale} />
       </div>
 
       {/* Immersive Educational Summary details below the video */}

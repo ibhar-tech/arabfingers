@@ -9,6 +9,7 @@ import { arabicLetters, type ArabicLetter } from "@/lib/arabicMap";
 import { playLetterSound, primeLetterSounds } from "@/lib/letterSounds";
 import { playChime } from "@/lib/sounds";
 import { award, getProgress } from "@/lib/progress";
+import { useAppStore } from "@/store/useAppStore";
 
 /**
  * Tap-the-letter game. The child hears a letter's sound (and sees its name) and taps
@@ -46,12 +47,18 @@ export default function TapClient() {
   // A shuffled deck of all 28 so every letter is asked before any repeats.
   const deck = useRef<number[]>([]);
   const cursor = useRef(0);
+  const advanceTimer = useRef<number | null>(null);
 
   const [question, setQuestion] = useState<Question | null>(null);
   const [wrong, setWrong] = useState<Set<string>>(new Set());
   const [solved, setSolved] = useState(false);
   const [tapped, setTapped] = useState<string[]>([]);
   const [streak, setStreak] = useState(0);
+
+  // The parent-panel Sound toggle must reach the games too, not just /play.
+  // Read imperatively in the audio call sites: subscribing here would re-run
+  // the mount effect below (it depends on nextQuestion) and reshuffle the game.
+  const soundEnabled = () => useAppStore.getState().soundEnabled;
 
   const nextQuestion = useCallback(() => {
     if (cursor.current >= deck.current.length) {
@@ -63,7 +70,7 @@ export default function TapClient() {
     setWrong(new Set());
     setSolved(false);
     setQuestion(q);
-    playLetterSound(q.target.soundId);
+    if (soundEnabled()) playLetterSound(q.target.soundId);
   }, []);
 
   useEffect(() => {
@@ -72,6 +79,11 @@ export default function TapClient() {
     deck.current = shuffle(arabicLetters.map((_, i) => i));
     cursor.current = 0;
     nextQuestion();
+    // The advance timer fires after the child navigates away otherwise, playing
+    // the next letter's audio on top of an unrelated page.
+    return () => {
+      if (advanceTimer.current !== null) window.clearTimeout(advanceTimer.current);
+    };
   }, [nextQuestion]);
 
   const onPick = (letter: ArabicLetter) => {
@@ -80,10 +92,10 @@ export default function TapClient() {
     if (letter.ar === question.target.ar) {
       setSolved(true);
       setStreak((s) => s + 1);
-      playChime(true);
+      if (soundEnabled()) playChime(true);
       confetti({ particleCount: 140, spread: 70, origin: { y: 0.55 }, colors: ["#10a39a", "#ffb22e", "#ff5da2"] });
       setTapped(award("tapped", letter.ar).tapped);
-      window.setTimeout(nextQuestion, 950);
+      advanceTimer.current = window.setTimeout(nextQuestion, 950);
     } else {
       setWrong((prev) => new Set(prev).add(letter.ar));
       setStreak(0);
@@ -127,7 +139,9 @@ export default function TapClient() {
           </p>
           <button
             type="button"
-            onClick={() => playLetterSound(question.target.soundId)}
+            onClick={() => {
+              if (soundEnabled()) playLetterSound(question.target.soundId);
+            }}
             className="btn-chunky flex items-center gap-3 rounded-full px-6 py-4"
             aria-label={isAr ? "استمع مرة أخرى" : "Listen again"}
           >

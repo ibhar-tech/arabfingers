@@ -5,7 +5,7 @@ import { ArticleMeta } from "@/components/ArticleMeta";
 import { LessonStructuredData } from "@/components/LessonStructuredData";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
-import StatesOfMatterInteractive from "@/components/StatesOfMatter/StatesOfMatterInteractive";
+import InteractiveLoader from "./InteractiveLoader";
 import { StatesOfMatterDiagram } from "@/components/illustrations/StatesOfMatterDiagram";
 import { setRequestLocale } from "next-intl/server";
 
@@ -163,7 +163,7 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
 
       {/* Main Flagship Interactive Animation Player */}
       <div className="mb-10 w-full">
-        <StatesOfMatterInteractive locale={locale} />
+        <InteractiveLoader locale={locale} />
       </div>
 
       {/* Immersive Educational Summary details below the video */}

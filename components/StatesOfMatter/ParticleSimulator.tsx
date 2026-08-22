@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect } from "react";
 
 interface ParticleSimulatorProps {
   state: "solid" | "liquid" | "gas" | "plasma";
@@ -36,8 +36,20 @@ export default function ParticleSimulator({
 }: ParticleSimulatorProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [particles, setParticles] = useState<Particle[]>([]);
-  const [clickPops, setClickPops] = useState<{ x: number; y: number; text: string; timer: number }[]>([]);
+  /* Particles and pops live in refs, not state: the animation loop advances
+     them 60x/s, and as state they re-rendered the component and tore down and
+     rebuilt the rAF effect on every single frame. The canvas is their only
+     consumer — nothing in the JSX reads them. */
+  const particlesRef = useRef<Particle[]>([]);
+  const clickPopsRef = useRef<{ x: number; y: number; text: string; timer: number }[]>([]);
+  /* Latest-prop refs so pause/play and the temperature slider are seen by the
+     running loop without restarting it (slider drags fire per pixel). */
+  const playingRef = useRef(isPlaying);
+  playingRef.current = isPlaying;
+  const temperatureRef = useRef(temperature);
+  temperatureRef.current = temperature;
+  /* Asks the (possibly paused) loop for one repaint — used by click pops. */
+  const invalidateRef = useRef<() => void>(() => {});
 
   const isAr = locale === "ar";
 
@@ -118,14 +130,19 @@ export default function ParticleSimulator({
       }
     }
 
-    setParticles(newParticles);
-    setClickPops([]);
+    particlesRef.current = newParticles;
+    clickPopsRef.current = [];
+    // `temperature` only seeds the initial speeds; live changes go through
+    // temperatureRef so slider drags never re-scatter the particles.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
-  // Main physics loop
+  // Main physics loop. Physics mutates the particle/pops refs in place, so this
+  // effect does not depend on them (or on the temperature slider): with state,
+  // it tore down and rebuilt the whole rAF chain on every animation frame.
   useEffect(() => {
-    let animationFrameId: number;
+    let animationFrameId = 0;
+    let dirty = true;
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -136,188 +153,205 @@ export default function ParticleSimulator({
     const height = canvas.height;
 
     const updatePhysics = () => {
-      if (!isPlaying) return;
+      if (!playingRef.current) return;
+
+      const particles = particlesRef.current;
 
       // Speed multipliers based on temperature slider
-      const tempFactor = 0.3 + (temperature / 100) * 2.2;
+      const tempFactor = 0.3 + (temperatureRef.current / 100) * 2.2;
 
-      setParticles((prevParticles) => {
-        const next = prevParticles.map((p) => {
-          const { anchorX, anchorY, rotSpeed } = p;
-          let { x, y, vx, vy, expression, expressionTimer, rotation, trail } = p;
+      for (const p of particles) {
+        const { anchorX, anchorY, rotSpeed } = p;
+        let { x, y, vx, vy, expression, expressionTimer, rotation, trail } = p;
 
-          // expressionTimer handling
-          if (expressionTimer > 0) {
-            expressionTimer--;
-            if (expressionTimer === 0) {
-              expression = "smile";
-            }
-          } else if (Math.random() > 0.995) {
-            // Randomly blink
-            expression = "blink";
-            expressionTimer = 25;
+        // expressionTimer handling
+        if (expressionTimer > 0) {
+          expressionTimer--;
+          if (expressionTimer === 0) {
+            expression = "smile";
+          }
+        } else if (Math.random() > 0.995) {
+          // Randomly blink
+          expression = "blink";
+          expressionTimer = 25;
+        }
+
+        if (state === "solid") {
+          // Vibration around anchor based on temperature
+          const amp = 0.8 + (temperatureRef.current / 100) * 4.8;
+          x = anchorX + (Math.random() - 0.5) * amp;
+          y = anchorY + (Math.random() - 0.5) * amp;
+          vx = 0;
+          vy = 0;
+        } else if (state === "liquid") {
+          // Liquid: Slow drifting, bounce off walls, and slight gravity pull to bottom
+          const gravity = 0.04;
+          vy += gravity;
+
+          // Apply friction/drag to prevent infinite velocity
+          vx *= 0.99;
+          vy *= 0.99;
+
+          x += vx * tempFactor;
+          y += vy * tempFactor;
+
+          // Boundary collision with bottom, top, left, right
+          if (x < p.radius) {
+            x = p.radius;
+            vx = -vx * 0.8;
+          } else if (x > width - p.radius) {
+            x = width - p.radius;
+            vx = -vx * 0.8;
           }
 
-          if (state === "solid") {
-            // Vibration around anchor based on temperature
-            const amp = 0.8 + (temperature / 100) * 4.8;
-            x = anchorX + (Math.random() - 0.5) * amp;
-            y = anchorY + (Math.random() - 0.5) * amp;
-            vx = 0;
-            vy = 0;
-          } else if (state === "liquid") {
-            // Liquid: Slow drifting, bounce off walls, and slight gravity pull to bottom
-            const gravity = 0.04;
-            vy += gravity;
-
-            // Apply friction/drag to prevent infinite velocity
-            vx *= 0.99;
-            vy *= 0.99;
-
-            x += vx * tempFactor;
-            y += vy * tempFactor;
-
-            // Boundary collision with bottom, top, left, right
-            if (x < p.radius) {
-              x = p.radius;
-              vx = -vx * 0.8;
-            } else if (x > width - p.radius) {
-              x = width - p.radius;
-              vx = -vx * 0.8;
-            }
-
-            if (y < p.radius) {
-              y = p.radius;
-              vy = -vy * 0.8;
-            } else if (y > height - p.radius) {
-              y = height - p.radius;
-              vy = -vy * 0.8;
-              // Add a bit of horizontal friction when sliding on bottom
-              vx *= 0.95;
-            }
-
-            rotation += rotSpeed * tempFactor;
-          } else if (state === "gas") {
-            // Gas: Fast bounce off walls, flying in all directions
-            x += vx * tempFactor;
-            y += vy * tempFactor;
-
-            if (x < p.radius) {
-              x = p.radius;
-              vx = -vx;
-            } else if (x > width - p.radius) {
-              x = width - p.radius;
-              vx = -vx;
-            }
-
-            if (y < p.radius) {
-              y = p.radius;
-              vy = -vy;
-            } else if (y > height - p.radius) {
-              y = height - p.radius;
-              vy = -vy;
-            }
-
-            rotation += rotSpeed * tempFactor;
-          } else if (state === "plasma") {
-            // Plasma: Extreme speed, erratic movement, trails
-            // Add a tiny random force to make movement erratic (ionized)
-            vx += (Math.random() - 0.5) * 0.6;
-            vy += (Math.random() - 0.5) * 0.6;
-
-            // Keep speed clamped
-            const speed = Math.sqrt(vx * vx + vy * vy);
-            const maxSpeed = 7 * tempFactor;
-            if (speed > maxSpeed) {
-              vx = (vx / speed) * maxSpeed;
-              vy = (vy / speed) * maxSpeed;
-            }
-
-            x += vx;
-            y += vy;
-
-            if (x < p.radius) {
-              x = p.radius;
-              vx = -vx;
-            } else if (x > width - p.radius) {
-              x = width - p.radius;
-              vx = -vx;
-            }
-
-            if (y < p.radius) {
-              y = p.radius;
-              vy = -vy;
-            } else if (y > height - p.radius) {
-              y = height - p.radius;
-              vy = -vy;
-            }
-
-            // Manage trails
-            trail = [...trail, { x, y }].slice(-6);
-
-            rotation += rotSpeed * 1.5 * tempFactor;
+          if (y < p.radius) {
+            y = p.radius;
+            vy = -vy * 0.8;
+          } else if (y > height - p.radius) {
+            y = height - p.radius;
+            vy = -vy * 0.8;
+            // Add a bit of horizontal friction when sliding on bottom
+            vx *= 0.95;
           }
 
-          return { ...p, x, y, vx, vy, expression, expressionTimer, rotation, trail };
-        });
+          rotation += rotSpeed * tempFactor;
+        } else if (state === "gas") {
+          // Gas: Fast bounce off walls, flying in all directions
+          x += vx * tempFactor;
+          y += vy * tempFactor;
 
-        // Simple elastic collision between particles (for non-solid states)
-        if (state !== "solid") {
-          for (let i = 0; i < next.length; i++) {
-            for (let j = i + 1; j < next.length; j++) {
-              const p1 = next[i];
-              const p2 = next[j];
-              const dx = p2.x - p1.x;
-              const dy = p2.y - p1.y;
-              const dist = Math.sqrt(dx * dx + dy * dy);
-              const minDist = p1.radius + p2.radius;
+          if (x < p.radius) {
+            x = p.radius;
+            vx = -vx;
+          } else if (x > width - p.radius) {
+            x = width - p.radius;
+            vx = -vx;
+          }
 
-              if (dist < minDist) {
-                // Overlap resolution
-                const overlap = minDist - dist;
-                const forceX = (dx / dist) * overlap * 0.5;
-                const forceY = (dy / dist) * overlap * 0.5;
+          if (y < p.radius) {
+            y = p.radius;
+            vy = -vy;
+          } else if (y > height - p.radius) {
+            y = height - p.radius;
+            vy = -vy;
+          }
 
-                if (state === "liquid") {
-                  next[i].x -= forceX * 0.5;
-                  next[i].y -= forceY * 0.5;
-                  next[j].x += forceX * 0.5;
-                  next[j].y += forceY * 0.5;
-                } else {
-                  next[i].x -= forceX;
-                  next[i].y -= forceY;
-                  next[j].x += forceX;
-                  next[j].y += forceY;
-                }
+          rotation += rotSpeed * tempFactor;
+        } else if (state === "plasma") {
+          // Plasma: Extreme speed, erratic movement, trails
+          // Add a tiny random force to make movement erratic (ionized)
+          vx += (Math.random() - 0.5) * 0.6;
+          vy += (Math.random() - 0.5) * 0.6;
 
-                // Elastic collision velocity swap
-                const normalX = dx / dist;
-                const normalY = dy / dist;
-                const kx = p1.vx - p2.vx;
-                const ky = p1.vy - p2.vy;
-                const p = 2 * (normalX * kx + normalY * ky) / 2;
+          // Keep speed clamped
+          const speed = Math.sqrt(vx * vx + vy * vy);
+          const maxSpeed = 7 * tempFactor;
+          if (speed > maxSpeed) {
+            vx = (vx / speed) * maxSpeed;
+            vy = (vy / speed) * maxSpeed;
+          }
 
-                next[i].vx -= p * normalX;
-                next[i].vy -= p * normalY;
-                next[j].vx += p * normalX;
-                next[j].vy += p * normalY;
+          x += vx;
+          y += vy;
+
+          if (x < p.radius) {
+            x = p.radius;
+            vx = -vx;
+          } else if (x > width - p.radius) {
+            x = width - p.radius;
+            vx = -vx;
+          }
+
+          if (y < p.radius) {
+            y = p.radius;
+            vy = -vy;
+          } else if (y > height - p.radius) {
+            y = height - p.radius;
+            vy = -vy;
+          }
+
+          // Manage trails
+          trail = [...trail, { x, y }].slice(-6);
+
+          rotation += rotSpeed * 1.5 * tempFactor;
+        }
+
+        p.x = x;
+        p.y = y;
+        p.vx = vx;
+        p.vy = vy;
+        p.expression = expression;
+        p.expressionTimer = expressionTimer;
+        p.rotation = rotation;
+        p.trail = trail;
+      }
+
+      // Simple elastic collision between particles (for non-solid states)
+      if (state !== "solid") {
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const p1 = particles[i];
+            const p2 = particles[j];
+            const dx = p2.x - p1.x;
+            const dy = p2.y - p1.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            const minDist = p1.radius + p2.radius;
+
+            if (dist < minDist) {
+              // Overlap resolution
+              const overlap = minDist - dist;
+              const forceX = (dx / dist) * overlap * 0.5;
+              const forceY = (dy / dist) * overlap * 0.5;
+
+              if (state === "liquid") {
+                p1.x -= forceX * 0.5;
+                p1.y -= forceY * 0.5;
+                p2.x += forceX * 0.5;
+                p2.y += forceY * 0.5;
+              } else {
+                p1.x -= forceX;
+                p1.y -= forceY;
+                p2.x += forceX;
+                p2.y += forceY;
               }
+
+              // Elastic collision velocity swap
+              const normalX = dx / dist;
+              const normalY = dy / dist;
+              const kx = p1.vx - p2.vx;
+              const ky = p1.vy - p2.vy;
+              const p = 2 * (normalX * kx + normalY * ky) / 2;
+
+              p1.vx -= p * normalX;
+              p1.vy -= p * normalY;
+              p2.vx += p * normalX;
+              p2.vy += p * normalY;
             }
           }
         }
-
-        return next;
-      });
+      }
 
       // Update click pops timer
-      setClickPops((prev) =>
-        prev
-          .map((pop) => ({ ...pop, y: pop.y - 0.7, timer: pop.timer - 1 }))
-          .filter((pop) => pop.timer > 0)
-      );
+      const pops = clickPopsRef.current;
+      for (let i = pops.length - 1; i >= 0; i--) {
+        pops[i].y -= 0.7;
+        pops[i].timer -= 1;
+        if (pops[i].timer <= 0) pops.splice(i, 1);
+      }
     };
 
     const draw = () => {
+      const particles = particlesRef.current;
+      const clickPops = clickPopsRef.current;
+
+      if (!playingRef.current && !dirty) {
+        // Paused with nothing new (no click, no state swap): idle this frame —
+        // skip both physics and the full-canvas repaint while the story halts.
+        animationFrameId = requestAnimationFrame(draw);
+        return;
+      }
+      dirty = false;
+
       ctx.clearRect(0, 0, width, height);
 
       // Draw specialized backgrounds based on state
@@ -588,12 +622,17 @@ export default function ParticleSimulator({
       animationFrameId = requestAnimationFrame(draw);
     };
 
+    invalidateRef.current = () => {
+      dirty = true;
+    };
+
     draw();
 
     return () => {
       cancelAnimationFrame(animationFrameId);
+      invalidateRef.current = () => {};
     };
-  }, [particles, isPlaying, temperature, state, clickPops]);
+  }, [state, isPlaying]);
 
   // Click on Canvas handles particle exciting and cute words
   const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
@@ -605,6 +644,8 @@ export default function ParticleSimulator({
     const rect = canvas.getBoundingClientRect();
     const clickX = ((e.clientX - rect.left) / rect.width) * canvas.width;
     const clickY = ((e.clientY - rect.top) / rect.height) * canvas.height;
+
+    const particles = particlesRef.current;
 
     // Find closest particle
     let closestIndex = -1;
@@ -621,23 +662,13 @@ export default function ParticleSimulator({
 
     if (closestIndex !== -1 && minDist < 35) {
       // Excite this particle!
-      setParticles((prev) =>
-        prev.map((p, idx) => {
-          if (idx === closestIndex) {
-            // Apply bounce force
-            const angle = Math.random() * Math.PI * 2;
-            const force = state === "solid" ? 0 : 5;
-            return {
-              ...p,
-              vx: Math.cos(angle) * force,
-              vy: Math.sin(angle) * force - 2,
-              expression: "excited",
-              expressionTimer: 90, // remain excited for 1.5 seconds
-            };
-          }
-          return p;
-        })
-      );
+      const target = particles[closestIndex];
+      const angle = Math.random() * Math.PI * 2;
+      const force = state === "solid" ? 0 : 5;
+      target.vx = Math.cos(angle) * force;
+      target.vy = Math.sin(angle) * force - 2;
+      target.expression = "excited";
+      target.expressionTimer = 90; // remain excited for 1.5 seconds
 
       // Add a visual kid-friendly pop!
       const wordsAr = ["ياي! 🎉", "أنا أتحرك! 💨", "رائع! ✨", "مرحباً! 👋", "حرارة! 🔥"];
@@ -645,15 +676,15 @@ export default function ParticleSimulator({
       const pool = isAr ? wordsAr : wordsEn;
       const randomWord = pool[Math.floor(Math.random() * pool.length)];
 
-      setClickPops((prev) => [
-        ...prev,
-        {
-          x: clickX,
-          y: clickY - 15,
-          text: randomWord,
-          timer: 60, // frames duration
-        },
-      ]);
+      clickPopsRef.current.push({
+        x: clickX,
+        y: clickY - 15,
+        text: randomWord,
+        timer: 60, // frames duration
+      });
+
+      // Repaint even while the story is paused so the pop is not invisible.
+      invalidateRef.current();
     }
   };
 

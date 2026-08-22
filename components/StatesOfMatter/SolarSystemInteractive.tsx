@@ -217,7 +217,9 @@ export default function SolarSystemInteractive({ locale = "ar" }: SolarSystemInt
   const reduceMotion = useAppStore((state) => state.reduceMotion);
 
   const [currentSceneIndex, setCurrentSceneIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
+  // Start paused: autoplaying narration forced the full clips (~1.5-2.6 MB
+  // per page) down before any user gesture — and the play() was blocked anyway.
+  const [isPlaying, setIsPlaying] = useState(false);
   const [playbackSpeed, setPlaybackSpeed] = useState(1.0);
   const [sceneProgress, setSceneProgress] = useState(0);
   const [gravityFactor, setGravityFactor] = useState(50);
@@ -227,6 +229,11 @@ export default function SolarSystemInteractive({ locale = "ar" }: SolarSystemInt
 
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  // Latest play state for async callbacks that must not capture a stale value.
+  const playingRef = useRef(isPlaying);
+  playingRef.current = isPlaying;
+  // Celebration confetti interval, so it can be cleared on unmount.
+  const confettiTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const activeScene = STORYBOARD[currentSceneIndex];
 
@@ -240,25 +247,25 @@ export default function SolarSystemInteractive({ locale = "ar" }: SolarSystemInt
     const stepIncrement = (100 / totalSteps) * playbackSpeed;
 
     timerRef.current = setInterval(() => {
-      setSceneProgress((prev) => {
-        const next = prev + stepIncrement;
-        if (next >= 100) {
-          if (currentSceneIndex < STORYBOARD.length - 1) {
-            setCurrentSceneIndex((idx) => idx + 1);
-            return 0;
-          } else {
-            setIsPlaying(false);
-            return 100;
-          }
-        }
-        return next;
-      });
+      setSceneProgress((prev) => Math.min(prev + stepIncrement, 100));
     }, stepMs);
 
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
   }, [isPlaying, currentSceneIndex, playbackSpeed, activeScene.duration]);
+
+  // Scene-boundary handling lives outside the progress updater: updaters must be
+  // pure, and StrictMode double-invokes them — the nested advance used to fire
+  // twice and skip a scene in development.
+  useEffect(() => {
+    if (sceneProgress < 100) return;
+    if (currentSceneIndex < STORYBOARD.length - 1) {
+      setCurrentSceneIndex((idx) => idx + 1); // the scene effect resets progress
+    } else {
+      setIsPlaying(false);
+    }
+  }, [sceneProgress, currentSceneIndex]);
 
   const handleGravityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setGravityFactor(parseInt(e.target.value));
@@ -299,7 +306,9 @@ export default function SolarSystemInteractive({ locale = "ar" }: SolarSystemInt
     audioRef.current = audio;
 
     audio.addEventListener("canplaythrough", () => {
-      if (isPlaying) {
+      // playingRef, not the captured isPlaying: the capture went stale when the
+      // user paused before buffering finished, restarting narration on its own.
+      if (playingRef.current) {
         audio.play().catch(() => {});
       }
     });
@@ -318,7 +327,9 @@ export default function SolarSystemInteractive({ locale = "ar" }: SolarSystemInt
       setGravityFactor(activeScene.defaultGravity);
     }
 
-    playDialogue();
+    // Only when actually playing: a paused start must not download
+    // narration before the first Play press.
+    if (playingRef.current) playDialogue();
 
     if (activeScene.id === 9 && !reduceMotion) {
       const duration = 4.5 * 1000;
@@ -333,6 +344,7 @@ export default function SolarSystemInteractive({ locale = "ar" }: SolarSystemInt
         confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
         confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
       }, 250);
+      confettiTimerRef.current = confettiInterval;
     }
 
     return () => {
@@ -340,6 +352,9 @@ export default function SolarSystemInteractive({ locale = "ar" }: SolarSystemInt
         audioRef.current.pause();
         audioRef.current = null;
       }
+      // Mid-celebration navigation left this firing on a dead component.
+      if (confettiTimerRef.current) clearInterval(confettiTimerRef.current);
+      confettiTimerRef.current = null;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentSceneIndex, soundEnabled, locale]);
@@ -351,12 +366,19 @@ export default function SolarSystemInteractive({ locale = "ar" }: SolarSystemInt
     if (isPlaying) {
       if (audioRef.current && audioRef.current.paused) {
         audioRef.current.play().catch(() => {});
+      } else if (!audioRef.current) {
+        // Narration starts paused: the first Play press creates the audio, so
+        // nothing downloads before a user gesture.
+        playDialogue();
       }
     } else {
       if (audioRef.current && !audioRef.current.paused) {
         audioRef.current.pause();
       }
     }
+    // playDialogue is redefined every render; listing it would re-run this
+    // effect on every render. It is only ever called on the isPlaying edge.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPlaying]);
 
   const hakimTalking = activeScene.speaker === "hakim";
@@ -685,7 +707,15 @@ export default function SolarSystemInteractive({ locale = "ar" }: SolarSystemInt
           <div className="flex items-center">
             <button
               type="button"
-              onClick={() => setIsPlaying(!isPlaying)}
+              onClick={() => {
+                // Progress sits at 100 on the ended story — plain Play would
+                // snap straight back to paused. Restart instead.
+                if (!isPlaying && currentSceneIndex === STORYBOARD.length - 1 && sceneProgress >= 100) {
+                  handleReplay();
+                } else {
+                  setIsPlaying(!isPlaying);
+                }
+              }}
               className="w-12 h-12 flex items-center justify-center rounded-2xl bg-accent hover:scale-105 active:scale-95 text-[#050816] font-bold shadow-xl shadow-accent/20 transition cursor-pointer"
               title={isPlaying ? UI_TXT.pause : UI_TXT.play}
               aria-label={isPlaying ? UI_TXT.pause : UI_TXT.play}

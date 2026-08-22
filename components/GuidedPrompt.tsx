@@ -24,7 +24,7 @@ export function GuidedPrompt() {
       <div className="flex items-center gap-3 rounded-2xl stage-chip px-5 py-3">
         {/* Progress */}
         <div className="text-xs font-semibold opacity-45">
-          {guidedCorrect}/28
+          {guidedCorrect}/{arabicLetters.length}
         </div>
 
         {/* Prompt */}

@@ -1,5 +1,5 @@
-"use client";
-
+// Server component: plain anchor navigation, nothing interactive — keeping it
+// out of the client boundary trims hydration from every article page.
 type TOCItem = {
   id: string;
   text: string;

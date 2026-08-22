@@ -1,10 +1,9 @@
-"use client";
-
+// Server component: no hooks or handlers here, and dropping the old
+// "use client" keeps every page that renders this shell out of the client
+// bundle boundary (SiteHeader/SiteFooter carry their own directives).
 import type { ReactNode } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-
-export { footerInfoLinks } from "@/components/SiteFooter";
 
 type PageLayoutProps = {
   locale: string;

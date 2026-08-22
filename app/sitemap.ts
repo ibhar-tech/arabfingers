@@ -62,6 +62,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...localizedUrls("/learn/solar-system", 0.8),
     ...localizedUrls("/learn/gravity", 0.8),
 
+    // Bilingual glossary (linked from the footer; was missing from the map)
+    ...localizedUrls("/glossary", 0.6),
+
     // Blog (real last-updated dates live in lib/blog-data.ts)
     ...localizedUrls("/blog", 0.9, "weekly"),
     ...blogUrls(),

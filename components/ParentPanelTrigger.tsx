@@ -84,6 +84,14 @@ export function ParentPanelTrigger() {
         onPointerUp={reset}
         onPointerLeave={reset}
         onPointerCancel={reset}
+        onClick={(event) => {
+          // Keyboard activation (Enter/Space) fires click with detail 0 — open
+          // directly. Pointer clicks keep the hold-to-open kid-proofing, and
+          // their click events carry detail > 0 so they are ignored here.
+          if (event.detail === 0) {
+            setParentPanelOpen(true);
+          }
+        }}
         className="group relative flex items-center gap-2.5 rounded-xl stage-chip stage-chip-hover px-3.5 py-2.5 transition"
       >
         <span

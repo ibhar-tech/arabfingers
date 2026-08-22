@@ -3,6 +3,7 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import type { ThemeName } from "@/lib/themes";
+import { arabicLetters } from "@/lib/arabicMap";
 import type { ArabicLetter } from "@/lib/arabicMap";
 import type { KeyboardLayoutId } from "@/lib/keyboardLayouts";
 
@@ -132,7 +133,16 @@ export const useAppStore = create<AppState>()(
       guidedWrong: 0,
       guidedShowHint: false,
       setPlayMode: (playMode) => set({ playMode, guidedIndex: 0, guidedCorrect: 0, guidedWrong: 0, guidedShowHint: false }),
-      advanceGuided: () => set((s) => ({ guidedIndex: (s.guidedIndex + 1) % 28, guidedCorrect: s.guidedCorrect + 1, guidedShowHint: false })),
+      advanceGuided: () =>
+        set((s) => {
+          const nextIndex = (s.guidedIndex + 1) % arabicLetters.length;
+          return {
+            guidedIndex: nextIndex,
+            // A completed lap restarts the score so the header never reads 29/28.
+            guidedCorrect: nextIndex === 0 ? 1 : s.guidedCorrect + 1,
+            guidedShowHint: false,
+          };
+        }),
       markGuidedWrong: () => set((s) => ({ guidedWrong: s.guidedWrong + 1, guidedShowHint: true })),
       setGuidedShowHint: (guidedShowHint) => set({ guidedShowHint }),
       resetGuided: () => set({ guidedIndex: 0, guidedCorrect: 0, guidedWrong: 0, guidedShowHint: false }),
@@ -182,7 +192,15 @@ export const useAppStore = create<AppState>()(
     {
       name: SETTINGS_STORAGE_KEY,
       storage: createJSONStorage(() => localStorage),
-      version: 1,
+      version: 2,
+      // v2: "Normal" narration speed changed from 0.9 to 1 — 1.0 is the
+      // recording's natural pitch, 0.9 audibly pitch-shifts it (see
+      // lib/letterSounds.ts). Remap the old persisted value so existing
+      // parents keep "Normal" selected instead of a dangling unselected state.
+      migrate: (persisted) => {
+        const previous = (persisted ?? {}) as { ttsSpeed?: number };
+        return { ...previous, ttsSpeed: previous.ttsSpeed === 0.9 ? 1 : previous.ttsSpeed };
+      },
       // Persist ONLY the durable parent settings. Everything else is
       // per-session play state that must start clean on every visit.
       partialize: (state) => ({

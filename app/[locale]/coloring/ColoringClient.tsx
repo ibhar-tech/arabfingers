@@ -7,6 +7,7 @@ import confetti from "canvas-confetti";
 import { Brush, Eraser, PaintBucket, RotateCcw, Sticker, Volume2 } from "lucide-react";
 import { arabicLetters } from "@/lib/arabicMap";
 import { playLetterSound, primeLetterSounds } from "@/lib/letterSounds";
+import { useAppStore } from "@/store/useAppStore";
 
 /**
  * Trace-and-colour sheet. One letter at a time on a paper-coloured stage, with a
@@ -64,11 +65,20 @@ export default function ColoringClient() {
 
   const letter = arabicLetters[index];
 
+  // The parent-panel Sound toggle must reach the games too, not just /play.
+  // Imperative read: no re-render, and callbacks always see the current value.
+  const soundEnabled = () => useAppStore.getState().soundEnabled;
+
   useEffect(() => {
     primeLetterSounds();
     try {
       const saved = localStorage.getItem(DONE_KEY);
-      if (saved) setCollected(JSON.parse(saved));
+      // Array.isArray: valid-but-wrong-shape JSON ("5", {}) would otherwise make
+      // the includes()/length reads below misreport the star count.
+      if (saved) {
+        const parsed: unknown = JSON.parse(saved);
+        if (Array.isArray(parsed)) setCollected(parsed.filter((v): v is string => typeof v === "string"));
+      }
     } catch {
       // A blocked or corrupt localStorage just means no stars; not worth surfacing.
     }
@@ -259,7 +269,7 @@ export default function ColoringClient() {
 
     setDone(true);
     confetti({ particleCount: 160, spread: 75, origin: { y: 0.6 }, colors: COLORS });
-    playLetterSound(letter.soundId);
+    if (soundEnabled()) playLetterSound(letter.soundId);
     setCollected((previous) => {
       if (previous.includes(letter.ar)) return previous;
       const next = [...previous, letter.ar];
@@ -330,7 +340,14 @@ export default function ColoringClient() {
   };
 
   const onPointerDown = (event: React.PointerEvent<HTMLCanvasElement>) => {
-    event.currentTarget.setPointerCapture(event.pointerId);
+    // Capture keeps the stroke tracking a finger that slides off the canvas. It can
+    // throw for an already-released pointer; a failed capture must not abort the
+    // tap (TraceClient guards the identical call for the same reason).
+    try {
+      event.currentTarget.setPointerCapture(event.pointerId);
+    } catch {
+      // paint anyway
+    }
     if (tool === "fill") {
       fillLetter();
       return;
@@ -361,7 +378,7 @@ export default function ColoringClient() {
 
   const goTo = (delta: number) => {
     setIndex((prev) => (prev + delta + arabicLetters.length) % arabicLetters.length);
-    playLetterSound(arabicLetters[(index + delta + arabicLetters.length) % arabicLetters.length].soundId);
+    if (soundEnabled()) playLetterSound(arabicLetters[(index + delta + arabicLetters.length) % arabicLetters.length].soundId);
   };
 
   const tools: { id: Tool; icon: typeof Brush; label: string }[] = [
@@ -392,7 +409,9 @@ export default function ColoringClient() {
           </span>
           <button
             type="button"
-            onClick={() => playLetterSound(letter.soundId)}
+            onClick={() => {
+              if (soundEnabled()) playLetterSound(letter.soundId);
+            }}
             aria-label={isAr ? "استمع للحرف" : "Hear the letter"}
             className="ms-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-ink/60 transition hover:bg-saffron-soft hover:text-ink"
           >

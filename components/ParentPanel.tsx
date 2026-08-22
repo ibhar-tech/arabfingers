@@ -17,6 +17,7 @@ import {
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname, useRouter } from "next/navigation";
 import { startTransition, useEffect, useState, type ReactNode } from "react";
+import { arabicLetters } from "@/lib/arabicMap";
 import { themeNames, type ThemeName } from "@/lib/themes";
 import { keyboardLayouts, type KeyboardLayoutId } from "@/lib/keyboardLayouts";
 import { useAppStore, type DisplayMode } from "@/store/useAppStore";
@@ -332,8 +333,8 @@ export function ParentPanel() {
                   />
                   <SegmentedOption
                     label={t("ttsSpeedNormal")}
-                    selected={ttsSpeed === 0.9}
-                    onClick={() => setTtsSpeed(0.9)}
+                    selected={ttsSpeed === 1}
+                    onClick={() => setTtsSpeed(1)}
                   />
                   <SegmentedOption
                     label={t("ttsSpeedFast")}
@@ -355,7 +356,7 @@ export function ParentPanel() {
                     <div className="text-[10px] text-white/40">{t("totalPresses")}</div>
                   </div>
                   <div className="rounded-lg border border-white/8 bg-white/5 p-3 text-center">
-                    <div className="text-lg font-semibold text-accent">{uniqueLetterCount}/28</div>
+                    <div className="text-lg font-semibold text-accent">{uniqueLetterCount}/{arabicLetters.length}</div>
                     <div className="text-[10px] text-white/40">{t("lettersFound")}</div>
                   </div>
                   <div className="rounded-lg border border-white/8 bg-white/5 p-3 text-center">

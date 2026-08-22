@@ -5,7 +5,7 @@ import { ArticleMeta } from "@/components/ArticleMeta";
 import { LessonStructuredData } from "@/components/LessonStructuredData";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
-import GravityInteractive from "@/components/StatesOfMatter/GravityInteractive";
+import InteractiveLoader from "./InteractiveLoader";
 import { GravityDiagram } from "@/components/illustrations/GravityDiagram";
 import { setRequestLocale } from "next-intl/server";
 
@@ -160,7 +160,7 @@ export default async function GravityPage({ params }: { params: Promise<{ locale
 
       {/* Main Flagship Interactive Animation Player */}
       <div className="mb-10 w-full">
-        <GravityInteractive locale={locale} />
+        <InteractiveLoader locale={locale} />
       </div>
 
       {/* Immersive Educational Summary details below the video */}

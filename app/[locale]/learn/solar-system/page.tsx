@@ -5,7 +5,7 @@ import { ArticleMeta } from "@/components/ArticleMeta";
 import { LessonStructuredData } from "@/components/LessonStructuredData";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
-import SolarSystemInteractive from "@/components/StatesOfMatter/SolarSystemInteractive";
+import InteractiveLoader from "./InteractiveLoader";
 import { SolarSystemDiagram } from "@/components/illustrations/SolarSystemDiagram";
 import { setRequestLocale } from "next-intl/server";
 
@@ -162,7 +162,7 @@ export default async function SolarSystemPage({ params }: { params: Promise<{ lo
 
       {/* Main Flagship Interactive Animation Player */}
       <div className="mb-10 w-full">
-        <SolarSystemInteractive locale={locale} />
+        <InteractiveLoader locale={locale} />
       </div>
 
       {/* Immersive Educational Summary details below the video */}
