@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import sitemap from "@/app/sitemap";
 import { worksheetSets } from "@/lib/worksheets";
+import { letterWorksheetPages } from "@/lib/letterWorksheets";
 
 const SITE = "https://www.arabfingers.site";
 
@@ -14,7 +15,7 @@ describe("sitemap", () => {
     for (const e of pages) {
       expect(e.url.startsWith(`${SITE}/en`) || e.url.startsWith(`${SITE}/ar`)).toBe(true);
     }
-    expect(pdfs).toHaveLength(worksheetSets.length);
+    expect(pdfs).toHaveLength(worksheetSets.length + letterWorksheetPages.length);
   });
 
   it("never lists the bare root (it 308-redirects to /en)", () => {
@@ -49,6 +50,13 @@ describe("sitemap", () => {
     for (const set of worksheetSets) {
       const pdf = pdfs.find((e) => e.url === `${SITE}/printables/${set.id}.pdf`);
       expect(pdf, `${set.id}.pdf missing`).toBeTruthy();
+    }
+    for (const p of letterWorksheetPages) {
+      const pdf = pdfs.find((e) => e.url === `${SITE}/printables/letters/${p.slug}.pdf`);
+      expect(pdf, `letters/${p.slug}.pdf missing`).toBeTruthy();
+      // …and each letter has both locale page URLs.
+      expect(pages.some((e) => e.url === `${SITE}/en/printables/letters/${p.slug}`), `en letters/${p.slug} page missing`).toBe(true);
+      expect(pages.some((e) => e.url === `${SITE}/ar/printables/letters/${p.slug}`), `ar letters/${p.slug} page missing`).toBe(true);
     }
   });
 });

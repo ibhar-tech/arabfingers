@@ -4,6 +4,7 @@ import { getRelatedArticles } from "@/lib/related";
 import Link from "next/link";
 import Image from "next/image";
 import { PageLayout } from "@/components/PageLayout";
+import { WorksheetCrossLink } from "@/components/WorksheetCrossLink";
 import { ArticleMeta } from "@/components/ArticleMeta";
 import { FaqSection } from "@/components/FaqSection";
 import { isLocale } from "@/lib/locales";
@@ -264,6 +265,14 @@ export default async function FirstArabicWordsPage({ params }: { params: Promise
         </Link>
       </div>
       <RelatedArticles locale={locale} articles={getRelatedArticles(locale, "first-arabic-words")} />
+      <WorksheetCrossLink
+        locale={locale}
+        packId="arabic-animals-coloring"
+        titleEn="Colour the first words on paper"
+        titleAr="لوّن الكلمات الأولى على الورق"
+        textEn="Eight animals to colour with their names to trace in Arabic and English — first vocabulary practice that survives the screen being off."
+        textAr="ثمانية حيوانات للتلوين مع أسمائها للتتبّع بالعربية والإنجليزية — تدريب أول على المفردات يبقى بعد إغلاق الشاشة."
+      />
     </PageLayout>
   );
 }

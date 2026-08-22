@@ -61,6 +61,16 @@ const articles: {
       "ستجد استراتيجيات عملية مناسبة للعمر لتعريف الأطفال الصغار بالعربية دون ضغط. وهو مكتوب للوالدين الذين لا يتقنون العربية بطلاقة ويبحثون عن روتين يومي واضح.",
   },
   {
+    slug: "teaching-arabic-non-speakers",
+    Icon: ParentingIcon,
+    titleEn: "Teaching Arabic When You Don't Speak It",
+    titleAr: "تعليم العربية وأنت لا تتحدثها",
+    descEn:
+      "You don't need to speak Arabic to teach it. A realistic six-week plan for non-Arabic parents, built on recorded audio, five-minute sessions and worksheets you can check without reading the script.",
+    descAr:
+      "لا تحتاج إلى التحدث بالعربية لتعليمها. خطة واقعية في ستة أسابيع للوالدين غير الناطقين، مبنية على الصوت المسجّل وجلسات قصيرة وأوراق تُراجع دون قراءة الخط.",
+  },
+  {
     slug: "arabic-numbers",
     Icon: NumbersIcon,
     titleEn: "Arabic Numbers 0–10 for Kids",

@@ -4,6 +4,7 @@ import { getRelatedArticles } from "@/lib/related";
 import Link from "next/link";
 import Image from "next/image";
 import { PageLayout } from "@/components/PageLayout";
+import { WorksheetCrossLink } from "@/components/WorksheetCrossLink";
 import { ArticleMeta } from "@/components/ArticleMeta";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
@@ -268,6 +269,14 @@ export default async function ArabicLetterFormsPage({ params }: { params: Promis
         </Link>
       </div>
       <RelatedArticles locale={locale} articles={getRelatedArticles(locale, "arabic-letter-forms")} />
+      <WorksheetCrossLink
+        locale={locale}
+        packId="arabic-alphabet-tracing"
+        titleEn="Practise the four forms on paper"
+        titleAr="تدرّب على الأشكال الأربعة على الورق"
+        textEn="Every letter sheet in the free tracing pack shows all four joined forms side by side, with graded rows to write each one."
+        textAr="كل ورقة في مجموعة التتبّع المجانية تعرض الأشكال الأربعة جنباً إلى جنب، مع صفوف متدرّجة لكتابة كلّ شكل."
+      />
     </PageLayout>
   );
 }

@@ -4,6 +4,7 @@ import { getRelatedArticles } from "@/lib/related";
 import Link from "next/link";
 import Image from "next/image";
 import { PageLayout } from "@/components/PageLayout";
+import { WorksheetCrossLink } from "@/components/WorksheetCrossLink";
 import { ArticleMeta } from "@/components/ArticleMeta";
 import { SpeakButton } from "@/components/SpeakButton";
 import { isLocale } from "@/lib/locales";
@@ -265,6 +266,14 @@ export default async function ArabicNumbersPage({ params }: { params: Promise<{ 
         </Link>
       </div>
       <RelatedArticles locale={locale} articles={getRelatedArticles(locale, "arabic-numbers")} />
+      <WorksheetCrossLink
+        locale={locale}
+        packId="arabic-numbers-tracing"
+        titleEn="Trace the numbers on paper"
+        titleAr="تتبّع الأرقام على الورق"
+        textEn="A free PDF page for every number 1–10: Eastern and Western numerals side by side, counting dots to colour, and tracing rows for the numeral and its name."
+        textAr="صفحة PDF مجانية لكل رقم من ١ إلى ١٠: الرقمان المشرقي والغربي جنباً إلى جنب، ودوائر عدّ للتلوين، وصفوف تتبّع للرقم ولاسمه."
+      />
     </PageLayout>
   );
 }

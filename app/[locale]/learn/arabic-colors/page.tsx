@@ -119,6 +119,39 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
         />
       </div>
 
+      {/* Everyone ranking above us for "arabic colors for kids" is a lesson
+          WITH a printable attached. This page had the lesson and the pack but
+          never linked them — the worksheet box closes that loop. */}
+      <div className="mb-10 grid gap-5 rounded-2xl border-2 border-ink bg-saffron-soft/40 p-5 sm:grid-cols-[minmax(0,140px)_1fr] sm:items-center">
+        <Image
+          src="/printables/previews/arabic-colors.png"
+          alt=""
+          aria-hidden
+          width={349}
+          height={494}
+          unoptimized
+          className="h-auto w-full max-w-[140px] rounded-lg border-2 border-ink/15 bg-white shadow-[3px_3px_0_0_rgba(42,29,78,0.12)]"
+        />
+        <div>
+          <p className="font-display text-base font-extrabold text-ink">
+            {isAr ? "لوّن وتعلّم: ورقة لكل لون" : "Colour and learn: a worksheet for every colour"}
+          </p>
+          <p className="mt-1 text-sm leading-relaxed text-ink/75">
+            {isAr
+              ? "ستّ صفحات PDF مجانية: شكل هندسي كبير لتلوينه بكل لون، وأسطر لتتبّع اسم اللون بالعربية والإنجليزية. بلا تسجيل."
+              : "Six free PDF pages: a big shape to colour in each colour, and tracing lines for the colour's name in Arabic and English. No signup."}
+          </p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Link href={`/${locale}/printables/arabic-colors`} className="btn-chunky text-sm">
+              {isAr ? "احصل على الأوراق" : "Get the worksheets"}
+            </Link>
+            <a href="/printables/arabic-colors.pdf" download className="btn-chunky btn-chunky-ghost text-sm">
+              ⬇ {isAr ? "PDF مباشرةً" : "Direct PDF"}
+            </a>
+          </div>
+        </div>
+      </div>
+
       <div className="text-base leading-relaxed text-ink/80 mb-8 space-y-3">
         <p>
           {isAr

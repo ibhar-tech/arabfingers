@@ -206,6 +206,132 @@ export const worksheetPages: WorksheetPage[] = [
   },
 
   {
+    id: "arabic-numbers-11-20",
+    seoTitleEn: "Arabic Numbers 11–20 Tracing Worksheets — Free PDF",
+    seoTitleAr: "أوراق تتبّع الأرقام العربية ١١–٢٠ — PDF مجاناً",
+    seoDescEn:
+      "Ten free worksheets for the Arabic numbers 11 to 20 — Eastern numerals ١١–٢٠ with Western digits, counting dots, and tracing rows for each full Arabic name. No email, no signup.",
+    seoDescAr:
+      "عشر أوراق مجانية للأرقام العربية من ١١ إلى ٢٠ — الأرقام المشرقية مع الغربية، ودوائر عدّ، وصفوف تتبّع للاسم العربي الكامل. بلا بريد وبلا تسجيل.",
+    keywords: [
+      "arabic numbers 11 to 20 worksheet",
+      "arabic numbers 11-20 tracing pdf",
+      "arabic numerals 11-20 printable",
+      "arabic counting worksheets pdf",
+      "أوراق الأرقام العربية من ١١ إلى ٢٠",
+    ],
+    taglineEn: "The decade every child stumbles on — ten pages, one number at a time.",
+    taglineAr: "العقد الذي يتعثّر فيه كل طفل — عشر صفحات، رقم في كل مرّة.",
+    insideEn: [
+      "The Eastern Arabic numeral (١١) and the Western digit (11) side by side on every page, so the pair is learned together instead of in separate lessons.",
+      "Eleven to twenty counting dots to colour — the physical act of colouring each dot is what makes 'eleven' feel bigger than 'seven', not just look bigger.",
+      "Tracing rows for the numeral at three graded sizes, exactly like the letter sheets.",
+      "A full tracing line for the Arabic name — the genuinely hard part past ten, since أحد عشر and عشرون are longer than anything in 1–10.",
+    ],
+    insideAr: [
+      "الرقم العربي المشرقي (١١) والرقم الغربي (11) جنباً إلى جنب في كل صفحة، فيتعلّم الطفل الثنائي معاً لا في درسين منفصلين.",
+      "دوائر عدّ من ١١ إلى ٢٠ للتلوين — تلوين كل دائرة هو ما يجعل «أحد عشر» يشعر أكبر من «سبعة»، لا مجرد أن يشاهد أكبر.",
+      "صفوف تتبّع للرقم بثلاثة أحجام متدرّجة، تماماً كأوراق الحروف.",
+      "سطر تتبّع كامل للاسم العربي — وهو الجزء الصعب فعلاً بعد العشرة، فـ«أحد عشر» و«عشرون» أطول من كل أسماء ١–١٠.",
+    ],
+    useEn: [
+      "Start only after 1–10 is solid: the second decade reuses the first (ثلاثة عشر is just ثلاثة + عشر), which makes it a fast win — or a fast muddle — depending on how well the first ten stuck.",
+      "Say the full name out loud while tracing, clapping once per word part: ثلاث-ة-عشر. The rhythm does more for remembering the compound names than repetition of the whole string.",
+      "The dot-counting pages are slow on purpose. Let your child colour all thirteen dots over a whole session if needed; counting past ten is a concentration skill as much as a number skill.",
+    ],
+    useAr: [
+      "ابدأ فقط بعد رسوخ ١–١٠: العقد الثاني يعيد استعمال الأول (ثلاثة عشر = ثلاثة + عشر)، فيكون إما إنجازاً سريعاً وإما خلطاً سريعاً بحسب تمكّن طفلك من العشرة الأولى.",
+      "انطق الاسم الكامل أثناء التتبّع مع تصفيقة عند كل جزء من الكلمة: ثلاث-ة-عشر. الإيقاع يثبّت الأسماء المركّبة أفضل من تكرار السلسلة كاملة.",
+      "صفحات عدّ الدوائر بطيئة عن قصد. دع طفلك يلوّن الدوائر الثلاث عشرة عبر جلسة كاملة إن لزم؛ فالعدّ بعد العشرة مهارة تركيز بقدر ما هو مهارة أرقام.",
+    ],
+    faq: [
+      {
+        qEn: "What are the Arabic numbers 11 to 20?",
+        aEn: "Eleven is أحد عشر (aḥada ʿashar), twelve is اثنا عشر, thirteen ثلاثة عشر … nineteen تسعة عشر, and twenty is عشرون (ʿishruun). The numerals themselves are ١١ ١٢ ١٣ … ١٩ ٢٠.",
+        qAr: "ما هي الأرقام العربية من ١١ إلى ٢٠؟",
+        aAr: "أحد عشر، واثنا عشر، وثلاثة عشر… حتى تسعة عشر، ثم عشرون. والأرقام نفسها هي ١١ ١٢ ١٣ … ١٩ ٢٠.",
+      },
+      {
+        qEn: "Why are 11–19 compound names but 20 is a single word?",
+        aEn: "Arabic builds 11–19 as 'unit-teen' (literally 'three-ten' for thirteen), but the tens — 20, 30, 40 — have their own single words with a plural -iin ending: ʿishruun, thalaathuun. The worksheet for twenty previews that pattern.",
+        qAr: "لماذا أسماء ١١–١٩ مركّبة بينما ٢٠ كلمة واحدة؟",
+        aAr: "تبني العربية ١١–١٩ على صورة «الوحدة + عشر»، أما العقود — ٢٠ و٣٠ و٤٠ — فلها كلمات مفردة خاصة بزيادة ون: عشرون، ثلاثون. وورقة العشرين تمهّد لهذا النمط.",
+      },
+      {
+        qEn: "Should my child learn Western or Eastern Arabic numerals?",
+        aEn: "Both, together — that is how each sheet is laid out. Most Arab countries use the Eastern numerals (١٢٣) in books and school, while screens often show Western digits (123). A child who reads the pair side by side is never blocked by either.",
+        qAr: "هل يتعلّم طفلي الأرقام الغربية أم المشرقية؟",
+        aAr: "الاثنين معاً — وهكذا صُمّمت كل ورقة. معظم الدول العربية تستعمل الأرقام المشرقية (١٢٣) في الكتب والمدارس، بينما تعرض الشاشات غالباً الغربية (123). والطفل الذي يقرأ الثنائي جنباً إلى جنب لا يعطله أيٌّ منهما.",
+      },
+    ],
+  },
+  {
+    id: "arabic-harakat",
+    seoTitleEn: "Arabic Short Vowels (Harakat) Worksheets — Free PDF",
+    seoTitleAr: "أوراق الحركات العربية (فتحة وكسرة وضمة) — PDF مجاناً",
+    seoDescEn:
+      "Five free worksheets covering fatha, kasra, damma, sukoon and tanween — each mark traced onto real letters, with an example word and how the mark changes its sound. No email, no signup.",
+    seoDescAr:
+      "خمس أوراق مجانية تغطّي الفتحة والكسرة والضمة والسكون والتنوين — كل حركة تُتتبّع على حروف حقيقية مع كلمة مثال وأثر الحركة في الصوت. بلا بريد وبلا تسجيل.",
+    keywords: [
+      "arabic harakat worksheet pdf",
+      "arabic short vowels worksheets",
+      "fatha kasra damma worksheet",
+      "arabic vowels for kids printable",
+      "sukoon worksheet arabic",
+      "أوراق الحركات العربية",
+      "تمارين الفتحة والكسرة والضمة",
+    ],
+    taglineEn: "The marks that turn letters into words — five pages, one mark at a time.",
+    taglineAr: "الحركات التي تحوّل الحروف إلى كلمات — خمس صفحات، حركة في كل مرّة.",
+    insideEn: [
+      "One page per mark: fatha (َ), kasra (ِ), damma (ُ), sukoon (ْ) and tanween (ً).",
+      "Each sheet shows the mark on three letters your child already knows — ب، ت، ج — so the mark is learned as something that sits ON letters, not a floating symbol.",
+      "Graded tracing rows for letter+mark combinations, in the same solid-grey → hollow → empty progression as the letter sheets.",
+      "One example word per mark, with transliteration and meaning, to trace on a dashed line.",
+      "A plain-English explanation of the sound on every sheet — written for parents who do not read Arabic.",
+    ],
+    insideAr: [
+      "صفحة لكل حركة: الفتحة والكسرة والضمة والسكون والتنوين.",
+      "تعرض كل ورقة الحركة على ثلاثة حروف يعرفها الطفل — ب، ت، ج — فيتعلّم أنها تجلس على الحروف لا رمز طائر.",
+      "صفوف تتبّع متدرّجة لتركيب الحرف مع الحركة، بالتدرّج نفسه من الرمادي الممتلئ إلى المفرّغ إلى الفارغ.",
+      "كلمة مثال واحدة لكل حركة، بالنطق والمعنى، للتتبّع على سطر متقطّع.",
+      "شرح مبسّط للصوت بالإنجليزية في كل ورقة — مكتوب للوالدين الذين لا يقرؤون العربية.",
+    ],
+    useEn: [
+      "Teach the marks only after your child recognises the bare letters. The letters are the furniture; harakat are the lighting — installed once the room exists.",
+      "Exaggerate the sounds in games first: 'ba-bi-bu' chanted while hopping is preparation, and it takes two minutes. Then sit down to the sheet.",
+      "Say the sound WITH the child on every traced letter, not before and not after. The mark and the sound must land in the same second to connect.",
+      "Leave sukoon and tanween for last. A firm consonant stop and a nasal ending are genuinely harder than the three short vowels; five minutes of fatha-kasra-damma first makes them easy.",
+    ],
+    useAr: [
+      "علّم الحركات بعد أن يميّز طفلك الحروف المجردة. الحروف أثاث الغرفة، والحركات إضاءتها — تُركّب بعد وجود الغرفة.",
+      "ضخّم الأصوات في اللعب أولاً: ترديد «بَ-بِ-بُ» مع القفز تحضير ممتاز يستغرق دقيقتين، ثم اجلسا إلى الورقة.",
+      "انطق الصوت مع الطفل مع كل حرف يتتبّعه، لا قبله ولا بعده. يجب أن يهبط الصوت والحركة في اللحظة نفسها ليرتبطا.",
+      "أجّل السكون والتنوين إلى النهاية، فسكون الحرف الساكن ونهاية الغنة أصعب فعلاً من الحركات القصيرة الثلاث.",
+    ],
+    faq: [
+      {
+        qEn: "What are the Arabic harakat?",
+        aEn: "Harakat are the small marks that carry the short vowels: fatha (َ) is a short 'a', kasra (ِ) is a short 'i', damma (ُ) is a short 'u', sukoon (ْ) marks no vowel, and tanween (ً ٍ ٌ) doubles a vowel into an 'an/in/un' ending. Long vowels, by contrast, are full letters: alef, waw and ya.",
+        qAr: "ما هي الحركات في العربية؟",
+        aAr: "الحركات علامات صغيرة تحمل الحركات القصيرة: الفتحة ألف قصيرة، والكسرة ياء قصيرة، والضمة واو قصيرة، والسكون يعني عدم وجود حركة، والتنوين حركة مضعّفة تنتهي بنون خفيفة. أما الحركات الطويلة فحروف كاملة: الألف والواو والياء.",
+      },
+      {
+        qEn: "When should a child start learning harakat?",
+        aEn: "Once they recognise the 28 letters comfortably — usually four to eight weeks into a letter-a-day plan. Reading fully-vowelled text with harakat is how children in Arab schools learn to decode, so the marks are the bridge from 'knowing letters' to 'reading words'.",
+        qAr: "متى يبدأ الطفل تعلّم الحركات؟",
+        aAr: "بعد أن يميّز الحروف الـ٢٨ بارتياح — عادة بعد أربعة إلى ثمانية أسابيع من خطة «حرف في اليوم». وقراءة النص المشكول هي الطريقة التي يتعلم بها الأطفال في المدارس العربية فكّ الرموز، فالحركات هي الجسر من «معرفة الحروف» إلى «قراءة الكلمات».",
+      },
+      {
+        qEn: "Do adults need harakat to read Arabic?",
+        aEn: "Fluent readers infer the short vowels from context, which is why newspapers drop them. Learners and children need them: without harakat, the letters ب ت ك could read 'batak', 'batik' or several other words. The marks remove the guesswork.",
+        qAr: "هل يحتاج الكبار الحركات لقراءة العربية؟",
+        aAr: "يستنتج القارئ المتمرّس الحركات القصيرة من السياق، ولذلك تسقطها الصحف. أما المتعلّمون والأطفال فيحتاجونها: فبدون حركات يمكن أن تُقرأ ب ت ك «بَتَك» أو «بِتِك» أو غيرهما. الحركات ترفع التخمين.",
+      },
+    ],
+  },
+  {
     id: "arabic-colors",
     seoTitleEn: "Arabic Colours Worksheets PDF — Free Printable Colour & Trace",
     seoTitleAr: "أوراق الألوان بالعربية PDF — تلوين وتتبّع للطباعة مجاناً",

@@ -7,6 +7,8 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
 import { worksheetSets } from "@/lib/worksheets";
+import { letterGuide } from "@/lib/letterGuide";
+import { letterWorksheetPages } from "@/lib/letterWorksheets";
 import fileSizes from "@/lib/worksheet-files.json";
 import { setRequestLocale } from "next-intl/server";
 
@@ -18,9 +20,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     titleEn: "Free Printable Arabic Alphabet Tracing Worksheets (PDF) for Kids",
     titleAr: "أوراق عمل مجانية لتتبّع الحروف العربية للأطفال (PDF)",
     descriptionEn:
-      "Download 53 pages of free Arabic worksheets as PDFs: a tracing sheet for every one of the 28 letters, numbers 1–10, colours and animals. No signup, no email — just download and print.",
+      "Download 68 pages of free Arabic worksheets as PDFs: a tracing sheet for every one of the 28 letters, short vowels (harakat), numbers 1–20, colours and animals. No signup, no email — just download and print.",
     descriptionAr:
-      "حمّل ٥٣ صفحة من أوراق العمل العربية المجانية بصيغة PDF: ورقة تتبّع لكل حرف من الحروف الـ٢٨، والأرقام ١–١٠، والألوان والحيوانات. بلا تسجيل وبلا بريد — نزّل واطبع.",
+      "حمّل ٦٨ صفحة من أوراق العمل العربية المجانية بصيغة PDF: ورقة تتبّع لكل حرف من الحروف الـ٢٨، والحركات، والأرقام ١–٢٠، والألوان والحيوانات. بلا تسجيل وبلا بريد — نزّل واطبع.",
     keywords: [
       "arabic alphabet tracing worksheets pdf", "free arabic letters worksheets pdf",
       "arabic letters tracing worksheets pdf free download", "trace arabic alphabet",
@@ -327,6 +329,42 @@ export default async function PrintablesPage({ params }: { params: Promise<{ loc
                     </a>
                   </div>
                 </div>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+
+      {/* ---------- One letter at a time ---------- */}
+      <section className="mb-12" aria-labelledby="letters">
+        <h2 id="letters" className="font-display text-xl font-extrabold text-ink">
+          {isAr ? "حرف واحد في كل مرّة" : "Practice one letter at a time"}
+        </h2>
+        <p className="mt-1 mb-5 max-w-3xl text-sm leading-relaxed text-ink/65">
+          {isAr
+            ? "لكل حرف من الحروف الـ٢٨ صفحته الخاصة: ورقة PDF مستقلة، ونطق الحرف بضغطة زر، وكيفية نطقه للوالدين غير الناطقين بالعربية، والأشكال الأربعة، والكلمات. ابدأ من حيث وصل طفلك."
+            : "Every letter has its own page: a standalone PDF sheet, the letter pronounced at the click of a button, how to say it for non-Arabic-speaking parents, its four shapes, and example words. Start wherever your child is."}
+        </p>
+        <ul className="grid grid-cols-4 gap-2 sm:grid-cols-7 md:grid-cols-10">
+          {letterWorksheetPages.map((p) => {
+            const entry = letterGuide[p.index];
+            return (
+              <li key={p.slug}>
+                <Link
+                  href={`/${locale}/printables/letters/${p.slug}`}
+                  className="card-stock flex flex-col items-center gap-1 px-2 py-3 transition hover:border-qalam"
+                >
+                  <span
+                    className="font-arabic-display text-3xl leading-none text-ink"
+                    style={{ fontFamily: "var(--font-noto-naskh), serif" }}
+                    aria-hidden
+                  >
+                    {entry.ar}
+                  </span>
+                  <span className="text-[10px] font-bold uppercase tracking-wide text-ink/45">
+                    {entry.enName}
+                  </span>
+                </Link>
               </li>
             );
           })}

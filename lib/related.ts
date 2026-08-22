@@ -19,6 +19,14 @@ export const learnArticles = [
     path: "learn",
   },
   {
+    slug: "teaching-arabic-non-speakers",
+    titleEn: "Teaching Arabic When You Don't Speak It",
+    titleAr: "تعليم العربية وأنت لا تتحدثها",
+    descEn: "A six-week plan for non-Arabic parents: audio-first letters, five-minute sessions, and worksheets you can check without reading the script.",
+    descAr: "خطة ستة أسابيع للوالدين غير الناطقين بالعربية: الحروف بالصوت أولاً، وجلسات من خمس دقائق، وأوراق تراجعها دون قراءة الخط.",
+    path: "learn",
+  },
+  {
     slug: "arabic-numbers",
     titleEn: "Arabic Numbers 0–10 for Kids",
     titleAr: "الأرقام العربية ٠–١٠ للأطفال",

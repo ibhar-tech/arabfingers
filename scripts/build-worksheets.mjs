@@ -22,11 +22,15 @@ import { fileURLToPath } from "node:url";
 import QRCode from "qrcode";
 
 import { letterGuide } from "../lib/letterGuide.ts";
-import { numbersData, colorsData, animalsData } from "../lib/worksheets.ts";
+import {
+  numbersData, numbers11to20Data, colorsData, animalsData, harakatData,
+} from "../lib/worksheets.ts";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const OUT_DIR = join(ROOT, "public", "printables");
+const LETTER_DIR = join(OUT_DIR, "letters");
 const THUMB_DIR = join(OUT_DIR, "previews");
+const LETTER_THUMB_DIR = join(THUMB_DIR, "letters");
 const SITE = "arabfingers.site";
 
 /** Chrome shapes these into their contextual forms when wrapped in ZWJ. */
@@ -171,6 +175,16 @@ const PACK_LINKS = {
     captionEn: "More numbers:",
     captionAr: "المزيد عن الأرقام:",
   },
+  "arabic-numbers-11-20": {
+    url: `${SITE}/en/learn/arabic-numbers`,
+    captionEn: "Numbers guide:",
+    captionAr: "دليل الأرقام:",
+  },
+  "arabic-harakat": {
+    url: `${SITE}/en/learn/arabic-alphabet-guide`,
+    captionEn: "Hear the letters:",
+    captionAr: "استمع للحروف:",
+  },
   "arabic-colors": {
     url: `${SITE}/en/learn/arabic-colors`,
     captionEn: "Colours to hear:",
@@ -185,7 +199,16 @@ const PACK_LINKS = {
 
 /** Small footer QR for one pack; empty string when the pack has no link. */
 async function qrBlock(setId) {
-  const link = PACK_LINKS[setId];
+  let link = PACK_LINKS[setId];
+  if (!link && setId.startsWith("letters/")) {
+    // Every per-letter sheet links to its own landing page, which carries the
+    // audio button — paper can't say the letter out loud, the page can.
+    link = {
+      url: `${SITE}/en/printables/${setId}`,
+      captionEn: "Hear this letter:",
+      captionAr: "اسمع هذا الحرف:",
+    };
+  }
   if (!link) return "";
   const png = await QRCode.toDataURL(link.url, { margin: 0, width: 96 });
   return `<img src="${png}" width="42" height="42" alt="" aria-hidden="true"/>
@@ -425,35 +448,48 @@ function buildChart(qr) {
 // ---------------------------------------------------------------------------
 
 function buildNumbers(qr) {
-  const total = numbersData.length;
-  const sheets = numbersData
+  return buildNumbersPack(numbersData, "Arabic Numbers 1–10", qr);
+}
+
+function buildNumbers11to20(qr) {
+  return buildNumbersPack(numbers11to20Data, "Arabic Numbers 11–20", qr);
+}
+
+/** Shared sheet format for both number decades; dots cap at 20 to fit A4. */
+function buildNumbersPack(data, kicker, _qr) {
+  const total = data.length;
+  const sheets = data
     .map((n, i) => {
       const count = Number(n.en);
-      const dots = Array.from(
-        { length: count },
-        () => `<span style="display:inline-block;width:17mm;height:17mm;border:2px solid #cfcfcf;border-radius:50%;margin:2mm;"></span>`,
-      ).join("");
+      const dots = count <= 20
+        ? Array.from(
+            { length: count },
+            () => `<span style="display:inline-block;width:${count > 10 ? 14 : 17}mm;height:${count > 10 ? 14 : 17}mm;border:2px solid #cfcfcf;border-radius:50%;margin:1.5mm;"></span>`,
+          ).join("")
+        : "";
 
       return sheet(`
-        ${head("Arabic Numbers 1–10")}
+        ${head(kicker)}
         <div class="title">
           <h1>${esc(n.enName)}</h1>
           <span class="arname ar" dir="rtl">${esc(n.arName)}</span>
           <span class="sub">${esc(n.translit)} · ${esc(n.ar)} / ${esc(n.en)}</span>
         </div>
         <div class="instruction">
-          Colour in ${count} circle${count === 1 ? "" : "s"}, then trace the number and its name.
-          <span class="rtl ar">لوّن ${esc(n.ar)} من الدوائر، ثم تتبّع الرقم واسمه.</span>
+          ${dots ? `Colour in ${count} circle${count === 1 ? "" : "s"}, then trace the number and its name.` : `Trace the number and its name.`}
+          <span class="rtl ar">${dots ? `لوّن ${esc(n.ar)} من الدوائر، ثم تتبّع الرقم واسمه.` : `تتبّع الرقم واسمه.`}</span>
         </div>
 
         <div class="body">
-          <div style="display:flex;gap:5mm;margin-top:4mm;height:62mm;">
+          <div style="display:flex;gap:5mm;margin-top:4mm;${dots ? "height:62mm;" : ""}">
             <div class="box" style="width:56mm;display:flex;align-items:center;justify-content:center;">
               <span class="ar" style="font-size:110pt;line-height:1;">${esc(n.ar)}</span>
             </div>
-            <div class="box" style="flex:1;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;padding:4mm;">
+            ${dots ? `<div class="box" style="flex:1;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;padding:4mm;">
               ${dots}
-            </div>
+            </div>` : `<div class="box" style="flex:1;display:flex;align-items:center;justify-content:center;">
+              <span class="ar g-hollow" style="font-size:64pt;">${esc(n.ar)} ${esc(n.en)}</span>
+            </div>`}
           </div>
 
           ${sectionLabel("Trace the Arabic numeral", "تتبّع الرقم العربي")}
@@ -469,12 +505,81 @@ function buildNumbers(qr) {
           <div class="box grow" style="min-height:34mm;"></div>
         </div>
 
-        ${foot(i + 1, total, qr)}
+        ${foot(i + 1, total, _qr)}
       `);
     })
     .join("");
 
-  return doc("Arabic Numbers 1–10 Tracing Worksheets", sheets);
+  return doc(`${kicker} Tracing Worksheets`, sheets);
+}
+
+// ---------------------------------------------------------------------------
+// Set 3b — harakat (short vowels)
+// ---------------------------------------------------------------------------
+
+function harakatSheet(item, i, total, qr) {
+  // Three letters the child already knows, each carrying the mark, so the
+  // sheet shows the mark as something that sits ON letters rather than a
+  // floating symbol.
+  const demoLetters = ["ب", "ت", "ج"];
+  const demos = demoLetters
+    .map(
+      (l) => `<div style="flex:1;text-align:center;padding:2mm 0;border-inline-end:1px solid #ececec;">
+        <div class="ar" style="font-size:40pt;line-height:1.2;">${esc(l + item.mark)}</div>
+        <div style="font-size:8pt;color:#777;margin-top:1mm;">${esc(l === "ب" ? "b" : l === "ت" ? "t" : "j")}${esc(item.translit === "—" ? "" : item.translit)}</div>
+      </div>`,
+    )
+    .join("");
+
+  return sheet(`
+    ${head("Arabic Harakat — Short Vowels")}
+    <div class="title">
+      <h1>${esc(item.nameEn)}</h1>
+      <span class="arname ar" dir="rtl">${esc(item.nameAr)}</span>
+      <span class="sub">mark ${i + 1} of ${total}</span>
+    </div>
+    <div class="instruction">
+      ${esc(item.soundEn)}
+      <span class="rtl ar">${esc(item.soundAr)}</span>
+    </div>
+
+    <div class="body">
+      <div style="display:flex;gap:5mm;margin-top:4mm;align-items:stretch;height:52mm;">
+        <div class="box" style="width:56mm;display:flex;align-items:center;justify-content:center;">
+          <span class="ar" style="font-size:110pt;line-height:1;color:#2b2b2b;">${esc("ب" + item.mark)}</span>
+        </div>
+        <div style="flex:1;display:flex;flex-direction:column;">
+          <div class="label" style="margin-bottom:1.5mm;">The mark on three letters · الحركة على ثلاثة حروف</div>
+          <div class="box" style="flex:1;display:flex;overflow:hidden;">${demos}</div>
+        </div>
+      </div>
+
+      ${sectionLabel("Trace the mark on the letter", "تتبّع الحركة على الحرف")}
+      ${traceRow("ب" + item.mark, { n: 5, size: "40pt", solid: 2, hollow: 2, height: "24mm", grow: true })}
+      <div style="height:3mm;"></div>
+      ${traceRow("ت" + item.mark, { n: 6, size: "30pt", solid: 2, hollow: 2, height: "20mm", grow: true })}
+      <div style="height:3mm;"></div>
+      ${traceRow("ج" + item.mark, { n: 8, size: "24pt", solid: 1, hollow: 2, height: "17mm", grow: true })}
+
+      ${sectionLabel("A word with this mark", "كلمة بهذه الحركة")}
+      <div style="margin-bottom:2.5mm;">
+        <div style="display:flex;justify-content:space-between;font-size:8.5pt;color:#555;margin-bottom:1mm;">
+          <span><b class="ar" dir="rtl">${esc(item.word)}</b> — ${esc(item.wordTranslit)} — ${esc(item.wordMeaningEn)}</span>
+        </div>
+        ${wordLine(item.word)}
+      </div>
+    </div>
+
+    ${foot(i + 1, total, qr)}
+  `);
+}
+
+function buildHarakat(qr) {
+  const total = harakatData.length;
+  return doc(
+    "Arabic Short Vowels (Harakat) Worksheets",
+    harakatData.map((item, i) => harakatSheet(item, i, total, qr)).join(""),
+  );
 }
 
 // ---------------------------------------------------------------------------
@@ -571,12 +676,14 @@ const SETS = [
   { id: "arabic-alphabet-chart", html: buildChart },
   { id: "arabic-alphabet-tracing", html: buildAlphabet },
   { id: "arabic-numbers-tracing", html: buildNumbers },
+  { id: "arabic-numbers-11-20", html: buildNumbers11to20 },
+  { id: "arabic-harakat", html: buildHarakat },
   { id: "arabic-colors", html: buildColors },
   { id: "arabic-animals-coloring", html: buildAnimals },
 ];
 
 function renderPdf(tmp, id, html) {
-  const htmlPath = join(tmp, `${id}.html`);
+  const htmlPath = join(tmp, `${id.replace(/\//g, "_")}.html`);
   const pdfPath = join(OUT_DIR, `${id}.pdf`);
   writeFileSync(htmlPath, html, "utf8");
 
@@ -607,9 +714,9 @@ function renderPdf(tmp, id, html) {
  * capture lands exactly on sheet one; the device scale factor shrinks the bitmap
  * without changing the layout, which keeps each thumbnail well under 100 KB.
  */
-function renderThumb(tmp, id, html) {
-  const htmlPath = join(tmp, `${id}-thumb.html`);
-  const pngPath = join(THUMB_DIR, `${id}.png`);
+function renderThumb(tmp, id, html, outDir = THUMB_DIR) {
+  const htmlPath = join(tmp, `${id.replace(/\//g, "_")}-thumb.html`);
+  const pngPath = join(outDir, `${id.includes("/") ? id.split("/")[1] : id}.png`);
   writeFileSync(htmlPath, html, "utf8");
 
   execFileSync(
@@ -659,6 +766,27 @@ async function main() {
     renderThumb(tmp, "arabic-complete-workbook", workbook);
     manifest["arabic-complete-workbook"] = bytes;
     console.log(`  ✓ arabic-complete-workbook.pdf  (${(bytes / 1024).toFixed(0)} KB)`);
+
+    // One standalone PDF + preview per letter — the letter-by-letter landing
+    // pages (/printables/letters/<slug>) each need their own download. Same
+    // sheet as inside the alphabet pack, but the footer QR points at that
+    // letter's own page (which carries the audio button) instead of /play.
+    // Slug rule mirrors lib/letterWorksheets.ts: the letter's English name.
+    mkdirSync(LETTER_DIR, { recursive: true });
+    mkdirSync(LETTER_THUMB_DIR, { recursive: true });
+    const total = letterGuide.length;
+    for (const [index, entry] of letterGuide.entries()) {
+      const slug = entry.enName.toLowerCase();
+      const qr = await qrBlock(`letters/${slug}`);
+      const html = doc(
+        `Arabic Letter ${entry.enName} Worksheet`,
+        alphabetSheet(entry, index, total, qr),
+      );
+      const { bytes } = renderPdf(tmp, `letters/${slug}`, html);
+      renderThumb(tmp, `letters/${slug}`, html, LETTER_THUMB_DIR);
+      manifest[`letters/${slug}`] = bytes;
+      console.log(`  ✓ letters/${slug}.pdf  (${(bytes / 1024).toFixed(0)} KB)`);
+    }
   } finally {
     rmSync(tmp, { recursive: true, force: true });
   }

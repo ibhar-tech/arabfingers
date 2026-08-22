@@ -16,10 +16,11 @@ export const CONTENT_LAST_UPDATED: Record<string, string> = {
   "/learn/gravity": "2026-06-11",
 
   // Learning guides (readability + localization pass June 2026)
-  "/learn/arabic-alphabet-guide": "2026-06-11",
+  "/learn/arabic-alphabet-guide": "2026-08-22",
   "/learn/teaching-arabic-to-kids": "2026-06-12",
+  "/learn/teaching-arabic-non-speakers": "2026-08-22",
   "/learn/arabic-numbers": "2026-06-12",
-  "/learn/arabic-colors": "2026-06-12",
+  "/learn/arabic-colors": "2026-08-22",
   "/learn/first-arabic-words": "2026-06-12",
   "/learn/arabic-letter-forms": "2026-06-12",
   "/learn/arabic-vs-english": "2026-06-12",
@@ -35,10 +36,21 @@ export const CONTENT_LAST_UPDATED: Record<string, string> = {
     "arabic-alphabet-tracing",
     "arabic-alphabet-chart",
     "arabic-numbers-tracing",
+    "arabic-numbers-11-20",
+    "arabic-harakat",
     "arabic-colors",
     "arabic-animals-coloring",
     "arabic-complete-workbook",
-  ].map((id) => [`/printables/${id}`, "2026-08-20"])),
+  ].map((id) => [`/printables/${id}`, "2026-08-22"])),
+
+  // Per-letter worksheet pages (letter-by-letter launch, Aug 2026)
+  ...Object.fromEntries(
+    [
+      "alef", "ba", "ta", "tha", "jeem", "hha", "kha", "dal", "thal", "ra",
+      "zay", "seen", "sheen", "sad", "dad", "tah", "zah", "ain", "ghain", "fa",
+      "qaf", "kaf", "lam", "meem", "noon", "ha", "waw", "ya",
+    ].map((slug) => [`/printables/letters/${slug}`, "2026-08-22"]),
+  ),
 };
 
 /** Date for a path, falling back to the given default when unlisted. */

@@ -3,6 +3,7 @@ import { RelatedArticles } from "@/components/RelatedArticles";
 import { getRelatedArticles } from "@/lib/related";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
+import { WorksheetCrossLink } from "@/components/WorksheetCrossLink";
 import { ArticleMeta } from "@/components/ArticleMeta";
 import { FaqSection } from "@/components/FaqSection";
 import { isLocale } from "@/lib/locales";
@@ -199,6 +200,13 @@ export default async function TeachingArabicPage({ params }: { params: Promise<{
           🚀 {isAr ? "جرب عرب فنجرز الآن" : "Try ArabFingers Now"}
         </Link>
       </div>
+      <WorksheetCrossLink
+        locale={locale}
+        titleEn="Everything on this page pairs with a free worksheet"
+        titleAr="كل ما في هذه الصفحة يقترن بأوراق عمل مجانية"
+        textEn="53 printable pages — letters, numbers, colours and animals — to back each stage of the plan above. No signup."
+        textAr="٥٣ صفحة للطباعة — حروف وأرقام وألوان وحيوانات — لتدعيم كل مرحلة من الخطة أعلاه. بلا تسجيل."
+      />
     </PageLayout>
   );
 }

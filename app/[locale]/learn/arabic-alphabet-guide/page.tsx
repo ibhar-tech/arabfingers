@@ -41,10 +41,10 @@ const alphabetFaqAr = [
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return generatePageMetadata(locale, "/learn/arabic-alphabet-guide", {
-    titleEn: "Arabic Alphabet for Kids — All 28 Letters + Free Printable Chart",
-    titleAr: "الأبجدية العربية للأطفال — الحروف الـ٢٨ ولوحة مجانية للطباعة",
+    titleEn: "Arabic Alphabet for Kids — All 28 Letters + Free Worksheets",
+    titleAr: "الأبجدية العربية للأطفال — الحروف الـ٢٨ وأوراق عمل مجانية",
     descriptionEn:
-      "Every Arabic letter explained for parents — how to make each sound, example words and common mistakes — plus a free printable alphabet chart and a tracing sheet for all 28 letters.",
+      "Every Arabic letter explained for parents — how to make each sound, example words and common mistakes — plus a free tracing worksheet for every one of the 28 letters. No signup.",
     descriptionAr:
       "شرح كامل لكل حرف عربي: مخرجه وطريقة نطقه، وكلمات للأمثلة، وأشهر أخطاء الأطفال — مع لوحة حروف مجانية للطباعة وورقة تتبّع لكلّ حرف من الـ٢٨.",
     ogType: "article",
@@ -108,6 +108,9 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
           </Link>
           <Link href={`/${locale}/printables/arabic-alphabet-tracing`} className="btn-chunky btn-chunky-ghost text-sm">
             {isAr ? "أوراق التتبّع (٢٨ صفحة)" : "Tracing sheets (28 pages)"}
+          </Link>
+          <Link href={`/${locale}/printables#letters`} className="btn-chunky btn-chunky-ghost text-sm">
+            {isAr ? "حرف واحد في كل مرّة" : "One letter at a time"}
           </Link>
         </div>
       </div>
@@ -199,6 +202,17 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
                 <strong className="text-emerald-300">{isAr ? "نصيحة للوالدين: " : "Parent tip: "}</strong>
                 {isAr ? l.parentTipAr : l.parentTipEn}
               </p>
+              {/* Every letter section can satisfy "arabic letter X worksheet"
+                  intent on its own — that long tail is what this guide's 3.4K
+                  monthly impressions never converted into clicks. */}
+              <Link
+                href={`/${locale}/printables/letters/${l.enName.toLowerCase()}`}
+                className="inline-block text-sm font-bold text-qalam underline underline-offset-4"
+              >
+                {isAr
+                  ? `ورقة تتبّع حرف ${l.arName} + النطق ←`
+                  : `Get the ${l.enName} (${l.ar}) tracing worksheet →`}
+              </Link>
             </div>
           </article>
         ))}
