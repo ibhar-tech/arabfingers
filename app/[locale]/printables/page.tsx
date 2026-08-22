@@ -46,7 +46,7 @@ const copy = {
   en: {
     crumb: "Worksheets",
     h1: "Free Printable Arabic Alphabet Tracing Worksheets (PDF)",
-    lead: `Every worksheet on this page is a real PDF you can download and print — ${totalPages} pages in total, covering all 28 Arabic letters, the numbers 1 to 10, six colours and eight animals. There is no signup, no email wall and no watermark. Click a pack, the file downloads, you print it.`,
+    lead: `Every worksheet on this page is a real PDF you can download and print — ${totalPages} pages in total, covering all 28 Arabic letters, the short vowels (harakat), the numbers 1 to 20, colours and animals. There is no signup, no email wall and no watermark. Click a pack, the file downloads, you print it.`,
     lead2:
       "We built these sheets because most free Arabic tracing worksheets online are a single scanned page, printed either too faint to follow or too dark to trace over. Ours are typeset in Noto Naskh — the same clear naskh script children meet in school books — at a size a four-year-old can actually control, with the tracing guides graded from solid grey to a hollow outline to nothing at all, so a child leaves each page writing unaided.",
     statPacks: "worksheet packs",
@@ -118,7 +118,7 @@ const copy = {
       { q: "Why do the letters get smaller down the page?", a: "Because handwriting control develops from large movements to small ones. Starting a child on small letters produces cramped, tense writing. Each sheet starts at a size the whole arm can draw and finishes near normal writing size." },
       { q: "My printer makes the tracing letters too faint to see. What can I do?", a: "Turn off any toner-saving or draft mode, which is the usual cause. The tracing guides are printed in mid grey on purpose so a pencil line shows clearly on top of them, but draft mode drops them below the visible threshold." },
       { q: "Do the worksheets teach letters in alphabet order or by difficulty?", a: "Alphabet order, because that is the order children are taught in almost every Arabic curriculum and the order the alphabet song follows. If you would rather start with the easiest shapes, the alphabet guide marks each letter easy, medium or hard for English speakers." },
-      { q: "What is the difference between the six packs?", a: "Five of them cover one topic each — the alphabet chart, letter tracing, numbers, colours and animals. The sixth, the complete workbook, is simply all five bound into a single file in teaching order, for people who would rather print once." },
+      { q: "What is the difference between the packs?", a: "Seven of them cover one topic each — the alphabet chart, letter tracing, harakat (short vowels), numbers 1–10, numbers 11–20, colours and animals. The last, the complete workbook, is simply all of them bound into a single file in teaching order, for people who would rather print once. You can also download any single letter on its own page." },
       { q: "What is the best way to use tracing sheets to teach the Arabic alphabet?", a: "Pair tracing with sound. Say the letter, let your child hear it in the letter game, then trace it on the worksheet. Seeing, hearing and writing the same letter in one short session fixes it far faster than tracing in silence." },
     ],
   },
@@ -126,7 +126,7 @@ const copy = {
   ar: {
     crumb: "أوراق عمل",
     h1: "أوراق عمل مجانية لتتبّع الحروف العربية (PDF)",
-    lead: `كل ورقة في هذه الصفحة ملف PDF حقيقي تنزّله وتطبعه — ${totalPages} صفحة في المجموع، تغطّي الحروف الـ٢٨ كاملة، والأرقام من ١ إلى ١٠، وستة ألوان وثمانية حيوانات. بلا تسجيل، وبلا بريد إلكتروني، وبلا علامة مائية. اضغط على المجموعة فينزّل الملف، ثم اطبعه.`,
+    lead: `كل ورقة في هذه الصفحة ملف PDF حقيقي تنزّله وتطبعه — ${totalPages} صفحة في المجموع، تغطّي الحروف الـ٢٨ كاملة، والحركات، والأرقام من ١ إلى ٢٠، والألوان والحيوانات. بلا تسجيل، وبلا بريد إلكتروني، وبلا علامة مائية. اضغط على المجموعة فينزّل الملف، ثم اطبعه.`,
     lead2:
       "أعددنا هذه الأوراق لأن أكثر أوراق التتبّع المجانية على الإنترنت صفحة ممسوحة ضوئياً واحدة، إمّا باهتة لا تُرى أو داكنة لا يمكن التتبّع فوقها. أوراقنا مكتوبة بخط نوتو نسخ — وهو خط النسخ الواضح نفسه الذي يقابله الطفل في كتب المدرسة — بحجم يستطيع ابن الأربع سنوات التحكّم به، مع تدرّج في أدلّة التتبّع من الرمادي الممتلئ إلى الحدّ الخارجي المفرّغ إلى الفراغ التامّ، حتى يترك الطفل كلّ صفحة وهو يكتب بلا مساعدة.",
     statPacks: "مجموعات",
@@ -198,7 +198,7 @@ const copy = {
       { q: "لماذا تصغر الحروف كلّما نزلنا في الصفحة؟", a: "لأنّ التحكّم في الكتابة ينمو من الحركات الكبيرة إلى الصغيرة. والبدء بحروف صغيرة يُنتج خطّاً متشنّجاً مضغوطاً. لذلك تبدأ كلّ ورقة بحجم ترسمه الذراع كلّها وتنتهي قريباً من حجم الكتابة المعتاد." },
       { q: "طابعتي تُخرج حروف التتبّع باهتة جدّاً، ماذا أفعل؟", a: "أطفئ وضع توفير الحبر أو وضع المسوّدة، وهو السبب المعتاد. أدلّة التتبّع مطبوعة برمادي متوسّط عن قصد ليظهر خطّ القلم فوقها بوضوح، لكنّ وضع المسوّدة ينزل بها تحت حدّ الرؤية." },
       { q: "هل ترتيب الحروف أبجدي أم بحسب الصعوبة؟", a: "أبجدي، لأنّه الترتيب الذي يُدرَّس به الطفل في كلّ مناهج العربية تقريباً، وهو ترتيب أنشودة الحروف. وإن فضّلت البدء بأسهل الأشكال، فدليل الحروف يصنّف كلّ حرف سهلاً أو متوسّطاً أو صعباً لمتعلّمي الإنجليزية." },
-      { q: "ما الفرق بين المجموعات الستّ؟", a: "خمس منها يغطّي كلّ واحدة موضوعاً: لوحة الحروف، وتتبّع الحروف، والأرقام، والألوان، والحيوانات. أمّا السادسة، الكرّاسة الكاملة، فهي الخمس مجموعة في ملفّ واحد مرتّب تعليمياً، لمن يفضّل الطباعة مرّة واحدة." },
+      { q: "ما الفرق بين المجموعات؟", a: "سبع منها يغطّي كلّ واحدة موضوعاً: لوحة الحروف، وتتبّع الحروف، والحركات، والأرقام ١–١٠، والأرقام ١١–٢٠، والألوان، والحيوانات. أمّا الأخيرة، الكرّاسة الكاملة، فهي جميعها في ملفّ واحد مرتّب تعليمياً، لمن يفضّل الطباعة مرّة واحدة. ويمكنك أيضاً تنزيل أيّ حرف بمفرده من صفحته الخاصة." },
       { q: "ما أفضل طريقة لاستعمال أوراق التتبّع في تعليم الأبجدية؟", a: "اجمع بين التتبّع والصوت: انطق الحرف، ودع طفلك يسمعه في لعبة الحروف، ثمّ يتتبّعه على الورقة. رؤية الحرف وسماعه وكتابته في جلسة قصيرة واحدة تثبّته أسرع بكثير من التتبّع في صمت." },
     ],
   },
