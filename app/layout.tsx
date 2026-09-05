@@ -39,8 +39,8 @@ export const metadata: Metadata = {
     "العربية للأطفال",
   ],
   applicationName: "Arab Fingers",
-  authors: [{ name: "Aissa Trad", url: "https://www.arabfingers.site/en/author" }],
-  creator: "Aissa Trad",
+  authors: [{ name: "IBHAR TECH LEARNING", url: "https://www.arabfingers.site/en/author" }],
+  creator: "IBHAR TECH LEARNING",
   publisher: "Arab Fingers",
   category: "education",
   openGraph: {

@@ -64,9 +64,9 @@ export default async function CalligraphyPage({ params }: { params: Promise<{ lo
 function AuthorBlock({ isAr }: { isAr?: boolean }) {
   return (
     <div className="flex items-center gap-3 mt-2 mb-8 text-xs text-ink/50">
-      <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent text-sm font-bold">A</div>
+      <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent text-sm font-bold">IT</div>
       <div>
-        <Link href={`/${isAr ? "ar" : "en"}/author`} className="text-ink/70 font-medium hover:text-accent transition">Aissa Trad</Link>
+        <Link href={`/${isAr ? "ar" : "en"}/author`} className="text-ink/70 font-medium hover:text-accent transition">IBHAR TECH LEARNING</Link>
         <span className="mx-2">·</span>
         <time dateTime="2026-05-12">{isAr ? "١٢ مايو ٢٠٢٦" : "May 12, 2026"}</time>
         <span className="mx-2">·</span>

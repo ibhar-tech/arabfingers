@@ -57,7 +57,7 @@ export function LessonStructuredData({
     },
     author: {
       "@type": "Person",
-      name: "Aissa Trad",
+      name: "IBHAR TECH LEARNING",
       url: `${siteUrl}/${locale}/author`,
     },
     publisher: {

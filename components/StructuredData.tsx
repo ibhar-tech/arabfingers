@@ -44,7 +44,7 @@ export function StructuredData() {
     },
     founder: {
       "@type": "Person",
-      name: "Aissa Trad",
+      name: "IBHAR TECH LEARNING",
       url: "https://www.arabfingers.site/en/author",
     },
     sameAs: [

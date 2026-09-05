@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const AUTHOR_NAME = "Aissa Trad";
+export const BYLINE_NAME = "IBHAR TECH LEARNING";
 export const AUTHOR_EMAIL = "ibhartech39@gmail.com";
 // Placeholder avatar — replace /public/author.svg (or point this to /author.jpg) with a real photo.
 export const AUTHOR_PHOTO = "/author.svg";
@@ -31,7 +32,7 @@ export function AuthorByline({ locale, datePublished, dateModified }: AuthorByli
     <div className="flex items-center gap-3 border-y-2 border-ink/10 py-4 my-6">
       <Image
         src={AUTHOR_PHOTO}
-        alt={AUTHOR_NAME}
+        alt={BYLINE_NAME}
         width={44}
         height={44}
         unoptimized
@@ -41,7 +42,7 @@ export function AuthorByline({ locale, datePublished, dateModified }: AuthorByli
         <div className="text-ink/70 font-semibold">
           {isAr ? "بقلم " : "By "}
           <Link href={`/${locale}/author`} className="font-extrabold text-ink hover:text-qalam transition">
-            {AUTHOR_NAME}
+            {BYLINE_NAME}
           </Link>
         </div>
         <div className="text-xs text-ink/55">

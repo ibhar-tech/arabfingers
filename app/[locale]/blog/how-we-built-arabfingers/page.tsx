@@ -65,9 +65,9 @@ export default async function HowWeBuiltPage({ params }: { params: Promise<{ loc
 function AuthorBlock({ isAr }: { isAr?: boolean }) {
   return (
     <div className="flex items-center gap-3 mt-2 mb-8 text-xs text-ink/40">
-      <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent text-sm font-bold">A</div>
+      <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent text-sm font-bold">IT</div>
       <div>
-        <Link href={`/${isAr ? "ar" : "en"}/author`} className="text-ink/70 font-medium hover:text-accent transition">Aissa Trad</Link>
+        <Link href={`/${isAr ? "ar" : "en"}/author`} className="text-ink/70 font-medium hover:text-accent transition">IBHAR TECH LEARNING</Link>
         <span className="mx-2">·</span>
         <time dateTime="2026-04-15">{isAr ? "١٥ أبريل ٢٠٢٦" : "April 15, 2026"}</time>
         <span className="mx-2">·</span>
