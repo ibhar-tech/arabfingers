@@ -71,10 +71,24 @@ function injectUnits() {
   native.src = `${AD_HOST}/${NATIVE_KEY}/invoke.js`;
   document.getElementById(`container-${NATIVE_KEY}`)?.appendChild(native);
 
-  // Banner zones read the single window.atOptions global, so the only way
-  // three zones can coexist on one page is one browsing context each: each
-  // iframe gets its own copy of the snippet via srcdoc.
+  appendBannerFrames();
+}
+
+/**
+ * Append each banner zone's srcdoc iframe — exactly once per container.
+ * Banner zones read the single window.atOptions global, so the only way
+ * three zones can coexist on one page is one browsing context each: each
+ * iframe gets its own copy of the snippet via srcdoc. Called from inject
+ * AND re-called from the relocator, so a container that was mid-hydration
+ * (or otherwise unavailable) on the first pass self-heals on the next.
+ * No loading="lazy": end-of-page placements would never load off-viewport,
+ * and impression counting needs the request to fire on load.
+ */
+function appendBannerFrames() {
   for (const banner of BANNERS) {
+    const host = document.getElementById(`adsterra-banner-${banner.width}x${banner.height}`);
+    if (!host || host.dataset.filled) continue;
+    host.dataset.filled = "1";
     const atOptions = JSON.stringify({
       key: banner.key,
       format: "iframe",
@@ -86,12 +100,11 @@ function injectUnits() {
     frame.width = String(banner.width);
     frame.height = String(banner.height);
     frame.title = "Advertisement";
-    frame.loading = "lazy";
     frame.style.border = "0";
     frame.srcdoc =
       `<script>atOptions=${atOptions};</script>` +
       `<script src="${AD_HOST}/${banner.key}/invoke.js"></script>`;
-    document.getElementById(`adsterra-banner-${banner.width}x${banner.height}`)?.appendChild(frame);
+    host.appendChild(frame);
   }
 }
 
@@ -132,6 +145,10 @@ function relocateUnits(pathname: string) {
     const target = slotFor(pos);
     if (target && !target.contains(el)) target.before(el);
   }
+
+  // Self-heal: if any banner container was unavailable during the original
+  // injection pass, it gets its frame now that it is placed and connected.
+  appendBannerFrames();
 }
 
 const BANNERS = [
