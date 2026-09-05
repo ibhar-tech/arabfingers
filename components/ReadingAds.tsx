@@ -1,22 +1,34 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 /**
  * Adsterra units, rendered once from PageLayout and shown only on the
  * parent-facing reading routes.
  *
- * The gating is ALLOW-LIST based: ads render on blog / learn / printables /
- * glossary / resources and nowhere else, so a route added tomorrow is ad-free
- * by default. DENY_PREFIXES is a second lock that wins over the allow list —
- * the activities a toddler drives must never show an ad, because a mistimed
- * tap near an ad is an accident waiting to happen and networks count those
- * clicks as junk traffic.
+ * PLACEMENT — the four units are distributed through the page, not stacked:
  *
- * Units are injected only after the page has loaded and gone idle (the same
- * discipline the previous ad tag used): on a phone the ad request must never
- * compete with the CSS, fonts and chunks the parent came for.
+ *   leaderboard (728×90 desktop / 320×50 mobile) → top of the content,
+ *     right after the breadcrumbs + title block;
+ *   native banner → mid-content, beside the later sections;
+ *   300×250 rectangle → near the end, above the last block.
+ *
+ * The containers are React-rendered once inside a hidden staging <aside>
+ * (which never unmounts, so loaded ads survive client-side navigation).
+ * After the tags load — and again after every route change — a relocator
+ * moves each container out of staging into its computed position in <main>.
+ * Moving a node preserves the loaded ad inside it. Non-reading routes get
+ * the containers moved back into staging, which is display:none, so nothing
+ * is visible or tappable there; on a direct landing on a game the scripts
+ * are never requested at all.
+ *
+ * The gating is ALLOW-LIST based: ads render on blog / learn / printables /
+ * glossary / resources / stories and nowhere else, so a route added tomorrow
+ * is ad-free by default. DENY_PREFIXES is a second lock that wins over the
+ * allow list — the activities a toddler drives must never show an ad,
+ * because a mistimed tap near an ad is an accident waiting to happen and
+ * networks count those clicks as junk traffic.
  */
 
 const AD_HOST = "https://fortunateambiguous.com";
@@ -26,11 +38,12 @@ const DENY_PREFIXES = ["/play", "/coloring", "/games"];
 
 const NATIVE_KEY = "f27a5cb770440a7a8791cf8b7e53bc13";
 
-const BANNERS = [
-  { key: "cece0b3529426d2e6735cd25160f61e9", width: 728, height: 90, className: "hidden lg:block" },
-  { key: "3c908dfc062a31ebcf0682182915df0c", width: 320, height: 50, className: "lg:hidden" },
-  { key: "490db964007730ea5d4f938f3227bb4c", width: 300, height: 250, className: "hidden md:block" },
-];
+/** Unit id → slot position. Desktop/mobile leaderboard pairs resolve below. */
+const UNITS = [
+  { id: "adsterra-leaderboard", pos: "top" },
+  { id: `container-${NATIVE_KEY}`, pos: "mid" },
+  { id: "adsterra-banner-300x250", pos: "end" },
+] as const;
 
 /** Path without the locale segment, e.g. "/en/blog/x" -> "/blog/x". */
 function withoutLocale(pathname: string) {
@@ -82,9 +95,54 @@ function injectUnits() {
   }
 }
 
+/**
+ * Move each unit container to its slot in the current page — or back into
+ * staging when the route is not a reading page. Idempotent: containers carry
+ * data-ad-container and are excluded from the insertion-point scan.
+ */
+function relocateUnits(pathname: string) {
+  const staging = document.getElementById("adsterra-staging");
+  const main = document.querySelector("main");
+  if (!staging || !main) return;
+
+  const allowed = unitsInjected && isReadingRoute(pathname);
+  if (!allowed) {
+    for (const { id } of UNITS) {
+      const el = document.getElementById(id);
+      if (el && !staging.contains(el)) staging.appendChild(el);
+    }
+    return;
+  }
+
+  const kids = Array.from(main.children).filter(
+    (el) =>
+      !(el instanceof HTMLElement && el.dataset.adContainer) && el.id !== "adsterra-staging",
+  );
+  if (kids.length < 2) return;
+
+  const slotFor = (pos: string): Element | null => {
+    if (pos === "top") return kids[Math.min(1, kids.length - 1)]; // after title block
+    if (pos === "mid") return kids[Math.max(2, Math.floor(kids.length * 0.6))]; // before ~60%
+    return kids[kids.length - 1]; // end: before the last block
+  };
+
+  for (const { id, pos } of UNITS) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+    const target = slotFor(pos);
+    if (target && !target.contains(el)) target.before(el);
+  }
+}
+
+const BANNERS = [
+  { key: "cece0b3529426d2e6735cd25160f61e9", width: 728, height: 90, className: "hidden lg:flex justify-center" },
+  { key: "3c908dfc062a31ebcf0682182915df0c", width: 320, height: 50, className: "flex justify-center lg:hidden" },
+];
+
 export function ReadingAds() {
   const pathname = usePathname() ?? "/";
   const allowed = isReadingRoute(pathname);
+  const stagingRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!allowed || unitsInjected) return;
@@ -95,9 +153,15 @@ export function ReadingAds() {
       // requestIdleCallback where it exists, a short timer where it does not
       // (Safari). Either way the ad requests land after first paint.
       if (typeof window.requestIdleCallback === "function") {
-        idle = window.requestIdleCallback(injectUnits, { timeout: 3000 });
+        idle = window.requestIdleCallback(() => {
+          injectUnits();
+          relocateUnits(window.location.pathname);
+        }, { timeout: 3000 });
       } else {
-        timer = window.setTimeout(injectUnits, 1500);
+        timer = window.setTimeout(() => {
+          injectUnits();
+          relocateUnits(window.location.pathname);
+        }, 1500);
       }
     };
 
@@ -111,24 +175,41 @@ export function ReadingAds() {
     };
   }, [allowed]);
 
-  // Kept mounted on every page so an injected unit survives client-side
-  // navigation between reading routes; on non-reading routes the whole block
-  // is hidden (display:none) — nothing visible, nothing tappable, and on a
-  // direct landing on a game the scripts are never requested at all.
+  // Re-place the units whenever the route changes: the new page's content
+  // renders first (this effect runs after commit), then the containers move
+  // into it. Also stashes them on non-reading routes.
+  useEffect(() => {
+    relocateUnits(pathname);
+  }, [pathname]);
+
   const isAr = pathname.startsWith("/ar");
   return (
-    <aside
-      aria-label={isAr ? "إعلانات" : "Advertisements"}
-      className={`my-10 space-y-8 text-center print:hidden ${allowed ? "" : "hidden"}`}
-    >
-      {BANNERS.map((banner) => (
-        <div
-          key={banner.key}
-          id={`adsterra-banner-${banner.width}x${banner.height}`}
-          className={`flex justify-center ${banner.className}`}
-        />
-      ))}
-      <div id={`container-${NATIVE_KEY}`} className="w-full" />
-    </aside>
+    <>
+      {/* Staging: containers are rendered here once and relocated into the
+          page after load. display:none here does not affect them once moved. */}
+      <aside
+        id="adsterra-staging"
+        ref={stagingRef}
+        aria-hidden
+        data-ad-container="1"
+        className="hidden"
+      >
+        <div id="adsterra-leaderboard" data-ad-container="1" className="my-8 flex-col items-center gap-8">
+          {BANNERS.map((banner) => (
+            <div
+              key={banner.key}
+              id={`adsterra-banner-${banner.width}x${banner.height}`}
+              className={`w-full ${banner.className}`}
+            />
+          ))}
+        </div>
+        <div id={`container-${NATIVE_KEY}`} data-ad-container="1" className="my-8 w-full" />
+        <div id="adsterra-banner-300x250" data-ad-container="1" className="my-8 flex justify-center" />
+      </aside>
+      {/* Accessible label for the relocated units, kept out of the flow. */}
+      <span aria-hidden data-ad-container="1" className="hidden">
+        {isAr ? "إعلانات" : "Advertisements"}
+      </span>
+    </>
   );
 }
