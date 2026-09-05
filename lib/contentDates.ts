@@ -59,6 +59,8 @@ export const CONTENT_LAST_UPDATED: Record<string, string> = {
       "al-arnab-al-saeed", "al-fanoos-al-sagheer", "rihla-ila-l-qamar",
       "al-huut-al-sagheer", "iidun-saeed", "al-ghuraabu-aldhakiy",
       "yawmun-maa-baba", "al-mataru-fi-l-madrasa", "al-fiilu-wal-faraasha",
+      "suadu-wal-sahab", "nuura-wan-nujuum", "tuffaahatu-t-timsaah",
+      "yawmun-maa-baba", "al-mataru-fi-l-madrasa", "al-fiilu-wal-faraasha",
     ].map(
       (slug) => [`/stories/${slug}`, "2026-09-05"],
     ),

@@ -29,6 +29,9 @@ Languages: English (en), Arabic (ar). Base URL: https://www.arabfingers.site
 - A Day with Baba (ba): https://www.arabfingers.site/en/stories/yawmun-maa-baba
 - Rain at School (meem): https://www.arabfingers.site/en/stories/al-mataru-fi-l-madrasa
 - The Elephant and the Butterfly (fa): https://www.arabfingers.site/en/stories/al-fiilu-wal-faraasha
+- Suad and the Clouds (seen): https://www.arabfingers.site/en/stories/suadu-wal-sahab
+- Nour and the Stars (noon): https://www.arabfingers.site/en/stories/nuura-wan-nujuum
+- The Crocodile's Apple (ta): https://www.arabfingers.site/en/stories/tuffaahatu-t-timsaah
 
 ## Interactive science cartoon lessons (NEW)
 - States of Matter for Kids: https://www.arabfingers.site/en/learn/states-of-matter

@@ -1,6 +1,7 @@
 import { blogPosts } from "@/lib/blog-data";
 import { learnArticles } from "@/lib/related";
 import { lastUpdatedFor } from "@/lib/contentDates";
+import { stories } from "@/lib/stories";
 
 export const dynamic = "force-static";
 
@@ -24,6 +25,12 @@ export async function GET() {
       description: article.descEn,
       url: `${SITE_URL}/en/learn/${article.slug}`,
       date: new Date(lastUpdatedFor(`/learn/${article.slug}`, LEARN_DATE_FALLBACK)),
+    })),
+    ...stories.map((story) => ({
+      title: `${story.titleEn} — Arabic story for kids`,
+      description: story.introEn,
+      url: `${SITE_URL}/en/stories/${story.slug}`,
+      date: new Date(lastUpdatedFor(`/stories/${story.slug}`, "2026-09-05")),
     })),
   ].sort((a, b) => b.date.getTime() - a.date.getTime());
 

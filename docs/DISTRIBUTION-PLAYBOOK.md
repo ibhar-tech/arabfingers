@@ -20,6 +20,8 @@ Your audience (from GSC): **English-speaking parents in the US, UK, Canada, Aust
 | Arabic for Toddlers | Simple first Arabic words, sounds and activities for ages 1–6. |
 | Arabic Colors & Numbers | Teach colors and numbers in Arabic with pronunciation and games. |
 | Homeschool Arabic | Resources, routines and tips for teaching Arabic at home. |
+| Arabic Coloring Pages | Free printable Arabic coloring books for kids — animals, fruits, Ramadan, alphabet bubbles. New PDF every month. |
+| Arabic Kids Stories | Original illustrated Arabic stories with English translation — read online or download the free PDF. |
 
 ---
 
@@ -27,18 +29,33 @@ Your audience (from GSC): **English-speaking parents in the US, UK, Canada, Aust
 
 6 ready pins are in `public/pins/` (`home`, `play`, `alphabet-guide`, `colors`, `first-words`, `printables`). Each is 1000×1500, links to the matching page.
 
-**Pin description formula** (keyword-rich, the only SEO that matters on Pinterest) — title + value + keywords + link CTA:
+**Pin inventory:** 17 ready pins in `public/pins/` (1000×1500, each linking to its page). Regenerate any time with `node scripts/generate-pins.mjs`.
 
-| Pin | Paste this description |
-|---|---|
-| `home.png` | Teach your kids the Arabic alphabet the fun way! Free bilingual game — all 28 Arabic letters with real pronunciation, for ages 1–6. No ads, no signup. ▶ arabfingers.site #arabicforkids #learnarabic #homeschool #muslimkids |
-| `play.png` | Free online Arabic letters game for kids. Tap a letter, hear it, learn it — toddlers love it. Works on phone, tablet & computer. #arabicalphabet #toddlerlearning #arabicforkids |
-| `alphabet-guide.png` | All 28 Arabic letters with pronunciation, example words, and the mistakes kids make — a complete free guide for parents. #arabicalphabet #learnarabic #homeschoolarabic |
-| `colors.png` | Learn 12 colors in Arabic for kids — with pronunciation, nature examples and a color-hunt game. Free printable-friendly guide. #arabicforkids #arabicvocabulary #homeschool |
-| `first-words.png` | 25 first Arabic words every child should know — family, animals, food & everyday words, grouped by theme with pronunciation. #arabicforkids #toddlerarabic #bilingualkids |
-| `printables.png` | FREE printable Arabic alphabet tracing worksheets (PDF). Print all 28 letters at home — no signup. Perfect for preschool & homeschool. #arabicprintables #tracingworksheets #homeschool |
+**Pin description formula** (keyword-rich — the only SEO that matters on Pinterest) — title + value + keywords + link CTA. Descriptions per pin:
 
-**Cadence:** 3–5 pins/week. Re-pin the same 6 to different boards over time, and make seasonal variants (Ramadan, back-to-school) by adding entries to `PINS` in `scripts/generate-pins.mjs`. Consistency > volume. A free scheduler (Pinterest's native scheduler, or Tailwind) lets you queue a month in 20 min.
+| Pin | Board | Paste this description |
+|---|---|---|
+| `home.png` | Learn Arabic for Kids | Teach your kids the Arabic alphabet the fun way! Free bilingual game — all 28 Arabic letters with real pronunciation, ages 1–6. ▶ arabfingers.site #arabicforkids #learnarabic #homeschool #muslimkids |
+| `play.png` | Arabic for Toddlers | Free online Arabic letters game for kids. Tap a letter, hear it, learn it — toddlers love it. #arabicalphabet #toddlerlearning #arabicforkids |
+| `alphabet-guide.png` | Learn Arabic for Kids | All 28 Arabic letters with pronunciation, example words, and the mistakes kids make — a complete free parent guide. #arabicalphabet #learnarabic #homeschoolarabic |
+| `colors.png` | Arabic Colors & Numbers | Learn 12 colors in Arabic for kids — pronunciation, nature examples and a color-hunt game. #arabicforkids #arabicvocabulary |
+| `first-words.png` | Arabic for Toddlers | 25 first Arabic words every child should know — family, animals, food & everyday words. #arabicforkids #toddlerarabic #bilingualkids |
+| `printables.png` | Arabic Alphabet Printables | FREE printable Arabic alphabet tracing worksheets (PDF). All 28 letters, no signup. #arabicprintables #tracingworksheets #homeschool |
+| `coloring-animals.png` | Arabic Coloring Pages | Free Arabic animals coloring book PDF — 8 animals to colour with names to trace in Arabic & English. #arabiccoloringpages #muslimkidsactivities #arabicforkids |
+| `coloring-fruits-vegetables.png` | Arabic Coloring Pages | Fruits & vegetables coloring pages with Arabic names — free printable PDF for kids. #arabiccoloringpages #fruitcoloring #homeschoolarabic |
+| `coloring-transport.png` | Arabic Coloring Pages | Cars, trains & planes coloring pages with Arabic names — free printable PDF. #vehiclescoloring #arabicforkids #coloringpages |
+| `coloring-solar-system.png` | Arabic Coloring Pages | Solar system coloring pages in Arabic — sun, moon, Saturn & rocket. Free printable PDF. #solarsystem #spacecoloring #arabicforkids |
+| `coloring-alphabet.png` | Arabic Alphabet Printables | 28 bubble-letter coloring pages — one giant Arabic letter per page with example words. Free PDF. #alphabetcoloring #arabicalphabet #bubbleletters |
+| `coloring-ramadan.png` | Arabic Coloring Pages (+ Ramadan boards) | FREE Ramadan coloring pages in Arabic — lantern, mosque, crescent, dates. Printable PDF for kids. #ramadancrafts #ramadanforkids #ramadanactivities |
+| `coloring-sea-animals.png` | Arabic Coloring Pages | Sea animals coloring pages with Arabic names — whale, octopus, turtle. Free printable PDF. #oceananimals #seacoloring #arabicforkids |
+| `coloring-body-parts.png` | Arabic for Toddlers | My Body in Arabic — coloring pages for head, eye, hand & foot with name tracing. Free PDF. #bodyparts #arabicvocabulary #toddleractivities |
+| `coloring-seasons.png` | Arabic Coloring Pages | The four seasons in Arabic — one tree through spring, summer, autumn & winter. Free coloring PDF. #fourseasons #seasonscrafts #arabicforkids |
+| `coloring-opposites.png` | Arabic for Toddlers | Arabic opposites coloring pages — big & small, day & night, side by side. Free printable PDF. #opposites #arabicworksheets #earlylearning |
+| `stories.png` | Arabic Kids Stories | Original illustrated Arabic bedtime stories with full English translation — read online or download the free PDF. #arabicstories #bedtimestories #muslimkids |
+
+**Priority order for a new account:** start with the coloring-book pins (`coloring-*`) — printable coloring content is the strongest-performing niche on family Pinterest — then `stories.png`, then the older six.
+
+**Cadence:** 3–5 pins/week. Re-pin the same pin to different boards over time, and make seasonal variants (Ramadan, back-to-school, Eid) by adding entries to `PINS` in `scripts/generate-pins.mjs`. Consistency > volume. A free scheduler (Pinterest's native scheduler, or Tailwind) lets you queue a month in 20 min.
 
 **Idea pins / video:** a 5–10s screen capture of the play page (tap a letter → it animates + speaks) posted as an Idea Pin reaches far more people than static pins. Optional, high upside.
 
