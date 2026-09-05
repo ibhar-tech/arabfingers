@@ -17,11 +17,14 @@ const CANONICAL_HOST = "www.arabfingers.site";
  */
 /**
  * Security headers applied to every page response. The site runs Adsterra
- * advertising on the parent-facing reading routes, so the CSP must allow its
- * script/iframe hosts (and https creative images); everything else is locked
- * to same-origin. frame-ancestors 'none' matters here specifically: an
- * embedded copy of a tap-anywhere toy would invite mistimed taps from the
- * child driving the stage.
+ * advertising on the parent-facing reading routes. Adsterra serves banner
+ * creatives and native campaign data from rotating randomized domains (a
+ * different set on every page view), so frame-src/connect-src/img-src must
+ * accept any HTTPS origin; scripts remain locked to the invoke host. Scripts
+ * are the XSS-sensitive channel, and the ad network needs only two hosts
+ * there. frame-ancestors 'none' matters here specifically: an embedded copy
+ * of a tap-anywhere toy would invite mistimed taps from the child driving
+ * the stage.
  *
  * These live in middleware rather than public/_headers because prerendered
  * HTML is served through the Worker, not the static-asset pipeline that
@@ -33,8 +36,8 @@ const CONTENT_SECURITY_POLICY = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
-  "connect-src 'self' https://fortunateambiguous.com https://cloudflareinsights.com",
-  "frame-src https://fortunateambiguous.com",
+  "connect-src 'self' https:",
+  "frame-src https:",
   "media-src 'self'",
   "worker-src 'self'",
   "manifest-src 'self'",
