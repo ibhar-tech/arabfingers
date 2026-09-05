@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import sitemap from "@/app/sitemap";
 import { worksheetSets } from "@/lib/worksheets";
 import { letterWorksheetPages } from "@/lib/letterWorksheets";
+import { stories } from "@/lib/stories";
 
 const SITE = "https://www.arabfingers.site";
 
@@ -15,7 +16,7 @@ describe("sitemap", () => {
     for (const e of pages) {
       expect(e.url.startsWith(`${SITE}/en`) || e.url.startsWith(`${SITE}/ar`)).toBe(true);
     }
-    expect(pdfs).toHaveLength(worksheetSets.length + letterWorksheetPages.length);
+    expect(pdfs).toHaveLength(worksheetSets.length + letterWorksheetPages.length + stories.length);
   });
 
   it("never lists the bare root (it 308-redirects to /en)", () => {

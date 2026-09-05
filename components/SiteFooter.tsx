@@ -11,6 +11,7 @@ const footerPlayLinks = [
   { href: "/coloring", labelEn: "Coloring", labelAr: "التلوين" },
   { href: "/play", labelEn: "Free Play", labelAr: "لعب حر" },
   { href: "/printables", labelEn: "Worksheets", labelAr: "أوراق عمل" },
+  { href: "/stories", labelEn: "Kids' Stories", labelAr: "قصص للأطفال" },
 ];
 
 const footerLearnLinks = [

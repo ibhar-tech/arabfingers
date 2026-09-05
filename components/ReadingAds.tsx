@@ -21,7 +21,7 @@ import { useEffect } from "react";
 
 const AD_HOST = "https://fortunateambiguous.com";
 
-const ALLOW_PREFIXES = ["/blog", "/learn", "/printables", "/glossary", "/resources"];
+const ALLOW_PREFIXES = ["/blog", "/learn", "/printables", "/glossary", "/resources", "/stories"];
 const DENY_PREFIXES = ["/play", "/coloring", "/games"];
 
 const NATIVE_KEY = "f27a5cb770440a7a8791cf8b7e53bc13";

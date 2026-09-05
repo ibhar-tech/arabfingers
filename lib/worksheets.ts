@@ -121,15 +121,54 @@ export const worksheetSets: WorksheetSet[] = [
     ageAr: "من ٣ إلى ٧ سنوات",
   },
   {
+    id: "arabic-fruits-vegetables-coloring",
+    emoji: "🍎",
+    titleEn: "Arabic Fruits & Vegetables Coloring Book",
+    titleAr: "كتاب تلوين الفواكه والخضروات بالعربية",
+    descEn:
+      "Eight fruits and vegetables with a large outline drawing to colour, the name to trace in Arabic and English, and a one-line fact a parent can read aloud.",
+    descAr:
+      "ثماني فواكه وخضروات برسم كبير للتلوين، واسم كل واحدة للتتبّع بالعربية والإنجليزية، مع معلومة قصيرة يقرأها الوالد بصوت عالٍ.",
+    pages: 8,
+    ageEn: "Ages 3–7",
+    ageAr: "من ٣ إلى ٧ سنوات",
+  },
+  {
+    id: "arabic-transport-coloring",
+    emoji: "🚌",
+    titleEn: "Arabic Transport Coloring Book",
+    titleAr: "كتاب تلوين وسائل النقل بالعربية",
+    descEn:
+      "Six things that go — car, bus, train, plane, ship and bicycle — each with a big outline to colour, bilingual name tracing, and a fact to read aloud.",
+    descAr:
+      "ستّ وسائل نقل — سيارة وحافلة وقطار وطائرة وسفينة ودراجة — كل واحدة برسم كبير للتلوين وتتبّع الاسم بالعربية والإنجليزية ومعلومة تُقرأ بصوت عالٍ.",
+    pages: 6,
+    ageEn: "Ages 3–7",
+    ageAr: "من ٣ إلى ٧ سنوات",
+  },
+  {
+    id: "arabic-solar-system-coloring",
+    emoji: "🪐",
+    titleEn: "Arabic Solar System Coloring Book",
+    titleAr: "كتاب تلوين المجموعة الشمسية بالعربية",
+    descEn:
+      "The sun, the moon, the earth, Saturn, a star and a rocket — big outlines to colour with the Arabic and English names to trace. Pairs with our Solar System lesson.",
+    descAr:
+      "الشمس والقمر والأرض وزحل والنجمة والصاروخ — رسوم كبيرة للتلوين مع تتبّع الأسماء بالعربية والإنجليزية. يكمل درس المجموعة الشمسية على الموقع.",
+    pages: 6,
+    ageEn: "Ages 4–8",
+    ageAr: "من ٤ إلى ٨ سنوات",
+  },
+  {
     id: "arabic-complete-workbook",
     emoji: "📚",
     titleEn: "Complete Arabic Workbook (everything above)",
     titleAr: "الكرّاسة العربية الكاملة (كل ما سبق)",
     descEn:
-      "Every pack in this library bound into one file, in teaching order — the alphabet chart first, then letters, harakat, numbers, colours and animals. One download, one print job.",
+      "Every pack in this library bound into one file, in teaching order — the alphabet chart first, then letters, harakat, numbers, colours, animals and the colouring books. One download, one print job.",
     descAr:
-      "كل المجموعات في ملف واحد مرتّبة تعليمياً — اللوحة أولاً ثم الحروف فالحركات فالأرقام فالألوان فالحيوانات. تنزيل واحد وطباعة واحدة.",
-    pages: 68,
+      "كل المجموعات في ملف واحد مرتّبة تعليمياً — اللوحة أولاً ثم الحروف فالحركات فالأرقام فالألوان فالحيوانات ثم كتب التلوين. تنزيل واحد وطباعة واحدة.",
+    pages: 88,
     ageEn: "Ages 3–7",
     ageAr: "من ٣ إلى ٧ سنوات",
     bundle: true,
@@ -265,4 +304,46 @@ export const animalsData: AnimalItem[] = [
   { ar: "كلب", en: "Dog", translit: "kalb", shape: "dog", factEn: "A dog smells about ten thousand times better than a person.", factAr: "حاسة الشمّ عند الكلب أقوى من الإنسان بعشرة آلاف مرة." },
   { ar: "عصفور", en: "Bird", translit: "ʿusfuur", shape: "bird", factEn: "Birds have hollow bones, which is part of how they stay light enough to fly.", factAr: "عظام الطيور مجوّفة، ولهذا تبقى خفيفة بما يكفي للطيران." },
   { ar: "سمكة", en: "Fish", translit: "samaka", shape: "fish", factEn: "Fish breathe by pulling oxygen out of the water through their gills.", factAr: "تتنفّس السمكة بسحب الأكسجين من الماء عبر خياشيمها." },
+];
+
+export type ColoringItem = {
+  ar: string;
+  en: string;
+  translit: string;
+  /** Which outline drawing the PDF renders for colouring. */
+  shape: string;
+  factEn: string;
+  factAr: string;
+};
+
+/** Fruits & vegetables colouring book — drawn from scratch for this pack. */
+export const fruitsVegData: ColoringItem[] = [
+  { ar: "تفاحة", en: "Apple", translit: "tuffaaha", shape: "apple", factEn: "An apple tree can give fruit for more than fifty years.", factAr: "شجرة التفاح تثمر لأكثر من خمسين سنة." },
+  { ar: "موزة", en: "Banana", translit: "mawza", shape: "banana", factEn: "Bananas grow pointing upwards, curving towards the sun.", factAr: "الموز ينمو متجهاً إلى الأعلى منحنياً نحو الشمس." },
+  { ar: "عنب", en: "Grapes", translit: "ʿinab", shape: "grapes", factEn: "A bunch of grapes can hold more than seventy little berries.", factAr: "عنقود العنب قد يحمل أكثر من سبعين حبّة صغيرة." },
+  { ar: "بطيخ", en: "Watermelon", translit: "baTTeekh", shape: "watermelon", factEn: "A watermelon is almost entirely water — that is why it is so refreshing.", factAr: "البطيخ كلّه تقريباً ماء — ولهذا ينعشنا في الحرّ." },
+  { ar: "جزر", en: "Carrot", translit: "jazar", shape: "carrot", factEn: "Carrots were first grown as medicine, not as food.", factAr: "زرع الناس الجزر أوّلاً دواءً لا طعاماً." },
+  { ar: "طماطم", en: "Tomato", translit: "TamaaTim", shape: "tomato", factEn: "A tomato is a fruit, although almost everyone cooks it as a vegetable.", factAr: "الطماطم فاكهة، مع أنّ الناس يطبخونها خضروات." },
+  { ar: "برتقالة", en: "Orange", translit: "burtuqaala", shape: "orange", factEn: "An orange is full of vitamin C, which helps the body fight colds.", factAr: "البرتقالة مليئة بفيتامين سي الذي يساعد الجسم على مقاومة الرشح." },
+  { ar: "فراولة", en: "Strawberry", translit: "farawla", shape: "strawberry", factEn: "A strawberry wears its seeds on the outside — about two hundred of them.", factAr: "الفراولة تحمل بذورها من الخارج — نحو مئتي بذرة." },
+];
+
+/** Vehicles colouring book. */
+export const transportData: ColoringItem[] = [
+  { ar: "سيارة", en: "Car", translit: "sayyaara", shape: "car", factEn: "The first cars were so slow that a bicycle could race past them.", factAr: "كانت السيارات الأولى بطيئة لدرجة أنّ الدراجة تسبقها." },
+  { ar: "حافلة", en: "Bus", translit: "Haafila", shape: "bus", factEn: "One full bus can take forty cars off the road.", factAr: "حافلة واحدة ممتلئة تعادل أربعين سيارة على الطريق." },
+  { ar: "قطار", en: "Train", translit: "qiTaar", shape: "train", factEn: "The fastest trains today run faster than 500 km per hour.", factAr: "أسرع القطارات اليوم تتجاوز ٥٠٠ كيلومتر في الساعة." },
+  { ar: "طائرة", en: "Airplane", translit: "Taa'ira", shape: "airplane", factEn: "A plane's wings are shaped so the air moving over them lifts it up.", factAr: "جناحا الطائرة مصمّمان ليَدْفَعَهما الهواء إلى الأعلى." },
+  { ar: "سفينة", en: "Ship", translit: "safeena", shape: "ship", factEn: "A big ship floats because of the huge amount of air inside its hull.", factAr: "تطفو السفينة الكبيرة بفضل الهواء الوفير داخل جسمها." },
+  { ar: "دراجة", en: "Bicycle", translit: "darraaja", shape: "bicycle", factEn: "A bicycle is the most efficient transport humans ever invented — no fuel but you.", factAr: "الدراجة أوسع وسائل النقل كفاءةً — لا وقود لها سوى أنت." },
+];
+
+/** Solar system colouring book — pairs with the Solar System lesson. */
+export const solarData: ColoringItem[] = [
+  { ar: "شمس", en: "Sun", translit: "shams", shape: "sun", factEn: "The Sun is a star — the closest one to us, and it gives us light and warmth.", factAr: "الشمس نجم — أقرب نجم إلينا، ومنه نأخذ الضوء والدفء." },
+  { ar: "قمر", en: "Moon", translit: "qamar", shape: "moon", factEn: "The Moon has no light of its own; it reflects the Sun's light.", factAr: "القمر لا ضوء له، وإنّما يعكس ضوء الشمس." },
+  { ar: "أرض", en: "Earth", translit: "arD", shape: "earth", factEn: "Earth is the only planet we know of with oceans — and with life.", factAr: "الأرض الكوكب الوحيد الذي نعرفه ببحيرات ومحيطات وبحياة." },
+  { ar: "زحل", en: "Saturn", translit: "zuhal", shape: "saturn", factEn: "Saturn's rings are made of billions of pieces of ice and rock.", factAr: "خواتم زحل مكوّنة من مليارات قطع الثلج والصخر." },
+  { ar: "نجمة", en: "Star", translit: "najma", shape: "star", factEn: "The stars you see at night are suns — some far bigger than ours.", factAr: "النجوم التي تراها ليلاً شموس — بعضها أضخم من شمسنا." },
+  { ar: "صاروخ", en: "Rocket", translit: "Saaruukh", shape: "rocket", factEn: "A rocket does not push against the air — it pushes its own exhaust down to rise.", factAr: "الصاروخ لا يتكئ على الهواء — بل يدفع غازاته إلى الأسفل فيرتفع." },
 ];

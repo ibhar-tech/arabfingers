@@ -15,6 +15,12 @@ Languages: English (en), Arabic (ar). Base URL: https://www.arabfingers.site
 - Coloring & tracing: https://www.arabfingers.site/en/coloring
 - Printable worksheets: https://www.arabfingers.site/en/printables
 
+## Original illustrated stories (bilingual, free PDF per story)
+- Stories hub: https://www.arabfingers.site/en/stories
+- The Happy Rabbit: https://www.arabfingers.site/en/stories/al-arnab-al-saeed
+- The Little Lantern (Ramadan): https://www.arabfingers.site/en/stories/al-fanoos-al-sagheer
+- A Trip to the Moon: https://www.arabfingers.site/en/stories/rihla-ila-l-qamar
+
 ## Interactive science cartoon lessons (NEW)
 - States of Matter for Kids: https://www.arabfingers.site/en/learn/states-of-matter
 - The Water Cycle for Kids: https://www.arabfingers.site/en/learn/water-cycle

@@ -436,42 +436,205 @@ export const worksheetPages: WorksheetPage[] = [
   },
 
   {
-    id: "arabic-complete-workbook",
-    seoTitleEn: "Complete Arabic Workbook PDF — 53 Free Printable Pages",
-    seoTitleAr: "الكرّاسة العربية الكاملة PDF — ٥٣ صفحة مجانية للطباعة",
+    id: "arabic-fruits-vegetables-coloring",
+    seoTitleEn: "Arabic Fruits & Vegetables Coloring Pages PDF — Free Printable Book",
+    seoTitleAr: "كتاب تلوين الفواكه والخضروات بالعربية PDF — مجاناً للطباعة",
     seoDescEn:
-      "Every Arabic worksheet on this site in one 53-page PDF, in teaching order: alphabet chart, all 28 letter tracing pages, numbers 1–10, colours and animals. One download, one print job, free.",
+      "Free printable Arabic fruits and vegetables coloring book: 8 pages, each with a big outline drawing to colour and the name to trace in Arabic and English. PDF, no signup.",
     seoDescAr:
-      "كلّ أوراق العمل في هذا الموقع في ملف PDF واحد من ٥٣ صفحة، بترتيب تعليميّ: لوحة الحروف، وصفحات تتبّع الحروف الـ٢٨، والأرقام ١–١٠، والألوان والحيوانات. تنزيل واحد وطباعة واحدة، مجاناً.",
+      "كتاب تلوين الفواكه والخضروات بالعربية مجاناً: ٨ صفحات، كل صفحة برسم كبير للتلوين واسم للتتبّع بالعربية والإنجليزية. PDF بلا تسجيل.",
+    keywords: [
+      "arabic fruits coloring pages",
+      "arabic vegetables coloring book pdf",
+      "fruit colouring pages with arabic names",
+      "arabic food vocabulary coloring",
+      "الفواكه والخضروات للتلوين pdf",
+      "كتاب تلوين بالعربية للأطفال",
+    ],
+    taglineEn: "Colour the apple, trace تُفَّاحَة. Eight fruits and vegetables, one free PDF.",
+    taglineAr: "لوّن التفاحة وتتبّع «تُفَّاحَة». ثماني فواكه وخضروات في ملف PDF مجاني.",
+    insideEn: [
+      "One page per fruit or vegetable: apple, banana, grapes, watermelon, carrot, tomato, orange and strawberry.",
+      "A large, bold outline drawing that a three-year-old can colour inside without frustration.",
+      "The name in Arabic and English, each on a tracing row — solid guide, then faint guide, then blank.",
+      "A one-line fact about the fruit, written for a parent to read aloud while the child colours.",
+    ],
+    insideAr: [
+      "صفحة لكلّ فاكهة أو خضروات: التفاح والموز والعنب والبطيخ والجزر والطماطم والبرتقالة والفراولة.",
+      "رسم كبير واضح الخطوط يستطيع طفل الثالثة تلوينه دون إحباط.",
+      "الاسم بالعربية والإنجليزية، كلٌّ على سطر تتبّع: دليل متّصل، ثمّ دليل خفيف، ثمّ فراغ.",
+      "معلومة واحدة قصيرة عن الثمرة، كُتبت ليقرأها الوالد بصوت عالٍ أثناء التلوين.",
+    ],
+    useEn: [
+      "Food is the fastest vocabulary for a small child because they can taste it. After colouring the apple page, eat an apple and say the word again — the memory attaches to the fruit, not to the paper.",
+      "Keep the finished pages together and you end up with a food book your child made themselves. Ask them, in Arabic, for each page: what is this? The tracing at the bottom of the sheet is the model answer.",
+    ],
+    useAr: [
+      "طعام أسرع مفردات يصل إليها الطفل الصغير لأنّه يتذوّقها. بعد تلوين صفحة التفاحة كلوا تفاحة وأعيدوا الكلمة — فترتبط الذاكرة بالفاكهة لا بالورق.",
+      "اجمعوا الصفحات الملوّنة معاً يصير لديكم كتاب طعام صنعه طفلكم بنفسه. واسألوه بالعربية عند كلّ صفحة: ما هذه؟ تتبّع الاسم في أسفل الورقة هو الجواب النموذجي.",
+    ],
+    faq: [
+      {
+        qEn: "Is the PDF really free?",
+        qAr: "أهو ملف PDF مجاني فعلاً؟",
+        aEn: "Yes — the download asks for no email, no account and no payment, and the pages carry no watermark.",
+        aAr: "نعم — التنزيل بلا بريد إلكتروني وبلا حساب وبلا دفع، والصفحات بلا علامة مائية.",
+      },
+      {
+        qEn: "What age is this coloring book for?",
+        qAr: "لكم هذا الكتاب من العمر؟",
+        aEn: "Roughly three to seven. Younger children colour the picture; five- and six-year-olds do the word tracing too; seven-year-olds can copy the fact line in their own handwriting.",
+        aAr: "من نحو الثالثة إلى السابعة. الأصغر يلوّن الرسمة، وخماسية أو سادسية تتتبّع الكلمات أيضاً، والسابعة تنسخ سطر المعلومة بخطّها.",
+      },
+    ],
+  },
+  {
+    id: "arabic-transport-coloring",
+    seoTitleEn: "Arabic Transport Coloring Pages PDF — Car, Bus, Train & More",
+    seoTitleAr: "كتاب تلوين وسائل النقل بالعربية PDF — سيارة وحافلة وقطار",
+    seoDescEn:
+      "Free printable Arabic vehicles coloring book: 6 pages of things that go — car, bus, train, airplane, ship and bicycle — with the Arabic and English names to trace. PDF, free, no signup.",
+    seoDescAr:
+      "كتاب تلوين الآليات بالعربية مجاناً: ٦ صفحات — سيارة وحافلة وقطار وطائرة وسفينة ودراجة — مع تتبّع الأسماء بالعربية والإنجليزية. PDF مجاني بلا تسجيل.",
+    keywords: [
+      "arabic transport coloring pages",
+      "vehicles coloring book arabic names pdf",
+      "car coloring page with arabic word",
+      "means of transport in arabic for kids",
+      "وسائل النقل بالعربية للأطفال تلوين",
+      "تلوين السيارات بالعربية pdf",
+    ],
+    taglineEn: "Six things that go, from سيارة to سفينة — colour them, then trace their names.",
+    taglineAr: "ستّ آليات من «سيارة» إلى «سفينة» — لوّنها ثمّ تتبّع أسماءها.",
+    insideEn: [
+      "Six vehicles a child actually sees: car, bus, train, airplane, ship and bicycle.",
+      "A big side-view outline of each one, drawn with the bold simple lines small hands colour inside.",
+      "Arabic and English name tracing on every page, with the transliteration printed under the title.",
+      "A fact about each vehicle that answers the question children always ask — which is fastest? how does it stay up?",
+    ],
+    insideAr: [
+      "ستّ آليات يراها الطفل فعلاً: سيارة وحافلة وقطار وطائرة وسفينة ودراجة.",
+      "رسم جانبي كبير لكلّ آلية بخطوط عريضة بسيطة يلوّن داخلها الصغار.",
+      "تتبّع الاسم بالعربية والإنجليزية في كلّ صفحة، مع النقل الصوتي مطبوعاً تحت العنوان.",
+      "معلومة عن كلّ آلية تجيب عن السؤال الذي يسأله الأطفال دائماً: أيّها أسرع؟ وكيف يبقى في الجوّ؟",
+    ],
+    useEn: [
+      "Vehicles are the words a child points at through a car window — which makes this the coloring book to keep in the car. Colour the bus at home, then find one on the road and say حافلة when you see it.",
+      "One page per journey is plenty. The point of the tracing row is not beautiful handwriting; it is the hand learning the shape of a word the mouth already says.",
+    ],
+    useAr: [
+      "الآليات هي الكلمات التي يشير إليها الطفل من نافذة السيارة — ولهذا فهذا الكتاب هو ما يُترك في السيارة. لوّنوا الحافلة في البيت، ثمّ ابحثوا عن حافلة على الطريق وقولوا «حافلة» عند رؤيتها.",
+      "صفحة واحدة لكلّ رحلة تكفي. غاية سطر التتبّع ليست خطّاً جميلاً، بل يدٌ تتعلّم شكل كلمة يقولها الفم أصلاً.",
+    ],
+    faq: [
+      {
+        qEn: "Are the vehicle names in Modern Standard Arabic?",
+        qAr: "أأسماء الآليات بالفصحى؟",
+        aEn: "Yes — every name is fuṣḥā (سيارة, حافلة, قطار), which is what children meet in Arabic books and cartoons, written here with full tashkeel on the tracing rows.",
+        aAr: "نعم — كلّ الأسماء بالفصحى (سيارة، حافلة، قطار)، وهي التي يقابلها الطفل في الكتب والرسوم المتحرّكة، مكتوبة هنا مشكولة تماماً في أسطر التتبّع.",
+      },
+      {
+        qEn: "Can I print it in black and white?",
+        qAr: "أأطبعها بالأبيض والأسود؟",
+        aEn: "Please do — the pages are deliberately ink-friendly line art. The only colour is the child's.",
+        aAr: "بل نرجو ذلك — الصفحات رسوم خطّية قليلة الحبر عمداً. واللون الوحيد فيها لون طفلك.",
+      },
+    ],
+  },
+  {
+    id: "arabic-solar-system-coloring",
+    seoTitleEn: "Arabic Solar System Coloring Pages PDF — Sun, Moon, Planets",
+    seoTitleAr: "كتاب تلوين المجموعة الشمسية بالعربية PDF — الشمس والقمر والكواكب",
+    seoDescEn:
+      "Free printable Arabic space coloring book: the sun, moon, earth, Saturn, stars and a rocket, each with its Arabic name to trace. Pairs with our Solar System lesson for kids. PDF, free.",
+    seoDescAr:
+      "كتاب تلوين الفضاء بالعربية مجاناً: الشمس والقمر والأرض وزحل والنجوم والصاروخ، مع تتبّع الاسم العربي. يكمل درس المجموعة الشمسية للأطفال. PDF مجاني.",
+    keywords: [
+      "arabic solar system coloring pages",
+      "space coloring book with arabic names pdf",
+      "sun moon coloring page arabic",
+      "المجموعة الشمسية للتلوين pdf",
+      "كتاب تلوين الفضاء بالعربية",
+      "تلوين الشمس والقمر للأطفال",
+    ],
+    taglineEn: "Colour the Sun, trace شَمْس. Space words for kids who love what is overhead.",
+    taglineAr: "لوّن الشمس وتتبّع «شَمْس». كلمات الفضاء لمن يعشقون ما فوق الرؤوس.",
+    insideEn: [
+      "Six pages: sun, crescent moon, earth, Saturn, a five-pointed star and a rocket.",
+      "A bold outline of each, big enough to colour and simple enough to recognise.",
+      "The Arabic name on a tracing row with the English name and transliteration alongside.",
+      "One true fact per page — the moon reflects light, Saturn's rings are ice — written at read-aloud level.",
+    ],
+    insideAr: [
+      "ستّ صفحات: الشمس والقمر الهلاليّ والأرض وزحل والنجمة الخماسيّة والصاروخ.",
+      "رسم واضح لكلّ واحد، كبير بما يكفي للتلوين وبسيط بما يكفي للتعرّف.",
+      "الاسم العربي على سطر تتبّع، مع الاسم الإنجليزي والنقل الصوتي إلى جانبه.",
+      "معلومة صحيحة واحدة في كلّ صفحة — القمر يعكس الضوء، وخواتم زحل من الجليد — بمستوى يُقرأ بصوت عالٍ.",
+    ],
+    useEn: [
+      "Read our Solar System lesson first, then colour. The lesson gives the child the idea; the coloring page gives their hands something to do while the idea settles.",
+      "Hang the finished Sun page where the actual sun reaches it in the morning. Children check facts against reality more than adults expect — an unlit corner of the room teaches nothing about light.",
+    ],
+    useAr: [
+      "اقرأوا درس المجموعة الشمسية على الموقع أوّلاً ثمّ لوّنوا. فالدرس يمنح الطفل الفكرة، وصفحة التلوين تمنح يديه عملاً حتى تستقرّ الفكرة.",
+      "علّقوا صفحة الشمس الملوّنة حيث تصلها الشمس الحقيقيّة صباحاً. فالأطفال يحقّقون المعلومة مقابل الواقع أكثر ممّا يتوقّع الكبار.",
+    ],
+    faq: [
+      {
+        qEn: "Does this match the Solar System lesson on the site?",
+        qAr: "أيطابق درس المجموعة الشمسية على الموقع؟",
+        aEn: "Yes — it is the colouring companion to arabfingers.site/en/learn/solar-system, and the story 'A Trip to the Moon' uses the same six words.",
+        aAr: "نعم — هو رفيق التلوين لدرس المجموعة الشمسية، وقصة «رحلة إلى القمر» تستعمل الكلمات الستّ نفسها.",
+      },
+      {
+        qEn: "Is it only six pages?",
+        qAr: "أهو ستّ صفحات فقط؟",
+        aEn: "Six drawings, one per page, each with the tracing rows and a fact — enough for a week of after-school colouring without repeating a single sheet.",
+        aAr: "ستّ رسوم، رسم في صفحة، مع أسطر التتبّع والمعلومة — تكفي أسبوع تلوين بعد المدرسة دون تكرار أيّ ورقة.",
+      },
+    ],
+  },
+
+  {
+    id: "arabic-complete-workbook",
+    seoTitleEn: "Complete Arabic Workbook PDF — 88 Free Printable Pages",
+    seoTitleAr: "الكرّاسة العربية الكاملة PDF — ٨٨ صفحة مجانية للطباعة",
+    seoDescEn:
+      "Every Arabic worksheet and coloring page on this site in one 88-page PDF, in teaching order: alphabet chart, all 28 letter tracing pages, harakat, numbers, colours, animals and the coloring books. Free.",
+    seoDescAr:
+      "كلّ أوراق العمل وصفحات التلوين في هذا الموقع في ملف PDF واحد من ٨٨ صفحة، بترتيب تعليميّ: لوحة الحروف، وتتبّع الحروف الـ٢٨، والحركات، والأرقام، والألوان، والحيوانات، وكتب التلوين. مجاناً.",
     keywords: [
       "arabic workbook pdf free",
       "complete arabic worksheets pdf",
       "arabic worksheets bundle printable",
       "free arabic curriculum pdf kids",
+      "arabic coloring book bundle pdf",
       "كرّاسة عربية كاملة pdf",
       "أوراق عمل عربية كاملة للطباعة",
     ],
-    taglineEn: "All 53 pages, in the order you would actually teach them.",
-    taglineAr: "الصفحات الثلاث والخمسون كلّها، بالترتيب الذي تُعلَّم به فعلاً.",
+    taglineEn: "All 88 pages, in the order you would actually teach them.",
+    taglineAr: "الصفحات الثماني والثمانون كلّها، بالترتيب الذي تُعلَّم به فعلاً.",
     insideEn: [
       "The alphabet chart first, so the reference is on the wall before any writing starts.",
-      "All 28 letter tracing pages in alphabet order.",
-      "Numbers 1–10, then colours, then animals — vocabulary after letters, which is the order that works.",
-      "One file, so a single print job produces a whole workbook rather than five separate downloads.",
+      "All 28 letter tracing pages in alphabet order, then the harakat sheets.",
+      "Numbers 1–10 and 11–20, then colours, then animals — vocabulary after letters, which is the order that works.",
+      "The three coloring books last: fruits & vegetables, transport and the solar system.",
+      "One file, so a single print job produces a whole workbook rather than eight separate downloads.",
     ],
     insideAr: [
       "لوحة الحروف أوّلاً، ليكون المرجع على الجدار قبل أن تبدأ الكتابة.",
-      "صفحات تتبّع الحروف الثمانية والعشرين كلّها على ترتيب الأبجدية.",
-      "ثمّ الأرقام ١–١٠، فالألوان، فالحيوانات — المفردات بعد الحروف، وهو الترتيب الذي ينجح.",
-      "ملف واحد، فتُخرج طباعة واحدة كرّاسة كاملة بدل خمسة تنزيلات منفصلة.",
+      "صفحات تتبّع الحروف الثمانية والعشرين كلّها على ترتيب الأبجدية، ثمّ أوراق الحركات.",
+      "الأرقام ١–١٠ ثمّ ١١–٢٠، فالألوان، فالحيوانات — المفردات بعد الحروف، وهو الترتيب الذي ينجح.",
+      "كتب التلوين الثلاثة في الآخر: الفواكه والخضروات، ووسائل النقل، والمجموعة الشمسية.",
+      "ملف واحد، فتُخرج طباعة واحدة كرّاسة كاملة بدل ثمانية تنزيلات منفصلة.",
     ],
     useEn: [
       "This is the pack for someone who wants the whole thing at once — a teacher setting up for a term, a parent printing before a long trip, a family with no printer at home taking one file to a print shop.",
-      "If you are working with one child at home, the individual packs are usually the better choice. Fifty-three pages arriving in one stack sets an expectation of completion, and a workbook with unfinished pages in the middle starts to feel like a failure rather than an activity. Print what you need this week.",
+      "If you are working with one child at home, the individual packs are usually the better choice. Eighty-eight pages arriving in one stack sets an expectation of completion, and a workbook with unfinished pages in the middle starts to feel like a failure rather than an activity. Print what you need this week.",
     ],
     useAr: [
       "هذه للحزمة لمن يريد الأمر كلّه دفعة واحدة: معلّم يُعِدّ لفصل دراسيّ، أو والد يطبع قبل سفر طويل، أو أسرة لا طابعة عندها تحمل ملفاً واحداً إلى مركز طباعة.",
-      "أمّا إن كنت تعمل مع طفل واحد في البيت، فالحزم المفردة أفضل غالباً. فثلاث وخمسون صفحة تصل في رزمة واحدة تُنشئ توقّعاً بالإتمام، والكرّاسة التي تتخلّلها صفحات ناقصة تبدأ تشبه الإخفاق لا النشاط. اطبع ما تحتاجه هذا الأسبوع.",
+      "أمّا إن كنت تعمل مع طفل واحد في البيت، فالحزم المفردة أفضل غالباً. فثمانٍ وثمانون صفحة تصل في رزمة واحدة تُنشئ توقّعاً بالإتمام، والكرّاسة التي تتخلّلها صفحات ناقصة تبدأ تشبه الإخفاق لا النشاط. اطبع ما تحتاجه هذا الأسبوع.",
     ],
     faq: [
       {
@@ -483,8 +646,8 @@ export const worksheetPages: WorksheetPage[] = [
       {
         qEn: "How big is the file?",
         qAr: "ما حجم الملف؟",
-        aEn: "About 2 MB — small enough to email to a print shop or open on a phone, and it will keep working offline once this site has been opened once.",
-        aAr: "نحو ٢ ميغابايت — صغير بما يكفي لإرساله إلى مركز طباعة أو فتحه على الهاتف، وسيظلّ يعمل دون اتصال متى فُتِح هذا الموقع مرّة.",
+        aEn: "About 3 MB — small enough to email to a print shop or open on a phone, and it will keep working offline once this site has been opened once.",
+        aAr: "نحو ٣ ميغابايت — صغير بما يكفي لإرساله إلى مركز طباعة أو فتحه على الهاتف، وسيظلّ يعمل دون اتصال متى فُتِح هذا الموقع مرّة.",
       },
     ],
   },

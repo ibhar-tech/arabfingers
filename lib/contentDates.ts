@@ -40,8 +40,19 @@ export const CONTENT_LAST_UPDATED: Record<string, string> = {
     "arabic-harakat",
     "arabic-colors",
     "arabic-animals-coloring",
+    "arabic-fruits-vegetables-coloring",
+    "arabic-transport-coloring",
+    "arabic-solar-system-coloring",
     "arabic-complete-workbook",
-  ].map((id) => [`/printables/${id}`, "2026-08-22"])),
+  ].map((id) => [`/printables/${id}`, "2026-09-05"])),
+
+  // Original illustrated stories (stories launch, Sept 2026)
+  "/stories": "2026-09-05",
+  ...Object.fromEntries(
+    ["al-arnab-al-saeed", "al-fanoos-al-sagheer", "rihla-ila-l-qamar"].map(
+      (slug) => [`/stories/${slug}`, "2026-09-05"],
+    ),
+  ),
 
   // Per-letter worksheet pages (letter-by-letter launch, Aug 2026)
   ...Object.fromEntries(

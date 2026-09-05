@@ -4,6 +4,7 @@ import { lastUpdatedFor } from "@/lib/contentDates";
 import { learnArticles } from "@/lib/related";
 import { blogPosts } from "@/lib/blog-data";
 import { letterWorksheetPages } from "@/lib/letterWorksheets";
+import { stories } from "@/lib/stories";
 
 // Always use www to match canonical domain — avoids redirect chains in Google's index
 const rawUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.arabfingers.site";
@@ -61,6 +62,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // are the long tail the pack pages cannot answer individually.
     ...letterWorksheetPages.flatMap((p) => localizedUrls(`/printables/letters/${p.slug}`, 0.7)),
 
+    // Original illustrated stories (stories launch, Sept 2026)
+    ...localizedUrls("/stories", 0.9),
+    ...stories.flatMap((s) => localizedUrls(`/stories/${s.slug}`, 0.8)),
+
     // Science interactive lessons (expanded into full articles 2026-06-11)
     ...localizedUrls("/learn/states-of-matter", 0.8),
     ...localizedUrls("/learn/water-cycle", 0.8),
@@ -92,6 +97,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...letterWorksheetPages.map((p) => ({
       url: `${siteUrl}/printables/letters/${p.slug}.pdf`,
       lastModified: d(lastUpdatedFor(`/printables/letters/${p.slug}`, DEFAULT_LASTMOD)),
+      changeFrequency: "yearly" as const,
+      priority: 0.6,
+    })),
+
+    // The story PDFs, same reasoning as the worksheet PDFs.
+    ...stories.map((s) => ({
+      url: `${siteUrl}/stories/${s.slug}.pdf`,
+      lastModified: d(lastUpdatedFor(`/stories/${s.slug}`, DEFAULT_LASTMOD)),
       changeFrequency: "yearly" as const,
       priority: 0.6,
     })),

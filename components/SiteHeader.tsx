@@ -15,6 +15,7 @@ import { useEffect, useRef } from "react";
 export const NAV_LINKS = [
   { href: "", labelEn: "Home", labelAr: "الرئيسية" },
   { href: "/printables", labelEn: "Worksheets", labelAr: "أوراق عمل" },
+  { href: "/stories", labelEn: "Stories", labelAr: "قصص" },
   { href: "/games", labelEn: "Games", labelAr: "ألعاب" },
   { href: "/learn", labelEn: "Learn", labelAr: "تعلّم" },
   { href: "/blog", labelEn: "Blog", labelAr: "المدونة" },
