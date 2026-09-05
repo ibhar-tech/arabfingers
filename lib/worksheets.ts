@@ -199,6 +199,45 @@ export const worksheetSets: WorksheetSet[] = [
     ageAr: "من ٣ إلى ٧ سنوات",
   },
   {
+    id: "arabic-body-parts-coloring",
+    emoji: "🖐️",
+    titleEn: "My Body in Arabic — Coloring Book",
+    titleAr: "جسمي بالعربية — كتاب تلوين",
+    descEn:
+      "Six body parts — head, eye, ear, mouth, hand and foot — with big outlines to colour and the Arabic and English names to trace. Colour the part, then touch it on yourself.",
+    descAr:
+      "ستّة أجزاء من الجسم — الرأس والعين والأذن والفم واليد والقدم — برسوم كبيرة للتلوين وتتبّع الأسماء بالعربية والإنجليزية. لوّن الجزء ثم المسّه في جسمك.",
+    pages: 6,
+    ageEn: "Ages 3–6",
+    ageAr: "من ٣ إلى ٦ سنوات",
+  },
+  {
+    id: "arabic-seasons-coloring",
+    emoji: "🍂",
+    titleEn: "The Four Seasons in Arabic — Coloring Book",
+    titleAr: "الفصول الأربعة بالعربية — كتاب تلوين",
+    descEn:
+      "The same tree through four seasons — spring blossom, summer sun, falling autumn leaves and winter snow — one colouring scene per season with the Arabic name to trace.",
+    descAr:
+      "الشجرة نفسها عبر الفصول الأربعة — زهر الربيع وشمس الصيف وأوراق الخريف المتساقطة وثلج الشتاء — مشهد تلوين لكلّ فصل مع تتبّع اسمه بالعربية.",
+    pages: 4,
+    ageEn: "Ages 4–7",
+    ageAr: "من ٤ إلى ٧ سنوات",
+  },
+  {
+    id: "arabic-opposites-coloring",
+    emoji: "🔁",
+    titleEn: "Arabic Opposites Coloring Book",
+    titleAr: "كتاب تلوين المتضادّات بالعربية",
+    descEn:
+      "Five opposite pairs on facing outlines — big and small, day and night, hot and cold, full and empty, fast and slow — colour both sides and trace both words.",
+    descAr:
+      "خمسة أزواج من المتضادّات على رسوم متجاورة — كبير وصغير، ونهار وليل، وحارّ وبارد، وممتلئ وفارغ، وسريع وبطيء — لوّن الجانبين وتتبّع الكلمتين.",
+    pages: 5,
+    ageEn: "Ages 4–7",
+    ageAr: "من ٤ إلى ٧ سنوات",
+  },
+  {
     id: "arabic-complete-workbook",
     emoji: "📚",
     titleEn: "Complete Arabic Workbook (everything above)",
@@ -207,7 +246,7 @@ export const worksheetSets: WorksheetSet[] = [
       "Every pack in this library bound into one file, in teaching order — the alphabet chart first, then letters, harakat, numbers, colours, animals and all the colouring books. One download, one print job.",
     descAr:
       "كل المجموعات في ملف واحد مرتّبة تعليمياً — اللوحة أولاً ثم الحروف فالحركات فالأرقام فالألوان فالحيوانات ثم كتب التلوين كلّها. تنزيل واحد وطباعة واحدة.",
-    pages: 128,
+    pages: 143,
     ageEn: "Ages 3–7",
     ageAr: "من ٣ إلى ٧ سنوات",
     bundle: true,
@@ -405,4 +444,63 @@ export const seaData: ColoringItem[] = [
   { ar: "سلحفاة", en: "Turtle", translit: "sulahfaa", shape: "turtle", factEn: "Sea turtles return to lay their eggs on the beach where they were born.", factAr: "ترجع السلاحف البحرية لتضع بيضها في الشاطئ الذي وُلدت فيه." },
   { ar: "دلفين", en: "Dolphin", translit: "dulfiin", shape: "dolphin", factEn: "Dolphins sleep with one eye open, half of the brain awake.", factAr: "ينام الدلفين وعينٌ مفتوحة ونصف الدماغ صاحٍ." },
   { ar: "نجمة بحر", en: "Starfish", translit: "najmat baHar", shape: "starfish", factEn: "A starfish can grow back an arm it has lost.", factAr: "تنمو ذراع النجمة البحرية من جديد إن فُقدت." },
+];
+
+/** Body parts colouring book. */
+export const bodyPartsData: ColoringItem[] = [
+  { ar: "رأس", en: "Head", translit: "ra's", shape: "head", factEn: "Your skull is the helmet that protects your brain.", factAr: "الجمجمة خوذة تحمي الدماغ." },
+  { ar: "عين", en: "Eye", translit: "'ayn", shape: "eye", factEn: "You blink about fifteen times every minute.", factAr: "ترمش العينان نحو خمس عشرة مرّة في الدقيقة." },
+  { ar: "أذن", en: "Ear", translit: "udhun", shape: "ear", factEn: "Your ears also keep you balanced when you stand and run.", factAr: "الأذنان تساعدان على التوازن عند الوقوف والجري." },
+  { ar: "فم", en: "Mouth", translit: "fam", shape: "mouth", factEn: "Your tongue tastes the food and shapes every letter you say.", factAr: "اللسان يتذوّق الطعام ويشكّل كلّ حرف تنطقه." },
+  { ar: "يد", en: "Hand", translit: "yad", shape: "hand", factEn: "One hand holds twenty-seven small bones.", factAr: "في اليد الواحدة سبع وعشرون عظمة صغيرة." },
+  { ar: "قدم", en: "Foot", translit: "qadam", shape: "foot", factEn: "Each foot has twenty-six bones — a quarter of all the bones you own.", factAr: "في القدم ستٌّ وعشرون عظمة — ربع عظام الجسم كلّه." },
+];
+
+/** Seasons colouring book — one tree through four seasons. */
+export const seasonsData: ColoringItem[] = [
+  { ar: "ربيع", en: "Spring", translit: "rabii'", shape: "spring", factEn: "In spring the trees flower and the days grow warm.", factAr: "في الربيع تتفتّح الأشجار ويدفأ الجوّ." },
+  { ar: "صيف", en: "Summer", translit: "Sayf", shape: "summer", factEn: "Summer is the season of long, bright days.", factAr: "الصيف موسم الأيام الطويلة المضيئة." },
+  { ar: "خريف", en: "Autumn", translit: "khariif", shape: "autumn", factEn: "In autumn the leaves turn gold and fall.", factAr: "في الخريف تصفرّ الأوراق وتتساقط." },
+  { ar: "شتاء", en: "Winter", translit: "shitaa'", shape: "winter", factEn: "Winter brings the cold, the rain and the snow.", factAr: "الشتاء يجلب البرد والمطر والثلج." },
+];
+
+/** Opposites colouring book — one pair per page, both sides coloured. */
+export type OppositePair = {
+  ar1: string; en1: string; shape1: string;
+  ar2: string; en2: string; shape2: string;
+  factEn: string;
+  factAr: string;
+};
+
+export const oppositesData: OppositePair[] = [
+  {
+    ar1: "كبير", en1: "Big", shape1: "elephant",
+    ar2: "صغير", en2: "Small", shape2: "mouse",
+    factEn: "Say it twice today: the elephant is كبير, the mouse is صغير.",
+    factAr: "الْفِيلُ كَبِيرٌ، وَالْفَأْرُ صَغِيرٌ — قُلْهَا مَرَّتَيْنِ الْيَوْمَ.",
+  },
+  {
+    ar1: "نهار", en1: "Day", shape1: "sun",
+    ar2: "ليل", en2: "Night", shape2: "moon",
+    factEn: "Day follows night and night follows day — نهار and ليل.",
+    factAr: "النَّهَارُ زَمَنُ الشَّمْسِ، وَاللَّيْلُ زَمَنُ الْقَمَرِ.",
+  },
+  {
+    ar1: "حار", en1: "Hot", shape1: "campfire",
+    ar2: "بارد", en2: "Cold", shape2: "snowman",
+    factEn: "Fire is hot and snow is cold — حارّ and بارد.",
+    factAr: "النَّارُ حَارَّةٌ، وَالثَّلْجُ بَارِدٌ.",
+  },
+  {
+    ar1: "ممتلئ", en1: "Full", shape1: "glass-full",
+    ar2: "فارغ", en2: "Empty", shape2: "glass-empty",
+    factEn: "A full glass and an empty one — ممتلئ and فارغ.",
+    factAr: "الْكَأْسُ الْمُمْتَلِئُ وَالْكَأْسُ الْفَارِغُ.",
+  },
+  {
+    ar1: "سريع", en1: "Fast", shape1: "rocket",
+    ar2: "بطيء", en2: "Slow", shape2: "turtle",
+    factEn: "The rocket is fast, the turtle is slow — سريع and بطيء.",
+    factAr: "الصَّارُوخُ سَرِيعٌ، وَالسَّلْحَفَاةُ بَطِيئَةٌ.",
+  },
 ];

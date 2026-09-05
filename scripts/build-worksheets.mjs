@@ -25,6 +25,7 @@ import { letterGuide } from "../lib/letterGuide.ts";
 import {
   numbersData, numbers11to20Data, colorsData, animalsData, harakatData,
   fruitsVegData, transportData, solarData, ramadanData, seaData,
+  bodyPartsData, seasonsData, oppositesData,
 } from "../lib/worksheets.ts";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -451,6 +452,94 @@ const SHAPES = {
   starfish: `<path d="M100 24 C108 24 114 44 118 62 C134 54 152 48 158 56 C164 64 152 80 140 92 C154 100 168 112 164 124 C160 134 140 130 124 124 C122 142 116 160 100 160 C84 160 78 142 76 124 C60 130 40 134 36 124 C32 112 46 100 60 92 C48 80 36 64 42 56 C48 48 66 54 82 62 C86 44 92 24 100 24Z"/>
     <circle cx="100" cy="58" r="4"/><circle cx="66" cy="88" r="4"/><circle cx="134" cy="88" r="4"/><circle cx="82" cy="130" r="4"/><circle cx="118" cy="130" r="4"/>
     <circle cx="30" cy="36" r="5"/><circle cx="176" cy="160" r="6"/><circle cx="162" cy="30" r="3.5"/>`,
+
+  // --- body parts ---
+  head: `<circle cx="100" cy="100" r="62"/>
+    <path d="M58 66 C70 46 86 38 104 38 C90 48 84 58 84 66"/>
+    <path d="M46 96 a7 9 0 1 0 0.1 0Z M154 96 a7 9 0 1 0 0.1 0Z"/>
+    <path d="M78 88 a7 10 0 1 0 0.1 0Z M122 88 a7 10 0 1 0 0.1 0Z"/>
+    <circle cx="80" cy="92" r="3"/><circle cx="124" cy="92" r="3"/>
+    <path d="M100 100 l-6 10 h12Z"/>
+    <path d="M78 128 q22 16 44 0"/>`,
+  eye: `<path d="M24 100 C48 58 152 58 176 100 C152 142 48 142 24 100Z"/>
+    <circle cx="100" cy="100" r="30"/>
+    <circle cx="100" cy="100" r="14"/>
+    <circle cx="106" cy="92" r="4"/>
+    <path d="M56 52 C74 40 126 40 144 52"/>
+    <path d="M70 150 l-4 10 M100 156 v10 M130 150 l4 10 M42 138 l-6 9 M158 138 l6 9"/>`,
+  ear: `<path d="M78 22 C40 22 24 58 30 96 C36 136 56 172 92 178 C114 182 126 168 118 154 C112 144 100 142 96 132"/>
+    <path d="M78 44 C58 46 48 66 52 92 C56 120 68 148 88 156"/>
+    <path d="M74 70 C64 74 62 88 68 98 M88 118 C96 122 104 118 106 110"/>
+    <path d="M132 60 C150 56 164 66 166 84 M136 96 C150 96 160 106 160 120"/>`,
+  mouth: `<path d="M28 96 C56 68 84 60 100 60 C116 60 144 68 172 96 C144 136 116 154 100 154 C84 154 56 136 28 96Z"/>
+    <path d="M40 100 C64 108 136 108 160 100"/>
+    <path d="M70 84 C80 78 92 76 100 78 M130 84 C120 78 108 76 100 78"/>
+    <path d="M62 92 C54 96 48 100 44 104 M138 92 C146 96 152 100 156 104"/>`,
+  hand: `<path d="M70 178 C60 160 54 140 56 116 L56 92 C56 84 66 84 67 92 L69 116 M69 116 L67 60 C67 50 78 50 79 60 L81 108 M81 108 L80 46 C80 36 92 36 93 46 L94 106 M94 106 L95 52 C95 42 106 42 107 52 L107 108 M107 108 L110 66 C111 56 122 57 121 67 L118 122 C116 146 110 162 100 178 Z"/>
+    <path d="M70 178 C82 186 96 186 100 178"/>
+    <path d="M100 178 C108 168 114 158 118 148"/>`,
+  foot: `<path d="M58 176 C40 176 32 164 36 150 C42 132 58 120 66 100 C74 78 80 48 102 42 C130 34 152 54 158 82 C164 110 160 140 148 160 C140 172 126 176 112 176 Z"/>
+    <path d="M66 100 C80 106 96 106 110 100"/>
+    <path d="M58 168 a5 5 0 1 0 0.1 0Z M76 172 a5 5 0 1 0 0.1 0Z M96 174 a5 5 0 1 0 0.1 0Z"/>
+    <path d="M128 60 C138 68 144 80 146 92"/>`,
+
+  // --- seasons: the same tree through the year ---
+  spring: `<path d="M94 176 C96 150 96 130 94 112 M106 176 C104 150 104 130 106 112 M94 130 C88 122 82 118 74 116 M106 130 C112 122 118 118 126 116"/>
+    <path d="M100 112 C64 112 44 92 48 68 C52 46 74 32 100 34 C126 32 148 46 152 68 C156 92 136 112 100 112Z"/>
+    <path d="M74 58 l3 7 7 1 -5 5 1 8 -6 -4 -7 3 2 -8 -5 -4 8 -1Z M126 56 l3 7 7 1 -5 5 1 8 -6 -4 -7 3 2 -8 -5 -4 8 -1Z M100 80 l3 7 7 1 -5 5 1 8 -6 -4 -7 3 2 -8 -5 -4 8 -1Z"/>
+    <circle cx="164" cy="30" r="14"/>
+    <path d="M164 10 v-6 M164 50 v6 M144 30 h-6 M184 30 h6"/>
+    <path d="M28 168 h144"/>`,
+  summer: `<path d="M94 176 C96 150 96 130 94 112 M106 176 C104 150 104 130 106 112 M94 130 C88 122 82 118 74 116 M106 130 C112 122 118 118 126 116"/>
+    <path d="M100 112 C64 112 44 92 48 68 C52 46 74 32 100 34 C126 32 148 46 152 68 C156 92 136 112 100 112Z"/>
+    <circle cx="166" cy="28" r="20"/>
+    <path d="M166 2 v-4 M166 58 v4 M140 28 h-4 M192 28 h4 M148 10 l-3 -3 M184 46 l3 3 M148 46 l-3 3 M184 10 l3 -3"/>
+    <path d="M34 44 l6 4 -2 7 7 -2 4 6 M28 168 h144"/>
+    <path d="M56 66 C70 56 90 52 100 54"/>`,
+  autumn: `<path d="M94 176 C96 150 96 130 94 112 M106 176 C104 150 104 130 106 112 M94 130 C88 122 82 118 74 116 M106 130 C112 122 118 118 126 116"/>
+    <path d="M100 112 C64 112 44 92 48 68 C52 46 74 32 100 34 C126 32 148 46 152 68 C156 92 136 112 100 112Z"/>
+    <path d="M72 70 l4 8 8 2 -6 6 1 9 -7 -5 -8 4 2 -9 -6 -5 8 -2Z M128 66 l4 8 8 2 -6 6 1 9 -7 -5 -8 4 2 -9 -6 -5 8 -2Z"/>
+    <path d="M40 140 l5 9 9 2 -6 7 1 10 -8 -6 -9 5 2 -10 -6 -6 9 -2Z M158 132 l5 9 9 2 -6 7 1 10 -8 -6 -9 5 2 -10 -6 -6 9 -2Z M100 156 l5 9 9 2 -6 7 1 10 -8 -6 -9 5 2 -10 -6 -6 9 -2Z"/>
+    <path d="M62 44 C78 36 96 34 112 38 M28 168 h144"/>`,
+  winter: `<path d="M94 176 C96 150 96 130 94 112 M106 176 C104 150 104 130 106 112 M94 130 C88 122 82 118 74 116 M106 130 C112 122 118 118 126 116"/>
+    <path d="M100 112 C64 112 44 92 48 68 C52 46 74 32 100 34 C126 32 148 46 152 68 C156 92 136 112 100 112Z"/>
+    <path d="M60 62 l24 10 M140 62 l-24 10 M76 44 l14 14 M124 44 l-14 14"/>
+    <path d="M42 26 l4 9 9 2 -6 7 1 10 -8 -6 -9 5 2 -10 -6 -6 9 -2Z M160 24 l4 9 9 2 -6 7 1 10 -8 -6 -9 5 2 -10 -6 -6 9 -2Z M118 20 l4 9 9 2 -6 7 1 10 -8 -6 -9 5 2 -10 -6 -6 9 -2Z"/>
+    <path d="M20 168 C40 158 60 162 76 168 C96 174 116 174 136 168 C152 163 168 162 180 166"/>
+    <circle cx="70" cy="26" r="3"/><circle cx="140" cy="40" r="3"/>`,
+
+  // --- opposites: the partners the sun/moon/elephant/turtle/rocket reuse ---
+  mouse: `<path d="M36 114 C32 102 44 92 60 92 C66 80 80 74 94 78 C98 68 112 62 126 68 C142 76 150 94 148 112 C146 132 128 144 104 144 C82 144 58 136 44 124 C40 121 37 117 36 114Z"/>
+    <path d="M60 92 C58 78 66 64 82 62 C86 74 82 86 74 92"/>
+    <circle cx="52" cy="106" r="3.5"/>
+    <path d="M36 114 L24 108 M36 114 L26 120 M36 114 L28 128"/>
+    <path d="M148 114 C168 108 178 92 176 74 C175 66 170 60 163 60"/>
+    <path d="M78 144 L76 158 M104 145 L104 159"/>
+    <path d="M56 128 C70 134 90 136 108 134"/>`,
+  campfire: `<path d="M46 168 L154 146 M154 168 L46 146"/>
+    <path d="M100 28 C116 52 132 66 130 92 C128 116 114 130 100 132 C86 130 72 116 70 92 C68 66 84 52 100 28Z"/>
+    <path d="M100 62 C108 74 116 82 115 96 C114 110 106 118 100 119 C94 118 86 110 85 96 C84 82 92 74 100 62Z"/>
+    <path d="M100 96 v14"/>
+    <path d="M36 44 l4 9 9 2 -6 7 1 10 -8 -6 -9 5 2 -10 -6 -6 9 -2Z M168 52 l4 9 9 2 -6 7 1 10 -8 -6 -9 5 2 -10 -6 -6 9 -2Z"/>`,
+  snowman: `<circle cx="100" cy="136" r="40"/>
+    <circle cx="100" cy="72" r="30"/>
+    <path d="M72 54 H128 L122 34 H78 Z"/>
+    <path d="M78 34 H122 M86 34 V20 M114 34 V20 M86 20 H114"/>
+    <circle cx="90" cy="66" r="3.5"/><circle cx="110" cy="66" r="3.5"/>
+    <path d="M100 78 v8 M100 86 l-7 6 h14Z"/>
+    <circle cx="100" cy="122" r="4"/><circle cx="100" cy="140" r="4"/>
+    <path d="M60 128 L30 108 M140 128 L170 108"/>
+    <path d="M20 176 C40 168 60 170 76 176 C96 182 116 182 136 176 C152 171 168 170 180 174"/>`,
+  "glass-full": `<path d="M56 40 H144 L134 172 C133 180 127 186 119 186 H81 C73 186 67 180 66 172 Z"/>
+    <path d="M62 92 L69 172 H131 L138 92"/>
+    <path d="M64 110 L70 170 H130 L136 110"/>
+    <path d="M56 40 L50 24 M144 40 L150 24"/>
+    <path d="M74 120 C84 126 116 126 126 120"/>`,
+  "glass-empty": `<path d="M56 40 H144 L134 172 C133 180 127 186 119 186 H81 C73 186 67 180 66 172 Z"/>
+    <path d="M62 92 L69 172 H131 L138 92"/>
+    <path d="M56 40 L50 24 M144 40 L150 24"/>
+    <path d="M78 120 C88 116 112 116 122 120"/>
+    <path d="M40 140 l4 9 9 2 -6 7 1 10 -8 -6 -9 5 2 -10 -6 -6 9 -2Z"/>`,
 };
 
 function outline(name, size, stroke = 2.6) {
@@ -928,6 +1017,109 @@ function buildSea(qr) {
   });
 }
 
+function buildBodyParts(qr) {
+  return themedColouringDoc({
+    title: "My Body in Arabic — Coloring Book",
+    kicker: "My Body in Arabic Colouring",
+    data: bodyPartsData,
+    qr,
+    drawEn: "Touch this part on your body, then draw how you use it", drawAr: "المس هذا الجزء من جسمك، ثم ارسم كيف تستعمله",
+  });
+}
+
+function buildSeasons(qr) {
+  const total = seasonsData.length;
+  const sheets = seasonsData
+    .map((s, i) =>
+      sheet(`
+        ${head("The Four Seasons in Arabic")}
+        <div class="title">
+          <h1>${esc(s.en)}</h1>
+          <span class="arname ar" dir="rtl">${esc(s.ar)}</span>
+          <span class="sub">${esc(s.translit)}</span>
+        </div>
+        <div class="instruction">
+          ${esc(s.factEn)}
+          <span class="rtl ar">${esc(s.factAr)}</span>
+        </div>
+
+        <div class="body">
+          <div class="box grow" style="margin-top:4mm;min-height:120mm;display:flex;align-items:center;justify-content:center;">
+            ${outline(s.shape, 420, 2.2)}
+          </div>
+
+          ${sectionLabel("Trace the season in Arabic", "تتبّع اسم الفصل بالعربية")}
+          ${wordLine(s.ar, { size: "28pt", height: "24mm" })}
+
+          ${sectionLabel("Trace the season in English", "تتبّع اسم الفصل بالإنجليزية")}
+          ${wordLine(s.en, { size: "26pt", height: "24mm" })}
+
+          ${sectionLabel("Draw your favourite thing in this season", "ارسم شيئك المفضّل في هذا الفصل")}
+          <div class="box grow" style="min-height:30mm;"></div>
+        </div>
+
+        ${foot(i + 1, total, qr)}
+      `),
+    )
+    .join("");
+
+  return doc("The Four Seasons in Arabic — Coloring Book", sheets);
+}
+
+function buildOpposites(qr) {
+  const total = oppositesData.length;
+  const sheets = oppositesData
+    .map((pair, i) =>
+      sheet(`
+        ${head("Arabic Opposites")}
+        <div class="title">
+          <h1>${esc(pair.en1)} &amp; ${esc(pair.en2)}</h1>
+          <span class="arname ar" dir="rtl">${esc(pair.ar1)} — ${esc(pair.ar2)}</span>
+        </div>
+        <div class="instruction">
+          ${esc(pair.factEn)}
+          <span class="rtl ar">${esc(pair.factAr)}</span>
+        </div>
+
+        <div class="body">
+          <div style="display:flex;gap:5mm;margin-top:4mm;">
+            <div class="box grow" style="min-height:104mm;display:flex;align-items:center;justify-content:center;">
+              ${outline(pair.shape1, 240, 2.2)}
+            </div>
+            <div class="box grow" style="min-height:104mm;display:flex;align-items:center;justify-content:center;">
+              ${outline(pair.shape2, 240, 2.2)}
+            </div>
+          </div>
+
+          ${sectionLabel(`Trace both words — ${pair.en1} and ${pair.en2}`, "تتبّع الكلمتين بالعربية")}
+          <div class="box" style="display:flex;align-items:center;height:22mm;padding:0 4mm;gap:6mm;">
+            <span class="ar g-solid" dir="rtl" style="font-size:22pt;">${esc(pair.ar1)}</span>
+            <span class="ar g-hollow" dir="rtl" style="font-size:22pt;">${esc(pair.ar1)}</span>
+            <span style="flex:1;border-bottom:1px dashed #d5d5d5;height:1px;"></span>
+            <span class="ar g-solid" dir="rtl" style="font-size:22pt;">${esc(pair.ar2)}</span>
+            <span class="ar g-hollow" dir="rtl" style="font-size:22pt;">${esc(pair.ar2)}</span>
+            <span style="flex:1;border-bottom:1px dashed #d5d5d5;height:1px;"></span>
+          </div>
+
+          ${sectionLabel("Trace in English", "تتبّع بالإنجليزية")}
+          <div class="box" style="display:flex;align-items:center;height:20mm;padding:0 4mm;gap:5mm;">
+            <span class="g-solid" style="font-size:20pt;">${esc(pair.en1)}</span>
+            <span class="g-hollow" style="font-size:20pt;">${esc(pair.en1)}</span>
+            <span style="flex:1;border-bottom:1px dashed #d5d5d5;height:1px;"></span>
+            <span class="g-solid" style="font-size:20pt;">${esc(pair.en2)}</span>
+            <span class="g-hollow" style="font-size:20pt;">${esc(pair.en2)}</span>
+            <span style="flex:1;border-bottom:1px dashed #d5d5d5;height:1px;"></span>
+          </div>
+        </div>
+
+        ${foot(i + 1, total, qr)}
+      `),
+    )
+    .join("");
+
+  return doc("Arabic Opposites Coloring Book", sheets);
+}
+
 /**
  * A huge outlined "bubble" letter: SVG text with fill=none and a stroke, so a
  * child colours inside the letterform itself. SVG is used rather than
@@ -1010,6 +1202,9 @@ const SETS = [
   { id: "arabic-alphabet-coloring", html: buildAlphabetColoring },
   { id: "arabic-ramadan-coloring", html: buildRamadan },
   { id: "arabic-sea-animals-coloring", html: buildSea },
+  { id: "arabic-body-parts-coloring", html: buildBodyParts },
+  { id: "arabic-seasons-coloring", html: buildSeasons },
+  { id: "arabic-opposites-coloring", html: buildOpposites },
 ];
 
 function renderPdf(tmp, id, html) {

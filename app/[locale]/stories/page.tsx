@@ -52,6 +52,53 @@ export default async function StoriesPage({ params }: Props) {
     })),
   };
 
+  const letterTales = stories.filter((s) => s.letter);
+  const otherStories = stories.filter((s) => !s.letter);
+
+  const storyCard = (s: (typeof stories)[number]) => (
+    <article key={s.slug} className="card-stock flex flex-col p-5">
+      <div className="flex items-start justify-between gap-3">
+        <span aria-hidden className="text-5xl leading-none">{s.emoji}</span>
+        {s.letter ? (
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-ink bg-saffron-soft font-arabic-display text-xl font-bold text-ink">
+            {s.letter}
+          </span>
+        ) : (
+          <span className="rounded-full border-2 border-ink/10 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-ink/50">
+            {isAr ? s.agesAr : s.agesEn}
+          </span>
+        )}
+      </div>
+      <h2 className="mt-3 font-display text-lg font-extrabold leading-snug text-ink">
+        {isAr ? s.titleAr : s.titleEn}
+      </h2>
+      <p className="mt-1 font-arabic-display text-base text-qalam" dir="rtl">
+        {isAr ? s.titleEn : s.titleAr}
+      </p>
+      <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink/70">
+        {isAr ? s.introAr : s.introEn}
+      </p>
+      <p className="mt-3 text-xs font-bold uppercase tracking-wide text-ink/45">
+        {s.scenes.length} {tt("scenes", "مشاهد")} · {isAr ? s.minutesAr : s.minutesEn}
+      </p>
+      <div className="mt-4 flex flex-wrap gap-2.5">
+        <Link
+          href={`/${locale}/stories/${s.slug}`}
+          className="btn-chunky inline-flex text-xs"
+        >
+          📖 {tt("Read the story", "اقرأ القصة")}
+        </Link>
+        <a
+          href={`/stories/${s.slug}.pdf`}
+          download
+          className="inline-flex items-center rounded-xl border-2 border-ink/15 px-3.5 py-2 text-xs font-bold text-ink/70 transition hover:border-qalam hover:text-qalam"
+        >
+          ⬇ PDF
+        </a>
+      </div>
+    </article>
+  );
+
   return (
     <PageLayout locale={locale}>
       <script
@@ -79,45 +126,35 @@ export default async function StoriesPage({ params }: Props) {
         </p>
       </section>
 
-      <section className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {stories.map((s) => (
-          <article key={s.slug} className="card-stock flex flex-col p-5">
-            <div className="flex items-start justify-between gap-3">
-              <span aria-hidden className="text-5xl leading-none">{s.emoji}</span>
-              <span className="rounded-full border-2 border-ink/10 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-ink/50">
-                {isAr ? s.agesAr : s.agesEn}
-              </span>
-            </div>
-            <h2 className="mt-3 font-display text-lg font-extrabold leading-snug text-ink">
-              {isAr ? s.titleAr : s.titleEn}
+      {letterTales.length > 0 && (
+        <section className="mt-10">
+          <h2 className="font-display text-xl font-extrabold text-ink">
+            {tt("Letter Tales · حِكَايَاتُ الْحُرُوفِ", "Letter Tales · حِكَايَاتُ الْحُرُوفِ")}
+          </h2>
+          <p className="mt-1.5 text-sm text-ink/60">
+            {tt(
+              "One story per letter, packed with words that start with it — read the story, then colour the letter in the Alphabet coloring book.",
+              "قصة لكلّ حرف، مليئة بالكلمات التي تبدأ به — اقرأوا القصة ثم لوّنوا الحرف في كتاب تلوين الحروف.",
+            )}
+          </p>
+          <div className="mt-4 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {letterTales.map(storyCard)}
+          </div>
+        </section>
+      )}
+
+      {otherStories.length > 0 && (
+        <section className="mt-10">
+          {letterTales.length > 0 && (
+            <h2 className="font-display text-xl font-extrabold text-ink">
+              {tt("All stories", "كلّ القصص")}
             </h2>
-            <p className="mt-1 font-arabic-display text-base text-qalam" dir="rtl">
-              {isAr ? s.titleEn : s.titleAr}
-            </p>
-            <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink/70">
-              {isAr ? s.introAr : s.introEn}
-            </p>
-            <p className="mt-3 text-xs font-bold uppercase tracking-wide text-ink/45">
-              {s.scenes.length} {tt("scenes", "مشاهد")} · {isAr ? s.minutesAr : s.minutesEn}
-            </p>
-            <div className="mt-4 flex flex-wrap gap-2.5">
-              <Link
-                href={`/${locale}/stories/${s.slug}`}
-                className="btn-chunky inline-flex text-xs"
-              >
-                📖 {tt("Read the story", "اقرأ القصة")}
-              </Link>
-              <a
-                href={`/stories/${s.slug}.pdf`}
-                download
-                className="inline-flex items-center rounded-xl border-2 border-ink/15 px-3.5 py-2 text-xs font-bold text-ink/70 transition hover:border-qalam hover:text-qalam"
-              >
-                ⬇ PDF
-              </a>
-            </div>
-          </article>
-        ))}
-      </section>
+          )}
+          <div className={`grid gap-6 md:grid-cols-2 xl:grid-cols-3 ${letterTales.length > 0 ? "mt-4" : "mt-10"}`}>
+            {otherStories.map(storyCard)}
+          </div>
+        </section>
+      )}
 
       <section className="mt-12 rounded-2xl border-2 border-ink bg-saffron-soft/40 p-6">
         <h2 className="font-display text-lg font-extrabold text-ink">

@@ -90,6 +90,14 @@ export default async function StoryPage({ params }: Props) {
               {isAr ? story.titleEn : story.titleAr}
             </p>
           </div>
+          {story.letter && (
+            <span
+              className="ms-auto flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border-2 border-ink bg-saffron-soft font-arabic-display text-4xl font-bold text-ink"
+              title={tt("Letter Tale", "حكاية حرف")}
+            >
+              {story.letter}
+            </span>
+          )}
         </div>
         <p className="mt-4 text-sm leading-relaxed text-ink/75">{isAr ? story.introAr : story.introEn}</p>
         <p className="mt-3 text-xs font-bold uppercase tracking-wide text-ink/45">

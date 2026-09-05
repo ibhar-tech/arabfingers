@@ -757,13 +757,170 @@ export const worksheetPages: WorksheetPage[] = [
   },
 
   {
-    id: "arabic-complete-workbook",
-    seoTitleEn: "Complete Arabic Workbook PDF — 128 Free Printable Pages",
-    seoTitleAr: "الكرّاسة العربية الكاملة PDF — ١٢٨ صفحة مجانية للطباعة",
+    id: "arabic-body-parts-coloring",
+    seoTitleEn: "My Body in Arabic — Coloring Pages PDF (Head, Eye, Hand)",
+    seoTitleAr: "جسمي بالعربية — صفحات تلوين PDF (الرأس والعين واليد)",
     seoDescEn:
-      "Every Arabic worksheet, coloring page and story supplement on this site in one 128-page PDF, in teaching order: alphabet chart, all 28 letter tracing pages, harakat, numbers, colours, animals and all six coloring books. Free.",
+      "Free printable body parts coloring pages with Arabic names: head, eye, ear, mouth, hand and foot. Colour the part, trace its name, then point to it on yourself. PDF, free.",
     seoDescAr:
-      "كلّ أوراق العمل وصفحات التلوين في هذا الموقع في ملف PDF واحد من ١٢٨ صفحة، بترتيب تعليميّ: لوحة الحروف، وتتبّع الحروف الـ٢٨، والحركات، والأرقام، والألوان، والحيوانات، وكتب التلوين الستّة كلّها. مجاناً.",
+      "صفحات تلوين أجزاء الجسم بأسمائها العربية مجاناً: الرأس والعين والأذن والفم واليد والقدم. لوّن الجزء وتتبّع اسمه ثم أشِر إليه في جسمك. PDF مجاني.",
+    keywords: [
+      "body parts in arabic for kids",
+      "arabic body parts coloring pages",
+      "my body arabic worksheet pdf",
+      "أجزاء الجسم بالعربية للأطفال تلوين",
+      "كتاب تلوين جسمي بالعربية",
+    ],
+    taglineEn: "Colour the hand, trace يَد, then touch your own — body words stick fastest on the body itself.",
+    taglineAr: "لوّن اليد وتتبّع «يد» ثم أشِر إلى يدك — كلمات الجسم تثبت أسرع على الجسم نفسه.",
+    insideEn: [
+      "Six pages: head, eye, ear, mouth, hand and foot.",
+      "A large, friendly outline of each part — the eye with its lashes, the hand with all five fingers.",
+      "Arabic and English name tracing on every page, with the transliteration printed under the title.",
+      "A one-line fact per part — twenty-seven bones in a hand, a quarter of your bones in a foot.",
+    ],
+    insideAr: [
+      "ستّ صفحات: الرأس والعين والأذن والفم واليد والقدم.",
+      "رسم كبير لطيف لكلّ جزء — العين برموشها، واليد بأصابعها الخمسة.",
+      "تتبّع الاسم بالعربية والإنجليزية في كلّ صفحة، مع النقل الصوتي تحت العنوان.",
+      "معلومة واحدة لكلّ جزء — سبع وعشرون عظمة في اليد، وربع عظام الجسم في القدم.",
+    ],
+    useEn: [
+      "Body words are the easiest vocabulary to teach because the flashcards are attached to your child. Colour the ear page, then whisper 'أُذُن' into the ear. Colour the hand, then high-five and say 'يَد'.",
+      "Do one part per day and end the week with a game: you say the Arabic word, your child touches the part. Six words, one week, remembered for years.",
+    ],
+    useAr: [
+      "كلمات الجسم أسهل مفرداتٍ تُعلَّم لأنّ بطاقاتها معلّقة في جسم طفلك نفسه. لوّنوا صفحة الأذن ثم همسوا في الأذن: «أُذُن». لوّنوا اليد ثم تصافحوا وقولوا: «يَد».",
+      "جزء واحد كلّ يوم، وأنهوا الأسبوع بلعبة: تقولون الكلمة العربية ويلمس الطفل الجزء. ستّ كلمات في أسبوع، تبقى في الذاكرة سنين.",
+    ],
+    faq: [
+      {
+        qEn: "Which body words are included?",
+        qAr: "أيّ كلمات الجسم مضمّنة؟",
+        aEn: "Head (ra's), eye ('ayn), ear (udhun), mouth (fam), hand (yad) and foot (qadam) — the six a toddler first points at, each on its own page.",
+        aAr: "الرأس والعين والأذن والفم واليد والقدم — الأجزاء الستّة التي يشير إليها الطفل أوّلاً، كلّ واحد في صفحة.",
+      },
+      {
+        qEn: "Can I use this in a classroom?",
+        qAr: "أأستعملها في الصفّ؟",
+        aEn: "Yes — print one per child and do the 'touch the part' game together. The full permission list is on the Worksheets page: personal, family and classroom use are all fine.",
+        aAr: "نعم — اطبعوا نسخة لكلّ طفل والعبوا لعبة «المس الجزء» معاً. وترخيص الاستعمال الكامل في صفحة أوراق العمل: شخصيّ وعائليّ وصفيّ.",
+      },
+    ],
+  },
+  {
+    id: "arabic-seasons-coloring",
+    seoTitleEn: "The Four Seasons in Arabic — Coloring Pages PDF (Free)",
+    seoTitleAr: "الفصول الأربعة بالعربية — صفحات تلوين PDF مجاناً",
+    seoDescEn:
+      "Free printable four seasons coloring pages in Arabic: the same tree in spring blossom, summer sun, autumn leaves and winter snow, with the season's Arabic name to trace. One PDF.",
+    seoDescAr:
+      "صفحات تلوين الفصول الأربعة بالعربية مجاناً: الشجرة نفسها في زهر الربيع وشمس الصيف وأوراق الخريف وثلج الشتاء، مع تتبّع اسم الفصل بالعربية. ملف PDF واحد.",
+    keywords: [
+      "four seasons in arabic for kids",
+      "seasons coloring pages arabic pdf",
+      "spring summer autumn winter arabic",
+      "الفصول الأربعة بالعربية للأطفال",
+      "تلوين الفصول الأربعة pdf",
+    ],
+    taglineEn: "One tree, four seasons, four Arabic words — ربيع, صيف, خريف, شتاء.",
+    taglineAr: "شجرةٌ واحدة وأربعة فصول وأربع كلمات — ربيع وصيف وخريف وشتاء.",
+    insideEn: [
+      "Four pages — one per season — with the same tree drawn four ways: blossoms, full summer leaves, falling gold leaves, bare in the snow.",
+      "The season's Arabic name on a tracing row, with English and transliteration alongside.",
+      "A one-line fact about what each season does.",
+      "A 'draw your favourite thing in this season' box that turns the sheet into a personal keepsake.",
+    ],
+    insideAr: [
+      "أربع صفحات — فصل في صفحة — والشجرة نفسها مرسومة بأربع صور: زهور وصيفٌ وأوراق ذهبية وثلج.",
+      "اسم الفصل العربي على سطر تتبّع، مع الإنجليزي والنقل الصوتي بجانبه.",
+      "معلومة واحدة عمّا يفعل كلّ فصل.",
+      "صندوق «ارسم شيئك المفضّل في هذا الفصل» يحوّل الورقة إلى ذكرى شخصية.",
+    ],
+    useEn: [
+      "Colour the page that matches the season you are actually in, then hang it in the window. When the real tree outside changes, the Arabic word on the wall has changed with it.",
+      "Four pages make a small book when folded — the season names on the left, your child's drawings on the right.",
+    ],
+    useAr: [
+      "لوّنوا الصفحة التي تطابق الفصل الذي تعيشونه فعلاً ثم علّقوها في النافذة. وحين تتغيّر الشجرة الحقيقيّة خارجاً تكون الكلمة العربية على الحوار قد تغيّرت معها.",
+      "أربع صفحات تصنع كتاباً صغيراً عند الطيّ — أسماء الفصول في الجهة اليسرى ورسوم طفلكم في اليمنى.",
+    ],
+    faq: [
+      {
+        qEn: "Are the four pages the same tree?",
+        qAr: "أالصفحات الأربع للشجرة نفسها؟",
+        aEn: "Yes — deliberately. The same tree in four states is what makes 'season' concrete for a five-year-old: the tree does not change, the year does.",
+        aAr: "نعم — عمداً. الشجرة نفسها بأربع حالات هي ما يجعل «الفصل» ملموساً لطفل الخامسة: الشجرة لا تتغيّر، بل السنة.",
+      },
+      {
+        qEn: "Only four pages?",
+        qAr: "أأربع صفحات فقط؟",
+        aEn: "Four seasons, four pages — one sheet per season is enough for the word to stick when it is coloured in the right month.",
+        aAr: "أربعة فصول وأربع صفحات — ورقة لكلّ فصل تكفي لتثبيت الكلمة حين تُلوَّن في شهره الصحيح.",
+      },
+    ],
+  },
+  {
+    id: "arabic-opposites-coloring",
+    seoTitleEn: "Arabic Opposites Coloring Pages PDF — Big & Small, Day & Night",
+    seoTitleAr: "كتاب تلوين المتضادّات بالعربية PDF — كبير وصغير، نهار وليل",
+    seoDescEn:
+      "Free printable Arabic opposites coloring pages: big and small, day and night, hot and cold, full and empty, fast and slow — five pages, each pair side by side with both words to trace.",
+    seoDescAr:
+      "صفحات تلوين المتضادّات بالعربية مجاناً: كبير وصغير، ونهار وليل، وحارّ وبارد، وممتلئ وفارغ، وسريع وبطيء — خمس صفحات، كلّ زوج متجاور مع تتبّع الكلمتين.",
+    keywords: [
+      "opposites in arabic for kids",
+      "arabic opposites worksheet pdf",
+      "arabic antonyms coloring pages",
+      "المتضادّات بالعربية للأطفال",
+      "كتاب تلوين المتضادّات pdf",
+    ],
+    taglineEn: "Five pairs, side by side: colour both, trace both — كبير and صغير forever linked.",
+    taglineAr: "خمسة أزواج جنباً إلى جنب: لوّن الاثنين وتتبّع الكلمتين — «كبير» و«صغير» مرتبطان للأبد.",
+    insideEn: [
+      "Five opposite pairs, each on one page with both drawings side by side: elephant & mouse, sun & moon, campfire & snowman, full & empty glass, rocket & turtle.",
+      "Both Arabic words on shared tracing rows, so the pair is learned as a pair.",
+      "English tracing underneath, and a sentence using both words that a parent can read aloud.",
+      "The reuse is deliberate: the rocket and turtle also appear in the Solar System and Animals books — familiar friends, new relationships.",
+    ],
+    insideAr: [
+      "خمسة أزواج متضادّة، كلّ زوج في صفحة واحدة برسمين متجاورين: فيل وفأر، وشمس وقمر، ونار ورجل ثلج، وكأس ممتلئ وفارغ، وصاروخ وسلحفاة.",
+      "الكلمتان العربيتان على صفوف تتبّع مشتركة، فيتعلّم الطفل الزوج كزوجٍ واحد.",
+      "تتبّع إنجليزي أسفله، وجملة تجمع الكلمتين يقرأها الوالد بصوت عالٍ.",
+      "التكرار مقصود: الصاروخ والسلحفاة ظاهران أيضاً في كتب المجموعة الشمسية والحيوانات — أصدقاء معروفون بعلاقة جديدة.",
+    ],
+    useEn: [
+      "Opposites are learned in pairs, so colour both halves of the page in one sitting and say the two words back to back: كبير… صغير. The rhythm is the lesson.",
+      "Then play it live: point at something tall and something short in the room and ask which is which. The sheet teaches the pair; the room tests it.",
+    ],
+    useAr: [
+      "المتضادّات تُتعلَّم أزواجاً، فلوّنوا نصفي الصفحة في جلسة واحدة وقولوا الكلمتين تباعاً: «كبير… صغير». الإيقاع هو الدرس.",
+      "ثمّ لعبوها في الغرفة: أشيروا إلى شيء طويل وشيء قصير واسألوا أيّهما أيّ. الورقة تعلّم الزوج، والغرفة تختبره.",
+    ],
+    faq: [
+      {
+        qEn: "Why are both words on one page?",
+        qAr: "ألماذا الكلمتان في صفحة واحدة؟",
+        aEn: "Because an opposite only means something next to its partner. Big alone is a fact; big next to small is a concept — and the tracing rows keep the two words physically side by side.",
+        aAr: "لأنّ المتضادّ لا معنى له بعيداً عن شريكه. «كبير» وحدها معلومة، أمّا «كبير» بجانب «صغير» فمفهوم — وأسطر التتبّع تُبقي الكلمتين متجاورتين مادّياً.",
+      },
+      {
+        qEn: "Do I need the other coloring books first?",
+        qAr: "أهلأزمتني كتب التلوين الأخرى أوّلاً؟",
+        aEn: "No — but children who already coloured the Solar System and Animals books will recognise the rocket and the turtle, which makes this book feel like meeting old friends.",
+        aAr: "لا — لكنّ الطفل الذي لوّن سابقاً كتابي المجموعة الشمسية والحيوانات سيتعرّف على الصاروخ والسلحفاة، فيبدو هذا الكتاب لقاءً بأصدقاء قدامى.",
+      },
+    ],
+  },
+
+  {
+    id: "arabic-complete-workbook",
+    seoTitleEn: "Complete Arabic Workbook PDF — 143 Free Printable Pages",
+    seoTitleAr: "الكرّاسة العربية الكاملة PDF — ١٤٣ صفحة مجانية للطباعة",
+    seoDescEn:
+      "Every Arabic worksheet, coloring page and story supplement on this site in one 143-page PDF, in teaching order: alphabet chart, all 28 letter tracing pages, harakat, numbers, colours, animals, all nine coloring books and the opposites pairs. Free.",
+    seoDescAr:
+      "كلّ أوراق العمل وصفحات التلوين في هذا الموقع في ملف PDF واحد من ١٤٣ صفحة، بترتيب تعليميّ: لوحة الحروف، وتتبّع الحروف الـ٢٨، والحركات، والأرقام، والألوان، والحيوانات، وكتب التلوين التسعة كلّها. مجاناً.",
     keywords: [
       "arabic workbook pdf free",
       "complete arabic worksheets pdf",
@@ -773,29 +930,29 @@ export const worksheetPages: WorksheetPage[] = [
       "كرّاسة عربية كاملة pdf",
       "أوراق عمل عربية كاملة للطباعة",
     ],
-    taglineEn: "All 128 pages, in the order you would actually teach them.",
-    taglineAr: "الصفحات المئة والثمانية والعشرون كلّها، بالترتيب الذي تُعلَّم به فعلاً.",
+    taglineEn: "All 143 pages, in the order you would actually teach them.",
+    taglineAr: "الصفحات المئة وثلاث وأربعون كلّها، بالترتيب الذي تُعلَّم به فعلاً.",
     insideEn: [
       "The alphabet chart first, so the reference is on the wall before any writing starts.",
       "All 28 letter tracing pages in alphabet order, then the harakat sheets.",
       "Numbers 1–10 and 11–20, then colours, then animals — vocabulary after letters, which is the order that works.",
-      "The six coloring books last: fruits & vegetables, transport, solar system, the alphabet bubbles, Ramadan & Eid and sea animals.",
+      "The nine coloring books last: fruits & vegetables, transport, solar system, the alphabet bubbles, Ramadan & Eid, sea animals, body parts, seasons and opposites.",
       "One file, so a single print job produces a whole workbook rather than eight separate downloads.",
     ],
     insideAr: [
       "لوحة الحروف أوّلاً، ليكون المرجع على الجدار قبل أن تبدأ الكتابة.",
       "صفحات تتبّع الحروف الثمانية والعشرين كلّها على ترتيب الأبجدية، ثمّ أوراق الحركات.",
       "الأرقام ١–١٠ ثمّ ١١–٢٠، فالألوان، فالحيوانات — المفردات بعد الحروف، وهو الترتيب الذي ينجح.",
-      "كتب التلوين الستّة في الآخر: الفواكه والخضروات، ووسائل النقل، والمجموعة الشمسية، وحروف الأبجدية، ورمضان والعيد، وحيوانات البحر.",
+      "كتب التلوين التسعة في الآخر: الفواكه والخضروات، ووسائل النقل، والمجموعة الشمسية، وحروف الأبجدية، ورمضان والعيد، وحيوانات البحر، وأجزاء الجسم، والفصول الأربعة، والمتضادّات.",
       "ملف واحد، فتُخرج طباعة واحدة كرّاسة كاملة بدل ثمانية تنزيلات منفصلة.",
     ],
     useEn: [
       "This is the pack for someone who wants the whole thing at once — a teacher setting up for a term, a parent printing before a long trip, a family with no printer at home taking one file to a print shop.",
-      "If you are working with one child at home, the individual packs are usually the better choice. One hundred and twenty-eight pages arriving in one stack sets an expectation of completion, and a workbook with unfinished pages in the middle starts to feel like a failure rather than an activity. Print what you need this week.",
+      "If you are working with one child at home, the individual packs are usually the better choice. One hundred and forty-three pages arriving in one stack sets an expectation of completion, and a workbook with unfinished pages in the middle starts to feel like a failure rather than an activity. Print what you need this week.",
     ],
     useAr: [
       "هذه للحزمة لمن يريد الأمر كلّه دفعة واحدة: معلّم يُعِدّ لفصل دراسيّ، أو والد يطبع قبل سفر طويل، أو أسرة لا طابعة عندها تحمل ملفاً واحداً إلى مركز طباعة.",
-      "أمّا إن كنت تعمل مع طفل واحد في البيت، فالحزم المفردة أفضل غالباً. فمئةٌ وثمانية وعشرون صفحة تصل في رزمة واحدة تُنشئ توقّعاً بالإتمام، والكرّاسة التي تتخلّلها صفحات ناقصة تبدأ تشبه الإخفاق لا النشاط. اطبع ما تحتاجه هذا الأسبوع.",
+      "أمّا إن كنت تعمل مع طفل واحد في البيت، فالحزم المفردة أفضل غالباً. فمئةٌ وثلاث وأربعون صفحة تصل في رزمة واحدة تُنشئ توقّعاً بالإتمام، والكرّاسة التي تتخلّلها صفحات ناقصة تبدأ تشبه الإخفاق لا النشاط. اطبع ما تحتاجه هذا الأسبوع.",
     ],
     faq: [
       {

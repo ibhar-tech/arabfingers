@@ -46,6 +46,9 @@ export const CONTENT_LAST_UPDATED: Record<string, string> = {
     "arabic-alphabet-coloring",
     "arabic-ramadan-coloring",
     "arabic-sea-animals-coloring",
+    "arabic-body-parts-coloring",
+    "arabic-seasons-coloring",
+    "arabic-opposites-coloring",
     "arabic-complete-workbook",
   ].map((id) => [`/printables/${id}`, "2026-09-05"])),
 
@@ -55,6 +58,7 @@ export const CONTENT_LAST_UPDATED: Record<string, string> = {
     [
       "al-arnab-al-saeed", "al-fanoos-al-sagheer", "rihla-ila-l-qamar",
       "al-huut-al-sagheer", "iidun-saeed", "al-ghuraabu-aldhakiy",
+      "yawmun-maa-baba", "al-mataru-fi-l-madrasa", "al-fiilu-wal-faraasha",
     ].map(
       (slug) => [`/stories/${slug}`, "2026-09-05"],
     ),

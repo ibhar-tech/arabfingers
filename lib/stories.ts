@@ -37,6 +37,8 @@ export type Story = {
   /** Arabic reading time shown on the card, e.g. "٣ دقائق". */
   minutesEn: string;
   minutesAr: string;
+  /** Set on the "Letter Tales" series: the letter the story is built around. */
+  letter?: string;
 };
 
 export const stories: Story[] = [
@@ -201,5 +203,81 @@ export const stories: Story[] = [
     ],
     moralEn: "Thinking solves what force cannot.",
     moralAr: "التَّفْكِيرُ يَحُلُّ مَا لَا تَحُلُّهُ الْقُوَّةُ.",
+  },
+  {
+    slug: "yawmun-maa-baba",
+    emoji: "\U0001F468\U200D\U0001F466",
+    titleEn: "A Day with Baba",
+    titleAr: "\u064A\u064E\u0648\u0652\u0645\u064C \u0645\u064E\u0639\u064E \u0628\u064E\u0627\u0628\u064E\u0627",
+    letter: "\u0628",
+    introEn:
+      "A Letter Tale for ba: Barak spends the day at the sea with his papa - and almost every word of the day starts with the letter ba. Read it after the ba page in the Alphabet coloring book.",
+    introAr:
+      "\u062D\u0643\u0627\u064A\u0629 \u062D\u0631\u0641 \u0627\u0644\u0628\u0627\u0621: \u064A\u0642\u0636\u064A \u0628\u0627\u0631\u0643 \u0627\u0644\u064A\u0648\u0645 \u0645\u0639 \u0628\u0627\u0628\u0627\u0647 \u0639\u0646\u062F \u0627\u0644\u0628\u062D\u0631 - \u0648\u0623\u0643\u062B\u0631 \u0643\u0644\u0645\u0627\u062A \u0627\u0644\u064A\u0648\u0645 \u062A\u0628\u062F\u0623 \u0628\u062D\u0631\u0641 \u0627\u0644\u0628\u0627\u0621. \u0627\u0642\u0631\u0623\u0648\u0647\u0627 \u0628\u0639\u062F \u0635\u0641\u062D\u0629 \u062D\u0631\u0641 \u0627\u0644\u0628\u0627\u0621 \u0641\u064A \u0643\u062A\u0627\u0628 \u062A\u0644\u0648\u064A\u0646 \u0627\u0644\u062D\u0631\u0648\u0641.",
+    agesEn: "Ages 3-6",
+    agesAr: "\u0645\u0646 \u0663 \u0625\u0644\u0649 \u0666 \u0633\u0646\u0648\u0627\u062A",
+    minutesEn: "3 min",
+    minutesAr: "\u0663 \u062F\u0642\u0627\u0626\u0642",
+    scenes: [
+      { emoji: "\U0001FAA3", ar: "\u0630\u064E\u0647\u064E\u0628\u064E \u0628\u064E\u0627\u0628\u064E\u0627 \u0648\u064E\u0628\u064E\u0627\u0631\u064E\u0643\u064F \u0625\u0644\u064E\u0649 \u0627\u0644\u0652\u0628\u064E\u062D\u0652\u0631.", translit: "dhahaba baabaa wa baaraku ila-l-baHr.", en: "Baba and Barak went to the sea." },
+      { emoji: "\U0001F34A", ar: "\u0641\u064A \u0627\u0644\u062D\u064E\u0642\u064A\u0628\u064E\u0629 \u0628\u064F\u0631\u062A\u064F\u0642\u064E\u0627\u0644\u064C \u0648\u064E\u0628\u064E\u064A\u0652\u0636.", translit: "fi-l-Haqiibati burtuqaalun wa bayD.", en: "In the bag there are oranges and eggs." },
+      { emoji: "\U0001F986", ar: "\u0631\u064E\u0623\u064E\u0648\u0632 \u0628\u064E\u0637\u0651\u064E\u0629\u064B \u062A\u064E\u0633\u0652\u0628\u064E\u062D\u064F \u0641\u064A \u0627\u0644\u0628\u064E\u0631\u0643\u064E\u0629.", translit: "ra'aw baTTatan tasbaHu fi-l-barkati.", en: "They saw a duck swimming in the pond." },
+      { emoji: "\U0001F34A", ar: "\u062C\u064E\u0644\u064E\u0633\u0648\u0627 \u062A\u062D\u062A\u064E \u0627\u0644\u0634\u0651\u064E\u062C\u064E\u0631\u064E\u0629 \u0648\u064E\u0623\u0643\u064E\u0644\u0648\u0627 \u0627\u0644\u0628\u064F\u0631\u062A\u064F\u0642\u064E\u0627\u0644.", translit: "jalasuu taHta-sh-shajarati wa akalu-l-burtuqaal.", en: "They sat under the tree and ate the oranges." },
+      { emoji: "\U0001F388", ar: "\u0627\u0634\u062A\u0631\u064E\u0649 \u0628\u0627\u0631\u064E\u0643\u064F \u0628\u064E\u0627\u0644\u064F\u0648\u0646\u0627\u064B \u0623\u0632\u0652\u0631\u064E\u0642.", translit: "ishtaraa baaraku baaluunan azraq.", en: "Barak bought a blue balloon." },
+      { emoji: "\U0001F30A", ar: "\u0644\u064E\u0639\u0650\u0628\u064E \u0628\u0627\u0631\u064E\u0643\u064F \u0628\u0640\u0627\u0644\u0652\u0628\u064E\u0627\u0644\u064F\u0648\u0646\u0650 \u0639\u0650\u0646\u062F\u064E \u0627\u0644\u0652\u0628\u064E\u062D\u0652\u0631.", translit: "la'iba baaraku bi-l-baaluuni 'inda-l-baHr.", en: "Barak played with his balloon by the sea." },
+      { emoji: "\U0001F30B", ar: "\u0641\u064A \u0627\u0644\u0645\u064E\u0633\u064E\u0627\u0621 \u0639\u064E\u0627\u062F\u064E \u0628\u064E\u0627\u0628\u064E\u0627 \u0648\u064E\u0628\u064E\u0627\u0631\u064E\u0643\u064F \u0625\u0644\u064E\u0649 \u0627\u0644\u0628\u064E\u064A\u0652\u062A.", translit: "fi-l-masaa'i 'aada baabaa wa baaraku ila-l-bayt.", en: "In the evening, Baba and Barak returned home." },
+    ],
+    moralEn: "A day with Baba is the best gift of all.",
+    moralAr: "\u064A\u064E\u0648\u0652\u0645\u064C \u0645\u064E\u0639\u064E \u0628\u064E\u0627\u0628\u064E\u0627 \u0647\u064F\u0648\u064E \u0623\u062C\u0645\u0644\u064F \u0647\u064E\u062F\u0650\u064A\u0651\u064E\u0629.",
+  },
+  {
+    slug: "al-mataru-fi-l-madrasa",
+    emoji: "🌧️",
+    titleEn: "Rain at School",
+    titleAr: "الْمَطَرُ فِي الْمَدْرَسَة",
+    letter: "م",
+    introEn:
+      "A Letter Tale for meem: rain falls on a school day, and Maryam's day fills with meem words — umbrella, banana, mosque, library. Rain does not stop the fun.",
+    introAr:
+      "حكاية حرف الميم: ينزل المطر صباح يوم دراسي، ويمتلئ يوم مريم بكلمات الميم — مظلّة وموز ومسجد ومكتبة. المطر لا يوقف المرح.",
+    agesEn: "Ages 4–7",
+    agesAr: "من ٤ إلى ٧ سنوات",
+    minutesEn: "3 min",
+    minutesAr: "٣ دقائق",
+    scenes: [
+      { emoji: "🌧️", ar: "نَزَلَ الْمَطَرُ صَبَاحَ يَوْمٍ فِي الْمَدْرَسَةِ.", translit: "nazala-l-maTaru SabaHa yawmin fi-l-madrasati.", en: "Rain fell one morning at school." },
+      { emoji: "☔", ar: "جَاءَتْ مَرْيَمُ بِمِظَلَّةٍ حَمْرَاءَ.", translit: "jaa'at maryamu bi-miZHallatin Hamraa'.", en: "Maryam came with a red umbrella." },
+      { emoji: "🍌", ar: "أَكَلَ الْأَطْفَالُ مَوْزَةً وَشَرِبُوا الْمَاءَ.", translit: "akala-l-aTfaalu mawzatan wa sharibu-l-maa'.", en: "The children ate a banana and drank water." },
+      { emoji: "🕌", ar: "زَارَوْا الْمَسْجِدَ الَّذِي بِجَانِبِ الْمَدْرَسَةِ.", translit: "zaaruu-l-masjida-l-ladhii bi-jaanibi-l-madrasati.", en: "They visited the mosque next to the school." },
+      { emoji: "📚", ar: "قَرَأَتْ مَرْيَمُ قِصَّةً مِنْ مَكْتَبَةِ الْمَدْرَسَةِ.", translit: "qara'at maryamu qiSSatan min maktabati-l-madrasati.", en: "Maryam read a story from the school library." },
+      { emoji: "🌈", ar: "وَقَفَ الْمَطَرُ، وَخَرَجَ الْأَطْفَالُ إِلَى الْمَلْعَبِ.", translit: "waqafa-l-maTaru, wa kharaja-l-aTfaalu ila-l-mal'ab.", en: "The rain stopped, and the children ran out to the playground." },
+    ],
+    moralEn: "Rain does not stop the fun — it only changes the plan.",
+    moralAr: "الْمَطَرُ لَا يُوَقِّفُ الْمَرَحَ — هُوَ غَيَّرَ الخُطَّةَ فَقَطْ.",
+  },
+  {
+    slug: "al-fiilu-wal-faraasha",
+    emoji: "🦋",
+    titleEn: "The Elephant and the Butterfly",
+    titleAr: "الْفِيلُ وَالْفَرَاشَة",
+    letter: "ف",
+    introEn:
+      "A Letter Tale for fa: a huge elephant and a tiny butterfly become friends. Filled with fa words — fiil (elephant), faraasha (butterfly), faakiha (fruit) — and one big idea: a true friend does not look at size.",
+    introAr:
+      "حكاية حرف الفاء: فيلٌ ضخم وفراشةٌ صغيرة يصبحان صديقين. مليئة بكلمات الفاء — فيل وفراشة وفاكهة — وفكرةٍ كبيرة: الصديق الحقيقي لا ينظر إلى الحجم.",
+    agesEn: "Ages 3–6",
+    agesAr: "من ٣ إلى ٦ سنوات",
+    minutesEn: "3 min",
+    minutesAr: "٣ دقائق",
+    scenes: [
+      { emoji: "🐘", ar: "فِي الْغَابَةِ فِيلٌ كَبِيرٌ.", translit: "fi-l-ghaabati fiilun kabir.", en: "In the forest there is a big elephant." },
+      { emoji: "🦋", ar: "طَارَتْ فَرَاشَةٌ صَغِيرَةٌ وَجَلَسَتْ عَلَى خُرْطُومِهِ.", translit: "Taa'at faraashatun Saghiiratun wa jalasat 'alaa khurTuumih.", en: "A tiny butterfly flew over and landed on his trunk." },
+      { emoji: "😄", ar: "قَالَ الْفِيلُ: أَهْلاً بِكِ يَا فَرَاشَةَ!", translit: "qaala-l-fiilu: ahlan bikii yaa faraashata!", en: "The elephant said: welcome, little butterfly!" },
+      { emoji: "🌸", ar: "قَلَعَ لَهَا الْفِيلُ فَاكِهَةً بِخُرْطُومِهِ.", translit: "qala'a lahaa-l-fiilu faakihatan bi-khurTuumih.", en: "The elephant picked a fruit for her with his trunk." },
+      { emoji: "🚶", ar: "مَشَوْا فِي الْغَابَةِ مَعاً، الْفِيلُ وَالْفَرَاشَةُ.", translit: "mashaw fi-l-ghaabati ma'an, al-fiilu wa-l-faraashatu.", en: "They walked through the forest together, the elephant and the butterfly." },
+      { emoji: "🌧️", ar: "حِينَ نَزَلَ الْمَطَرُ، اخْتَبَأَتِ الْفَرَاشَةُ تَحْتَ أُذُنِ الْفِيلِ.", translit: "Hiina nazala-l-maTaru, ikhtaba'ati-l-faraashatu tahta udhuni-l-fiil.", en: "When the rain fell, the butterfly hid under the elephant's ear." },
+    ],
+    moralEn: "A true friend does not look at size.",
+    moralAr: "الصَّدِيقُ الحَقِيقِيُّ لَا يَنْظُرُ إِلَى الْحَجْمِ.",
   },
 ];
