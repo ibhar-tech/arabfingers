@@ -7,8 +7,8 @@ import { generatePageMetadata } from "@/lib/seo";
 import { setRequestLocale } from "next-intl/server";
 
 const CONTACT_EMAIL = "ibhartech39@gmail.com";
-const UPDATED_EN = "6 August 2026";
-const UPDATED_AR = "٦ أغسطس ٢٠٢٦";
+const UPDATED_EN = "5 September 2026";
+const UPDATED_AR = "٥ سبتمبر ٢٠٢٦";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -16,9 +16,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     titleEn: "Privacy Policy | Arab Fingers",
     titleAr: "سياسة الخصوصية | عرب فنجرز",
     descriptionEn:
-      "How Arab Fingers handles data: no accounts, no personal data collection, what your browser stores locally, and exactly which third-party advertising cookies may be set.",
+      "How Arab Fingers handles data: no accounts, no personal data collection, advertising on parent-facing pages only, and what your browser stores locally.",
     descriptionAr:
-      "كيف يتعامل عرب فنجرز مع البيانات: بلا حسابات وبلا جمع بيانات شخصية، وما يخزّنه متصفّحك محلياً، وما ملفّات تعريف الارتباط الإعلانية التي قد تُوضَع.",
+      "كيف يتعامل عرب فنجرز مع البيانات: بلا حسابات وبلا جمع بيانات شخصية، وإعلانات في صفحات القراءة الموجّهة إلى الآباء فقط، وما يخزّنه متصفّحك محلياً.",
   });
 }
 
@@ -34,7 +34,7 @@ const en: { title: string; updated: string; intro: string; sections: Section[] }
       h: "The short version",
       body: [
         "We do not ask for a name, an email address or a password, because there is nothing on this site to sign up for. We do not build a profile of you or your child, we do not sell data to anyone, and we do not run our own analytics.",
-        "The one exception is advertising. This site is supported by ads served through Google AdSense, and Google — not us — may set cookies in your browser to do that. That is described in full below, including how to turn it off.",
+        "The one way the site funds itself is advertising, shown on the reading pages written for parents and teachers. Nothing a child plays ever carries an ad. Advertising is served through Adsterra, and advertising technology may set cookies or use similar mechanisms to serve and measure the ads — that is described in full below.",
       ],
     },
     {
@@ -59,18 +59,16 @@ const en: { title: string; updated: string; intro: string; sections: Section[] }
     {
       h: "Advertising and third-party cookies",
       body: [
-        "Arab Fingers displays advertising supplied by Google AdSense. We do not set advertising cookies ourselves, and we do not pass any information about you to advertisers.",
-        "Because this site is made for young children, every ad request it sends is marked non-personalised. Google is instructed not to use any profile of you or your child to choose the ads, and not to add this visit to one. That applies to every visitor, in every country, on every page — not only where the law demands it.",
-        "Google may still set a cookie for purposes that do not depend on a profile, such as counting how often an ad has been shown and detecting fraudulent clicks. Google's own explanation of how it uses data from sites that use its services is published at policies.google.com/technologies/partner-sites, and you can review your ad settings at any time in Google's Ads Settings.",
+        "Arab Fingers displays advertising supplied by Adsterra on the parent-facing reading pages — the blog, the learning guides, the printables and the glossary. We do not set advertising cookies ourselves, and we do not pass any information about you to advertisers.",
         "There are no ads at all on the interactive activities — the keyboard toy, the colouring canvas, the tracing game and the tapping game. Those are the pages a child actually holds, and an ad beside a small finger is an accident waiting to happen.",
-        "Where advertising is served in the European Economic Area, the United Kingdom or Switzerland, a consent notice from Google's certified consent management platform is shown before any non-essential advertising cookie is set, and you can change or withdraw your answer at any time from the link in that notice.",
+        "Adsterra and the advertisers it works with may use cookies or similar technologies, such as anonymous identifiers, to serve ads, cap how often an ad is shown and measure performance. You can review or limit ad personalisation through your browser settings and through industry opt-out tools such as aboutads.info/choices.",
       ],
     },
     {
       h: "Children's privacy (COPPA and GDPR-K)",
       body: [
         "This site is written for parents and teachers, and its activities are intended to be used by a child alongside an adult. We do not knowingly collect personal information from anyone under the age of 13, and there is no mechanism on the site through which a child could supply any.",
-        "We treat the whole site as directed to children. Ad requests are tagged accordingly, personalised advertising and remarketing are switched off site-wide rather than only where a regulator insists, and the interactive activities carry no advertising at all.",
+        "We treat the whole site as directed to children. Every activity a child operates is free of advertising, and no tap anywhere in those activities can produce one; the ads that fund the site live on the reading pages written for the adults next to them.",
         "If you believe a child has somehow provided personal information to us, please write to us at the address below and we will delete it immediately.",
       ],
     },
@@ -78,7 +76,6 @@ const en: { title: string; updated: string; intro: string; sections: Section[] }
       h: "Your rights",
       body: [
         "Under the GDPR, the UK GDPR and the CCPA you have the right to access, correct, export or delete the personal data an operator holds about you, and to object to its processing. Because we hold no personal data about our visitors, there is in practice nothing for us to return or erase — but you are welcome to write and ask, and we will confirm that in writing.",
-        "Rights relating to data held by Google as an advertising vendor should be exercised through Google directly, using the opt-out links in the advertising section above.",
       ],
     },
     {
@@ -118,7 +115,7 @@ const ar: { title: string; updated: string; intro: string; sections: Section[] }
       h: "الخلاصة باختصار",
       body: [
         "لا نطلب اسماً ولا بريداً إلكترونياً ولا كلمة مرور، لأنه لا يوجد في هذا الموقع ما يُسجَّل فيه. ولا نبني ملفّاً عنك أو عن طفلك، ولا نبيع البيانات لأحد، ولا نشغّل تحليلات خاصة بنا.",
-        "الاستثناء الوحيد هو الإعلانات. يُموَّل هذا الموقع بإعلانات تُعرض عبر Google AdSense، وقد تضع Google — لا نحن — ملفّات تعريف ارتباط في متصفّحك لهذا الغرض. وهذا موضّح بالتفصيل أدناه مع طريقة إيقافه.",
+        "والشيء الوحيد الذي يموّل الموقع هو الإعلانات، وتُعرض في صفحات القراءة المكتوبة للآباء والمعلّمين. ولا يحمل أيّ نشاط لعبه الطفل إعلاناً إطلاقاً. تُقدَّم الإعلانات عبر Adsterra، وقد تستعمل تقنيات الإعلان ملفّات ارتباط أو وسائل مشابهة لعرض الإعلانات وقياسها — وهذا موضّح بالتفصيل أدناه.",
       ],
     },
     {
@@ -143,18 +140,16 @@ const ar: { title: string; updated: string; intro: string; sections: Section[] }
     {
       h: "الإعلانات وملفّات تعريف الارتباط من طرف ثالث",
       body: [
-        "يعرض عرب فنجرز إعلانات تزوّدها Google AdSense. ولا نضع نحن ملفّات تعريف ارتباط إعلانية، ولا نمرّر أيّ معلومات عنك إلى المعلنين.",
-        "ولأنّ هذا الموقع مصنوع للأطفال الصغار، فكلّ طلب إعلان يرسله موسوم بأنّه غير مخصّص. أي أنّ Google مأمورة بألّا تستعمل أيّ ملفّ عنك أو عن طفلك لاختيار الإعلانات، وبألّا تضيف هذه الزيارة إلى ملفّ. وهذا يسري على كلّ زائر، في كلّ بلد، وفي كلّ صفحة — لا حيث يوجب القانون وحده.",
-        "وقد تظلّ Google تضع ملفّ ارتباط لأغراض لا تعتمد على ملفّ شخصي، مثل إحصاء عدد مرّات عرض الإعلان وكشف النقرات الاحتيالية. وتنشر Google شرحها لكيفية استعمالها بيانات المواقع التي تستخدم خدماتها على policies.google.com/technologies/partner-sites، ويمكنك مراجعة إعداداتك الإعلانية متى شئت من إعدادات إعلانات Google.",
+        "يعرض عرب فنجرز إعلانات تزوّدها Adsterra في صفحات القراءة الموجّهة إلى الآباء — المدوّنة وأدلّة التعلّم وأوراق العمل ومعجم الكلمات. ولا نضع نحن ملفّات تعريف ارتباط إعلانية، ولا نمرّر أيّ معلومات عنك إلى المعلنين.",
         "ولا توجد إعلانات إطلاقاً في الأنشطة التفاعلية — لعبة لوحة المفاتيح، ولوحة التلوين، ولعبة التتبّع، ولعبة النقر. فهذه هي الصفحات التي يمسكها الطفل بيده، والإعلان بجوار إصبع صغير حادثة تنتظر وقوعها.",
-        "وحيثما تُعرض الإعلانات في المنطقة الاقتصادية الأوروبية أو المملكة المتحدة أو سويسرا، يظهر إشعار موافقة من منصّة إدارة الموافقة المعتمدة من Google قبل وضع أيّ ملفّ ارتباط إعلاني غير ضروري، ويمكنك تغيير إجابتك أو سحبها متى شئت من الرابط في ذلك الإشعار.",
+        "وقد تستعمل Adsterra والمعلنون الذين تعمل معهم ملفّات ارتباط أو تقنيات مشابهة، كالمعرّفات المجهولة، لعرض الإعلانات وتحديد عدد مرّات ظهورها وقياس أدائها. ويمكنك مراجعة تخصيص الإعلانات أو تقييده من إعدادات متصفّحك ومن أدوات انسحاب القطاع مثل aboutads.info/choices.",
       ],
     },
     {
       h: "خصوصية الأطفال (COPPA وGDPR-K)",
       body: [
         "كُتب هذا الموقع للآباء والمعلّمين، وأنشطته موجّهة ليستعملها الطفل بصحبة بالغ. ولا نجمع عن علم معلومات شخصية من أيّ شخص دون الثالثة عشرة، ولا توجد في الموقع وسيلة يستطيع الطفل بها تقديم شيء منها.",
-        "نعامل الموقع كلّه على أنّه موجّه إلى الأطفال. فطلبات الإعلانات موسومة بذلك، والإعلانات المخصّصة وإعادة الاستهداف موقوفة في الموقع كلّه لا حيث تشترط جهة تنظيمية ذلك وحسب، والأنشطة التفاعلية لا تحمل أيّ إعلان.",
+        "نعامل الموقع كلّه على أنّه موجّه إلى الأطفال. وكلّ نشاط يقوده الطفل خالٍ من الإعلانات، ولا يمكن لأيّ نقرة فيه أن تُظهر إعلاناً؛ أمّا الإعلانات التي تموّل الموقع فموضعها صفحات القراءة المكتوبة للبالغين بجانبهم.",
         "وإن كنت ترى أنّ طفلاً قدّم إلينا معلومات شخصية بطريقة ما، فراسلنا على العنوان أدناه وسنحذفها فوراً.",
       ],
     },
@@ -162,7 +157,6 @@ const ar: { title: string; updated: string; intro: string; sections: Section[] }
       h: "حقوقك",
       body: [
         "بموجب النظام الأوروبي العام لحماية البيانات ونظيره البريطاني وقانون CCPA، لك حقّ الاطّلاع على بياناتك الشخصية وتصحيحها وتصديرها وحذفها، وحقّ الاعتراض على معالجتها. ولأنّنا لا نحتفظ ببيانات شخصية عن زوّارنا فلا يوجد عملياً ما نعيده أو نمحوه — ومع ذلك يسعدنا أن تسألنا وسنؤكّد لك ذلك كتابةً.",
-        "أمّا الحقوق المتعلّقة بالبيانات التي تحتفظ بها Google بصفتها مورّد إعلانات فتُمارَس عبر Google مباشرةً، من روابط إلغاء التفعيل المذكورة في قسم الإعلانات أعلاه.",
       ],
     },
     {
@@ -236,22 +230,6 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
           <Link href={`/${locale}/contact`} className="font-bold text-ink/70 underline hover:text-qalam">
             {isAr ? "تواصل معنا" : "Contact"}
           </Link>
-          <a
-            href="https://policies.google.com/technologies/partner-sites"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-bold text-ink/70 underline hover:text-qalam"
-          >
-            {isAr ? "كيف تستعمل Google البيانات" : "How Google uses data"}
-          </a>
-          <a
-            href="https://adssettings.google.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-bold text-ink/70 underline hover:text-qalam"
-          >
-            {isAr ? "إعدادات إعلانات Google" : "Google Ads Settings"}
-          </a>
           <a
             href="https://www.aboutads.info/choices/"
             target="_blank"

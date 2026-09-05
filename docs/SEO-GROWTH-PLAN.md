@@ -112,4 +112,3 @@ Lifts the 1,152-impression page from pos 59.
 
 - ✅ Keep brand **Arab Fingers**, niche (Arabic-for-kids), and **Next.js/Vercel** stack — no rebuild, no pivot.
 - ✅ Growth engine = **printables → Pinterest**.
-- Deferred: AdSense resubmit (after traffic). `llms.txt` still says "ad-free" — reword when ads go live.

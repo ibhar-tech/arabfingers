@@ -4,7 +4,6 @@ import { NextIntlClientProvider } from "next-intl";
 import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 import { StructuredData } from "@/components/StructuredData";
-import { AdSenseLoader } from "@/components/AdSenseLoader";
 import { WebAnalytics } from "@/components/WebAnalytics";
 import { isLocale, locales, type AppLocale } from "@/lib/locales";
 
@@ -106,7 +105,6 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   return (
     <html suppressHydrationWarning lang={locale} dir={dir}>
       <head>
-        <meta name="google-adsense-account" content="ca-pub-9623110963718326" />
         <link rel="manifest" href="/manifest.json" />
         <script
           dangerouslySetInnerHTML={{
@@ -120,7 +118,6 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
           {children}
         </NextIntlClientProvider>
         <WebAnalytics />
-        <AdSenseLoader />
       </body>
     </html>
   );

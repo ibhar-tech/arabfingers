@@ -4,6 +4,7 @@
 import type { ReactNode } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { ReadingAds } from "@/components/ReadingAds";
 
 type PageLayoutProps = {
   locale: string;
@@ -43,6 +44,9 @@ export function PageLayout({ locale, children, fullBleed = false }: PageLayoutPr
         }
       >
         {children}
+        {/* End-of-content ad slot. ReadingAds self-gates by route and renders
+            nothing visible outside the parent-facing reading pages. */}
+        <ReadingAds />
       </main>
 
       <SiteFooter locale={locale} />

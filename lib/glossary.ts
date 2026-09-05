@@ -11,9 +11,9 @@
 // site was ranking for those questions without answering them anywhere.
 //
 // Deliberately ONE page rather than a page per word. ~100 pages of 150 words each
-// is the scaled-thin-content pattern, and this site has already been refused
-// AdSense once for "low value content". A single dense reference page is both
-// safer and more useful to a parent scanning for a word.
+// is the scaled-thin-content pattern that earns a site a "low value content"
+// classification. A single dense reference page is both safer and more useful to
+// a parent scanning for a word.
 
 import { letterGuide } from "./letterGuide";
 import { colorsData, numbersData, animalsData } from "./worksheets";

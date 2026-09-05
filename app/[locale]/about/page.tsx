@@ -139,7 +139,7 @@ function AboutEn() {
             to ensure a safe experience:
           </p>
           <ul className="list-disc list-inside space-y-1.5">
-            <li><strong className="text-ink/85">No personal data collection</strong> — No accounts, no profiling; see the privacy policy for how advertising works on reading pages</li>
+            <li><strong className="text-ink/85">No personal data collection</strong> — No accounts, no profiling, and no ads on the activities a child plays</li>
             <li><strong className="text-ink/85">No accounts or login</strong> — No registration required to use the app</li>
             <li><strong className="text-ink/85">No external links in play area</strong> — Children cannot accidentally navigate away</li>
             <li><strong className="text-ink/85">Parent-controlled settings</strong> — All configuration is behind a PIN-protected panel</li>

@@ -7,8 +7,8 @@ import { keyboardLayouts } from "@/lib/keyboardLayouts";
 /**
  * next-intl falls back to the key name when a translation is missing, so a key
  * that exists in en.json but not ar.json silently renders English text inside
- * the Arabic UI — the exact class of bug the AdSense review flagged. This test
- * makes key drift impossible to merge.
+ * the Arabic UI — the exact class of bug only a reader of both languages would
+ * catch. This test makes key drift impossible to merge.
  */
 describe("translation files", () => {
   function flatten(obj: Record<string, unknown>, prefix = ""): string[] {

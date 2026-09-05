@@ -16,11 +16,12 @@ const CANONICAL_HOST = "www.arabfingers.site";
  * header that stops browsers trying HTTP again.
  */
 /**
- * Security headers applied to every page response. The site loads Google
- * AdSense (non-personalized, paused on the toddler stages), so the CSP must
- * allow its script/iframe/beacon origins; everything else is locked to
- * same-origin. frame-ancestors 'none' matters here specifically: an embedded
- * copy of a tap-anywhere toy would collect mistimed taps as ad clicks.
+ * Security headers applied to every page response. The site runs Adsterra
+ * advertising on the parent-facing reading routes, so the CSP must allow its
+ * script/iframe hosts (and https creative images); everything else is locked
+ * to same-origin. frame-ancestors 'none' matters here specifically: an
+ * embedded copy of a tap-anywhere toy would invite mistimed taps from the
+ * child driving the stage.
  *
  * These live in middleware rather than public/_headers because prerendered
  * HTML is served through the Worker, not the static-asset pipeline that
@@ -28,12 +29,12 @@ const CANONICAL_HOST = "www.arabfingers.site";
  */
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://static.cloudflareinsights.com",
+  "script-src 'self' 'unsafe-inline' https://fortunateambiguous.com https://static.cloudflareinsights.com",
   "style-src 'self' 'unsafe-inline'",
-  "img-src 'self' data: blob: https://www.google.com https://*.google.com https://*.googlesyndication.com https://*.doubleclick.net",
+  "img-src 'self' data: blob: https:",
   "font-src 'self' data:",
-  "connect-src 'self' https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.doubleclick.net https://www.google.com https://cloudflareinsights.com",
-  "frame-src https://googleads.g.doubleclick.net https://*.googlesyndication.com https://www.google.com",
+  "connect-src 'self' https://fortunateambiguous.com https://cloudflareinsights.com",
+  "frame-src https://fortunateambiguous.com",
   "media-src 'self'",
   "worker-src 'self'",
   "manifest-src 'self'",

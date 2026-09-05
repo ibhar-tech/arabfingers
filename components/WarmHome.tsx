@@ -239,7 +239,7 @@ export function WarmHome({ locale }: { locale: string }) {
               {[
                 tt("100% free, forever — no subscriptions or in-app purchases.", "مجاني ١٠٠٪ للأبد — بدون اشتراكات أو مشتريات داخل التطبيق."),
                 tt("No accounts, no profiling — your child's play stays on your device.", "بلا حسابات ولا تنميط — لعب طفلك يبقى على جهازك."),
-                tt("Ads never appear on the games a child plays; details in the privacy policy.", "لا إعلانات إطلاقاً في الألعاب التي يقودها الطفل؛ والتفاصيل في سياسة الخصوصية."),
+                tt("Ads never appear on the games a child plays — only on parent reading pages.", "لا إعلانات إطلاقاً في الألعاب التي يقودها الطفل — فقط في صفحات القراءة الموجّهة إلى الآباء."),
               ].map((li) => (
                 <li key={li} className="flex items-start gap-3 font-semibold text-ink/75">
                   <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-qalam" /> {li}

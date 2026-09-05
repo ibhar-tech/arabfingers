@@ -28,7 +28,7 @@ const editorialEn: { h: string; body: string[] }[] = [
     h: "What I will not do here",
     body: [
       "I will not put a worksheet behind an email form, invent a teaching qualification I do not hold, or publish a page whose only purpose is to rank. There is no newsletter, no upsell and no paid tier, and the downloads are the complete files rather than samples of something purchasable.",
-      "The site carries advertising, and I would rather say so plainly than pretend otherwise: ads are what pay for the hosting and for the voice recordings. They are kept off the pages children actually play on, and the privacy policy sets out exactly which third-party cookies that involves.",
+      "The reading pages carry advertising, and I would rather say so plainly than pretend otherwise: it is what pays for the hosting and the voice recordings. What the site will never do is put an ad in front of your child — nothing your child taps or plays carries advertising, and the privacy policy sets out exactly what the ads on the reading pages involve.",
     ],
   },
   {
@@ -52,7 +52,7 @@ const editorialAr: { h: string; body: string[] }[] = [
     h: "ما لن أفعله هنا",
     body: [
       "لن أضع ورقة عمل خلف نموذج بريد إلكتروني، ولن أدّعي مؤهّلاً تعليمياً لا أحمله، ولن أنشر صفحة غرضها الوحيد التصدّر في البحث. لا نشرة بريدية ولا ترقية مدفوعة ولا طبقة مأجورة، والملفّات المنزَّلة كاملة لا عيّنات من شيء يُباع.",
-      "يعرض الموقع إعلانات، وأفضّل أن أقولها صراحةً بدل أن أتظاهر بغيرها: الإعلانات هي ما يدفع كلفة الاستضافة والتسجيلات الصوتية. وهي مُبعَدة عن الصفحات التي يلعب فيها الأطفال فعلاً، وتبيّن سياسة الخصوصية بالضبط ما يستتبعه ذلك من ملفّات ارتباط لطرف ثالث.",
+      "تحمل صفحات القراءة إعلانات، وأفضّل أن أقولها صراحةً بدل أن أتظاهر بغيرها: فهي ما يدفع كلفة الاستضافة والتسجيلات الصوتية. أمّا ما لن يفعله الموقع أبداً فهو أن يضع إعلاناً أمام طفلك — لا يحمل أيّ شيء يلعبه طفلك أو ينقره أيّ إعلان، وتبيّن سياسة الخصوصية بالضبط ما يستتبعه ذلك من ملفّات ارتباط لطرف ثالث.",
     ],
   },
   {

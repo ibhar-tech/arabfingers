@@ -7,8 +7,8 @@ import { generatePageMetadata } from "@/lib/seo";
 import { setRequestLocale } from "next-intl/server";
 
 const CONTACT_EMAIL = "ibhartech39@gmail.com";
-const UPDATED_EN = "31 July 2026";
-const UPDATED_AR = "٣١ يوليو ٢٠٢٦";
+const UPDATED_EN = "5 September 2026";
+const UPDATED_AR = "٥ سبتمبر ٢٠٢٦";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -40,7 +40,7 @@ const en: { title: string; updated: string; intro: string; sections: Section[] }
     {
       h: "Cost and accounts",
       body: [
-        "Everything on the site is free to use. There is no account to create, no subscription, no trial that converts to a payment, and no feature reserved for paying users. The site is funded by advertising, which is described in the privacy policy.",
+        "Everything on the site is free to use. There is no account to create, no subscription, no trial that converts to a payment, and no feature reserved for paying users. The site is funded by advertising shown on the parent-facing reading pages, described in the privacy policy.",
       ],
     },
     {
@@ -82,9 +82,9 @@ const en: { title: string; updated: string; intro: string; sections: Section[] }
       ],
     },
     {
-      h: "Third-party links and advertising",
+      h: "Links to other sites",
       body: [
-        "Some pages link to external resources, and the site displays advertising supplied by Google. We do not control the content of external sites or of individual advertisements, and a link or an ad is not an endorsement. Concerns about a specific advertisement can be sent to us and can also be reported to Google directly.",
+        "Some pages link to external resources that we think are useful for families learning Arabic. We do not control the content of those sites, and a link is not an endorsement. We recommend reading the policy of any site you visit from here.",
       ],
     },
     {
@@ -112,7 +112,7 @@ const ar: { title: string; updated: string; intro: string; sections: Section[] }
     {
       h: "الكلفة والحسابات",
       body: [
-        "كلّ ما في الموقع مجاني. لا حساب يُنشأ، ولا اشتراك، ولا تجربة تتحوّل إلى دفع، ولا ميزة محجوزة للمشتركين. ويموّل الموقع بالإعلانات، وهي موصوفة في سياسة الخصوصية.",
+        "كلّ ما في الموقع مجاني. لا حساب يُنشأ، ولا اشتراك، ولا تجربة تتحوّل إلى دفع، ولا ميزة محجوزة للمشتركين. ويموّل الموقع إعلانات تُعرض في صفحات القراءة الموجّهة إلى الآباء، وهي موصوفة في سياسة الخصوصية.",
       ],
     },
     {
@@ -154,9 +154,9 @@ const ar: { title: string; updated: string; intro: string; sections: Section[] }
       ],
     },
     {
-      h: "الروابط الخارجية والإعلانات",
+      h: "الروابط إلى مواقع أخرى",
       body: [
-        "تحيل بعض الصفحات إلى مصادر خارجية، ويعرض الموقع إعلانات تزوّدها Google. ولا نتحكّم في محتوى المواقع الخارجية ولا في فرادى الإعلانات، ووجود رابط أو إعلان ليس تزكية له. ويمكن إرسال أيّ تحفّظ على إعلان بعينه إلينا، كما يمكن الإبلاغ عنه إلى Google مباشرةً.",
+        "تحيل بعض الصفحات إلى مصادر خارجية نراها نافعة للأسر التي تتعلّم العربية. ولا نتحكّم في محتوى تلك المواقع، ووجود رابط ليس تزكية له. وننصح بقراءة سياسة أيّ موقع تزوره من هنا.",
       ],
     },
     {
