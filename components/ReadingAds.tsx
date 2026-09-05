@@ -152,8 +152,9 @@ function relocateUnits(pathname: string) {
 }
 
 const BANNERS = [
-  { key: "cece0b3529426d2e6735cd25160f61e9", width: 728, height: 90, className: "hidden lg:flex justify-center" },
-  { key: "3c908dfc062a31ebcf0682182915df0c", width: 320, height: 50, className: "flex justify-center lg:hidden" },
+  { key: "cece0b3529426d2e6735cd25160f61e9", width: 728, height: 90, slot: "leaderboard", className: "hidden lg:flex justify-center" },
+  { key: "3c908dfc062a31ebcf0682182915df0c", width: 320, height: 50, slot: "leaderboard", className: "flex justify-center lg:hidden" },
+  { key: "490db964007730ea5d4f938f3227bb4c", width: 300, height: 250, slot: "end", className: "" },
 ];
 
 export function ReadingAds() {
@@ -212,7 +213,7 @@ export function ReadingAds() {
         className="hidden"
       >
         <div id="adsterra-leaderboard" data-ad-container="1" className="my-8 flex-col items-center gap-8">
-          {BANNERS.map((banner) => (
+          {BANNERS.filter((b) => b.slot === "leaderboard").map((banner) => (
             <div
               key={banner.key}
               id={`adsterra-banner-${banner.width}x${banner.height}`}
