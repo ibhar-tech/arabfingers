@@ -43,13 +43,19 @@ export const CONTENT_LAST_UPDATED: Record<string, string> = {
     "arabic-fruits-vegetables-coloring",
     "arabic-transport-coloring",
     "arabic-solar-system-coloring",
+    "arabic-alphabet-coloring",
+    "arabic-ramadan-coloring",
+    "arabic-sea-animals-coloring",
     "arabic-complete-workbook",
   ].map((id) => [`/printables/${id}`, "2026-09-05"])),
 
   // Original illustrated stories (stories launch, Sept 2026)
   "/stories": "2026-09-05",
   ...Object.fromEntries(
-    ["al-arnab-al-saeed", "al-fanoos-al-sagheer", "rihla-ila-l-qamar"].map(
+    [
+      "al-arnab-al-saeed", "al-fanoos-al-sagheer", "rihla-ila-l-qamar",
+      "al-huut-al-sagheer", "iidun-saeed", "al-ghuraabu-aldhakiy",
+    ].map(
       (slug) => [`/stories/${slug}`, "2026-09-05"],
     ),
   ),

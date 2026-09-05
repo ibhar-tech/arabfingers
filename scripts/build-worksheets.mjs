@@ -24,7 +24,7 @@ import QRCode from "qrcode";
 import { letterGuide } from "../lib/letterGuide.ts";
 import {
   numbersData, numbers11to20Data, colorsData, animalsData, harakatData,
-  fruitsVegData, transportData, solarData,
+  fruitsVegData, transportData, solarData, ramadanData, seaData,
 } from "../lib/worksheets.ts";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -377,6 +377,80 @@ const SHAPES = {
     <path d="M86 142 C88 158 94 168 100 178 C106 168 112 158 114 142 Z"/>
     <path d="M40 60 l3 7 7 2 -5 5 1 8 -6 -4 -6 3 1 -8 -5 -4 7 -2Z"/>
     <circle cx="164" cy="44" r="4"/>`,
+
+  // --- Ramadan & Eid ---
+  lantern: `<path d="M100 14 v10"/>
+    <path d="M92 24 h16"/>
+    <path d="M84 30 C90 26 110 26 116 30 L110 40 H90 Z"/>
+    <path d="M84 40 H116 L124 60 L120 138 H80 L76 60 Z"/>
+    <path d="M92 60 L88 138 M108 60 L112 138 M100 60 V138"/>
+    <path d="M76 60 H124 M80 138 H120"/>
+    <path d="M84 138 L80 152 H120 L116 138"/>
+    <path d="M96 152 h8 v8 h-8 Z"/>`,
+  mosque: `<path d="M60 160 V96 C60 70 84 54 100 54 C116 54 140 70 140 96 V160"/>
+    <path d="M48 160 V100 M152 160 V100"/>
+    <path d="M44 100 c-4 -18 4 -30 4 -30 s8 12 4 30 M148 100 c-4 -18 4 -30 4 -30 s8 12 4 30"/>
+    <circle cx="48" cy="62" r="5"/><circle cx="152" cy="62" r="5"/>
+    <path d="M100 54 V42 M94 44 L100 34 L106 44 Z"/>
+    <path d="M86 160 V128 a14 14 0 0 1 28 0 V160"/>
+    <path d="M40 160 H160"/>`,
+  crescent: `<path d="M128 30 A80 80 0 1 0 128 170 A62 62 0 1 1 128 30Z"/>
+    <path d="M158 74 l5 13 13 3 -10 9 3 14 -11 -8 -12 6 4 -13 -9 -10 13 -1Z"/>
+    <path d="M164 128 l3 8 8 2 -6 6 1 9 -6 -4 -8 4 2 -9 -6 -5 8 -2Z"/>
+    <circle cx="140" cy="150" r="4"/>`,
+  dates: `<path d="M96 176 C92 140 92 104 98 68 L106 68 C102 104 102 140 106 176 Z"/>
+    <path d="M96 128 l-12 4 M106 128 l12 4 M94 148 l-12 4 M108 148 l12 4 M97 108 l-11 3 M105 108 l11 3"/>
+    <path d="M100 66 C86 46 64 38 44 40 C58 54 82 62 100 66Z M102 66 C116 44 140 36 162 40 C146 56 120 62 102 66Z M101 64 C96 44 100 26 110 14 C118 30 114 50 101 64Z"/>
+    <circle cx="82" cy="142" r="6"/><circle cx="92" cy="154" r="6"/>
+    <circle cx="114" cy="142" r="6"/><circle cx="104" cy="156" r="6"/>`,
+  gift: `<rect x="38" y="92" width="124" height="76" rx="6"/>
+    <rect x="30" y="70" width="140" height="24" rx="5"/>
+    <path d="M100 70 V168 M100 70 V46"/>
+    <path d="M100 46 C84 46 76 34 82 26 C90 18 100 28 100 46 C100 28 110 18 118 26 C124 34 116 46 100 46Z"/>
+    <path d="M52 118 l4 10 10 -4 M136 128 l-4 10 -10 -4"/>`,
+  balloon: `<path d="M100 24 C128 24 146 46 146 74 C146 104 124 126 100 126 C76 126 54 104 54 74 C54 46 72 24 100 24Z"/>
+    <path d="M93 126 L100 138 L107 126"/>
+    <path d="M100 138 C94 150 106 158 100 172 C96 180 90 184 84 186"/>
+    <path d="M84 60 C82 70 82 80 86 90"/>
+    <path d="M150 150 l4 9 9 2 -7 6 2 10 -8 -5 -8 4 2 -9 -6 -6 9 -2Z"/>
+    <circle cx="52" cy="140" r="4"/>`,
+
+  // --- sea animals ---
+  whale: `<path d="M28 110 C28 78 56 58 96 58 C140 58 168 82 168 112 C168 126 158 136 144 136 H50 C36 136 28 126 28 112 Z"/>
+    <path d="M168 108 C176 96 190 92 196 96 C192 104 192 114 196 122 C188 126 176 122 168 114"/>
+    <path d="M76 136 C76 148 66 154 56 152 M116 136 C118 146 128 150 138 146"/>
+    <path d="M96 58 C98 46 104 38 114 32 M114 32 C112 40 114 46 120 50 M114 32 C120 28 128 28 134 32"/>
+    <circle cx="58" cy="92" r="4.5"/>
+    <path d="M44 106 C50 110 56 110 62 108"/>`,
+  octopus: `<path d="M64 84 C64 52 80 32 100 32 C120 32 136 52 136 84 C136 96 130 104 120 106 H80 C70 104 64 96 64 84Z"/>
+    <circle cx="86" cy="70" r="5.5"/><circle cx="114" cy="70" r="5.5"/>
+    <path d="M92 88 q8 7 16 0"/>
+    <path d="M80 106 C76 126 66 136 52 142 C60 146 72 144 80 136 M96 106 C96 128 92 144 84 156 C94 154 102 144 104 130 M112 106 C116 126 124 136 136 140 C130 146 118 146 110 138 M124 102 C132 118 144 126 158 128 C150 136 138 134 128 126 M68 102 C58 112 48 116 36 114 C42 124 56 126 66 120"/>
+    <circle cx="160" cy="48" r="6"/><circle cx="176" cy="66" r="4"/>`,
+  crab: `<ellipse cx="100" cy="112" rx="52" ry="38"/>
+    <path d="M86 74 V58 M114 74 V58"/>
+    <circle cx="86" cy="52" r="7"/><circle cx="114" cy="52" r="7"/>
+    <circle cx="86" cy="52" r="2.5"/><circle cx="114" cy="52" r="2.5"/>
+    <path d="M62 88 C44 78 32 64 34 50 C46 48 60 58 68 72"/>
+    <path d="M138 88 C156 78 168 64 166 50 C154 48 140 58 132 72"/>
+    <path d="M34 50 c-6 -10 4 -18 12 -14 M166 50 c6 -10 -4 -18 -12 -14"/>
+    <path d="M58 132 L36 148 M72 144 L58 162 M128 132 L150 148 M144 144 L158 162 M100 150 V170"/>
+    <path d="M88 108 q12 10 24 0"/>`,
+  turtle: `<path d="M56 96 C56 68 76 48 100 48 C124 48 144 68 144 96 C144 118 126 134 100 134 C74 134 56 118 56 96Z"/>
+    <path d="M56 96 H144 M72 70 C84 82 84 108 72 122 M128 70 C116 82 116 108 128 122"/>
+    <path d="M60 104 C52 104 42 108 38 116 C46 122 56 120 62 114 M140 104 C148 104 158 108 162 116 C154 122 144 120 138 114"/>
+    <path d="M136 60 C144 52 154 50 162 54 C160 64 152 70 142 70"/>
+    <circle cx="150" cy="58" r="2.5"/>
+    <path d="M66 128 L58 142 M134 128 L142 142"/>`,
+  dolphin: `<path d="M30 122 C34 92 56 64 92 56 C118 50 142 56 158 70 L178 62 C174 72 172 80 174 90 C170 106 156 118 136 122 L104 126 C78 130 50 130 30 122 Z"/>
+    <path d="M96 58 C102 46 112 40 122 38 C120 46 118 52 118 58"/>
+    <path d="M110 92 C114 82 122 76 132 74 C130 84 126 90 120 94"/>
+    <circle cx="146" cy="74" r="4"/>
+    <path d="M46 118 C60 122 76 122 90 120"/>
+    <path d="M20 146 C32 138 44 138 56 146 C68 154 80 154 92 146 C104 138 116 138 128 146 C140 154 152 154 164 146"/>`,
+  starfish: `<path d="M100 24 C108 24 114 44 118 62 C134 54 152 48 158 56 C164 64 152 80 140 92 C154 100 168 112 164 124 C160 134 140 130 124 124 C122 142 116 160 100 160 C84 160 78 142 76 124 C60 130 40 134 36 124 C32 112 46 100 60 92 C48 80 36 64 42 56 C48 48 66 54 82 62 C86 44 92 24 100 24Z"/>
+    <circle cx="100" cy="58" r="4"/><circle cx="66" cy="88" r="4"/><circle cx="134" cy="88" r="4"/><circle cx="82" cy="130" r="4"/><circle cx="118" cy="130" r="4"/>
+    <circle cx="30" cy="36" r="5"/><circle cx="176" cy="160" r="6"/><circle cx="162" cy="30" r="3.5"/>`,
 };
 
 function outline(name, size, stroke = 2.6) {
@@ -834,6 +908,90 @@ function buildSolar(qr) {
   });
 }
 
+function buildRamadan(qr) {
+  return themedColouringDoc({
+    title: "Ramadan & Eid Coloring Book in Arabic",
+    kicker: "Ramadan & Eid Colouring",
+    data: ramadanData,
+    qr,
+    drawEn: "Draw how your family celebrates Eid", drawAr: "ارسم كيف يحتفل أهلك بالعيد",
+  });
+}
+
+function buildSea(qr) {
+  return themedColouringDoc({
+    title: "Arabic Sea Animals Coloring Book",
+    kicker: "Arabic Sea Animals Colouring",
+    data: seaData,
+    qr,
+    drawEn: "Draw the sea home of this animal", drawAr: "ارسم بيت هذا الحيوان في البحر",
+  });
+}
+
+/**
+ * A huge outlined "bubble" letter: SVG text with fill=none and a stroke, so a
+ * child colours inside the letterform itself. SVG is used rather than
+ * -webkit-text-stroke because the stroke width scales with the glyph and the
+ * result prints reliably.
+ */
+function bubbleLetter(ch, size = 380) {
+  return `<svg viewBox="0 0 200 200" width="${size}" height="${size}" role="img" aria-label="${esc(ch)}">
+    <text x="100" y="112" text-anchor="middle" dominant-baseline="middle"
+      font-family="'Noto Naskh Arabic','Noto Sans Arabic',serif"
+      font-size="150" fill="none" stroke="#3a3a3a" stroke-width="2.4"
+      stroke-linejoin="round">${esc(ch)}</text>
+  </svg>`;
+}
+
+function buildAlphabetColoring(qr) {
+  const total = letterGuide.length;
+  const sheets = letterGuide
+    .map((entry, i) => {
+      const examples = entry.examples
+        .slice(0, 2)
+        .map(
+          (ex) => `<div class="box" style="flex:1;display:flex;align-items:center;gap:4mm;padding:2mm 4mm;">
+            <span style="font-size:20pt;line-height:1;">${ex.emoji}</span>
+            <div>
+              <div class="ar" dir="rtl" style="font-size:16pt;font-weight:700;">${esc(ex.word)}</div>
+              <div style="font-size:8.5pt;color:#666;">${esc(ex.translit)} · ${esc(ex.meaningEn)}</div>
+            </div>
+          </div>`,
+        )
+        .join("");
+
+      return sheet(`
+        ${head("Arabic Alphabet Colouring")}
+        <div class="title">
+          <h1>${esc(entry.enName)}</h1>
+          <span class="arname ar" dir="rtl">${esc(entry.arName)} — ${esc(entry.ar)}</span>
+          <span class="sub">${esc(entry.translit)}</span>
+        </div>
+        <div class="instruction">
+          Colour the big letter, then say its sound and trace it. Can you find it inside the words below?
+          <span class="rtl ar">لوّن الحرف الكبير، ثم انطق صوته وتتبّعه. هل تجده داخل الكلمتين؟</span>
+        </div>
+
+        <div class="body">
+          <div class="box grow" style="margin-top:4mm;min-height:104mm;display:flex;align-items:center;justify-content:center;">
+            ${bubbleLetter(entry.ar)}
+          </div>
+
+          ${sectionLabel("Words that start with this letter", "كلمات تبدأ بهذا الحرف")}
+          <div style="display:flex;gap:4mm;margin-top:1mm;">${examples}</div>
+
+          ${sectionLabel("Trace the letter", "تتبّع الحرف")}
+          ${traceRow(entry.ar, { n: 5, size: "30pt", solid: 1, hollow: 2, height: "20mm" })}
+        </div>
+
+        ${foot(i + 1, total, qr)}
+      `);
+    })
+    .join("");
+
+  return doc("Arabic Alphabet Coloring Book — Big Bubble Letters", sheets);
+}
+
 // ---------------------------------------------------------------------------
 // Render
 // ---------------------------------------------------------------------------
@@ -849,6 +1007,9 @@ const SETS = [
   { id: "arabic-fruits-vegetables-coloring", html: buildFruitsVeg },
   { id: "arabic-transport-coloring", html: buildTransport },
   { id: "arabic-solar-system-coloring", html: buildSolar },
+  { id: "arabic-alphabet-coloring", html: buildAlphabetColoring },
+  { id: "arabic-ramadan-coloring", html: buildRamadan },
+  { id: "arabic-sea-animals-coloring", html: buildSea },
 ];
 
 function renderPdf(tmp, id, html) {

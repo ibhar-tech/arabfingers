@@ -20,6 +20,9 @@ Languages: English (en), Arabic (ar). Base URL: https://www.arabfingers.site
 - The Happy Rabbit: https://www.arabfingers.site/en/stories/al-arnab-al-saeed
 - The Little Lantern (Ramadan): https://www.arabfingers.site/en/stories/al-fanoos-al-sagheer
 - A Trip to the Moon: https://www.arabfingers.site/en/stories/rihla-ila-l-qamar
+- The Little Whale: https://www.arabfingers.site/en/stories/al-huut-al-sagheer
+- Happy Eid: https://www.arabfingers.site/en/stories/iidun-saeed
+- The Clever Crow: https://www.arabfingers.site/en/stories/al-ghuraabu-aldhakiy
 
 ## Interactive science cartoon lessons (NEW)
 - States of Matter for Kids: https://www.arabfingers.site/en/learn/states-of-matter

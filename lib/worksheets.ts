@@ -160,15 +160,54 @@ export const worksheetSets: WorksheetSet[] = [
     ageAr: "من ٤ إلى ٨ سنوات",
   },
   {
+    id: "arabic-alphabet-coloring",
+    emoji: "🎨",
+    titleEn: "Arabic Alphabet Coloring Book — Big Bubble Letters",
+    titleAr: "كتاب تلوين الحروف العربية — حروف كبيرة للتلوين",
+    descEn:
+      "All 28 letters as huge outlined bubble letters to colour in, with each letter's example words and a tracing row. The colouring companion to the tracing pack.",
+    descAr:
+      "الحروف الـ٢٨ كلّها كحروف ضخمة مفرّغة تلوّنها الطفل، مع كلمات كلّ حرف وسطر تتبّع. رفيق التلوين لحزمة التتبّع.",
+    pages: 28,
+    ageEn: "Ages 3–6",
+    ageAr: "من ٣ إلى ٦ سنوات",
+  },
+  {
+    id: "arabic-ramadan-coloring",
+    emoji: "🏮",
+    titleEn: "Ramadan & Eid Coloring Book in Arabic",
+    titleAr: "كتاب تلوين رمضان والعيد بالعربية",
+    descEn:
+      "Six pages of Ramadan and Eid — lantern, mosque, crescent, dates, gift and balloon — with the Arabic and English names to trace. Pairs with the story 'The Little Lantern'.",
+    descAr:
+      "ستّ صفحات من رمضان والعيد — فانوس ومسجد وهلال وتمرات وهدية وبالون — مع تتبّع الأسماء بالعربية والإنجليزية. يكمل قصة «الفانوس الصغير».",
+    pages: 6,
+    ageEn: "Ages 3–7",
+    ageAr: "من ٣ إلى ٧ سنوات",
+  },
+  {
+    id: "arabic-sea-animals-coloring",
+    emoji: "🐙",
+    titleEn: "Arabic Sea Animals Coloring Book",
+    titleAr: "كتاب تلوين حيوانات البحر بالعربية",
+    descEn:
+      "Six sea creatures — whale, octopus, crab, turtle, dolphin and starfish — with big outlines to colour and bilingual name tracing. Pairs with the story 'The Little Whale'.",
+    descAr:
+      "ستّة كائنات بحرية — حوت وأخطبوط وسلطعون وسلحفاة ودلفين ونجمة بحر — برسوم كبيرة للتلوين وتتبّع الأسماء بالعربية والإنجليزية. يكمل قصة «الحوت الصغير».",
+    pages: 6,
+    ageEn: "Ages 3–7",
+    ageAr: "من ٣ إلى ٧ سنوات",
+  },
+  {
     id: "arabic-complete-workbook",
     emoji: "📚",
     titleEn: "Complete Arabic Workbook (everything above)",
     titleAr: "الكرّاسة العربية الكاملة (كل ما سبق)",
     descEn:
-      "Every pack in this library bound into one file, in teaching order — the alphabet chart first, then letters, harakat, numbers, colours, animals and the colouring books. One download, one print job.",
+      "Every pack in this library bound into one file, in teaching order — the alphabet chart first, then letters, harakat, numbers, colours, animals and all the colouring books. One download, one print job.",
     descAr:
-      "كل المجموعات في ملف واحد مرتّبة تعليمياً — اللوحة أولاً ثم الحروف فالحركات فالأرقام فالألوان فالحيوانات ثم كتب التلوين. تنزيل واحد وطباعة واحدة.",
-    pages: 88,
+      "كل المجموعات في ملف واحد مرتّبة تعليمياً — اللوحة أولاً ثم الحروف فالحركات فالأرقام فالألوان فالحيوانات ثم كتب التلوين كلّها. تنزيل واحد وطباعة واحدة.",
+    pages: 128,
     ageEn: "Ages 3–7",
     ageAr: "من ٣ إلى ٧ سنوات",
     bundle: true,
@@ -346,4 +385,24 @@ export const solarData: ColoringItem[] = [
   { ar: "زحل", en: "Saturn", translit: "zuhal", shape: "saturn", factEn: "Saturn's rings are made of billions of pieces of ice and rock.", factAr: "خواتم زحل مكوّنة من مليارات قطع الثلج والصخر." },
   { ar: "نجمة", en: "Star", translit: "najma", shape: "star", factEn: "The stars you see at night are suns — some far bigger than ours.", factAr: "النجوم التي تراها ليلاً شموس — بعضها أضخم من شمسنا." },
   { ar: "صاروخ", en: "Rocket", translit: "Saaruukh", shape: "rocket", factEn: "A rocket does not push against the air — it pushes its own exhaust down to rise.", factAr: "الصاروخ لا يتكئ على الهواء — بل يدفع غازاته إلى الأسفل فيرتفع." },
+];
+
+/** Ramadan & Eid colouring book — pairs with 'The Little Lantern' story. */
+export const ramadanData: ColoringItem[] = [
+  { ar: "فانوس", en: "Lantern", translit: "faanuus", shape: "lantern", factEn: "Ramadan lanterns have lit the month's nights for more than a thousand years.", factAr: "تُضيء الفوانيس ليالي رمضان منذ أكثر من ألف عام." },
+  { ar: "مسجد", en: "Mosque", translit: "masjid", shape: "mosque", factEn: "The mosque is fullest at night in Ramadan, when people pray together.", factAr: "يَمْتَلئ المسجد ليل رمضان حين يصلّي الناس معاً." },
+  { ar: "هلال", en: "Crescent", translit: "hilaal", shape: "crescent", factEn: "The new crescent that follows Ramadan announces Eid al-Fitr.", factAr: "الهلال الجديد الذي يلي رمضان يُعلن عيد الفطر." },
+  { ar: "تمرات", en: "Dates", translit: "tamraat", shape: "dates", factEn: "Dates give fast energy — which is why they open every iftar table.", factAr: "التمر طاقة سريعة — ولهذا يفتتح مائدة كلّ إفطار." },
+  { ar: "هدية", en: "Gift", translit: "hadiyya", shape: "gift", factEn: "On Eid morning, elders give children gifts and new money notes.", factAr: "صباح العيد يُهدي الكبارُ الأطفالَ هدايا وأوراقاً جديدة." },
+  { ar: "بالون", en: "Balloon", translit: "baaluun", shape: "balloon", factEn: "Eid balloons fill the streets on the first morning of Shawwal.", factAr: "تملأ بالونات العيد الشوارع صباح أول شوال." },
+];
+
+/** Sea animals colouring book — pairs with 'The Little Whale' story. */
+export const seaData: ColoringItem[] = [
+  { ar: "حوت", en: "Whale", translit: "Huut", shape: "whale", factEn: "The blue whale is the biggest animal that has ever lived on Earth.", factAr: "الحوت الأزرق أكبر كائن عاش على الأرض قطّ." },
+  { ar: "أخطبوط", en: "Octopus", translit: "ukhTubuuT", shape: "octopus", factEn: "An octopus has three hearts and blue blood.", factAr: "للأخطبوط ثلاثة قلوب ودمٌ أزرق." },
+  { ar: "سلطعون", en: "Crab", translit: "sulT'uun", shape: "crab", factEn: "A crab walks sideways — but it can also swim when it needs to.", factAr: "يمشي السلطعون جانبياً — لكنّه يسبح أيضاً حين يحتاج." },
+  { ar: "سلحفاة", en: "Turtle", translit: "sulahfaa", shape: "turtle", factEn: "Sea turtles return to lay their eggs on the beach where they were born.", factAr: "ترجع السلاحف البحرية لتضع بيضها في الشاطئ الذي وُلدت فيه." },
+  { ar: "دلفين", en: "Dolphin", translit: "dulfiin", shape: "dolphin", factEn: "Dolphins sleep with one eye open, half of the brain awake.", factAr: "ينام الدلفين وعينٌ مفتوحة ونصف الدماغ صاحٍ." },
+  { ar: "نجمة بحر", en: "Starfish", translit: "najmat baHar", shape: "starfish", factEn: "A starfish can grow back an arm it has lost.", factAr: "تنمو ذراع النجمة البحرية من جديد إن فُقدت." },
 ];

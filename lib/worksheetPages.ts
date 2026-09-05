@@ -596,13 +596,174 @@ export const worksheetPages: WorksheetPage[] = [
   },
 
   {
-    id: "arabic-complete-workbook",
-    seoTitleEn: "Complete Arabic Workbook PDF — 88 Free Printable Pages",
-    seoTitleAr: "الكرّاسة العربية الكاملة PDF — ٨٨ صفحة مجانية للطباعة",
+    id: "arabic-alphabet-coloring",
+    seoTitleEn: "Arabic Alphabet Coloring Pages PDF — 28 Big Bubble Letters",
+    seoTitleAr: "كتاب تلوين الحروف العربية PDF — ٢٨ حرفاً كبيراً مفرّغاً",
     seoDescEn:
-      "Every Arabic worksheet and coloring page on this site in one 88-page PDF, in teaching order: alphabet chart, all 28 letter tracing pages, harakat, numbers, colours, animals and the coloring books. Free.",
+      "Free printable Arabic alphabet coloring book: all 28 letters as big bubble letters to colour in, with example words and a tracing row per letter. One PDF, no signup.",
     seoDescAr:
-      "كلّ أوراق العمل وصفحات التلوين في هذا الموقع في ملف PDF واحد من ٨٨ صفحة، بترتيب تعليميّ: لوحة الحروف، وتتبّع الحروف الـ٢٨، والحركات، والأرقام، والألوان، والحيوانات، وكتب التلوين. مجاناً.",
+      "كتاب تلوين الحروف العربية مجاناً: الحروف الـ٢٨ كلّها كحروف كبيرة مفرّغة للتلوين، مع كلمات كلّ حرف وسطر تتبّع. ملف PDF واحد بلا تسجيل.",
+    keywords: [
+      "arabic alphabet coloring pages",
+      "arabic letters coloring book pdf",
+      "bubble letter arabic alphabet printable",
+      "coloring pages arabic letters free",
+      "تلوين الحروف العربية pdf",
+      "كتاب تلوين الحروف للأطفال",
+    ],
+    taglineEn: "One giant letter per page. Colour it, say it, trace it — 28 times.",
+    taglineAr: "حرفٌ ضخم في كلّ صفحة. لوّنه وانطقه وتتبّعه — ثمانياً وعشرين مرّة.",
+    insideEn: [
+      "One page per letter — all 28 — with the letter drawn as a huge outlined bubble shape that a chunky crayon fits inside.",
+      "Two example words per letter with their emoji, so every letter arrives attached to a meaning.",
+      "A tracing row under the picture: one solid guide, two faint guides, then blank cells.",
+      "The letter's name and transliteration in the header, so the adult always knows what sound to model.",
+    ],
+    insideAr: [
+      "صفحة لكلّ حرف — الثمانية والعشرون كلّها — والحرف مرسوماً كفقاعة ضخمة مفرّغة يتّسع فيها قلم الشمع السميك.",
+      "كلمتان لكلّ حرف مع صورتيهما الرمزيّتين، ليأتي الحرف مقترناً بمعنى.",
+      "سطر تتبّع تحت الصورة: دليل واحد متّصل، ودليلان خفيفان، ثمّ خانات فارغة.",
+      "اسم الحرف ونقله في رأس الصفحة، ليعرف الكبير دائماً أيّ صوتٍ يُقدّمه.",
+    ],
+    useEn: [
+      "This is the pre-writing version of the alphabet. Three-year-olds who cannot yet trace a straight line can still fill a big letter with colour — and the hand movement of colouring inside a letterform is real preparation for writing it.",
+      "Say the letter's sound every time your child colours a stroke of it, not once at the start. By the page's end the sound and the shape have met twenty times.",
+      "Tear out the three letters of the child's own name first. They are the pages that get coloured twice.",
+    ],
+    useAr: [
+      "هذه هي نسخة ما قبل الكتابة من الأبجدية. فالطفل الثلاثي الذي لا يستطيع بعد تتبّع خطّ مستقيم يستطيع أن يملأ حرفاً كبيراً باللون — وحركة التلوين داخل شكل الحرف تمهيدٌ حقيقيّ لكتابته.",
+      "انطق صوت الحرف في كلّ مرّة يلوّن فيها ضربةً منه، لا مرّةً في البداية فقط. فبنهاية الصفحة يكون الصوت والشكل قد التقيا عشرين مرّة.",
+      "اقلَع أوّلاً صفحات حروف اسم الطفل نفسه — فهي الصفحات التي ستُلوَّن مرّتين.",
+    ],
+    faq: [
+      {
+        qEn: "How is this different from the tracing pack?",
+        qAr: "أبِمَ يختلف عن حزمة التتبّع؟",
+        aEn: "The tracing pack teaches the hand to write; this one teaches the eye to recognise. Colouring a huge ب builds the shape memory that tracing then trains — they work best as a pair, colouring first for the younger child.",
+        aAr: "حزمة التتبّع تعلّم اليدَ الكتابة، وهذا الكتاب يعلّم العينَ التعرّف. فتلوين «ب» ضخمة يبني ذاكرة الشكل الذي يثبّته التتبّع لاحقاً — ويعملان أفضل معاً، والتلوين أوّلاً للأصغرّ.",
+      },
+      {
+        qEn: "Do the bubble letters show the letter in its isolated form only?",
+        qAr: "أالحروف المفرّغة بشكلها المنفرد فقط؟",
+        aEn: "Yes — colouring works best on one big shape. The joined forms are on the tracing pack's pages and in the free alphabet chart.",
+        aAr: "نعم — التلوين يعمل أفضل على شكل واحد كبير. أمّا أشكال الاتّصال ففي صفحات حزمة التتبّع وفي لوحة الحروف المجانية.",
+      },
+    ],
+  },
+  {
+    id: "arabic-ramadan-coloring",
+    seoTitleEn: "Ramadan Coloring Pages PDF in Arabic — Lantern, Mosque, Crescent",
+    seoTitleAr: "كتاب تلوين رمضان والعيد بالعربية PDF — فانوس ومسجد وهلال",
+    seoDescEn:
+      "Free printable Ramadan coloring pages in Arabic: lantern, mosque, crescent moon, dates, gift and balloon, each with its Arabic name to trace. PDF download, no email required.",
+    seoDescAr:
+      "صفحات تلوين رمضان بالعربية مجاناً: الفانوس والمسجد والهلال والتمرات والهدية والبالون، مع تتبّع الاسم العربي في كلّ صفحة. تحميل PDF بلا بريد إلكتروني.",
+    keywords: [
+      "ramadan coloring pages arabic",
+      "ramadan lantern coloring page free pdf",
+      "eid coloring pages printable arabic",
+      "أنشطة رمضان للأطفال تلوين",
+      "كتاب تلوين رمضان pdf",
+      "تلوين الفانوس رمضان للأطفال",
+    ],
+    taglineEn: "Six pages of Ramadan and Eid — colour the فانوس, trace its name, learn the month's words.",
+    taglineAr: "ستّ صفحات من رمضان والعيد — لوّن الفانوس وتتبّع اسمه وتعلّم كلمات الشهر.",
+    insideEn: [
+      "Six pages: lantern, mosque, crescent, dates, gift and balloon — the objects a child actually sees in the month.",
+      "A bold outline of each, sized for small hands and printed in ink-friendly line art.",
+      "The Arabic name on a tracing row, with the English name and transliteration alongside.",
+      "A one-line fact per page, from why lanterns light the month to what the new crescent announces.",
+    ],
+    insideAr: [
+      "ستّ صفحات: الفانوس والمسجد والهلال والتمرات والهدية والبالون — الأشياء التي يراها الطفل فعلاً في الشهر.",
+      "رسم واضح لكلّ واحد، بحجم يناسب الأيدي الصغيرة وبطباعة توفّر الحبر.",
+      "الاسم العربي على سطر تتبّع، مع الاسم الإنجليزي والنقل الصوتي إلى جانبه.",
+      "معلومة واحدة في كلّ صفحة — من سبب إضاءة الفوانيس في الشهر إلى ما يُعلنه الهلال الجديد.",
+    ],
+    useEn: [
+      "Print the lantern page on the first night of Ramadan and colour one page a night — by Eid the set is finished, and the month had a small daily ritual attached to it.",
+      "Read our story 'The Little Lantern' alongside it: Ahmad hangs his lantern on page one, and your child hangs theirs on paper.",
+    ],
+    useAr: [
+      "اطبعوا صفحة الفانوس في أوّل ليلة من رمضان، ولوّنوا صفحة كلّ ليلة — فبحلول العيد تكون المجموعة قد اكتملت، وارتبط بالشهر طقسٌ يوميٌّ صغير.",
+      "اقرأوا معها قصة «الفانوس الصغير» على الموقع: أحمد يعلّق فانوسه على الباب، وطفلكم يعلّق فانوسه على الورق.",
+    ],
+    faq: [
+      {
+        qEn: "Are the pages religious or cultural?",
+        qAr: "أالصفحات دينيّة أم ثقافيّة؟",
+        aEn: "Cultural with a light touch: lanterns, crescent, dates, gifts and a mosque exterior. There is no theology on the pages — just the month's objects and their names, so any family can use them.",
+        aAr: "ثقافيّة بلمسة خفيفة: فوانيس وهلال وتمرات وهدايا وواجهة مسجد. لا لاهوت في الصفحات — بل أجسام الشهر وأسماؤها، فتناسب كلّ أسرة.",
+      },
+      {
+        qEn: "Is there a story that goes with it?",
+        qAr: "أثمّة قصة ترافقها؟",
+        aEn: "Yes — 'The Little Lantern' (al-fanoos-al-sagheer) on our Stories page uses the same six words and shares the iftar scene.",
+        aAr: "نعم — قصة «الفانوس الصغير» في صفحة القصص تستعمل الكلمات الستّ نفسها وتشترك في مشهد الإفطار.",
+      },
+    ],
+  },
+  {
+    id: "arabic-sea-animals-coloring",
+    seoTitleEn: "Sea Animals Coloring Pages in Arabic PDF — Whale, Octopus, Crab",
+    seoTitleAr: "كتاب تلوين حيوانات البحر بالعربية PDF — حوت وأخطبوط وسرطان",
+    seoDescEn:
+      "Free printable sea animals coloring pages with Arabic names: whale, octopus, crab, turtle, dolphin and starfish. Big outlines to colour, bilingual tracing rows, one free PDF.",
+    seoDescAr:
+      "صفحات تلوين حيوانات البحر بأسمائها العربية مجاناً: الحوت والأخطبوط والسلطعون والسلحفاة والدلفين ونجمة البحر. رسوم كبيرة للتلوين وأسطر تتبّع ثنائية اللغة في ملف PDF واحد.",
+    keywords: [
+      "sea animals coloring pages arabic",
+      "ocean animals coloring book pdf free",
+      "whale coloring page with arabic name",
+      "حيوانات البحر للتلوين pdf",
+      "كتاب تلوين الكائنات البحرية للأطفال",
+    ],
+    taglineEn: "Colour the whale, trace حُوت. Six sea creatures, six facts, one free PDF.",
+    taglineAr: "لوّن الحوت وتتبّع «حُوت». ستّة كائنات بحرية، ستّ معلومات، ملف PDF مجاني واحد.",
+    insideEn: [
+      "Six sea creatures: whale, octopus, crab, turtle, dolphin and starfish.",
+      "A large side-view outline of each, drawn with the bold simple lines small hands can colour inside.",
+      "The Arabic name on a tracing row, with English and transliteration beside it.",
+      "A fact a parent can read aloud — three hearts, walking sideways, returning to the birth beach.",
+    ],
+    insideAr: [
+      "ستّة كائنات بحرية: الحوت والأخطبوط والسلطعون والسلحفاة والدلفين ونجمة البحر.",
+      "رسم جانبي كبير لكلّ كائن بخطوط عريضة بسيطة تلوّن داخلها الأيدي الصغيرة.",
+      "الاسم العربي على سطر تتبّع، مع الإنجليزي والنقل الصوتي بجانبه.",
+      "معلومة يقرأها الوالد بصوت عالٍ — ثلاثة قلوب، ومشٍّ جانبيّ، والعودة إلى شاطئ الميلاد.",
+    ],
+    useEn: [
+      "Read 'The Little Whale' first — the octopus, crab and turtle in the story are the ones on these pages, so the child colours characters they already know.",
+      "Blue is about to become the only colour that matters. Keep one page per bath time: colour it, then name every animal in Arabic while the water drains.",
+    ],
+    useAr: [
+      "اقرأوا قصة «الحوت الصغير» أوّلاً — فالأخطبوط والسلطعون والسلحفاة الذين في القصة هم أنفسهم في هذه الصفحات، فيلوّن الطفل شخصياتٍ يعرفها.",
+      "الأزرق سيصبح اللون الوحيد المهمّ. اجعلوا لكلّ حمّام صفحة: لوّنوها، ثمّ سمّوا كلّ حيوان بالعربية والماء ينزل.",
+    ],
+    faq: [
+      {
+        qEn: "Is this different from the land animals book?",
+        qAr: "أيختلف عن كتاب حيوانات البرّ؟",
+        aEn: "Completely — no overlap with the eight land animals. The two books together give sixteen animals, and both use the same page format your child already knows.",
+        aAr: "مختلف تماماً — لا تداخل مع الحيوانات الثمانية في البرّ. والكتابان معاً يمنحان ستّة عشر حيواناً بالصيغة نفسها التي يعرفها طفلك.",
+      },
+      {
+        qEn: "What ages is it for?",
+        qAr: "لأيّ أعمار هي؟",
+        aEn: "Three to seven: colouring only at three, tracing from five, and older kids can copy the fact line in their own handwriting.",
+        aAr: "من الثالثة إلى السابعة: تلوين فقط في الثالثة، وتتبّع من الخامسة، والأكبر نسخاً سطر المعلومة بخطّه.",
+      },
+    ],
+  },
+
+  {
+    id: "arabic-complete-workbook",
+    seoTitleEn: "Complete Arabic Workbook PDF — 128 Free Printable Pages",
+    seoTitleAr: "الكرّاسة العربية الكاملة PDF — ١٢٨ صفحة مجانية للطباعة",
+    seoDescEn:
+      "Every Arabic worksheet, coloring page and story supplement on this site in one 128-page PDF, in teaching order: alphabet chart, all 28 letter tracing pages, harakat, numbers, colours, animals and all six coloring books. Free.",
+    seoDescAr:
+      "كلّ أوراق العمل وصفحات التلوين في هذا الموقع في ملف PDF واحد من ١٢٨ صفحة، بترتيب تعليميّ: لوحة الحروف، وتتبّع الحروف الـ٢٨، والحركات، والأرقام، والألوان، والحيوانات، وكتب التلوين الستّة كلّها. مجاناً.",
     keywords: [
       "arabic workbook pdf free",
       "complete arabic worksheets pdf",
@@ -612,29 +773,29 @@ export const worksheetPages: WorksheetPage[] = [
       "كرّاسة عربية كاملة pdf",
       "أوراق عمل عربية كاملة للطباعة",
     ],
-    taglineEn: "All 88 pages, in the order you would actually teach them.",
-    taglineAr: "الصفحات الثماني والثمانون كلّها، بالترتيب الذي تُعلَّم به فعلاً.",
+    taglineEn: "All 128 pages, in the order you would actually teach them.",
+    taglineAr: "الصفحات المئة والثمانية والعشرون كلّها، بالترتيب الذي تُعلَّم به فعلاً.",
     insideEn: [
       "The alphabet chart first, so the reference is on the wall before any writing starts.",
       "All 28 letter tracing pages in alphabet order, then the harakat sheets.",
       "Numbers 1–10 and 11–20, then colours, then animals — vocabulary after letters, which is the order that works.",
-      "The three coloring books last: fruits & vegetables, transport and the solar system.",
+      "The six coloring books last: fruits & vegetables, transport, solar system, the alphabet bubbles, Ramadan & Eid and sea animals.",
       "One file, so a single print job produces a whole workbook rather than eight separate downloads.",
     ],
     insideAr: [
       "لوحة الحروف أوّلاً، ليكون المرجع على الجدار قبل أن تبدأ الكتابة.",
       "صفحات تتبّع الحروف الثمانية والعشرين كلّها على ترتيب الأبجدية، ثمّ أوراق الحركات.",
       "الأرقام ١–١٠ ثمّ ١١–٢٠، فالألوان، فالحيوانات — المفردات بعد الحروف، وهو الترتيب الذي ينجح.",
-      "كتب التلوين الثلاثة في الآخر: الفواكه والخضروات، ووسائل النقل، والمجموعة الشمسية.",
+      "كتب التلوين الستّة في الآخر: الفواكه والخضروات، ووسائل النقل، والمجموعة الشمسية، وحروف الأبجدية، ورمضان والعيد، وحيوانات البحر.",
       "ملف واحد، فتُخرج طباعة واحدة كرّاسة كاملة بدل ثمانية تنزيلات منفصلة.",
     ],
     useEn: [
       "This is the pack for someone who wants the whole thing at once — a teacher setting up for a term, a parent printing before a long trip, a family with no printer at home taking one file to a print shop.",
-      "If you are working with one child at home, the individual packs are usually the better choice. Eighty-eight pages arriving in one stack sets an expectation of completion, and a workbook with unfinished pages in the middle starts to feel like a failure rather than an activity. Print what you need this week.",
+      "If you are working with one child at home, the individual packs are usually the better choice. One hundred and twenty-eight pages arriving in one stack sets an expectation of completion, and a workbook with unfinished pages in the middle starts to feel like a failure rather than an activity. Print what you need this week.",
     ],
     useAr: [
       "هذه للحزمة لمن يريد الأمر كلّه دفعة واحدة: معلّم يُعِدّ لفصل دراسيّ، أو والد يطبع قبل سفر طويل، أو أسرة لا طابعة عندها تحمل ملفاً واحداً إلى مركز طباعة.",
-      "أمّا إن كنت تعمل مع طفل واحد في البيت، فالحزم المفردة أفضل غالباً. فثمانٍ وثمانون صفحة تصل في رزمة واحدة تُنشئ توقّعاً بالإتمام، والكرّاسة التي تتخلّلها صفحات ناقصة تبدأ تشبه الإخفاق لا النشاط. اطبع ما تحتاجه هذا الأسبوع.",
+      "أمّا إن كنت تعمل مع طفل واحد في البيت، فالحزم المفردة أفضل غالباً. فمئةٌ وثمانية وعشرون صفحة تصل في رزمة واحدة تُنشئ توقّعاً بالإتمام، والكرّاسة التي تتخلّلها صفحات ناقصة تبدأ تشبه الإخفاق لا النشاط. اطبع ما تحتاجه هذا الأسبوع.",
     ],
     faq: [
       {
