@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build && opennextjs-cloudflare build --skipNextBuild",
+    "build": "next build && opennextjs-cloudflare build --skipNextBuild --dangerouslyUseUnsupportedNextVersion",
     "dev": "next dev",
-    "build:cloudflare": "opennextjs-cloudflare build",
+    "build:cloudflare": "opennextjs-cloudflare build --dangerouslyUseUnsupportedNextVersion",
     "deploy": "npm run build && opennextjs-cloudflare deploy",
     "preview": "npm run build && opennextjs-cloudflare preview",
     "start": "next start",
