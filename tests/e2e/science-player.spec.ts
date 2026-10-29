@@ -7,7 +7,10 @@ for (const locale of ["en", "ar"] as const) {
     test(`${locale} ${lesson}: controls stay attached to the screen before narration`, async ({ page }) => {
       await page.goto(`/${locale}/learn/${lesson}`);
       const controls = page.getByRole("group", { name: locale === "ar" ? "أدوات تشغيل الدرس" : "Lesson playback controls" });
-      await expect(controls).toBeVisible();
+      // The player is a client-only dynamic import that loads after the page;
+      // with four parallel workers WebKit sometimes needs longer than the 5 s
+      // default to fetch and hydrate it (flaky on cba32f6 and 6cd4f31).
+      await expect(controls).toBeVisible({ timeout: 20_000 });
       for (const width of [1280, 390]) {
         await page.setViewportSize({ width, height: 900 });
         const screen = await page.locator("[data-science-screen]").boundingBox();
