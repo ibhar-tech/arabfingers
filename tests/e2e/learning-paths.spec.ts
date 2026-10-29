@@ -45,14 +45,17 @@ for (const locale of ["en", "ar"] as const) {
     await expect(page.locator('main a[href="/stories/al-arnab-al-saeed.pdf"]').first()).toHaveAttribute("download", "");
   });
 
-  test(`${locale} updated learning pages are accessible on a phone`, async ({ page }) => {
-    await page.setViewportSize({ width: 390, height: 844 });
-    for (const route of ["learn/first-arabic-words", "learn/arabic-colors", "learn/arabic-numbers", "stories", "stories/al-arnab-al-saeed"]) {
+  // One test per page: five axe scans of long guides in a single test overran
+  // the 30 s budget on WebKit in CI. Split, each page gets its own budget and
+  // the scans run in parallel.
+  for (const route of ["learn/first-arabic-words", "learn/arabic-colors", "learn/arabic-numbers", "stories", "stories/al-arnab-al-saeed"]) {
+    test(`${locale} /${route} is accessible on a phone`, async ({ page }) => {
+      await page.setViewportSize({ width: 390, height: 844 });
       await page.goto(`/${locale}/${route}`);
       await page.evaluate(() => document.fonts.ready);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), route).toBeTruthy();
       const scan = await new AxeBuilder({ page }).include("main").withTags(["wcag2a", "wcag2aa"]).analyze();
       expect(scan.violations, route).toEqual([]);
-    }
-  });
+    });
+  }
 }
