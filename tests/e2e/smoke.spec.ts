@@ -7,7 +7,7 @@ import { expect, test } from "@playwright/test";
  */
 
 const CORE_PAGES = [
-  { path: "", h1: "Free Arabic" },
+  { path: "", h1: "A little Arabic." },
   { path: "/printables", h1: "Free Printable Arabic Alphabet Tracing Worksheets (PDF)" },
   { path: "/games", h1: "Games" },
   { path: "/learn", h1: "Learn Arabic" },

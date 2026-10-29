@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ExternalPrintables } from "@/components/ExternalPrintables";
 import { PageLayout } from "@/components/PageLayout";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
@@ -86,11 +87,12 @@ function ResourcesEn() {
   return (
     <>
       <h1 className="text-3xl font-bold text-ink">Recommended Educational Resources</h1>
-      <p className="mt-1 text-sm text-ink/50">
+      <p className="mt-1 text-sm text-ink/70">
         Hand-picked, high-quality websites to support your child&apos;s learning journey in Arabic, English, and computer play.
       </p>
 
       {/* Arabic Learning Resources */}
+      <ExternalPrintables locale="en" />
       <section className="mt-8">
         <h2 className="text-xl font-semibold text-accent mb-4 flex items-center gap-2">
           <span>📚</span> Arabic Learning for Absolute Beginners
@@ -210,11 +212,12 @@ function ResourcesAr() {
   return (
     <>
       <h1 className="text-3xl font-bold text-ink">مصادر التعلم الموصى بها</h1>
-      <p className="mt-1 text-sm text-ink/50">
+      <p className="mt-1 text-sm text-ink/70">
         مجموعة مختارة بعناية من منصات وألعاب الويب عالية الجودة لدعم مسيرة طفلك التعليمية في اللغتين العربية والإنجليزية.
       </p>
 
       {/* Arabic Learning Resources */}
+      <ExternalPrintables locale="ar" />
       <section className="mt-8">
         <h2 className="text-xl font-semibold text-accent mb-4 flex items-center gap-2">
           <span>📚</span> تعلم اللغة العربية للمبتدئين تماماً

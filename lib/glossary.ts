@@ -123,11 +123,11 @@ export const glossaryCategories: GlossaryCategory[] = [
   {
     id: "numbers",
     titleEn: "Numbers 1–10",
-    titleAr: "الأرقام ١–١٠",
+    titleAr: "الأرقام 1–10",
     blurbEn:
-      "The numeral and the word for it are two separate things to learn. ٣ is the shape; ثلاثة (thalaatha) is what you say. Children usually get the words long before the shapes.",
+      "The numeral and the word for it are two separate things to learn. 3 is the shape; ثلاثة (thalaatha) is what you say. Children usually get the words long before the shapes.",
     blurbAr:
-      "الرقم واسمه شيئان يُتعلَّمان على انفصال: ٣ هو الشكل، و«ثلاثة» هو ما تقوله. والأطفال يتقنون الأسماء قبل الأشكال بمدّة عادةً.",
+      "الرقم واسمه شيئان يُتعلَّمان على انفصال: 3 هو الشكل، و«ثلاثة» هو ما تقوله. والأطفال يتقنون الأسماء قبل الأشكال بمدّة عادةً.",
     entries: numbers,
   },
   {

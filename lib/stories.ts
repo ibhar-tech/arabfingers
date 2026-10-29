@@ -34,7 +34,7 @@ export type Story = {
   scenes: StoryScene[];
   moralEn: string;
   moralAr: string;
-  /** Arabic reading time shown on the card, e.g. "٣ دقائق". */
+  /** Arabic reading time shown on the card, e.g. "3 دقائق". */
   minutesEn: string;
   minutesAr: string;
   /** Set on the "Letter Tales" series: the letter the story is built around. */
@@ -52,9 +52,9 @@ export const stories: Story[] = [
     introAr:
       "أرنبٌ صغير يبحث عمّن يلعب معه. كل حيوانات الغابة مشغولة — حتى وجد صديقاً حيث لا يتوقّع. قصة مكرّرة الأسطر تعلّم أسماء حيوانات الغابة ذاتها الموجودة في كتاب تلوين الحيوانات.",
     agesEn: "Ages 3–6",
-    agesAr: "من ٣ إلى ٦ سنوات",
+    agesAr: "من 3 إلى 6 سنوات",
     minutesEn: "3 min",
-    minutesAr: "٣ دقائق",
+    minutesAr: "3 دقائق",
     scenes: [
       { emoji: "🌳", ar: "فِي الْغَابَةِ أَرْنَبٌ صَغِيرٌ.", translit: "fee-l-ghaabati arnabun Saghiir.", en: "In the forest there is a little rabbit." },
       { emoji: "😢", ar: "قَالَ الْأَرْنَبُ: أَنَا وَحْيدٌ. أَيْنَ أَصْدِقَائِي؟", translit: "qaala-l-arnabu: anaa waHid. ayna aSdiqaa'i?", en: "The rabbit said: I am alone. Where are my friends?" },
@@ -82,9 +82,9 @@ export const stories: Story[] = [
     introAr:
       "جاء رمضان، وعقّق أحمد فانوسه الصغير على الباب. وحين حضر الضيوف تعلّم أنّ أجمل ما في الشهر هو مشاركته. قصة رمضانية لطيفة لأيام يكون فيها البيت فوحاه بالقطايف.",
     agesEn: "Ages 4–7",
-    agesAr: "من ٤ إلى ٧ سنوات",
+    agesAr: "من 4 إلى 7 سنوات",
     minutesEn: "3 min",
-    minutesAr: "٣ دقائق",
+    minutesAr: "3 دقائق",
     scenes: [
       { emoji: "🌙", ar: "جَاءَ شَهْرُ رَمَضَانَ، وَزَيَّنَ أَحْمَدُ الْمَنْزِلَ.", translit: "jaa'a shahru ramaDaana, wa zayyana aHmadu-l-manzil.", en: "The month of Ramadan came, and Ahmad decorated the house." },
       { emoji: "🏮", ar: "عَلَّقَ فَانُوساً صَغِيراً عَلَى الْبَابِ.", translit: "'allaqa faanuusan Saghiiran 'ala-l-baab.", en: "He hung a little lantern on the door." },
@@ -108,9 +108,9 @@ export const stories: Story[] = [
     introAr:
       "صنع سالم صاروخاً من كرتونة — وسافر بين النجوم إلى القمر وعاد قبل العشاء. اقرأوها بعد درس المجموعة الشمسية، ثم لوّنوا الصاروخ في كتاب تلوين المجموعة الشمسية.",
     agesEn: "Ages 4–7",
-    agesAr: "من ٤ إلى ٧ سنوات",
+    agesAr: "من 4 إلى 7 سنوات",
     minutesEn: "4 min",
-    minutesAr: "٤ دقائق",
+    minutesAr: "4 دقائق",
     scenes: [
       { emoji: "📦", ar: "صَنَعَ سَالِمٌ صَارُوخاً مِنْ كَارْتُونَةٍ كَبِيرَةٍ.", translit: "sana'a saalimun Saaruukhan min kaartuunatin kabiira.", en: "Salem made a rocket from a big cardboard box." },
       { emoji: "🚀", ar: "صَعِدَ إِلَى الصَّارُوخِ وَقَالَ: انْطِلَاق!", translit: "sa'ida ila-S-Saaruukhi wa qaala: inTilaaq!", en: "He climbed into the rocket and said: liftoff!" },
@@ -134,9 +134,9 @@ export const stories: Story[] = [
     introAr:
       "حوتٌ صغير يتساءل كيف تبدو الدنيا فوق الماء. الأخطبوط مشغول، والسلطعون مشغول — لكنّ السلحفاة تعرف. اقرأوها ثم لوّنوا الحوت والأخطبوط والسلحفاة في كتاب تلوين حيوانات البحر.",
     agesEn: "Ages 3–6",
-    agesAr: "من ٣ إلى ٦ سنوات",
+    agesAr: "من 3 إلى 6 سنوات",
     minutesEn: "3 min",
-    minutesAr: "٣ دقائق",
+    minutesAr: "3 دقائق",
     scenes: [
       { emoji: "🌊", ar: "فِي الْبَحْرِ الْوَاسِعِ حُوتٌ صَغِيرٌ مَعَ أُمِّهِ.", translit: "fi-l-baHri-l-waasi'i Huutun Saghiirun ma'a ummih.", en: "In the wide sea there is a little whale with his mother." },
       { emoji: "🤔", ar: "قَالَ الْحُوتُ الصَّغِيرُ: أُرِيدُ أَنْ أَرَى مَا فَوْقَ الْمَاءِ!", translit: "qaala-l-Huutu-S-Saghiiru: uriidu an araa maa fawqa-l-maa'!", en: "The little whale said: I want to see what is above the water!" },
@@ -162,9 +162,9 @@ export const stories: Story[] = [
     introAr:
       "صباح العيد: ثوبٌ جديد، وصلاةُ العيد، وهديةٌ من الجدّة، وبالوناتٌ في الشارع. قصة بسيطة تمرّ مع الطفل على يوم العيد وكلماته — اقرأوها مع كتاب تلوين رمضان والعيد.",
     agesEn: "Ages 3–7",
-    agesAr: "من ٣ إلى ٧ سنوات",
+    agesAr: "من 3 إلى 7 سنوات",
     minutesEn: "3 min",
-    minutesAr: "٣ دقائق",
+    minutesAr: "3 دقائق",
     scenes: [
       { emoji: "🌙", ar: "انْتَهَى شَهْرُ رَمَضَانَ، وَجَاءَ صَبَاحُ الْعِيدِ.", translit: "intahaa shahru ramaDaana, wa jaa'a Sabaahu-l-'iid.", en: "The month of Ramadan ended, and the morning of Eid arrived." },
       { emoji: "👕", ar: "لَبِسَ سَالِمٌ ثَوْباً جَدِيداً وَحِذَاءً جَدِيداً.", translit: "labisa saalimun thawban jadiidan wa HiDhaa'an jadiid.", en: "Salem put on new clothes and new shoes." },
@@ -188,9 +188,9 @@ export const stories: Story[] = [
     introAr:
       "غُرابٌ عطشان يجد إبريقاً فيه ماءٌ قليل في أسفله. منقارُه لا يصل — لكنّ عقله يصل. حكاية خالدة معاد سردُها هنا بعربية بسيطة مشكولة بالكامل.",
     agesEn: "Ages 4–8",
-    agesAr: "من ٤ إلى ٨ سنوات",
+    agesAr: "من 4 إلى 8 سنوات",
     minutesEn: "3 min",
-    minutesAr: "٣ دقائق",
+    minutesAr: "3 دقائق",
     scenes: [
       { emoji: "☀️", ar: "فِي يَوْمٍ حَارٍّ، كَانَ غُرَابٌ عَطْشَانُ.", translit: "fii yawmin Haarrin, kaana ghuraabun 'aTshaan.", en: "On a hot day, there was a thirsty crow." },
       { emoji: "🏺", ar: "طَارَ فَوْقَ الْحُقُولِ حَتَّى رَأَى إِبْرِيقاً فِيهِ مَاءٌ.", translit: "Taara fawqa-l-Huquuli Hattaa ra'aa ibriiqan fiihi maa'.", en: "He flew over the fields until he saw a pitcher with water in it." },
@@ -241,9 +241,9 @@ export const stories: Story[] = [
     introAr:
       "حكاية حرف الميم: ينزل المطر صباح يوم دراسي، ويمتلئ يوم مريم بكلمات الميم — مظلّة وموز ومسجد ومكتبة. المطر لا يوقف المرح.",
     agesEn: "Ages 4–7",
-    agesAr: "من ٤ إلى ٧ سنوات",
+    agesAr: "من 4 إلى 7 سنوات",
     minutesEn: "3 min",
-    minutesAr: "٣ دقائق",
+    minutesAr: "3 دقائق",
     scenes: [
       { emoji: "🌧️", ar: "نَزَلَ الْمَطَرُ صَبَاحَ يَوْمٍ فِي الْمَدْرَسَةِ.", translit: "nazala-l-maTaru SabaHa yawmin fi-l-madrasati.", en: "Rain fell one morning at school." },
       { emoji: "☔", ar: "جَاءَتْ مَرْيَمُ بِمِظَلَّةٍ حَمْرَاءَ.", translit: "jaa'at maryamu bi-miZHallatin Hamraa'.", en: "Maryam came with a red umbrella." },
@@ -266,9 +266,9 @@ export const stories: Story[] = [
     introAr:
       "حكاية حرف الفاء: فيلٌ ضخم وفراشةٌ صغيرة يصبحان صديقين. مليئة بكلمات الفاء — فيل وفراشة وفاكهة — وفكرةٍ كبيرة: الصديق الحقيقي لا ينظر إلى الحجم.",
     agesEn: "Ages 3–6",
-    agesAr: "من ٣ إلى ٦ سنوات",
+    agesAr: "من 3 إلى 6 سنوات",
     minutesEn: "3 min",
-    minutesAr: "٣ دقائق",
+    minutesAr: "3 دقائق",
     scenes: [
       { emoji: "🐘", ar: "فِي الْغَابَةِ فِيلٌ كَبِيرٌ.", translit: "fi-l-ghaabati fiilun kabir.", en: "In the forest there is a big elephant." },
       { emoji: "🦋", ar: "طَارَتْ فَرَاشَةٌ صَغِيرَةٌ وَجَلَسَتْ عَلَى خُرْطُومِهِ.", translit: "Taa'at faraashatun Saghiiratun wa jalasat 'alaa khurTuumih.", en: "A tiny butterfly flew over and landed on his trunk." },
@@ -291,9 +291,9 @@ export const stories: Story[] = [
     introAr:
       "حكاية حرف السين: تنظر سعاد وجدّها إلى السحاب، وكلّ سحابة تشبه شيئاً يبدأ بحرف السين — سفينة وسمكة وسلطعون. الخيال يحوّل السماء إلى لعبة كلمات.",
     agesEn: "Ages 3–6",
-    agesAr: "من ٣ إلى ٦ سنوات",
+    agesAr: "من 3 إلى 6 سنوات",
     minutesEn: "3 min",
-    minutesAr: "٣ دقائق",
+    minutesAr: "3 دقائق",
     scenes: [
       { emoji: "🌤️", ar: "جَلَسَتْ سُعَادُ وَجَدُّهَا فِي الْحَدِيقَةِ.", translit: "jalasat su'aadu wa jadduhaa fi-l-Hadiiqati.", en: "Suad and her grandpa sat in the garden." },
       { emoji: "☁️", ar: "نَظَرَتْ سُعَادُ إِلَى السَّحَابِ فِي السَّمَاءِ.", translit: "naZarat su'aadu ila-s-saHaabi fi-s-samaa'.", en: "Suad looked at the clouds in the sky." },
@@ -316,9 +316,9 @@ export const stories: Story[] = [
     introAr:
       "حكاية حرف النون: لا ينام نور، فتعدّ النجوم من نافذتها — نافذة ونجوم ونوم — حتى تمنّيها من نجمةٍ ساقطة أمنيةً صغيرةً جميلة.",
     agesEn: "Ages 3–6",
-    agesAr: "من ٣ إلى ٦ سنوات",
+    agesAr: "من 3 إلى 6 سنوات",
     minutesEn: "3 min",
-    minutesAr: "٣ دقائق",
+    minutesAr: "3 دقائق",
     scenes: [
       { emoji: "🌙", ar: "فِي اللَّيْلِ، لَمْ تَنَمْ نُور.", translit: "fi-l-layli, lam tanam nuur.", en: "At night, Nour could not sleep." },
       { emoji: "🛏️", ar: "قَالَتْ: لَا أَسْتَطِيعُ النَّوْمَ!", translit: "qaalat: laa astatii'u-n-nawm!", en: "She said: I cannot sleep!" },
@@ -341,9 +341,9 @@ export const stories: Story[] = [
     introAr:
       "حكاية حرف التاء: يغرس تمساحٌ صغير اسمه طارق بذرة تفاح بجانب بيته في النهر. تنمو الشجرة على مهل — ووقتٌ طويل يعلّمه أجمل كلمة: الصبر.",
     agesEn: "Ages 4–7",
-    agesAr: "من ٤ إلى ٧ سنوات",
+    agesAr: "من 4 إلى 7 سنوات",
     minutesEn: "3 min",
-    minutesAr: "٣ دقائق",
+    minutesAr: "3 دقائق",
     scenes: [
       { emoji: "🐊", ar: "بِجَانِبِ النَّهْرِ يَعِيشُ تِمْسَاحٌ صَغِيرٌ اسْمُهُ تَارِق.", translit: "bi-jaanibi-n-nahri ya'ishu timsaaHun Saghiirun ismuhuu Taariq.", en: "Beside the river lives a little crocodile named Tariq." },
       { emoji: "🌱", ar: "غَرَسَ تَارِقُ بَذْرَةَ تُفَّاحٍ بِجَانِبِ بَيْتِهِ.", translit: "garasa Taariqu badhrata tuffaaHin bi-jaanibi baytih.", en: "Tariq planted an apple seed beside his house." },

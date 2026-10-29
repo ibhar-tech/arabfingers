@@ -185,7 +185,7 @@ export default async function ArabicLetterFormsPage({ params }: { params: Promis
           <ul className="list-disc list-inside space-y-2 text-ink/75">
             <li><strong className="text-ink/80">{isAr ? "ابدأ بالشكل المنفصل" : "Start with isolated forms"}</strong> — {isAr ? "هذا هو ما يعلمه عرب فنجرز. بمجرد أن يتعرف طفلك على الأشكال الأساسية، سيتعرف عليها داخل الكلمات." : "This is what ArabFingers teaches. Once your child recognizes the basic shapes, they'll spot them inside words."}</li>
             <li><strong className="text-ink/80">{isAr ? "ابحث عن الأنماط" : "Look for patterns"}</strong> — {isAr ? "كثير من الحروف تتغير بنفس الطريقة. حروف مثل ب ت ث تتبع نفس النمط مع اختلاف النقاط فقط." : "Many letters change in the same way. Letters like ب ت ث follow the same pattern with only the dots changing."}</li>
-            <li><strong className="text-ink/80">{isAr ? "لا تتعجل" : "Don't rush"}</strong> — {isAr ? "الأطفال يتعلمون الأشكال المنفصلة أولاً (عمر ٣-٥)، ثم الأشكال المتصلة لاحقاً (عمر ٥-٧). هذا تطور طبيعي." : "Children learn isolated forms first (ages 3-5), then connected forms later (ages 5-7). This is a natural progression."}</li>
+            <li><strong className="text-ink/80">{isAr ? "لا تتعجل" : "Don't rush"}</strong> — {isAr ? "الأطفال يتعلمون الأشكال المنفصلة أولاً (عمر 3-5)، ثم الأشكال المتصلة لاحقاً (عمر 5-7). هذا تطور طبيعي." : "Children learn isolated forms first (ages 3-5), then connected forms later (ages 5-7). This is a natural progression."}</li>
             <li><strong className="text-ink/80">{isAr ? "استخدم كلمات حقيقية" : "Use real words"}</strong> — {isAr ? "عندما يكون طفلك مستعداً، أره كيف تبدو الحروف التي يعرفها داخل كلمات بسيطة مثل بَاب (باب) أو كِتَاب (كتاب)." : "When your child is ready, show them how letters they know look inside simple words like بَاب (door) or كِتَاب (book)."}</li>
           </ul>
         </section>
@@ -235,7 +235,7 @@ export default async function ArabicLetterFormsPage({ params }: { params: Promis
       </div>
 
       <h2 className="text-xl font-semibold text-ink mb-4">
-        {isAr ? "جميع أشكال الحروف العربية الـ ٢٨" : "All 28 Arabic Letter Forms"}
+        {isAr ? "جميع أشكال الحروف العربية الـ 28" : "All 28 Arabic Letter Forms"}
       </h2>
 
       <div className="overflow-x-auto mb-10">

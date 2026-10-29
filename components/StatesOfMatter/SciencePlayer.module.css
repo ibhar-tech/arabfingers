@@ -1,0 +1,35 @@
+.player {
+  --accent: #5eead4;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.media {
+  overflow: hidden;
+  border: 1px solid #334155;
+  border-radius: 22px;
+  background: #0b1220;
+  box-shadow: 0 12px 32px #0b122026;
+}
+
+.controls {
+  position: relative;
+  border-top: 1px solid #334155;
+  background: #111c2d;
+}
+
+.narration {
+  border: 1px solid #334155;
+  border-radius: 18px;
+  background: #182439;
+}
+
+/* Keep the light player accent legible within the site's light-page theme. */
+.player .media :global(.bg-accent),
+.player .narration :global(.bg-accent) { color: #062c2b; }
+
+@media (max-width: 640px) {
+  .media { border-radius: 16px; }
+  .narration { border-radius: 14px; }
+}

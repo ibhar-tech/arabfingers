@@ -20,7 +20,7 @@ export async function generateMetadata({
     descriptionEn:
       "Hear an Arabic letter and tap the matching shape. A free, no-download listening game that links each of the 28 letters to its sound — audio-first, so it works before a child can read. Ages 3–7.",
     descriptionAr:
-      "استمع إلى حرف عربي وانقر شكله المطابق. لعبة استماع مجانية بلا تحميل تربط كلّاً من الحروف الـ٢٨ بصوته — تعتمد الصوت أوّلاً فتصلح قبل أن يقرأ الطفل. لأعمار ٣–٧.",
+      "استمع إلى حرف عربي وانقر شكله المطابق. لعبة استماع مجانية بلا تحميل تربط كلّاً من الحروف الـ28 بصوته — تعتمد الصوت أوّلاً فتصلح قبل أن يقرأ الطفل. لأعمار 3–7.",
     keywords: [
       "arabic letter sounds game", "learn arabic alphabet sounds", "arabic listening game for kids",
       "لعبة أصوات الحروف", "تعليم أصوات الحروف العربية", "arabic phonics for kids",
@@ -80,9 +80,9 @@ const copy = {
     ],
     nextTitle: "إلى أين بعد ذلك",
     next: [
-      { href: "/games/trace", t: "تتبّع الحرف", d: "اكتب الآن الشكل الذي تعلّمت سماعه. الحروف الـ٢٨ نفسها، تُرسم بالإصبع." },
+      { href: "/games/trace", t: "تتبّع الحرف", d: "اكتب الآن الشكل الذي تعلّمت سماعه. الحروف الـ28 نفسها، تُرسم بالإصبع." },
       { href: "/play", t: "لعب حر", d: "اضغط أيّ مفتاح لتسمع نطق حرف. استكشاف حرّ لكلّ صوت." },
-      { href: "/learn/arabic-alphabet-guide", t: "دليل الحروف الكامل", d: "كيف يُنطق كلّ حرف من الحروف الـ٢٨، مع الأخطاء المعتادة عند المتعلّمين." },
+      { href: "/learn/arabic-alphabet-guide", t: "دليل الحروف الكامل", d: "كيف يُنطق كلّ حرف من الحروف الـ28، مع الأخطاء المعتادة عند المتعلّمين." },
       { href: "/coloring", t: "لوّن الحروف", d: "لوحة رسم مجانية — الحروف نفسها، مع الألوان والملصقات." },
     ],
     faqTitle: "أسئلة عن لعبة الاستماع",

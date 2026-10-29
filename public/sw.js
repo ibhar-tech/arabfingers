@@ -3,7 +3,7 @@
 // forces returning visitors off stale copies. It was still "v4" when all 158
 // audio clips were regenerated in place, which left earlier visitors hearing the
 // old recordings with no way to ever get the new ones.
-const CACHE_NAME = "arabfingers-v5";
+const CACHE_NAME = "arabfingers-v6";
 // Every URL here must exist. cache.addAll is atomic — one 404 rejects the whole
 // call and nothing gets precached at all. This listed /icon-192.png and
 // /icon-512.png back when neither was in public/, so the precache silently did
@@ -85,7 +85,8 @@ self.addEventListener("fetch", (event) => {
   // Only handle GET requests
   if (request.method !== "GET") return;
 
-  if (request.url.startsWith("chrome-extension")) return;
+  // Ad and analytics responses must stay under their provider's cache policy.
+  if (new URL(request.url).origin !== self.location.origin) return;
 
   // Navigation requests: network-first with offline fallback
   if (request.mode === "navigate") {

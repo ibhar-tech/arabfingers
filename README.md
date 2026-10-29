@@ -2,8 +2,9 @@
 
 A free, bilingual (English/Arabic) Arabic-alphabet learning site for children aged 1–6 and their parents: [www.arabfingers.site](https://www.arabfingers.site).
 
-- **For kids:** a keyboard/touch letter game with recorded pronunciation, finger-tracing game, audio quiz, colouring canvas
-- **For parents:** 53 pages of generated printable worksheet PDFs, 14 in-depth bilingual learning guides, a glossary, and four narrated interactive science lessons
+- **For kids:** a keyboard/touch letter game with recorded pronunciation, finger-tracing game, audio quiz, colouring canvas, and a counting game for numbers 1–10
+- **For parents:** 143 pages of generated printable worksheet PDFs, 14 in-depth bilingual learning guides, a glossary, and four narrated interactive science lessons
+- **Discovery:** bilingual activity search, age/type filters, and browser-local saved activities
 - **By design:** no accounts, no backend, no profiling — everything runs in the browser or from the CDN
 
 ## Tech stack

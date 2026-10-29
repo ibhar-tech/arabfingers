@@ -1,5 +1,7 @@
 # Arab Fingers — SEO & Growth Strategy
 
+> Historical plan: the traffic figures below cover April–June 2026. For the September audit and current AI-report guidance, see [the 29 September audit](TRAFFIC-AND-UX-AUDIT-2026-09-29.md). The FAQ rich-result recommendation below is obsolete following Google's May 2026 retirement.
+
 _Built from the GSC export 2026-04-27 → 2026-06-20. Decision: double down (keep brand/niche/Next.js), grow via printables → Pinterest._
 
 ---

@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     descriptionEn:
       "When should a child start Arabic? A stage-by-stage age guide (0-2 listening, 2-4 sounds and play, 4-6 letters, 6+ reading), what early exposure does for the brain, and why it's never too late.",
     descriptionAr:
-      "متى يبدأ الطفل تعلّم العربية؟ دليل بحسب العمر (٠–٢ الإصغاء، ٢–٤ الأصوات واللعب، ٤–٦ الحروف، ٦+ القراءة)، وأثر التعريض المبكّر في الدماغ، ولماذا لا يفوت الأوان أبداً.",
+      "متى يبدأ الطفل تعلّم العربية؟ دليل بحسب العمر (0–2 الإصغاء، 2–4 الأصوات واللعب، 4–6 الحروف، 6+ القراءة)، وأثر التعريض المبكّر في الدماغ، ولماذا لا يفوت الأوان أبداً.",
     ogType: "article",
     publishedTime: "2026-04-23",
     modifiedTime: "2026-06-12",
@@ -27,10 +27,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 const stages = [
-  { ageEn: "0–2 years", ageAr: "٠–٢ سنة", focusEn: "Listening", focusAr: "الإصغاء", doEn: "Speak and sing Arabic around your baby; play nursery rhymes; read board books aloud.", doAr: "تحدّث وغنِّ بالعربية حول رضيعك، وشغّل الأناشيد، واقرأ الكتب المصوّرة بصوتٍ عالٍ." },
-  { ageEn: "2–4 years", ageAr: "٢–٤ سنوات", focusEn: "Sounds & play", focusAr: "الأصوات واللعب", doEn: "Free, pressure-free play with ArabFingers; name letters casually; point out Arabic around you.", doAr: "لعب حرّ بلا ضغط مع عرب فنجرز، وتسمية الحروف عَرَضاً، والإشارة إلى العربية من حولكما." },
-  { ageEn: "4–6 years", ageAr: "٤–٦ سنوات", focusEn: "Letters", focusAr: "الحروف", doEn: "Recognise and name most letters; trace shapes in sand or on paper; sing the alphabet.", doAr: "معرفة أكثر الحروف وتسميتها، وتتبّع أشكالها في الرمل أو على الورق، وغناء نشيد الأبجدية." },
-  { ageEn: "6+ years", ageAr: "٦ سنوات فأكثر", focusEn: "Reading", focusAr: "القراءة", doEn: "Connect letters into words; read short sentences; begin diacritics (harakat).", doAr: "وصل الحروف كلماتٍ، وقراءة جمل قصيرة، والبدء بالحركات (الضبط بالشكل)." },
+  { ageEn: "0–2 years", ageAr: "0–2 سنة", focusEn: "Listening", focusAr: "الإصغاء", doEn: "Speak and sing Arabic around your baby; play nursery rhymes; read board books aloud.", doAr: "تحدّث وغنِّ بالعربية حول رضيعك، وشغّل الأناشيد، واقرأ الكتب المصوّرة بصوتٍ عالٍ." },
+  { ageEn: "2–4 years", ageAr: "2–4 سنوات", focusEn: "Sounds & play", focusAr: "الأصوات واللعب", doEn: "Free, pressure-free play with ArabFingers; name letters casually; point out Arabic around you.", doAr: "لعب حرّ بلا ضغط مع عرب فنجرز، وتسمية الحروف عَرَضاً، والإشارة إلى العربية من حولكما." },
+  { ageEn: "4–6 years", ageAr: "4–6 سنوات", focusEn: "Letters", focusAr: "الحروف", doEn: "Recognise and name most letters; trace shapes in sand or on paper; sing the alphabet.", doAr: "معرفة أكثر الحروف وتسميتها، وتتبّع أشكالها في الرمل أو على الورق، وغناء نشيد الأبجدية." },
+  { ageEn: "6+ years", ageAr: "6 سنوات فأكثر", focusEn: "Reading", focusAr: "القراءة", doEn: "Connect letters into words; read short sentences; begin diacritics (harakat).", doAr: "وصل الحروف كلماتٍ، وقراءة جمل قصيرة، والبدء بالحركات (الضبط بالشكل)." },
 ];
 
 const faqs = [
@@ -225,22 +225,22 @@ function ContentAr() {
           <h2 className="text-xl font-semibold text-ink mb-3">دليل مرحلة بمرحلة</h2>
           <div className="space-y-4">
             <div className="rounded-xl border border-ink/8 bg-card p-5">
-              <h3 className="font-semibold text-ink mb-2">٠–٢ سنة: الإصغاء</h3>
+              <h3 className="font-semibold text-ink mb-2">0–2 سنة: الإصغاء</h3>
               <p className="text-ink/80 mb-2">في هذا العمر يمتصّ الطفل أصوات ما حوله. لا يقدر على النطق بعد، لكنّه يبني مكتبة أصوات في دماغه. وكلّ حديث عربيّ أو نشيد أو تلاوة يسمعها يُرسي وصلات في عقله.</p>
               <p className="text-ink/80"><strong className="text-ink/90">ماذا تفعل:</strong> تحدّث بالعربية حوله، وشغّل الأناشيد العربية، واقرأ الكتب المصوّرة بصوتٍ عالٍ ولو قبل أن يفهم الكلمات؛ فالإيقاع والأصوات هما المهمّ الآن.</p>
             </div>
             <div className="rounded-xl border border-ink/8 bg-card p-5">
-              <h3 className="font-semibold text-ink mb-2">٢–٤ سنوات: الأصوات واللعب</h3>
+              <h3 className="font-semibold text-ink mb-2">2–4 سنوات: الأصوات واللعب</h3>
               <p className="text-ink/80 mb-2">الطفل في هذا السنّ يتعلّم بالسبب والنتيجة، ويحبّ أن يضغط فيرى ما يحدث، وهو العمر الأمثل لعرب فنجرز؛ إذ يستكشف الحروف العربية باللعب بلا توقّعات.</p>
               <p className="text-ink/80"><strong className="text-ink/90">ماذا تفعل:</strong> دعه يلعب بحرّية، ولا تختبره، وسمِّ الحروف عَرَضاً كلّما ظهرت: &quot;انظر، هذه باء!&quot;، وابدأ بالإشارة إلى الحروف العربية على العبوات واللافتات وأغلفة الكتب.</p>
             </div>
             <div className="rounded-xl border border-ink/8 bg-card p-5">
-              <h3 className="font-semibold text-ink mb-2">٤–٦ سنوات: الحروف</h3>
+              <h3 className="font-semibold text-ink mb-2">4–6 سنوات: الحروف</h3>
               <p className="text-ink/80 mb-2">أطفال الروضة يقدرون على تعلّم أكثر تنظيماً؛ يسمّون أكثر الحروف، ويدركون أنّ الحرف يحمل صوتاً، ويبدأون بتتبّع الأشكال. وهنا يبدأ العمل اللطيف على الحروف بجانب استمرار اللعب.</p>
               <p className="text-ink/80"><strong className="text-ink/90">ماذا تفعل:</strong> تتبّعوا الحروف في الرمل أو صينية الملح أو على الورق، وغنّوا نشيد الأبجدية، واقرآ كلمات عربية بسيطة معاً، واجعل اللعب هو الأساس.</p>
             </div>
             <div className="rounded-xl border border-ink/8 bg-card p-5">
-              <h3 className="font-semibold text-ink mb-2">٦ سنوات فأكثر: القراءة</h3>
+              <h3 className="font-semibold text-ink mb-2">6 سنوات فأكثر: القراءة</h3>
               <p className="text-ink/80 mb-2">الطفل الذي عُرّض مبكّراً صار مهيّأً للقراءة؛ يعرف أكثر الحروف في أشكالها المتّصلة، ويرى كيف تتّصل في الكلمات، ويبدأ بقراءة كلمات وجمل قصيرة، وبتعلّم الحركات لضبط النطق.</p>
               <p className="text-ink/80"><strong className="text-ink/90">ماذا تفعل:</strong> انتقلوا إلى برامج تركّز على القراءة، وأبقِ عرب فنجرز للمراجعة الممتعة، واقرآ كتب الأطفال العربية يومياً، وفكّر في الدروس أو معلّم.</p>
             </div>

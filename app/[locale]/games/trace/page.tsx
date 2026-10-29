@@ -20,7 +20,7 @@ export async function generateMetadata({
     descriptionEn:
       "Trace all 28 Arabic letters with a finger and earn a star for each one. A free, no-download handwriting game that follows the dotted letter outline — great early writing practice for ages 3–7.",
     descriptionAr:
-      "تتبّع الحروف العربية الـ٢٨ بإصبعك واكسب نجمة عن كلّ حرف. لعبة خطّ مجانية بلا تحميل تتبع حدّ الحرف المنقّط — تدريب ممتاز على الكتابة المبكرة لأعمار ٣–٧.",
+      "تتبّع الحروف العربية الـ28 بإصبعك واكسب نجمة عن كلّ حرف. لعبة خطّ مجانية بلا تحميل تتبع حدّ الحرف المنقّط — تدريب ممتاز على الكتابة المبكرة لأعمار 3–7.",
     keywords: [
       "trace arabic letters game", "arabic handwriting for kids", "arabic letter tracing online",
       "لعبة تتبع الحروف", "تعليم الكتابة العربية للأطفال", "free arabic writing game",
@@ -80,10 +80,10 @@ const copy = {
     ],
     nextTitle: "إلى أين بعد ذلك",
     next: [
-      { href: "/games/tap", t: "انقر الحرف", d: "استمع إلى صوت الحرف وانقر شكله المطابق. الجانب الصوتي من الحروف الـ٢٨ نفسها." },
+      { href: "/games/tap", t: "انقر الحرف", d: "استمع إلى صوت الحرف وانقر شكله المطابق. الجانب الصوتي من الحروف الـ28 نفسها." },
       { href: "/coloring", t: "لوّن الحروف", d: "لوحة رسم مجانية — الحروف نفسها، مع الألوان والملصقات." },
       { href: "/printables", t: "أوراق التتبّع للطباعة (PDF)", d: "النسخة الورقية — صفحة كاملة لكلّ حرف، مجانية للتنزيل والطباعة." },
-      { href: "/learn/arabic-alphabet-guide", t: "دليل الحروف الكامل", d: "الحروف الـ٢٨ كاملة، ونطق كلّ حرف، والأخطاء المعتادة عند المتعلّمين." },
+      { href: "/learn/arabic-alphabet-guide", t: "دليل الحروف الكامل", d: "الحروف الـ28 كاملة، ونطق كلّ حرف، والأخطاء المعتادة عند المتعلّمين." },
     ],
     faqTitle: "أسئلة عن لعبة التتبّع",
     faq: [

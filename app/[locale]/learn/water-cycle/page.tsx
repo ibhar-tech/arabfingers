@@ -171,7 +171,7 @@ export default async function WaterCyclePage({ params }: { params: Promise<{ loc
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm sm:text-base text-ink/80 leading-relaxed">
           <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-saffron-ink mb-1">
-              {isAr ? "١. التبخر" : "1. Evaporation Stage"}
+              {isAr ? "1. التبخر" : "1. Evaporation Stage"}
             </h3>
             <p className="text-ink/80">
               {isAr
@@ -182,7 +182,7 @@ export default async function WaterCyclePage({ params }: { params: Promise<{ loc
 
           <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-sky-400 mb-1">
-              {isAr ? "٢. التكاثف" : "2. Condensation Stage"}
+              {isAr ? "2. التكاثف" : "2. Condensation Stage"}
             </h3>
             <p className="text-ink/80">
               {isAr
@@ -193,7 +193,7 @@ export default async function WaterCyclePage({ params }: { params: Promise<{ loc
 
           <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-qalam mb-1">
-              {isAr ? "٣. الهطول" : "3. Precipitation Stage"}
+              {isAr ? "3. الهطول" : "3. Precipitation Stage"}
             </h3>
             <p className="text-ink/80">
               {isAr
@@ -204,7 +204,7 @@ export default async function WaterCyclePage({ params }: { params: Promise<{ loc
 
           <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-qalam mb-1">
-              {isAr ? "٤. الجريان والتجميع" : "4. Collection & Runoff"}
+              {isAr ? "4. الجريان والتجميع" : "4. Collection & Runoff"}
             </h3>
             <p className="text-ink/80">
               {isAr

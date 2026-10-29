@@ -8,7 +8,7 @@ import { setRequestLocale } from "next-intl/server";
 
 const CONTACT_EMAIL = "ibhartech39@gmail.com";
 const UPDATED_EN = "5 September 2026";
-const UPDATED_AR = "٥ سبتمبر ٢٠٢٦";
+const UPDATED_AR = "5 سبتمبر 2026";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;

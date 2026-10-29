@@ -37,12 +37,15 @@ export function PageLayout({ locale, children, fullBleed = false }: PageLayoutPr
 
       {/* Content */}
       <main
+        id="main-content"
+        tabIndex={-1}
         className={
           fullBleed
             ? "relative z-10 w-full flex-1"
             : "relative z-10 mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 sm:py-10"
         }
       >
+        <ReadingAds placement="top" />
         {children}
         {/* End-of-content ad slot. ReadingAds self-gates by route and renders
             nothing visible outside the parent-facing reading pages. */}

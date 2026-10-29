@@ -133,7 +133,7 @@ export default async function Page({ params }: Props) {
           <p className="text-xs font-bold uppercase tracking-wide text-ink/45">
             {tt(
               `Letter ${page.index + 1} of 28 · Ages 4–7 · Pre-K – Grade 1`,
-              `الحرف ${page.index + 1} من ٢٨ · من ٤ إلى ٧ سنوات`,
+              `الحرف ${page.index + 1} من 28 · من 4 إلى 7 سنوات`,
             )}
           </p>
           <h1 className="font-display mt-1 text-3xl font-extrabold leading-tight text-ink">
@@ -344,7 +344,7 @@ export default async function Page({ params }: Props) {
         <p className="mt-5 text-sm text-ink/70">
           {tt(
             "Want all 28 in one file? ",
-            "تريد الحروف الـ٢٨ في ملف واحد؟ ",
+            "تريد الحروف الـ28 في ملف واحد؟ ",
           )}
           <Link href={`/${locale}/printables/arabic-alphabet-tracing`} className="font-bold text-qalam underline underline-offset-4">
             {tt("Download the complete alphabet pack →", "حمّل المجموعة الكاملة ←")}

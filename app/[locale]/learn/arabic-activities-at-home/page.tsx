@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   return generatePageMetadata(locale, "/learn/arabic-activities-at-home", {
     titleEn: "10 Arabic Letter Activities for Home — Materials, Steps & Age Ranges",
-    titleAr: "١٠ أنشطة لتعلّم الحروف العربية في البيت — المواد والخطوات والأعمار",
+    titleAr: "10 أنشطة لتعلّم الحروف العربية في البيت — المواد والخطوات والأعمار",
     descriptionEn:
       "Ten hands-on Arabic letter activities for kids, written like mini-recipes with materials, steps, and an age range each — grouped into craft, movement, and quiet-time ideas, with printable-pairing tips.",
     descriptionAr:
@@ -37,7 +37,7 @@ type Activity = {
 const craft: Activity[] = [
   {
     n: 1, titleEn: "Salt Tray Letter Tracing", titleAr: "تتبّع الحروف في صينية الملح",
-    ageEn: "Ages 2–5", ageAr: "٢–٥ سنوات",
+    ageEn: "Ages 2–5", ageAr: "2–5 سنوات",
     materialsEn: "A flat tray or baking sheet, plus a thin layer of salt, sand, or sugar.",
     materialsAr: "صينية مسطّحة أو صفيحة خبز، وطبقة رقيقة من الملح أو الرمل أو السكّر.",
     steps: [
@@ -48,7 +48,7 @@ const craft: Activity[] = [
   },
   {
     n: 2, titleEn: "Playdough Letters", titleAr: "حروف من المعجون",
-    ageEn: "Ages 3–6", ageAr: "٣–٦ سنوات",
+    ageEn: "Ages 3–6", ageAr: "3–6 سنوات",
     materialsEn: "Soft playdough in a few colours.",
     materialsAr: "معجون لعبٍ ليّن بألوانٍ عدّة.",
     steps: [
@@ -59,7 +59,7 @@ const craft: Activity[] = [
   },
   {
     n: 3, titleEn: "Letter Stamps", titleAr: "أختام الحروف",
-    ageEn: "Ages 2–5", ageAr: "٢–٥ سنوات",
+    ageEn: "Ages 2–5", ageAr: "2–5 سنوات",
     materialsEn: "Sponges or foam sheets, scissors (adult), and washable paint.",
     materialsAr: "إسفنج أو رقائق فلّين، ومقصّ (للكبير)، وطلاءٌ قابل للغسل.",
     steps: [
@@ -70,7 +70,7 @@ const craft: Activity[] = [
   },
   {
     n: 4, titleEn: "Watercolour Magic Letters", titleAr: "حروفٌ سحرية بالألوان المائية",
-    ageEn: "Ages 3–6", ageAr: "٣–٦ سنوات",
+    ageEn: "Ages 3–6", ageAr: "3–6 سنوات",
     materialsEn: "White wax crayon, paper, watercolours, and a brush.",
     materialsAr: "شمعٌ أبيض، وورق، وألوانٌ مائية، وفرشاة.",
     steps: [
@@ -84,7 +84,7 @@ const craft: Activity[] = [
 const movement: Activity[] = [
   {
     n: 5, titleEn: "Real-World Letter Hunt", titleAr: "رحلة بحثٍ عن الحروف",
-    ageEn: "Ages 2–6", ageAr: "٢–٦ سنوات",
+    ageEn: "Ages 2–6", ageAr: "2–6 سنوات",
     materialsEn: "Just your home or street — and ArabFingers to warm up.",
     materialsAr: "بيتك أو شارعك فحسب، وعرب فنجرز للتهيئة.",
     steps: [
@@ -106,7 +106,7 @@ const movement: Activity[] = [
   },
   {
     n: 7, titleEn: "Magnetic Letter Matching", titleAr: "مطابقة الحروف المغناطيسية",
-    ageEn: "Ages 3–6", ageAr: "٣–٦ سنوات",
+    ageEn: "Ages 3–6", ageAr: "3–6 سنوات",
     materialsEn: "A set of magnetic Arabic letters and the fridge.",
     materialsAr: "مجموعة حروفٍ عربية مغناطيسية والثلاجة.",
     steps: [
@@ -120,13 +120,13 @@ const movement: Activity[] = [
 const quiet: Activity[] = [
   {
     n: 8, titleEn: "Letter-of-the-Week", titleAr: "حرف الأسبوع",
-    ageEn: "Ages 3–6", ageAr: "٣–٦ سنوات",
+    ageEn: "Ages 3–6", ageAr: "3–6 سنوات",
     materialsEn: "A card for the fridge and your everyday surroundings.",
     materialsAr: "بطاقة للثلاجة وما حولكم من أشياء.",
     steps: [
       { en: "Pick one letter and make it the week's \"star\".", ar: "اختاروا حرفاً واجعلوه \"نجم\" الأسبوع." },
       { en: "Find it in books, practise writing it, hunt objects with its sound.", ar: "جدوه في الكتب، وتدرّبوا على كتابته، وابحثوا عن أشياء تبدأ بصوته." },
-      { en: "One letter a week covers all 28 in about seven months.", ar: "بحرفٍ في الأسبوع تُغطّى الـ٢٨ في نحو سبعة أشهر." },
+      { en: "One letter a week covers all 28 in about seven months.", ar: "بحرفٍ في الأسبوع تُغطّى الـ28 في نحو سبعة أشهر." },
     ],
   },
   {
@@ -182,7 +182,7 @@ export default async function ArabicActivitiesPage({ params }: { params: Promise
       />
 
       <h1 className="text-3xl font-semibold text-ink mb-2">
-        {isAr ? "١٠ أنشطة لتعلّم الحروف العربية في البيت" : "10 Fun Activities to Practice Arabic Letters at Home"}
+        {isAr ? "10 أنشطة لتعلّم الحروف العربية في البيت" : "10 Fun Activities to Practice Arabic Letters at Home"}
       </h1>
       <p className="text-base text-ink/75 mb-8">
         {isAr ? "وصفاتٌ صغيرة بموادّها وخطواتها وعمرها المناسب" : "Mini-recipes with materials, steps, and age ranges"}

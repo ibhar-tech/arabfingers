@@ -131,7 +131,7 @@ function ContactAr() {
           </section>
           <section>
             <h2 className="mb-2 text-lg font-medium text-ink/90">وقت الاستجابة</h2>
-            <p>نهدف للرد على جميع الاستفسارات خلال ٤٨ ساعة.</p>
+            <p>نهدف للرد على جميع الاستفسارات خلال 48 ساعة.</p>
           </section>
         </div>
 

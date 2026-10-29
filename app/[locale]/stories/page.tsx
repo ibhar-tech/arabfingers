@@ -59,31 +59,30 @@ export default async function StoriesPage({ params }: Props) {
     <article key={s.slug} className="card-stock flex flex-col p-5">
       <div className="flex items-start justify-between gap-3">
         <span aria-hidden className="text-5xl leading-none">{s.emoji}</span>
-        {s.letter ? (
+        {s.letter && (
           <span className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-ink bg-saffron-soft font-arabic-display text-xl font-bold text-ink">
             {s.letter}
-          </span>
-        ) : (
-          <span className="rounded-full border-2 border-ink/10 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-ink/50">
-            {isAr ? s.agesAr : s.agesEn}
           </span>
         )}
       </div>
       <h2 className="mt-3 font-display text-lg font-extrabold leading-snug text-ink">
-        {isAr ? s.titleAr : s.titleEn}
+        <Link href={`/${locale}/stories/${s.slug}`} className="hover:text-teal-800 hover:underline">
+          {isAr ? s.titleAr : s.titleEn}
+        </Link>
       </h2>
-      <p className="mt-1 font-arabic-display text-base text-qalam" dir="rtl">
+      <p className="mt-1 text-base text-teal-800" lang={isAr ? "en" : "ar"} dir={isAr ? "ltr" : "rtl"}>
         {isAr ? s.titleEn : s.titleAr}
       </p>
       <p className="mt-2 line-clamp-3 text-sm leading-relaxed text-ink/70">
         {isAr ? s.introAr : s.introEn}
       </p>
-      <p className="mt-3 text-xs font-bold uppercase tracking-wide text-ink/45">
-        {s.scenes.length} {tt("scenes", "مشاهد")} · {isAr ? s.minutesAr : s.minutesEn}
+      <p className="mt-3 text-xs font-bold uppercase tracking-wide text-ink/70">
+        {isAr ? s.agesAr : s.agesEn} · {s.scenes.length} {tt("scenes", "مشاهد")} · {isAr ? s.minutesAr : s.minutesEn}
       </p>
       <div className="mt-4 flex flex-wrap gap-2.5">
         <Link
           href={`/${locale}/stories/${s.slug}`}
+          aria-label={tt(`Read the story: ${s.titleEn}`, `اقرأ القصة: ${s.titleAr}`)}
           className="btn-chunky inline-flex text-xs"
         >
           📖 {tt("Read the story", "اقرأ القصة")}
@@ -91,7 +90,8 @@ export default async function StoriesPage({ params }: Props) {
         <a
           href={`/stories/${s.slug}.pdf`}
           download
-          className="inline-flex items-center rounded-xl border-2 border-ink/15 px-3.5 py-2 text-xs font-bold text-ink/70 transition hover:border-qalam hover:text-qalam"
+          aria-label={tt(`Download PDF: ${s.titleEn}`, `تحميل PDF: ${s.titleAr}`)}
+          className="inline-flex items-center rounded-xl border-2 border-ink/15 px-3.5 py-2 text-xs font-bold text-ink/70 transition hover:border-qalam hover:text-teal-800"
         >
           ⬇ PDF
         </a>
@@ -118,10 +118,10 @@ export default async function StoriesPage({ params }: Props) {
             "قصص مصوّرة أصلية كُتبت لطفل ما يزال يفكّك الحروف: كل جملة عربية مشكولة بالكامل، مقرونة بنقل صوتي وترجمة إنجليزية، ومبنية من كلمات يقابلها طفلك في الألعاب وأوراق العمل. اقرأوها هنا مشهداً بمشهد، أو حمّلوا نسخة PDF للطباعة ووقت النوم.",
           )}
         </p>
-        <p className="mt-3 text-sm font-semibold text-ink/55">
+        <p className="mt-3 text-sm font-semibold text-ink/70">
           {tt(
-            "Free, no account, printable — and every story ends with one clear lesson.",
-            "مجانية وبلا حساب وقابلة للطباعة — وكل قصة تنتهي بعبرة واضحة.",
+            `${stories.length} free stories, no account needed — and every story ends with one clear lesson.`,
+            `${stories.length.toLocaleString("ar-u-nu-latn")} قصة مجانية بلا حساب — وكل قصة تنتهي بعبرة واضحة.`,
           )}
         </p>
       </section>
@@ -131,10 +131,10 @@ export default async function StoriesPage({ params }: Props) {
           <h2 className="font-display text-xl font-extrabold text-ink">
             {tt("Letter Tales · حِكَايَاتُ الْحُرُوفِ", "Letter Tales · حِكَايَاتُ الْحُرُوفِ")}
           </h2>
-          <p className="mt-1.5 text-sm text-ink/60">
+          <p className="mt-1.5 text-sm text-ink/70">
             {tt(
-              "One story per letter, packed with words that start with it — read the story, then colour the letter in the Alphabet coloring book.",
-              "قصة لكلّ حرف، مليئة بالكلمات التي تبدأ به — اقرأوا القصة ثم لوّنوا الحرف في كتاب تلوين الحروف.",
+              "Explore these letter-focused stories, packed with words that start with the featured letter. Read together, then colour that letter in the Alphabet coloring book.",
+              "اكتشفوا هذه القصص التي تركّز كلّ منها على حرف، وتضمّ كلمات تبدأ به. اقرأوا معاً ثم لوّنوا الحرف في كتاب تلوين الحروف.",
             )}
           </p>
           <div className="mt-4 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -147,7 +147,7 @@ export default async function StoriesPage({ params }: Props) {
         <section className="mt-10">
           {letterTales.length > 0 && (
             <h2 className="font-display text-xl font-extrabold text-ink">
-              {tt("All stories", "كلّ القصص")}
+              {tt("More mini-stories", "المزيد من القصص القصيرة")}
             </h2>
           )}
           <div className={`grid gap-6 md:grid-cols-2 xl:grid-cols-3 ${letterTales.length > 0 ? "mt-4" : "mt-10"}`}>
@@ -167,13 +167,16 @@ export default async function StoriesPage({ params }: Props) {
           )}
         </p>
         <div className="mt-4 flex flex-wrap gap-3 text-sm font-bold">
-          <Link href={`/${locale}/printables/arabic-animals-coloring`} className="text-qalam underline underline-offset-4">
+          <Link href={`/${locale}/printables/arabic-alphabet-coloring`} className="text-teal-800 underline underline-offset-4">
+            ✏️ {tt("Alphabet coloring book", "كتاب تلوين الحروف")}
+          </Link>
+          <Link href={`/${locale}/printables/arabic-animals-coloring`} className="text-teal-800 underline underline-offset-4">
             🦁 {tt("Animals coloring book", "كتاب تلوين الحيوانات")}
           </Link>
-          <Link href={`/${locale}/printables/arabic-solar-system-coloring`} className="text-qalam underline underline-offset-4">
+          <Link href={`/${locale}/printables/arabic-solar-system-coloring`} className="text-teal-800 underline underline-offset-4">
             🪐 {tt("Solar System coloring book", "كتاب تلوين المجموعة الشمسية")}
           </Link>
-          <Link href={`/${locale}/play`} className="text-qalam underline underline-offset-4">
+          <Link href={`/${locale}/play`} className="text-teal-800 underline underline-offset-4">
             🎮 {tt("Letter game", "لعبة الحروف")}
           </Link>
         </div>

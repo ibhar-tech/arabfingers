@@ -8,7 +8,7 @@ import { setRequestLocale } from "next-intl/server";
 
 const CONTACT_EMAIL = "ibhartech39@gmail.com";
 const UPDATED_EN = "5 September 2026";
-const UPDATED_AR = "٥ سبتمبر ٢٠٢٦";
+const UPDATED_AR = "5 سبتمبر 2026";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -16,9 +16,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     titleEn: "Privacy Policy | Arab Fingers",
     titleAr: "سياسة الخصوصية | عرب فنجرز",
     descriptionEn:
-      "How Arab Fingers handles data: no accounts, no personal data collection, advertising on parent-facing pages only, and what your browser stores locally.",
+      "How Arab Fingers handles data: no accounts, no personal data collection, advertising on browsing and reading pages, and what your browser stores locally.",
     descriptionAr:
-      "كيف يتعامل عرب فنجرز مع البيانات: بلا حسابات وبلا جمع بيانات شخصية، وإعلانات في صفحات القراءة الموجّهة إلى الآباء فقط، وما يخزّنه متصفّحك محلياً.",
+      "كيف يتعامل عرب فنجرز مع البيانات: بلا حسابات وبلا جمع بيانات شخصية، وإعلانات في صفحات التصفّح والقراءة، وما يخزّنه متصفّحك محلياً.",
   });
 }
 
@@ -34,7 +34,7 @@ const en: { title: string; updated: string; intro: string; sections: Section[] }
       h: "The short version",
       body: [
         "We do not ask for a name, an email address or a password, because there is nothing on this site to sign up for. We do not build a profile of you or your child, we do not sell data to anyone, and we do not run our own analytics.",
-        "The one way the site funds itself is advertising, shown on the reading pages written for parents and teachers. Nothing a child plays ever carries an ad. Advertising is served through Adsterra, and advertising technology may set cookies or use similar mechanisms to serve and measure the ads — that is described in full below.",
+        "The one way the site funds itself is advertising, shown on the homepage, resource listings and reading pages. Dedicated game and colouring pages have no ad placements. Advertising is served through Adsterra, and advertising technology may set cookies or use similar mechanisms to serve and measure the ads — that is described in full below.",
       ],
     },
     {
@@ -59,7 +59,7 @@ const en: { title: string; updated: string; intro: string; sections: Section[] }
     {
       h: "Advertising and third-party cookies",
       body: [
-        "Arab Fingers displays advertising supplied by Adsterra on the parent-facing reading pages — the blog, the learning guides, the printables and the glossary. We do not set advertising cookies ourselves, and we do not pass any information about you to advertisers.",
+        "Arab Fingers displays advertising supplied by Adsterra on the homepage, resources, blog, learning guides, printables, stories and glossary. We do not set advertising cookies ourselves, and we do not pass any information about you to advertisers.",
         "There are no ads at all on the interactive activities — the keyboard toy, the colouring canvas, the tracing game and the tapping game. Those are the pages a child actually holds, and an ad beside a small finger is an accident waiting to happen.",
         "Adsterra and the advertisers it works with may use cookies or similar technologies, such as anonymous identifiers, to serve ads, cap how often an ad is shown and measure performance. You can review or limit ad personalisation through your browser settings and through industry opt-out tools such as aboutads.info/choices.",
       ],
@@ -68,7 +68,7 @@ const en: { title: string; updated: string; intro: string; sections: Section[] }
       h: "Children's privacy (COPPA and GDPR-K)",
       body: [
         "This site is written for parents and teachers, and its activities are intended to be used by a child alongside an adult. We do not knowingly collect personal information from anyone under the age of 13, and there is no mechanism on the site through which a child could supply any.",
-        "We treat the whole site as directed to children. Every activity a child operates is free of advertising, and no tap anywhere in those activities can produce one; the ads that fund the site live on the reading pages written for the adults next to them.",
+        "We treat the whole site as directed to children. Dedicated game and colouring pages have no ad placements. Advertising appears on browsing and reading pages, including the homepage, where adults can help children choose resources.",
         "If you believe a child has somehow provided personal information to us, please write to us at the address below and we will delete it immediately.",
       ],
     },
@@ -115,7 +115,7 @@ const ar: { title: string; updated: string; intro: string; sections: Section[] }
       h: "الخلاصة باختصار",
       body: [
         "لا نطلب اسماً ولا بريداً إلكترونياً ولا كلمة مرور، لأنه لا يوجد في هذا الموقع ما يُسجَّل فيه. ولا نبني ملفّاً عنك أو عن طفلك، ولا نبيع البيانات لأحد، ولا نشغّل تحليلات خاصة بنا.",
-        "والشيء الوحيد الذي يموّل الموقع هو الإعلانات، وتُعرض في صفحات القراءة المكتوبة للآباء والمعلّمين. ولا يحمل أيّ نشاط لعبه الطفل إعلاناً إطلاقاً. تُقدَّم الإعلانات عبر Adsterra، وقد تستعمل تقنيات الإعلان ملفّات ارتباط أو وسائل مشابهة لعرض الإعلانات وقياسها — وهذا موضّح بالتفصيل أدناه.",
+        "والشيء الوحيد الذي يموّل الموقع هو الإعلانات، وتُعرض في الصفحة الرئيسية وصفحات المصادر والقراءة. ولا توجد مواضع إعلانية في صفحات الألعاب والتلوين المخصّصة. تُقدَّم الإعلانات عبر Adsterra، وقد تستعمل تقنيات الإعلان ملفّات ارتباط أو وسائل مشابهة لعرض الإعلانات وقياسها — وهذا موضّح بالتفصيل أدناه.",
       ],
     },
     {
@@ -140,7 +140,7 @@ const ar: { title: string; updated: string; intro: string; sections: Section[] }
     {
       h: "الإعلانات وملفّات تعريف الارتباط من طرف ثالث",
       body: [
-        "يعرض عرب فنجرز إعلانات تزوّدها Adsterra في صفحات القراءة الموجّهة إلى الآباء — المدوّنة وأدلّة التعلّم وأوراق العمل ومعجم الكلمات. ولا نضع نحن ملفّات تعريف ارتباط إعلانية، ولا نمرّر أيّ معلومات عنك إلى المعلنين.",
+        "يعرض عرب فنجرز إعلانات تزوّدها Adsterra في الصفحة الرئيسية والمصادر والمدوّنة وأدلّة التعلّم وأوراق العمل والقصص ومعجم الكلمات. ولا نضع نحن ملفّات تعريف ارتباط إعلانية، ولا نمرّر أيّ معلومات عنك إلى المعلنين.",
         "ولا توجد إعلانات إطلاقاً في الأنشطة التفاعلية — لعبة لوحة المفاتيح، ولوحة التلوين، ولعبة التتبّع، ولعبة النقر. فهذه هي الصفحات التي يمسكها الطفل بيده، والإعلان بجوار إصبع صغير حادثة تنتظر وقوعها.",
         "وقد تستعمل Adsterra والمعلنون الذين تعمل معهم ملفّات ارتباط أو تقنيات مشابهة، كالمعرّفات المجهولة، لعرض الإعلانات وتحديد عدد مرّات ظهورها وقياس أدائها. ويمكنك مراجعة تخصيص الإعلانات أو تقييده من إعدادات متصفّحك ومن أدوات انسحاب القطاع مثل aboutads.info/choices.",
       ],
@@ -149,7 +149,7 @@ const ar: { title: string; updated: string; intro: string; sections: Section[] }
       h: "خصوصية الأطفال (COPPA وGDPR-K)",
       body: [
         "كُتب هذا الموقع للآباء والمعلّمين، وأنشطته موجّهة ليستعملها الطفل بصحبة بالغ. ولا نجمع عن علم معلومات شخصية من أيّ شخص دون الثالثة عشرة، ولا توجد في الموقع وسيلة يستطيع الطفل بها تقديم شيء منها.",
-        "نعامل الموقع كلّه على أنّه موجّه إلى الأطفال. وكلّ نشاط يقوده الطفل خالٍ من الإعلانات، ولا يمكن لأيّ نقرة فيه أن تُظهر إعلاناً؛ أمّا الإعلانات التي تموّل الموقع فموضعها صفحات القراءة المكتوبة للبالغين بجانبهم.",
+        "نعامل الموقع كلّه على أنّه موجّه إلى الأطفال. ولا توجد مواضع إعلانية في صفحات الألعاب والتلوين المخصّصة. تظهر الإعلانات في صفحات التصفّح والقراءة، ومنها الصفحة الرئيسية، حيث يمكن للبالغين مساعدة الأطفال في اختيار المصادر.",
         "وإن كنت ترى أنّ طفلاً قدّم إلينا معلومات شخصية بطريقة ما، فراسلنا على العنوان أدناه وسنحذفها فوراً.",
       ],
     },

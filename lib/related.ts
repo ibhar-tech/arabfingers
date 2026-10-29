@@ -7,7 +7,7 @@ export const learnArticles = [
     titleEn: "Arabic Alphabet Complete Guide",
     titleAr: "دليل الأبجدية العربية الكامل",
     descEn: "Learn all 28 Arabic letters with their sounds and an example word for each.",
-    descAr: "ستتعلم الحروف العربية الـ ٢٨ كاملة مع أصواتها وكلمة مثال لكل حرف.",
+    descAr: "ستتعلم الحروف العربية الـ 28 كاملة مع أصواتها وكلمة مثال لكل حرف.",
     path: "learn",
   },
   {
@@ -29,9 +29,9 @@ export const learnArticles = [
   {
     slug: "arabic-numbers",
     titleEn: "Arabic Numbers 0–10 for Kids",
-    titleAr: "الأرقام العربية ٠–١٠ للأطفال",
-    descEn: "Learn to count from zero to ten using the Eastern Arabic-Indic numerals.",
-    descAr: "ستتعلم العدّ من صفر إلى عشرة بالأرقام العربية الشرقية.",
+    titleAr: "الأرقام العربية 0–10 للأطفال",
+    descEn: "Learn Arabic number names from zero to ten, with familiar 0–9 digits.",
+    descAr: "تعلّم أسماء الأعداد بالعربية من صفر إلى عشرة بالأرقام 0–9.",
     path: "learn",
   },
   {
@@ -64,7 +64,7 @@ export const learnArticles = [
   {
     slug: "arabic-vs-english",
     titleEn: "Arabic vs English: 7 Key Differences",
-    titleAr: "العربية والإنجليزية: ٧ فروق أساسية",
+    titleAr: "العربية والإنجليزية: 7 فروق أساسية",
     descEn: "Direction, letter count, shapes and dots — and what transfers easily for a bilingual child.",
     descAr: "الاتجاه وعدد الحروف والأشكال والنقاط — وما الذي ينتقل بسهولة للطفل ثنائي اللغة.",
     path: "learn",
@@ -74,7 +74,7 @@ export const learnArticles = [
     titleEn: "Best Age to Start Arabic",
     titleAr: "أفضل عمر للبدء بالعربية",
     descEn: "A stage-by-stage guide from listening at 0–2 to reading at 6+, and why it is never too late.",
-    descAr: "دليل مرحلة بمرحلة من الإصغاء في ٠–٢ إلى القراءة في ٦+، ولماذا لا يفوت الأوان أبداً.",
+    descAr: "دليل مرحلة بمرحلة من الإصغاء في 0–2 إلى القراءة في 6+، ولماذا لا يفوت الأوان أبداً.",
     path: "learn",
   },
   {
@@ -88,7 +88,7 @@ export const learnArticles = [
   {
     slug: "arabic-activities-at-home",
     titleEn: "10 Arabic Letter Activities for Home",
-    titleAr: "١٠ أنشطة للحروف في البيت",
+    titleAr: "10 أنشطة للحروف في البيت",
     descEn: "Ten hands-on activities written like recipes — materials, steps and an age range for each.",
     descAr: "عشرة أنشطة عملية مكتوبة كوصفات — الموادّ والخطوات والعمر المناسب لكلٍّ منها.",
     path: "learn",

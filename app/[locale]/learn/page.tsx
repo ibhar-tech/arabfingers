@@ -48,7 +48,7 @@ const articles: {
     descEn:
       "You'll learn all 28 Arabic letters with their sounds, English equivalents, and an example word for each. Start here if your child is brand new to Arabic — it is the foundation every other guide builds on.",
     descAr:
-      "ستتعلم الحروف العربية الـ ٢٨ كاملة مع أصواتها وما يقابلها في الإنجليزية وكلمة مثال لكل حرف. ابدأ من هنا إن كان طفلك جديداً على العربية، فهذا الأساس الذي تُبنى عليه بقية الأدلة.",
+      "ستتعلم الحروف العربية الـ 28 كاملة مع أصواتها وما يقابلها في الإنجليزية وكلمة مثال لكل حرف. ابدأ من هنا إن كان طفلك جديداً على العربية، فهذا الأساس الذي تُبنى عليه بقية الأدلة.",
   },
   {
     slug: "teaching-arabic-to-kids",
@@ -74,11 +74,11 @@ const articles: {
     slug: "arabic-numbers",
     Icon: NumbersIcon,
     titleEn: "Arabic Numbers 0–10 for Kids",
-    titleAr: "الأرقام العربية ٠–١٠ للأطفال",
+    titleAr: "الأرقام العربية 0–10 للأطفال",
     descEn:
-      "You'll learn to count from zero to ten using the Eastern Arabic-Indic numerals used across the Arab world, with pronunciation for each. Use it once your child knows a few letters and is ready for a fun, fast win.",
+      "You'll learn to count from zero to ten using 0–9 digits and Arabic number names, with pronunciation for each. Use it once your child knows a few letters and is ready for a fun, fast win.",
     descAr:
-      "ستتعلم العدّ من صفر إلى عشرة بالأرقام العربية الشرقية المستخدمة في العالم العربي مع نطق كل رقم. استعمله بعد أن يتعرّف طفلك على بعض الحروف ويصبح جاهزاً لإنجاز ممتع وسريع.",
+      "ستتعلم العدّ من صفر إلى عشرة بالأرقام 0–9 وأسماء الأعداد العربية مع نطق كل رقم. استعمله بعد أن يتعرّف طفلك على بعض الحروف ويصبح جاهزاً لإنجاز ممتع وسريع.",
   },
   {
     slug: "arabic-colors",
@@ -144,7 +144,7 @@ const articles: {
     slug: "arabic-activities-at-home",
     Icon: ParentingIcon,
     titleEn: "10 Fun Activities to Practice Arabic Letters at Home",
-    titleAr: "١٠ أنشطة ممتعة لممارسة الحروف العربية في المنزل",
+    titleAr: "10 أنشطة ممتعة لممارسة الحروف العربية في المنزل",
     descEn:
       "You'll get ten creative activities — both screen-free and digital — that reinforce letter learning through play. Use them on days you want to step away from the app and practice with your hands and voice.",
     descAr:
@@ -196,7 +196,7 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
         <div className="space-y-6">
           <div>
             <h3 className="text-lg font-bold text-ink mb-1.5">
-              {isAr ? "من عام إلى ٣ أعوام: أصوات الحروف عبر اللعب" : "Ages 1–3: Letter Sounds Through Play"}
+              {isAr ? "من عام إلى 3 أعوام: أصوات الحروف عبر اللعب" : "Ages 1–3: Letter Sounds Through Play"}
             </h3>
             <p className="text-base text-ink/80 leading-relaxed">
               {isAr
@@ -207,7 +207,7 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
 
           <div>
             <h3 className="text-lg font-bold text-ink mb-1.5">
-              {isAr ? "من ٣ إلى ٥ أعوام: الأبجدية والأرقام والكلمات الأولى" : "Ages 3–5: Alphabet, Numbers, and First Words"}
+              {isAr ? "من 3 إلى 5 أعوام: الأبجدية والأرقام والكلمات الأولى" : "Ages 3–5: Alphabet, Numbers, and First Words"}
             </h3>
             <p className="text-base text-ink/80 leading-relaxed">
               {isAr
@@ -218,7 +218,7 @@ export default async function LearnPage({ params }: { params: Promise<{ locale: 
 
           <div>
             <h3 className="text-lg font-bold text-ink mb-1.5">
-              {isAr ? "٥ أعوام فأكثر: أشكال الحروف والمقارنة والعلوم" : "Ages 5+: Letter Forms, Comparison, and Science"}
+              {isAr ? "5 أعوام فأكثر: أشكال الحروف والمقارنة والعلوم" : "Ages 5+: Letter Forms, Comparison, and Science"}
             </h3>
             <p className="text-base text-ink/80 leading-relaxed">
               {isAr

@@ -31,10 +31,10 @@ export function InteractiveAlphabet({ locale }: { locale: string }) {
   return (
     <section className="my-8" aria-label={isAr ? "الأبجدية التفاعلية" : "Interactive alphabet"}>
       <div className="flex items-center justify-between flex-wrap gap-2 mb-3">
-        <h2 className="text-xl font-semibold text-white">
+        <h2 className="text-xl font-semibold text-ink">
           {isAr ? "جرّبها: اضغط أي حرف لسماع نطقه" : "Try it: tap any letter to hear it"}
         </h2>
-        <span className="text-xs text-white/40">
+        <span className="text-xs text-ink/70">
           {isAr ? "🔊 صوت عربي + إنجليزي" : "🔊 Arabic + English audio"}
         </span>
       </div>
@@ -50,19 +50,19 @@ export function InteractiveAlphabet({ locale }: { locale: string }) {
               className={`group flex flex-col items-center justify-center rounded-xl border p-3 transition focus:outline-none focus:ring-2 focus:ring-accent ${
                 isActive
                   ? "border-accent bg-accent/15 scale-105"
-                  : "border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20"
+                  : "border-ink/15 bg-card hover:bg-qalam-soft hover:border-qalam"
               }`}
             >
-              <span className="text-3xl font-bold text-white leading-none mb-1.5" lang="ar">
+              <span className="text-3xl font-bold text-ink leading-none mb-1.5" lang="ar">
                 {letter.ar}
               </span>
-              <span className="text-[11px] font-medium text-white/70">{letter.enName}</span>
-              <span className="text-[10px] text-white/40">{letter.en}</span>
+              <span className="text-[11px] font-medium text-ink/75">{letter.enName}</span>
+              <span className="text-[10px] text-ink/70">{letter.en}</span>
             </button>
           );
         })}
       </div>
-      <p className="mt-3 text-xs text-white/40">
+      <p className="mt-3 text-xs text-ink/70">
         {isAr
           ? "الأصوات مسجّلة بنطق طبيعي. شغّل الصوت على جهازك."
           : "Sounds use natural recorded pronunciation. Make sure your device audio is on."}

@@ -33,14 +33,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   return generatePageMetadata(locale, "/learn/first-arabic-words", {
     titleEn: "First Arabic Words for Kids: 25 Essential Words by Theme + Which to Teach First",
-    titleAr: "أول كلمات عربية للأطفال: ٢٥ كلمة أساسية حسب الموضوع وأيّها يُعلَّم أولاً",
+    titleAr: "أول كلمات عربية للأطفال: 25 كلمة أساسية حسب الموضوع وأيّها يُعلَّم أولاً",
     descriptionEn:
       "25 essential first Arabic words grouped by theme — family, animals, food, body parts, and everyday words — with pronunciation, which words to teach first and why, and daily-routine tips.",
     descriptionAr:
-      "٢٥ كلمة عربية أساسية مصنّفة حسب الموضوع — العائلة والحيوانات والطعام وأعضاء الجسم والكلمات اليومية — مع النطق، وأيّ الكلمات تُعلَّم أولاً ولماذا، ونصائح للروتين اليومي.",
+      "25 كلمة عربية أساسية مصنّفة حسب الموضوع — العائلة والحيوانات والطعام وأعضاء الجسم والكلمات اليومية — مع النطق، وأيّ الكلمات تُعلَّم أولاً ولماذا، ونصائح للروتين اليومي.",
     ogType: "article",
     publishedTime: "2026-03-26",
-    modifiedTime: "2026-06-12",
+    modifiedTime: "2026-09-29",
     keywords: [
       "first arabic words for kids", "أول كلمات عربية للأطفال",
       "easy arabic words for kids", "basic arabic words for kids",
@@ -129,7 +129,7 @@ export default async function FirstArabicWordsPage({ params }: { params: Promise
         description="25 essential first Arabic words by theme — family, animals, food, body parts, everyday words — with pronunciation, which to teach first, and daily-routine tips."
         slug="learn/first-arabic-words"
         datePublished="2026-03-26"
-        dateModified="2026-06-12"
+        dateModified="2026-09-29"
         section="Education"
         crumbs={[
           { label: locale === "ar" ? "تعلم" : "Learn", href: `/${locale}/learn` },
@@ -141,8 +141,80 @@ export default async function FirstArabicWordsPage({ params }: { params: Promise
         {isAr ? "أوّل كلمات عربية لطفلك" : "First Arabic Words for Your Child"}
       </h1>
       <p className="text-base text-ink/75 mb-8">
-        {isAr ? "٢٥ كلمة أساسية حسب الموضوع، مع إرشاد عن أيّها يُعلَّم أولاً" : "25 essential words by theme, with guidance on which to teach first"}
+        {isAr ? "25 كلمة أساسية حسب الموضوع، مع إرشاد عن أيّها يُعلَّم أولاً" : "25 essential words by theme, with guidance on which to teach first"}
       </p>
+
+      <nav aria-label={isAr ? "ابدأ التعلّم" : "Start learning"} className="mb-8 flex flex-wrap gap-3">
+        <a href="#word-list" className="btn-chunky text-sm">{isAr ? "تصفّح الكلمات الـ25" : "Explore all 25 words"}</a>
+        <a href="#word-practice" className="btn-chunky btn-chunky-ghost text-sm">{isAr ? "جرّب نشاطاً قصيراً" : "Try a quick activity"}</a>
+        <a href="#word-worksheets" className="btn-chunky btn-chunky-ghost text-sm">{isAr ? "أوراق مفردات مجانية" : "Free vocabulary worksheets"}</a>
+      </nav>
+
+      <div className="text-base leading-relaxed text-ink/80 mb-8 space-y-3">
+        <p>
+          {isAr
+            ? "يمكنكما استعمال هذه الكلمات في الحديث واللعب قبل تعلّم قراءة الحروف. تضمّ القائمة 25 كلمة عربية موزّعة على العائلة والحيوانات والطعام وأعضاء الجسم والكلمات اليومية. ابدأ بما يستطيع طفلك رؤيته أو الإشارة إليه حوله."
+            : "You can use these words in conversation and play before learning to read Arabic letters. The list has 25 Arabic words grouped into family, animals, food, body parts, and everyday words. Start with things your child can see or point to nearby."}
+        </p>
+        <p>
+          {isAr
+            ? "مع كل كلمة نطقٌ إنجليزي تقريبي وملاحظة للاستعمال. تضمّ القائمة كلمات فصحى وأسماء عائلية عامية مثل جدّو وتيتا؛ استخدم أيضاً الأسماء التي تقولها عائلتك. اختر موضوعاً واحداً، ثم أعد استعمال كلماته أثناء يومكما."
+            : "Each word has approximate pronunciation and a usage note. The list mixes standard Arabic with informal family names such as jiddo and teeta; use your family's own names too. Choose one theme, then reuse its words during your day."}
+        </p>
+      </div>
+
+      <h2 id="word-list" className="scroll-mt-24 text-xl font-semibold text-ink mb-4">
+        {isAr ? "الكلمات حسب الموضوع" : "Words by Theme"}
+      </h2>
+      {categories.map((cat) => (
+        <section key={cat.titleEn} className="mb-8">
+          <h3 className="text-lg font-semibold text-ink mb-4">{isAr ? cat.titleAr : cat.titleEn}</h3>
+          <div className="grid gap-3 md:grid-cols-2">
+            {cat.words.map((w) => (
+              <div key={w.ar} className="rounded-xl border border-ink/10 bg-white/5 p-4 flex items-start gap-4">
+                <div className="shrink-0 text-center w-16">
+                  <span lang="ar" dir="rtl" className="text-2xl text-ink font-semibold" style={{ fontFamily: "var(--font-noto-naskh), var(--font-ibm-plex-arabic), sans-serif" }}>
+                    {w.ar}
+                  </span>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1" lang="en" dir="ltr">
+                    <span className="text-sm font-semibold text-ink">{w.en}</span>
+                    <span className="text-sm text-ink/80 italic">({w.pron})</span>
+                  </div>
+                  <p className="text-sm text-ink/75 mt-1 leading-relaxed">{isAr ? w.noteAr : w.noteEn}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+
+      <section id="word-practice" className="mb-10 scroll-mt-24 rounded-2xl border-2 border-ink/15 bg-card p-5 sm:p-6">
+        <h2 className="text-xl font-semibold text-ink mb-3">{isAr ? "أشِر، سمِّ، ثم جرّب" : "Point, name, then try"}</h2>
+        <p className="text-base text-ink/80 mb-4">
+          {isAr ? "ضع كوب ماء وتفاحة أمامكما. قل «ماء» وأشِر إلى الكوب، ثم «تفاحة» وأشِر إلى التفاحة. بدّلا الأدوار؛ يمكن لطفلك الإجابة بالإشارة أو بالكلام." : "Put a glass of water and an apple in front of you. Say maa’ and point to the water, then tuffaaha and point to the apple. Swap turns; your child can answer by pointing or speaking."}
+        </p>
+        <details className="rounded-xl border border-ink/15 bg-white p-4 text-ink">
+          <summary className="cursor-pointer min-h-11 font-semibold">{isAr ? "تحدٍّ صغير: ماذا تقول لمن يساعدك؟ افتح الإجابة" : "Quick check: how do you say “thank you” in Arabic? Reveal the answer"}</summary>
+          <p className="mt-2"><bdi lang="ar" className="text-xl font-semibold">شكراً</bdi> — <span lang="en">shukran · thank you</span></p>
+        </details>
+        <p className="mt-4 text-sm text-ink/80">
+          {isAr ? "هل ترغب في اللعب بالحروف التي تكوّن هذه الكلمات؟ " : "Ready to explore the letters in these words? "}
+          <Link href={`/${locale}/play`} className="font-semibold text-ink underline underline-offset-4">{isAr ? "افتح لعبة الحروف" : "Open the letter game"}</Link>
+        </p>
+      </section>
+
+      <div id="word-worksheets" className="scroll-mt-24">
+        <WorksheetCrossLink
+          locale={locale}
+          packId="arabic-animals-coloring"
+          titleEn="Take the animal words to paper"
+          titleAr="تدرّب على أسماء الحيوانات على الورق"
+          textEn="Eight animal pages with Arabic and English names to trace and pictures to colour. Start with the cat, fish or rabbit from this lesson."
+          textAr="ثماني صفحات لحيوانات مع أسمائها بالعربية والإنجليزية للتتبّع وصورها للتلوين. ابدأ بالقطة أو السمكة أو الأرنب من هذا الدرس."
+        />
+      </div>
 
       <div className="mb-10 overflow-hidden rounded-3xl border-[2.5px] border-ink bg-card shadow-[4px_4px_0_0_var(--ink)]">
         <Image
@@ -150,22 +222,8 @@ export default async function FirstArabicWordsPage({ params }: { params: Promise
           alt={isAr ? "أول كلمات عربية" : "First Arabic words guide"}
           width={1200}
           height={630}
-          priority
           className="w-full object-cover"
         />
-      </div>
-
-      <div className="text-base leading-relaxed text-ink/80 mb-8 space-y-3">
-        <p>
-          {isAr
-            ? "بعد أن يتعلّم طفلك الحروف العربية، تأتي الخطوة التالية: بناء المفردات. هذه القائمة تضمّ ٢٥ كلمة عربية أساسية مقسّمة إلى موضوعات يسهل على الأطفال فهمها — العائلة، والحيوانات، والطعام، وأعضاء الجسم، والكلمات اليومية. اخترنا كلمات قصيرة، قريبة من حياة الطفل، يستطيع أن يراها ويلمسها ويطلبها."
-            : "After your child learns the Arabic letters, the next step is building vocabulary. This list has 25 essential Arabic words grouped into themes children easily understand — family, animals, food, body parts, and everyday words. We chose short words, close to a child's life, that they can see, touch, and ask for."}
-        </p>
-        <p>
-          {isAr
-            ? "مع كل كلمة نطقٌ إنجليزي تقريبي وملاحظة تساعد على التذكّر. وأفضل ما تفعله هو استخدام هذه الكلمات في الحياة اليومية مع طفلك — فالتكرار في السياق الطبيعي هو أفضل طريقة للتعلّم، أفضل بكثير من البطاقات أو الحفظ."
-            : "Each word comes with approximate English pronunciation and a memory note. The best thing you can do is use these words in daily life with your child — repetition in natural context is the best way to learn, far better than flashcards or memorising."}
-        </p>
       </div>
 
       <section className="mb-10">
@@ -186,33 +244,6 @@ export default async function FirstArabicWordsPage({ params }: { params: Promise
           ))}
         </div>
       </section>
-
-      <h2 className="text-xl font-semibold text-ink mb-4">
-        {isAr ? "الكلمات حسب الموضوع" : "Words by Theme"}
-      </h2>
-      {categories.map((cat) => (
-        <section key={cat.titleEn} className="mb-8">
-          <h3 className="text-lg font-semibold text-ink mb-4">{isAr ? cat.titleAr : cat.titleEn}</h3>
-          <div className="space-y-3">
-            {cat.words.map((w) => (
-              <div key={w.ar} className="rounded-xl border border-ink/10 bg-white/5 p-4 flex items-start gap-4">
-                <div className="shrink-0 text-center w-16">
-                  <span className="text-2xl text-ink font-semibold" style={{ fontFamily: "var(--font-noto-naskh), var(--font-ibm-plex-arabic), sans-serif" }}>
-                    {w.ar}
-                  </span>
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-sm font-semibold text-ink">{w.en}</span>
-                    <span className="text-sm text-accent/80 italic">({w.pron})</span>
-                  </div>
-                  <p className="text-sm text-ink/75 mt-1 leading-relaxed">{isAr ? w.noteAr : w.noteEn}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      ))}
 
       <section className="mb-10">
         <h2 className="text-xl font-semibold text-ink mb-2">
@@ -236,7 +267,7 @@ export default async function FirstArabicWordsPage({ params }: { params: Promise
           {isAr ? "كيف تعلّم هذه الكلمات" : "How to Teach These Words"}
         </h2>
         <div className="space-y-2 text-base text-ink/80 leading-relaxed">
-          <p>• {isAr ? "ابدأ بـ ٣–٥ كلمات فقط في الأسبوع" : "Start with just 3–5 words per week"}</p>
+          <p>• {isAr ? "ابدأ بـ 3–5 كلمات فقط في الأسبوع" : "Start with just 3–5 words per week"}</p>
           <p>• {isAr ? "استخدم الكلمات في مواقف حقيقية — أشِر إلى القطة وقل \"قطة!\"" : "Use words in real situations — point to the cat and say \"qitta!\""}</p>
           <p>• {isAr ? "اقرأ كتب أطفال بالعربية تحتوي على هذه الكلمات" : "Read Arabic children's books that contain these words"}</p>
           <p>• {isAr ? "غنِّ أغاني أطفال عربية — الموسيقى تساعد على الحفظ" : "Sing Arabic children's songs — music helps memorization"}</p>
@@ -251,10 +282,10 @@ export default async function FirstArabicWordsPage({ params }: { params: Promise
       />
 
       <div className="flex flex-wrap gap-3 mb-8">
-        <Link href={`/${locale}/learn/arabic-colors`} className="text-sm text-accent underline">
+        <Link href={`/${locale}/learn/arabic-colors`} className="text-sm text-ink underline">
           {isAr ? "← الألوان بالعربية" : "← Arabic Colors"}
         </Link>
-        <Link href={`/${locale}/learn/arabic-alphabet-guide`} className="text-sm text-accent underline">
+        <Link href={`/${locale}/learn/arabic-alphabet-guide`} className="text-sm text-ink underline">
           {isAr ? "دليل الأبجدية →" : "Alphabet Guide →"}
         </Link>
       </div>
@@ -265,14 +296,6 @@ export default async function FirstArabicWordsPage({ params }: { params: Promise
         </Link>
       </div>
       <RelatedArticles locale={locale} articles={getRelatedArticles(locale, "first-arabic-words")} />
-      <WorksheetCrossLink
-        locale={locale}
-        packId="arabic-animals-coloring"
-        titleEn="Colour the first words on paper"
-        titleAr="لوّن الكلمات الأولى على الورق"
-        textEn="Eight animals to colour with their names to trace in Arabic and English — first vocabulary practice that survives the screen being off."
-        textAr="ثمانية حيوانات للتلوين مع أسمائها للتتبّع بالعربية والإنجليزية — تدريب أول على المفردات يبقى بعد إغلاق الشاشة."
-      />
     </PageLayout>
   );
 }

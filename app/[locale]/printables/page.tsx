@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
+import { ActivityFinder } from "@/components/ActivityFinder";
+import { ExternalPrintables } from "@/components/ExternalPrintables";
+import { WorkbookFeature } from "@/components/WorkbookFeature";
+import { getActivityCatalog } from "@/lib/activityCatalog";
 import { PageLayout } from "@/components/PageLayout";
 import { FaqSection } from "@/components/FaqSection";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -9,7 +12,6 @@ import { generatePageMetadata } from "@/lib/seo";
 import { worksheetSets } from "@/lib/worksheets";
 import { letterGuide } from "@/lib/letterGuide";
 import { letterWorksheetPages } from "@/lib/letterWorksheets";
-import fileSizes from "@/lib/worksheet-files.json";
 import { setRequestLocale } from "next-intl/server";
 
 const SITE = "https://www.arabfingers.site";
@@ -20,9 +22,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     titleEn: "Free Printable Arabic Alphabet Tracing Worksheets (PDF) for Kids",
     titleAr: "أوراق عمل مجانية لتتبّع الحروف العربية للأطفال (PDF)",
     descriptionEn:
-      "Download 68 pages of free Arabic worksheets as PDFs: a tracing sheet for every one of the 28 letters, short vowels (harakat), numbers 1–20, colours and animals. No signup, no email — just download and print.",
+      `Download ${totalPages} pages of free Arabic worksheets as PDFs: all 28 letters, harakat, numbers 1–20, colouring and more. Browse by age. No sign-up — just download and print.`,
     descriptionAr:
-      "حمّل ٦٨ صفحة من أوراق العمل العربية المجانية بصيغة PDF: ورقة تتبّع لكل حرف من الحروف الـ٢٨، والحركات، والأرقام ١–٢٠، والألوان والحيوانات. بلا تسجيل وبلا بريد — نزّل واطبع.",
+      `حمّل ${totalPages.toLocaleString("ar-u-nu-latn")} صفحة من أوراق العمل العربية المجانية بصيغة PDF: الحروف الـ28 والحركات والأرقام 1–20 والتلوين. اختر حسب العمر وحمّل بدون تسجيل.`,
     keywords: [
       "arabic alphabet tracing worksheets pdf", "free arabic letters worksheets pdf",
       "arabic letters tracing worksheets pdf free download", "trace arabic alphabet",
@@ -32,9 +34,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     ],
   });
 }
-
-const mb = (bytes: number) =>
-  bytes >= 1024 * 1024 ? `${(bytes / 1024 / 1024).toFixed(1)} MB` : `${Math.round(bytes / 1024)} KB`;
 
 const totalPages = worksheetSets
   .filter((s) => s.id !== "arabic-complete-workbook")
@@ -53,7 +52,7 @@ const copy = {
     statPages: "printable pages",
     statPrice: "cost, forever",
     libraryTitle: "Download the worksheets",
-    librarySub: "Each pack is a separate PDF so you can print only what you need. The last one contains all of them.",
+    librarySub: "Choose a topic or your child's age. Each pack has a preview and a direct PDF download, so you can print only what you need.",
     download: "Download PDF",
     pagesLabel: (n: number) => `${n} page${n === 1 ? "" : "s"}`,
 
@@ -106,7 +105,7 @@ const copy = {
     related: [
       { href: "/learn/arabic-alphabet-guide", t: "The Arabic Alphabet: A Complete Guide", d: "How each of the 28 letters sounds, the common mistakes, and how to fix them." },
       { href: "/learn/arabic-letter-forms", t: "Why Arabic Letters Change Shape", d: "The joining rules behind the four forms shown on every worksheet." },
-      { href: "/learn/arabic-numbers", t: "Arabic Numbers 1–10", d: "Eastern and Western numerals, and why Arabic uses both." },
+      { href: "/learn/arabic-numbers", t: "Arabic Numbers 1–10", d: "Number names, pronunciation and counting practice." },
       { href: "/play", t: "Free play", d: "Hear every letter pronounced. Useful right before a tracing session." },
     ],
 
@@ -118,7 +117,7 @@ const copy = {
       { q: "Why do the letters get smaller down the page?", a: "Because handwriting control develops from large movements to small ones. Starting a child on small letters produces cramped, tense writing. Each sheet starts at a size the whole arm can draw and finishes near normal writing size." },
       { q: "My printer makes the tracing letters too faint to see. What can I do?", a: "Turn off any toner-saving or draft mode, which is the usual cause. The tracing guides are printed in mid grey on purpose so a pencil line shows clearly on top of them, but draft mode drops them below the visible threshold." },
       { q: "Do the worksheets teach letters in alphabet order or by difficulty?", a: "Alphabet order, because that is the order children are taught in almost every Arabic curriculum and the order the alphabet song follows. If you would rather start with the easiest shapes, the alphabet guide marks each letter easy, medium or hard for English speakers." },
-      { q: "What is the difference between the packs?", a: "Seven of them cover one topic each — the alphabet chart, letter tracing, harakat (short vowels), numbers 1–10, numbers 11–20, colours and animals. The last, the complete workbook, is simply all of them bound into a single file in teaching order, for people who would rather print once. You can also download any single letter on its own page." },
+      { q: "What is the difference between the packs?", a: "The individual packs each cover one topic, including the alphabet chart, letter tracing, harakat (short vowels), numbers, colours and themed colouring books. The complete workbook collects every pack into a single file in teaching order. Choose it for the full library, or download an individual pack or a single letter sheet for a shorter activity." },
       { q: "What is the best way to use tracing sheets to teach the Arabic alphabet?", a: "Pair tracing with sound. Say the letter, let your child hear it in the letter game, then trace it on the worksheet. Seeing, hearing and writing the same letter in one short session fixes it far faster than tracing in silence." },
     ],
   },
@@ -126,14 +125,14 @@ const copy = {
   ar: {
     crumb: "أوراق عمل",
     h1: "أوراق عمل مجانية لتتبّع الحروف العربية (PDF)",
-    lead: `كل ورقة في هذه الصفحة ملف PDF حقيقي تنزّله وتطبعه — ${totalPages} صفحة في المجموع، تغطّي الحروف الـ٢٨ كاملة، والحركات، والأرقام من ١ إلى ٢٠، والألوان والحيوانات. بلا تسجيل، وبلا بريد إلكتروني، وبلا علامة مائية. اضغط على المجموعة فينزّل الملف، ثم اطبعه.`,
+    lead: `كل ورقة في هذه الصفحة ملف PDF حقيقي تنزّله وتطبعه — ${totalPages} صفحة في المجموع، تغطّي الحروف الـ28 كاملة، والحركات، والأرقام من 1 إلى 20، والألوان والحيوانات. بلا تسجيل، وبلا بريد إلكتروني، وبلا علامة مائية. اضغط على المجموعة فينزّل الملف، ثم اطبعه.`,
     lead2:
       "أعددنا هذه الأوراق لأن أكثر أوراق التتبّع المجانية على الإنترنت صفحة ممسوحة ضوئياً واحدة، إمّا باهتة لا تُرى أو داكنة لا يمكن التتبّع فوقها. أوراقنا مكتوبة بخط نوتو نسخ — وهو خط النسخ الواضح نفسه الذي يقابله الطفل في كتب المدرسة — بحجم يستطيع ابن الأربع سنوات التحكّم به، مع تدرّج في أدلّة التتبّع من الرمادي الممتلئ إلى الحدّ الخارجي المفرّغ إلى الفراغ التامّ، حتى يترك الطفل كلّ صفحة وهو يكتب بلا مساعدة.",
     statPacks: "مجموعات",
     statPages: "صفحة للطباعة",
     statPrice: "التكلفة، دائماً",
     libraryTitle: "حمّل أوراق العمل",
-    librarySub: "كل مجموعة ملف PDF مستقلّ لتطبع ما تحتاجه فقط. والأخيرة تضمّها جميعاً.",
+    librarySub: "اختر موضوعاً أو عمر طفلك. لكل مجموعة معاينة ورابط تحميل PDF مباشر، لتطبع ما تحتاجه فقط.",
     download: "تحميل PDF",
     pagesLabel: (n: number) => `${n} صفحة`,
 
@@ -175,18 +174,18 @@ const copy = {
 
     printTitle: "نصائح للطباعة",
     print: [
-      { t: "اطبع بمقياس ١٠٠٪ لا «ملاءمة الصفحة»", d: "الأوراق مصمّمة لمقاس A4، والتصغير ينزل بمربّعات التتبّع تحت الحجم المريح ليد صغيرة. وإن كانت طابعتك على مقاس Letter فاختر A4 أو اقبل هوامش أوسع قليلاً — ولا تفعّل خيار التصغير." },
+      { t: "اطبع بمقياس 100٪ لا «ملاءمة الصفحة»", d: "الأوراق مصمّمة لمقاس A4، والتصغير ينزل بمربّعات التتبّع تحت الحجم المريح ليد صغيرة. وإن كانت طابعتك على مقاس Letter فاختر A4 أو اقبل هوامش أوسع قليلاً — ولا تفعّل خيار التصغير." },
       { t: "استعمل وضع التدرّج الرمادي", d: "كلّ شيء أصلاً أسود ورمادي، فلن يتغيّر شيء بصرياً، وستمنع الطابعة الملوّنة من مزج الأحبار لتوليد الرمادي." },
       { t: "ضع ورقة في جيب بلاستيكي", d: "مع قلم يُمحى تصبح الورقة الواحدة صالحة للاستعمال بلا حدّ، وهذا مهمّ إن أراد طفلك تتبّع الحرف نفسه عشرين مرّة." },
-      { t: "اطبع اللوحة مرّة والحروف تباعاً", d: "لوحة الحروف ذات الصفحة الواحدة مرجع يُعلّق على الجدار. أمّا طباعة الأوراق الـ٢٨ دفعة واحدة فتنتهي غالباً إلى كومة لا يكملها أحد." },
+      { t: "اطبع اللوحة مرّة والحروف تباعاً", d: "لوحة الحروف ذات الصفحة الواحدة مرجع يُعلّق على الجدار. أمّا طباعة الأوراق الـ28 دفعة واحدة فتنتهي غالباً إلى كومة لا يكملها أحد." },
     ],
 
     relatedTitle: "تابع من هنا",
     relatedLead: "أوراق العمل تدرّب اليد، وهذه الأدلّة تدرّب الأذن والعين.",
     related: [
-      { href: "/learn/arabic-alphabet-guide", t: "دليل الحروف العربية الكامل", d: "كيف يُنطق كلّ حرف من الـ٢٨، والأخطاء الشائعة وطريقة تصحيحها." },
+      { href: "/learn/arabic-alphabet-guide", t: "دليل الحروف العربية الكامل", d: "كيف يُنطق كلّ حرف من الـ28، والأخطاء الشائعة وطريقة تصحيحها." },
       { href: "/learn/arabic-letter-forms", t: "لماذا تتغيّر أشكال الحروف", d: "قواعد الاتّصال وراء الأشكال الأربعة في كلّ ورقة." },
-      { href: "/learn/arabic-numbers", t: "الأرقام العربية ١–١٠", d: "الأرقام المشرقية والغربية، ولماذا تستعمل العربية الاثنين." },
+      { href: "/learn/arabic-numbers", t: "الأرقام العربية 1–10", d: "أسماء الأعداد ونطقها والتدرّب على العدّ." },
       { href: "/play", t: "لعب حر", d: "استمع إلى نطق كلّ حرف. مفيدة قبل جلسة التتبّع مباشرة." },
     ],
 
@@ -198,7 +197,7 @@ const copy = {
       { q: "لماذا تصغر الحروف كلّما نزلنا في الصفحة؟", a: "لأنّ التحكّم في الكتابة ينمو من الحركات الكبيرة إلى الصغيرة. والبدء بحروف صغيرة يُنتج خطّاً متشنّجاً مضغوطاً. لذلك تبدأ كلّ ورقة بحجم ترسمه الذراع كلّها وتنتهي قريباً من حجم الكتابة المعتاد." },
       { q: "طابعتي تُخرج حروف التتبّع باهتة جدّاً، ماذا أفعل؟", a: "أطفئ وضع توفير الحبر أو وضع المسوّدة، وهو السبب المعتاد. أدلّة التتبّع مطبوعة برمادي متوسّط عن قصد ليظهر خطّ القلم فوقها بوضوح، لكنّ وضع المسوّدة ينزل بها تحت حدّ الرؤية." },
       { q: "هل ترتيب الحروف أبجدي أم بحسب الصعوبة؟", a: "أبجدي، لأنّه الترتيب الذي يُدرَّس به الطفل في كلّ مناهج العربية تقريباً، وهو ترتيب أنشودة الحروف. وإن فضّلت البدء بأسهل الأشكال، فدليل الحروف يصنّف كلّ حرف سهلاً أو متوسّطاً أو صعباً لمتعلّمي الإنجليزية." },
-      { q: "ما الفرق بين المجموعات؟", a: "سبع منها يغطّي كلّ واحدة موضوعاً: لوحة الحروف، وتتبّع الحروف، والحركات، والأرقام ١–١٠، والأرقام ١١–٢٠، والألوان، والحيوانات. أمّا الأخيرة، الكرّاسة الكاملة، فهي جميعها في ملفّ واحد مرتّب تعليمياً، لمن يفضّل الطباعة مرّة واحدة. ويمكنك أيضاً تنزيل أيّ حرف بمفرده من صفحته الخاصة." },
+      { q: "ما الفرق بين المجموعات؟", a: "تغطّي كل مجموعة موضوعاً، مثل لوحة الحروف وتتبّعها والحركات والأرقام والألوان وكتب التلوين المتنوّعة. تجمع الكرّاسة الكاملة كل المجموعات في ملف واحد مرتّب تعليمياً. اخترها للمكتبة كاملة، أو حمّل مجموعة مستقلة أو ورقة حرف واحد لنشاط أقصر." },
       { q: "ما أفضل طريقة لاستعمال أوراق التتبّع في تعليم الأبجدية؟", a: "اجمع بين التتبّع والصوت: انطق الحرف، ودع طفلك يسمعه في لعبة الحروف، ثمّ يتتبّعه على الورقة. رؤية الحرف وسماعه وكتابته في جلسة قصيرة واحدة تثبّته أسرع بكثير من التتبّع في صمت." },
     ],
   },
@@ -244,17 +243,24 @@ export default async function PrintablesPage({ params }: { params: Promise<{ loc
       <header className="card-stock card-stock-saffron mb-10 p-6 sm:p-8">
         <h1 className="font-display text-2xl font-extrabold leading-tight text-ink sm:text-3xl">{t.h1}</h1>
         <p className="mt-4 max-w-3xl text-[15px] leading-relaxed text-ink/80">{t.lead}</p>
-        <p className="mt-3 max-w-3xl text-[15px] leading-relaxed text-ink/70">{t.lead2}</p>
+        <WorkbookFeature locale={locale} />
+
+        <nav aria-label={isAr ? "انتقل إلى قسم أوراق العمل" : "Worksheet sections"} className="mt-4 flex flex-wrap gap-x-6 gap-y-1 text-sm font-bold text-[#315b41]">
+          <a href="#downloads" className="inline-flex min-h-11 items-center underline underline-offset-4">{isAr ? "اختر مجموعة مستقلة" : "Choose an individual pack"}</a>
+          <a href="#letters" className="inline-flex min-h-11 items-center underline underline-offset-4">{isAr ? "اختر حرفاً واحداً" : "Find a single letter"}</a>
+          <a href="#other-publishers" className="inline-flex min-h-11 items-center font-bold text-[#315b41] underline underline-offset-4">{isAr ? "مصادر من ناشرين آخرين" : "Other publishers"}</a>
+          <a href="#printing-tips" className="inline-flex min-h-11 items-center underline underline-offset-4">{t.printTitle}</a>
+        </nav>
 
         <dl className="mt-6 flex flex-wrap gap-3">
           {[
             { n: String(worksheetSets.length), l: t.statPacks },
             { n: String(totalPages), l: t.statPages },
-            { n: isAr ? "٠" : "$0", l: t.statPrice },
+            { n: isAr ? "0" : "$0", l: t.statPrice },
           ].map((s) => (
             <div key={s.l} className="rounded-2xl border-2 border-ink bg-card px-4 py-2">
               <dt className="font-display text-xl font-extrabold text-ink">{s.n}</dt>
-              <dd className="text-xs font-bold uppercase tracking-wide text-ink/55">{s.l}</dd>
+              <dd className="text-xs font-bold uppercase tracking-wide text-ink/70">{s.l}</dd>
             </div>
           ))}
         </dl>
@@ -262,87 +268,22 @@ export default async function PrintablesPage({ params }: { params: Promise<{ loc
 
       {/* ---------- Download library ---------- */}
       <section className="mb-12" aria-labelledby="downloads">
-        <h2 id="downloads" className="font-display text-xl font-extrabold text-ink">{t.libraryTitle}</h2>
-        <p className="mt-1 mb-5 text-sm text-ink/65">{t.librarySub}</p>
+        <h2 id="downloads" className="scroll-mt-24 font-display text-xl font-extrabold text-ink">{t.libraryTitle}</h2>
+        <p className="mt-1 mb-5 text-sm text-ink/75">{t.librarySub}</p>
 
-        <ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {worksheetSets.map((s) => {
-            const bytes = (fileSizes as Record<string, number>)[s.id];
-            return (
-              <li key={s.id} className="card-stock flex gap-4 p-5">
-                {/* The real first page, rendered by the same script that builds the
-                    PDF — so the card cannot advertise a sheet the file does not have.
-                    The bundle gets sheets stacked behind it: its first page is the
-                    alphabet chart, so on its own the thumbnail looks like a repeat
-                    of the chart card. */}
-                <div className="relative hidden w-24 shrink-0 self-start sm:block">
-                  {s.bundle && (
-                    <>
-                      <span
-                        aria-hidden
-                        className="absolute inset-0 translate-x-2 translate-y-2 rounded-lg border-2 border-ink/10 bg-white"
-                      />
-                      <span
-                        aria-hidden
-                        className="absolute inset-0 translate-x-1 translate-y-1 rounded-lg border-2 border-ink/12 bg-white"
-                      />
-                    </>
-                  )}
-                  <Image
-                    src={`/printables/previews/${s.id}.png`}
-                    alt=""
-                    aria-hidden
-                    width={349}
-                    height={494}
-                    unoptimized
-                    className="relative h-auto w-full rounded-lg border-2 border-ink/15 bg-white shadow-[3px_3px_0_0_rgba(42,29,78,0.12)]"
-                  />
-                </div>
-
-                <div className="flex min-w-0 flex-1 flex-col">
-                  <div className="flex items-start gap-3">
-                    <span aria-hidden className="text-3xl leading-none sm:hidden">{s.emoji}</span>
-                    <div className="min-w-0 flex-1">
-                      <h3 className="font-display text-base font-extrabold leading-snug text-ink">
-                        {isAr ? s.titleAr : s.titleEn}
-                      </h3>
-                      <p className="mt-0.5 text-xs font-bold uppercase tracking-wide text-ink/45">
-                        {t.pagesLabel(s.pages)} · PDF · {mb(bytes)} · {isAr ? s.ageAr : s.ageEn}
-                      </p>
-                    </div>
-                  </div>
-
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-ink/75">
-                    {isAr ? s.descAr : s.descEn}
-                  </p>
-
-                  <div className="mt-4 flex flex-wrap items-center gap-3">
-                    <Link href={`/${locale}/printables/${s.id}`} className="btn-chunky self-start text-sm">
-                      {isAr ? "التفاصيل والتحميل" : "See it & download"}
-                    </Link>
-                    <a
-                      href={`/printables/${s.id}.pdf`}
-                      download
-                      className="text-sm font-bold text-qalam underline underline-offset-4"
-                    >
-                      ⬇ {t.download}
-                    </a>
-                  </div>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+        <ActivityFinder locale={locale} activities={getActivityCatalog(locale).filter((activity) => activity.kind === "worksheets")} />
       </section>
+
+      <ExternalPrintables locale={locale} />
 
       {/* ---------- One letter at a time ---------- */}
       <section className="mb-12" aria-labelledby="letters">
-        <h2 id="letters" className="font-display text-xl font-extrabold text-ink">
+        <h2 id="letters" className="scroll-mt-24 font-display text-xl font-extrabold text-ink">
           {isAr ? "حرف واحد في كل مرّة" : "Practice one letter at a time"}
         </h2>
-        <p className="mt-1 mb-5 max-w-3xl text-sm leading-relaxed text-ink/65">
+        <p className="mt-1 mb-5 max-w-3xl text-sm leading-relaxed text-ink/75">
           {isAr
-            ? "لكل حرف من الحروف الـ٢٨ صفحته الخاصة: ورقة PDF مستقلة، ونطق الحرف بضغطة زر، وكيفية نطقه للوالدين غير الناطقين بالعربية، والأشكال الأربعة، والكلمات. ابدأ من حيث وصل طفلك."
+            ? "لكل حرف من الحروف الـ28 صفحته الخاصة: ورقة PDF مستقلة، ونطق الحرف بضغطة زر، وكيفية نطقه للوالدين غير الناطقين بالعربية، والأشكال الأربعة، والكلمات. ابدأ من حيث وصل طفلك."
             : "Every letter has its own page: a standalone PDF sheet, the letter pronounced at the click of a button, how to say it for non-Arabic-speaking parents, its four shapes, and example words. Start wherever your child is."}
         </p>
         <ul className="grid grid-cols-4 gap-2 sm:grid-cols-7 md:grid-cols-10">
@@ -361,7 +302,7 @@ export default async function PrintablesPage({ params }: { params: Promise<{ loc
                   >
                     {entry.ar}
                   </span>
-                  <span className="text-[10px] font-bold uppercase tracking-wide text-ink/45">
+                  <span className="text-[10px] font-bold uppercase tracking-wide text-ink/70">
                     {entry.enName}
                   </span>
                 </Link>
@@ -394,6 +335,7 @@ export default async function PrintablesPage({ params }: { params: Promise<{ loc
       {/* ---------- What's inside ---------- */}
       <section className="mb-12" aria-labelledby="whats-inside">
         <h2 id="whats-inside" className="mb-5 font-display text-xl font-extrabold text-ink">{t.insideTitle}</h2>
+        <p className="mb-5 max-w-3xl text-[15px] leading-relaxed text-ink/70">{t.lead2}</p>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {t.inside.map((f) => (
             <div key={f.t} className="card-stock p-5">
@@ -406,7 +348,7 @@ export default async function PrintablesPage({ params }: { params: Promise<{ loc
 
       {/* ---------- Printing tips ---------- */}
       <section className="mb-12" aria-labelledby="printing-tips">
-        <h2 id="printing-tips" className="mb-5 font-display text-xl font-extrabold text-ink">{t.printTitle}</h2>
+        <h2 id="printing-tips" className="mb-5 scroll-mt-24 font-display text-xl font-extrabold text-ink">{t.printTitle}</h2>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {t.print.map((p) => (
             <div key={p.t} className="card-stock p-5">
@@ -423,7 +365,7 @@ export default async function PrintablesPage({ params }: { params: Promise<{ loc
       {/* ---------- Related ---------- */}
       <section className="mb-6" aria-labelledby="related">
         <h2 id="related" className="font-display text-xl font-extrabold text-ink">{t.relatedTitle}</h2>
-        <p className="mt-1 mb-5 text-sm text-ink/65">{t.relatedLead}</p>
+        <p className="mt-1 mb-5 text-sm text-ink/75">{t.relatedLead}</p>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           {t.related.map((r) => (
             <Link key={r.href} href={`/${locale}${r.href}`} className="card-stock p-5 transition hover:border-qalam">
