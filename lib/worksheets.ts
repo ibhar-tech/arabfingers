@@ -121,6 +121,32 @@ export const worksheetSets: WorksheetSet[] = [
     ageAr: "من 5 إلى 8 سنوات",
   },
   {
+    id: "arabic-alphabet-flashcards",
+    emoji: "🃏",
+    titleEn: "Arabic Alphabet Flashcards (28 Cut-Out Cards)",
+    titleAr: "بطاقات الحروف العربية (28 بطاقة للقصّ)",
+    descEn:
+      "All 28 letters as cut-out flashcards, eight to a page: the letter large, its Arabic and English name, and a picture word that starts with it. Print on card, cut, play.",
+    descAr:
+      "الحروف الثمانية والعشرون بطاقاتٍ للقصّ، ثماني بطاقات في الصفحة: الحرف كبيراً، واسمه بالعربية والإنجليزية، وكلمة مصوّرة تبدأ به. اطبعها على ورق مقوّى وقصّها والعبوا.",
+    pages: 4,
+    ageEn: "Ages 3–7",
+    ageAr: "من 3 إلى 7 سنوات",
+  },
+  {
+    id: "arabic-4-line-copybook",
+    emoji: "📏",
+    titleEn: "Arabic 4-Line Copybook (Handwriting Practice)",
+    titleAr: "كرّاسة الأسطر الأربعة لكتابة الحروف العربية",
+    descEn:
+      "The 4-line ruled format many schools use: every letter written on the red baseline with its tall strokes and tails in place, three copies to trace and an empty line to write. Plus a blank 4-line page.",
+    descAr:
+      "التسطير ذو الأسطر الأربعة المستعمل في كثير من المدارس: كلّ حرف مكتوب على السطر الأحمر بخطوطه الطويلة وذيوله في مكانها، وثلاث نسخ للتتبّع وسطر فارغ للكتابة، مع صفحة أسطر أربعة فارغة.",
+    pages: 8,
+    ageEn: "Ages 5–9",
+    ageAr: "من 5 إلى 9 سنوات",
+  },
+  {
     id: "arabic-colors",
     emoji: "🎨",
     titleEn: "Arabic Colours & Shapes Worksheets",
@@ -285,7 +311,7 @@ export const worksheetSets: WorksheetSet[] = [
       "Every pack in this library bound into one file, in teaching order — the alphabet chart first, then letters, harakat, numbers, colours, animals and all the colouring books. One download, one print job.",
     descAr:
       "كل المجموعات في ملف واحد مرتّبة تعليمياً — اللوحة أولاً ثم الحروف فالحركات فالأرقام فالألوان فالحيوانات ثم كتب التلوين كلّها. تنزيل واحد وطباعة واحدة.",
-    pages: 154,
+    pages: 166,
     ageEn: "Ages 3–7",
     ageAr: "من 3 إلى 7 سنوات",
     bundle: true,

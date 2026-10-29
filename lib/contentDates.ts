@@ -81,6 +81,8 @@ export const CONTENT_LAST_UPDATED: Record<string, string> = {
   "/printables/arabic-language-day": "2026-10-29",
   "/printables/arabic-letters-harakat": "2026-10-29",
   "/printables/arabic-tanween": "2026-10-29",
+  "/printables/arabic-alphabet-flashcards": "2026-10-29",
+  "/printables/arabic-4-line-copybook": "2026-10-29",
   "/printables/preschool": "2026-10-29",
   "/printables/kindergarten": "2026-10-29",
   "/printables/grade-1": "2026-10-29",

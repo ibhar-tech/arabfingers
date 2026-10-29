@@ -195,6 +195,16 @@ const PACK_LINKS = {
     captionEn: "Hear the letters:",
     captionAr: "استمع للحروف:",
   },
+  "arabic-alphabet-flashcards": {
+    url: `${SITE}/en/play`,
+    captionEn: "Hear each letter:",
+    captionAr: "اسمع كلّ حرف:",
+  },
+  "arabic-4-line-copybook": {
+    url: `${SITE}/en/printables/letters/alef`,
+    captionEn: "One letter per page:",
+    captionAr: "حرف في كلّ صفحة:",
+  },
   "arabic-tanween": {
     url: `${SITE}/en/printables/arabic-harakat`,
     captionEn: "More vowel sheets:",
@@ -609,6 +619,123 @@ function buildLettersHarakat(qr) {
     ${foot(i + 3, total, qr)}
   `));
   return doc("Arabic Letters with Harakat — Chart and Tracing", [...chart, ...trace].join(""));
+}
+
+// ---------------------------------------------------------------------------
+// Set 3d — alphabet flashcards, 8 cut-out cards per page
+// ---------------------------------------------------------------------------
+
+function buildFlashcards(qr) {
+  const perPage = 8;
+  const pages = [];
+  for (let start = 0; start < letterGuide.length; start += perPage) {
+    const chunk = letterGuide.slice(start, start + perPage);
+    const cards = chunk
+      .map((e) => {
+        const ex = e.examples[0];
+        return `<div style="border:1.5px dashed #9a9a9a;border-radius:3mm;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2.5mm;min-height:0;overflow:hidden;">
+          <div class="ar" style="font-size:48pt;line-height:1.25;">${esc(e.ar)}</div>
+          <div class="ar" dir="rtl" style="font-size:12pt;font-weight:700;margin-top:1mm;">${esc(e.arName)}</div>
+          <div style="font-size:9pt;color:#666;">${esc(e.enName)} · ${esc(e.translit)}</div>
+          <div style="margin-top:2.5mm;display:flex;align-items:center;gap:2mm;">
+            <span style="font-size:18pt;line-height:1;">${ex.emoji}</span>
+            <span class="ar" dir="rtl" style="font-size:15pt;">${esc(ex.word)}</span>
+          </div>
+          <div style="font-size:8pt;color:#777;">${esc(ex.translit)} — ${esc(ex.meaningEn)}</div>
+        </div>`;
+      })
+      .join("");
+    // The last page has room left over: blank cards for the child's own words.
+    const blanks = Array.from({ length: perPage - chunk.length }, () =>
+      `<div style="border:1.5px dashed #9a9a9a;border-radius:3mm;display:flex;align-items:flex-end;justify-content:center;padding:3mm;font-size:8pt;color:#999;">Make your own card · <span class="ar">اصنع بطاقتك</span></div>`,
+    ).join("");
+    pages.push(sheet(`
+      ${head("Arabic Alphabet Flashcards")}
+      <div class="title"><h1>Alphabet flashcards</h1><span class="arname ar" dir="rtl">بطاقات الحروف</span><span class="sub">cards ${start + 1}–${start + chunk.length} of 28</span></div>
+      <div class="instruction">
+        Print on card or thick paper and cut along the dashed lines. Hold up a card, say the sound, find something that starts with it.
+        <span class="rtl ar">اطبعها على ورق مقوّى وقصّها على الخطوط المتقطّعة. ارفع بطاقة، وانطق الصوت، وابحث عن شيء يبدأ به.</span>
+      </div>
+      <div class="body">
+        <div class="grow" dir="rtl" style="margin-top:4mm;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,minmax(0,1fr));gap:3mm;">${cards}${blanks}</div>
+      </div>
+      ${foot(pages.length + 1, Math.ceil(letterGuide.length / perPage), qr)}
+    `));
+  }
+  return doc("Arabic Alphabet Flashcards", pages.join(""));
+}
+
+// ---------------------------------------------------------------------------
+// Set 3e — 4-line copybook ("4 line copy"), the ruled format South Asian
+// schools use: letters sit on the red baseline, tall letters reach the top
+// line, and tails drop to the bottom one.
+// ---------------------------------------------------------------------------
+
+/** One 4-line row as SVG, so glyphs sit on a true alphabetic baseline. */
+function fourLineRow(glyph, { model = true, traces = 3, height = 21 } = {}) {
+  // viewBox in the row's real proportions (186 mm wide on A4), so the letters
+  // are never stretched.
+  const H = 100, W = Math.round((186 / height) * H);
+  const lines = [
+    { y: 14, stroke: "#bdbdbd", dash: "" },
+    { y: 40, stroke: "#d0d0d0", dash: "6 6" },
+    { y: 68, stroke: "#e06060", dash: "" },
+    { y: 90, stroke: "#bdbdbd", dash: "" },
+  ]
+    .map((l) => `<line x1="0" x2="${W}" y1="${l.y}" y2="${l.y}" stroke="${l.stroke}" stroke-width="1.2" ${l.dash ? `stroke-dasharray="${l.dash}"` : ""}/>`)
+    .join("");
+  const slots = [];
+  if (glyph) {
+    // Right to left: the model, then hollow copies to trace; the rest is free.
+    const step = 100;
+    for (let i = 0; i < (model ? 1 : 0) + traces; i++) {
+      const solid = model && i === 0;
+      slots.push(`<text x="${W - 50 - i * step}" y="68" text-anchor="middle" dominant-baseline="alphabetic"
+        font-family="'Noto Naskh Arabic',serif" font-size="66"
+        fill="${solid ? "#2b2b2b" : "none"}" stroke="${solid ? "none" : "#b5b5b5"}" stroke-width="1.3">${esc(glyph)}</text>`);
+    }
+  }
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" height="${height}mm" style="display:block;">${lines}${slots.join("")}</svg>`;
+}
+
+function buildFourLineCopybook(qr) {
+  const perPage = 4;
+  const total = Math.ceil(letterGuide.length / perPage) + 1;
+  const pages = [];
+  for (let start = 0; start < letterGuide.length; start += perPage) {
+    const chunk = letterGuide.slice(start, start + perPage);
+    const rows = chunk
+      .map((e) => `<div>
+        <div style="display:flex;justify-content:space-between;font-size:8.5pt;color:#555;margin:2.5mm 0 1mm;">
+          <span>${esc(e.enName)} · ${esc(e.translit)}</span><span class="ar" dir="rtl" style="font-weight:700;">${esc(e.arName)} ${esc(e.ar)}</span>
+        </div>
+        ${fourLineRow(e.ar, { model: true, traces: 3 })}
+        ${fourLineRow("", { model: false, traces: 0 })}
+      </div>`)
+      .join("");
+    pages.push(sheet(`
+      ${head("Arabic 4-Line Copybook")}
+      <div class="title"><h1>4-line copybook</h1><span class="arname ar" dir="rtl">كرّاسة الأسطر الأربعة</span><span class="sub">letters ${start + 1}–${start + chunk.length}</span></div>
+      <div class="instruction">
+        Sit each letter on the red line. Tall letters (ا ل ك ط) reach the top line; tails (ر و ي ن ع) drop towards the bottom line. Trace the grey letters, then fill the empty line.
+        <span class="rtl ar">أجلس كلّ حرف على السطر الأحمر. الحروف الطويلة (ا ل ك ط) تصل إلى السطر العلويّ، والذيول (ر و ي ن ع) تنزل نحو السطر السفليّ. تتبّع الحروف الرمادية، ثمّ املأ السطر الفارغ.</span>
+      </div>
+      <div class="body">${rows}</div>
+      ${foot(pages.length + 1, total, qr)}
+    `));
+  }
+  const blankRows = Array.from({ length: 8 }, () => `<div style="margin-top:3mm;">${fourLineRow("", { model: false, traces: 0 })}</div>`).join("");
+  pages.push(sheet(`
+    ${head("Arabic 4-Line Copybook")}
+    <div class="title"><h1>Blank 4-line page</h1><span class="arname ar" dir="rtl">صفحة أسطر أربعة فارغة</span></div>
+    <div class="instruction">
+      Print as many as you need for words, names and dictation.
+      <span class="rtl ar">اطبع منها ما تحتاج للكلمات والأسماء والإملاء.</span>
+    </div>
+    <div class="body">${blankRows}</div>
+    ${foot(total, total, qr)}
+  `));
+  return doc("Arabic 4-Line Copybook", pages.join(""));
 }
 
 // ---------------------------------------------------------------------------
@@ -1117,6 +1244,8 @@ const SETS = [
   { id: "arabic-harakat", html: buildHarakat },
   { id: "arabic-letters-harakat", html: buildLettersHarakat },
   { id: "arabic-tanween", html: buildTanween },
+  { id: "arabic-alphabet-flashcards", html: buildFlashcards },
+  { id: "arabic-4-line-copybook", html: buildFourLineCopybook },
   { id: "arabic-colors", html: buildColors },
   { id: "arabic-animals-coloring", html: buildAnimals },
   { id: "arabic-fruits-vegetables-coloring", html: buildFruitsVeg },

@@ -418,6 +418,108 @@ export const worksheetPages: WorksheetPage[] = [
     ],
   },
   {
+    id: "arabic-alphabet-flashcards",
+    seoTitleEn: "Arabic Alphabet Flashcards PDF — 28 Printable Letter Cards with Pictures",
+    seoTitleAr: "بطاقات الحروف العربية PDF — 28 بطاقة مصوّرة للطباعة والقصّ",
+    seoDescEn:
+      "Free printable Arabic alphabet flashcards: all 28 letters, eight cut-out cards to a page, each with the letter, its Arabic and English name and a picture word. PDF, no signup.",
+    seoDescAr:
+      "بطاقات الحروف العربية مجاناً للطباعة: الحروف الثمانية والعشرون، ثماني بطاقات للقصّ في كلّ صفحة، لكلّ بطاقة الحرف واسمه بالعربية والإنجليزية وكلمة مصوّرة. PDF بلا تسجيل.",
+    keywords: [
+      "arabic alphabet flashcards pdf",
+      "arabic letter flashcards printable",
+      "arabic alphabet cut out",
+      "arabic alphabet print out",
+      "بطاقات الحروف العربية pdf",
+      "بطاقات الحروف للطباعة",
+    ],
+    taglineEn: "Twenty-eight cards, four pages, one pair of scissors.",
+    taglineAr: "ثمانٍ وعشرون بطاقة، في أربع صفحات، ومقصّ واحد.",
+    insideEn: [
+      "All 28 letters as flashcards, eight to an A4 page, with dashed lines to cut along.",
+      "Each card: the letter large, its Arabic and English name with transliteration, and a picture word that starts with it (أسد — lion, باب — door).",
+      "Four blank cards on the last page for the child's own words.",
+    ],
+    insideAr: [
+      "الحروف الثمانية والعشرون بطاقاتٍ، ثماني بطاقات في صفحة A4، مع خطوط متقطّعة للقصّ.",
+      "في كلّ بطاقة: الحرف كبيراً، واسمه بالعربية والإنجليزية مع نطقه، وكلمة مصوّرة تبدأ به (أسد، باب).",
+      "أربع بطاقات فارغة في الصفحة الأخيرة لكلمات الطفل الخاصّة.",
+    ],
+    useEn: [
+      "Print on card or thick paper so the cards survive small hands. Laminate them, or slip them into a photo sleeve, if they are going to live in a school bag.",
+      "Three games that work from age three: hold up a card and say the sound together; spread out five cards and ask for one; hide a card and have them find something in the room that starts with its sound.",
+    ],
+    useAr: [
+      "اطبعوها على ورق مقوّى أو سميك لتصمد أمام الأيدي الصغيرة. وغلّفوها أو ضعوها في أغلفة صور إن كانت ستعيش في الحقيبة المدرسية.",
+      "ثلاث ألعاب تنجح من الثالثة: ارفعوا بطاقة وانطقوا الصوت معاً، وانشروا خمس بطاقات واطلبوا واحدة، واخفوا بطاقة ودعوا الطفل يجد في الغرفة شيئاً يبدأ بصوتها.",
+    ],
+    faq: [
+      {
+        qEn: "What paper should I print the flashcards on?",
+        qAr: "على أيّ ورق أطبع البطاقات؟",
+        aEn: "Card stock (160–250 gsm) works best. On ordinary paper, glue the sheet onto a cereal box before cutting — it gives the cards the same stiffness for free.",
+        aAr: "الورق المقوّى (160–250 غراماً) هو الأفضل. وعلى الورق العاديّ، الصقوا الصفحة على علبة حبوب فارغة قبل القصّ — فتأخذ البطاقات الصلابة نفسها مجاناً.",
+      },
+      {
+        qEn: "Are the example words with pictures?",
+        qAr: "هل كلمات الأمثلة مصوّرة؟",
+        aEn: "Yes — every card has a picture word that starts with the letter, with its transliteration and English meaning, so non-Arabic-speaking parents can use them too.",
+        aAr: "نعم — في كلّ بطاقة كلمة مصوّرة تبدأ بالحرف، مع نطقها ومعناها بالإنجليزية، ليستعملها الأهل الذين لا يتكلّمون العربية أيضاً.",
+      },
+    ],
+  },
+  {
+    id: "arabic-4-line-copybook",
+    seoTitleEn: "Arabic Letters on 4-Line Copy PDF — Free Handwriting Practice Pages",
+    seoTitleAr: "كتابة الحروف العربية على الأسطر الأربعة PDF — كرّاسة خطّ مجانية",
+    seoDescEn:
+      "Free Arabic handwriting practice on 4-line ruled paper: all 28 letters sitting on the red baseline with their tall strokes and tails in place, three to trace and a line to write, plus a blank 4-line page. PDF.",
+    seoDescAr:
+      "كرّاسة مجانية لكتابة الحروف العربية على الأسطر الأربعة: الحروف الـ28 على السطر الأحمر بخطوطها الطويلة وذيولها في مكانها، وثلاث نسخ للتتبّع وسطر للكتابة، مع صفحة أسطر أربعة فارغة. PDF.",
+    keywords: [
+      "arabic letters in 4 line copy",
+      "arabic 4 line copy pdf",
+      "arabic handwriting practice pdf",
+      "arabic writing practice sheets pdf",
+      "كراسة الخط العربي pdf",
+      "كتابة الحروف على السطر",
+    ],
+    taglineEn: "Where each letter sits on the line — the thing tracing sheets never show.",
+    taglineAr: "أين يجلس كلّ حرف على السطر — ما لا تُظهره أوراق التتبّع عادةً.",
+    insideEn: [
+      "Seven pages, four letters each: every letter on a 4-line row with the red baseline, tall letters (ا ل ك ط) up to the top line and tails (ر و ي ن ع) down towards the bottom one.",
+      "Per letter: one solid model, three hollow copies to trace, and a full empty 4-line row to write on.",
+      "An eighth page of blank 4-line rows for words, names and dictation.",
+    ],
+    insideAr: [
+      "سبع صفحات، في كلّ منها أربعة حروف: كلّ حرف على سطر رباعيّ بسطر أحمر للقاعدة، والحروف الطويلة (ا ل ك ط) تصل إلى السطر العلويّ، والذيول (ر و ي ن ع) تنزل نحو السفليّ.",
+      "لكلّ حرف: نموذج مكتمل، وثلاث نسخ مفرّغة للتتبّع، وسطر رباعيّ فارغ كامل للكتابة.",
+      "وصفحة ثامنة من الأسطر الرباعية الفارغة للكلمات والأسماء والإملاء.",
+    ],
+    useEn: [
+      "Use it after the one-letter tracing sheets, once a child can write a letter's shape: the copybook teaches the next thing, which is its size and where it sits.",
+      "Watch the red line. Most early Arabic handwriting problems are letters floating above the line or tails cut short; on four lines both are easy to see and easy to correct.",
+    ],
+    useAr: [
+      "استعملوها بعد أوراق تتبّع الحرف الواحد، حين يستطيع الطفل كتابة شكل الحرف: فالكرّاسة تعلّم ما بعده، أي حجمه وموضعه على السطر.",
+      "راقبوا السطر الأحمر. فأكثر مشكلات الخطّ العربي في البداية حروف تطفو فوق السطر أو ذيول مقصوصة، وعلى الأسطر الأربعة يسهل رؤية الأمرين وتصحيحهما.",
+    ],
+    faq: [
+      {
+        qEn: "What is a 4-line copy?",
+        qAr: "ما الكرّاسة ذات الأسطر الأربعة؟",
+        aEn: "A handwriting page ruled with four lines per row. The third (red) line is the baseline letters sit on; the lines above and below show how far tall strokes rise and tails drop. Many schools in South Asia and the Gulf use it for Arabic and English.",
+        aAr: "صفحة خطّ مسطّرة بأربعة أسطر في كلّ صفّ. السطر الثالث (الأحمر) هو القاعدة التي تجلس عليها الحروف، والسطور فوقه وتحته تبيّن إلى أين ترتفع الخطوط الطويلة وتنزل الذيول. وتستعملها مدارس كثيرة للعربية والإنجليزية.",
+      },
+      {
+        qEn: "Is it only for children?",
+        qAr: "أهي للأطفال فقط؟",
+        aEn: "No — the same pages work for adult beginners learning to write Arabic neatly. Print the blank page for copying words once the letters are comfortable.",
+        aAr: "لا — الصفحات نفسها تنفع الكبار المبتدئين الذين يتعلّمون كتابة العربية بخطّ مرتّب. واطبعوا الصفحة الفارغة لنسخ الكلمات متى ارتاحوا مع الحروف.",
+      },
+    ],
+  },
+  {
     id: "arabic-colors",
     seoTitleEn: "Arabic Colours Worksheets PDF — Free Printable Colour & Trace",
     seoTitleAr: "أوراق الألوان بالعربية PDF — تلوين وتتبّع للطباعة مجاناً",

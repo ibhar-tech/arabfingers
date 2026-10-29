@@ -60,11 +60,11 @@ export const gradePages: GradePage[] = [
     ageEn: "Ages 3–4",
     ageAr: "من 3 إلى 4 سنوات",
     introEn: [
-      "At three and four, Arabic worksheets should be mostly colouring and naming, not writing. These eight free packs are the ones that work at this age: big shapes to colour, one Arabic word per page, and numbers counted with circles rather than written.",
+      "At three and four, Arabic worksheets should be mostly colouring and naming, not writing. These nine free packs are the ones that work at this age: big shapes to colour, one Arabic word per page, and numbers counted with circles rather than written.",
       "Expect scribbles outside the lines and pages abandoned halfway. That is normal. What matters at this age is that the child hears the Arabic word while their hands are busy.",
     ],
     introAr: [
-      "في الثالثة والرابعة ينبغي أن تكون أوراق العمل العربية تلويناً وتسمية أكثر منها كتابة. وهذه الحزم الثماني المجانية هي ما ينجح في هذه السنّ: أشكال كبيرة للتلوين، وكلمة عربية واحدة في كلّ صفحة، وأرقام تُعدّ بالدوائر لا تُكتب.",
+      "في الثالثة والرابعة ينبغي أن تكون أوراق العمل العربية تلويناً وتسمية أكثر منها كتابة. وهذه الحزم التسع المجانية هي ما ينجح في هذه السنّ: أشكال كبيرة للتلوين، وكلمة عربية واحدة في كلّ صفحة، وأرقام تُعدّ بالدوائر لا تُكتب.",
       "توقّعوا خطوطاً خارج الرسم وصفحات تُترك في منتصفها، فهذا طبيعيّ. والمهمّ في هذه السنّ أن يسمع الطفل الكلمة العربية ويداه مشغولتان.",
     ],
     canDoEn: [
@@ -87,6 +87,7 @@ export const gradePages: GradePage[] = [
       { id: "arabic-fruits-vegetables-coloring", whyEn: "Food words get used at every meal, so they stick.", whyAr: "كلمات الطعام تُستعمل في كلّ وجبة فتثبت." },
       { id: "arabic-body-parts-coloring", whyEn: "Touch the part, colour it, say it — words learned with the whole body.", whyAr: "المس الجزء، ولوّنه، وقله — كلمات تُتعلّم بالجسم كلّه." },
       { id: "arabic-numbers-tracing", whyEn: "Use the counting circles and the drawing box; skip the writing rows until four or five.", whyAr: "استعملوا دوائر العدّ ومربّع الرسم، واتركوا أسطر الكتابة حتى الرابعة أو الخامسة." },
+      { id: "arabic-alphabet-flashcards", whyEn: "Picture cards to hold up and name — a game, not a lesson.", whyAr: "بطاقات مصوّرة تُرفع وتُسمّى — لعبة لا درس." },
       { id: "arabic-sea-animals-coloring", whyEn: "A second set of animals for when the first is finished.", whyAr: "مجموعة حيوانات ثانية بعد إتمام الأولى." },
     ],
     plan: [
@@ -156,10 +157,12 @@ export const gradePages: GradePage[] = [
       { id: "arabic-alphabet-chart", whyEn: "The reference on the wall for both years.", whyAr: "المرجع على الجدار للسنتين." },
       { id: "arabic-alphabet-tracing", whyEn: "The core of kindergarten Arabic: one page per letter with its four forms and graded tracing rows.", whyAr: "قلب العربية في الروضة: صفحة لكلّ حرف بأشكاله الأربعة وأسطر تتبّع متدرّجة." },
       { id: "arabic-alphabet-coloring", whyEn: "KG1: colour the letter before tracing it — the shape is learned twice.", whyAr: "KG1: لوّنوا الحرف قبل تتبّعه — فيُتعلّم شكله مرّتين." },
+      { id: "arabic-alphabet-flashcards", whyEn: "Quick recognition games between worksheets: say the sound, find the card.", whyAr: "ألعاب تعرّف سريعة بين الأوراق: انطق الصوت وجد البطاقة." },
       { id: "arabic-numbers-tracing", whyEn: "Numbers 1–10: count, trace and write each one, with its Arabic name.", whyAr: "الأرقام 1–10: عدّ وتتبّع وكتابة لكلّ رقم مع اسمه بالعربية." },
       { id: "arabic-colors", whyEn: "Colour words to trace in Arabic and English.", whyAr: "كلمات الألوان للتتبّع بالعربية والإنجليزية." },
       { id: "arabic-opposites-coloring", whyEn: "Pairs like big and small — the first describing words.", whyAr: "أزواج مثل كبير وصغير — أولى كلمات الوصف." },
       { id: "arabic-letters-harakat", whyEn: "KG2: every letter with fatha, kasra, damma and sukoon — the step from letters to reading.", whyAr: "KG2: كلّ حرف بالفتحة والكسرة والضمة والسكون — الخطوة من الحروف إلى القراءة." },
+      { id: "arabic-4-line-copybook", whyEn: "KG2: each letter on 4-line ruling, so it sits on the line at the right size.", whyAr: "KG2: كلّ حرف على الأسطر الأربعة، ليجلس على السطر بالحجم الصحيح." },
       { id: "arabic-seasons-coloring", whyEn: "A calm colouring pack for the end of a session.", whyAr: "حزمة تلوين هادئة لختام الجلسة." },
     ],
     plan: [
@@ -234,6 +237,7 @@ export const gradePages: GradePage[] = [
       { id: "arabic-letters-harakat", whyEn: "All 28 letters with every short vowel: read a row a day, then trace it.", whyAr: "الحروف الـ28 بكلّ حركة: اقرأوا صفّاً كلّ يوم ثمّ تتبّعوه." },
       { id: "arabic-tanween", whyEn: "The three tanween endings on the same word — كتابٌ، كتابًا، كتابٍ.", whyAr: "أنواع التنوين الثلاثة على الكلمة نفسها — كتابٌ، كتابًا، كتابٍ." },
       { id: "arabic-alphabet-tracing", whyEn: "Revision for any letter that is still slow, with its four joined forms.", whyAr: "مراجعة لأيّ حرف ما زال بطيئاً، مع أشكاله الأربعة المتّصلة." },
+      { id: "arabic-4-line-copybook", whyEn: "Neat handwriting on 4-line ruling — letter size and the baseline, which first-grade copying needs.", whyAr: "خطّ مرتّب على الأسطر الأربعة — حجم الحرف والسطر، وهما ما يحتاجه النسخ في الصفّ الأوّل." },
       { id: "arabic-numbers-11-20", whyEn: "Numbers 11–20 with their Arabic names to trace.", whyAr: "الأرقام 11–20 مع أسمائها العربية للتتبّع." },
       { id: "arabic-opposites-coloring", whyEn: "Word pairs to read and trace — a step towards reading whole words.", whyAr: "أزواج كلمات للقراءة والتتبّع — خطوة نحو قراءة الكلمات كاملة." },
       { id: "arabic-complete-workbook", whyEn: "Everything above and more in one PDF, for a term's printing in one go.", whyAr: "كلّ ما سبق وأكثر في ملف واحد، لطباعة فصل دراسيّ دفعة واحدة." },
