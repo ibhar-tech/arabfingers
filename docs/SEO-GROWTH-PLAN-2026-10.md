@@ -136,7 +136,7 @@ Google AI Overviews use normal Googlebot, so they are not affected by any of thi
 
 1. **`/llms.txt`** (done in this branch). A generated map of every pack, every letter (name, transliteration, dots, page + PDF URL), the games, stories and guides. Agents that look for it get the whole catalogue in one fetch.
 2. **Extractable facts.** Short, declarative, true statements in the page HTML: "Jeem (ج) has one dot below it." "The Arabic alphabet has 28 letters." Tables of letter / name / sound / forms. Models quote sentences like these. The new dots FAQ is an example. Do the same for numbers, colours and harakat.
-3. **Consistent entity.** The site credits "Aissa Trad" (llms.txt), "IBHAR TECH LEARNING" (bylines, and as a `Person` in JSON-LD) and "Arab Fingers". Pick one publisher and one person. Make the Organization/Person `sameAs` point at real profiles: Pinterest, YouTube, GitHub, and a Wikidata item once there are press mentions.
+3. **Consistent entity.** ✅ Done 29 Oct: IBHAR TECH LEARNING (Organization) everywhere; founder named on /author and /about. Was: the site credited "Aissa Trad" (llms.txt), "IBHAR TECH LEARNING" (bylines, and as a `Person` in JSON-LD) and "Arab Fingers". Pick one publisher and one person. Make the Organization/Person `sameAs` point at real profiles: Pinterest, YouTube, GitHub, and a Wikidata item once there are press mentions.
 4. **Third-party mentions.** Assistants recommend what "best free Arabic resources for kids" lists, Reddit threads (r/homeschool, r/learn_arabic, r/MuslimParents) and Quora answers mention. One honest, helpful post in those places is worth more to an LLM than ten on-site pages.
 5. **Markdown twins (next step).** Serve `/en/learn/arabic-alphabet-guide.md` (and the pack pages) as clean Markdown, linked from llms.txt. Agents then fetch your content without the JS, ads and navigation.
 6. **An MCP server for the site (the "agent-ready" move).** The site already runs on a Cloudflare Worker. A small remote MCP endpoint (`/mcp`) with tools such as `find_worksheet({letter | topic | age})`, `get_letter({letter})` → facts + audio + PDF URL, and `list_stories()` lets Claude, ChatGPT and other agents *use* Arab Fingers when a parent asks "make me an Arabic worksheet plan for my 5-year-old". Listing it in the public MCP registries is a new discovery channel few competitors have. Your data modules (`letterGuide`, `worksheets`, `stories`) are already typed, so this is mostly glue code.
@@ -147,22 +147,62 @@ Google AI Overviews use normal Googlebot, so they are not affected by any of thi
 ## 6. 30 / 60 / 90
 
 **Next 30 days**
-- [ ] Merge this branch; resubmit the sitemap in GSC; request indexing for the alphabet guide, first words and 3–4 `/ar/printables/letters/*` pages
-- [ ] Decide on the AI-crawler block (section 5) and change it in Cloudflare
+- [x] Merge this branch; resubmit the sitemap in GSC; request indexing for the alphabet guide, first words and 3–4 `/ar/printables/letters/*` pages
+- [x] Decide on the AI-crawler block (section 5) and change it in Cloudflare — training allowed, Bot Preference Sync off
 - [ ] Bing Webmaster Tools + Crawler Hints (IndexNow)
-- [ ] Look up the queries for the 702-impression blog post and the hardest-letters page; retitle both
-- [ ] Ship the **Arabic Language Day** page + printable (deadline: indexed before 18 Dec)
-- [ ] Ship **tanween** + **letters-with-harakat** packs
+- [x] Retitle the 702-impression blog post and the hardest-letters page (matched to export queries; confirm with per-page Queries when available)
+- [x] Ship the **Arabic Language Day** page + printable (deadline: indexed before 18 Dec)
+- [x] Ship **tanween** + **letters-with-harakat** packs
 
 **Day 30–60**
-- [ ] Kindergarten / Grade 1 landing pages; flashcards pack; 4-line copybook pack
-- [ ] Two new games on their own URLs (memory match, "how many dots?")
+- [x] Preschool / Kindergarten / Grade 1 landing pages; flashcards pack; 4-line copybook pack
+- [x] Two new games on their own URLs (memory match, "how many dots?")
 - [ ] QR "more free sheets" footer on every PDF; WhatsApp share button
 - [ ] Start the 28-day letter Shorts series
 - [ ] Ramadan 1448 content live by early January
 
 **Day 60–90**
 - [ ] Qur'an-reading track (Qaida-style sequence), reviewed by a qualified teacher
-- [ ] Adult-beginner handwriting workbook
+- [x] Adult-beginner handwriting workbook
 - [ ] Markdown twins + MCP endpoint
 - [ ] Re-export GSC and compare with this baseline: 5,531 clicks / 43.4K impressions / 12.7% CTR / pos 5.3, and `/printables` at 67% of clicks (goal: under 50% because other pages grew, not because it shrank)
+
+---
+
+## 7. Progress log — 29 Oct 2026 (one working session)
+
+Everything below is live on www.arabfingers.site and on `main`.
+
+**Technical**
+- Next.js 15 → **16.4.3** (Turbopack), React 19.2.9, OpenNext 1.20.14, wrangler 4.155, next-intl 4.14. The `--dangerouslyUseUnsupportedNextVersion` override is gone. `middleware.ts` kept (edge runtime) instead of `proxy.ts` (Node-only, experimental on Workers).
+- ESLint flat config; four react-hooks v7 rules downgraded to warn (29 old patterns in the interactives) — refactor queued as a separate task.
+- Site-wide invisible FAQPage removed; WebSite/Organization JSON-LD fixed; author of record = IBHAR TECH LEARNING (Organization).
+- `/llms.txt` generated from data; sitemap lists every preview PNG as an image entry.
+- Locale-less section URLs (`/games/count`, `/stories`…) now 308 to `/en/…` (were 10 GSC 404s).
+- Contrast fixes on all pack pages and the Arabic-vs-Latin post; phone a11y e2e covers the new pages.
+- Production had been deployed from uncommitted local code (Wrangler tags discovery/studio-ads/science-controls, Sep 29–30); it was committed as `cba32f6`. Rule since then: production = `main` (see CLAUDE.md).
+
+**Content shipped**
+- Titles/H1s: alphabet guide ("for kids"), first words, Arabic letter pages ("بأشكاله الأربعة"), Arabic colours, Arabic-vs-Latin post (+ at-a-glance table), hardest letters.
+- Letter dots on every letter page (FAQ + description); `lib/letterDots.ts`.
+- Printable packs (library now **176 pages**, complete workbook rebuilt): Arabic Language Day (4), letters with harakat (4), tanween (3), alphabet flashcards (4), 4-line copybook (8), handwriting for beginners — teens & adults (10). Fixed بَطَّة on the fatha sheet.
+- Pages: `/learn/arabic-language-day`; `/printables/preschool`, `/kindergarten` (KG1/KG2), `/grade-1`.
+- Games: `/games/dots` ("How many dots?"), `/games/memory` (letter ↔ picture word).
+
+**Settings changed outside the repo**
+- Cloudflare: AI Crawl Control — Training allowed, Bot Preference Sync off (robots.txt is the repo's own); Workers Builds — non-production branches run `npx wrangler versions upload`, exclude paths `docs/**`, `*.md`.
+- Search Console: sitemap resubmitted; 404 and Redirect-error rows sent for validation; daily request-indexing list (115 URLs + the new pages).
+
+**Still open — owner**
+- Request indexing, 10 URLs/day (list from the session + every new page above).
+- Cloudflare: block Bytespider and TikTok Spider again (optional).
+- Bing Webmaster Tools (import from GSC) and Cloudflare Crawler Hints (IndexNow).
+- Send the Search Console Queries tab for the blog post and hardest-letters page to confirm the new titles.
+- In 2–4 weeks: re-export GSC Performance and compare with §1.
+
+**Still open — next build work**
+- Qur'an-reading track (Qaida-style), needs review by a qualified teacher.
+- Markdown twins of key pages + a `/mcp` endpoint for agents.
+- Shareability: QR "more free sheets" card in PDFs, WhatsApp share button.
+- Refactor the 29 react-hooks warnings and restore the rules to errors.
+- Ramadan 1448 content (Ramadan starts ~8 Feb 2027): live by early January.
