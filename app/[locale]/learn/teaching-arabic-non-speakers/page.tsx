@@ -166,6 +166,15 @@ export default async function TeachingArabicNonSpeakers({ params }: { params: Pr
         textAr="ورقة تتبّع لكل حرف — مع الأشكال الأربعة والكلمات — ولوحة الجدار لفحص الأسبوع السادس. ملفات PDF مجانية بلا تسجيل."
       />
 
+      <WorksheetCrossLink
+        locale={locale}
+        packId="arabic-handwriting-beginners"
+        titleEn="Learning to write it yourself?"
+        titleAr="تتعلّم الكتابة بنفسك؟"
+        textEn="A plain handwriting workbook for grown-ups: the six rules of the script, every letter in its four forms, and everyday words to join. Do your page while your child does theirs."
+        textAr="كرّاسة خطّ بسيطة للكبار: القواعد الستّ للكتابة، وكلّ حرف بأشكاله الأربعة، وكلمات يومية للوصل. اكتب صفحتك وطفلك يكتب صفحته."
+      />
+
       {/* ---------- what you need ---------- */}
       <h2 className="text-2xl font-semibold text-ink mb-4">
         {tt("What you need (and what you don't)", "ما تحتاجه (وما لا تحتاجه)")}

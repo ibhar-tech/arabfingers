@@ -147,6 +147,19 @@ export const worksheetSets: WorksheetSet[] = [
     ageAr: "من 5 إلى 9 سنوات",
   },
   {
+    id: "arabic-handwriting-beginners",
+    emoji: "🖋️",
+    titleEn: "Arabic Handwriting for Beginners (Teens & Adults)",
+    titleAr: "الخطّ العربي للمبتدئين (لليافعين والكبار)",
+    descEn:
+      "A plain, grown-up workbook: the six rules of Arabic handwriting, every letter in its four forms on 4-line ruling to trace and copy, and twelve everyday words for joining practice.",
+    descAr:
+      "كرّاسة بسيطة للكبار: القواعد الستّ للخطّ العربي، وكلّ حرف بأشكاله الأربعة على الأسطر الأربعة للتتبّع والنسخ، واثنتا عشرة كلمة يومية للتدرّب على الوصل.",
+    pages: 10,
+    ageEn: "Ages 10–18 & adults",
+    ageAr: "من 10 سنوات والكبار",
+  },
+  {
     id: "arabic-colors",
     emoji: "🎨",
     titleEn: "Arabic Colours & Shapes Worksheets",
@@ -311,7 +324,7 @@ export const worksheetSets: WorksheetSet[] = [
       "Every pack in this library bound into one file, in teaching order — the alphabet chart first, then letters, harakat, numbers, colours, animals and all the colouring books. One download, one print job.",
     descAr:
       "كل المجموعات في ملف واحد مرتّبة تعليمياً — اللوحة أولاً ثم الحروف فالحركات فالأرقام فالألوان فالحيوانات ثم كتب التلوين كلّها. تنزيل واحد وطباعة واحدة.",
-    pages: 166,
+    pages: 176,
     ageEn: "Ages 3–7",
     ageAr: "من 3 إلى 7 سنوات",
     bundle: true,

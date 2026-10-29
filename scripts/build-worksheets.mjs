@@ -205,6 +205,11 @@ const PACK_LINKS = {
     captionEn: "One letter per page:",
     captionAr: "حرف في كلّ صفحة:",
   },
+  "arabic-handwriting-beginners": {
+    url: `${SITE}/en/learn/teaching-arabic-non-speakers`,
+    captionEn: "Learning alongside a child?",
+    captionAr: "تتعلّم مع طفلك؟",
+  },
   "arabic-tanween": {
     url: `${SITE}/en/printables/arabic-harakat`,
     captionEn: "More vowel sheets:",
@@ -671,8 +676,12 @@ function buildFlashcards(qr) {
 // line, and tails drop to the bottom one.
 // ---------------------------------------------------------------------------
 
-/** One 4-line row as SVG, so glyphs sit on a true alphabetic baseline. */
-function fourLineRow(glyph, { model = true, traces = 3, height = 21 } = {}) {
+/**
+ * One 4-line row as SVG, so glyphs sit on a true alphabetic baseline. `slots`
+ * are placed right to left, `step` viewBox units apart; solid ones are models,
+ * the rest hollow outlines to trace. Whatever is left of the row is free space.
+ */
+function ruledRow(slots, { height = 21, step = 100, fontSize = 66, inset = 50 } = {}) {
   // viewBox in the row's real proportions (186 mm wide on A4), so the letters
   // are never stretched.
   const H = 100, W = Math.round((186 / height) * H);
@@ -684,18 +693,18 @@ function fourLineRow(glyph, { model = true, traces = 3, height = 21 } = {}) {
   ]
     .map((l) => `<line x1="0" x2="${W}" y1="${l.y}" y2="${l.y}" stroke="${l.stroke}" stroke-width="1.2" ${l.dash ? `stroke-dasharray="${l.dash}"` : ""}/>`)
     .join("");
-  const slots = [];
-  if (glyph) {
-    // Right to left: the model, then hollow copies to trace; the rest is free.
-    const step = 100;
-    for (let i = 0; i < (model ? 1 : 0) + traces; i++) {
-      const solid = model && i === 0;
-      slots.push(`<text x="${W - 50 - i * step}" y="68" text-anchor="middle" dominant-baseline="alphabetic"
-        font-family="'Noto Naskh Arabic',serif" font-size="66"
-        fill="${solid ? "#2b2b2b" : "none"}" stroke="${solid ? "none" : "#b5b5b5"}" stroke-width="1.3">${esc(glyph)}</text>`);
-    }
-  }
-  return `<svg viewBox="0 0 ${W} ${H}" width="100%" height="${height}mm" style="display:block;">${lines}${slots.join("")}</svg>`;
+  const texts = slots.map((slot, i) => `<text x="${W - inset - i * step}" y="68" text-anchor="middle" dominant-baseline="alphabetic"
+      font-family="'Noto Naskh Arabic',serif" font-size="${fontSize}"
+      fill="${slot.solid ? "#2b2b2b" : "none"}" stroke="${slot.solid ? "none" : "#b5b5b5"}" stroke-width="1.3">${esc(slot.text)}</text>`);
+  return `<svg viewBox="0 0 ${W} ${H}" width="100%" height="${height}mm" style="display:block;">${lines}${texts.join("")}</svg>`;
+}
+
+/** A model plus `traces` hollow copies of one glyph, or an empty row. */
+function fourLineRow(glyph, { model = true, traces = 3, height = 21 } = {}) {
+  const slots = glyph
+    ? Array.from({ length: (model ? 1 : 0) + traces }, (_, i) => ({ text: glyph, solid: model && i === 0 }))
+    : [];
+  return ruledRow(slots, { height });
 }
 
 function buildFourLineCopybook(qr) {
@@ -736,6 +745,109 @@ function buildFourLineCopybook(qr) {
     ${foot(total, total, qr)}
   `));
   return doc("Arabic 4-Line Copybook", pages.join(""));
+}
+
+// ---------------------------------------------------------------------------
+// Set 3f — handwriting workbook for teens and adult beginners. Plain, grown-up
+// layout: how the script works, every letter in its four forms on 4-line
+// ruling, then joining practice with everyday words.
+// ---------------------------------------------------------------------------
+
+const BEGINNER_WORDS = [
+  { ar: "سلام", translit: "salaam", en: "peace / hello" },
+  { ar: "شكرا", translit: "shukran", en: "thank you" },
+  { ar: "مرحبا", translit: "marhaban", en: "welcome" },
+  { ar: "كتاب", translit: "kitaab", en: "book" },
+  { ar: "قلم", translit: "qalam", en: "pen" },
+  { ar: "باب", translit: "baab", en: "door" },
+  { ar: "بيت", translit: "bayt", en: "house" },
+  { ar: "ماء", translit: "maa'", en: "water" },
+  { ar: "نور", translit: "nuur", en: "light" },
+  { ar: "شمس", translit: "shams", en: "sun" },
+  { ar: "قمر", translit: "qamar", en: "moon" },
+  { ar: "عربي", translit: "ʿarabi", en: "Arabic" },
+];
+
+function buildBeginnerHandwriting(qr) {
+  const letterPages = Math.ceil(letterGuide.length / 4);
+  const wordPages = Math.ceil(BEGINNER_WORDS.length / 6);
+  const total = 1 + letterPages + wordPages;
+  const kicker = "Arabic Handwriting for Beginners";
+  const pages = [];
+
+  const rules = [
+    { en: "Right to left. Start every line at the right margin; words and letters run leftwards.", ar: "من اليمين إلى اليسار: ابدأ كلّ سطر من الهامش الأيمن." },
+    { en: "Letters join. Most letters connect to the next one, so each has up to four forms: alone, start, middle and end.", ar: "الحروف تتّصل: يتّصل أكثرها بما بعده، فلكلّ حرف حتى أربعة أشكال: منفرد وأوّل ووسط وآخر." },
+    { en: "Six letters never join to the left: ا د ذ ر ز و. After them the next letter starts fresh, in its start form.", ar: "ستّة حروف لا تتّصل بما بعدها: ا د ذ ر ز و، فيبدأ الحرف التالي بشكله الأوّل." },
+    { en: "Sit on the red line. Letter bodies rest on the baseline; tall strokes (ا ل ك ط) rise to the top line, tails (ر و ي ن ع) drop below it.", ar: "اجلس على السطر الأحمر: أجسام الحروف على السطر، والخطوط الطويلة (ا ل ك ط) ترتفع، والذيول (ر و ي ن ع) تنزل تحته." },
+    { en: "Body first, dots last. Write the whole word's shape, then add the dots and any marks — the way Arabic hands write naturally.", ar: "الجسم أوّلاً والنقاط أخيراً: اكتب شكل الكلمة كلّه ثمّ ضع النقاط والعلامات." },
+    { en: "Hold the pen loosely, and move from the wrist, not the fingers. Slow and even beats fast and neat-looking.", ar: "أمسك القلم برفق، وحرّكه من الرسغ لا من الأصابع. البطء والانتظام خير من السرعة." },
+  ];
+  pages.push(sheet(`
+    ${head(kicker)}
+    <div class="title"><h1>How Arabic handwriting works</h1><span class="arname ar" dir="rtl">كيف تُكتب العربية</span></div>
+    <div class="instruction">Six rules cover almost everything a beginner gets wrong. Read them once, then keep this page beside you for the letter pages.
+      <span class="rtl ar">ستّ قواعد تغطّي أكثر أخطاء المبتدئين. اقرأها مرّة، واحتفظ بالصفحة بجانبك وأنت تكتب.</span></div>
+    <div class="body">
+      <ol style="margin:5mm 0 0;padding-inline-start:6mm;display:flex;flex-direction:column;gap:3.5mm;">
+        ${rules.map((r) => `<li style="font-size:10.5pt;line-height:1.5;">${esc(r.en)}<div class="ar" dir="rtl" style="font-size:11pt;color:#555;">${esc(r.ar)}</div></li>`).join("")}
+      </ol>
+      ${sectionLabel("One letter, four forms: ه", "حرف واحد بأربعة أشكال: ه")}
+      ${ruledRow(letterForms("ه").map((f) => ({ text: f.glyph, solid: true })), { height: 22, step: 140, inset: 90 })}
+      ${sectionLabel("Practise the six non-joiners", "تدرّب على الحروف الستّة التي لا تتّصل بما بعدها")}
+      ${ruledRow(["ا", "د", "ذ", "ر", "ز", "و"].map((t) => ({ text: t, solid: false })), { height: 22, step: 130, inset: 80 })}
+    </div>
+    ${foot(1, total, qr)}
+  `));
+
+  for (let start = 0; start < letterGuide.length; start += 4) {
+    const chunk = letterGuide.slice(start, start + 4);
+    const blocks = chunk
+      .map((e) => {
+        const forms = letterForms(e.ar);
+        const joinsNote = RIGHT_JOINING_ONLY.has(e.ar) ? "joins on the right only" : "joins both sides";
+        const slots = [...forms.map((f) => ({ text: f.glyph, solid: true })), ...forms.map((f) => ({ text: f.glyph, solid: false }))];
+        return `<div>
+          <div style="display:flex;justify-content:space-between;font-size:8.5pt;color:#555;margin:3mm 0 1mm;">
+            <span><b>${esc(e.enName)}</b> · ${esc(e.translit)} · alone, start, middle, end · ${joinsNote}</span>
+            <span class="ar" dir="rtl" style="font-weight:700;">${esc(e.arName)} ${esc(e.ar)}</span>
+          </div>
+          ${ruledRow(slots, { height: 19, step: 108, fontSize: 60, inset: 50 })}
+          ${ruledRow([], { height: 19 })}
+        </div>`;
+      })
+      .join("");
+    pages.push(sheet(`
+      ${head(kicker)}
+      <div class="title"><h1>The letters in their four forms</h1><span class="arname ar" dir="rtl">الحروف بأشكالها الأربعة</span><span class="sub">letters ${start + 1}–${start + chunk.length}</span></div>
+      <div class="instruction">Read each row right to left: alone, start, middle, end — then trace the grey set and write all four forms on the empty line.
+        <span class="rtl ar">اقرأ كلّ صفّ من اليمين: منفرد، أوّل، وسط، آخر — ثمّ تتبّع الأشكال الرمادية واكتب الأربعة على السطر الفارغ.</span></div>
+      <div class="body">${blocks}</div>
+      ${foot(pages.length + 1, total, qr)}
+    `));
+  }
+
+  for (let start = 0; start < BEGINNER_WORDS.length; start += 6) {
+    const chunk = BEGINNER_WORDS.slice(start, start + 6);
+    const rows = chunk
+      .map((w) => `<div>
+        <div style="display:flex;justify-content:space-between;font-size:8.5pt;color:#555;margin:3mm 0 1mm;">
+          <span><b>${esc(w.translit)}</b> — ${esc(w.en)}</span><span class="ar" dir="rtl" style="font-weight:700;">${esc(w.ar)}</span>
+        </div>
+        ${ruledRow([{ text: w.ar, solid: true }, { text: w.ar, solid: false }, { text: w.ar, solid: false }], { height: 21, step: 190, fontSize: 54, inset: 95 })}
+      </div>`)
+      .join("");
+    pages.push(sheet(`
+      ${head(kicker)}
+      <div class="title"><h1>Joining letters into words</h1><span class="arname ar" dir="rtl">وصل الحروف كلمات</span></div>
+      <div class="instruction">Write each word without lifting the pen inside it, except after a non-joiner (ا د ذ ر ز و). Add the dots at the end. Copy the model, trace twice, then write it on your own to the left.
+        <span class="rtl ar">اكتب الكلمة دون رفع القلم إلّا بعد حرف لا يتّصل بما بعده (ا د ذ ر ز و)، وضع النقاط في الآخر. انسخ النموذج وتتبّعه مرّتين ثمّ اكتبه وحدك إلى اليسار.</span></div>
+      <div class="body">${rows}</div>
+      ${foot(pages.length + 1, total, qr)}
+    `));
+  }
+
+  return doc("Arabic Handwriting for Beginners — Workbook", pages.join(""));
 }
 
 // ---------------------------------------------------------------------------
@@ -1246,6 +1358,7 @@ const SETS = [
   { id: "arabic-tanween", html: buildTanween },
   { id: "arabic-alphabet-flashcards", html: buildFlashcards },
   { id: "arabic-4-line-copybook", html: buildFourLineCopybook },
+  { id: "arabic-handwriting-beginners", html: buildBeginnerHandwriting },
   { id: "arabic-colors", html: buildColors },
   { id: "arabic-animals-coloring", html: buildAnimals },
   { id: "arabic-fruits-vegetables-coloring", html: buildFruitsVeg },

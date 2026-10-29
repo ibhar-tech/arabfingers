@@ -520,6 +520,68 @@ export const worksheetPages: WorksheetPage[] = [
     ],
   },
   {
+    id: "arabic-handwriting-beginners",
+    seoTitleEn: "Arabic Handwriting Practice PDF for Beginners — Free Workbook for Adults",
+    seoTitleAr: "كرّاسة الخطّ العربي للمبتدئين PDF — تمارين كتابة مجانية للكبار",
+    seoDescEn:
+      "Free Arabic writing exercises for beginners: the six rules of Arabic handwriting, all 28 letters in their four forms on 4-line ruling to trace and copy, and everyday words for joining practice. 10-page PDF for teens and adults.",
+    seoDescAr:
+      "تمارين مجانية لكتابة العربية للمبتدئين: القواعد الستّ للخطّ العربي، والحروف الـ28 بأشكالها الأربعة على الأسطر الأربعة للتتبّع والنسخ، وكلمات يومية للتدرّب على الوصل. ملف PDF من 10 صفحات لليافعين والكبار.",
+    keywords: [
+      "free arabic writing exercises for beginners pdf",
+      "arabic handwriting practice pdf",
+      "arabic worksheets for beginners pdf",
+      "arabic writing practice sheets pdf",
+      "arabic alphabet writing practice for adults",
+      "تمارين كتابة الحروف العربية للمبتدئين pdf",
+      "كراسة تحسين الخط العربي للكبار",
+    ],
+    taglineEn: "For the grown-up at the table — learning to write Arabic, or relearning it, at your own pace.",
+    taglineAr: "للكبير على الطاولة — يتعلّم كتابة العربية أو يستعيدها على مهله.",
+    insideEn: [
+      "A one-page primer: right to left, the four letter forms, the six letters that never join forwards (ا د ذ ر ز و), sitting on the baseline, and why the dots go on last.",
+      "Seven pages covering all 28 letters, four per page: each letter's four forms — alone, start, middle, end — as a model and as outlines to trace, with an empty 4-line row to write them yourself.",
+      "Two pages of joining practice with twelve everyday words (salaam, shukran, kitaab, qalam…), each with transliteration and meaning.",
+      "A plain, adult layout — no cartoons — so it works for teenagers, parents learning alongside a child, and adult students.",
+    ],
+    insideAr: [
+      "صفحة مدخل: من اليمين إلى اليسار، وأشكال الحرف الأربعة، والحروف الستّة التي لا تتّصل بما بعدها (ا د ذ ر ز و)، والجلوس على السطر، ولماذا توضع النقاط أخيراً.",
+      "سبع صفحات تغطّي الحروف الـ28، أربعة في كلّ صفحة: أشكال كلّ حرف الأربعة — منفرد وأوّل ووسط وآخر — نموذجاً وخطوطاً مفرّغة للتتبّع، مع سطر رباعيّ فارغ لتكتبها بنفسك.",
+      "صفحتان للتدرّب على الوصل باثنتي عشرة كلمة يومية (سلام، شكراً، كتاب، قلم…) مع نطقها ومعناها.",
+      "تصميم بسيط للكبار — بلا رسوم كرتونية — يناسب اليافعين، والأهل الذين يتعلّمون مع أطفالهم، والطلاب الكبار.",
+    ],
+    useEn: [
+      "Do one letter page a day, about ten minutes: four letters, four forms each. In a week you have written the whole alphabet in every form it takes, which is what reading real Arabic requires.",
+      "Write slowly and keep the pen moving from right to left. Neatness comes from even, unhurried strokes, not from pressing hard; if your hand tires, you are gripping too tightly.",
+      "If you are learning so you can help a child, do your page while they do theirs. Children copy what the adults at the table are doing far more readily than what they are told.",
+    ],
+    useAr: [
+      "اكتب صفحة حروف كلّ يوم، نحو عشر دقائق: أربعة حروف بأربعة أشكال لكلّ منها. وفي أسبوع تكون قد كتبت الأبجدية كلّها بكلّ أشكالها، وهذا ما تحتاجه قراءة العربية الحقيقية.",
+      "اكتب ببطء وأبقِ القلم يتحرّك من اليمين إلى اليسار. فالخطّ المرتّب يأتي من ضربات متساوية هادئة لا من الضغط الشديد، وإن تعبت يدك فأنت تمسك القلم بقوّة زائدة.",
+      "وإن كنت تتعلّم لتعين طفلك، فاكتب صفحتك وهو يكتب صفحته. فالأطفال يقلّدون ما يفعله الكبار على الطاولة أسرع بكثير ممّا يُقال لهم.",
+    ],
+    faq: [
+      {
+        qEn: "Can an adult learn to write Arabic from worksheets?",
+        qAr: "هل يستطيع الكبير تعلّم كتابة العربية من أوراق العمل؟",
+        aEn: "Yes, for the handwriting itself. The script is learned the same way at any age — letter forms first, then joining, then words. What worksheets cannot give you is pronunciation, so pair them with audio: every letter on this site has a recording.",
+        aAr: "نعم، فيما يخصّ الخطّ نفسه. فالكتابة تُتعلّم بالطريقة نفسها في كلّ عمر — أشكال الحروف أوّلاً، ثمّ الوصل، ثمّ الكلمات. أمّا النطق فلا تعطيه الأوراق، فاجمعها مع الصوت: لكلّ حرف على هذا الموقع تسجيل.",
+      },
+      {
+        qEn: "Why does each letter have four forms?",
+        qAr: "لماذا لكلّ حرف أربعة أشكال؟",
+        aEn: "Because Arabic is joined writing. A letter takes one shape alone, another at the start of a word, another in the middle and another at the end. Six letters (ا د ذ ر ز و) never join to the next letter, so they only have two shapes in practice.",
+        aAr: "لأنّ العربية كتابة متّصلة: يأخذ الحرف شكلاً منفرداً، وآخر في أوّل الكلمة، وآخر في وسطها، وآخر في آخرها. وستّة حروف (ا د ذ ر ز و) لا تتّصل بما بعدها، فليس لها عملياً إلّا شكلان.",
+      },
+      {
+        qEn: "Which pen is best for practising Arabic handwriting?",
+        qAr: "أيّ قلم أفضل للتدرّب على الخطّ العربي؟",
+        aEn: "Any pen that glides — a gel pen or a soft pencil — for these sheets. A broad calligraphy marker is a different skill; start with ordinary handwriting and add calligraphy later if you enjoy it.",
+        aAr: "أيّ قلم ينساب — قلم حبر جاف ناعم أو قلم رصاص ليّن — لهذه الأوراق. أمّا القلم العريض للخطّ فمهارة أخرى؛ ابدأ بالكتابة العادية وأضف الخطّ لاحقاً إن أحببته.",
+      },
+    ],
+  },
+  {
     id: "arabic-colors",
     seoTitleEn: "Arabic Colours Worksheets PDF — Free Printable Colour & Trace",
     seoTitleAr: "أوراق الألوان بالعربية PDF — تلوين وتتبّع للطباعة مجاناً",
