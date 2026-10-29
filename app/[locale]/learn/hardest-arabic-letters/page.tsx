@@ -10,10 +10,14 @@ import { letterGuide, type LetterGuideEntry } from "@/lib/letterGuide";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return generatePageMetadata(locale, "/learn/hardest-arabic-letters", {
-    titleEn: "The 10 Hardest Arabic Letters for English Speakers",
-    titleAr: "أصعب عشرة حروف عربية على الناطقين بالإنجليزية",
+    // Oct 2026: 215 impressions at pos 6.3 and 1 click. The old title never
+    // said "pronounce" or showed a letter; searchers for this topic look for
+    // both ("hardest arabic letters to pronounce", "arabic letters not in
+    // english"). The letters named are the page's own ten (difficulty: hard).
+    titleEn: "Hardest Arabic Letters to Pronounce: ع ح ق ض and How to Say Them",
+    titleAr: "أصعب الحروف العربية نطقاً: ع ح ق ض وكيف تُنطق",
     descriptionEn:
-      "Ten of the 28 Arabic letters have no English equivalent at all. Here is each one — where the sound is made, the nearest English sound and how it differs, the mistake learners reliably make, and what to do about it.",
+      "The ten Arabic letters English speakers find hardest: the throat letters ح خ ع غ ق, the emphatic ص ض ط ظ and the rolled ر. Where each sound is made, the mistake learners make, and what fixes it.",
     descriptionAr:
       "عشرة من حروف العربية الثمانية والعشرين لا نظير لها في الإنجليزية البتّة. إليك كلّ حرف منها: مخرجه، وأقرب صوت إنجليزي إليه وموضع الفرق، والخطأ الذي يقع فيه المتعلّمون عادةً، وعلاجه.",
     ogType: "article",
@@ -112,7 +116,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
     <PageLayout locale={locale}>
       <ArticleMeta
         locale={locale}
-        title="The 10 Hardest Arabic Letters for English Speakers"
+        title="Hardest Arabic Letters to Pronounce: ع ح ق ض and How to Say Them"
         description="The ten Arabic letters with no English equivalent — where each sound is made, the mistake learners reliably make, and what to do about it."
         slug="learn/hardest-arabic-letters"
         datePublished="2026-08-20"
@@ -203,7 +207,7 @@ function Groups({ isAr }: { isAr: boolean }) {
 function ContentEn() {
   return (
     <>
-      <h1 className="text-3xl font-semibold text-ink mb-2">The 10 Hardest Arabic Letters for English Speakers</h1>
+      <h1 className="text-3xl font-semibold text-ink mb-2">The 10 Hardest Arabic Letters to Pronounce for English Speakers</h1>
       <p className="text-base text-ink/75 mb-8">Where each sound lives, and what actually helps</p>
 
       <div className="space-y-8 text-sm leading-relaxed text-ink/80">
@@ -242,7 +246,7 @@ function ContentEn() {
 function ContentAr() {
   return (
     <>
-      <h1 className="text-3xl font-semibold text-ink mb-2">أصعب عشرة حروف عربية على الناطقين بالإنجليزية</h1>
+      <h1 className="text-3xl font-semibold text-ink mb-2">أصعب عشرة حروف عربية نطقاً على الناطقين بالإنجليزية</h1>
       <p className="text-base text-ink/75 mb-8">أين مخرج كلّ صوت، وما الذي ينفع فعلاً</p>
 
       <div className="space-y-8 text-sm leading-relaxed text-ink/80">

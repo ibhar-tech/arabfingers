@@ -13,15 +13,19 @@ import { setRequestLocale } from "next-intl/server";
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return generatePageMetadata(locale, "/blog/arabic-alphabet-vs-latin-deep-dive", {
-    titleEn: "Arabic vs Latin Alphabet: A Linguistic Deep Dive",
-    titleAr: "الأبجدية العربية مقابل اللاتينية: غوص لغوي عميق",
+    // Oct 2026: 702 impressions at pos 7.7 and 1 click. The queries around it
+    // are fact questions ("how many letters in the arabic alphabet", "arabic
+    // alphabet in english", "latin vs arabic"); "Linguistic Deep Dive" answered
+    // none of them in the result. Title and description now carry the answers.
+    titleEn: "Arabic vs Latin Alphabet: 28 Letters, Right to Left, No Capitals",
+    titleAr: "الأبجدية العربية مقابل اللاتينية: 28 حرفاً من اليمين إلى اليسار",
     descriptionEn:
-      "A comprehensive comparison of Arabic and Latin writing systems. Explore letter connectivity, diacritics, morphology, and how these differences affect language learning.",
+      "The Arabic alphabet has 28 letters, written right to left and joined, with no capital letters; short vowels are small marks above or below. Here is how it compares with the 26-letter Latin (English) alphabet, point by point.",
     descriptionAr:
-      "مقارنة شاملة بين نظامي الكتابة العربي واللاتيني. استكشف اتصال الحروف والتشكيل والصرف، وكيف تؤثر هذه الفروقات على تعلم اللغة لدى الأطفال ثنائيي اللغة.",
+      "للأبجدية العربية 28 حرفاً تُكتب من اليمين إلى اليسار متّصلةً، بلا حروف كبيرة، والحركات القصيرة علامات صغيرة فوق الحرف أو تحته. هذه مقارنتها بالأبجدية اللاتينية (الإنجليزية) ذات الحروف الستّة والعشرين، نقطةً نقطة.",
     ogType: "article",
     publishedTime: "2026-05-05",
-    modifiedTime: "2026-06-12",
+    modifiedTime: "2026-10-29",
     keywords: [
       "arabic vs latin alphabet", "الأبجدية العربية مقابل اللاتينية",
       "arabic writing system", "نظام الكتابة العربية",
@@ -29,6 +33,42 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       "arabic diacritics tashkeel", "التشكيل في اللغة العربية",
     ],
   });
+}
+
+/** The answers people search for, before the long read. */
+const GLANCE = [
+  { en: "Letters", ar: "عدد الحروف", arabicEn: "28", arabicAr: "28", latinEn: "26 (English)", latinAr: "26 (في الإنجليزية)" },
+  { en: "Direction", ar: "الاتجاه", arabicEn: "Right to left", arabicAr: "من اليمين إلى اليسار", latinEn: "Left to right", latinAr: "من اليسار إلى اليمين" },
+  { en: "Joined letters", ar: "اتصال الحروف", arabicEn: "Yes — most letters join, even in print", arabicAr: "نعم — تتّصل أكثر الحروف حتى في الطباعة", latinEn: "No in print (only in cursive)", latinAr: "لا في الطباعة (فقط في الخطّ المتّصل)" },
+  { en: "Shapes per letter", ar: "أشكال الحرف", arabicEn: "Up to 4 (alone, start, middle, end)", arabicAr: "حتى 4 (منفرد، أوّل، وسط، آخر)", latinEn: "2 (capital and small)", latinAr: "2 (كبير وصغير)" },
+  { en: "Capital letters", ar: "الحروف الكبيرة", arabicEn: "None", arabicAr: "لا توجد", latinEn: "Yes", latinAr: "نعم" },
+  { en: "Short vowels", ar: "الحركات القصيرة", arabicEn: "Small marks above or below, often left out", arabicAr: "علامات صغيرة فوق الحرف أو تحته، وكثيراً ما تُحذف", latinEn: "Written as letters (a, e, i, o, u)", latinAr: "تُكتب حروفاً (a, e, i, o, u)" },
+];
+
+function AtAGlance({ isAr }: { isAr: boolean }) {
+  return (
+    <div className="my-6 overflow-x-auto rounded-xl border border-ink/10 bg-card">
+      <table className="w-full text-sm">
+        <caption className="px-4 pt-3 text-start font-semibold text-ink">{isAr ? "باختصار" : "At a glance"}</caption>
+        <thead>
+          <tr className="text-start text-ink/70">
+            <th scope="col" className="px-4 py-2 text-start"></th>
+            <th scope="col" className="px-4 py-2 text-start">{isAr ? "العربية" : "Arabic"}</th>
+            <th scope="col" className="px-4 py-2 text-start">{isAr ? "اللاتينية" : "Latin"}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {GLANCE.map((r) => (
+            <tr key={r.en} className="border-t border-ink/10 text-ink/80">
+              <th scope="row" className="px-4 py-2 text-start font-semibold text-ink">{isAr ? r.ar : r.en}</th>
+              <td className="px-4 py-2">{isAr ? r.arabicAr : r.arabicEn}</td>
+              <td className="px-4 py-2">{isAr ? r.latinAr : r.latinEn}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
 export default async function ArabicVsLatinPage({ params }: { params: Promise<{ locale: string }> }) {
@@ -39,12 +79,12 @@ export default async function ArabicVsLatinPage({ params }: { params: Promise<{ 
   return (
     <PageLayout locale={locale}>
       <ArticleStructuredData
-        title="Arabic vs Latin Alphabet: A Linguistic Deep Dive"
+        title="Arabic vs Latin Alphabet: 28 Letters, Right to Left, No Capitals"
         description="A comprehensive comparison of Arabic and Latin writing systems."
         slug="blog/arabic-alphabet-vs-latin-deep-dive"
         locale={locale}
         datePublished="2026-05-05"
-        dateModified="2026-06-12"
+        dateModified="2026-10-29"
       />
       <Breadcrumbs
         locale={locale}
@@ -63,8 +103,8 @@ export default async function ArabicVsLatinPage({ params }: { params: Promise<{ 
 
 function AuthorBlock({ isAr }: { isAr?: boolean }) {
   return (
-    <div className="flex items-center gap-3 mt-2 mb-8 text-xs text-ink/40">
-      <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-accent text-sm font-bold">IT</div>
+    <div className="flex items-center gap-3 mt-2 mb-8 text-xs text-ink/70">
+      <div className="w-8 h-8 rounded-full bg-accent/20 flex items-center justify-center text-ink text-sm font-bold">IT</div>
       <div>
         <Link href={`/${isAr ? "ar" : "en"}/author`} className="text-ink/70 font-medium hover:text-accent transition">IBHAR TECH LEARNING</Link>
         <span className="mx-2">·</span>
@@ -79,9 +119,10 @@ function AuthorBlock({ isAr }: { isAr?: boolean }) {
 function ContentEn() {
   return (
     <>
-      <h1 className="text-3xl font-semibold text-ink mb-1">Arabic vs Latin Alphabet: A Linguistic Deep Dive</h1>
+      <h1 className="text-3xl font-semibold text-ink mb-1">Arabic vs Latin Alphabet: How the Two Scripts Differ</h1>
       <p className="text-base text-ink/75">Understanding what makes Arabic unique — and why it matters for learning</p>
       <AuthorBlock />
+      <AtAGlance isAr={false} />
 
       <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
         <Image
@@ -138,7 +179,7 @@ function ContentEn() {
             ].map((f) => (
               <div key={f.pos} className="rounded-lg border border-ink/8 bg-card p-3 text-center">
                 <span className="text-2xl text-ink block mb-1" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{f.form}</span>
-                <span className="text-[10px] text-ink/40">{f.pos}</span>
+                <span className="text-[10px] text-ink/70">{f.pos}</span>
               </div>
             ))}
           </div>
@@ -166,7 +207,7 @@ function ContentEn() {
             ].map((v) => (
               <div key={v.name} className="rounded-lg border border-ink/8 bg-card p-3 text-center">
                 <span className="text-3xl text-ink block mb-1" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{v.mark}</span>
-                <span className="text-[10px] text-ink/40">{v.name}</span>
+                <span className="text-[10px] text-ink/70">{v.name}</span>
               </div>
             ))}
           </div>
@@ -217,8 +258,8 @@ function ContentEn() {
       </div>
 
       <div className="flex flex-wrap gap-3 mt-10 mb-4">
-        <Link href="/en/blog/screen-time-guidelines-arabic-learning" className="text-xs text-accent underline">← Screen Time Guide</Link>
-        <Link href="/en/blog/arabic-calligraphy-for-kids" className="text-xs text-accent underline">Arabic Calligraphy →</Link>
+        <Link href="/en/blog/screen-time-guidelines-arabic-learning" className="text-xs text-ink underline">← Screen Time Guide</Link>
+        <Link href="/en/blog/arabic-calligraphy-for-kids" className="text-xs text-ink underline">Arabic Calligraphy →</Link>
       </div>
 
       <div className="text-center py-6">
@@ -233,9 +274,10 @@ function ContentEn() {
 function ContentAr() {
   return (
     <>
-      <h1 className="text-3xl font-semibold text-ink mb-1">الأبجدية العربية مقابل اللاتينية: غوص لغوي عميق</h1>
+      <h1 className="text-3xl font-semibold text-ink mb-1">الأبجدية العربية مقابل اللاتينية: كيف يختلف الخطّان</h1>
       <p className="text-base text-ink/75">فهم ما يجعل العربية فريدة — ولماذا يهم ذلك للتعلم</p>
       <AuthorBlock isAr />
+      <AtAGlance isAr />
 
       <div className="relative w-full h-[300px] sm:h-[400px] mb-8 rounded-2xl overflow-hidden border-2 border-ink shadow-[4px_4px_0_0_var(--ink)]">
         <Image
@@ -286,7 +328,7 @@ function ContentAr() {
             ].map((f) => (
               <div key={f.pos} className="rounded-lg border border-ink/8 bg-card p-3 text-center">
                 <span className="text-2xl text-ink block mb-1" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{f.form}</span>
-                <span className="text-[10px] text-ink/40">{f.pos}</span>
+                <span className="text-[10px] text-ink/70">{f.pos}</span>
               </div>
             ))}
           </div>
@@ -311,7 +353,7 @@ function ContentAr() {
             ].map((v) => (
               <div key={v.name} className="rounded-lg border border-ink/8 bg-card p-3 text-center">
                 <span className="text-3xl text-ink block mb-1" style={{ fontFamily: "var(--font-noto-naskh), sans-serif" }}>{v.mark}</span>
-                <span className="text-[10px] text-ink/40">{v.name}</span>
+                <span className="text-[10px] text-ink/70">{v.name}</span>
               </div>
             ))}
           </div>
@@ -362,8 +404,8 @@ function ContentAr() {
       </div>
 
       <div className="flex flex-wrap gap-3 mt-10 mb-4">
-        <Link href="/ar/blog/screen-time-guidelines-arabic-learning" className="text-xs text-accent underline">← دليل وقت الشاشة</Link>
-        <Link href="/ar/blog/arabic-calligraphy-for-kids" className="text-xs text-accent underline">الخط العربي للأطفال →</Link>
+        <Link href="/ar/blog/screen-time-guidelines-arabic-learning" className="text-xs text-ink underline">← دليل وقت الشاشة</Link>
+        <Link href="/ar/blog/arabic-calligraphy-for-kids" className="text-xs text-ink underline">الخط العربي للأطفال →</Link>
       </div>
 
       <div className="text-center py-6">
