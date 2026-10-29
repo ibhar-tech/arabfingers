@@ -6,9 +6,17 @@
     "scripts/*.{js,mjs}",
     "tests/**/*.test.{ts,tsx}"
   ],
-  "project": ["**/*.{ts,tsx,js,mjs}"],
-  "ignore": ["public/**"],
-  "ignoreDependencies": ["eslint-config-next", "tailwindcss", "postcss"],
+  "project": [
+    "**/*.{ts,tsx,js,mjs}"
+  ],
+  "ignore": [
+    "public/**"
+  ],
+  "ignoreDependencies": [
+    "tailwindcss"
+  ],
   "ignoreExportsUsedInFile": true,
-  "ignoreBinaries": ["google-chrome"]
+  "ignoreBinaries": [
+    "google-chrome"
+  ]
 }

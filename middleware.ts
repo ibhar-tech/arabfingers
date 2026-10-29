@@ -1,5 +1,9 @@
 import { NextResponse, type NextRequest } from "next/server";
 
+// Next 16 renames this convention to proxy.ts, but a proxy always runs on the
+// Node.js runtime, which OpenNext marks experimental on Cloudflare. Keeping the
+// (deprecated, still supported) middleware file keeps the edge runtime.
+
 const CANONICAL_HOST = "www.arabfingers.site";
 
 /**
