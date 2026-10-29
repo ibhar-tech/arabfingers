@@ -4,7 +4,7 @@
  *
  *   node scripts/build-worksheets.mjs
  *   node scripts/build-worksheets.mjs --numbers-only
- *   node scripts/build-worksheets.mjs --only arabic-language-day
+ *   node scripts/build-worksheets.mjs --only arabic-language-day[,another-pack]
  *
  * Renders HTML with headless Chrome and prints it to PDF. Chrome is used
  * deliberately: it is the only thing on this machine that shapes Arabic
@@ -26,7 +26,7 @@ import QRCode from "qrcode";
 import { letterGuide } from "../lib/letterGuide.ts";
 import { coloringShapes as SHAPES } from "../lib/coloringShapes.ts";
 import {
-  numbersData, numbers11to20Data, colorsData, animalsData, harakatData,
+  numbersData, numbers11to20Data, colorsData, animalsData, harakatData, tanweenData,
   fruitsVegData, transportData, solarData, ramadanData, seaData,
   bodyPartsData, seasonsData, oppositesData,
 } from "../lib/worksheets.ts";
@@ -189,6 +189,16 @@ const PACK_LINKS = {
     url: `${SITE}/en/learn/arabic-alphabet-guide`,
     captionEn: "Hear the letters:",
     captionAr: "استمع للحروف:",
+  },
+  "arabic-letters-harakat": {
+    url: `${SITE}/en/learn/arabic-alphabet-guide`,
+    captionEn: "Hear the letters:",
+    captionAr: "استمع للحروف:",
+  },
+  "arabic-tanween": {
+    url: `${SITE}/en/printables/arabic-harakat`,
+    captionEn: "More vowel sheets:",
+    captionAr: "أوراق الحركات:",
   },
   "arabic-colors": {
     url: `${SITE}/en/learn/arabic-colors`,
@@ -449,7 +459,7 @@ function buildNumbersPack(numberItems, kicker, qr) {
 // Set 3b — harakat (short vowels)
 // ---------------------------------------------------------------------------
 
-function harakatSheet(item, i, total, qr) {
+function harakatSheet(item, i, total, qr, kicker = "Arabic Harakat — Short Vowels") {
   // Three letters the child already knows, each carrying the mark, so the
   // sheet shows the mark as something that sits ON letters rather than a
   // floating symbol.
@@ -464,7 +474,7 @@ function harakatSheet(item, i, total, qr) {
     .join("");
 
   return sheet(`
-    ${head("Arabic Harakat — Short Vowels")}
+    ${head(kicker)}
     <div class="title">
       <h1>${esc(item.nameEn)}</h1>
       <span class="arname ar" dir="rtl">${esc(item.nameAr)}</span>
@@ -512,6 +522,93 @@ function buildHarakat(qr) {
     "Arabic Short Vowels (Harakat) Worksheets",
     harakatData.map((item, i) => harakatSheet(item, i, total, qr)).join(""),
   );
+}
+
+function buildTanween(qr) {
+  const total = tanweenData.length;
+  return doc(
+    "Arabic Tanween Worksheets",
+    tanweenData.map((item, i) => harakatSheet(item, i, total, qr, "Arabic Tanween")).join(""),
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Set 3c — every letter with fatha, kasra, damma and sukoon
+// ---------------------------------------------------------------------------
+
+/** Plain consonant romanisation for the syllable labels (ba, bi, bu, b). */
+const CONSONANT = {
+  "ا": "ʾ", "ب": "b", "ت": "t", "ث": "th", "ج": "j", "ح": "ḥ", "خ": "kh", "د": "d",
+  "ذ": "dh", "ر": "r", "ز": "z", "س": "s", "ش": "sh", "ص": "ṣ", "ض": "ḍ", "ط": "ṭ",
+  "ظ": "ẓ", "ع": "ʿ", "غ": "gh", "ف": "f", "ق": "q", "ك": "k", "ل": "l", "م": "m",
+  "ن": "n", "ه": "h", "و": "w", "ي": "y",
+};
+
+const VOWELS = [
+  { mark: "\u064E", en: "Fatha", ar: "فتحة", v: "a" },
+  { mark: "\u0650", en: "Kasra", ar: "كسرة", v: "i" },
+  { mark: "\u064F", en: "Damma", ar: "ضمة", v: "u" },
+  { mark: "\u0652", en: "Sukoon", ar: "سكون", v: "" },
+];
+
+/** Alif cannot carry a vowel itself; with harakat it is written as hamza. */
+function seat(ch, vowel) {
+  if (ch !== "ا") return ch;
+  return vowel.v === "i" ? "إ" : "أ";
+}
+
+function harakatGrid(entries, { hollow }) {
+  const headCells = VOWELS
+    .map((v) => `<div style="text-align:center;"><div class="label">${esc(v.en)}</div><div class="label ar" dir="rtl" style="font-weight:600;">${esc(v.ar)}</div></div>`)
+    .join("");
+  const rows = entries
+    .map((e) => {
+      const cells = VOWELS
+        .map((v) => {
+          const syllable = seat(e.ar, v) + v.mark;
+          return `<div class="box" style="display:flex;flex-direction:column;align-items:center;justify-content:center;">
+            <span class="ar ${hollow ? "g-hollow" : ""}" style="font-size:${hollow ? "26pt" : "24pt"};line-height:1.1;">${esc(syllable)}</span>
+            ${hollow ? "" : `<span style="font-size:7.5pt;color:#777;">${esc(CONSONANT[e.ar] + v.v)}</span>`}
+          </div>`;
+        })
+        .join("");
+      return `<div style="display:grid;grid-template-columns:24mm repeat(4,1fr);gap:2mm;flex:1;min-height:0;">
+        <div style="display:flex;flex-direction:column;justify-content:center;">
+          <span class="ar" style="font-size:18pt;line-height:1;">${esc(e.ar)}</span>
+          <span style="font-size:7.5pt;color:#777;">${esc(e.enName)}</span>
+        </div>
+        ${cells}
+      </div>`;
+    })
+    .join("");
+  return `<div style="display:grid;grid-template-columns:24mm repeat(4,1fr);gap:2mm;margin-top:4mm;"><div></div>${headCells}</div>
+    <div class="grow" style="display:flex;flex-direction:column;gap:2mm;margin-top:2mm;">${rows}</div>`;
+}
+
+function buildLettersHarakat(qr) {
+  const halves = [letterGuide.slice(0, 14), letterGuide.slice(14)];
+  const total = 4;
+  const chart = halves.map((part, i) => sheet(`
+    ${head("Letters with Harakat")}
+    <div class="title"><h1>Read the letters with harakat</h1><span class="arname ar" dir="rtl">الحروف بالحركات</span><span class="sub">letters ${i * 14 + 1}–${i * 14 + part.length}</span></div>
+    <div class="instruction">
+      Read each row aloud from right to left: ba, bi, bu, b. The small mark above or below the letter tells you the sound.
+      <span class="rtl ar">اقرأ كلّ صفّ بصوت عالٍ: بَ، بِ، بُ، بْ. الحركة الصغيرة فوق الحرف أو تحته تخبرك بصوته.</span>
+    </div>
+    <div class="body">${harakatGrid(part, { hollow: false })}</div>
+    ${foot(i + 1, total, qr)}
+  `));
+  const trace = halves.map((part, i) => sheet(`
+    ${head("Letters with Harakat")}
+    <div class="title"><h1>Trace the letters with harakat</h1><span class="arname ar" dir="rtl">تتبّع الحروف بالحركات</span><span class="sub">letters ${i * 14 + 1}–${i * 14 + part.length}</span></div>
+    <div class="instruction">
+      Trace each letter and its mark, saying the sound as you go.
+      <span class="rtl ar">تتبّع كلّ حرف وحركته، وانطق الصوت وأنت تكتب.</span>
+    </div>
+    <div class="body">${harakatGrid(part, { hollow: true })}</div>
+    ${foot(i + 3, total, qr)}
+  `));
+  return doc("Arabic Letters with Harakat — Chart and Tracing", [...chart, ...trace].join(""));
 }
 
 // ---------------------------------------------------------------------------
@@ -1018,6 +1115,8 @@ const SETS = [
   { id: "arabic-numbers-tracing", html: buildNumbers },
   { id: "arabic-numbers-11-20", html: buildNumbers11to20 },
   { id: "arabic-harakat", html: buildHarakat },
+  { id: "arabic-letters-harakat", html: buildLettersHarakat },
+  { id: "arabic-tanween", html: buildTanween },
   { id: "arabic-colors", html: buildColors },
   { id: "arabic-animals-coloring", html: buildAnimals },
   { id: "arabic-fruits-vegetables-coloring", html: buildFruitsVeg },
@@ -1092,12 +1191,14 @@ function renderThumb(tmp, id, html, outDir = THUMB_DIR) {
 async function main() {
   const numbersOnly = process.argv.includes("--numbers-only");
   const onlyIndex = process.argv.indexOf("--only");
-  const onlyId = onlyIndex > -1 ? process.argv[onlyIndex + 1] : null;
-  if (onlyId && !SETS.some((s) => s.id === onlyId)) throw new Error(`--only: no pack "${onlyId}"`);
+  const onlyIds = onlyIndex > -1 ? process.argv[onlyIndex + 1].split(",") : null;
+  for (const id of onlyIds ?? []) {
+    if (!SETS.some((s) => s.id === id)) throw new Error(`--only: no pack "${id}"`);
+  }
   // A targeted rebuild renders only the named packs (plus the workbook, which
   // contains them) and keeps every other PDF and manifest entry as it is.
-  const targeted = onlyId
-    ? new Set([onlyId])
+  const targeted = onlyIds
+    ? new Set(onlyIds)
     : numbersOnly ? new Set(["arabic-numbers-tracing", "arabic-numbers-11-20"]) : null;
   mkdirSync(OUT_DIR, { recursive: true });
   mkdirSync(THUMB_DIR, { recursive: true });

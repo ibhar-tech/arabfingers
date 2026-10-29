@@ -3,7 +3,7 @@
   "arabic-alphabet-tracing": 1289768,
   "arabic-numbers-tracing": 332422,
   "arabic-numbers-11-20": 381743,
-  "arabic-harakat": 259482,
+  "arabic-harakat": 251771,
   "arabic-colors": 217830,
   "arabic-animals-coloring": 285422,
   "arabic-fruits-vegetables-coloring": 274640,
@@ -15,7 +15,7 @@
   "arabic-body-parts-coloring": 201740,
   "arabic-seasons-coloring": 163988,
   "arabic-opposites-coloring": 229903,
-  "arabic-complete-workbook": 3921470,
+  "arabic-complete-workbook": 4267107,
   "letters/alef": 115400,
   "letters/ba": 121583,
   "letters/ta": 120856,
@@ -44,5 +44,7 @@
   "letters/ha": 121667,
   "letters/waw": 117307,
   "letters/ya": 129183,
-  "arabic-language-day": 310695
+  "arabic-language-day": 310695,
+  "arabic-letters-harakat": 307286,
+  "arabic-tanween": 184721
 }

@@ -316,6 +316,108 @@ export const worksheetPages: WorksheetPage[] = [
     ],
   },
   {
+    id: "arabic-letters-harakat",
+    seoTitleEn: "Arabic Letters with Harakat PDF — All 28 with Fatha, Kasra, Damma",
+    seoTitleAr: "الحروف العربية بالحركات PDF — حروف الهجاء بالفتحة والكسرة والضمة",
+    seoDescEn:
+      "Free printable chart of all 28 Arabic letters with harakat — fatha, kasra, damma and sukoon (بَ بِ بُ بْ) — with the sound of each syllable, plus the same grid to trace. 4-page PDF, no signup.",
+    seoDescAr:
+      "لوحة مجانية للطباعة لحروف الهجاء الثمانية والعشرين بالحركات — الفتحة والكسرة والضمة والسكون (بَ بِ بُ بْ) — مع نطق كلّ مقطع، والشبكة نفسها للتتبّع. ملف PDF من 4 صفحات بلا تسجيل.",
+    keywords: [
+      "arabic letters with harakat pdf free download",
+      "arabic alphabet with harakat chart",
+      "arabic letters with fatha kasra damma",
+      "حروف الهجاء بالحركات pdf",
+      "الحروف بالحركات الثلاث",
+      "لوحة الحروف بالفتحة والكسرة والضمة",
+    ],
+    taglineEn: "Every letter with every short vowel — read it on two pages, trace it on two more.",
+    taglineAr: "كلّ حرف بكلّ حركة — اقرأه في صفحتين، وتتبّعه في صفحتين أخريين.",
+    insideEn: [
+      "A two-page reading chart: all 28 letters in rows, each with fatha, kasra, damma and sukoon, and the sound printed under every syllable (ba, bi, bu, b).",
+      "Alif written the way it is read with a vowel — أَ إِ أُ — instead of a bare alif that cannot carry one.",
+      "Two tracing pages with the same grid in hollow outline, so the child writes each letter together with its mark.",
+    ],
+    insideAr: [
+      "لوحة قراءة من صفحتين: الحروف الثمانية والعشرون في صفوف، لكلّ حرف فتحة وكسرة وضمة وسكون، مع نطق كلّ مقطع تحته.",
+      "الألف مكتوبة كما تُقرأ بالحركة — أَ إِ أُ — لا ألفاً مجرّدة لا تحمل حركة.",
+      "صفحتا تتبّع بالشبكة نفسها مفرّغة، ليكتب الطفل الحرف مع حركته معاً.",
+    ],
+    useEn: [
+      "Read one row a day, right to left, out loud: ba, bi, bu, b. Five minutes is enough, and by the end of a month every letter has been read with every vowel.",
+      "Once a row is easy to read, trace the same row. Writing the mark is what makes a child look for it when reading.",
+    ],
+    useAr: [
+      "اقرأوا صفّاً واحداً كلّ يوم بصوت عالٍ: بَ، بِ، بُ، بْ. خمس دقائق تكفي، وبنهاية الشهر يكون كلّ حرف قد قُرئ بكلّ حركة.",
+      "ومتى سهلت قراءة الصفّ، تتبّعوه. فكتابة الحركة هي ما يجعل الطفل يبحث عنها عند القراءة.",
+    ],
+    faq: [
+      {
+        qEn: "What are harakat in Arabic?",
+        qAr: "ما الحركات في العربية؟",
+        aEn: "Harakat are the small marks written above or below a letter to show its short vowel: fatha (a), kasra (i) and damma (u). Sukoon shows the letter has no vowel at all.",
+        aAr: "الحركات علامات صغيرة تُكتب فوق الحرف أو تحته لتبيّن حركته القصيرة: الفتحة والكسرة والضمة. أمّا السكون فيدلّ على أنّ الحرف بلا حركة.",
+      },
+      {
+        qEn: "Should children learn the letters before the harakat?",
+        qAr: "هل يتعلّم الطفل الحروف قبل الحركات؟",
+        aEn: "Usually yes — a child who can name a letter is ready to read it with fatha, kasra and damma. Start with the letters they already know, not the alphabet in order.",
+        aAr: "غالباً نعم — فالطفل الذي يعرف اسم الحرف مستعدّ لقراءته بالفتحة والكسرة والضمة. ابدأوا بالحروف التي يعرفها، لا بترتيب الأبجدية.",
+      },
+    ],
+  },
+  {
+    id: "arabic-tanween",
+    seoTitleEn: "Arabic Tanween Worksheets PDF — Dammatan, Fathatan, Kasratan",
+    seoTitleAr: "أوراق عمل التنوين PDF — تنوين الضمّ والفتح والكسر",
+    seoDescEn:
+      "Free printable tanween worksheets: one sheet each for dammatan (ـٌ), fathatan (ـً) and kasratan (ـٍ), traced onto real letters and shown on the same word — كتابٌ, كتابًا, كتابٍ. PDF, no signup.",
+    seoDescAr:
+      "أوراق عمل مجانية للتنوين: ورقة لكلّ من تنوين الضمّ والفتح والكسر، تُتتبّع على حروف حقيقية وتظهر على الكلمة نفسها — كتابٌ وكتابًا وكتابٍ. ملف PDF بلا تسجيل.",
+    keywords: [
+      "arabic tanween worksheets pdf",
+      "tanween for kids",
+      "fathatan kasratan dammatan",
+      "أوراق عمل التنوين pdf",
+      "التنوين للأطفال",
+      "تنوين الفتح والضم والكسر",
+    ],
+    taglineEn: "Three endings, one word: كتابٌ، كتابًا، كتابٍ — and a sheet for each.",
+    taglineAr: "ثلاث نهايات وكلمة واحدة: كتابٌ، كتابًا، كتابٍ — وورقة لكلّ منها.",
+    insideEn: [
+      "One sheet per tanween — dammatan, fathatan and kasratan — with the mark shown large on ب and on three letters with their sounds (bun, ban, bin).",
+      "Fathatan written as it appears in real text, on an extra alif (بًا), with a note that the alif is not read.",
+      "Three graded tracing rows per sheet, and the same word on every sheet so the only thing that changes is the ending.",
+    ],
+    insideAr: [
+      "ورقة لكلّ تنوين — الضمّ والفتح والكسر — مع العلامة كبيرة على الباء وعلى ثلاثة حروف بنطقها.",
+      "تنوين الفتح مكتوب كما يظهر في النصوص، على ألف زائدة (بًا)، مع تنبيه أنّ الألف لا تُقرأ.",
+      "ثلاثة صفوف تتبّع متدرّجة في كلّ ورقة، والكلمة نفسها في الأوراق الثلاث فلا يتغيّر إلّا آخرها.",
+    ],
+    useEn: [
+      "Do the harakat sheets first. Tanween is a doubled fatha, kasra or damma, so a child who reads بَ بِ بُ easily is ready for بًا بٍ بٌ.",
+      "Read the three sheets' words side by side at the end — kitaabun, kitaaban, kitaabin. Hearing the same word with three endings is the whole lesson.",
+    ],
+    useAr: [
+      "ابدأوا بأوراق الحركات. فالتنوين فتحة أو كسرة أو ضمّة مضعّفة، والطفل الذي يقرأ بَ بِ بُ بسهولة مستعدّ لبًا بٍ بٌ.",
+      "واقرأوا كلمات الأوراق الثلاث متجاورة في الختام — كتابٌ، كتابًا، كتابٍ. فسماع الكلمة نفسها بثلاث نهايات هو الدرس كلّه.",
+    ],
+    faq: [
+      {
+        qEn: "What is tanween?",
+        qAr: "ما التنوين؟",
+        aEn: "Tanween is a doubled vowel mark at the end of a word — ـٌ, ـً or ـٍ — read as the short vowel followed by a light 'n': un, an, in. It usually marks an indefinite noun, like 'a book'.",
+        aAr: "التنوين نون ساكنة تُلفظ ولا تُكتب في آخر الاسم، ويُرمز إليه بحركة مضعّفة — ـٌ أو ـً أو ـٍ — فيُقرأ: ـُنْ، ـَنْ، ـِنْ.",
+      },
+      {
+        qEn: "Why is there an alif after fathatan?",
+        qAr: "لماذا تأتي ألف بعد تنوين الفتح؟",
+        aEn: "In ordinary spelling fathatan is written on an added alif — كتابًا — which is not pronounced. The exceptions (words ending in ة or a hamza after alif) come later; the sheets use the common form.",
+        aAr: "يُكتب تنوين الفتح في الإملاء المعتاد على ألف زائدة — كتابًا — لا تُنطق. ولهذا استثناءات (كالكلمات المنتهية بالتاء المربوطة أو بهمزة بعد ألف) تأتي لاحقاً، والأوراق تعتمد الصورة الشائعة.",
+      },
+    ],
+  },
+  {
     id: "arabic-colors",
     seoTitleEn: "Arabic Colours Worksheets PDF — Free Printable Colour & Trace",
     seoTitleAr: "أوراق الألوان بالعربية PDF — تلوين وتتبّع للطباعة مجاناً",
@@ -980,14 +1082,14 @@ export const worksheetPages: WorksheetPage[] = [
     taglineAr: `الصفحات الـ${totalWorksheetPages} كلّها، بالترتيب الذي تُعلَّم به فعلاً.`,
     insideEn: [
       "The alphabet chart first, so the reference is on the wall before any writing starts.",
-      "All 28 letter tracing pages in alphabet order, then the harakat sheets.",
+      "All 28 letter tracing pages in alphabet order, then the harakat sheets, the letters-with-harakat chart and tanween.",
       "Numbers 1–10 and 11–20, then colours, then animals — vocabulary after letters, which is the order that works.",
       "The nine coloring books next: fruits & vegetables, transport, solar system, the alphabet bubbles, Ramadan & Eid, sea animals, body parts, seasons and opposites — and the Arabic Language Day pack to finish.",
       "One file, so a single print job produces a whole workbook rather than eight separate downloads.",
     ],
     insideAr: [
       "لوحة الحروف أوّلاً، ليكون المرجع على الجدار قبل أن تبدأ الكتابة.",
-      "صفحات تتبّع الحروف الثمانية والعشرين كلّها على ترتيب الأبجدية، ثمّ أوراق الحركات.",
+      "صفحات تتبّع الحروف الثمانية والعشرين كلّها على ترتيب الأبجدية، ثمّ أوراق الحركات، ولوحة الحروف بالحركات، والتنوين.",
       "الأرقام 1–10 ثمّ 11–20، فالألوان، فالحيوانات — المفردات بعد الحروف، وهو الترتيب الذي ينجح.",
       "ثمّ كتب التلوين التسعة: الفواكه والخضروات، ووسائل النقل، والمجموعة الشمسية، وحروف الأبجدية، ورمضان والعيد، وحيوانات البحر، وأجزاء الجسم، والفصول الأربعة، والمتضادّات — وحزمة اليوم العالمي للغة العربية في الختام.",
       "ملف واحد، فتُخرج طباعة واحدة كرّاسة كاملة بدل ثمانية تنزيلات منفصلة.",

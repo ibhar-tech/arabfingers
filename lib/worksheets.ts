@@ -95,6 +95,32 @@ export const worksheetSets: WorksheetSet[] = [
     ageAr: "من 5 إلى 8 سنوات",
   },
   {
+    id: "arabic-letters-harakat",
+    emoji: "🔠",
+    titleEn: "Arabic Letters with Harakat (Chart + Tracing)",
+    titleAr: "الحروف العربية بالحركات (لوحة وتتبّع)",
+    descEn:
+      "All 28 letters with fatha, kasra, damma and sukoon — بَ بِ بُ بْ — on a two-page reading chart with the sound of each, then the same grid hollow for tracing.",
+    descAr:
+      "الحروف الثمانية والعشرون بالفتحة والكسرة والضمة والسكون — بَ بِ بُ بْ — في لوحة قراءة من صفحتين مع نطق كلّ مقطع، ثمّ الشبكة نفسها مفرّغة للتتبّع.",
+    pages: 4,
+    ageEn: "Ages 5–8",
+    ageAr: "من 5 إلى 8 سنوات",
+  },
+  {
+    id: "arabic-tanween",
+    emoji: "🎶",
+    titleEn: "Arabic Tanween Worksheets (ـٌ ـً ـٍ)",
+    titleAr: "أوراق التنوين (تنوين الضمّ والفتح والكسر)",
+    descEn:
+      "Three sheets for the three tanween endings — dammatan, fathatan and kasratan — each traced onto real letters and shown on the same word, كتابٌ / كتابًا / كتابٍ, so only the ending changes.",
+    descAr:
+      "ثلاث أوراق لأنواع التنوين الثلاثة — الضمّ والفتح والكسر — كلّ نوع يُتتبّع على حروف حقيقية ويظهر على الكلمة نفسها: كتابٌ / كتابًا / كتابٍ، فلا يتغيّر إلّا آخرها.",
+    pages: 3,
+    ageEn: "Ages 5–8",
+    ageAr: "من 5 إلى 8 سنوات",
+  },
+  {
     id: "arabic-colors",
     emoji: "🎨",
     titleEn: "Arabic Colours & Shapes Worksheets",
@@ -259,7 +285,7 @@ export const worksheetSets: WorksheetSet[] = [
       "Every pack in this library bound into one file, in teaching order — the alphabet chart first, then letters, harakat, numbers, colours, animals and all the colouring books. One download, one print job.",
     descAr:
       "كل المجموعات في ملف واحد مرتّبة تعليمياً — اللوحة أولاً ثم الحروف فالحركات فالأرقام فالألوان فالحيوانات ثم كتب التلوين كلّها. تنزيل واحد وطباعة واحدة.",
-    pages: 147,
+    pages: 154,
     ageEn: "Ages 3–7",
     ageAr: "من 3 إلى 7 سنوات",
     bundle: true,
@@ -332,7 +358,7 @@ export const harakatData: HarakahItem[] = [
     id: "fatha", mark: "\u064E", nameEn: "Fatha", nameAr: "فتحة", translit: "a",
     soundEn: "a short 'a' — like the a in 'amber', never the long 'a' of 'father' (that is the letter alef).",
     soundAr: "فتحة قصيرة تُنطق كما في «أَرنب» — أقصر من ألف المدّ.",
-    word: "بَطَة", wordTranslit: "baTTa", wordMeaningEn: "duck", wordMeaningAr: "طائر يسبح في الماء",
+    word: "بَطَّة", wordTranslit: "baTTa", wordMeaningEn: "duck", wordMeaningAr: "طائر يسبح في الماء",
   },
   {
     id: "kasra", mark: "\u0650", nameEn: "Kasra", nameAr: "كسرة", translit: "i",
@@ -357,6 +383,30 @@ export const harakatData: HarakahItem[] = [
     soundEn: "a fatha, kasra or damma doubled — the sound ends with a light 'n'. It is the sound at the end of 'shukran' (شكراً).",
     soundAr: "حركة مضعّفة يتبعها صوت النون خفيفاً، كما في آخر «شُكْراً».",
     word: "شُكْراً", wordTranslit: "shukran", wordMeaningEn: "thank you", wordMeaningAr: "كلمة شكر",
+  },
+];
+
+/** The three tanween endings, each shown on the same word so the child sees
+    that only the ending changes. `mark` may carry its seat: fathatan sits on
+    an added alif (بًا), which is how it is written in ordinary text. */
+export const tanweenData: HarakahItem[] = [
+  {
+    id: "dammatan", mark: "\u064C", nameEn: "Dammatan", nameAr: "تنوين الضمّ", translit: "un",
+    soundEn: "two dammas — say a short 'u' and finish with a light 'n': بٌ is 'bun'.",
+    soundAr: "ضمّتان — تُنطق ضمّة قصيرة يتبعها صوت نون خفيف: بٌ = «بُنْ».",
+    word: "كِتَابٌ", wordTranslit: "kitaabun", wordMeaningEn: "a book", wordMeaningAr: "كتاب (مرفوع)",
+  },
+  {
+    id: "fathatan", mark: "\u064Bا", nameEn: "Fathatan", nameAr: "تنوين الفتح", translit: "an",
+    soundEn: "two fathas, usually written on an extra alif — say a short 'a' and finish with a light 'n': بًا is 'ban'. The alif is not read.",
+    soundAr: "فتحتان تُكتبان غالباً على ألف زائدة لا تُقرأ — تُنطق فتحة قصيرة يتبعها صوت نون خفيف: بًا = «بَنْ».",
+    word: "كِتَابًا", wordTranslit: "kitaaban", wordMeaningEn: "a book", wordMeaningAr: "كتاباً (منصوب)",
+  },
+  {
+    id: "kasratan", mark: "\u064D", nameEn: "Kasratan", nameAr: "تنوين الكسر", translit: "in",
+    soundEn: "two kasras under the letter — say a short 'i' and finish with a light 'n': بٍ is 'bin'.",
+    soundAr: "كسرتان تحت الحرف — تُنطق كسرة قصيرة يتبعها صوت نون خفيف: بٍ = «بِنْ».",
+    word: "كِتَابٍ", wordTranslit: "kitaabin", wordMeaningEn: "a book", wordMeaningAr: "كتابٍ (مجرور)",
   },
 ];
 
