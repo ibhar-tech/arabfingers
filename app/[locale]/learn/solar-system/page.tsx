@@ -173,7 +173,7 @@ export default async function SolarSystemPage({ params }: { params: Promise<{ lo
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm sm:text-base text-ink/80 leading-relaxed">
           <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-slate-400 mb-1">
-              {isAr ? "١. كوكب عطارد" : "1. Mercury"}
+              {isAr ? "1. كوكب عطارد" : "1. Mercury"}
             </h3>
             <p className="text-ink/80">
               {isAr
@@ -184,7 +184,7 @@ export default async function SolarSystemPage({ params }: { params: Promise<{ lo
 
           <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-saffron-ink mb-1">
-              {isAr ? "٢. كوكب الزهرة" : "2. Venus"}
+              {isAr ? "2. كوكب الزهرة" : "2. Venus"}
             </h3>
             <p className="text-ink/80">
               {isAr
@@ -195,7 +195,7 @@ export default async function SolarSystemPage({ params }: { params: Promise<{ lo
 
           <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-sky-400 mb-1">
-              {isAr ? "٣. كوكب الأرض" : "3. Earth"}
+              {isAr ? "3. كوكب الأرض" : "3. Earth"}
             </h3>
             <p className="text-ink/80">
               {isAr
@@ -206,7 +206,7 @@ export default async function SolarSystemPage({ params }: { params: Promise<{ lo
 
           <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-rose mb-1">
-              {isAr ? "٤. كوكب المريخ" : "4. Mars"}
+              {isAr ? "4. كوكب المريخ" : "4. Mars"}
             </h3>
             <p className="text-ink/80">
               {isAr

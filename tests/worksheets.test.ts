@@ -28,9 +28,9 @@ describe("worksheet pack data", () => {
 });
 
 describe("teaching datasets", () => {
-  it("numbers run 1–10 with matching eastern/western digits", () => {
+  it("numbers run 1–10 with decimal digits and Arabic names", () => {
     expect(numbersData.map((n) => n.en)).toEqual(["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]);
-    expect(numbersData.every((n) => n.arName && n.translit)).toBe(true);
+    expect(numbersData.every((n) => n.arName && n.translit && /^[0-9]+$/.test(n.ar))).toBe(true);
   });
 
   it("colors cover six distinct shapes", () => {

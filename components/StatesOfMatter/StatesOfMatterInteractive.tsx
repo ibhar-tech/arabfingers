@@ -1,5 +1,6 @@
 "use client";
 
+import styles from "./SciencePlayer.module.css";
 import React, { useState, useEffect, useRef } from "react";
 import { Play, Pause, SkipForward, SkipBack, Volume2, VolumeX, RotateCcw } from "lucide-react";
 import confetti from "canvas-confetti";
@@ -458,9 +459,10 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto flex flex-col gap-4">
+    <div className={`${styles.player} w-full max-w-4xl mx-auto`}>
+      <div className={styles.media} data-science-media>
       {/* 16:9 SCREEN CONTAINER */}
-      <div className="w-full aspect-video relative rounded-3xl overflow-hidden bg-slate-950 shadow-[0_20px_50px_rgba(0,0,0,0.4)] border-4 border-slate-800 flex flex-col justify-between">
+      <div data-science-screen className="w-full aspect-video relative overflow-hidden bg-slate-950 flex flex-col justify-between">
         
         {/* Sky Background Parallax Elements */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden z-0 bg-gradient-to-b from-[#0b0f19] via-[#070b13] to-[#04060b]">
@@ -729,53 +731,12 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
 
       </div>
 
-      {/* --- PREMIUM DIALOGUE CONSOLE CARD (OUTSIDE WIDESCREEN - PREVENTS OVERLAP) --- */}
-      {activeScene.speaker && (
-        <div className="w-full bg-slate-900/80 border-2 border-white/10 rounded-3xl p-5 shadow-2xl relative flex flex-col gap-3 backdrop-blur-md">
-          
-          {/* Dialogue Speaker Label Badge */}
-          <div className="flex items-center justify-between border-b border-white/5 pb-2.5">
-            <span className="bg-accent text-[#050816] text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full shadow select-none uppercase">
-              {activeScene.speaker === "hakim" && (isAr ? "د. حكيم 🧪" : "Dr. Hakim 🧪")}
-              {activeScene.speaker === "anas" && (isAr ? "أنس 🧒" : "Anas 🧒")}
-              {activeScene.speaker === "narrator" && (isAr ? "الراوي 🎙️" : "Narrator 🎙️")}
-            </span>
-            
-            {/* Audio Voice Repeat Trigger */}
-            {soundEnabled && (
-              <button
-                type="button"
-                onClick={handleSpeechRepeat}
-                title={isAr ? "إعادة تشغيل الصوت" : "Repeat voice narration"}
-                aria-label={isAr ? "إعادة تشغيل الصوت" : "Repeat voice narration"}
-                className="flex min-h-11 items-center gap-1.5 px-3 text-[11px] font-semibold rounded-xl bg-white/5 hover:bg-white/10 text-accent transition cursor-pointer"
-              >
-                <Volume2 className="h-3.5 w-3.5" />
-                {isAr ? "استمع مجدداً" : "Listen again"}
-              </button>
-            )}
-          </div>
-
-          {/* Localized Message Text Bubble */}
-          <p className="text-base sm:text-lg leading-relaxed text-white font-bold select-none" style={{ fontFamily: "var(--font-ibm-plex-arabic), 'Fredoka', sans-serif" }}>
-            {isAr ? activeScene.dialogueAr : activeScene.dialogueEn}
-          </p>
-
-          {/* Smart Child Lightbulb Explanation */}
-          {(isAr ? activeScene.subTextAr : activeScene.subTextEn) && (
-            <p className="text-xs sm:text-sm text-white/50 font-semibold border-t border-white/5 mt-1 pt-2.5 leading-relaxed">
-              💡 {isAr ? activeScene.subTextAr : activeScene.subTextEn}
-            </p>
-          )}
-        </div>
-      )}
-
-      {/* --- PLAYER INTERACTIVE TIMELINE & CONTROLLERS (OUTSIDE WIDESCREEN) --- */}
-      <div className="w-full bg-slate-900/60 border border-white/10 rounded-2xl p-3 flex flex-col gap-3 shadow-xl backdrop-blur-md">
+      {/* Playback controls attach directly to the scene. */}
+      <div role="group" aria-label={isAr ? "أدوات تشغيل الدرس" : "Lesson playback controls"} data-science-controls className={`${styles.controls} w-full p-3 sm:px-4 flex flex-col gap-3`}>
         
         {/* Progress Bar slider */}
         <div className="w-full flex items-center gap-3 px-2">
-          <span className="text-[10px] text-white/40 select-none">0:00</span>
+          <span className="text-[10px] text-white/75 select-none">0:00</span>
           <div className="flex-grow h-2.5 rounded-full bg-white/10 overflow-hidden relative shadow-inner cursor-pointer"
                onClick={(e) => {
                  const rect = e.currentTarget.getBoundingClientRect();
@@ -788,7 +749,7 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
               style={{ width: `${sceneProgress}%` }}
             />
           </div>
-          <span className="text-[10px] text-white/40 select-none">
+          <span className="text-[10px] text-white/75 select-none">
             {activeScene.duration}s
           </span>
         </div>
@@ -801,7 +762,7 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
               type="button"
               onClick={handleBackScene}
               disabled={currentSceneIndex === 0}
-              className="flex min-h-11 min-w-11 items-center justify-center rounded-xl text-white/60 hover:bg-white/5 hover:text-white disabled:opacity-25 disabled:pointer-events-none transition cursor-pointer"
+              className="flex min-h-11 min-w-11 items-center justify-center rounded-xl text-white/80 hover:bg-white/5 hover:text-white disabled:opacity-25 disabled:pointer-events-none transition cursor-pointer"
               title={UI_TXT.back}
               aria-label={UI_TXT.back}
             >
@@ -811,7 +772,7 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
               type="button"
               onClick={handleNextScene}
               disabled={currentSceneIndex === STORYBOARD.length - 1}
-              className="flex min-h-11 min-w-11 items-center justify-center rounded-xl text-white/60 hover:bg-white/5 hover:text-white disabled:opacity-25 disabled:pointer-events-none transition cursor-pointer"
+              className="flex min-h-11 min-w-11 items-center justify-center rounded-xl text-white/80 hover:bg-white/5 hover:text-white disabled:opacity-25 disabled:pointer-events-none transition cursor-pointer"
               title={UI_TXT.next}
               aria-label={UI_TXT.next}
             >
@@ -852,7 +813,7 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
               className={`flex min-h-11 min-w-11 items-center justify-center rounded-xl border transition cursor-pointer ${
                 soundEnabled
                   ? "border-accent/20 bg-accent/10 text-accent hover:bg-accent/15"
-                  : "border-white/10 bg-white/5 text-white/40 hover:bg-white/10"
+                  : "border-white/10 bg-white/5 text-white/75 hover:bg-white/10"
               }`}
               title={soundEnabled ? UI_TXT.soundOn : UI_TXT.soundOff}
               aria-label={soundEnabled ? UI_TXT.soundOn : UI_TXT.soundOff}
@@ -867,6 +828,49 @@ export default function StatesOfMatterInteractive({ locale = "ar" }: StatesOfMat
         </div>
 
       </div>
+
+      </div>
+
+      {/* Narration stays below the complete player. */}
+      {activeScene.speaker && (
+        <div data-science-narration className={`${styles.narration} w-full p-4 sm:p-5 relative flex flex-col gap-3`}>
+
+          {/* Dialogue Speaker Label Badge */}
+          <div className="flex items-center justify-between border-b border-white/5 pb-2.5">
+            <span className="bg-accent text-[#050816] text-[10px] sm:text-xs font-extrabold px-3 py-1 rounded-full shadow select-none uppercase">
+              {activeScene.speaker === "hakim" && (isAr ? "د. حكيم 🧪" : "Dr. Hakim 🧪")}
+              {activeScene.speaker === "anas" && (isAr ? "أنس 🧒" : "Anas 🧒")}
+              {activeScene.speaker === "narrator" && (isAr ? "الراوي 🎙️" : "Narrator 🎙️")}
+            </span>
+
+            {/* Audio Voice Repeat Trigger */}
+            {soundEnabled && (
+              <button
+                type="button"
+                onClick={handleSpeechRepeat}
+                title={isAr ? "إعادة تشغيل الصوت" : "Repeat voice narration"}
+                aria-label={isAr ? "إعادة تشغيل الصوت" : "Repeat voice narration"}
+                className="flex min-h-11 items-center gap-1.5 px-3 text-[11px] font-semibold rounded-xl bg-white/5 hover:bg-white/10 text-accent transition cursor-pointer"
+              >
+                <Volume2 className="h-3.5 w-3.5" />
+                {isAr ? "استمع مجدداً" : "Listen again"}
+              </button>
+            )}
+          </div>
+
+          {/* Localized Message Text Bubble */}
+          <p className="text-base sm:text-lg leading-relaxed text-white font-bold select-none" style={{ fontFamily: "var(--font-ibm-plex-arabic), 'Fredoka', sans-serif" }}>
+            {isAr ? activeScene.dialogueAr : activeScene.dialogueEn}
+          </p>
+
+          {/* Smart Child Lightbulb Explanation */}
+          {(isAr ? activeScene.subTextAr : activeScene.subTextEn) && (
+            <p className="text-xs sm:text-sm text-white/75 font-semibold border-t border-white/5 mt-1 pt-2.5 leading-relaxed">
+              💡 {isAr ? activeScene.subTextAr : activeScene.subTextEn}
+            </p>
+          )}
+        </div>
+      )}
 
       {/* Screen Backdrop animations */}
       <style jsx global>{`

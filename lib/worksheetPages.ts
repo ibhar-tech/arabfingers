@@ -38,11 +38,11 @@ export const worksheetPages: WorksheetPage[] = [
   {
     id: "arabic-alphabet-tracing",
     seoTitleEn: "Free Arabic Alphabet Tracing Worksheets PDF — All 28 Letters",
-    seoTitleAr: "أوراق تتبّع الحروف العربية PDF مجاناً — الحروف الـ٢٨ كاملة",
+    seoTitleAr: "أوراق تتبّع الحروف العربية PDF مجاناً — الحروف الـ28 كاملة",
     seoDescEn:
       "Download 28 free Arabic letter tracing worksheets as one PDF — a full page per letter with its four joined forms, three graded tracing rows and two example words. No email, no signup.",
     seoDescAr:
-      "حمّل ٢٨ ورقة تتبّع للحروف العربية في ملف PDF واحد — صفحة كاملة لكل حرف مع أشكاله الأربعة وثلاثة صفوف تتبّع متدرّجة وكلمتين للتتبّع. بلا بريد إلكتروني وبلا تسجيل.",
+      "حمّل 28 ورقة تتبّع للحروف العربية في ملف PDF واحد — صفحة كاملة لكل حرف مع أشكاله الأربعة وثلاثة صفوف تتبّع متدرّجة وكلمتين للتتبّع. بلا بريد إلكتروني وبلا تسجيل.",
     keywords: [
       "arabic alphabet tracing worksheets pdf",
       "free arabic letters worksheets pdf",
@@ -101,7 +101,7 @@ export const worksheetPages: WorksheetPage[] = [
   {
     id: "arabic-alphabet-chart",
     seoTitleEn: "Free Arabic Alphabet Chart PDF — All 28 Letters on One Page",
-    seoTitleAr: "لوحة الحروف العربية PDF مجاناً — الحروف الـ٢٨ في صفحة واحدة",
+    seoTitleAr: "لوحة الحروف العربية PDF مجاناً — الحروف الـ28 في صفحة واحدة",
     seoDescEn:
       "A printable Arabic alphabet chart: all 28 letters on a single sheet with names and transliteration. Print once, pin it above the desk. Free PDF, no signup.",
     seoDescAr:
@@ -154,114 +154,96 @@ export const worksheetPages: WorksheetPage[] = [
   {
     id: "arabic-numbers-tracing",
     seoTitleEn: "Arabic Numbers 1–10 Tracing Worksheets PDF — Free Printable",
-    seoTitleAr: "أوراق تتبّع الأرقام العربية ١–١٠ PDF — للطباعة مجاناً",
-    seoDescEn:
-      "Free printable Arabic numbers worksheets: a page per number showing the Eastern Arabic numeral (٠–٩) and Western digit side by side, counting dots to colour, and tracing rows for the numeral and its name.",
-    seoDescAr:
-      "أوراق أرقام عربية مجانية للطباعة: صفحة لكل رقم تعرض الرقم المشرقيّ (٠–٩) والغربيّ جنباً إلى جنب، ودوائر عدّ للتلوين، وصفوف تتبّع للرقم ولاسمه.",
-    keywords: [
-      "arabic numbers tracing worksheets pdf",
-      "arabic numbers worksheet pdf",
-      "arabic numbers 1-10 printable",
-      "eastern arabic numerals printable",
-      "أوراق الأرقام العربية pdf",
-      "تتبّع الأرقام العربية للأطفال",
-    ],
-    taglineEn: "Both numeral systems on the same page, because your child will meet both.",
-    taglineAr: "النظامان في الصفحة نفسها، لأنّ طفلك سيلقى كليهما.",
+    seoTitleAr: "أوراق تتبّع الأرقام العربية 1–10 PDF — للطباعة مجاناً",
+    seoDescEn: "Free Arabic counting worksheets for numbers 1–10: familiar digits, Arabic number names, counting circles, tracing practice, and space to draw. Ten printable pages.",
+    seoDescAr: "أوراق عدّ عربية مجانية للأرقام 1–10: رقم واضح واسمه بالعربية، ودوائر للعدّ والتلوين، وتدريب على الكتابة ومساحة للرسم. عشر صفحات للطباعة.",
+    keywords: ["arabic numbers tracing worksheets pdf", "arabic numbers worksheet pdf", "arabic numbers 1-10 printable", "arabic number names", "أوراق الأرقام العربية pdf", "تتبّع الأرقام العربية للأطفال"],
+    taglineEn: "Count it, say it in Arabic, then write it — one number per page.",
+    taglineAr: "عُدّ الأشياء، وانطق العدد بالعربية، ثم اكتبه — رقم في كل صفحة.",
     insideEn: [
-      "The Eastern Arabic numeral (١) and the Western digit (1) side by side on every page — both are Arabic in origin, and a bilingual child needs to be fluent in both.",
-      "Counting dots to colour in, so the numeral is attached to a quantity the child can physically count rather than just a shape to copy.",
-      "Tracing rows for the numeral itself and for its Arabic name written out (واحد), which is the part most number worksheets leave out.",
+      "One large number on each page, using digits 1, 2, 3 through 10, with its Arabic name and pronunciation.",
+      "Counting circles to colour, arranged in rows of five so children can count one object at a time.",
+      "A guided tracing row, a writing row with fewer clues, an Arabic-name tracing line, and a box for drawing the same quantity.",
     ],
     insideAr: [
-      "الرقم المشرقيّ (١) والرقم الغربيّ (1) متجاورين في كلّ صفحة — وكلاهما عربيّ الأصل، والطفل ثنائيّ اللغة يحتاج إتقانهما معاً.",
-      "دوائر عدّ للتلوين، ليقترن الرقم بكمّية يعدّها الطفل بيده لا بشكل ينقله فحسب.",
-      "صفوف تتبّع للرقم نفسه ولاسمه مكتوباً بالعربية (واحد)، وهو الجزء الذي تغفله أكثر أوراق الأرقام.",
+      "رقم كبير في كل صفحة، باستخدام الأرقام 1 و2 و3 حتى 10، مع اسمه العربي وطريقة نطقه.",
+      "دوائر للتلوين في صفوف من خمس، ليعدّ الطفل كل دائرة مرة واحدة.",
+      "صف لتتبّع الرقم، وصف للكتابة بمساعدة أقل، وسطر لتتبّع اسمه بالعربية، ومساحة لرسم العدد نفسه من الأشياء.",
     ],
     useEn: [
-      "Numbers are easier than letters for most children, which makes this pack a good place to go when the alphabet has become a grind. A child who has stalled on ص will often happily do three number pages and come back to letters in a better mood.",
-      "Count the dots aloud in Arabic while they colour — waahid, ithnaan, thalaatha. The colouring takes long enough that the words get repeated ten or fifteen times without it ever feeling like repetition, which is the whole trick.",
-      "Point out the quirk when it comes up: Arabic words run right to left, but numbers run left to right, exactly like English. Children find this funny rather than confusing, and noticing it is what makes it stick.",
+      "Start with a number your child already knows. Count that many toys together before moving to the paper.",
+      "Say the Arabic name as you colour each circle. Point to the large digit, say the total, then trace the number and its name.",
+      "Print one or two pages at a time. Leave the independent writing for another day if your child is still learning to hold a pencil.",
     ],
     useAr: [
-      "الأرقام أيسر من الحروف عند أكثر الأطفال، فهذه الحزمة موضع جيّد تنتقل إليه حين تصير الأبجدية كدّاً. فالطفل الذي تعثّر عند الصاد كثيراً ما يصنع ثلاث صفحات أرقام راضياً ثمّ يعود إلى الحروف بنفسٍ أطيب.",
-      "عُدّ الدوائر بصوت عالٍ بالعربية وهو يلوّن: واحد، اثنان، ثلاثة. فالتلوين يطول بما يكفي لتتكرّر الكلمات عشراً أو خمس عشرة مرّة دون أن يشعر بتكرار، وهذه هي الحيلة كلّها.",
-      "ونبّهه على الطُّرفة حين تَعرِض: الكلمات العربية تجري من اليمين إلى اليسار، والأرقام من اليسار إلى اليمين تماماً كالإنجليزية. يجدها الأطفال مضحكة لا مربكة، وملاحظتها هي ما يثبّتها.",
+      "ابدأ برقم يعرفه طفلك. عُدّا معاً العدد نفسه من الألعاب قبل الانتقال إلى الورقة.",
+      "انطقا أسماء الأعداد بالعربية أثناء تلوين الدوائر. أشيرا إلى الرقم الكبير، ثم تتبّعا الرقم واسمه.",
+      "اطبع صفحة أو صفحتين في كل مرة. يمكن تأجيل الكتابة المستقلّة إذا كان طفلك لا يزال يتدرّب على إمساك القلم.",
     ],
     faq: [
       {
-        qEn: "Why teach the Eastern numerals at all if we write 1, 2, 3?",
-        qAr: "لماذا نعلّم الأرقام المشرقية ونحن نكتب 1، 2، 3؟",
-        aEn: "Because your child will meet them the moment they open an Arabic book, a Qur'an, or a clock face in much of the Arab world. Both sets came from the same place; the Western digits simply travelled further. A child comfortable with both reads Arabic text without stumbling every time a number appears.",
-        aAr: "لأنّ طفلك سيلقاها ساعة يفتح كتاباً عربياً أو مصحفاً أو ينظر إلى ساعة في كثير من بلاد العرب. والمجموعتان من أصل واحد، وإنّما سافرت الغربية أبعد. والطفل الذي يألف الاثنتين يقرأ النصّ العربيّ دون أن يتعثّر كلّما مرّ رقم.",
+        qEn: "Which digits are used in these worksheets?",
+        qAr: "ما شكل الأرقام المستخدمة في هذه الأوراق؟",
+        aEn: "The worksheets use 1, 2, 3 through 10. Each number is paired with its Arabic name, such as 1 — واحد, so children practise Arabic vocabulary as well as counting.",
+        aAr: "تستخدم الأوراق الأرقام 1 و2 و3 حتى 10. ويظهر مع كل رقم اسمه بالعربية، مثل 1 — واحد، ليتدرّب الطفل على المفردات والعدّ معاً.",
       },
       {
-        qEn: "Does it go past ten?",
-        qAr: "هل تتجاوز العشرة؟",
-        aEn: "Not in this pack. Zero to ten is where the shapes and the names both have to be learned from scratch; after ten Arabic numbers start combining (أحد عشر is literally “one ten”), which is a different skill and a later one.",
-        aAr: "لا في هذه الحزمة. فمن صفر إلى عشرة يُتعلَّم الشكل والاسم كلاهما من الصفر، وبعد العشرة تبدأ الأعداد بالتركيب (أحد عشر تعني حرفياً «واحد وعشرة»)، وتلك مهارة أخرى ومتأخّرة.",
+        qEn: "Does this pack include zero or numbers past ten?",
+        qAr: "هل تشمل الحزمة الصفر أو الأعداد بعد العشرة؟",
+        aEn: "This pack has ten pages, one for each number from 1 to 10. The numbers guide also introduces zero, and a separate 11–20 pack continues the writing practice.",
+        aAr: "تحتوي هذه الحزمة على عشر صفحات للأرقام من 1 إلى 10. يقدّم دليل الأرقام العدد صفر أيضاً، وتتابع حزمة 11–20 التدريب على الكتابة.",
       },
     ],
   },
-
   {
     id: "arabic-numbers-11-20",
     seoTitleEn: "Arabic Numbers 11–20 Tracing Worksheets — Free PDF",
-    seoTitleAr: "أوراق تتبّع الأرقام العربية ١١–٢٠ — PDF مجاناً",
-    seoDescEn:
-      "Ten free worksheets for the Arabic numbers 11 to 20 — Eastern numerals ١١–٢٠ with Western digits, counting dots, and tracing rows for each full Arabic name. No email, no signup.",
-    seoDescAr:
-      "عشر أوراق مجانية للأرقام العربية من ١١ إلى ٢٠ — الأرقام المشرقية مع الغربية، ودوائر عدّ، وصفوف تتبّع للاسم العربي الكامل. بلا بريد وبلا تسجيل.",
-    keywords: [
-      "arabic numbers 11 to 20 worksheet",
-      "arabic numbers 11-20 tracing pdf",
-      "arabic numerals 11-20 printable",
-      "arabic counting worksheets pdf",
-      "أوراق الأرقام العربية من ١١ إلى ٢٠",
-    ],
-    taglineEn: "The decade every child stumbles on — ten pages, one number at a time.",
-    taglineAr: "العقد الذي يتعثّر فيه كل طفل — عشر صفحات، رقم في كل مرّة.",
+    seoTitleAr: "أوراق تتبّع الأرقام العربية 11–20 — PDF مجاناً",
+    seoDescEn: "Ten free Arabic number worksheets for 11–20, with counting circles, numeral writing practice, and tracing lines for the full Arabic names. No signup needed.",
+    seoDescAr: "عشر أوراق مجانية للأرقام العربية 11–20، مع دوائر للعدّ والتلوين وتدريب على كتابة الرقم واسمه العربي الكامل. بلا تسجيل.",
+    keywords: ["arabic numbers 11 to 20 worksheet", "arabic numbers 11-20 tracing pdf", "arabic numerals 11-20 printable", "arabic counting worksheets pdf", "أوراق الأرقام العربية من 11 إلى 20"],
+    taglineEn: "Keep counting in Arabic — ten pages, one new number at a time.",
+    taglineAr: "واصل العدّ بالعربية — عشر صفحات، ورقم جديد في كل مرة.",
     insideEn: [
-      "The Eastern Arabic numeral (١١) and the Western digit (11) side by side on every page, so the pair is learned together instead of in separate lessons.",
-      "Eleven to twenty counting dots to colour — the physical act of colouring each dot is what makes 'eleven' feel bigger than 'seven', not just look bigger.",
-      "Tracing rows for the numeral at three graded sizes, exactly like the letter sheets.",
-      "A full tracing line for the Arabic name — the genuinely hard part past ten, since أحد عشر and عشرون are longer than anything in 1–10.",
+      "A large number from 11 to 20 paired with its full Arabic name, English meaning, and pronunciation.",
+      "Counting circles in rows of five, with room to colour every circle and compare quantities.",
+      "A guided numeral tracing row, a writing row with fewer clues, and a line for tracing the Arabic name.",
+      "An open drawing box to represent the same number with objects of your child's choice.",
     ],
     insideAr: [
-      "الرقم العربي المشرقي (١١) والرقم الغربي (11) جنباً إلى جنب في كل صفحة، فيتعلّم الطفل الثنائي معاً لا في درسين منفصلين.",
-      "دوائر عدّ من ١١ إلى ٢٠ للتلوين — تلوين كل دائرة هو ما يجعل «أحد عشر» يشعر أكبر من «سبعة»، لا مجرد أن يشاهد أكبر.",
-      "صفوف تتبّع للرقم بثلاثة أحجام متدرّجة، تماماً كأوراق الحروف.",
-      "سطر تتبّع كامل للاسم العربي — وهو الجزء الصعب فعلاً بعد العشرة، فـ«أحد عشر» و«عشرون» أطول من كل أسماء ١–١٠.",
+      "رقم كبير من 11 إلى 20 مع اسمه العربي الكامل ومعناه بالإنجليزية وطريقة نطقه.",
+      "دوائر للعدّ في صفوف من خمس، مع مساحة لتلوين كل دائرة ومقارنة الكمّيات.",
+      "صف لتتبّع الرقم، وصف للكتابة بمساعدة أقل، وسطر لتتبّع الاسم العربي.",
+      "مساحة مفتوحة لرسم العدد نفسه من أشياء يختارها طفلك.",
     ],
     useEn: [
-      "Start only after 1–10 is solid: the second decade reuses the first (ثلاثة عشر is just ثلاثة + عشر), which makes it a fast win — or a fast muddle — depending on how well the first ten stuck.",
-      "Say the full name out loud while tracing, clapping once per word part: ثلاث-ة-عشر. The rhythm does more for remembering the compound names than repetition of the whole string.",
-      "The dot-counting pages are slow on purpose. Let your child colour all thirteen dots over a whole session if needed; counting past ten is a concentration skill as much as a number skill.",
+      "Begin when your child can count objects up to ten comfortably. Count ten circles first, then add the remaining ones.",
+      "Say the full Arabic name while tracing. For example, point to 13 and say ثلاثة عشر before tracing its two words.",
+      "Work on a single page per session. Counting, colouring, writing, and drawing can also be separate short activities.",
     ],
     useAr: [
-      "ابدأ فقط بعد رسوخ ١–١٠: العقد الثاني يعيد استعمال الأول (ثلاثة عشر = ثلاثة + عشر)، فيكون إما إنجازاً سريعاً وإما خلطاً سريعاً بحسب تمكّن طفلك من العشرة الأولى.",
-      "انطق الاسم الكامل أثناء التتبّع مع تصفيقة عند كل جزء من الكلمة: ثلاث-ة-عشر. الإيقاع يثبّت الأسماء المركّبة أفضل من تكرار السلسلة كاملة.",
-      "صفحات عدّ الدوائر بطيئة عن قصد. دع طفلك يلوّن الدوائر الثلاث عشرة عبر جلسة كاملة إن لزم؛ فالعدّ بعد العشرة مهارة تركيز بقدر ما هو مهارة أرقام.",
+      "ابدأ عندما يستطيع طفلك عدّ الأشياء حتى عشرة بسهولة. عُدّا عشر دوائر أولاً، ثم أضيفا الباقي.",
+      "انطق الاسم العربي الكامل أثناء التتبّع. مثلاً: أشر إلى 13 وقل ثلاثة عشر قبل تتبّع الكلمتين.",
+      "اكتفِ بصفحة في الجلسة. ويمكن توزيع العدّ والتلوين والكتابة والرسم على أنشطة قصيرة منفصلة.",
     ],
     faq: [
       {
         qEn: "What are the Arabic numbers 11 to 20?",
-        aEn: "Eleven is أحد عشر (aḥada ʿashar), twelve is اثنا عشر, thirteen ثلاثة عشر … nineteen تسعة عشر, and twenty is عشرون (ʿishruun). The numerals themselves are ١١ ١٢ ١٣ … ١٩ ٢٠.",
-        qAr: "ما هي الأرقام العربية من ١١ إلى ٢٠؟",
-        aAr: "أحد عشر، واثنا عشر، وثلاثة عشر… حتى تسعة عشر، ثم عشرون. والأرقام نفسها هي ١١ ١٢ ١٣ … ١٩ ٢٠.",
+        qAr: "ما أسماء الأعداد العربية من 11 إلى 20؟",
+        aEn: "11 is أحد عشر, 12 اثنا عشر, 13 ثلاثة عشر, 14 أربعة عشر, 15 خمسة عشر, 16 ستة عشر, 17 سبعة عشر, 18 ثمانية عشر, 19 تسعة عشر, and 20 عشرون.",
+        aAr: "11 أحد عشر، 12 اثنا عشر، 13 ثلاثة عشر، 14 أربعة عشر، 15 خمسة عشر، 16 ستة عشر، 17 سبعة عشر، 18 ثمانية عشر، 19 تسعة عشر، و20 عشرون.",
       },
       {
-        qEn: "Why are 11–19 compound names but 20 is a single word?",
-        aEn: "Arabic builds 11–19 as 'unit-teen' (literally 'three-ten' for thirteen), but the tens — 20, 30, 40 — have their own single words with a plural -iin ending: ʿishruun, thalaathuun. The worksheet for twenty previews that pattern.",
-        qAr: "لماذا أسماء ١١–١٩ مركّبة بينما ٢٠ كلمة واحدة؟",
-        aAr: "تبني العربية ١١–١٩ على صورة «الوحدة + عشر»، أما العقود — ٢٠ و٣٠ و٤٠ — فلها كلمات مفردة خاصة بزيادة ون: عشرون، ثلاثون. وورقة العشرين تمهّد لهذا النمط.",
+        qEn: "How should we use the counting circles?",
+        qAr: "كيف نستخدم دوائر العدّ؟",
+        aEn: "Touch and count each circle once before colouring it. Rows of five help you see the groups; the last number you say is the total quantity.",
+        aAr: "المس كل دائرة وعُدّها مرة واحدة قبل تلوينها. تساعد صفوف الخمس على رؤية المجموعات، والعدد الأخير الذي تنطقه هو مجموع الدوائر.",
       },
       {
-        qEn: "Should my child learn Western or Eastern Arabic numerals?",
-        aEn: "Both, together — that is how each sheet is laid out. Most Arab countries use the Eastern numerals (١٢٣) in books and school, while screens often show Western digits (123). A child who reads the pair side by side is never blocked by either.",
-        qAr: "هل يتعلّم طفلي الأرقام الغربية أم المشرقية؟",
-        aAr: "الاثنين معاً — وهكذا صُمّمت كل ورقة. معظم الدول العربية تستعمل الأرقام المشرقية (١٢٣) في الكتب والمدارس، بينما تعرض الشاشات غالباً الغربية (123). والطفل الذي يقرأ الثنائي جنباً إلى جنب لا يعطله أيٌّ منهما.",
+        qEn: "Which numeral style does the pack use?",
+        qAr: "ما شكل الأرقام في الحزمة؟",
+        aEn: "All pages use the familiar digits 0–9 to write 11, 12, 13 through 20, alongside Arabic names. The same style is used in our online counting activities.",
+        aAr: "تستخدم الصفحات الأرقام 0–9 لكتابة 11 و12 و13 حتى 20، مع أسمائها بالعربية. وهو الشكل نفسه المستخدم في أنشطة العدّ على الموقع.",
       },
     ],
   },
@@ -321,7 +303,7 @@ export const worksheetPages: WorksheetPage[] = [
         qEn: "When should a child start learning harakat?",
         aEn: "Once they recognise the 28 letters comfortably — usually four to eight weeks into a letter-a-day plan. Reading fully-vowelled text with harakat is how children in Arab schools learn to decode, so the marks are the bridge from 'knowing letters' to 'reading words'.",
         qAr: "متى يبدأ الطفل تعلّم الحركات؟",
-        aAr: "بعد أن يميّز الحروف الـ٢٨ بارتياح — عادة بعد أربعة إلى ثمانية أسابيع من خطة «حرف في اليوم». وقراءة النص المشكول هي الطريقة التي يتعلم بها الأطفال في المدارس العربية فكّ الرموز، فالحركات هي الجسر من «معرفة الحروف» إلى «قراءة الكلمات».",
+        aAr: "بعد أن يميّز الحروف الـ28 بارتياح — عادة بعد أربعة إلى ثمانية أسابيع من خطة «حرف في اليوم». وقراءة النص المشكول هي الطريقة التي يتعلم بها الأطفال في المدارس العربية فكّ الرموز، فالحركات هي الجسر من «معرفة الحروف» إلى «قراءة الكلمات».",
       },
       {
         qEn: "Do adults need harakat to read Arabic?",
@@ -442,7 +424,7 @@ export const worksheetPages: WorksheetPage[] = [
     seoDescEn:
       "Free printable Arabic fruits and vegetables coloring book: 8 pages, each with a big outline drawing to colour and the name to trace in Arabic and English. PDF, no signup.",
     seoDescAr:
-      "كتاب تلوين الفواكه والخضروات بالعربية مجاناً: ٨ صفحات، كل صفحة برسم كبير للتلوين واسم للتتبّع بالعربية والإنجليزية. PDF بلا تسجيل.",
+      "كتاب تلوين الفواكه والخضروات بالعربية مجاناً: 8 صفحات، كل صفحة برسم كبير للتلوين واسم للتتبّع بالعربية والإنجليزية. PDF بلا تسجيل.",
     keywords: [
       "arabic fruits coloring pages",
       "arabic vegetables coloring book pdf",
@@ -495,7 +477,7 @@ export const worksheetPages: WorksheetPage[] = [
     seoDescEn:
       "Free printable Arabic vehicles coloring book: 6 pages of things that go — car, bus, train, airplane, ship and bicycle — with the Arabic and English names to trace. PDF, free, no signup.",
     seoDescAr:
-      "كتاب تلوين الآليات بالعربية مجاناً: ٦ صفحات — سيارة وحافلة وقطار وطائرة وسفينة ودراجة — مع تتبّع الأسماء بالعربية والإنجليزية. PDF مجاني بلا تسجيل.",
+      "كتاب تلوين الآليات بالعربية مجاناً: 6 صفحات — سيارة وحافلة وقطار وطائرة وسفينة ودراجة — مع تتبّع الأسماء بالعربية والإنجليزية. PDF مجاني بلا تسجيل.",
     keywords: [
       "arabic transport coloring pages",
       "vehicles coloring book arabic names pdf",
@@ -598,11 +580,11 @@ export const worksheetPages: WorksheetPage[] = [
   {
     id: "arabic-alphabet-coloring",
     seoTitleEn: "Arabic Alphabet Coloring Pages PDF — 28 Big Bubble Letters",
-    seoTitleAr: "كتاب تلوين الحروف العربية PDF — ٢٨ حرفاً كبيراً مفرّغاً",
+    seoTitleAr: "كتاب تلوين الحروف العربية PDF — 28 حرفاً كبيراً مفرّغاً",
     seoDescEn:
       "Free printable Arabic alphabet coloring book: all 28 letters as big bubble letters to colour in, with example words and a tracing row per letter. One PDF, no signup.",
     seoDescAr:
-      "كتاب تلوين الحروف العربية مجاناً: الحروف الـ٢٨ كلّها كحروف كبيرة مفرّغة للتلوين، مع كلمات كلّ حرف وسطر تتبّع. ملف PDF واحد بلا تسجيل.",
+      "كتاب تلوين الحروف العربية مجاناً: الحروف الـ28 كلّها كحروف كبيرة مفرّغة للتلوين، مع كلمات كلّ حرف وسطر تتبّع. ملف PDF واحد بلا تسجيل.",
     keywords: [
       "arabic alphabet coloring pages",
       "arabic letters coloring book pdf",
@@ -916,11 +898,11 @@ export const worksheetPages: WorksheetPage[] = [
   {
     id: "arabic-complete-workbook",
     seoTitleEn: "Complete Arabic Workbook PDF — 143 Free Printable Pages",
-    seoTitleAr: "الكرّاسة العربية الكاملة PDF — ١٤٣ صفحة مجانية للطباعة",
+    seoTitleAr: "الكرّاسة العربية الكاملة PDF — 143 صفحة مجانية للطباعة",
     seoDescEn:
       "Every Arabic worksheet, coloring page and story supplement on this site in one 143-page PDF, in teaching order: alphabet chart, all 28 letter tracing pages, harakat, numbers, colours, animals, all nine coloring books and the opposites pairs. Free.",
     seoDescAr:
-      "كلّ أوراق العمل وصفحات التلوين في هذا الموقع في ملف PDF واحد من ١٤٣ صفحة، بترتيب تعليميّ: لوحة الحروف، وتتبّع الحروف الـ٢٨، والحركات، والأرقام، والألوان، والحيوانات، وكتب التلوين التسعة كلّها. مجاناً.",
+      "كلّ أوراق العمل وصفحات التلوين في هذا الموقع في ملف PDF واحد من 143 صفحة، بترتيب تعليميّ: لوحة الحروف، وتتبّع الحروف الـ28، والحركات، والأرقام، والألوان، والحيوانات، وكتب التلوين التسعة كلّها. مجاناً.",
     keywords: [
       "arabic workbook pdf free",
       "complete arabic worksheets pdf",
@@ -942,7 +924,7 @@ export const worksheetPages: WorksheetPage[] = [
     insideAr: [
       "لوحة الحروف أوّلاً، ليكون المرجع على الجدار قبل أن تبدأ الكتابة.",
       "صفحات تتبّع الحروف الثمانية والعشرين كلّها على ترتيب الأبجدية، ثمّ أوراق الحركات.",
-      "الأرقام ١–١٠ ثمّ ١١–٢٠، فالألوان، فالحيوانات — المفردات بعد الحروف، وهو الترتيب الذي ينجح.",
+      "الأرقام 1–10 ثمّ 11–20، فالألوان، فالحيوانات — المفردات بعد الحروف، وهو الترتيب الذي ينجح.",
       "كتب التلوين التسعة في الآخر: الفواكه والخضروات، ووسائل النقل، والمجموعة الشمسية، وحروف الأبجدية، ورمضان والعيد، وحيوانات البحر، وأجزاء الجسم، والفصول الأربعة، والمتضادّات.",
       "ملف واحد، فتُخرج طباعة واحدة كرّاسة كاملة بدل ثمانية تنزيلات منفصلة.",
     ],
@@ -965,7 +947,7 @@ export const worksheetPages: WorksheetPage[] = [
         qEn: "How big is the file?",
         qAr: "ما حجم الملف؟",
         aEn: "About 3 MB — small enough to email to a print shop or open on a phone, and it will keep working offline once this site has been opened once.",
-        aAr: "نحو ٣ ميغابايت — صغير بما يكفي لإرساله إلى مركز طباعة أو فتحه على الهاتف، وسيظلّ يعمل دون اتصال متى فُتِح هذا الموقع مرّة.",
+        aAr: "نحو 3 ميغابايت — صغير بما يكفي لإرساله إلى مركز طباعة أو فتحه على الهاتف، وسيظلّ يعمل دون اتصال متى فُتِح هذا الموقع مرّة.",
       },
     ],
   },

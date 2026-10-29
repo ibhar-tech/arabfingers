@@ -26,6 +26,13 @@ type Activity = {
 
 const activities: Activity[] = [
   {
+    href: "/games/count", emoji: "🍎",
+    titleEn: "Count & discover", titleAr: "عُدّ واكتشف",
+    descEn: "Count apples, match numbers 1–10 and hear their Arabic names.",
+    descAr: "عُدّ التفّاح وطابق الأرقام 1–10 واستمع إلى أسمائها.",
+    count: () => null,
+  },
+  {
     href: "/games/trace",
     emoji: "✏️",
     titleEn: "Trace the letters",
@@ -87,8 +94,8 @@ export function GamesHub({ locale }: { locale: string }) {
         </h1>
         <p className="mx-auto mt-3 max-w-xl text-[15px] leading-relaxed text-ink/70">
           {isAr
-            ? "ألعاب قصيرة مجانية تعلّم الحروف العربية بالتتبّع والاستماع واللعب. لا تحميل ولا حساب."
-            : "Short, free games that teach the Arabic letters by tracing, listening and playing. No download, no account."}
+            ? "ألعاب قصيرة مجانية تعلّم الحروف والأرقام العربية بالتتبّع والعدّ والاستماع. لا تحميل ولا حساب."
+            : "Short, free games that explore Arabic letters and numbers by tracing, counting and listening. No download, no account."}
         </p>
         <div className="mt-5 inline-flex items-center gap-2 rounded-full border-[2.5px] border-ink bg-card px-5 py-2 font-display text-lg font-extrabold text-ink shadow-[0_3px_0_0_var(--ink)]">
           <span className="text-xl">⭐</span>
@@ -122,8 +129,8 @@ export function GamesHub({ locale }: { locale: string }) {
                       ⭐ {badge}
                     </span>
                   ) : (
-                    <span className="shrink-0 rounded-full border-2 border-ink/15 px-2.5 py-1 text-xs font-extrabold text-ink/50">
-                      {isAr ? "لعب حرّ" : "Free play"}
+                    <span className="shrink-0 rounded-full border-2 border-ink/15 px-2.5 py-1 text-xs font-extrabold text-ink/70">
+                      {isAr ? "بدون توقيت" : "No timer"}
                     </span>
                   )}
                 </div>

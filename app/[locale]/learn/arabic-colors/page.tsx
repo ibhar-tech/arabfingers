@@ -16,14 +16,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return generatePageMetadata(locale, "/learn/arabic-colors", {
     titleEn: "Arabic Colours for Kids — Names, Audio + Free Printable Worksheet",
     // "جميع الألوان واسمائها بالعربي": 72 impressions at pos 8.5, no clicks (Oct 2026).
-    titleAr: "جميع الألوان وأسماؤها بالعربي للأطفال: ١٢ لوناً مع النطق",
+    titleAr: "جميع الألوان وأسماؤها بالعربي للأطفال: 12 لوناً مع النطق",
     descriptionEn:
       "Learn 12 colors in Arabic with a quick reference table, pronunciation, colors in nature, the masculine/feminine forms explained simply, and a color-hunt game.",
     descriptionAr:
-      "تعلّم ١٢ لوناً بالعربية مع جدول مرجعي سريع، والنطق، وأمثلة من الطبيعة، وشرح بسيط للمذكّر والمؤنّث، ولعبة البحث عن الألوان.",
+      "تعلّم 12 لوناً بالعربية مع جدول مرجعي سريع، والنطق، وأمثلة من الطبيعة، وشرح بسيط للمذكّر والمؤنّث، ولعبة البحث عن الألوان.",
     ogType: "article",
     publishedTime: "2026-03-19",
-    modifiedTime: "2026-06-12",
+    modifiedTime: "2026-09-29",
     keywords: [
       "arabic colors for kids", "الألوان بالعربية للأطفال",
       "colors in arabic", "أسماء الألوان بالعربية",
@@ -56,8 +56,8 @@ const faqEn = [
   { q: "What is pink in Arabic?", a: "Pink in Arabic is wardi (وردي). It comes from the word ward (ورد) meaning rose, so wardi literally means rose-colored." },
   { q: "What is purple (violet) in Arabic?", a: "Purple in Arabic is banafsaji (بنفسجي), named after the banafsaj (بنفسج) — the violet flower." },
   { q: "What is brown in Arabic?", a: "Brown in Arabic is bunni (بني). It comes from bunn (بُنّ) meaning coffee beans." },
-  { q: "How many colors should I teach my child in Arabic first?", a: "Start with four or five basic colors — red, blue, green, yellow, and maybe orange. Use only the masculine form at first (ahmar, azraq, akhdar). Add more colors once those are familiar, and let the feminine forms come naturally through everyday speech." },
-  { q: "Do Arabic color names change for masculine and feminine?", a: "Yes. Each basic color has a masculine and a feminine form — ahmar becomes hamraa, azraq becomes zarqaa. For young children, teach the masculine form only; they will pick up the feminine naturally over time." },
+  { q: "How many colors should I teach my child in Arabic first?", a: "Start with four or five basic colors — red, blue, green, yellow, and maybe orange. Name them on toys or clothes nearby. Use short phrases with the appropriate form, such as qalam ahmar (a red pen) or tuffaaha hamraa (a red apple), and add more colors as you go." },
+  { q: "Do Arabic color names change for masculine and feminine?", a: "Yes. Each basic color has a masculine and a feminine form — ahmar becomes hamraa, azraq becomes zarqaa. Use the masculine name when naming a color on its own, and model both forms in short phrases such as qalam ahmar (a red pen) and tuffaaha hamraa (a red apple)." },
 ];
 
 const faqAr = [
@@ -67,15 +67,15 @@ const faqAr = [
   { q: "ما هو اللون الوردي بالعربية؟", a: "الوردي مأخوذ من كلمة وَرد، فهو يعني حرفياً «بلون الوردة»." },
   { q: "ما هو اللون البنفسجي بالعربية؟", a: "البنفسجي مأخوذ من زهرة البنفسج، وهو الـ Purple أو Violet." },
   { q: "ما هو اللون البني بالعربية؟", a: "البني مأخوذ من كلمة «بُنّ» أي حبوب القهوة، وهو لون الشوكولاتة والتراب." },
-  { q: "كم لوناً أعلّم طفلي بالعربية أولاً؟", a: "ابدأ بأربعة أو خمسة ألوان أساسية: الأحمر والأزرق والأخضر والأصفر وربما البرتقالي، واستخدم الشكل المذكّر فقط في البداية، ثم أضف الباقي تدريجياً." },
-  { q: "هل تتغيّر أسماء الألوان للمذكّر والمؤنّث؟", a: "نعم، فلكل لون أساسي شكلان: أحمر/حمراء، أزرق/زرقاء. علّم طفلك الشكل المذكّر أولاً، وسيلتقط المؤنّث تلقائياً مع الوقت." },
+  { q: "كم لوناً أعلّم طفلي بالعربية أولاً؟", a: "ابدأ بأربعة أو خمسة ألوان أساسية: الأحمر والأزرق والأخضر والأصفر وربما البرتقالي، وسمِّها على الألعاب والملابس حولكما. استعمل عبارات قصيرة مثل قلم أحمر وتفاحة حمراء، ثم أضف ألواناً أخرى تدريجياً." },
+  { q: "هل تتغيّر أسماء الألوان للمذكّر والمؤنّث؟", a: "نعم، فلكل لون أساسي شكلان: أحمر/حمراء، أزرق/زرقاء. استخدم المذكّر لتسمية اللون بمفرده، واستعمل الصيغتين في عبارات قصيرة مثل قلم أحمر وتفاحة حمراء." },
 ];
 
 const natureExamples = [
-  { emoji: "☁️", en: "The sky is azraq (blue)", ar: "السماء زرقاء" },
+  { emoji: "☁️", en: "The sky is zarqaa (blue)", ar: "السماء زرقاء" },
   { emoji: "🌳", en: "The grass is akhdar (green)", ar: "العشب أخضر" },
-  { emoji: "☀️", en: "The sun is asfar (yellow)", ar: "الشمس صفراء" },
-  { emoji: "🍓", en: "The strawberry is ahmar (red)", ar: "الفراولة حمراء" },
+  { emoji: "☀️", en: "The sun is safraa (yellow)", ar: "الشمس صفراء" },
+  { emoji: "🍓", en: "The strawberry is hamraa (red)", ar: "الفراولة حمراء" },
   { emoji: "🌙", en: "The night is aswad (black)", ar: "الليل أسود" },
   { emoji: "🐘", en: "The elephant is ramaadi (gray)", ar: "الفيل رمادي" },
 ];
@@ -94,7 +94,7 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
         description="Learn 12 colors in Arabic with a reference table, pronunciation, nature examples, masculine/feminine forms, and a color-hunt game."
         slug="learn/arabic-colors"
         datePublished="2026-03-19"
-        dateModified="2026-06-12"
+        dateModified="2026-09-29"
         section="Education"
         crumbs={[
           { label: locale === "ar" ? "تعلم" : "Learn", href: `/${locale}/learn` },
@@ -106,8 +106,45 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
         {isAr ? "الألوان بالعربية للأطفال" : "Arabic Colors for Kids"}
       </h1>
       <p className="text-base text-ink/75 mb-8">
-        {isAr ? "تعلم ١٢ لوناً أساسياً مع النطق والأمثلة من الطبيعة" : "Learn 12 essential colors with pronunciation and examples from nature"}
+        {isAr ? "تعلم 12 لوناً أساسياً مع النطق والأمثلة من الطبيعة" : "Learn 12 essential colors with pronunciation and examples from nature"}
       </p>
+
+      <nav aria-label={isAr ? "ابدأ التعلّم" : "Start learning"} className="mb-8 flex flex-wrap gap-3">
+        <a href="#color-reference" className="btn-chunky text-sm">{isAr ? "أسماء الألوان والنطق" : "Color names & audio"}</a>
+        <a href="#color-practice" className="btn-chunky btn-chunky-ghost text-sm">{isAr ? "جرّب نشاط الألوان" : "Try a color activity"}</a>
+        <a href="#color-worksheets" className="btn-chunky btn-chunky-ghost text-sm">{isAr ? "أوراق ألوان مجانية" : "Free color worksheets"}</a>
+      </nav>
+
+      <h2 id="color-reference" className="scroll-mt-24 text-xl font-semibold text-ink mb-4">
+        {isAr ? "جدول الألوان المرجعي" : "Quick Color Reference Table"}
+      </h2>
+      <p className="mb-4 text-sm text-ink/80">{isAr ? "اضغط على رمز الصوت للاستماع، ثم ابحث عن شيء بهذا اللون. أسماء الألوان هنا بالمذكّر؛ ستجد أمثلة المؤنّث أدناه." : "Press a speaker to listen, then find something in that color. These are the masculine names; see feminine examples below."}</p>
+      <div role="region" aria-labelledby="color-reference" tabIndex={0} className="overflow-x-auto mb-10 rounded-xl border border-ink/15 bg-card focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="border-b border-ink/10">
+              <th scope="col" className="py-2 px-3 text-center text-ink/70 font-medium">{isAr ? "اللون" : "Color"}</th>
+              <th scope="col" className="py-2 px-3 text-start text-ink/70 font-medium">{isAr ? "بالعربية" : "Arabic"}</th>
+              <th scope="col" className="py-2 px-3 text-start text-ink/70 font-medium">{isAr ? "بالإنجليزية" : "English"}</th>
+              <th scope="col" className="py-2 px-3 text-start text-ink/70 font-medium">{isAr ? "النطق" : "Pronunciation"}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {colors.map((c) => (
+              <tr key={c.en} className="border-b border-ink/10 hover:bg-white/5 transition">
+                <td className="py-2.5 px-3 text-center">
+                  <span className="inline-block w-6 h-6 rounded-md border border-ink/10 align-middle" style={{ backgroundColor: c.hex }} />
+                </td>
+                <td className="py-2.5 px-3 text-start text-base text-ink" style={{ fontFamily: "var(--font-noto-naskh), var(--font-ibm-plex-arabic), sans-serif" }}>
+                  <div className="flex items-center gap-2"><bdi lang="ar">{c.ar}</bdi><SpeakButton text={c.ar} label={isAr ? `استمع: ${c.ar}` : `Listen: ${c.ar}`} className="shrink-0 border-ink/20 bg-white" /></div>
+                </td>
+                <td className="py-2.5 px-3 text-start text-sm text-ink/80">{c.en}</td>
+                <td lang="en" dir="ltr" className="py-2.5 px-3 text-start text-sm text-ink/80 italic">{c.pron}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
 
       <div className="mb-10 overflow-hidden rounded-3xl border-[2.5px] border-ink bg-card shadow-[4px_4px_0_0_var(--ink)]">
         <Image
@@ -115,15 +152,11 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
           alt={isAr ? "دليل الألوان العربية" : "Arabic colors guide"}
           width={1200}
           height={630}
-          priority
           className="w-full object-cover"
         />
       </div>
 
-      {/* Everyone ranking above us for "arabic colors for kids" is a lesson
-          WITH a printable attached. This page had the lesson and the pack but
-          never linked them — the worksheet box closes that loop. */}
-      <div className="mb-10 grid gap-5 rounded-2xl border-2 border-ink bg-saffron-soft/40 p-5 sm:grid-cols-[minmax(0,140px)_1fr] sm:items-center">
+      <div id="color-worksheets" className="mb-10 scroll-mt-24 grid gap-5 rounded-2xl border-2 border-ink bg-saffron-soft/40 p-5 sm:grid-cols-[minmax(0,140px)_1fr] sm:items-center">
         <Image
           src="/printables/previews/arabic-colors.png"
           alt=""
@@ -135,7 +168,7 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
         />
         <div>
           <p className="font-display text-base font-extrabold text-ink">
-            {isAr ? "لوّن وتعلّم: ورقة لكل لون" : "Colour and learn: a worksheet for every colour"}
+            {isAr ? "لوّن وتعلّم: ستّ أوراق ألوان" : "Colour and learn: six color worksheets"}
           </p>
           <p className="mt-1 text-sm leading-relaxed text-ink/75">
             {isAr
@@ -167,34 +200,6 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
       </div>
 
       <h2 className="text-xl font-semibold text-ink mb-4">
-        {isAr ? "جدول الألوان المرجعي" : "Quick Color Reference Table"}
-      </h2>
-      <div className="overflow-x-auto mb-10">
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-ink/10">
-              <th className="py-2 px-3 text-center text-ink/70 font-medium">{isAr ? "اللون" : "Color"}</th>
-              <th className="py-2 px-3 text-start text-ink/70 font-medium">{isAr ? "بالعربية" : "Arabic"}</th>
-              <th className="py-2 px-3 text-start text-ink/70 font-medium">{isAr ? "بالإنجليزية" : "English"}</th>
-              <th className="py-2 px-3 text-start text-ink/70 font-medium">{isAr ? "النطق" : "Pronunciation"}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {colors.map((c) => (
-              <tr key={c.en} className="border-b border-ink/10 hover:bg-white/5 transition">
-                <td className="py-2.5 px-3 text-center">
-                  <span className="inline-block w-6 h-6 rounded-md border border-ink/10 align-middle" style={{ backgroundColor: c.hex }} />
-                </td>
-                <td className="py-2.5 px-3 text-start text-base text-ink" style={{ fontFamily: "var(--font-noto-naskh), var(--font-ibm-plex-arabic), sans-serif" }}>{c.ar}</td>
-                <td className="py-2.5 px-3 text-start text-sm text-ink/80">{c.en}</td>
-                <td className="py-2.5 px-3 text-start text-sm text-accent/80 italic">{c.pron}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-
-      <h2 className="text-xl font-semibold text-ink mb-4">
         {isAr ? "الألوان واحداً واحداً" : "Each Color, One by One"}
       </h2>
       <div className="space-y-4 mb-10">
@@ -205,14 +210,14 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
               style={{ backgroundColor: c.hex }}
             />
             <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2 mb-1">
+              <div className="flex flex-wrap items-center gap-2 mb-1">
                 <span className="text-lg font-semibold text-ink" style={{ fontFamily: "var(--font-ibm-plex-arabic), sans-serif" }}>
                   {c.ar}
                 </span>
-                <span className="text-ink/30">—</span>
+                <span className="text-ink/70">—</span>
                 <span className="text-sm text-ink/80">{c.en}</span>
-                <span className="text-sm text-accent/80 italic">({c.pron})</span>
-                <SpeakButton text={c.ar} label={`Listen: ${c.ar}`} className="ms-auto" />
+                <span lang="en" dir="ltr" className="text-sm text-ink/80 italic">({c.pron})</span>
+                <SpeakButton text={c.ar} label={isAr ? `استمع: ${c.ar}` : `Listen: ${c.ar}`} className="ms-auto shrink-0 border-ink/20 bg-white" />
               </div>
               <p className="text-sm text-ink/75 leading-relaxed">{isAr ? c.descAr : c.descEn}</p>
             </div>
@@ -251,13 +256,13 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
           </p>
           <p>
             {isAr
-              ? "لا تشغل طفلك الصغير بهذه القاعدة في البداية. ابدأ بالشكل المذكّر فقط (أحمر، أزرق، أخضر)، فهو يكفي تماماً في السنوات الأولى. ومع الوقت سيسمع طفلك المؤنّث في الكلام اليومي ويلتقطه تلقائياً، تماماً كما يفعل أطفال العرب."
-              : "Don't burden a young child with this rule at first. Start with the masculine form only (ahmar, azraq, akhdar) — it is plenty for the early years. Over time your child will hear the feminine form in everyday speech and pick it up naturally, just as Arab children do."}
+              ? "لا تحتاجان إلى حفظ القاعدة قبل اللعب. سمِّ اللون وحده: أحمر. ثم استعمل عبارة مع شيء أمامكما: قلم أحمر أو تفاحة حمراء. كرّر العبارة كاملة عند الإشارة إلى الشيء."
+              : "You do not need to memorise the rule before playing. Name the color on its own: ahmar. Then use a phrase with something nearby: qalam ahmar (a red pen) or tuffaaha hamraa (a red apple). Repeat the whole phrase while pointing to the object."}
           </p>
         </div>
       </section>
 
-      <section className="mb-8">
+      <section id="color-practice" className="mb-8 scroll-mt-24">
         <h2 className="text-xl font-semibold text-ink mb-3">
           {isAr ? "أنشطة ممتعة لتعلّم الألوان" : "Fun Activities to Learn Colors"}
         </h2>
@@ -276,8 +281,16 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
           </div>
           <div className="rounded-xl border border-ink/10 bg-white/5 p-4">
             <h3 className="font-semibold text-ink mb-1">{isAr ? "🍎 ألوان الطعام" : "🍎 Food Colors"}</h3>
-            <p className="text-sm text-ink/75">{isAr ? "أثناء الوجبات، تحدّثا عن ألوان الطعام بالعربية: \"الموز أصفر! التفاحة حمراء!\"" : "During meals, talk about food colors in Arabic: \"The banana is asfar! The apple is ahmar!\""}</p>
+            <p className="text-sm text-ink/75">{isAr ? "أثناء الوجبات، تحدّثا عن ألوان الطعام بالعربية: \"الموز أصفر! التفاحة حمراء!\"" : "During meals, talk about food colors in Arabic: \"The banana is asfar! The apple is hamraa!\""}</p>
           </div>
+        </div>
+        <details className="mt-4 rounded-xl border border-ink/15 bg-card p-4 text-ink">
+          <summary className="cursor-pointer min-h-11 font-semibold">{isAr ? "أكمل: تفاحة ___ (أحمر أم حمراء؟). افتح الإجابة" : "Complete: tuffaaha ___ (ahmar or hamraa?). Reveal the answer"}</summary>
+          <p className="mt-2">{isAr ? "تفاحة حمراء. كلمة تفاحة مؤنّثة، فنستخدم حمراء. جرّب أيضاً: قلم أحمر." : "Tuffaaha hamraa — تفاحة حمراء, a red apple. Tuffaaha is feminine, so use hamraa. Compare qalam ahmar — قلم أحمر, a red pen."}</p>
+        </details>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <Link href={`/${locale}/coloring`} className="btn-chunky text-sm">{isAr ? "جرّب لوحة التلوين" : "Try the coloring canvas"}</Link>
+          <a href="/printables/arabic-colors.pdf" download className="btn-chunky btn-chunky-ghost text-sm">{isAr ? "تدرّب على الورق: PDF" : "Practice on paper: PDF"}</a>
         </div>
       </section>
 
@@ -288,20 +301,20 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
       />
 
       <div className="flex flex-wrap gap-3 mb-8">
-        <Link href={`/${locale}/learn/arabic-numbers`} className="text-sm text-accent underline">
+        <Link href={`/${locale}/learn/arabic-numbers`} className="text-sm text-ink underline">
           {isAr ? "← الأرقام العربية" : "← Arabic Numbers"}
         </Link>
-        <Link href={`/${locale}/learn/first-arabic-words`} className="text-sm text-accent underline">
+        <Link href={`/${locale}/learn/first-arabic-words`} className="text-sm text-ink underline">
           {isAr ? "أول كلمات عربية →" : "First Arabic Words →"}
         </Link>
-        <Link href={`/${locale}/learn/arabic-alphabet-guide`} className="text-sm text-accent underline">
+        <Link href={`/${locale}/learn/arabic-alphabet-guide`} className="text-sm text-ink underline">
           {isAr ? "دليل الأبجدية العربية →" : "Arabic Alphabet Guide →"}
         </Link>
       </div>
 
       <div className="text-center py-6">
-        <Link href={`/${locale}/play`} className="btn-chunky inline-flex items-center gap-2 px-6 py-3 text-base transition hover:scale-105">
-          🚀 {isAr ? "العب في عرب فنجرز" : "Play ArabFingers"}
+        <Link href={`/${locale}/coloring`} className="btn-chunky inline-flex items-center gap-2 px-6 py-3 text-base transition hover:scale-105">
+          🎨 {isAr ? "لوّن وسمِّ الألوان بالعربية" : "Color and name the colors in Arabic"}
         </Link>
       </div>
       <RelatedArticles locale={locale} articles={getRelatedArticles(locale, "arabic-colors")} />

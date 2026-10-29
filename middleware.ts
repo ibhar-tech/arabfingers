@@ -22,7 +22,7 @@ const CANONICAL_HOST = "www.arabfingers.site";
  * different set on every page view), so frame-src/connect-src/img-src must
  * accept any HTTPS origin; scripts remain locked to the invoke host. Scripts
  * are the XSS-sensitive channel, and the ad network needs only two hosts
- * there. frame-ancestors 'none' matters here specifically: an embedded copy
+ * there (banner, popunder and social bar hosts). frame-ancestors 'none' matters here specifically: an embedded copy
  * of a tap-anywhere toy would invite mistimed taps from the child driving
  * the stage.
  *
@@ -32,7 +32,7 @@ const CANONICAL_HOST = "www.arabfingers.site";
  */
 const CONTENT_SECURITY_POLICY = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' https://fortunateambiguous.com https://static.cloudflareinsights.com",
+  "script-src 'self' 'unsafe-inline' https://fortunateambiguous.com https://bauval.org https://abscloud.org https://static.cloudflareinsights.com",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "font-src 'self' data:",

@@ -18,9 +18,9 @@ export async function generateMetadata({
     titleEn: "Arabic Letter Coloring & Tracing Game (Free, No Download)",
     titleAr: "لعبة تلوين وتتبّع الحروف العربية (مجانية بلا تحميل)",
     descriptionEn:
-      "Trace and colour all 28 Arabic letters on screen with a finger, stylus or mouse. A free browser canvas for pencil-grip practice before your child moves to paper — no download, no signup.",
+      "Colour 28 Arabic letters and 56 original pictures: animals, vehicles, space, fruit and more. Free brush, fill, stickers and PNG downloads, with no account needed.",
     descriptionAr:
-      "تتبّع الحروف العربية الـ٢٨ ولوّنها على الشاشة بالإصبع أو القلم الرقمي أو الفأرة. لوحة رسم مجانية في المتصفّح للتدرّب قبل الانتقال إلى الورق — بلا تحميل وبلا تسجيل.",
+      "لوّن 28 حرفاً عربياً و56 رسمة أصلية: حيوانات ومواصلات وفضاء وفواكه وغيرها. فرشاة وتعبئة وملصقات وحفظ الصور مجاناً دون حساب.",
     keywords: [
       "arabic letter tracing online", "arabic coloring game for kids",
       "trace arabic letters on screen", "تلوين الحروف العربية", "تتبع الحروف للأطفال",
@@ -34,7 +34,7 @@ const copy = {
     crumb: "Coloring",
     h1: "Arabic Letter Colouring & Tracing Game",
     lead:
-      "Pick a colour, then draw straight onto the letter with a finger, a stylus or a mouse. The letter outline stays visible under the paint, so a child can trace the shape as many times as they like, wipe the canvas and start again. Nothing to download and nothing to set up — the canvas above is the whole activity.",
+      "Choose from 10 topics: Arabic letters, animals, fruit and vegetables, vehicles, space, sea animals, Ramadan and Eid, body parts, seasons and shapes. Draw with a finger, stylus or mouse, fill an area, or add a sticker. The outline stays visible over the paint. Undo the last action or clear the page, and use Save to download your artwork as a PNG before choosing another picture.",
     whyTitle: "Why tracing on a screen before tracing on paper",
     why: [
       {
@@ -73,7 +73,7 @@ const copy = {
       { q: "Does the Arabic tracing game need a download or an account?", a: "No. It runs in the browser. There is no download, no account, no email address and no payment, and nothing your child draws is uploaded or stored anywhere." },
       { q: "What devices does it work on?", a: "Any modern browser on a phone, tablet, laptop or desktop. Tablets with a stylus give the closest feel to writing with a pencil, but a finger on a phone screen works well for younger children." },
       { q: "What age is the colouring and tracing canvas for?", a: "It suits children from about three upwards. Below four, most children will simply enjoy painting over the letter, which is still useful — recognising the shape comes before reproducing it." },
-      { q: "Is my child's drawing saved?", a: "No. Everything stays in the browser tab and disappears when you clear the canvas or close the page. We do not upload, store or transmit anything drawn here." },
+      { q: "Is my child's drawing saved?", a: "Drawings are not saved automatically. Use the Save button to download a PNG to your device before changing pictures or closing the page. We do not upload or transmit the artwork. Completed-letter stars are saved in this browser." },
       { q: "Should my child use this instead of paper worksheets?", a: "Use both. Screen tracing is better for early shape recognition and unlimited repetition; paper is better for pencil grip and the writing pressure that school expects. Most families use the canvas first and print the worksheets once the shape is familiar." },
     ],
   },
@@ -82,7 +82,7 @@ const copy = {
     crumb: "تلوين",
     h1: "لعبة تلوين وتتبّع الحروف العربية",
     lead:
-      "اختر لوناً ثمّ ارسم مباشرة فوق الحرف بالإصبع أو بقلم رقمي أو بالفأرة. يبقى حدّ الحرف ظاهراً تحت اللون، فيستطيع الطفل تتبّع الشكل ما شاء، ثمّ يمسح اللوحة ويبدأ من جديد. لا شيء يُحمَّل ولا شيء يُعدّ — اللوحة في الأعلى هي النشاط كلّه.",
+      "اختر من 10 مواضيع: الحروف والحيوانات والفواكه والخضروات والمواصلات والفضاء وعالم البحار ورمضان والعيد وأجزاء الجسم والفصول والأشكال. ارسم بالإصبع أو القلم الرقمي أو الفأرة، أو عبّئ مساحة باللون وأضف ملصقاً. تبقى الحدود ظاهرة فوق اللون. يمكنك التراجع عن آخر خطوة أو مسح اللوحة. اضغط «حفظ» لتنزيل رسمتك بصيغة PNG قبل اختيار رسمة جديدة.",
     whyTitle: "لماذا التتبّع على الشاشة قبل الورق",
     why: [
       {
@@ -114,14 +114,14 @@ const copy = {
       { href: "/printables", t: "أوراق التتبّع للطباعة (PDF)", d: "النسخة الورقية — صفحة كاملة لكلّ حرف، مجانية للتنزيل والطباعة." },
       { href: "/learn/arabic-letter-forms", t: "لماذا تتغيّر أشكال الحروف", d: "قواعد الاتّصال التي تحدّد شكل الحرف داخل الكلمة." },
       { href: "/play", t: "لعب حر", d: "استمع إلى نطق كلّ حرف. مفيدة للجانب الصوتي من الحرف نفسه." },
-      { href: "/learn/arabic-alphabet-guide", t: "دليل الحروف الكامل", d: "الحروف الـ٢٨ كاملة، ونطق كلّ حرف، والأخطاء المعتادة عند المتعلّمين." },
+      { href: "/learn/arabic-alphabet-guide", t: "دليل الحروف الكامل", d: "الحروف الـ28 كاملة، ونطق كلّ حرف، والأخطاء المعتادة عند المتعلّمين." },
     ],
     faqTitle: "أسئلة عن لوحة التتبّع",
     faq: [
       { q: "هل تحتاج لعبة التتبّع إلى تحميل أو حساب؟", a: "لا. تعمل داخل المتصفّح. لا تحميل ولا حساب ولا بريد إلكتروني ولا دفع، ولا يُرفع شيء ممّا يرسمه طفلك ولا يُخزَّن في أيّ مكان." },
       { q: "على أيّ الأجهزة تعمل؟", a: "على أيّ متصفّح حديث في هاتف أو لوح أو حاسوب محمول أو مكتبي. والألواح ذات القلم الرقمي أقرب إحساساً إلى الكتابة بالقلم، لكنّ الإصبع على شاشة الهاتف يفي بالغرض للأصغر سنّاً." },
       { q: "ما العمر المناسب للوحة التلوين والتتبّع؟", a: "تناسب من نحو ثلاث سنوات فصاعداً. ودون الرابعة سيكتفي أكثر الأطفال بالتلوين فوق الحرف، وهذا نافع أيضاً — فتمييز الشكل يسبق إنتاجه." },
-      { q: "هل يُحفَظ رسم طفلي؟", a: "لا. يبقى كلّ شيء داخل صفحة المتصفّح ويزول متى مسحت اللوحة أو أغلقت الصفحة. ولا نرفع ولا نخزّن ولا ننقل شيئاً ممّا يُرسم هنا." },
+      { q: "هل يُحفَظ رسم طفلي؟", a: "لا تُحفظ الرسومات تلقائياً. اضغط «حفظ» لتنزيل صورة PNG على جهازك قبل تغيير الرسمة أو إغلاق الصفحة. لا نرفع الرسومات ولا ننقلها. تُحفظ نجوم الحروف المكتملة في هذا المتصفّح." },
       { q: "هل يستعمل طفلي هذه بدل أوراق العمل الورقية؟", a: "استعملوا الاثنتين. التتبّع على الشاشة أفضل لتمييز الشكل مبكراً وللتكرار بلا حدّ، والورق أفضل للإمساك بالقلم ولضغط الكتابة الذي تطلبه المدرسة. وأكثر الأسر تبدأ باللوحة ثمّ تطبع الأوراق متى صار الشكل مألوفاً." },
     ],
   },

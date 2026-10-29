@@ -40,7 +40,7 @@ export const worksheetSets: WorksheetSet[] = [
       "صفحة كاملة لكل حرف من حروف الأبجدية: الحرف بحجم كبير، وأشكاله الأربعة في الكلمة، وثلاثة صفوف تتبّع متدرّجة، وكلمتان للتتبّع.",
     pages: 28,
     ageEn: "Ages 4–7",
-    ageAr: "من ٤ إلى ٧ سنوات",
+    ageAr: "من 4 إلى 7 سنوات",
   },
   {
     id: "arabic-alphabet-chart",
@@ -59,27 +59,27 @@ export const worksheetSets: WorksheetSet[] = [
     id: "arabic-numbers-tracing",
     emoji: "🔢",
     titleEn: "Arabic Numbers 1–10 Tracing Worksheets",
-    titleAr: "أوراق تتبّع الأرقام العربية ١–١٠",
+    titleAr: "أوراق تتبّع الأرقام العربية 1–10",
     descEn:
-      "A page per number showing the Eastern Arabic numeral and the Western digit side by side, finger-counting dots to colour, and tracing rows for both the numeral and its Arabic name.",
+      "One page per number from 1 to 10: a clear digit with its Arabic name, counting circles to colour, guided tracing, writing practice, and space to draw.",
     descAr:
-      "صفحة لكل رقم تعرض الرقم العربي المشرقي والرقم الغربي جنباً إلى جنب، مع دوائر عدّ بالأصابع للتلوين، وصفوف تتبّع للرقم ولاسمه.",
+      "صفحة لكل رقم من 1 إلى 10: رقم واضح واسمه بالعربية، ودوائر للعدّ والتلوين، وتدريب على التتبّع والكتابة ومساحة للرسم.",
     pages: 10,
     ageEn: "Ages 3–6",
-    ageAr: "من ٣ إلى ٦ سنوات",
+    ageAr: "من 3 إلى 6 سنوات",
   },
   {
     id: "arabic-numbers-11-20",
     emoji: "🔟",
     titleEn: "Arabic Numbers 11–20 Tracing Worksheets",
-    titleAr: "أوراق تتبّع الأرقام العربية ١١–٢٠",
+    titleAr: "أوراق تتبّع الأرقام العربية 11–20",
     descEn:
-      "The second decade in the same format: Eastern and Western numerals side by side, counting dots to colour, and tracing rows for the numeral and its full Arabic name — the part children find hardest past ten.",
+      "Continue from 11 to 20 with one page per number: counting circles, guided numeral tracing, writing practice, and the full Arabic name to trace.",
     descAr:
-      "العقد الثاني بالصيغة نفسها: الرقمان المشرقي والغربي جنباً إلى جنب، ودوائر عدّ للتلوين، وصفوف تتبّع للرقم ولاسمه العربي الكامل — وهو أصعب ما بعد العشرة.",
+      "واصل من 11 إلى 20 بصفحة لكل رقم: دوائر للعدّ، وتدريب على تتبّع الرقم وكتابته، وسطر لتتبّع اسمه العربي الكامل.",
     pages: 10,
     ageEn: "Ages 4–7",
-    ageAr: "من ٤ إلى ٧ سنوات",
+    ageAr: "من 4 إلى 7 سنوات",
   },
   {
     id: "arabic-harakat",
@@ -92,7 +92,7 @@ export const worksheetSets: WorksheetSet[] = [
       "خمس أوراق تغطّي الفتحة والكسرة والضمة والسكون والتنوين: كل حركة تُتتبّع على حروف حقيقية، مع كلمة مثال وكيف تغيّر الحركة الصوت.",
     pages: 5,
     ageEn: "Ages 5–8",
-    ageAr: "من ٥ إلى ٨ سنوات",
+    ageAr: "من 5 إلى 8 سنوات",
   },
   {
     id: "arabic-colors",
@@ -105,7 +105,7 @@ export const worksheetSets: WorksheetSet[] = [
       "ستّ كلمات لونية مع شكل هندسي للتلوين، وأسطر تتبّع لاسم اللون بالعربية والإنجليزية.",
     pages: 6,
     ageEn: "Ages 3–6",
-    ageAr: "من ٣ إلى ٦ سنوات",
+    ageAr: "من 3 إلى 6 سنوات",
   },
   {
     id: "arabic-animals-coloring",
@@ -118,7 +118,7 @@ export const worksheetSets: WorksheetSet[] = [
       "ثمانية حيوانات برسم كبير للتلوين واسم الحيوان للتتبّع بالعربية والإنجليزية، مع معلومة قصيرة يقرأها الوالد بصوت عالٍ.",
     pages: 8,
     ageEn: "Ages 3–7",
-    ageAr: "من ٣ إلى ٧ سنوات",
+    ageAr: "من 3 إلى 7 سنوات",
   },
   {
     id: "arabic-fruits-vegetables-coloring",
@@ -131,7 +131,7 @@ export const worksheetSets: WorksheetSet[] = [
       "ثماني فواكه وخضروات برسم كبير للتلوين، واسم كل واحدة للتتبّع بالعربية والإنجليزية، مع معلومة قصيرة يقرأها الوالد بصوت عالٍ.",
     pages: 8,
     ageEn: "Ages 3–7",
-    ageAr: "من ٣ إلى ٧ سنوات",
+    ageAr: "من 3 إلى 7 سنوات",
   },
   {
     id: "arabic-transport-coloring",
@@ -144,7 +144,7 @@ export const worksheetSets: WorksheetSet[] = [
       "ستّ وسائل نقل — سيارة وحافلة وقطار وطائرة وسفينة ودراجة — كل واحدة برسم كبير للتلوين وتتبّع الاسم بالعربية والإنجليزية ومعلومة تُقرأ بصوت عالٍ.",
     pages: 6,
     ageEn: "Ages 3–7",
-    ageAr: "من ٣ إلى ٧ سنوات",
+    ageAr: "من 3 إلى 7 سنوات",
   },
   {
     id: "arabic-solar-system-coloring",
@@ -157,7 +157,7 @@ export const worksheetSets: WorksheetSet[] = [
       "الشمس والقمر والأرض وزحل والنجمة والصاروخ — رسوم كبيرة للتلوين مع تتبّع الأسماء بالعربية والإنجليزية. يكمل درس المجموعة الشمسية على الموقع.",
     pages: 6,
     ageEn: "Ages 4–8",
-    ageAr: "من ٤ إلى ٨ سنوات",
+    ageAr: "من 4 إلى 8 سنوات",
   },
   {
     id: "arabic-alphabet-coloring",
@@ -167,10 +167,10 @@ export const worksheetSets: WorksheetSet[] = [
     descEn:
       "All 28 letters as huge outlined bubble letters to colour in, with each letter's example words and a tracing row. The colouring companion to the tracing pack.",
     descAr:
-      "الحروف الـ٢٨ كلّها كحروف ضخمة مفرّغة تلوّنها الطفل، مع كلمات كلّ حرف وسطر تتبّع. رفيق التلوين لحزمة التتبّع.",
+      "الحروف الـ28 كلّها كحروف ضخمة مفرّغة تلوّنها الطفل، مع كلمات كلّ حرف وسطر تتبّع. رفيق التلوين لحزمة التتبّع.",
     pages: 28,
     ageEn: "Ages 3–6",
-    ageAr: "من ٣ إلى ٦ سنوات",
+    ageAr: "من 3 إلى 6 سنوات",
   },
   {
     id: "arabic-ramadan-coloring",
@@ -183,7 +183,7 @@ export const worksheetSets: WorksheetSet[] = [
       "ستّ صفحات من رمضان والعيد — فانوس ومسجد وهلال وتمرات وهدية وبالون — مع تتبّع الأسماء بالعربية والإنجليزية. يكمل قصة «الفانوس الصغير».",
     pages: 6,
     ageEn: "Ages 3–7",
-    ageAr: "من ٣ إلى ٧ سنوات",
+    ageAr: "من 3 إلى 7 سنوات",
   },
   {
     id: "arabic-sea-animals-coloring",
@@ -196,7 +196,7 @@ export const worksheetSets: WorksheetSet[] = [
       "ستّة كائنات بحرية — حوت وأخطبوط وسلطعون وسلحفاة ودلفين ونجمة بحر — برسوم كبيرة للتلوين وتتبّع الأسماء بالعربية والإنجليزية. يكمل قصة «الحوت الصغير».",
     pages: 6,
     ageEn: "Ages 3–7",
-    ageAr: "من ٣ إلى ٧ سنوات",
+    ageAr: "من 3 إلى 7 سنوات",
   },
   {
     id: "arabic-body-parts-coloring",
@@ -209,7 +209,7 @@ export const worksheetSets: WorksheetSet[] = [
       "ستّة أجزاء من الجسم — الرأس والعين والأذن والفم واليد والقدم — برسوم كبيرة للتلوين وتتبّع الأسماء بالعربية والإنجليزية. لوّن الجزء ثم المسّه في جسمك.",
     pages: 6,
     ageEn: "Ages 3–6",
-    ageAr: "من ٣ إلى ٦ سنوات",
+    ageAr: "من 3 إلى 6 سنوات",
   },
   {
     id: "arabic-seasons-coloring",
@@ -222,7 +222,7 @@ export const worksheetSets: WorksheetSet[] = [
       "الشجرة نفسها عبر الفصول الأربعة — زهر الربيع وشمس الصيف وأوراق الخريف المتساقطة وثلج الشتاء — مشهد تلوين لكلّ فصل مع تتبّع اسمه بالعربية.",
     pages: 4,
     ageEn: "Ages 4–7",
-    ageAr: "من ٤ إلى ٧ سنوات",
+    ageAr: "من 4 إلى 7 سنوات",
   },
   {
     id: "arabic-opposites-coloring",
@@ -235,7 +235,7 @@ export const worksheetSets: WorksheetSet[] = [
       "خمسة أزواج من المتضادّات على رسوم متجاورة — كبير وصغير، ونهار وليل، وحارّ وبارد، وممتلئ وفارغ، وسريع وبطيء — لوّن الجانبين وتتبّع الكلمتين.",
     pages: 5,
     ageEn: "Ages 4–7",
-    ageAr: "من ٤ إلى ٧ سنوات",
+    ageAr: "من 4 إلى 7 سنوات",
   },
   {
     id: "arabic-complete-workbook",
@@ -248,7 +248,7 @@ export const worksheetSets: WorksheetSet[] = [
       "كل المجموعات في ملف واحد مرتّبة تعليمياً — اللوحة أولاً ثم الحروف فالحركات فالأرقام فالألوان فالحيوانات ثم كتب التلوين كلّها. تنزيل واحد وطباعة واحدة.",
     pages: 143,
     ageEn: "Ages 3–7",
-    ageAr: "من ٣ إلى ٧ سنوات",
+    ageAr: "من 3 إلى 7 سنوات",
     bundle: true,
   },
 ];
@@ -258,13 +258,10 @@ export const totalWorksheetPages = worksheetSets
   .filter((s) => !s.bundle)
   .reduce((sum, s) => sum + s.pages, 0);
 
-/** The same count in Arabic-Indic digits, for Arabic copy ("١٤٣"). */
-export const totalWorksheetPagesAr = String(totalWorksheetPages).replace(/\d/g, (d) => "٠١٢٣٤٥٦٧٨٩"[Number(d)]);
-
 export type NumberItem = {
-  /** Eastern Arabic numeral, e.g. "٣". */
+  /** Numeral displayed alongside the Arabic name, using digits 0–9. */
   ar: string;
-  /** Western digit, e.g. "3". */
+  /** Numeric string used for counting and English labels. */
   en: string;
   arName: string;
   enName: string;
@@ -272,30 +269,30 @@ export type NumberItem = {
 };
 
 export const numbersData: NumberItem[] = [
-  { ar: "١", en: "1", arName: "واحد", enName: "One", translit: "waahid" },
-  { ar: "٢", en: "2", arName: "اثنان", enName: "Two", translit: "ithnaan" },
-  { ar: "٣", en: "3", arName: "ثلاثة", enName: "Three", translit: "thalaatha" },
-  { ar: "٤", en: "4", arName: "أربعة", enName: "Four", translit: "arbaʿa" },
-  { ar: "٥", en: "5", arName: "خمسة", enName: "Five", translit: "khamsa" },
-  { ar: "٦", en: "6", arName: "ستة", enName: "Six", translit: "sitta" },
-  { ar: "٧", en: "7", arName: "سبعة", enName: "Seven", translit: "sabʿa" },
-  { ar: "٨", en: "8", arName: "ثمانية", enName: "Eight", translit: "thamaaniya" },
-  { ar: "٩", en: "9", arName: "تسعة", enName: "Nine", translit: "tisʿa" },
-  { ar: "١٠", en: "10", arName: "عشرة", enName: "Ten", translit: "ʿashara" },
+  { ar: "1", en: "1", arName: "واحد", enName: "One", translit: "waahid" },
+  { ar: "2", en: "2", arName: "اثنان", enName: "Two", translit: "ithnaan" },
+  { ar: "3", en: "3", arName: "ثلاثة", enName: "Three", translit: "thalaatha" },
+  { ar: "4", en: "4", arName: "أربعة", enName: "Four", translit: "arbaʿa" },
+  { ar: "5", en: "5", arName: "خمسة", enName: "Five", translit: "khamsa" },
+  { ar: "6", en: "6", arName: "ستة", enName: "Six", translit: "sitta" },
+  { ar: "7", en: "7", arName: "سبعة", enName: "Seven", translit: "sabʿa" },
+  { ar: "8", en: "8", arName: "ثمانية", enName: "Eight", translit: "thamaaniya" },
+  { ar: "9", en: "9", arName: "تسعة", enName: "Nine", translit: "tisʿa" },
+  { ar: "10", en: "10", arName: "عشرة", enName: "Ten", translit: "ʿashara" },
 ];
 
 /** The 11–20 companion pack: same sheet format, the next decade. */
 export const numbers11to20Data: NumberItem[] = [
-  { ar: "١١", en: "11", arName: "أحد عشر", enName: "Eleven", translit: "aḥada ʿashar" },
-  { ar: "١٢", en: "12", arName: "اثنا عشر", enName: "Twelve", translit: "ithnaa ʿashar" },
-  { ar: "١٣", en: "13", arName: "ثلاثة عشر", enName: "Thirteen", translit: "thalaathata ʿashar" },
-  { ar: "١٤", en: "14", arName: "أربعة عشر", enName: "Fourteen", translit: "arbaʿata ʿashar" },
-  { ar: "١٥", en: "15", arName: "خمسة عشر", enName: "Fifteen", translit: "khamsata ʿashar" },
-  { ar: "١٦", en: "16", arName: "ستة عشر", enName: "Sixteen", translit: "sittata ʿashar" },
-  { ar: "١٧", en: "17", arName: "سبعة عشر", enName: "Seventeen", translit: "sabʿata ʿashar" },
-  { ar: "١٨", en: "18", arName: "ثمانية عشر", enName: "Eighteen", translit: "thamaaniyata ʿashar" },
-  { ar: "١٩", en: "19", arName: "تسعة عشر", enName: "Nineteen", translit: "tisʿata ʿashar" },
-  { ar: "٢٠", en: "20", arName: "عشرون", enName: "Twenty", translit: "ʿishruun" },
+  { ar: "11", en: "11", arName: "أحد عشر", enName: "Eleven", translit: "aḥada ʿashar" },
+  { ar: "12", en: "12", arName: "اثنا عشر", enName: "Twelve", translit: "ithnaa ʿashar" },
+  { ar: "13", en: "13", arName: "ثلاثة عشر", enName: "Thirteen", translit: "thalaathata ʿashar" },
+  { ar: "14", en: "14", arName: "أربعة عشر", enName: "Fourteen", translit: "arbaʿata ʿashar" },
+  { ar: "15", en: "15", arName: "خمسة عشر", enName: "Fifteen", translit: "khamsata ʿashar" },
+  { ar: "16", en: "16", arName: "ستة عشر", enName: "Sixteen", translit: "sittata ʿashar" },
+  { ar: "17", en: "17", arName: "سبعة عشر", enName: "Seventeen", translit: "sabʿata ʿashar" },
+  { ar: "18", en: "18", arName: "ثمانية عشر", enName: "Eighteen", translit: "thamaaniyata ʿashar" },
+  { ar: "19", en: "19", arName: "تسعة عشر", enName: "Nineteen", translit: "tisʿata ʿashar" },
+  { ar: "20", en: "20", arName: "عشرون", enName: "Twenty", translit: "ʿishruun" },
 ];
 
 export type HarakahItem = {
@@ -418,7 +415,7 @@ export const fruitsVegData: ColoringItem[] = [
 export const transportData: ColoringItem[] = [
   { ar: "سيارة", en: "Car", translit: "sayyaara", shape: "car", factEn: "The first cars were so slow that a bicycle could race past them.", factAr: "كانت السيارات الأولى بطيئة لدرجة أنّ الدراجة تسبقها." },
   { ar: "حافلة", en: "Bus", translit: "Haafila", shape: "bus", factEn: "One full bus can take forty cars off the road.", factAr: "حافلة واحدة ممتلئة تعادل أربعين سيارة على الطريق." },
-  { ar: "قطار", en: "Train", translit: "qiTaar", shape: "train", factEn: "The fastest trains today run faster than 500 km per hour.", factAr: "أسرع القطارات اليوم تتجاوز ٥٠٠ كيلومتر في الساعة." },
+  { ar: "قطار", en: "Train", translit: "qiTaar", shape: "train", factEn: "The fastest trains today run faster than 500 km per hour.", factAr: "أسرع القطارات اليوم تتجاوز 500 كيلومتر في الساعة." },
   { ar: "طائرة", en: "Airplane", translit: "Taa'ira", shape: "airplane", factEn: "A plane's wings are shaped so the air moving over them lifts it up.", factAr: "جناحا الطائرة مصمّمان ليَدْفَعَهما الهواء إلى الأعلى." },
   { ar: "سفينة", en: "Ship", translit: "safeena", shape: "ship", factEn: "A big ship floats because of the huge amount of air inside its hull.", factAr: "تطفو السفينة الكبيرة بفضل الهواء الوفير داخل جسمها." },
   { ar: "دراجة", en: "Bicycle", translit: "darraaja", shape: "bicycle", factEn: "A bicycle is the most efficient transport humans ever invented — no fuel but you.", factAr: "الدراجة أوسع وسائل النقل كفاءةً — لا وقود لها سوى أنت." },

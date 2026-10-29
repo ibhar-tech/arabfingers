@@ -15,7 +15,7 @@ type AuthorBylineProps = {
 
 function formatDate(date: string, locale: string) {
   try {
-    return new Intl.DateTimeFormat(locale === "ar" ? "ar" : "en-US", {
+    return new Intl.DateTimeFormat(locale === "ar" ? "ar-u-nu-latn" : "en-US", {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -45,7 +45,7 @@ export function AuthorByline({ locale, datePublished, dateModified }: AuthorByli
             {BYLINE_NAME}
           </Link>
         </div>
-        <div className="text-xs text-ink/55">
+        <div className="text-xs text-ink/70">
           {datePublished && (
             <span>
               {isAr ? "نُشر " : "Published "}

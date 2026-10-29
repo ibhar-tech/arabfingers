@@ -22,7 +22,7 @@ export const blogPosts: BlogPost[] = [
     datePublished: "2026-04-15",
     dateModified: "2026-06-12",
     readingTimeEn: "8 min read",
-    readingTimeAr: "٨ دقائق قراءة",
+    readingTimeAr: "8 دقائق قراءة",
   },
   {
     slug: "screen-time-guidelines-arabic-learning",
@@ -34,7 +34,7 @@ export const blogPosts: BlogPost[] = [
     datePublished: "2026-04-28",
     dateModified: "2026-06-12",
     readingTimeEn: "10 min read",
-    readingTimeAr: "١٠ دقائق قراءة",
+    readingTimeAr: "10 دقائق قراءة",
   },
   {
     slug: "arabic-alphabet-vs-latin-deep-dive",
@@ -46,7 +46,7 @@ export const blogPosts: BlogPost[] = [
     datePublished: "2026-05-05",
     dateModified: "2026-06-12",
     readingTimeEn: "12 min read",
-    readingTimeAr: "١٢ دقيقة قراءة",
+    readingTimeAr: "12 دقيقة قراءة",
   },
   {
     slug: "arabic-calligraphy-for-kids",
@@ -58,7 +58,7 @@ export const blogPosts: BlogPost[] = [
     datePublished: "2026-05-12",
     dateModified: "2026-06-12",
     readingTimeEn: "9 min read",
-    readingTimeAr: "٩ دقائق قراءة",
+    readingTimeAr: "9 دقائق قراءة",
   },
   {
     slug: "ramadan-activities-arabic-learning",
@@ -70,6 +70,6 @@ export const blogPosts: BlogPost[] = [
     datePublished: "2026-05-20",
     dateModified: "2026-06-12",
     readingTimeEn: "7 min read",
-    readingTimeAr: "٧ دقائق قراءة",
+    readingTimeAr: "7 دقائق قراءة",
   },
 ];

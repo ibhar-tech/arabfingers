@@ -188,7 +188,7 @@ function ContentAr() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">١. المرونة الذهنية</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">1. المرونة الذهنية</h2>
           <div className="space-y-4">
             <div className="rounded-xl border border-ink/8 bg-card p-5">
               <h3 className="font-semibold text-ink mb-2">انتباه أحدّ وانتقال أسرع</h3>
@@ -204,7 +204,7 @@ function ContentAr() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">٢. صلة الأسرة والهوية</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">2. صلة الأسرة والهوية</h2>
           <div className="space-y-4">
             <div className="rounded-xl border border-ink/8 bg-card p-5">
               <h3 className="font-semibold text-ink mb-2">جسرٌ إلى الجدود والتراث</h3>
@@ -220,7 +220,7 @@ function ContentAr() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">٣. فرص المستقبل</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">3. فرص المستقبل</h2>
           <div className="space-y-4">
             <div className="rounded-xl border border-ink/8 bg-card p-5">
               <h3 className="font-semibold text-ink mb-2">مهارةٌ تفتح الأبواب</h3>

@@ -4,7 +4,7 @@
 // matches LetterCard.tsx (the Dr. Hakim / Anas cartoon world).
 //
 // Each icon: viewBox 0 0 48 48, rounded shapes, strokeWidth 2–2.5,
-// no text except the Arabic glyphs (ب / ٣). Sized via className.
+// no text except the Arabic glyphs (ب / 3). Sized via className.
 
 const EMERALD = "#34d399";
 const BLUE = "#60a5fa";
@@ -35,7 +35,7 @@ export function AlphabetIcon({ className }: IconProps) {
   );
 }
 
-// Numbers — rounded tile with the Arabic numeral ٣, blue accent.
+// Numbers — rounded tile with the Arabic numeral 3, blue accent.
 export function NumbersIcon({ className }: IconProps) {
   return (
     <svg viewBox="0 0 48 48" role="img" aria-label="Arabic numbers" className={className}>
@@ -49,7 +49,7 @@ export function NumbersIcon({ className }: IconProps) {
         fill="#ffffff"
         style={{ fontFamily: "var(--font-noto-naskh), serif" }}
       >
-        ٣
+        3
       </text>
     </svg>
   );

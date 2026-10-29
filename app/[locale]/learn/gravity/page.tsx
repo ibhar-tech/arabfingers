@@ -171,7 +171,7 @@ export default async function GravityPage({ params }: { params: Promise<{ locale
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm sm:text-base text-ink/80 leading-relaxed">
           <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-qalam mb-1">
-              {isAr ? "١. ما هي الجاذبية؟" : "1. What is Gravity?"}
+              {isAr ? "1. ما هي الجاذبية؟" : "1. What is Gravity?"}
             </h3>
             <p className="text-ink/80">
               {isAr
@@ -182,7 +182,7 @@ export default async function GravityPage({ params }: { params: Promise<{ locale
 
           <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-saffron-ink mb-1">
-              {isAr ? "٢. قصة تفاحة نيوتن" : "2. Isaac Newton's Discovery"}
+              {isAr ? "2. قصة تفاحة نيوتن" : "2. Isaac Newton's Discovery"}
             </h3>
             <p className="text-ink/80">
               {isAr
@@ -193,7 +193,7 @@ export default async function GravityPage({ params }: { params: Promise<{ locale
 
           <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-sky-400 mb-1">
-              {isAr ? "٣. الجاذبية في الفضاء" : "3. Floating in Space"}
+              {isAr ? "3. الجاذبية في الفضاء" : "3. Floating in Space"}
             </h3>
             <p className="text-ink/80">
               {isAr
@@ -204,7 +204,7 @@ export default async function GravityPage({ params }: { params: Promise<{ locale
 
           <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-violet mb-1">
-              {isAr ? "٤. الكتلة تحدد القوة" : "4. Mass and Planet Size"}
+              {isAr ? "4. الكتلة تحدد القوة" : "4. Mass and Planet Size"}
             </h3>
             <p className="text-ink/80">
               {isAr

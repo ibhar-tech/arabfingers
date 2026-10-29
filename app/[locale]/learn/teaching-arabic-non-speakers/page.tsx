@@ -28,9 +28,9 @@ const faqEn = [
 const faqAr = [
   { q: "هل أستطيع تعليم طفلي العربية إن كنت لا أتحدثها؟", a: "نعم، بشرط واحد: أن يسمع الطفل الحروف من مصدر أصلي لا منك. استعمل التسجيلات الصوتية — لكل حرف صفحة فيها زر استماع — وتابع معه، ودع التسجيل يحمل النطق بينما تحمل أنت الروتين. أنت توفّر الاستمرار، والصوت يوفّر الدقة." },
   { q: "هل لهجتي تفسد عربية طفلي؟", a: "لا، ما دامت التسجيلات تقوم بالدور الأكبر. يبني الطفل نطقه من المدخل الصوتي الغالب،ودقائق من نطقك غير المتقن إلى جانب صوت واضح ينفع أكثر مما يضر — فهي تعلّمه المحاولة، وهذا ما يجعله يجرؤ على الكلام." },
-  { q: "كم من العربية أحتاج أن أتعلّم مع طفلي؟", a: "يكفي أن تميّز الحروف الـ٢٨ وتنطق أسماءها — وهو نحو ما تطلبه خطة أسابيع أربعة من الطفل نفسه. لا تحتاج مفردات ولا قواعد ولا إتقان الخط. معرفة الحروف تكفي لإدارة كل جلسة ومراجعة كل ورقة والاحتفال بكل إنجاز." },
+  { q: "كم من العربية أحتاج أن أتعلّم مع طفلي؟", a: "يكفي أن تميّز الحروف الـ28 وتنطق أسماءها — وهو نحو ما تطلبه خطة أسابيع أربعة من الطفل نفسه. لا تحتاج مفردات ولا قواعد ولا إتقان الخط. معرفة الحروف تكفي لإدارة كل جلسة ومراجعة كل ورقة والاحتفال بكل إنجاز." },
   { q: "بأي الحروف نبدأ في عائلة لا تتحدث العربية؟", a: "ابدأ بالحروف الموجودة أصلاً في الإنجليزية: ب ت ج د ر س ف ك ل م ن و ي. وأجّل الأصوات التي لا مقابل لها في الإنجليزية — ح خ ص ض ط ظ ع غ ق — إلى الأسبوع الثالث مع فتح صفحة النطق بجانبك." },
-  { q: "كم يستغرق تعليم الأبجدية بهذه الطريقة؟", a: "حرف واحد يومياً، خمس دقائق في الجلسة، يوصل معظم العائلات إلى الحروف الـ٢٨ في خمسة إلى ستة أسابيع بتمييز يكفي لبدء قراءة كلمات قصيرة. الزيادة ممكنة والتباطؤ مقبول — الأبجدية ليست سباقاً." },
+  { q: "كم يستغرق تعليم الأبجدية بهذه الطريقة؟", a: "حرف واحد يومياً، خمس دقائق في الجلسة، يوصل معظم العائلات إلى الحروف الـ28 في خمسة إلى ستة أسابيع بتمييز يكفي لبدء قراءة كلمات قصيرة. الزيادة ممكنة والتباطؤ مقبول — الأبجدية ليست سباقاً." },
   { q: "هل تنفع أوراق العمل إن كان الوالد لا يقرأ العربية؟", a: "نعم، فهي لهذا صُنعت. الورقة تعرض الحرف وصفوف التتبّع المتدرّجة، وصفحة الحرف توفر الصوت بضغطة زر ونطقاً بالحروف اللاتينية تستطيع قراءته. لن تحتاج أبداً إلى استحضار العربية من ذاكرتك لإدارة الجلسة." },
 ];
 
@@ -116,38 +116,38 @@ export default async function TeachingArabicNonSpeakers({ params }: { params: Pr
       <div className="space-y-4 mb-10">
         {[
           {
-            t: tt("Week 1 — Train your own ear first", "الأسبوع ١ — درّب أذنك أنت أولاً"),
+            t: tt("Week 1 — Train your own ear first", "الأسبوع 1 — درّب أذنك أنت أولاً"),
             d: tt(
               "Before any lesson with your child, spend twenty minutes on the interactive alphabet in our letter guide: tap each letter, hear the Arabic name followed by the English one, repeat it badly, tap again. You are not learning to speak; you are learning to recognise. By the end you should be able to point at any letter and know its name — which is the whole skill this plan asks of you.",
               "قبل أي درس مع طفلك، اقضِ عشرين دقيقة على الأبجدية التفاعلية في دليل الحروف: اضغط كل حرف، واسمع اسمه بالعربية ثم بالإنجليزية، وأعده — ولو بنطق رديء — ثم اضغط ثانية. أنت لا تتعلم الكلام، بل تتعلم التمييز. في النهاية ينبغي أن تشير إلى أي حرف فتعرف اسمه، وهذه هي كل المهارة التي تطلبها منك الخطة.",
             ),
           },
           {
-            t: tt("Weeks 2–3 — Letters that English already has", "الأسبوعان ٢–٣ — الحروف الموجودة في الإنجليزية"),
+            t: tt("Weeks 2–3 — Letters that English already has", "الأسبوعان 2–3 — الحروف الموجودة في الإنجليزية"),
             d: tt(
               "One letter per day, five minutes per day. Start with the fifteen letters whose sounds exist in English (ب ت ج د ر ز س ش ف ك ل م ن ه و ي) so every early win feels easy for both of you. Each session: press Hear on the letter's worksheet page, trace the grey letters with a finger while the audio plays, then pencil on the sheet. Fifteen days, fifteen letters.",
               "حرف واحد كل يوم، خمس دقائق كل يوم. ابدأ بالخمسة عشر حرفاً التي أصواتها موجودة في الإنجليزية (ب ت ج د ر ز س ش ف ك ل م ن ه و ي) ليشعر كل نجاح مبكر بالسهولة عليكما معاً. كل جلسة: اضغط زر الاستماع في صفحة الحرف، وتتبّع الحروف الرمادية بالإصبع مع تشغيل الصوت، ثم بالقلم على الورقة. خمسة عشر يوماً، خمسة عشر حرفاً.",
             ),
           },
           {
-            t: tt("Week 4 — The sounds English doesn't have", "الأسبوع ٤ — الأصوات التي لا تملكها الإنجليزية"),
+            t: tt("Week 4 — The sounds English doesn't have", "الأسبوع 4 — الأصوات التي لا تملكها الإنجليزية"),
             d: tt(
               "Now the famous ones: ح and ه, خ and ج, the four \"emphatic\" letters ص ض ط ظ, the throat pair ع and غ, and ق. These are where your child genuinely needs the audio and you genuinely can't model them — so lean on it. Every letter page explains the mouth position in plain English for you, and the recording demonstrates it for your child. You are the coach, not the demonstration.",
               "الآن المشاهير: ح و ه، وخ و ج، والحروف الأربعة المفخّمة ص ض ط ظ، وثنائية الحلق ع و غ، ثم ق. هنا يحتاج طفلك الصوت فعلاً ولا تستطيع أنت النمذجة — فاعتمد عليه. كل صفحة حرف تشرح مخارج الحروف بالإنجليزية الواضحة لك، والتسجيل يعرضها لطفلك. أنت المدرب لا العرض.",
             ),
           },
           {
-            t: tt("Week 5 — Join the letters into words", "الأسبوع ٥ — صل الحروف في كلمات"),
+            t: tt("Week 5 — Join the letters into words", "الأسبوع 5 — صل الحروف في كلمات"),
             d: tt(
               "Arabic letters change shape when they connect, which surprises children and parents alike. Show the four forms on each worksheet (they're printed on every sheet), then trace the example words at the bottom of the page together — with audio, always. Our guide to why letters change shape makes the logic plain in five minutes of reading.",
               "تتغير أشكال الحروف عند اتصالها، وهذا يفاجئ الأطفال والوالدين سواء. اعرض الأشكال الأربعة على كل ورقة (مطبوعة في كل واحدة)، ثم تتبّعا الكلمات في أسفل الصفحة معاً — وبالصوت دائماً. ودليلنا عن تغيّر أشكال الحروف يشرح المنطق في خمس دقائق قراءة.",
             ),
           },
           {
-            t: tt("Week 6 — Readiness check and what comes next", "الأسبوع ٦ — فحص الجاهزية وما بعدها"),
+            t: tt("Week 6 — Readiness check and what comes next", "الأسبوع 6 — فحص الجاهزية وما بعدها"),
             d: tt(
               "Print the one-page alphabet chart, point at letters in random order, and let your child name them — audio off, this is the test. Twenty-five or more correct means you move on to first words and short-vowel marks (harakat). Under twenty is not failure; it means two more weeks at five minutes a day. Then the numbers 1–10, colours, and the free games on this site keep the momentum going without any new skills from you.",
-              "اطبع لوحة الحروف ذات الصفحة الواحدة، وأشر إلى الحروف بترتيب عشوائي، ودع طفلك يسمّيها — بإيقاف الصوت، فهذا هو الاختبار. خمسة وعشرون صحيحاً أو أكثر تعني الانتقال إلى الكلمات الأولى والحركات. وأقل من عشرين ليست فشلاً بل تعني أسبوعين إضافيين بخمس دقائق يومياً. ثم الأرقام ١–١٠ والألوان والألعاب المجانية في هذا الموقع تحفظ الزخم دون مهارات جديدة منك.",
+              "اطبع لوحة الحروف ذات الصفحة الواحدة، وأشر إلى الحروف بترتيب عشوائي، ودع طفلك يسمّيها — بإيقاف الصوت، فهذا هو الاختبار. خمسة وعشرون صحيحاً أو أكثر تعني الانتقال إلى الكلمات الأولى والحركات. وأقل من عشرين ليست فشلاً بل تعني أسبوعين إضافيين بخمس دقائق يومياً. ثم الأرقام 1–10 والألوان والألعاب المجانية في هذا الموقع تحفظ الزخم دون مهارات جديدة منك.",
             ),
           },
         ].map((s) => (
@@ -192,7 +192,7 @@ export default async function TeachingArabicNonSpeakers({ params }: { params: Pr
             <li>◆ {tt("A tutor (a bonus later, not a requirement now)", "معلّماً (إضافة لاحقاً لا شرطاً الآن)")}</li>
             <li>◆ {tt("Any paid app or subscription", "أي تطبيق مدفوع أو اشتراك")}</li>
             <li>◆ {tt("Perfect pronunciation — that's the recording's job", "نطقاً مثالياً — هذه مهمة التسجيل")}</li>
-            <li>◆ {tt("More than 15 minutes a day; longer sessions measurably hurt retention at ages 3–6", "أكثر من ربع ساعة يومياً؛ الجلسات الأطول تضرّ بالتثبيت في أعمار ٣–٦ سنوات")}</li>
+            <li>◆ {tt("More than 15 minutes a day; longer sessions measurably hurt retention at ages 3–6", "أكثر من ربع ساعة يومياً؛ الجلسات الأطول تضرّ بالتثبيت في أعمار 3–6 سنوات")}</li>
           </ul>
         </div>
       </div>

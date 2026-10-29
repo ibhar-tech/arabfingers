@@ -86,7 +86,7 @@ export default async function StoryPage({ params }: Props) {
             <h1 className="font-display text-3xl font-extrabold leading-tight text-ink">
               {isAr ? story.titleAr : story.titleEn}
             </h1>
-            <p className="mt-1 font-arabic-display text-lg text-qalam" dir="rtl">
+            <p className="mt-1 text-lg text-teal-800" lang={isAr ? "en" : "ar"} dir={isAr ? "ltr" : "rtl"}>
               {isAr ? story.titleEn : story.titleAr}
             </p>
           </div>
@@ -100,14 +100,14 @@ export default async function StoryPage({ params }: Props) {
           )}
         </div>
         <p className="mt-4 text-sm leading-relaxed text-ink/75">{isAr ? story.introAr : story.introEn}</p>
-        <p className="mt-3 text-xs font-bold uppercase tracking-wide text-ink/45">
+        <p className="mt-3 text-xs font-bold uppercase tracking-wide text-ink/70">
           {isAr ? story.agesAr : story.agesEn} · {story.scenes.length} {tt("scenes", "مشاهد")} ·{" "}
           {isAr ? story.minutesAr : story.minutesEn}
         </p>
         <a href={`/stories/${story.slug}.pdf`} download className="btn-chunky mt-4 inline-flex text-sm">
           ⬇ {tt("Download the PDF — free", "حمّل ملف PDF — مجاناً")}
         </a>
-        <p className="mt-2 text-xs font-semibold text-ink/50">
+        <p className="mt-2 text-xs font-semibold text-ink/70">
           {tt(
             "Read-aloud tip: point at every word as you say it — the tashkeel marks show your child exactly which vowel each letter carries.",
             "نصيحة للقراءة الجهرية: أشِر إلى كل كلمة أثناء نطقها — فالحركات تُري طفلك بدقّة أيّ حركة تحملها كلّ حرف.",
@@ -120,7 +120,7 @@ export default async function StoryPage({ params }: Props) {
         {story.scenes.map((scene, i) => (
           <li
             key={i}
-            className="card-stock mx-auto flex max-w-3xl items-start gap-5 p-6 sm:items-center"
+            className="card-stock mx-auto flex max-w-3xl flex-col items-start gap-4 p-5 sm:flex-row sm:items-center sm:gap-5 sm:p-6"
           >
             <span
               aria-hidden
@@ -128,12 +128,12 @@ export default async function StoryPage({ params }: Props) {
             >
               {scene.emoji}
             </span>
-            <div className="min-w-0">
-              <p className="font-arabic-display text-2xl leading-relaxed text-ink sm:text-3xl" dir="rtl">
+            <div className="min-w-0 w-full">
+              <p className="font-arabic-display text-2xl leading-relaxed text-ink sm:text-3xl" lang="ar" dir="rtl">
                 {scene.ar}
               </p>
-              <p className="mt-2 text-sm italic text-ink/50">{scene.translit}</p>
-              <p className="mt-1 text-base text-ink/75">{scene.en}</p>
+              <p className="mt-2 text-sm italic text-ink/70" lang="ar-Latn" dir="ltr">{scene.translit}</p>
+              <p className="mt-1 text-base text-ink/75" lang="en" dir="ltr">{scene.en}</p>
             </div>
           </li>
         ))}
@@ -141,11 +141,11 @@ export default async function StoryPage({ params }: Props) {
 
       {/* ---------- moral ---------- */}
       <section className="mx-auto mt-10 max-w-3xl rounded-2xl border-2 border-ink bg-saffron-soft/40 p-6 text-center">
-        <p className="text-xs font-bold uppercase tracking-[0.2em] text-qalam">
+        <p className="text-xs font-bold uppercase tracking-[0.2em] text-teal-800">
           {tt("The lesson · الْعِبْرَة", "The lesson · الْعِبْرَة")}
         </p>
-        <p className="mt-3 font-display text-lg font-extrabold text-ink">{story.moralEn}</p>
-        <p className="mt-2 font-arabic-display text-2xl leading-relaxed text-ink" dir="rtl">
+        <p className="mt-3 font-display text-lg font-extrabold text-ink" lang="en" dir="ltr">{story.moralEn}</p>
+        <p className="mt-2 font-arabic-display text-2xl leading-relaxed text-ink" lang="ar" dir="rtl">
           {story.moralAr}
         </p>
         <a href={`/stories/${story.slug}.pdf`} download className="btn-chunky mt-5 inline-flex text-sm">
@@ -170,7 +170,7 @@ export default async function StoryPage({ params }: Props) {
                 <h3 className="font-display text-sm font-extrabold leading-snug text-ink">
                   {isAr ? s.titleAr : s.titleEn}
                 </h3>
-                <p className="mt-0.5 text-xs font-bold uppercase tracking-wide text-ink/45">
+                <p className="mt-0.5 text-xs font-bold uppercase tracking-wide text-ink/70">
                   {s.scenes.length} {tt("scenes", "مشاهد")} · {isAr ? s.minutesAr : s.minutesEn}
                 </p>
               </div>
@@ -178,10 +178,10 @@ export default async function StoryPage({ params }: Props) {
           ))}
         </div>
         <div className="mt-5 flex flex-wrap gap-4 text-sm font-bold">
-          <Link href={`/${locale}/stories`} className="text-qalam underline underline-offset-4">
+          <Link href={`/${locale}/stories`} className="text-teal-800 underline underline-offset-4">
             ← {tt("All stories", "كل القصص")}
           </Link>
-          <Link href={`/${locale}/printables`} className="text-qalam underline underline-offset-4">
+          <Link href={`/${locale}/printables`} className="text-teal-800 underline underline-offset-4">
             {tt("Printable worksheets →", "← أوراق العمل")}
           </Link>
         </div>

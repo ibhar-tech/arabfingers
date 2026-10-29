@@ -4,9 +4,12 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import confetti from "canvas-confetti";
-import { Brush, Eraser, PaintBucket, RotateCcw, Sticker, Volume2 } from "lucide-react";
+import { Brush, Eraser, PaintBucket, RotateCcw, Sticker, Volume2, Download, Undo2, ChevronLeft, ChevronRight, Check } from "lucide-react";
 import { arabicLetters } from "@/lib/arabicMap";
 import { playLetterSound, primeLetterSounds } from "@/lib/letterSounds";
+import { coloringTopics, coloringSvg } from "@/lib/coloringTopics";
+import { coloringShapes } from "@/lib/coloringShapes";
+import { fillRegion } from "@/components/coloring/fillRegion";
 import { useAppStore } from "@/store/useAppStore";
 
 /**
@@ -52,6 +55,9 @@ export default function ColoringClient() {
   const [tool, setTool] = useState<Tool>("brush");
   const [sticker, setSticker] = useState(STICKERS[0]);
   const [index, setIndex] = useState(0);
+  const [topicId, setTopicId] = useState("letters");
+  const [canUndo, setCanUndo] = useState(false);
+  const undoRef = useRef<ImageData | null>(null);
   const [progress, setProgress] = useState(0);
   const [done, setDone] = useState(false);
   const [collected, setCollected] = useState<string[]>([]);
@@ -63,7 +69,13 @@ export default function ColoringClient() {
   /** Byte offsets of the alpha channel for pixels inside the glyph, sampled once per letter. */
   const maskOffsets = useRef<Int32Array>(new Int32Array(0));
 
-  const letter = arabicLetters[index];
+  const topic = coloringTopics.find(candidate => candidate.id === topicId)!;
+  const isLetter = topicId === "letters";
+  const letter = arabicLetters[isLetter ? index : 0];
+  const picture = isLetter ? null : topic.pictures[index];
+  const pictureCount = isLetter ? arabicLetters.length : topic.pictures.length;
+  const pictureName = picture ? (isAr ? picture.ar : picture.en) : (isAr ? letter.arName : letter.enName);
+  const pictureId = picture?.id ?? letter.ar;
 
   // The parent-panel Sound toggle must reach the games too, not just /play.
   // Imperative read: no re-render, and callbacks always see the current value.
@@ -104,12 +116,11 @@ export default function ColoringClient() {
      controls and wasted the top third of the sheet. */
   const glyph = useMemo(() => {
     const { width, height } = size;
-    const top = 64;
-    // Phones carry an extra row for the brush-size slider.
-    const bottom = height - (width < 640 ? 200 : 150);
+    const top = 24;
+    const bottom = height - 24;
     const band = Math.max(120, bottom - top);
     return {
-      font: Math.min(width * 0.52, band * 0.96),
+      font: Math.min(width * 0.75, band * 0.88),
       cx: width / 2,
       bandCenter: (top + bottom) / 2,
     };
@@ -165,6 +176,17 @@ export default function ColoringClient() {
     if (!ctx) return;
 
     let cancelled = false;
+    if (picture) {
+      const outlineImage = new Image();
+      outlineImage.onload = () => {
+        if (cancelled) return;
+        const side = Math.min(size.width - 32, size.height - 32);
+        ctx.drawImage(outlineImage, (size.width - side) / 2, (size.height - side) / 2, side, side);
+      };
+      outlineImage.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(coloringSvg(picture.shape))}`;
+      maskOffsets.current = new Int32Array(0);
+      return () => { cancelled = true; };
+    }
 
     const render = () => {
       if (cancelled) return;
@@ -184,12 +206,12 @@ export default function ColoringClient() {
       const { x, y } = anchor.current;
 
       // Faint tint inside the glyph so a child can see where to aim before colouring.
-      ctx.fillStyle = "rgba(42, 29, 78, 0.05)";
+      ctx.fillStyle = "rgba(16, 163, 154, 0.035)";
       ctx.fillText(letter.ar, x, y);
 
-      ctx.lineWidth = Math.max(5, glyph.font * 0.022);
-      ctx.strokeStyle = "rgba(42, 29, 78, 0.55)";
-      ctx.setLineDash([glyph.font * 0.05, glyph.font * 0.045]);
+      ctx.lineWidth = Math.max(2, glyph.font * 0.007);
+      ctx.strokeStyle = "#344b5a";
+      ctx.setLineDash([]);
       ctx.lineJoin = "round";
       ctx.strokeText(letter.ar, x, y);
       ctx.setLineDash([]);
@@ -238,12 +260,14 @@ export default function ColoringClient() {
     return () => {
       cancelled = true;
     };
-  }, [letter.ar, size, glyph, fitCanvas, fontFor]);
+  }, [letter.ar, picture, size, glyph, fitCanvas, fontFor]);
 
   useEffect(() => {
     clearPaint();
     setDone(false);
-  }, [index, size, clearPaint]);
+    setCanUndo(false);
+    undoRef.current = null;
+  }, [pictureId, size, clearPaint]);
 
   // ----------------------------------------------------------------- scoring
 
@@ -268,7 +292,9 @@ export default function ColoringClient() {
     if (ratio < DONE_AT || done) return;
 
     setDone(true);
-    confetti({ particleCount: 160, spread: 75, origin: { y: 0.6 }, colors: COLORS });
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      confetti({ particleCount: 70, spread: 65, origin: { y: 0.6 }, colors: COLORS });
+    }
     if (soundEnabled()) playLetterSound(letter.soundId);
     setCollected((previous) => {
       if (previous.includes(letter.ar)) return previous;
@@ -339,7 +365,54 @@ export default function ColoringClient() {
     score();
   };
 
+  const rememberPaint = () => {
+    const canvas = paintRef.current;
+    const context = canvas?.getContext("2d");
+    if (!canvas || !context) return;
+    undoRef.current = context.getImageData(0, 0, canvas.width, canvas.height);
+    setCanUndo(true);
+  };
+
+  const undoPaint = () => {
+    if (!undoRef.current) return;
+    paintRef.current?.getContext("2d")?.putImageData(undoRef.current, 0, 0);
+    undoRef.current = null;
+    setCanUndo(false);
+    setDone(false);
+    score();
+  };
+
+  const savePicture = () => {
+    const paint = paintRef.current;
+    const outline = outlineRef.current;
+    if (!paint || !outline) return;
+    const exported = document.createElement("canvas");
+    exported.width = paint.width;
+    exported.height = paint.height;
+    const context = exported.getContext("2d");
+    if (!context) return;
+    context.fillStyle = "#ffffff";
+    context.fillRect(0, 0, exported.width, exported.height);
+    context.drawImage(paint, 0, 0);
+    context.drawImage(outline, 0, 0);
+    const download = document.createElement("a");
+    download.download = `arabfingers-${pictureId}.png`;
+    download.href = exported.toDataURL("image/png");
+    download.click();
+  };
+
+  const fillPicture = (point: { x: number; y: number }) => {
+    if (isLetter) { fillLetter(); return; }
+    const paint = paintRef.current;
+    const outline = outlineRef.current;
+    if (!paint || !outline) return;
+    const scale = paint.width / size.width;
+    fillRegion(paint, outline, { x: point.x * scale, y: point.y * scale }, color);
+  };
+
   const onPointerDown = (event: React.PointerEvent<HTMLCanvasElement>) => {
+    if (event.button !== 0) return;
+    rememberPaint();
     // Capture keeps the stroke tracking a finger that slides off the canvas. It can
     // throw for an already-released pointer; a failed capture must not abort the
     // tap (TraceClient guards the identical call for the same reason).
@@ -349,7 +422,7 @@ export default function ColoringClient() {
       // paint anyway
     }
     if (tool === "fill") {
-      fillLetter();
+      fillPicture(pointAt(event));
       return;
     }
     drawing.current = true;
@@ -377,8 +450,9 @@ export default function ColoringClient() {
   // ------------------------------------------------------------------- letter
 
   const goTo = (delta: number) => {
-    setIndex((prev) => (prev + delta + arabicLetters.length) % arabicLetters.length);
-    if (soundEnabled()) playLetterSound(arabicLetters[(index + delta + arabicLetters.length) % arabicLetters.length].soundId);
+    const next = (index + delta + pictureCount) % pictureCount;
+    setIndex(next);
+    if (isLetter && soundEnabled()) playLetterSound(arabicLetters[next].soundId);
   };
 
   const tools: { id: Tool; icon: typeof Brush; label: string }[] = [
@@ -388,243 +462,83 @@ export default function ColoringClient() {
     { id: "eraser", icon: Eraser, label: isAr ? "ممحاة" : "Eraser" },
   ];
 
+  const selectTopic = (id: string) => {
+    setTopicId(id);
+    setIndex(0);
+  };
+
   return (
-    <div
-      ref={stageRef}
-      dir={isAr ? "rtl" : "ltr"}
-      className="relative h-[calc(100dvh-var(--header-h))] w-full select-none overflow-hidden bg-canvas touch-none"
-    >
-      {/* Paper grain: a couple of very soft blooms so the sheet is not flat white. */}
-      <div className="pointer-events-none absolute inset-0 opacity-70">
-        <div className="absolute -start-16 -top-10 h-72 w-72 rounded-full bg-saffron/20 blur-[90px]" />
-        <div className="absolute -end-16 top-1/3 h-80 w-80 rounded-full bg-violet/15 blur-[100px]" />
-      </div>
-
-      {/* Top bar */}
-      <div className="absolute inset-x-0 top-0 z-30 flex items-start justify-between gap-2 p-3">
-        <div className="card-stock flex items-center gap-2 px-3 py-2">
-          <span className="font-arabic-display text-2xl leading-none text-ink">{letter.ar}</span>
-          <span className="text-sm font-extrabold text-ink/70">
-            {isAr ? letter.arName : letter.enName}
-          </span>
-          <button
-            type="button"
-            onClick={() => {
-              if (soundEnabled()) playLetterSound(letter.soundId);
-            }}
-            aria-label={isAr ? "استمع للحرف" : "Hear the letter"}
-            className="ms-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-ink/60 transition hover:bg-saffron-soft hover:text-ink"
-          >
-            <Volume2 className="h-5 w-5" />
-          </button>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <div className="card-stock hidden items-center gap-1.5 px-3 py-2 text-sm font-extrabold text-ink/70 sm:flex">
-            ⭐ {collected.length}/{arabicLetters.length}
+    <section dir={isAr ? "rtl" : "ltr"} className="bg-[#f1f7f6] px-3 py-6 sm:px-6 sm:py-8">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <p className="text-xs font-extrabold uppercase tracking-widest text-[#08796f]">{isAr ? "مساحة صغيرة لخيال كبير" : "A little space for big imaginations"}</p>
+            <h2 className="mt-1 font-display text-3xl font-extrabold text-ink sm:text-4xl">{isAr ? "استوديو التلوين" : "The colouring studio"} <span aria-hidden>🎨</span></h2>
+            <p className="mt-2 text-sm text-ink/75">{isAr ? "10 مواضيع، 84 رسمة وحرفاً. اختر، لوّن، ثم احفظ رسمتك." : "10 topics, 84 pictures and letters. Pick a page, add colour, make it yours."}</p>
           </div>
-          <button
-            type="button"
-            onClick={clearPaint}
-            className="card-stock flex min-h-11 items-center gap-1.5 px-3 py-2 text-sm font-extrabold text-ink transition hover:bg-saffron-soft"
-          >
-            <RotateCcw className="h-4 w-4" />
-            {isAr ? "مسح" : "Clear"}
-          </button>
-        </div>
-      </div>
-
-      {/* Sheet */}
-      <canvas
-        ref={paintRef}
-        className="absolute inset-0 z-10 touch-none"
-        style={{ cursor: tool === "eraser" ? "cell" : "crosshair" }}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={onPointerUp}
-        onPointerCancel={onPointerUp}
-        onPointerLeave={onPointerUp}
-      />
-      <canvas ref={outlineRef} className="pointer-events-none absolute inset-0 z-20" />
-
-      {/* Controls */}
-      <div className="absolute inset-x-0 bottom-0 z-30 flex flex-col items-center gap-2 px-3 pb-5">
-        {/* Coverage meter — the child can see the star coming. */}
-        <div className="h-2.5 w-48 overflow-hidden rounded-full border-2 border-ink/15 bg-white/70">
-          <div
-            className="h-full rounded-full transition-[width] duration-200"
-            style={{ width: `${Math.min(100, (progress / DONE_AT) * 100)}%`, background: color }}
-          />
+          <Link href={`/${locale}/printables`} className="rounded-full border border-ink/15 bg-white px-4 py-3 text-sm font-bold text-ink hover:border-qalam">{isAr ? "أوراق تلوين للطباعة ↗" : "Prefer paper? Print a page ↗"}</Link>
         </div>
 
-        {tool === "sticker" && (
-          <div className="card-stock flex items-center gap-1.5 px-2.5 py-2">
-            {STICKERS.map((item) => (
-              <button
-                key={item}
-                type="button"
-                onClick={() => setSticker(item)}
-                aria-label={item}
-                className={`flex h-11 w-11 items-center justify-center rounded-xl text-2xl transition ${
-                  sticker === item ? "scale-110 bg-saffron-soft" : "hover:bg-saffron-soft/60"
-                }`}
-              >
-                {item}
-              </button>
-            ))}
-          </div>
-        )}
-
-        <div className="card-stock flex w-full max-w-2xl flex-wrap items-center justify-center gap-1.5 px-2.5 py-2">
-          {COLORS.map((item) => (
-            <button
-              key={item}
-              type="button"
-              onClick={() => {
-                setColor(item);
-                if (tool === "eraser" || tool === "sticker") setTool("brush");
-              }}
-              aria-label={`${isAr ? "لون" : "Colour"} ${item}`}
-              className={`h-11 w-11 rounded-full border-2 border-ink/20 transition ${
-                color === item ? "scale-110 ring-[3px] ring-ink" : "hover:scale-110"
-              }`}
-              style={{ backgroundColor: item }}
-            />
+        <div aria-label={isAr ? "مواضيع التلوين" : "Colouring topics"} className="mb-4 flex gap-2 overflow-x-auto pb-2">
+          {coloringTopics.map(candidate => (
+            <button key={candidate.id} type="button" aria-pressed={topicId === candidate.id} onClick={() => selectTopic(candidate.id)} className={`flex min-h-11 shrink-0 items-center gap-2 rounded-full border px-4 py-2 text-sm font-bold transition ${topicId === candidate.id ? "border-[#08796f] bg-[#08796f] text-white" : "border-ink/10 bg-white text-ink hover:border-qalam"}`}>
+              <span aria-hidden>{candidate.icon}</span>{isAr ? candidate.ar : candidate.en}
+            </button>
           ))}
-
-          <span className="mx-1 hidden h-7 w-0.5 rounded-full bg-ink/10 sm:block" />
-
-          <label className="hidden items-center gap-2 sm:flex">
-            <span className="text-xs font-extrabold text-ink/55">{isAr ? "الحجم" : "Size"}</span>
-            <input
-              type="range"
-              min="8"
-              max="70"
-              value={brushSize}
-              onChange={(event) => setBrushSize(parseInt(event.target.value, 10))}
-              aria-label={isAr ? "حجم الفرشاة" : "Brush size"}
-              className="touch-range h-11 w-28 appearance-none bg-transparent accent-qalam"
-            />
-            <span
-              className="rounded-full border-2 border-ink/20"
-              style={{
-                width: Math.max(8, brushSize / 2.4),
-                height: Math.max(8, brushSize / 2.4),
-                backgroundColor: color,
-              }}
-            />
-          </label>
         </div>
 
-        <div className="flex w-full max-w-2xl items-center gap-2">
-          <button
-            type="button"
-            onClick={() => goTo(-1)}
-            aria-label={isAr ? "الحرف السابق" : "Previous letter"}
-            className="btn-chunky shrink-0 rounded-full px-4 py-2.5 text-lg"
-          >
-            {isAr ? "→" : "←"}
-          </button>
-
-          <div className="card-stock flex flex-1 items-center justify-center gap-1 px-2 py-1.5">
-            {tools.map((item) => {
-              const Icon = item.icon;
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  onClick={() => setTool(item.id)}
-                  title={item.label}
-                  aria-label={item.label}
-                  aria-pressed={tool === item.id}
-                  className={`flex min-h-11 flex-1 items-center justify-center gap-1.5 rounded-xl px-2 py-2 text-xs font-extrabold transition ${
-                    tool === item.id ? "bg-ink text-card" : "text-ink/70 hover:bg-saffron-soft"
-                  }`}
-                >
-                  <Icon className="h-4 w-4" />
-                  <span className="hidden sm:inline">{item.label}</span>
+        <div className="grid items-start gap-4 lg:grid-cols-[210px_minmax(0,1fr)]">
+          <aside className="min-w-0 rounded-3xl border border-ink/10 bg-white p-3">
+            <div className="mb-3 flex items-center justify-between px-1"><h2 className="font-display font-extrabold text-ink">{isAr ? topic.ar : topic.en}</h2><span className="text-xs font-bold text-ink/60">{pictureCount}</span></div>
+            <div className="flex gap-2 overflow-x-auto pb-1 lg:grid lg:max-h-[650px] lg:grid-cols-2 lg:overflow-y-auto lg:overflow-x-hidden">
+              {(isLetter ? arabicLetters.map(entry => ({ id: entry.ar, en: entry.enName, ar: entry.arName, shape: "" })) : topic.pictures).map((entry, pictureIndex) => (
+                <button key={entry.id} type="button" onClick={() => setIndex(pictureIndex)} aria-pressed={index === pictureIndex} aria-label={isAr ? entry.ar : entry.en} className={`flex w-20 shrink-0 flex-col items-center justify-center rounded-2xl border-2 p-2 transition lg:w-full ${index === pictureIndex ? "border-qalam bg-[#e8f6f2]" : "border-transparent bg-[#f7f8fa] hover:border-qalam/40"}`}>
+                  {isLetter ? <span className="font-arabic-display text-4xl leading-[1.4] text-ink">{entry.id}</span> : <svg viewBox="0 0 200 200" aria-hidden className="h-14 w-14" fill="none" stroke="#344b5a" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" dangerouslySetInnerHTML={{ __html: coloringShapes[entry.shape] }} />}
+                  <span className="mt-1 line-clamp-1 text-xs font-bold text-ink">{isAr ? entry.ar : entry.en}</span>
                 </button>
-              );
-            })}
+              ))}
+            </div>
+          </aside>
+
+          <div className="min-w-0 overflow-hidden rounded-3xl border border-ink/10 bg-white shadow-[0_8px_30px_#2340390a]">
+            <div className="flex flex-wrap items-center justify-between gap-2 border-b border-ink/10 px-4 py-3">
+              <div className="flex items-center gap-2">
+                <h2 className="font-display text-xl font-extrabold text-ink">{pictureName}</h2>
+                {picture && <span lang={isAr ? "en" : "ar"} className="text-sm text-ink/65">{isAr ? picture.en : picture.ar}</span>}
+                {isLetter && <button type="button" onClick={() => { if (soundEnabled()) playLetterSound(letter.soundId); }} aria-label={isAr ? "استمع للحرف" : "Hear the letter"} className="flex h-11 w-11 items-center justify-center rounded-full bg-[#e8f6f2] text-[#08796f] hover:bg-qalam/15"><Volume2 className="h-5 w-5" /></button>}
+              </div>
+              <div className="flex items-center gap-1 text-ink">
+                <button type="button" onClick={undoPaint} disabled={!canUndo} aria-label={isAr ? "تراجع" : "Undo"} title={isAr ? "تراجع" : "Undo"} className="flex h-11 w-11 items-center justify-center rounded-xl hover:bg-ink/5 disabled:opacity-30"><Undo2 className="h-5 w-5" /></button>
+                <button type="button" onClick={() => { rememberPaint(); clearPaint(); setDone(false); }} aria-label={isAr ? "مسح" : "Clear"} title={isAr ? "مسح" : "Clear"} className="flex h-11 w-11 items-center justify-center rounded-xl hover:bg-ink/5"><RotateCcw className="h-5 w-5" /></button>
+                <button type="button" onClick={savePicture} className="flex min-h-11 items-center gap-2 rounded-xl bg-saffron px-3 text-sm font-bold"><Download className="h-4 w-4" />{isAr ? "حفظ" : "Save"}</button>
+              </div>
+            </div>
+
+            <div ref={stageRef} className="relative h-[340px] bg-white sm:h-[440px] lg:h-[470px]">
+              <canvas ref={paintRef} aria-label={isAr ? `لوحة تلوين: ${pictureName}` : `Colouring canvas: ${pictureName}`} className="absolute inset-0 z-10 touch-none" style={{ cursor: tool === "eraser" ? "cell" : "crosshair" }} onPointerDown={onPointerDown} onPointerMove={onPointerMove} onPointerUp={onPointerUp} onPointerCancel={onPointerUp} />
+              <canvas ref={outlineRef} aria-hidden className="pointer-events-none absolute inset-0 z-20" />
+              {done && <p role="status" className="pointer-events-none absolute inset-x-4 bottom-3 z-30 mx-auto w-fit rounded-full bg-saffron-soft px-4 py-2 text-sm font-bold text-ink">⭐ {isAr ? "أحسنت! تابع التلوين كما تحب." : "Great job! Keep colouring your way."}</p>}
+            </div>
+
+            <div className="border-t border-ink/10 bg-[#fafcfb] px-3 py-3 sm:px-5">
+              <div className="mb-3 flex items-center justify-between gap-2">
+                <button type="button" onClick={() => goTo(-1)} aria-label={isAr ? "الرسمة السابقة" : "Previous picture"} className="flex h-11 w-11 items-center justify-center rounded-full border border-ink/10 bg-white text-ink">{isAr ? <ChevronRight className="h-5 w-5" /> : <ChevronLeft className="h-5 w-5" />}</button>
+                <p aria-live="polite" className="text-center text-xs font-bold text-ink/70"><span dir="ltr">{index + 1} / {pictureCount}</span>{isLetter && <span className="ms-3">⭐ {collected.length}/28</span>}</p>
+                <button type="button" onClick={() => goTo(1)} aria-label={isAr ? "الرسمة التالية" : "Next picture"} className="flex h-11 w-11 items-center justify-center rounded-full border border-ink/10 bg-white text-ink">{isAr ? <ChevronLeft className="h-5 w-5" /> : <ChevronRight className="h-5 w-5" />}</button>
+              </div>
+              <div className="flex flex-wrap justify-center gap-1.5" aria-label={isAr ? "الألوان" : "Colours"}>
+                {COLORS.map((swatch, swatchIndex) => <button key={swatch} type="button" onClick={() => { setColor(swatch); if (tool === "eraser" || tool === "sticker") setTool("brush"); }} aria-label={(isAr ? ["أحمر", "برتقالي", "أصفر", "أخضر", "فيروزي", "أزرق", "بنفسجي", "وردي", "داكن"] : ["Red", "Orange", "Yellow", "Green", "Teal", "Blue", "Purple", "Pink", "Dark"])[swatchIndex]} aria-pressed={color === swatch} className={`flex h-11 w-11 items-center justify-center rounded-full border-2 border-white text-white shadow-sm ${color === swatch ? "ring-2 ring-ink ring-offset-2" : "hover:scale-105"}`} style={{ backgroundColor: swatch }}>{color === swatch && <Check className="h-5 w-5" strokeWidth={3} />}</button>)}
+              </div>
+              <div className="mt-4 grid grid-cols-4 gap-1 rounded-2xl bg-white p-1 ring-1 ring-ink/10">
+                {tools.map(({ id, icon: Icon, label }) => <button key={id} type="button" onClick={() => setTool(id)} aria-pressed={tool === id} className={`flex min-h-12 flex-col items-center justify-center gap-1 rounded-xl px-1 py-2 text-xs font-bold sm:flex-row sm:gap-2 ${tool === id ? "bg-[#08796f] text-white" : "text-ink/75 hover:bg-qalam/10"}`}><Icon className="h-4 w-4" />{label}</button>)}
+              </div>
+              {tool === "sticker" ? <div className="mt-3 flex flex-wrap justify-center gap-2">{STICKERS.map(stamp => <button key={stamp} type="button" onClick={() => setSticker(stamp)} aria-label={stamp} aria-pressed={sticker === stamp} className={`h-11 w-11 rounded-xl text-2xl ${sticker === stamp ? "bg-saffron-soft ring-2 ring-saffron" : "bg-white"}`}>{stamp}</button>)}</div> : <label className="mt-2 flex items-center justify-center gap-3 text-xs font-bold text-ink/70">{isAr ? "حجم الفرشاة" : "Brush size"}<input type="range" min="8" max="70" value={brushSize} onChange={event => setBrushSize(Number(event.target.value))} aria-label={isAr ? "حجم الفرشاة" : "Brush size"} className="h-11 min-w-0 flex-1 accent-qalam sm:max-w-64" /><span className="w-6 text-end">{brushSize}</span></label>}
+              <p className="mt-1 text-center text-xs leading-relaxed text-ink/65">{tool === "fill" ? (isAr ? "المس داخل الشكل لتعبئته باللون." : "Tap inside a shape to fill it with colour.") : (isAr ? "ارسم بإصبعك أو بالفأرة. احفظ الرسم قبل اختيار رسمة جديدة." : "Draw with a finger or mouse. Save your artwork before choosing another page.")}</p>
+              {isLetter && <div role="progressbar" aria-label={isAr ? "تقدم التلوين" : "Colouring progress"} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Math.round(Math.min(100, progress / DONE_AT * 100))} className="mx-auto mt-3 h-1.5 w-40 overflow-hidden rounded-full bg-ink/10"><div className="h-full bg-qalam transition-[width]" style={{ width: `${Math.min(100, progress / DONE_AT * 100)}%` }} /></div>}
+            </div>
           </div>
-
-          <button
-            type="button"
-            onClick={() => goTo(1)}
-            aria-label={isAr ? "الحرف التالي" : "Next letter"}
-            className="btn-chunky shrink-0 rounded-full px-4 py-2.5 text-lg"
-          >
-            {isAr ? "←" : "→"}
-          </button>
-        </div>
-
-        {/* Phones do not have room for the slider beside the swatches. */}
-        <div className="card-stock flex w-full max-w-2xl items-center gap-3 px-4 py-2 sm:hidden">
-          <span className="text-xs font-extrabold text-ink/60">{isAr ? "الحجم" : "Size"}</span>
-          <input
-            type="range"
-            min="8"
-            max="70"
-            value={brushSize}
-            onChange={(event) => setBrushSize(parseInt(event.target.value, 10))}
-            aria-label={isAr ? "حجم الفرشاة" : "Brush size"}
-            className="touch-range h-11 flex-1 appearance-none bg-transparent accent-qalam"
-          />
-          <span
-            className="rounded-full border-2 border-ink/20"
-            style={{
-              width: Math.max(8, brushSize / 2.4),
-              height: Math.max(8, brushSize / 2.4),
-              backgroundColor: color,
-            }}
-          />
         </div>
       </div>
-
-      {/* Reward */}
-      {done && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center bg-ink/45 px-4 backdrop-blur-sm">
-          <div className="card-stock card-stock-saffron w-full max-w-sm p-7 text-center">
-            <div className="mascot-bob text-6xl">🌟</div>
-            <h2 className="mt-3 font-display text-2xl font-extrabold text-ink">
-              {isAr ? "أحسنت!" : "Great job!"}
-            </h2>
-            <p className="mt-1 text-sm font-semibold text-ink/70">
-              {isAr
-                ? `لوّنت حرف ${letter.arName}. عندك ${collected.length} من ${arabicLetters.length} نجمة.`
-                : `You coloured ${letter.enName}. That is ${collected.length} of ${arabicLetters.length} stars.`}
-            </p>
-            <div className="mt-5 flex gap-2.5">
-              <button
-                type="button"
-                onClick={() => {
-                  clearPaint();
-                  setDone(false);
-                }}
-                className="btn-chunky btn-chunky-ghost flex-1 rounded-full px-4 py-2.5 text-sm"
-              >
-                {isAr ? "مرة أخرى" : "Again"}
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setDone(false);
-                  goTo(1);
-                }}
-                className="btn-chunky flex-1 rounded-full px-4 py-2.5 text-sm"
-              >
-                {isAr ? "الحرف التالي" : "Next letter"}
-              </button>
-            </div>
-            <Link
-              href={`/${locale}/printables`}
-              className="mt-4 inline-block text-xs font-bold text-ink/55 underline hover:text-ink"
-            >
-              {isAr ? "اطبع أوراق التتبع" : "Print the tracing worksheets"}
-            </Link>
-          </div>
-        </div>
-      )}
-    </div>
+    </section>
   );
 }

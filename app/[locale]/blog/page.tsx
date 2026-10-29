@@ -66,7 +66,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ loca
                   <span>{isAr ? post.readingTimeAr : post.readingTimeEn}</span>
                   <span>·</span>
                   <time dateTime={post.datePublished}>
-                    {new Date(post.datePublished).toLocaleDateString(isAr ? "ar-SA" : "en-US", {
+                    {new Date(post.datePublished).toLocaleDateString(isAr ? "ar-SA-u-nu-latn" : "en-US", {
                       year: "numeric",
                       month: "long",
                       day: "numeric",
@@ -77,7 +77,7 @@ export default async function BlogIndexPage({ params }: { params: Promise<{ loca
                       <span>·</span>
                       <span>
                         {isAr ? "محدث: " : "Updated: "}
-                        {new Date(post.dateModified).toLocaleDateString(isAr ? "ar-SA" : "en-US", {
+                        {new Date(post.dateModified).toLocaleDateString(isAr ? "ar-SA-u-nu-latn" : "en-US", {
                           month: "short",
                           day: "numeric",
                         })}

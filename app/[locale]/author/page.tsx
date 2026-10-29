@@ -71,7 +71,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     descriptionEn:
       "Aissa Trad is the parent and developer behind Arab Fingers, a free, open-source bilingual Arabic learning resource for families raising children aged 1–6.",
     descriptionAr:
-      "عيسى تراد هو الأب والمطوّر الذي بنى عرب فنجرز، مورد تعليمي عربي مجاني ومفتوح المصدر ثنائي اللغة للعائلات التي تربي أطفالاً من عمر سنة إلى ٦ سنوات.",
+      "عيسى تراد هو الأب والمطوّر الذي بنى عرب فنجرز، مورد تعليمي عربي مجاني ومفتوح المصدر ثنائي اللغة للعائلات التي تربي أطفالاً من عمر سنة إلى 6 سنوات.",
   });
 }
 

@@ -10,7 +10,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   return generatePageMetadata(locale, "/learn/arabic-vs-english", {
     titleEn: "Arabic vs English Alphabet: 7 Key Differences (and What Transfers)",
-    titleAr: "الفرق بين الأبجدية العربية والإنجليزية: ٧ فروق وما الذي ينتقل بسهولة",
+    titleAr: "الفرق بين الأبجدية العربية والإنجليزية: 7 فروق وما الذي ينتقل بسهولة",
     descriptionEn:
       "A side-by-side comparison of Arabic and English writing — direction, letter count, shapes, capitals, vowels, and dots — plus what transfers easily for bilingual kids, what needs extra practice, and three myths debunked.",
     descriptionAr:
@@ -202,11 +202,11 @@ function ContentAr() {
               <thead><tr className="border-b border-ink/10"><th className="py-2 px-3 text-right text-ink/70 font-medium">الميزة</th><th className="py-2 px-3 text-right text-ink/70 font-medium">العربية</th><th className="py-2 px-3 text-right text-ink/70 font-medium">الإنجليزية</th></tr></thead>
               <tbody className="text-ink/75">
                 <tr className="border-b border-ink/10"><td className="py-2 px-3 text-ink/85 font-medium">الاتجاه</td><td className="py-2 px-3">من اليمين إلى اليسار</td><td className="py-2 px-3">من اليسار إلى اليمين</td></tr>
-                <tr className="border-b border-ink/10"><td className="py-2 px-3 text-ink/85 font-medium">عدد الحروف</td><td className="py-2 px-3">٢٨ حرفاً</td><td className="py-2 px-3">٢٦ حرفاً</td></tr>
+                <tr className="border-b border-ink/10"><td className="py-2 px-3 text-ink/85 font-medium">عدد الحروف</td><td className="py-2 px-3">28 حرفاً</td><td className="py-2 px-3">26 حرفاً</td></tr>
                 <tr className="border-b border-ink/10"><td className="py-2 px-3 text-ink/85 font-medium">هل تتغيّر الأشكال؟</td><td className="py-2 px-3">نعم — حتى أربعة أشكال للحرف</td><td className="py-2 px-3">لا — شكل واحد في كل موضع</td></tr>
                 <tr className="border-b border-ink/10"><td className="py-2 px-3 text-ink/85 font-medium">الحرف الكبير</td><td className="py-2 px-3">لا يوجد</td><td className="py-2 px-3">كبير + صغير</td></tr>
                 <tr className="border-b border-ink/10"><td className="py-2 px-3 text-ink/85 font-medium">نوع الخط</td><td className="py-2 px-3">متّصل دائماً</td><td className="py-2 px-3">مطبوع أو متّصل</td></tr>
-                <tr className="border-b border-ink/10"><td className="py-2 px-3 text-ink/85 font-medium">الحركات</td><td className="py-2 px-3">٣ حروف مدّ + حركات اختيارية</td><td className="py-2 px-3">٥ أحرف علّة</td></tr>
+                <tr className="border-b border-ink/10"><td className="py-2 px-3 text-ink/85 font-medium">الحركات</td><td className="py-2 px-3">3 حروف مدّ + حركات اختيارية</td><td className="py-2 px-3">5 أحرف علّة</td></tr>
                 <tr className="border-b border-ink/10"><td className="py-2 px-3 text-ink/85 font-medium">النقاط</td><td className="py-2 px-3">تميّز كثيراً من الحروف</td><td className="py-2 px-3">في i وj فقط</td></tr>
               </tbody>
             </table>
@@ -214,42 +214,42 @@ function ContentAr() {
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">١. اتجاه الكتابة: من اليمين إلى اليسار</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">1. اتجاه الكتابة: من اليمين إلى اليسار</h2>
           <p className="mb-3">أوضح الفروق وأسرعها إلى الانتباه أنّ العربية تُكتب من اليمين إلى اليسار. ولهذا تُفتح الكتب من الجهة التي يعدّها قارئ الإنجليزية &quot;الخلف&quot;، ويتدفّق النصّ في الاتجاه المعاكس. وقلّما يربك هذا الأطفال ثنائيي اللغة، فهم يتكيّفون تلقائياً مع اتجاه أيّ لغة يستعملونها، كما ينتقلون بين اللغتين في الكلام.</p>
           <p>والطريف أنّ الأرقام داخل النصّ العربي تُكتب من اليسار إلى اليمين، مع أنّ النصّ المحيط بها يسير من اليمين إلى اليسار. وهذه من اللطائف التي يلتقطها الطفل تلقائياً بالممارسة.</p>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">٢. عدد الحروف</h2>
-          <p>في العربية ٢٨ حرفاً، وفي الإنجليزية ٢٦ حرفاً. والعدد متقارب، لكنّ الحروف لا تتقابل واحداً بواحد. ففي العربية أصوات لا وجود لها في الإنجليزية، وفي الإنجليزية صوتان (مثل صوت P وصوت V) لا وجود لهما في العربية الفصحى. ولذلك فتعلّم العربية ليس مجرّد استبدال رموز برموز، بل تعلّم أصوات جديدة والأشكال التي تحملها.</p>
+          <h2 className="text-xl font-semibold text-ink mb-3">2. عدد الحروف</h2>
+          <p>في العربية 28 حرفاً، وفي الإنجليزية 26 حرفاً. والعدد متقارب، لكنّ الحروف لا تتقابل واحداً بواحد. ففي العربية أصوات لا وجود لها في الإنجليزية، وفي الإنجليزية صوتان (مثل صوت P وصوت V) لا وجود لهما في العربية الفصحى. ولذلك فتعلّم العربية ليس مجرّد استبدال رموز برموز، بل تعلّم أصوات جديدة والأشكال التي تحملها.</p>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">٣. الحروف تتغيّر بتغيّر موضعها</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">3. الحروف تتغيّر بتغيّر موضعها</h2>
           <p className="mb-3">في الإنجليزية يبقى الحرف b على شكله سواء أوّل الكلمة أو وسطها أو آخرها. أمّا في العربية فأكثر الحروف تتغيّر صورتها بحسب موضعها: لها شكل منفصل، وشكل في أوّل الكلمة، وشكل في وسطها، وشكل في آخرها. وقد يبدو هذا مخيفاً، لكنّ الأشكال متقاربة، يجمعها هيكل واحد، وما يفرّق بينها إلا وصلات يسيرة.</p>
           <p>ونحن في عرب فنجرز نبدأ بالشكل المنفصل لكلّ حرف، وهو الشكل الأساس الذي يتعلّمه الطفل أوّلاً، تماماً كما يتعلّم الإنجليزية بالحرف المطبوع قبل المتّصل. ثمّ ينتقل تدريجياً إلى الأشكال المتّصلة كلّما رأى العربية في الكتب واللافتات.</p>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">٤. لا حرف كبير في العربية</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">4. لا حرف كبير في العربية</h2>
           <p>في الإنجليزية أبجديتان في معنى ما: الحروف الكبيرة (A, B, C) والصغيرة (a, b, c)، وقواعد تحدّد متى تُستعمل كلٌّ منها. والعربية خالية من هذا كلّه؛ فلا حرف كبير ولا صغير، ولا تبدأ الجملة ولا الأسماء بحرف كبير. وهذا يخفّف عن الطفل مجموعة قواعد كاملة، فلكلّ حرف عربيّ أشكاله، وليس له نسخة &quot;كبيرة&quot; منفصلة.</p>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">٥. الحركات تعمل بطريقة مختلفة</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">5. الحركات تعمل بطريقة مختلفة</h2>
           <p className="mb-3">في الإنجليزية خمسة أحرف علّة (A, E, I, O, U) تظهر بين الحروف الساكنة. وتتعامل العربية مع الحركات على نحو آخر؛ فلها ثلاثة حروف مدّ (ا للألف، و للواو، ي للياء)، وتستعمل علامات صغيرة فوق الحرف أو تحته تُسمّى الحركات لتدلّ على أصوات العلّة القصيرة.</p>
           <p className="mb-3">وفي الكتابة العربية اليومية — الصحف والكتب واللافتات — تُحذف الحركات غالباً، ويستنتج القارئ الصواب من السياق، كما يدرك قارئ الإنجليزية أنّ &quot;rd&quot; قد تكون &quot;read&quot; أو &quot;red&quot; بحسب السياق. أمّا كتب الأطفال والمصحف فتُضبط بالحركات كاملة إعانةً للمتعلّم.</p>
           <p>وهذا في الحقيقة مكسب للمتعلّم المبتدئ؛ فالطفل في عرب فنجرز لا يشغل باله بالحركات أصلاً، بل يركّز على معرفة أشكال الحروف وأصواتها، وهي أساس القراءة.</p>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">٦. دور النقاط</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">6. دور النقاط</h2>
           <p className="mb-3">كثير من الحروف العربية يشترك في الهيكل نفسه، ولا يميّزه إلا عدد النقاط وموضعها. فالباء ب نقطة واحدة تحتها، والتاء ت نقطتان فوقها، والثاء ث ثلاث نقاط فوقها، والهيكل في الثلاثة واحد. ومعنى هذا أنّ الطفل متى أتقن شكلاً واحداً، عرف معه حروفاً عدّة قريبة منه.</p>
           <p>وفي الإنجليزية لا نقطة إلا في الحرفين i وj. أمّا في العربية فالنقاط ركن من نظام الكتابة، إذ يستعملها نحو نصف الحروف الثمانية والعشرين لتتميّز عن أخواتها غير المنقوطة.</p>
         </section>
 
         <section>
-          <h2 className="text-xl font-semibold text-ink mb-3">٧. أصوات تنفرد بها العربية</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">7. أصوات تنفرد بها العربية</h2>
           <p className="mb-3">في العربية أصوات لا توجد في الإنجليزية، منها الأصوات الحلقية كالحاء ح والعين ع والغين غ، والحروف المفخّمة كالصاد ص والضاد ض والطاء ط والظاء ظ، والقاف ق التي تخرج من أقصى الحلق. وهذه الأصوات من جمال العربية وما يمنحها طابعها المميّز، وقد سُمّيت العربية &quot;لغة الضاد&quot; لأجل الضاد التي تكاد تنفرد بها.</p>
           <p>والأطفال بارعون إلى حدّ بعيد في تعلّم الأصوات غير المألوفة. وكلّما بكّرنا في تعريضهم لنطق العربية بأدوات مثل عرب فنجرز، صارت هذه الأصوات أيسر على ألسنتهم وأقرب إلى طبعهم.</p>
         </section>

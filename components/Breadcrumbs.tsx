@@ -32,7 +32,7 @@ export function Breadcrumbs({ locale, crumbs }: BreadcrumbsProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <nav aria-label="Breadcrumb" className="mb-6 text-xs font-semibold text-ink/45">
+      <nav aria-label="Breadcrumb" className="mb-6 text-xs font-semibold text-ink/70">
         <ol className="flex flex-wrap items-center gap-1">
           {allCrumbs.map((crumb, i) => (
             <li key={i} className="flex items-center gap-1">

@@ -68,9 +68,9 @@ function AuthorBlock({ isAr }: { isAr?: boolean }) {
       <div>
         <Link href={`/${isAr ? "ar" : "en"}/author`} className="text-ink/70 font-medium hover:text-accent transition">IBHAR TECH LEARNING</Link>
         <span className="mx-2">·</span>
-        <time dateTime="2026-05-20">{isAr ? "٢٠ مايو ٢٠٢٦" : "May 20, 2026"}</time>
+        <time dateTime="2026-05-20">{isAr ? "20 مايو 2026" : "May 20, 2026"}</time>
         <span className="mx-2">·</span>
-        <span>{isAr ? "٧ دقائق قراءة" : "7 min read"}</span>
+        <span>{isAr ? "7 دقائق قراءة" : "7 min read"}</span>
       </div>
     </div>
   );
@@ -276,7 +276,7 @@ function ContentAr() {
 
         <section>
           <h2 className="text-xl font-semibold text-ink mb-3">أنشطة حسب العمر</h2>
-          <h3 className="text-base font-semibold text-ink/90 mt-5 mb-3">🧒 عمر ١-٣: رمضان حسي</h3>
+          <h3 className="text-base font-semibold text-ink/90 mt-5 mb-3">🧒 عمر 1-3: رمضان حسي</h3>
           <div className="space-y-3">
             <div className="rounded-xl border border-ink/8 bg-card p-4">
               <h4 className="font-semibold text-ink mb-1">🌙 صيد حروف هلالية</h4>
@@ -292,11 +292,11 @@ function ContentAr() {
             </div>
           </div>
 
-          <h3 className="text-base font-semibold text-ink/90 mt-6 mb-3">📚 عمر ٤-٦: بناء المفردات</h3>
+          <h3 className="text-base font-semibold text-ink/90 mt-6 mb-3">📚 عمر 4-6: بناء المفردات</h3>
           <div className="space-y-3">
             <div className="rounded-xl border border-ink/8 bg-card p-4">
               <h4 className="font-semibold text-ink mb-1">📋 جدار كلمات رمضان</h4>
-              <p className="text-ink/75">أنشئ ملصقاً كبيراً بكلمات مفردات رمضان بالعربية والإنجليزية. كل يوم، تدرب على قراءة كلمة واحدة معاً. بنهاية رمضان، سيعرف طفلك ٣٠ كلمة عربية مرتبطة بتجارب حقيقية.</p>
+              <p className="text-ink/75">أنشئ ملصقاً كبيراً بكلمات مفردات رمضان بالعربية والإنجليزية. كل يوم، تدرب على قراءة كلمة واحدة معاً. بنهاية رمضان، سيعرف طفلك 30 كلمة عربية مرتبطة بتجارب حقيقية.</p>
             </div>
             <div className="rounded-xl border border-ink/8 bg-card p-4">
               <h4 className="font-semibold text-ink mb-1">🎨 زيّن بالحروف العربية</h4>

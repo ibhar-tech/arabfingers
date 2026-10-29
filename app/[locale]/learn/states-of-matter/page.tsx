@@ -174,7 +174,7 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm sm:text-base text-ink/80 leading-relaxed">
           <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-cyan-400 mb-1">
-              {isAr ? "١. المادة الصلبة" : "1. Solid Matter"}
+              {isAr ? "1. المادة الصلبة" : "1. Solid Matter"}
             </h3>
             <p className="text-ink/80">
               {isAr
@@ -185,7 +185,7 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
 
           <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-qalam mb-1">
-              {isAr ? "٢. المادة السائلة" : "2. Liquid Matter"}
+              {isAr ? "2. المادة السائلة" : "2. Liquid Matter"}
             </h3>
             <p className="text-ink/80">
               {isAr
@@ -196,7 +196,7 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
 
           <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-rose mb-1">
-              {isAr ? "٣. المادة الغازية" : "3. Gaseous Matter"}
+              {isAr ? "3. المادة الغازية" : "3. Gaseous Matter"}
             </h3>
             <p className="text-ink/80">
               {isAr
@@ -207,7 +207,7 @@ export default async function StatesOfMatterPage({ params }: { params: Promise<{
 
           <div className="p-4 rounded-xl border border-ink/5 bg-card">
             <h3 className="font-bold text-violet mb-1">
-              {isAr ? "٤. حالة البلازما" : "4. Plasma State"}
+              {isAr ? "4. حالة البلازما" : "4. Plasma State"}
             </h3>
             <p className="text-ink/80">
               {isAr

@@ -28,14 +28,14 @@ const alphabetFaqEn = [
 ];
 
 const alphabetFaqAr = [
-  { q: "كم عدد حروف الأبجدية العربية؟", a: "تتكوّن الأبجدية العربية من ٢٨ حرفاً، تُكتب من اليمين إلى اليسار، ويمثّل كل حرف صوتاً ساكناً أو حرف مدّ. أمّا الحركات القصيرة فتُكتب علامات صغيرة فوق الحرف أو تحته." },
+  { q: "كم عدد حروف الأبجدية العربية؟", a: "تتكوّن الأبجدية العربية من 28 حرفاً، تُكتب من اليمين إلى اليسار، ويمثّل كل حرف صوتاً ساكناً أو حرف مدّ. أمّا الحركات القصيرة فتُكتب علامات صغيرة فوق الحرف أو تحته." },
   { q: "ما هو أول حرف في الأبجدية العربية؟", a: "أول حرف هو الألف (ا)، وهو خطّ عمودي بسيط، وعادةً يكون أول حرف يتعلّمه الأطفال لسهولة شكله." },
   { q: "هل تُكتب الأبجدية العربية من اليمين إلى اليسار؟", a: "نعم، تُكتب العربية وتُقرأ من اليمين إلى اليسار عكس الإنجليزية، لكنّ الأرقام تُكتب من اليسار إلى اليمين." },
   { q: "هل تتغيّر أشكال الحروف العربية؟", a: "نعم، لمعظم الحروف حتى أربعة أشكال حسب موقعها في الكلمة: منفصل، وبداية، ووسط، ونهاية. ويتعلّم الأطفال الشكل المنفصل أولاً، وهو المعروض في هذا الدليل." },
   { q: "ماذا تُسمّى الأبجدية العربية؟", a: "تُسمّى الأبجدية العربية، وكلمة «أبجد» مأخوذة من أوائل الحروف، تماماً كما جاءت كلمة alphabet من ألفا وبيتا." },
-  { q: "ما الفرق بين الأبجدية العربية والإنجليزية؟", a: "العربية ٢٨ حرفاً والإنجليزية ٢٦، وتُكتب من اليمين إلى اليسار، وليس فيها حروف كبيرة وصغيرة، وتتّصل حروفها وتتغيّر أشكالها حسب الموقع، وفيها أصوات لا مقابل لها في الإنجليزية." },
-  { q: "ما أفضل عمر لبدء تعليم الطفل الحروف العربية؟", a: "يمكن أن يبدأ التعرّض من عمر سنتين أو ثلاث عبر الأصوات والأغاني واللعب، ويتمكّن الطفل عادةً من تمييز الحروف بين ٣ و٦ سنوات. والأهمّ في كل عمر هو الجلسات القصيرة الممتعة المتكرّرة." },
-  { q: "كم يستغرق الطفل لتعلّم الأبجدية العربية؟", a: "مع دقائق من التدريب الممتع في معظم الأيام، يميّز كثير من الأطفال الحروف الـ٢٨ خلال أسابيع إلى أشهر قليلة، أمّا كتابتها بإتقان فتأتي بعد التمييز وتحتاج وقتاً أطول." },
+  { q: "ما الفرق بين الأبجدية العربية والإنجليزية؟", a: "العربية 28 حرفاً والإنجليزية 26، وتُكتب من اليمين إلى اليسار، وليس فيها حروف كبيرة وصغيرة، وتتّصل حروفها وتتغيّر أشكالها حسب الموقع، وفيها أصوات لا مقابل لها في الإنجليزية." },
+  { q: "ما أفضل عمر لبدء تعليم الطفل الحروف العربية؟", a: "يمكن أن يبدأ التعرّض من عمر سنتين أو ثلاث عبر الأصوات والأغاني واللعب، ويتمكّن الطفل عادةً من تمييز الحروف بين 3 و6 سنوات. والأهمّ في كل عمر هو الجلسات القصيرة الممتعة المتكرّرة." },
+  { q: "كم يستغرق الطفل لتعلّم الأبجدية العربية؟", a: "مع دقائق من التدريب الممتع في معظم الأيام، يميّز كثير من الأطفال الحروف الـ28 خلال أسابيع إلى أشهر قليلة، أمّا كتابتها بإتقان فتأتي بعد التمييز وتحتاج وقتاً أطول." },
 ];
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -45,11 +45,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     // for kids" (394) and "arabic alphabets for kids" (170) all sat at ~pos 7
     // with ~1% CTR. Title and H1 now carry both words and the "for kids".
     titleEn: "Arabic Alphabet for Kids: All 28 Letters with Sounds + Free PDFs",
-    titleAr: "الأبجدية العربية للأطفال — الحروف الـ٢٨ وأوراق عمل مجانية",
+    titleAr: "الأبجدية العربية للأطفال — الحروف الـ28 وأوراق عمل مجانية",
     descriptionEn:
       "Every Arabic letter explained for parents — how to make each sound, example words and common mistakes — plus a free tracing worksheet for every one of the 28 letters. No signup.",
     descriptionAr:
-      "شرح كامل لكل حرف عربي: مخرجه وطريقة نطقه، وكلمات للأمثلة، وأشهر أخطاء الأطفال — مع لوحة حروف مجانية للطباعة وورقة تتبّع لكلّ حرف من الـ٢٨.",
+      "شرح كامل لكل حرف عربي: مخرجه وطريقة نطقه، وكلمات للأمثلة، وأشهر أخطاء الأطفال — مع لوحة حروف مجانية للطباعة وورقة تتبّع لكلّ حرف من الـ28.",
     ogType: "article",
     publishedTime: "2026-03-05",
     keywords: [
@@ -70,10 +70,10 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
     <PageLayout locale={locale}>
       <ArticleMeta
         locale={locale}
-        title={isAr ? "دليل الأبجدية العربية الكامل: الحروف الـ٢٨ بالنطق والأمثلة" : "Arabic Alphabet: Complete Guide to All 28 Letters"}
+        title={isAr ? "دليل الأبجدية العربية الكامل: الحروف الـ28 بالنطق والأمثلة" : "Arabic Alphabet: Complete Guide to All 28 Letters"}
         description={
           isAr
-            ? "تعلم جميع الحروف العربية الـ٢٨ مع مخرج كل حرف وكلمات للأمثلة وأخطاء الأطفال الشائعة ونصائح عملية للوالدين."
+            ? "تعلم جميع الحروف العربية الـ28 مع مخرج كل حرف وكلمات للأمثلة وأخطاء الأطفال الشائعة ونصائح عملية للوالدين."
             : "Learn all 28 Arabic letters with pronunciation, English equivalents, and writing tips. A complete guide for beginners and kids."
         }
         slug="learn/arabic-alphabet-guide"
@@ -90,7 +90,7 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
         {isAr ? "الحروف العربية للأطفال: دليل الأبجدية الكامل" : "The Arabic Alphabet for Kids: All 28 Letters"}
       </h1>
       <p className="text-base text-ink/75 mb-6">
-        {isAr ? "تعلم جميع الحروف العربية الـ ٢٨ مع النطق والأمثلة" : "Every Arabic letter for kids, with its sound, example words and a free printable"}
+        {isAr ? "تعلم جميع الحروف العربية الـ 28 مع النطق والأمثلة" : "Every Arabic letter for kids, with its sound, example words and a free printable"}
       </p>
 
       {/* This page collected 3,298 search impressions in three months and returned
@@ -102,7 +102,7 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
         </p>
         <p className="mt-1 text-sm leading-relaxed text-ink/75">
           {isAr
-            ? "لوحة الحروف الـ٢٨ في صفحة واحدة للتعليق على الجدار، وورقة تتبّع كاملة لكلّ حرف. ملفات PDF مجانية بلا تسجيل."
+            ? "لوحة الحروف الـ28 في صفحة واحدة للتعليق على الجدار، وورقة تتبّع كاملة لكلّ حرف. ملفات PDF مجانية بلا تسجيل."
             : "All 28 letters on one sheet to pin on the wall, and a full tracing page for every letter. Free PDFs, no signup."}
         </p>
         <div className="mt-4 flex flex-wrap gap-3">
@@ -110,7 +110,7 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
             {isAr ? "لوحة الحروف (صفحة)" : "Alphabet chart (1 page)"}
           </Link>
           <Link href={`/${locale}/printables/arabic-alphabet-tracing`} className="btn-chunky btn-chunky-ghost text-sm">
-            {isAr ? "أوراق التتبّع (٢٨ صفحة)" : "Tracing sheets (28 pages)"}
+            {isAr ? "أوراق التتبّع (28 صفحة)" : "Tracing sheets (28 pages)"}
           </Link>
           <Link href={`/${locale}/printables#letters`} className="btn-chunky btn-chunky-ghost text-sm">
             {isAr ? "حرف واحد في كل مرّة" : "One letter at a time"}
@@ -132,7 +132,7 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
       <div className="text-base leading-relaxed text-ink/80 mb-8 space-y-3">
         <p>
           {isAr
-            ? "الأبجدية العربية هي واحدة من أكثر أنظمة الكتابة استخداماً في العالم. تتكون من ٢٨ حرفاً تُكتب من اليمين إلى اليسار. على عكس الأبجدية اللاتينية، تتغير أشكال الحروف العربية حسب موقعها في الكلمة — بداية أو وسط أو نهاية."
+            ? "الأبجدية العربية هي واحدة من أكثر أنظمة الكتابة استخداماً في العالم. تتكون من 28 حرفاً تُكتب من اليمين إلى اليسار. على عكس الأبجدية اللاتينية، تتغير أشكال الحروف العربية حسب موقعها في الكلمة — بداية أو وسط أو نهاية."
             : "The Arabic alphabet is one of the most widely used writing systems in the world. It consists of 28 letters written from right to left. Unlike the Latin alphabet, Arabic letter shapes change depending on their position in a word — beginning, middle, or end."}
         </p>
         <p>
@@ -175,34 +175,34 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
             <div className="min-w-0 space-y-3">
               <h3 className="text-lg font-bold text-ink">
                 {isAr ? `حرف ال${l.arName}` : `${l.enName} (${l.arName})`}{" "}
-                <span className="text-sm font-normal text-ink/60">
+                <span className="text-sm font-normal text-ink/75">
                   {isAr
                     ? l.difficulty === "easy" ? "— سهل النطق" : l.difficulty === "medium" ? "— متوسط" : "— يحتاج تدريباً"
                     : l.difficulty === "easy" ? "— easy" : l.difficulty === "medium" ? "— medium" : "— challenging"}
                 </span>
               </h3>
               <p className="text-sm leading-relaxed text-ink/80">
-                <strong className="text-accent">{isAr ? "كيف ننطقه: " : "How to say it: "}</strong>
+                <strong className="text-teal-800">{isAr ? "كيف ننطقه: " : "How to say it: "}</strong>
                 {isAr ? l.soundHowToAr : l.soundHowToEn}
               </p>
               <p className="text-sm leading-relaxed text-ink/80">
-                <strong className="text-accent">{isAr ? "ميّزه عن أشباهه: " : "Compared to English: "}</strong>
+                <strong className="text-teal-800">{isAr ? "ميّزه عن أشباهه: " : "Compared to English: "}</strong>
                 {isAr ? l.comparisonAr : l.comparisonEn}
               </p>
               <div className="flex flex-wrap gap-2">
                 {l.examples.map((ex) => (
                   <span key={ex.word} className="rounded-xl border border-ink/10 bg-white/5 px-3 py-1.5 text-sm text-ink/85">
                     {ex.emoji} <span style={{ fontFamily: "var(--font-noto-naskh), serif" }}>{ex.word}</span>{" "}
-                    <span className="text-ink/60">{isAr ? `— ${ex.meaningAr}` : `(${ex.translit} — ${ex.meaningEn})`}</span>
+                    <span className="text-ink/75">{isAr ? `— ${ex.meaningAr}` : `(${ex.translit} — ${ex.meaningEn})`}</span>
                   </span>
                 ))}
               </div>
               <p className="text-sm leading-relaxed text-ink/80">
-                <strong className="text-rose-300">{isAr ? "الخطأ الشائع: " : "Common mistake: "}</strong>
+                <strong className="text-rose-800">{isAr ? "الخطأ الشائع: " : "Common mistake: "}</strong>
                 {isAr ? l.mistakeAr : l.mistakeEn}
               </p>
               <p className="text-sm leading-relaxed text-ink/80">
-                <strong className="text-emerald-300">{isAr ? "نصيحة للوالدين: " : "Parent tip: "}</strong>
+                <strong className="text-emerald-800">{isAr ? "نصيحة للوالدين: " : "Parent tip: "}</strong>
                 {isAr ? l.parentTipAr : l.parentTipEn}
               </p>
               {/* Every letter section can satisfy "arabic letter X worksheet"
@@ -210,7 +210,7 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
                   monthly impressions never converted into clicks. */}
               <Link
                 href={`/${locale}/printables/letters/${l.enName.toLowerCase()}`}
-                className="inline-block text-sm font-bold text-qalam underline underline-offset-4"
+                className="inline-block text-sm font-bold text-teal-800 underline underline-offset-4"
               >
                 {isAr
                   ? `ورقة تتبّع حرف ${l.arName} + النطق ←`
@@ -239,11 +239,11 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
             { href: "/learn/arabic-letter-forms", en: "How Arabic letters change shape", ar: "كيف تتغير أشكال الحروف" },
             { href: "/learn/first-arabic-words", en: "First Arabic words for kids", ar: "أول كلمات عربية للأطفال" },
             { href: "/learn/arabic-colors", en: "Colors in Arabic for kids", ar: "الألوان بالعربية للأطفال" },
-            { href: "/learn/arabic-numbers", en: "Arabic numbers (1–10)", ar: "الأرقام العربية (١–١٠)" },
+            { href: "/learn/arabic-numbers", en: "Arabic numbers (1–10)", ar: "الأرقام العربية (1–10)" },
             { href: "/learn/arabic-vs-english", en: "Arabic vs English alphabet", ar: "الأبجدية العربية مقابل الإنجليزية" },
             { href: "/learn/teaching-arabic-to-kids", en: "Teaching Arabic to kids", ar: "تعليم العربية للأطفال" },
           ].map((r) => (
-            <Link key={r.href} href={`/${locale}${r.href}`} className="rounded-xl border border-ink/10 bg-white/5 p-3 text-sm text-ink/75 hover:bg-white/10 hover:text-accent transition">
+            <Link key={r.href} href={`/${locale}${r.href}`} className="rounded-xl border border-ink/10 bg-white/5 p-3 text-sm text-ink/75 hover:bg-white/10 hover:text-teal-800 transition">
               {isAr ? r.ar : r.en} →
             </Link>
           ))}
@@ -272,7 +272,7 @@ function HowToSchema({ locale }: { locale: string }) {
         : "How to teach your child the Arabic alphabet",
     description:
       locale === "ar"
-        ? "خطوات بسيطة لتعليم الأطفال الحروف العربية الـ ٢٨ من خلال اللعب والتكرار."
+        ? "خطوات بسيطة لتعليم الأطفال الحروف العربية الـ 28 من خلال اللعب والتكرار."
         : "Simple steps to teach children the 28 Arabic letters through play and repetition.",
     inLanguage: locale === "ar" ? "ar" : "en",
     step: [

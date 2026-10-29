@@ -9,6 +9,12 @@
  * Keys are paths after the locale segment. Dates are ISO YYYY-MM-DD.
  */
 export const CONTENT_LAST_UPDATED: Record<string, string> = {
+  "": "2026-09-29",
+  "/coloring": "2026-09-29",
+  "/resources": "2026-09-29",
+  "/printables": "2026-09-29",
+  "/games": "2026-09-29",
+  "/games/count": "2026-09-29",
   // Science interactive lessons (expanded into full articles 2026-06-11)
   "/learn/states-of-matter": "2026-06-11",
   "/learn/water-cycle": "2026-06-11",
@@ -19,9 +25,9 @@ export const CONTENT_LAST_UPDATED: Record<string, string> = {
   "/learn/arabic-alphabet-guide": "2026-08-22",
   "/learn/teaching-arabic-to-kids": "2026-06-12",
   "/learn/teaching-arabic-non-speakers": "2026-08-22",
-  "/learn/arabic-numbers": "2026-06-12",
-  "/learn/arabic-colors": "2026-08-22",
-  "/learn/first-arabic-words": "2026-06-12",
+  "/learn/arabic-numbers": "2026-09-29",
+  "/learn/arabic-colors": "2026-09-29",
+  "/learn/first-arabic-words": "2026-09-29",
   "/learn/arabic-letter-forms": "2026-06-12",
   "/learn/arabic-vs-english": "2026-06-12",
   "/learn/best-age-to-learn-arabic": "2026-06-12",
@@ -53,7 +59,7 @@ export const CONTENT_LAST_UPDATED: Record<string, string> = {
   ].map((id) => [`/printables/${id}`, "2026-09-05"])),
 
   // Original illustrated stories (stories launch, Sept 2026)
-  "/stories": "2026-09-05",
+  "/stories": "2026-09-29",
   ...Object.fromEntries(
     [
       "al-arnab-al-saeed", "al-fanoos-al-sagheer", "rihla-ila-l-qamar",
@@ -65,6 +71,11 @@ export const CONTENT_LAST_UPDATED: Record<string, string> = {
       (slug) => [`/stories/${slug}`, "2026-09-05"],
     ),
   ),
+
+  // The numeral sheets and collected workbook were regenerated with 0–9 digits.
+  "/printables/arabic-numbers-tracing": "2026-09-29",
+  "/printables/arabic-numbers-11-20": "2026-09-29",
+  "/printables/arabic-complete-workbook": "2026-09-29",
 
   // Per-letter worksheet pages (letter-by-letter launch, Aug 2026)
   ...Object.fromEntries(
