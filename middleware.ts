@@ -57,6 +57,12 @@ const SECURITY_HEADERS: Record<string, string> = {
   "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
 };
 
+/** The top-level sections under app/[locale]. */
+const LOCALELESS_SECTIONS = new Set([
+  "about", "author", "blog", "coloring", "contact", "games", "glossary",
+  "learn", "play", "printables", "privacy", "resources", "stories", "terms",
+]);
+
 export function middleware(request: NextRequest) {
   const url = new URL(request.url);
   // Cloudflare terminates TLS, so the original scheme arrives in the header —
@@ -72,6 +78,17 @@ export function middleware(request: NextRequest) {
 
   if (isProductionHost && (proto !== "https" || hostname !== CANONICAL_HOST)) {
     return NextResponse.redirect(`https://${CANONICAL_HOST}${url.pathname}${url.search}`, 308);
+  }
+
+  // A real section reached without its locale prefix ("/games/count") goes to
+  // the English copy. Locale-less hrefs ride in the RSC payload of every page
+  // and Google crawls them, so these were 10 "Not found (404)" rows in Search
+  // Console (Oct 2026). Unknown first segments still fall through to the 404.
+  const section = url.pathname.split("/")[1];
+  if (LOCALELESS_SECTIONS.has(section)) {
+    const target = new URL(`/en${url.pathname}`, request.url);
+    target.search = url.search;
+    return NextResponse.redirect(target, 308);
   }
 
   const response = NextResponse.next();

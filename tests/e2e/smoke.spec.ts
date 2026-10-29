@@ -59,6 +59,12 @@ test.describe("404 flows", () => {
     await expect(page.getByRole("heading", { name: "هذه الصفحة غير موجودة" })).toBeVisible();
   });
 
+  test("a known section without its locale redirects to English", async ({ request }) => {
+    const res = await request.get("/games/count?x=1", { maxRedirects: 0 });
+    expect(res.status()).toBe(308);
+    expect(res.headers()["location"]).toMatch(/\/en\/games\/count\?x=1$/);
+  });
+
   test("invalid locale gets the bilingual root 404", async ({ page }) => {
     const res = await page.goto("/xx/unknown");
     expect(res?.status()).toBe(404);
