@@ -5,6 +5,7 @@ import { learnArticles } from "@/lib/related";
 import { blogPosts } from "@/lib/blog-data";
 import { letterWorksheetPages } from "@/lib/letterWorksheets";
 import { stories } from "@/lib/stories";
+import { gradePages } from "@/lib/gradePages";
 
 // Always use www to match canonical domain — avoids redirect chains in Google's index
 const rawUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.arabfingers.site";
@@ -64,6 +65,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...worksheetSets.flatMap((s) =>
       localizedUrls(`/printables/${s.id}`, 0.9, "monthly", [`${siteUrl}/printables/previews/${s.id}.png`]),
     ),
+
+    // Grade-level views of the library (preschool, kindergarten, grade 1)
+    ...gradePages.flatMap((g) => localizedUrls(`/printables/${g.slug}`, 0.9)),
 
     // One page per letter — letter-level queries ("arabic letter ba worksheet")
     // are the long tail the pack pages cannot answer individually.

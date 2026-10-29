@@ -3,6 +3,7 @@ import { learnArticles } from "@/lib/related";
 import { letterGuide } from "@/lib/letterGuide";
 import { letterDotsOf, letterWorksheetPages } from "@/lib/letterWorksheets";
 import { stories } from "@/lib/stories";
+import { gradePages } from "@/lib/gradePages";
 import { totalWorksheetPages, worksheetSets } from "@/lib/worksheets";
 
 /* /llms.txt — the site map written for language models and AI agents
@@ -47,6 +48,9 @@ Key facts:
 ## Printable worksheets (PDF)
 - [All worksheets](${SITE}/en/printables): every pack below, browsable by age
 ${packs.join("\n")}
+
+## Worksheets by age
+${gradePages.map((g) => `- [${g.h1En}](${SITE}/en/printables/${g.slug}): ${g.packs.length} packs in teaching order, with a 4-week plan`).join("\n")}
 
 ## The 28 Arabic letters — one worksheet page and PDF per letter
 ${letters.join("\n")}

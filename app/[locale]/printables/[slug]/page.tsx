@@ -10,6 +10,8 @@ import { generatePageMetadata } from "@/lib/seo";
 import { worksheetSets } from "@/lib/worksheets";
 import { worksheetPages, getWorksheetPage } from "@/lib/worksheetPages";
 import fileSizes from "@/lib/worksheet-files.json";
+import { gradePages, getGradePage } from "@/lib/gradePages";
+import { GradeLanding } from "@/components/GradeLanding";
 
 /* One page per printable pack.
    Search Console showed /printables ranking 4.5–6.5 for dozens of different
@@ -17,15 +19,26 @@ import fileSizes from "@/lib/worksheet-files.json";
    answers its own intent, with the download still one click from the top. */
 
 export function generateStaticParams() {
-  return locales.flatMap((locale) =>
-    worksheetPages.map((p) => ({ locale, slug: p.id })),
-  );
+  // Pack pages, plus the grade-level views (/printables/kindergarten, …) that
+  // share this URL space.
+  const slugs = [...worksheetPages.map((p) => p.id), ...gradePages.map((g) => g.slug)];
+  return locales.flatMap((locale) => slugs.map((slug) => ({ locale, slug })));
 }
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, slug } = await params;
+  const grade = getGradePage(slug);
+  if (grade) {
+    return generatePageMetadata(locale, `/printables/${slug}`, {
+      titleEn: grade.seoTitleEn,
+      titleAr: grade.seoTitleAr,
+      descriptionEn: grade.seoDescEn,
+      descriptionAr: grade.seoDescAr,
+      keywords: grade.keywords,
+    });
+  }
   const page = getWorksheetPage(slug);
   if (!page) return {};
   return generatePageMetadata(locale, `/printables/${slug}`, {
@@ -45,6 +58,9 @@ export default async function Page({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
   if (!isLocale(locale)) return null;
+
+  const grade = getGradePage(slug);
+  if (grade) return <GradeLanding locale={locale} grade={grade} />;
 
   const page = getWorksheetPage(slug);
   const set = worksheetSets.find((s) => s.id === slug);

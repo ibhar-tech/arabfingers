@@ -48,7 +48,7 @@ for (const locale of ["en", "ar"] as const) {
   // One test per page: five axe scans of long guides in a single test overran
   // the 30 s budget on WebKit in CI. Split, each page gets its own budget and
   // the scans run in parallel.
-  for (const route of ["learn/first-arabic-words", "learn/arabic-colors", "learn/arabic-numbers", "learn/arabic-language-day", "printables/arabic-language-day", "stories", "stories/al-arnab-al-saeed"]) {
+  for (const route of ["learn/first-arabic-words", "learn/arabic-colors", "learn/arabic-numbers", "learn/arabic-language-day", "printables/arabic-language-day", "printables/kindergarten", "printables/grade-1", "stories", "stories/al-arnab-al-saeed"]) {
     test(`${locale} /${route} is accessible on a phone`, async ({ page }) => {
       await page.setViewportSize({ width: 390, height: 844 });
       await page.goto(`/${locale}/${route}`);

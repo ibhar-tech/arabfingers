@@ -81,6 +81,9 @@ export const CONTENT_LAST_UPDATED: Record<string, string> = {
   "/printables/arabic-language-day": "2026-10-29",
   "/printables/arabic-letters-harakat": "2026-10-29",
   "/printables/arabic-tanween": "2026-10-29",
+  "/printables/preschool": "2026-10-29",
+  "/printables/kindergarten": "2026-10-29",
+  "/printables/grade-1": "2026-10-29",
   // Fixed the spelling of بَطَّة (duck) on the fatha sheet
   "/printables/arabic-harakat": "2026-10-29",
   "/learn/arabic-language-day": "2026-10-29",

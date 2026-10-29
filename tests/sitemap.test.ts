@@ -3,6 +3,7 @@ import sitemap from "@/app/sitemap";
 import { worksheetSets } from "@/lib/worksheets";
 import { letterWorksheetPages } from "@/lib/letterWorksheets";
 import { stories } from "@/lib/stories";
+import { gradePages } from "@/lib/gradePages";
 
 const SITE = "https://www.arabfingers.site";
 
@@ -49,7 +50,8 @@ describe("sitemap", () => {
 
   it("attaches a preview image that exists to every worksheet page", async () => {
     const { existsSync } = await import("node:fs");
-    const withImages = pages.filter((e) => e.url.includes("/printables/"));
+    const gradeUrls = new Set(gradePages.flatMap((g) => ["en", "ar"].map((l) => `${SITE}/${l}/printables/${g.slug}`)));
+    const withImages = pages.filter((e) => e.url.includes("/printables/") && !gradeUrls.has(e.url));
     expect(withImages.length).toBe(2 * (worksheetSets.length + letterWorksheetPages.length));
     for (const e of withImages) {
       expect(e.images, `${e.url} has no image`).toHaveLength(1);

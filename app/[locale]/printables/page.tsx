@@ -12,6 +12,7 @@ import { generatePageMetadata } from "@/lib/seo";
 import { totalWorksheetPages as totalPages, worksheetSets } from "@/lib/worksheets";
 import { letterGuide } from "@/lib/letterGuide";
 import { letterWorksheetPages } from "@/lib/letterWorksheets";
+import { gradePages } from "@/lib/gradePages";
 import { setRequestLocale } from "next-intl/server";
 
 const SITE = "https://www.arabfingers.site";
@@ -244,6 +245,11 @@ export default async function PrintablesPage({ params }: { params: Promise<{ loc
         <nav aria-label={isAr ? "انتقل إلى قسم أوراق العمل" : "Worksheet sections"} className="mt-4 flex flex-wrap gap-x-6 gap-y-1 text-sm font-bold text-[#315b41]">
           <a href="#downloads" className="inline-flex min-h-11 items-center underline underline-offset-4">{isAr ? "اختر مجموعة مستقلة" : "Choose an individual pack"}</a>
           <a href="#letters" className="inline-flex min-h-11 items-center underline underline-offset-4">{isAr ? "اختر حرفاً واحداً" : "Find a single letter"}</a>
+          {gradePages.map((g) => (
+            <Link key={g.slug} href={`/${locale}/printables/${g.slug}`} className="inline-flex min-h-11 items-center underline underline-offset-4">
+              {g.emoji} {isAr ? g.h1Ar.split(" (")[0] : g.h1En.split(" (")[0]}
+            </Link>
+          ))}
           <a href="#other-publishers" className="inline-flex min-h-11 items-center font-bold text-[#315b41] underline underline-offset-4">{isAr ? "مصادر من ناشرين آخرين" : "Other publishers"}</a>
           <a href="#printing-tips" className="inline-flex min-h-11 items-center underline underline-offset-4">{t.printTitle}</a>
         </nav>
