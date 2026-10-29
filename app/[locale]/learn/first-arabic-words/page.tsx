@@ -32,7 +32,9 @@ const wordsFaqAr = [
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return generatePageMetadata(locale, "/learn/first-arabic-words", {
-    titleEn: "First Arabic Words for Kids: 25 Essential Words by Theme + Which to Teach First",
+    // Oct 2026: 987 impressions at pos 5.8 but 1.9% CTR — the old 80-character
+    // title was truncated and never led with the query, "arabic words for kids".
+    titleEn: "Arabic Words for Kids: 25 Easy First Words, by Theme",
     titleAr: "أول كلمات عربية للأطفال: ٢٥ كلمة أساسية حسب الموضوع وأيّها يُعلَّم أولاً",
     descriptionEn:
       "25 essential first Arabic words grouped by theme — family, animals, food, body parts, and everyday words — with pronunciation, which words to teach first and why, and daily-routine tips.",
@@ -138,7 +140,7 @@ export default async function FirstArabicWordsPage({ params }: { params: Promise
       />
 
       <h1 className="text-3xl font-semibold text-ink mb-2">
-        {isAr ? "أوّل كلمات عربية لطفلك" : "First Arabic Words for Your Child"}
+        {isAr ? "أوّل كلمات عربية لطفلك" : "Arabic Words for Kids: 25 Easy First Words"}
       </h1>
       <p className="text-base text-ink/75 mb-8">
         {isAr ? "٢٥ كلمة أساسية حسب الموضوع، مع إرشاد عن أيّها يُعلَّم أولاً" : "25 essential words by theme, with guidance on which to teach first"}

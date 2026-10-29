@@ -47,6 +47,17 @@ describe("sitemap", () => {
     }
   });
 
+  it("attaches a preview image that exists to every worksheet page", async () => {
+    const { existsSync } = await import("node:fs");
+    const withImages = pages.filter((e) => e.url.includes("/printables/"));
+    expect(withImages.length).toBe(2 * (worksheetSets.length + letterWorksheetPages.length));
+    for (const e of withImages) {
+      expect(e.images, `${e.url} has no image`).toHaveLength(1);
+      const file = `public${e.images![0].slice(SITE.length)}`;
+      expect(existsSync(file), `${file} missing`).toBe(true);
+    }
+  });
+
   it("indexes every worksheet PDF directly", () => {
     for (const set of worksheetSets) {
       const pdf = pdfs.find((e) => e.url === `${SITE}/printables/${set.id}.pdf`);

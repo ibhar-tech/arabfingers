@@ -3,6 +3,7 @@ import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
 import { WarmHome } from "@/components/WarmHome";
 import { setRequestLocale } from "next-intl/server";
+import { totalWorksheetPages, totalWorksheetPagesAr } from "@/lib/worksheets";
 
 export async function generateMetadata({
   params,
@@ -16,9 +17,9 @@ export async function generateMetadata({
     titleEn: "Free Arabic Worksheets for Kids — Printable PDFs + Letter Game",
     titleAr: "أوراق عمل عربية مجانية للأطفال — ملفات PDF للطباعة ولعبة حروف",
     descriptionEn:
-      "53 pages of free printable Arabic worksheets — tracing sheets for all 28 letters, numbers, colours and animals. No signup. Plus a free letter game with real pronunciation and guides for parents.",
+      `${totalWorksheetPages} pages of free printable Arabic worksheets — tracing sheets for all 28 letters, numbers, colours and animals. No signup. Plus a free letter game with real pronunciation and guides for parents.`,
     descriptionAr:
-      "٥٣ صفحة من أوراق العمل العربية المجانية للطباعة — أوراق تتبّع للحروف الـ٢٨ والأرقام والألوان والحيوانات، بلا تسجيل. مع لعبة حروف مجانية بنطق حقيقيّ وأدلّة للآباء.",
+      `${totalWorksheetPagesAr} صفحة من أوراق العمل العربية المجانية للطباعة — أوراق تتبّع للحروف الـ٢٨ والأرقام والألوان والحيوانات، بلا تسجيل. مع لعبة حروف مجانية بنطق حقيقيّ وأدلّة للآباء.`,
   });
 }
 

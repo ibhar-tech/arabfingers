@@ -6,7 +6,7 @@ import { FaqSection } from "@/components/FaqSection";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
-import { worksheetSets } from "@/lib/worksheets";
+import { totalWorksheetPages as totalPages, worksheetSets } from "@/lib/worksheets";
 import { letterGuide } from "@/lib/letterGuide";
 import { letterWorksheetPages } from "@/lib/letterWorksheets";
 import fileSizes from "@/lib/worksheet-files.json";
@@ -35,10 +35,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 const mb = (bytes: number) =>
   bytes >= 1024 * 1024 ? `${(bytes / 1024 / 1024).toFixed(1)} MB` : `${Math.round(bytes / 1024)} KB`;
-
-const totalPages = worksheetSets
-  .filter((s) => s.id !== "arabic-complete-workbook")
-  .reduce((sum, s) => sum + s.pages, 0);
 
 // ---------------------------------------------------------------------------
 

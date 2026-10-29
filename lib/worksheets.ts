@@ -253,6 +253,14 @@ export const worksheetSets: WorksheetSet[] = [
   },
 ];
 
+/** Printable pages across every pack. The bundle is left out: it repeats them. */
+export const totalWorksheetPages = worksheetSets
+  .filter((s) => !s.bundle)
+  .reduce((sum, s) => sum + s.pages, 0);
+
+/** The same count in Arabic-Indic digits, for Arabic copy ("١٤٣"). */
+export const totalWorksheetPagesAr = String(totalWorksheetPages).replace(/\d/g, (d) => "٠١٢٣٤٥٦٧٨٩"[Number(d)]);
+
 export type NumberItem = {
   /** Eastern Arabic numeral, e.g. "٣". */
   ar: string;

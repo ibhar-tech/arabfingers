@@ -14,6 +14,7 @@ import { HERO_LETTERS, type HeroLetter } from "@/lib/heroLetters";
 import { StarTotal } from "@/components/StarTotal";
 import { learnArticles } from "@/lib/related";
 import { blogPosts } from "@/lib/blog-data";
+import { totalWorksheetPages, totalWorksheetPagesAr } from "@/lib/worksheets";
 
 /* Worksheets sits first in the nav because that is what people come for: in the
    three months to 18 Aug 2026, /printables took 787 of the site's 872 search
@@ -76,8 +77,8 @@ export function WarmHome({ locale }: { locale: string }) {
           </h1>
           <p className="mt-5 max-w-md text-lg font-semibold leading-relaxed text-ink/70">
             {tt(
-              "53 pages of printable Arabic worksheets — a tracing sheet for every one of the 28 letters, plus numbers, colours and animals. No email, no signup. And a free letter game with real pronunciation for when the pencil goes down.",
-              "٥٣ صفحة من أوراق العمل العربية للطباعة — ورقة تتبّع لكلّ حرف من الحروف الـ٢٨، مع الأرقام والألوان والحيوانات. بلا بريد إلكتروني وبلا تسجيل. ولعبة حروف مجانية بنطق حقيقيّ حين يُترك القلم.",
+              `${totalWorksheetPages} pages of printable Arabic worksheets — a tracing sheet for every one of the 28 letters, plus numbers, colours and animals. No email, no signup. And a free letter game with real pronunciation for when the pencil goes down.`,
+              `${totalWorksheetPagesAr} صفحة من أوراق العمل العربية للطباعة — ورقة تتبّع لكلّ حرف من الحروف الـ٢٨، مع الأرقام والألوان والحيوانات. بلا بريد إلكتروني وبلا تسجيل. ولعبة حروف مجانية بنطق حقيقيّ حين يُترك القلم.`,
             )}
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
@@ -288,7 +289,7 @@ export function WarmHome({ locale }: { locale: string }) {
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             {[
               { href: "/games", t: tt("Alphabet games", "ألعاب الحروف"), d: tt("Trace, listen and tap — earn a star per letter.", "تتبّع واستمع وانقر — نجمة لكلّ حرف.") },
-              { href: "/printables", t: tt("Free worksheets (PDF)", "أوراق عمل مجانية"), d: tt("53 printable pages, no signup.", "٥٣ صفحة للطباعة، بلا تسجيل.") },
+              { href: "/printables", t: tt("Free worksheets (PDF)", "أوراق عمل مجانية"), d: tt(`${totalWorksheetPages} printable pages, no signup.`, `${totalWorksheetPagesAr} صفحة للطباعة، بلا تسجيل.`) },
               { href: "/learn/arabic-alphabet-guide", t: tt("The alphabet guide", "دليل الأبجدية"), d: tt("All 28 letters, sound by sound.", "الحروف الـ٢٨، صوتاً صوتاً.") },
               { href: "/learn/teaching-arabic-to-kids", t: tt("Advice for parents", "نصائح للآباء"), d: tt("What works at home, and what doesn't.", "ما ينفع في البيت وما لا ينفع.") },
             ].map((c) => (

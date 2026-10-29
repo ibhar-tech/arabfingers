@@ -21,6 +21,7 @@ function localizedUrls(
   path: string,
   priority: number,
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] = "monthly",
+  images?: string[],
 ) {
   // hreflang must be reciprocal AND self-referencing — a set that omits the
   // page's own language is invalid and Google drops the whole cluster. x-default
@@ -36,6 +37,7 @@ function localizedUrls(
     changeFrequency,
     priority,
     alternates: { languages },
+    ...(images && { images }),
   }));
 }
 
@@ -56,11 +58,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // One landing page per pack — these are the highest-intent pages on the site,
     // so they get the top priority the hub used to hold alone. Dates come from
     // lib/contentDates via localizedUrls.
-    ...worksheetSets.flatMap((s) => localizedUrls(`/printables/${s.id}`, 0.9)),
+    // Each carries its worksheet preview as an image-sitemap entry: worksheet
+    // searches are image-heavy, and the previews are what Google Images shows.
+    ...worksheetSets.flatMap((s) =>
+      localizedUrls(`/printables/${s.id}`, 0.9, "monthly", [`${siteUrl}/printables/previews/${s.id}.png`]),
+    ),
 
     // One page per letter — letter-level queries ("arabic letter ba worksheet")
     // are the long tail the pack pages cannot answer individually.
-    ...letterWorksheetPages.flatMap((p) => localizedUrls(`/printables/letters/${p.slug}`, 0.7)),
+    ...letterWorksheetPages.flatMap((p) =>
+      localizedUrls(`/printables/letters/${p.slug}`, 0.7, "monthly", [
+        `${siteUrl}/printables/previews/letters/${p.slug}.png`,
+      ]),
+    ),
 
     // Original illustrated stories (stories launch, Sept 2026)
     ...localizedUrls("/stories", 0.9),

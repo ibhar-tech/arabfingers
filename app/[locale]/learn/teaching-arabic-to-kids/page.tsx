@@ -9,6 +9,7 @@ import { FaqSection } from "@/components/FaqSection";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
 import { setRequestLocale } from "next-intl/server";
+import { totalWorksheetPages, totalWorksheetPagesAr } from "@/lib/worksheets";
 
 // Targets parent-intent GSC queries: "how to learn arabic for kids",
 // "how to structure arabic lessons for kids", "teaching arabic to a child",
@@ -204,8 +205,8 @@ export default async function TeachingArabicPage({ params }: { params: Promise<{
         locale={locale}
         titleEn="Everything on this page pairs with a free worksheet"
         titleAr="كل ما في هذه الصفحة يقترن بأوراق عمل مجانية"
-        textEn="53 printable pages — letters, numbers, colours and animals — to back each stage of the plan above. No signup."
-        textAr="٥٣ صفحة للطباعة — حروف وأرقام وألوان وحيوانات — لتدعيم كل مرحلة من الخطة أعلاه. بلا تسجيل."
+        textEn={`${totalWorksheetPages} printable pages — letters, numbers, colours and animals — to back each stage of the plan above. No signup.`}
+        textAr={`${totalWorksheetPagesAr} صفحة للطباعة — حروف وأرقام وألوان وحيوانات — لتدعيم كل مرحلة من الخطة أعلاه. بلا تسجيل.`}
       />
     </PageLayout>
   );
