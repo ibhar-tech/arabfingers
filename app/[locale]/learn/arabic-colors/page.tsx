@@ -15,7 +15,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   return generatePageMetadata(locale, "/learn/arabic-colors", {
     titleEn: "Arabic Colours for Kids — Names, Audio + Free Printable Worksheet",
-    titleAr: "الألوان بالعربية للأطفال: 12 لوناً مع النطق وأمثلة من الطبيعة وألعاب",
+    // "جميع الألوان واسمائها بالعربي": 72 impressions at pos 8.5, no clicks (Oct 2026).
+    titleAr: "جميع الألوان وأسماؤها بالعربي للأطفال: 12 لوناً مع النطق",
     descriptionEn:
       "Learn 12 colors in Arabic with a quick reference table, pronunciation, colors in nature, the masculine/feminine forms explained simply, and a color-hunt game.",
     descriptionAr:

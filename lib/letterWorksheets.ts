@@ -34,6 +34,35 @@ export function letterFormsOf(entry: LetterGuideEntry) {
   ];
 }
 
+/* Dots are how children tell look-alike letters apart (ب ت ث, ح ج خ), and
+   Arabic-script searchers ask for them directly — "نقطة حرف الجيم" earned 79
+   impressions in Oct 2026 with no page stating the answer. Letters not listed
+   have no dots. */
+const DOTS: Record<string, { n: 1 | 2 | 3; below: boolean }> = {
+  "ب": { n: 1, below: true }, "ت": { n: 2, below: false }, "ث": { n: 3, below: false },
+  "ج": { n: 1, below: true }, "خ": { n: 1, below: false }, "ذ": { n: 1, below: false },
+  "ز": { n: 1, below: false }, "ش": { n: 3, below: false }, "ض": { n: 1, below: false },
+  "ظ": { n: 1, below: false }, "غ": { n: 1, below: false }, "ف": { n: 1, below: false },
+  "ق": { n: 2, below: false }, "ن": { n: 1, below: false }, "ي": { n: 2, below: true },
+};
+
+/** One sentence on the letter's dots, in each language. */
+export function letterDotsOf(entry: LetterGuideEntry) {
+  const d = DOTS[entry.ar];
+  if (!d) {
+    return {
+      en: `${entry.enName} (${entry.ar}) has no dots.`,
+      ar: `حرف ال${entry.arName} (${entry.ar}) ليس له نقاط.`,
+    };
+  }
+  const countEn = ["", "one dot", "two dots", "three dots"][d.n];
+  const countAr = ["", "نقطة واحدة", "نقطتان", "ثلاث نقاط"][d.n];
+  return {
+    en: `${entry.enName} (${entry.ar}) has ${countEn} ${d.below ? "below" : "above"} it.`,
+    ar: `حرف ال${entry.arName} (${entry.ar}) له ${countAr} ${d.below ? "تحته" : "فوقه"}.`,
+  };
+}
+
 export type LetterWorksheetPage = {
   /** URL segment + PDF basename: "ba" → /printables/letters/ba. */
   slug: string;
@@ -48,18 +77,19 @@ export type LetterWorksheetPage = {
 };
 
 function letterPage(entry: LetterGuideEntry, index: number): LetterWorksheetPage {
+  const dots = letterDotsOf(entry);
   return {
     slug: slugFor(entry),
     index,
     seoTitleEn: `Arabic Letter ${entry.enName} (${entry.ar}) Worksheet — Free Tracing PDF`,
-    seoTitleAr: `ورقة تتبّع حرف ${entry.arName} (${entry.ar}) — PDF مجاناً`,
+    seoTitleAr: `حرف ال${entry.arName} (${entry.ar}) بأشكاله الأربعة — ورقة كتابة وتتبّع PDF مجانية`,
     seoDescEn:
       `Free one-page ${entry.enName} (${entry.ar}) tracing worksheet: the letter large in Naskh, ` +
       `its four joined forms, graded tracing rows and ${entry.examples.length} words to trace. ` +
       `Pronounced "${entry.translit}". No email, no signup.`,
     seoDescAr:
-      `ورقة مجانية لتتبّع حرف ${entry.arName} (${entry.ar}): الحرف كبيراً بخط النسخ، وأشكاله الأربعة، ` +
-      `وصفوف تتبّع متدرّجة، وكلمات للتتبّع. بلا بريد إلكتروني وبلا تسجيل.`,
+      `ورقة مجانية لكتابة وتتبّع حرف ${entry.arName} (${entry.ar}): الحرف كبيراً بخط النسخ، وأشكاله الأربعة ` +
+      `(أول ووسط وآخر ومنفرد)، وصفوف تتبّع متدرّجة، وكلمات للتتبّع. ${dots.ar} بلا بريد إلكتروني وبلا تسجيل.`,
     keywords: [
       `arabic letter ${entry.enName.toLowerCase()} worksheet`,
       `${entry.enName.toLowerCase()} arabic letter tracing`,
@@ -73,6 +103,12 @@ function letterPage(entry: LetterGuideEntry, index: number): LetterWorksheetPage
         aEn: `${entry.soundHowToEn} ${entry.comparisonEn}`,
         qAr: `كيف يُنطق حرف ${entry.arName}؟`,
         aAr: entry.soundHowToAr,
+      },
+      {
+        qEn: `How many dots does the Arabic letter ${entry.enName} (${entry.ar}) have?`,
+        aEn: dots.en,
+        qAr: `كم نقطة في حرف ال${entry.arName}؟`,
+        aAr: dots.ar,
       },
       {
         qEn: `What is the most common mistake with ${entry.enName}?`,

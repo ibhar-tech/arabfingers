@@ -138,7 +138,7 @@ export default async function Page({ params }: Props) {
           </p>
           <h1 className="font-display mt-1 text-3xl font-extrabold leading-tight text-ink">
             {isAr
-              ? `حرف ${entry.arName} (${entry.ar}) — ورقة تتبّع مجانية`
+              ? `حرف ال${entry.arName} (${entry.ar}) بأشكاله الأربعة — ورقة تتبّع مجانية`
               : `Arabic Letter ${entry.enName} (${entry.ar}) — Free Tracing Worksheet`}
           </h1>
           <p className="mt-2 text-base text-ink/75">

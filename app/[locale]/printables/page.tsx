@@ -9,7 +9,7 @@ import { FaqSection } from "@/components/FaqSection";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
-import { worksheetSets } from "@/lib/worksheets";
+import { totalWorksheetPages as totalPages, worksheetSets } from "@/lib/worksheets";
 import { letterGuide } from "@/lib/letterGuide";
 import { letterWorksheetPages } from "@/lib/letterWorksheets";
 import { setRequestLocale } from "next-intl/server";
@@ -34,10 +34,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     ],
   });
 }
-
-const totalPages = worksheetSets
-  .filter((s) => s.id !== "arabic-complete-workbook")
-  .reduce((sum, s) => sum + s.pages, 0);
 
 // ---------------------------------------------------------------------------
 

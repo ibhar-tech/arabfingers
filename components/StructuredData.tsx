@@ -1,38 +1,33 @@
+const SITE = "https://www.arabfingers.site";
+
+/* Site-wide JSON-LD: who publishes the site, and the site itself. Rendered on
+   every page by the locale layout, so it must hold only facts true of every
+   page. Page-level types (FAQPage, Article, DigitalDocument, ItemList…) live
+   on the pages whose visible content they describe — a site-wide FAQPage used
+   to sit here, invisible on every page and doubling up each page's own FAQ. */
 export function StructuredData() {
-  const webApp = {
+  const webSite = {
     "@context": "https://schema.org",
     "@type": "WebSite",
+    "@id": `${SITE}/#website`,
     name: "Arab Fingers",
     alternateName: "عرب فنجرز",
     description:
-      "Free bilingual Arabic learning for children aged 1–6: parent guides, printable worksheets, and a letter game with recorded pronunciation of all 28 letters.",
-    url: "https://www.arabfingers.site",
-    applicationCategory: "EducationalApplication",
-    operatingSystem: "Any",
-    browserRequirements: "Requires JavaScript, WebGL",
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "USD",
-    },
-    audience: {
-      "@type": "EducationalAudience",
-      educationalRole: "student",
-      suggestedMinAge: 1,
-      suggestedMaxAge: 6,
-    },
-    inLanguage: ["ar", "en"],
+      "Free bilingual Arabic learning for children aged 1–6: printable Arabic alphabet worksheets (PDF), letter games with recorded pronunciation, illustrated stories and guides for parents.",
+    url: SITE,
+    inLanguage: ["en", "ar"],
     isAccessibleForFree: true,
-    keywords:
-      "Arabic letters, حروف عربية, kids keyboard, لعبة أطفال, bilingual, ثنائي اللغة, toddler, educational",
+    publisher: { "@id": `${SITE}/#organization` },
   };
 
   const organization = {
     "@context": "https://schema.org",
     "@type": "EducationalOrganization",
+    "@id": `${SITE}/#organization`,
     name: "Arab Fingers",
     alternateName: "عرب فنجرز",
-    url: "https://www.arabfingers.site",
+    url: SITE,
+    logo: `${SITE}/icon-512.png`,
     description:
       "A free, open-source bilingual Arabic & English educational platform for children aged 1-6, featuring interactive letter games, science lessons, and printable worksheets.",
     areaServed: "Worldwide",
@@ -52,82 +47,15 @@ export function StructuredData() {
     ],
   };
 
-  const faqPage = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      {
-        "@type": "Question",
-        name: "What age is Arab Fingers for?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Arab Fingers is designed for children aged 1 to 6 years old. Toddlers (1-3) enjoy the sensory experience of seeing letters and hearing sounds, while pre-schoolers (4-6) begin to recognize and name the letters.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is Arab Fingers free?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes, Arab Fingers is completely free to use. There are no in-app purchases, no subscriptions, and no premium features. The app is open-source.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Does it work on tablets and phones?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes! Arab Fingers works on any device with a web browser — tablets, phones, laptops, and desktops. You can also install it as an app for offline use.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Does my child need to know Arabic already?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Not at all. Arab Fingers is designed for complete beginners. Children learn through exposure — seeing the letter shapes and hearing the sounds repeatedly during play.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Is it safe for children?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Absolutely. Arab Fingers collects zero personal data, provides a child-friendly play environment, has no external links children can click, and the parent panel is protected by a hold gesture and optional PIN lock.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "Can I use it offline?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Yes. Install Arab Fingers as a PWA (Progressive Web App) and it works without an internet connection. All letter sounds are pre-loaded.",
-        },
-      },
-      {
-        "@type": "Question",
-        name: "What keyboard layouts are supported?",
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: "Arab Fingers supports Arabic Standard (QWERTY), Phonetic (intuitive A→ا mapping), and AZERTY layouts. Parents can switch layouts from the settings panel.",
-        },
-      },
-    ],
-  };
-
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webApp) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webSite) }}
       />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organization) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPage) }}
       />
     </>
   );

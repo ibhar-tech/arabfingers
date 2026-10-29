@@ -41,7 +41,10 @@ const alphabetFaqAr = [
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return generatePageMetadata(locale, "/learn/arabic-alphabet-guide", {
-    titleEn: "Arabic Alphabet for Kids — All 28 Letters + Free Worksheets",
+    // Oct 2026: "arabic letters for kids" (511 impressions), "arabic alphabet
+    // for kids" (394) and "arabic alphabets for kids" (170) all sat at ~pos 7
+    // with ~1% CTR. Title and H1 now carry both words and the "for kids".
+    titleEn: "Arabic Alphabet for Kids: All 28 Letters with Sounds + Free PDFs",
     titleAr: "الأبجدية العربية للأطفال — الحروف الـ28 وأوراق عمل مجانية",
     descriptionEn:
       "Every Arabic letter explained for parents — how to make each sound, example words and common mistakes — plus a free tracing worksheet for every one of the 28 letters. No signup.",
@@ -50,7 +53,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     ogType: "article",
     publishedTime: "2026-03-05",
     keywords: [
-      "arabic alphabet for kids", "الحروف العربية للأطفال",
+      "arabic alphabet for kids", "arabic letters for kids", "الحروف العربية للأطفال",
       "arabic letters pronunciation", "نطق الحروف العربية",
       "teach arabic alphabet", "تعليم الحروف للأطفال",
     ],
@@ -84,10 +87,10 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
       />
 
       <h1 className="text-3xl font-semibold text-ink mb-2">
-        {isAr ? "دليل الأبجدية العربية الكامل" : "The Arabic Alphabet: A Complete Guide"}
+        {isAr ? "الحروف العربية للأطفال: دليل الأبجدية الكامل" : "The Arabic Alphabet for Kids: All 28 Letters"}
       </h1>
       <p className="text-base text-ink/75 mb-6">
-        {isAr ? "تعلم جميع الحروف العربية الـ 28 مع النطق والأمثلة" : "Learn all 28 Arabic letters with pronunciation and examples"}
+        {isAr ? "تعلم جميع الحروف العربية الـ 28 مع النطق والأمثلة" : "Every Arabic letter for kids, with its sound, example words and a free printable"}
       </p>
 
       {/* This page collected 3,298 search impressions in three months and returned

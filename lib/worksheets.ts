@@ -253,6 +253,11 @@ export const worksheetSets: WorksheetSet[] = [
   },
 ];
 
+/** Printable pages across every pack. The bundle is left out: it repeats them. */
+export const totalWorksheetPages = worksheetSets
+  .filter((s) => !s.bundle)
+  .reduce((sum, s) => sum + s.pages, 0);
+
 export type NumberItem = {
   /** Numeral displayed alongside the Arabic name, using digits 0–9. */
   ar: string;
