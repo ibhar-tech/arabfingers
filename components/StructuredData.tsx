@@ -38,7 +38,7 @@ export function StructuredData() {
       availableLanguage: ["Arabic", "English"],
     },
     founder: {
-      "@type": "Person",
+      "@type": "Organization",
       name: "IBHAR TECH LEARNING",
       url: "https://www.arabfingers.site/en/author",
     },

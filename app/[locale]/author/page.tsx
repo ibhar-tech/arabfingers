@@ -5,7 +5,7 @@ import { PageLayout } from "@/components/PageLayout";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { isLocale } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
-import { AUTHOR_NAME, AUTHOR_EMAIL, AUTHOR_PHOTO } from "@/components/AuthorByline";
+import { AUTHOR_NAME, AUTHOR_EMAIL, AUTHOR_PHOTO, FOUNDER_NAME } from "@/components/AuthorByline";
 import { setRequestLocale } from "next-intl/server";
 
 const SITE_URL = "https://www.arabfingers.site";
@@ -66,12 +66,12 @@ const editorialAr: { h: string; body: string[] }[] = [
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   return generatePageMetadata(locale, "/author", {
-    titleEn: `${AUTHOR_NAME} — Author & Founder of Arab Fingers`,
-    titleAr: `${AUTHOR_NAME} — مؤلف ومؤسس عرب فنجرز`,
+    titleEn: `${AUTHOR_NAME} — the authors of Arab Fingers`,
+    titleAr: `${AUTHOR_NAME} — مؤلّفو عرب فنجرز`,
     descriptionEn:
-      "Aissa Trad is the parent and developer behind Arab Fingers, a free, open-source bilingual Arabic learning resource for families raising children aged 1–6.",
+      `${AUTHOR_NAME} writes and builds Arab Fingers, a free, open-source bilingual Arabic learning resource for families raising children aged 1–6. Founded by ${FOUNDER_NAME}, a parent and developer.`,
     descriptionAr:
-      "عيسى تراد هو الأب والمطوّر الذي بنى عرب فنجرز، مورد تعليمي عربي مجاني ومفتوح المصدر ثنائي اللغة للعائلات التي تربي أطفالاً من عمر سنة إلى 6 سنوات.",
+      `${AUTHOR_NAME} تكتب وتبني عرب فنجرز، مورداً تعليمياً عربياً مجانياً ومفتوح المصدر ثنائي اللغة للعائلات التي تربي أطفالاً من عمر سنة إلى 6 سنوات. أسّسها عيسى تراد، أب ومطوّر.`,
   });
 }
 
@@ -86,18 +86,17 @@ export default async function AuthorPage({ params }: { params: Promise<{ locale:
     "@type": "ProfilePage",
     dateModified: "2026-05-31",
     mainEntity: {
-      "@type": "Person",
+      "@type": "Organization",
       name: AUTHOR_NAME,
       url: `${SITE_URL}/${locale}/author`,
-      image: `${SITE_URL}${AUTHOR_PHOTO}`,
+      logo: `${SITE_URL}${AUTHOR_PHOTO}`,
       email: AUTHOR_EMAIL,
-      jobTitle: "Developer & Founder",
       description:
-        "Parent and developer who built Arab Fingers, a free open-source bilingual Arabic learning resource for young children.",
-      worksFor: {
-        "@type": "Organization",
-        name: "Arab Fingers",
-        url: SITE_URL,
+        "Author and publisher of Arab Fingers, a free open-source bilingual Arabic learning resource for young children.",
+      founder: {
+        "@type": "Person",
+        name: FOUNDER_NAME,
+        jobTitle: "Developer & Founder",
       },
     },
   };
@@ -125,7 +124,7 @@ export default async function AuthorPage({ params }: { params: Promise<{ locale:
         <div className="text-center sm:text-start">
           <h1 className="text-3xl font-bold text-ink font-display">{AUTHOR_NAME}</h1>
           <p className="mt-1 text-sm text-accent/90">
-            {isAr ? "مطوّر ومؤسس عرب فنجرز" : "Developer & Founder of Arab Fingers"}
+            {isAr ? "مؤلّفو عرب فنجرز · أسّسها عيسى تراد" : `The authors of Arab Fingers · founded by ${FOUNDER_NAME}`}
           </p>
           <a
             href={`mailto:${AUTHOR_EMAIL}`}

@@ -42,7 +42,7 @@ Key facts:
 - Everything is free. No account, no email, no watermark; every PDF downloads directly.
 - Languages: English (/en) and Arabic (/ar). Base URL: ${SITE}
 - Advertising appears on parent-facing reading pages only, never on the games a child plays.
-- Maintained by Aissa Trad. Contact: ibhartech39@gmail.com
+- Written and published by IBHAR TECH LEARNING. Contact: ibhartech39@gmail.com
 
 ## Printable worksheets (PDF)
 - [All worksheets](${SITE}/en/printables): every pack below, browsable by age

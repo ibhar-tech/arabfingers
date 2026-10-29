@@ -83,7 +83,7 @@ export default async function Page({ params }: Props) {
         learningResourceType: "Worksheet",
         typicalAgeRange: "Ages 4-7",
         numberOfPages: 1,
-        author: { "@type": "Person", name: "IBHAR TECH LEARNING" },
+        author: { "@type": "Organization", name: "IBHAR TECH LEARNING" },
       },
       {
         "@type": "FAQPage",

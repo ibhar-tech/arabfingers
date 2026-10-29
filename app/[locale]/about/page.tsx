@@ -161,8 +161,8 @@ function AboutEn() {
           <h2 className="mb-2 text-xl font-semibold text-ink font-display">Who&apos;s Behind Arab Fingers</h2>
           <p className="mb-3">
             Arab Fingers is built and maintained by{" "}
-            <Link href="/en/author" className="text-accent underline">Aissa Trad</Link>, a parent and
-            developer who created it after struggling to find a simple, child-safe way to introduce his own
+            <Link href="/en/author" className="text-accent underline">IBHAR TECH LEARNING</Link>, founded by
+            Aissa Trad, a parent and developer who created it after struggling to find a simple, child-safe way to introduce his own
             child to the Arabic alphabet. It is an independent, self-funded project — not backed by any
             company or institution.
           </p>
@@ -282,8 +282,8 @@ function AboutAr() {
           <h2 className="mb-2 text-xl font-semibold text-ink font-display">من يقف وراء عرب فنجرز</h2>
           <p className="mb-3">
             عرب فنجرز من بناء وصيانة{" "}
-            <Link href="/ar/author" className="text-accent underline">عيسى تراد</Link>، أب ومطوّر
-            أنشأه بعد معاناته في إيجاد طريقة بسيطة وآمنة لتعريف طفله بالأبجدية العربية.
+            <Link href="/ar/author" className="text-accent underline">IBHAR TECH LEARNING</Link>، التي أسّسها
+            عيسى تراد، أب ومطوّر أنشأه بعد معاناته في إيجاد طريقة بسيطة وآمنة لتعريف طفله بالأبجدية العربية.
             إنه مشروع مستقل ممول ذاتياً — غير مدعوم من أي شركة أو مؤسسة.
           </p>
           <p>

@@ -28,7 +28,7 @@ export function ArticleStructuredData({
     datePublished,
     dateModified: dateModified ?? datePublished,
     author: {
-      "@type": "Person",
+      "@type": "Organization",
       name: "IBHAR TECH LEARNING",
       url: `${siteUrl}/${locale}/author`,
       image: `${siteUrl}/author.svg`,

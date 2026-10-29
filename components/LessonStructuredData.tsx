@@ -56,7 +56,7 @@ export function LessonStructuredData({
       suggestedMaxAge: 8,
     },
     author: {
-      "@type": "Person",
+      "@type": "Organization",
       name: "IBHAR TECH LEARNING",
       url: `${siteUrl}/${locale}/author`,
     },

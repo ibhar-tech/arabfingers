@@ -71,7 +71,7 @@ export default async function Page({ params }: Props) {
         learningResourceType: "Worksheet",
         typicalAgeRange: isAr ? set.ageAr : set.ageEn,
         numberOfPages: set.pages,
-        author: { "@type": "Person", name: "IBHAR TECH LEARNING" },
+        author: { "@type": "Organization", name: "IBHAR TECH LEARNING" },
       },
       {
         "@type": "FAQPage",
