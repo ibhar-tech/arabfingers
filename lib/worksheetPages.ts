@@ -14,6 +14,8 @@
 // (scripts/build-worksheets.mjs) under Node's TS stripping, and it should stay the
 // small data contract the generator needs.
 
+import { totalWorksheetPages } from "./worksheets";
+
 export type WorksheetPage = {
   /** Matches WorksheetSet.id. */
   id: string;
@@ -896,13 +898,75 @@ export const worksheetPages: WorksheetPage[] = [
   },
 
   {
-    id: "arabic-complete-workbook",
-    seoTitleEn: "Complete Arabic Workbook PDF — 143 Free Printable Pages",
-    seoTitleAr: "الكرّاسة العربية الكاملة PDF — 143 صفحة مجانية للطباعة",
+    id: "arabic-language-day",
+    seoTitleEn: "Arabic Language Day Printables (18 Dec) — Free Certificate & Activity PDF",
+    seoTitleAr: "أنشطة اليوم العالمي للغة العربية للأطفال (18 ديسمبر) — شهادة وأوراق PDF مجانية",
     seoDescEn:
-      "Every Arabic worksheet, coloring page and story supplement on this site in one 143-page PDF, in teaching order: alphabet chart, all 28 letter tracing pages, harakat, numbers, colours, animals, all nine coloring books and the opposites pairs. Free.",
+      "Free printable pack for World Arabic Language Day on 18 December: a certificate, an 'I love Arabic' poster to colour, a write-your-name and letter-hunt sheet, and Arabic words and facts. One PDF, no signup.",
     seoDescAr:
-      "كلّ أوراق العمل وصفحات التلوين في هذا الموقع في ملف PDF واحد من 143 صفحة، بترتيب تعليميّ: لوحة الحروف، وتتبّع الحروف الـ28، والحركات، والأرقام، والألوان، والحيوانات، وكتب التلوين التسعة كلّها. مجاناً.",
+      "حزمة مجانية لليوم العالمي للغة العربية في 18 ديسمبر: شهادة للطفل، وملصق «أحبّ العربية» للتلوين، وورقة لكتابة الاسم والبحث عن الحرف، وكلمات ومعلومات عن العربية. ملف PDF واحد بلا تسجيل.",
+    keywords: [
+      "arabic language day activities for kids",
+      "world arabic language day printables",
+      "arabic language day certificate",
+      "18 december arabic language day",
+      "أنشطة اليوم العالمي للغة العربية للأطفال",
+      "شهادة اليوم العالمي للغة العربية",
+      "اليوم العالمي للغة العربية 18 ديسمبر",
+    ],
+    taglineEn: "Four pages for 18 December — a certificate to take home and three activities to earn it.",
+    taglineAr: "أربع صفحات ليوم 18 ديسمبر — شهادة يأخذها الطفل إلى البيت وثلاثة أنشطة يستحقّها بها.",
+    insideEn: [
+      "A certificate for World Arabic Language Day, with a line for the child's name and a box where they write it in Arabic.",
+      "An 'I love Arabic' (أحبّ العربية) poster in big outlined letters to colour, with stars and a crescent to decorate and a tracing row underneath.",
+      "A 'my name in Arabic' sheet — a grown-up writes it, the child traces it, then writes it alone — plus a letter hunt: ten ب hidden among look-alike letters.",
+      "Four short facts about Arabic, three everyday words to trace (language, hello, thank you), and a box to draw a favourite Arabic word.",
+    ],
+    insideAr: [
+      "شهادة اليوم العالمي للغة العربية، فيها سطر لاسم الطفل ومربّع يكتب فيه اسمه بالعربية.",
+      "ملصق «أحبّ العربية» بحروف كبيرة مفرّغة للتلوين، مع نجوم وهلال للتزيين وسطر تتبّع في الأسفل.",
+      "ورقة «اسمي بالعربية» — يكتبه شخص كبير، ويتتبّعه الطفل، ثمّ يكتبه وحده — ولعبة بحث: عشر باءات مخبّأة بين حروف تشبهها.",
+      "أربع معلومات قصيرة عن العربية، وثلاث كلمات يومية للتتبّع (لغة، مرحباً، شكراً)، ومربّع لرسم الكلمة العربية المفضّلة.",
+    ],
+    useEn: [
+      "In a classroom, hand out the three activity pages through the morning and keep the certificate for last — writing their name in Arabic on it is the moment the day is about.",
+      "At home, the name sheet is the one to start with. Children want to see their own name in a new script more than any other word, and a grown-up who does not read Arabic can copy the name from a phone keyboard or ask a relative.",
+      "Pair it with our Arabic Language Day guide for ten more activities, from a letter hunt around the house to a family 'Arabic only' dinner.",
+    ],
+    useAr: [
+      "في الصفّ، وزّعوا صفحات الأنشطة الثلاث على مدار الصباح واتركوا الشهادة للنهاية — فكتابة الطفل اسمه بالعربية عليها هي لحظة اليوم كلّه.",
+      "وفي البيت، ابدأوا بورقة الاسم. فالطفل يريد أن يرى اسمه بخطّ جديد أكثر من أيّ كلمة أخرى، ومن لا يقرأ العربية من الكبار يمكنه نسخ الاسم من لوحة مفاتيح الهاتف أو سؤال أحد الأقارب.",
+      "واجمعوها مع دليلنا لليوم العالمي للغة العربية لعشرة أنشطة أخرى، من البحث عن الحروف في البيت إلى عشاء عائليّ «بالعربية فقط».",
+    ],
+    faq: [
+      {
+        qEn: "When is World Arabic Language Day?",
+        qAr: "متى يكون اليوم العالمي للغة العربية؟",
+        aEn: "Every year on 18 December. The United Nations chose the date because on 18 December 1973 the UN General Assembly made Arabic one of its official languages.",
+        aAr: "في 18 ديسمبر من كلّ عام. اختارت الأمم المتحدة هذا التاريخ لأنّ الجمعية العامة للأمم المتحدة اعتمدت العربية لغةً رسمية في 18 ديسمبر 1973.",
+      },
+      {
+        qEn: "Does my child need to read Arabic to use the pack?",
+        qAr: "هل يحتاج طفلي إلى قراءة العربية ليستعمل الحزمة؟",
+        aEn: "No. The poster and the letter hunt work for complete beginners, and every Arabic word is shown with its transliteration and English meaning. The name sheet only needs a grown-up to write the name once.",
+        aAr: "لا. الملصق ولعبة البحث عن الحرف تناسبان المبتدئين تماماً، وكلّ كلمة عربية مكتوبة مع نطقها ومعناها بالإنجليزية. وورقة الاسم لا تحتاج إلّا أن يكتب الكبير الاسم مرّة واحدة.",
+      },
+      {
+        qEn: "Can I print it for a whole class or school event?",
+        qAr: "هل يمكنني طباعتها لصفّ كامل أو حفل مدرسيّ؟",
+        aEn: "Yes — print as many copies as you need for a class, a school assembly or a weekend school. We only ask that you do not sell the file or host it elsewhere as your own.",
+        aAr: "نعم — اطبع ما تحتاجه من النسخ لصفّ أو حفل مدرسيّ أو مدرسة نهاية الأسبوع. وإنّما نطلب ألّا تبيع الملف ولا تنشره في مكان آخر منسوباً إليك.",
+      },
+    ],
+  },
+  {
+    id: "arabic-complete-workbook",
+    seoTitleEn: `Complete Arabic Workbook PDF — ${totalWorksheetPages} Free Printable Pages`,
+    seoTitleAr: `الكرّاسة العربية الكاملة PDF — ${totalWorksheetPages} صفحة مجانية للطباعة`,
+    seoDescEn:
+      `Every Arabic worksheet, coloring page and story supplement on this site in one ${totalWorksheetPages}-page PDF, in teaching order: alphabet chart, all 28 letter tracing pages, harakat, numbers, colours, animals, all nine coloring books, the opposites pairs and the Arabic Language Day pack. Free.`,
+    seoDescAr:
+      `كلّ أوراق العمل وصفحات التلوين في هذا الموقع في ملف PDF واحد من ${totalWorksheetPages} صفحة، بترتيب تعليميّ: لوحة الحروف، وتتبّع الحروف الـ28، والحركات، والأرقام، والألوان، والحيوانات، وكتب التلوين التسعة كلّها، وحزمة اليوم العالمي للغة العربية. مجاناً.`,
     keywords: [
       "arabic workbook pdf free",
       "complete arabic worksheets pdf",
@@ -912,29 +976,29 @@ export const worksheetPages: WorksheetPage[] = [
       "كرّاسة عربية كاملة pdf",
       "أوراق عمل عربية كاملة للطباعة",
     ],
-    taglineEn: "All 143 pages, in the order you would actually teach them.",
-    taglineAr: "الصفحات المئة وثلاث وأربعون كلّها، بالترتيب الذي تُعلَّم به فعلاً.",
+    taglineEn: `All ${totalWorksheetPages} pages, in the order you would actually teach them.`,
+    taglineAr: `الصفحات الـ${totalWorksheetPages} كلّها، بالترتيب الذي تُعلَّم به فعلاً.`,
     insideEn: [
       "The alphabet chart first, so the reference is on the wall before any writing starts.",
       "All 28 letter tracing pages in alphabet order, then the harakat sheets.",
       "Numbers 1–10 and 11–20, then colours, then animals — vocabulary after letters, which is the order that works.",
-      "The nine coloring books last: fruits & vegetables, transport, solar system, the alphabet bubbles, Ramadan & Eid, sea animals, body parts, seasons and opposites.",
+      "The nine coloring books next: fruits & vegetables, transport, solar system, the alphabet bubbles, Ramadan & Eid, sea animals, body parts, seasons and opposites — and the Arabic Language Day pack to finish.",
       "One file, so a single print job produces a whole workbook rather than eight separate downloads.",
     ],
     insideAr: [
       "لوحة الحروف أوّلاً، ليكون المرجع على الجدار قبل أن تبدأ الكتابة.",
       "صفحات تتبّع الحروف الثمانية والعشرين كلّها على ترتيب الأبجدية، ثمّ أوراق الحركات.",
       "الأرقام 1–10 ثمّ 11–20، فالألوان، فالحيوانات — المفردات بعد الحروف، وهو الترتيب الذي ينجح.",
-      "كتب التلوين التسعة في الآخر: الفواكه والخضروات، ووسائل النقل، والمجموعة الشمسية، وحروف الأبجدية، ورمضان والعيد، وحيوانات البحر، وأجزاء الجسم، والفصول الأربعة، والمتضادّات.",
+      "ثمّ كتب التلوين التسعة: الفواكه والخضروات، ووسائل النقل، والمجموعة الشمسية، وحروف الأبجدية، ورمضان والعيد، وحيوانات البحر، وأجزاء الجسم، والفصول الأربعة، والمتضادّات — وحزمة اليوم العالمي للغة العربية في الختام.",
       "ملف واحد، فتُخرج طباعة واحدة كرّاسة كاملة بدل ثمانية تنزيلات منفصلة.",
     ],
     useEn: [
       "This is the pack for someone who wants the whole thing at once — a teacher setting up for a term, a parent printing before a long trip, a family with no printer at home taking one file to a print shop.",
-      "If you are working with one child at home, the individual packs are usually the better choice. One hundred and forty-three pages arriving in one stack sets an expectation of completion, and a workbook with unfinished pages in the middle starts to feel like a failure rather than an activity. Print what you need this week.",
+      `If you are working with one child at home, the individual packs are usually the better choice. ${totalWorksheetPages} pages arriving in one stack sets an expectation of completion, and a workbook with unfinished pages in the middle starts to feel like a failure rather than an activity. Print what you need this week.`,
     ],
     useAr: [
       "هذه للحزمة لمن يريد الأمر كلّه دفعة واحدة: معلّم يُعِدّ لفصل دراسيّ، أو والد يطبع قبل سفر طويل، أو أسرة لا طابعة عندها تحمل ملفاً واحداً إلى مركز طباعة.",
-      "أمّا إن كنت تعمل مع طفل واحد في البيت، فالحزم المفردة أفضل غالباً. فمئةٌ وثلاث وأربعون صفحة تصل في رزمة واحدة تُنشئ توقّعاً بالإتمام، والكرّاسة التي تتخلّلها صفحات ناقصة تبدأ تشبه الإخفاق لا النشاط. اطبع ما تحتاجه هذا الأسبوع.",
+      `أمّا إن كنت تعمل مع طفل واحد في البيت، فالحزم المفردة أفضل غالباً. فـ${totalWorksheetPages} صفحة تصل في رزمة واحدة تُنشئ توقّعاً بالإتمام، والكرّاسة التي تتخلّلها صفحات ناقصة تبدأ تشبه الإخفاق لا النشاط. اطبع ما تحتاجه هذا الأسبوع.`,
     ],
     faq: [
       {

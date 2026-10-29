@@ -75,7 +75,11 @@ export const CONTENT_LAST_UPDATED: Record<string, string> = {
   // The numeral sheets and collected workbook were regenerated with 0–9 digits.
   "/printables/arabic-numbers-tracing": "2026-09-29",
   "/printables/arabic-numbers-11-20": "2026-09-29",
-  "/printables/arabic-complete-workbook": "2026-09-29",
+  "/printables/arabic-complete-workbook": "2026-10-29",
+
+  // Arabic Language Day (18 December) pack and guide
+  "/printables/arabic-language-day": "2026-10-29",
+  "/learn/arabic-language-day": "2026-10-29",
 
   // Per-letter worksheet pages (letter-by-letter launch, Aug 2026)
   ...Object.fromEntries(

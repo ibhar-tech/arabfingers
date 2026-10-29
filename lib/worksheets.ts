@@ -238,6 +238,19 @@ export const worksheetSets: WorksheetSet[] = [
     ageAr: "من 4 إلى 7 سنوات",
   },
   {
+    id: "arabic-language-day",
+    emoji: "🌍",
+    titleEn: "Arabic Language Day Pack (18 December)",
+    titleAr: "حزمة اليوم العالمي للغة العربية (18 ديسمبر)",
+    descEn:
+      "Four pages for 18 December: a certificate with a box for the child's name in Arabic, an 'I love Arabic' poster to colour, a write-your-name and letter-hunt sheet, and Arabic words and facts to trace.",
+    descAr:
+      "أربع صفحات ليوم 18 ديسمبر: شهادة فيها مربّع لاسم الطفل بالعربية، وملصق «أحبّ العربية» للتلوين، وورقة لكتابة الاسم والبحث عن الحرف، وكلمات ومعلومات عن العربية للتتبّع.",
+    pages: 4,
+    ageEn: "Ages 4–8",
+    ageAr: "من 4 إلى 8 سنوات",
+  },
+  {
     id: "arabic-complete-workbook",
     emoji: "📚",
     titleEn: "Complete Arabic Workbook (everything above)",
@@ -246,7 +259,7 @@ export const worksheetSets: WorksheetSet[] = [
       "Every pack in this library bound into one file, in teaching order — the alphabet chart first, then letters, harakat, numbers, colours, animals and all the colouring books. One download, one print job.",
     descAr:
       "كل المجموعات في ملف واحد مرتّبة تعليمياً — اللوحة أولاً ثم الحروف فالحركات فالأرقام فالألوان فالحيوانات ثم كتب التلوين كلّها. تنزيل واحد وطباعة واحدة.",
-    pages: 143,
+    pages: 147,
     ageEn: "Ages 3–7",
     ageAr: "من 3 إلى 7 سنوات",
     bundle: true,

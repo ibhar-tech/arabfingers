@@ -4,6 +4,7 @@
  *
  *   node scripts/build-worksheets.mjs
  *   node scripts/build-worksheets.mjs --numbers-only
+ *   node scripts/build-worksheets.mjs --only arabic-language-day
  *
  * Renders HTML with headless Chrome and prints it to PDF. Chrome is used
  * deliberately: it is the only thing on this machine that shapes Arabic
@@ -198,6 +199,11 @@ const PACK_LINKS = {
     url: `${SITE}/en/glossary`,
     captionEn: "More words:",
     captionAr: "كلمات أكثر:",
+  },
+  "arabic-language-day": {
+    url: `${SITE}/en/learn/arabic-language-day`,
+    captionEn: "10 activities:",
+    captionAr: "عشرة أنشطة:",
   },
 };
 
@@ -856,6 +862,153 @@ function buildAlphabetColoring(qr) {
 }
 
 // ---------------------------------------------------------------------------
+// Arabic Language Day (18 December) — certificate, poster, name & letter hunt,
+// words & facts. A seasonal pack: schools look for it every December.
+// ---------------------------------------------------------------------------
+
+/** Outlined text to colour in, the multi-letter cousin of bubbleLetter(). */
+function bubbleText(text, { width = 640, height = 330, fontSize = 150, stroke = 2.6 } = {}) {
+  // Tall viewBox with the text centred: Naskh puts dots and kasra well below
+  // the baseline, and a tight box clips them off the letters.
+  return `<svg viewBox="0 0 ${width} ${height}" width="100%" height="${height * 0.6}" role="img" aria-label="${esc(text)}">
+    <text x="${width / 2}" y="${height * 0.45}" text-anchor="middle" dominant-baseline="middle" direction="rtl"
+      font-family="'Noto Naskh Arabic','Noto Sans Arabic',serif" font-weight="700"
+      font-size="${fontSize}" fill="none" stroke="#3a3a3a" stroke-width="${stroke}"
+      stroke-linejoin="round">${esc(text)}</text>
+  </svg>`;
+}
+
+const LANGUAGE_DAY_FACTS = [
+  { en: "Arabic has 28 letters.", ar: "للعربية 28 حرفاً." },
+  { en: "Arabic is written from right to left.", ar: "تُكتب العربية من اليمين إلى اليسار." },
+  { en: "Most Arabic letters join the letter next to them.", ar: "تتّصل أكثر الحروف العربية بما يجاورها." },
+  { en: "Arabic is one of the six official languages of the United Nations.", ar: "العربية إحدى اللغات الرسمية الستّ في الأمم المتحدة." },
+];
+
+const LANGUAGE_DAY_WORDS = [
+  { ar: "لُغَة", translit: "lugha", en: "language" },
+  { ar: "مَرْحَبًا", translit: "marhaban", en: "hello" },
+  { ar: "شُكْرًا", translit: "shukran", en: "thank you" },
+];
+
+/** A fixed letter grid for the hunt: 10 of the 48 cells are ب. */
+const HUNT_GRID = "بتثنيبثتيبنثنتبيتثنبيثبتينثنبتيتثبنيثتبينثنتبيتث";
+if ([...HUNT_GRID].length !== 48 || [...HUNT_GRID].filter((c) => c === "ب").length !== 10) throw new Error("HUNT_GRID must be 48 cells with 10 ب");
+
+function buildLanguageDay(qr) {
+  const total = 4;
+  const kicker = "Arabic Language Day";
+
+  const certificate = sheet(`
+    <div style="flex:1;display:flex;flex-direction:column;border:3px solid #1b1b1b;border-radius:5mm;padding:4mm;">
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;border:1.5px dashed #9a9a9a;border-radius:3.5mm;padding:12mm 10mm;">
+        <div style="display:flex;gap:10mm;">${outline("star", 70, 3)}${outline("star", 90, 3)}${outline("star", 70, 3)}</div>
+        <div class="label" style="margin-top:6mm;font-size:10pt;">Certificate · شهادة</div>
+        <h1 style="margin:3mm 0 0;font-size:26pt;font-weight:800;">World Arabic Language Day</h1>
+        <div class="ar" dir="rtl" style="font-size:24pt;font-weight:700;margin-top:2mm;">اليوم العالمي للغة العربية</div>
+        <div style="font-size:12pt;color:#555;margin-top:2mm;">18 December · <span class="ar">18 ديسمبر</span></div>
+
+        <div style="margin-top:14mm;font-size:12pt;color:#444;">This certificate is proudly given to</div>
+        <div class="ar" dir="rtl" style="font-size:13pt;color:#444;">تُمنح هذه الشهادة بكلّ فخر إلى</div>
+        <div style="width:80%;height:18mm;border-bottom:2px solid #1b1b1b;"></div>
+
+        <div style="margin-top:10mm;font-size:12pt;color:#444;line-height:1.5;">
+          for celebrating Arabic Language Day and writing their name in Arabic:
+          <div class="ar" dir="rtl">لاحتفاله باليوم العالمي للغة العربية وكتابة اسمه بالعربية:</div>
+        </div>
+        <div class="box" style="width:80%;height:26mm;margin-top:4mm;"></div>
+
+        <div style="margin-top:auto;width:100%;display:flex;justify-content:space-between;gap:12mm;font-size:10pt;color:#555;">
+          <div style="flex:1;border-top:1.5px solid #1b1b1b;padding-top:2mm;">Signed · <span class="ar">التوقيع</span></div>
+          <div style="flex:1;border-top:1.5px solid #1b1b1b;padding-top:2mm;">Date · <span class="ar">التاريخ</span></div>
+        </div>
+      </div>
+    </div>
+    ${foot(1, total, qr)}
+  `);
+
+  const poster = sheet(`
+    ${head(kicker)}
+    <div class="title"><h1>I love Arabic</h1><span class="arname ar" dir="rtl">أُحِبُّ العَرَبِيَّة</span></div>
+    <div class="instruction">
+      Colour the big words, then decorate the stars. Hang your poster up on 18 December.
+      <span class="rtl ar">لوّن الكلمات الكبيرة، ثم زيّن النجوم. علّق ملصقك يوم 18 ديسمبر.</span>
+    </div>
+    <div class="body">
+      <div class="box grow" style="margin-top:4mm;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2mm;padding:4mm;">
+        <div style="display:flex;gap:16mm;">${outline("star", 80, 2.6)}${outline("crescent", 80, 2.6)}${outline("star", 80, 2.6)}</div>
+        ${bubbleText("أُحِبُّ", { fontSize: 170 })}
+        ${bubbleText("العَرَبِيَّة", { fontSize: 170 })}
+        <div style="display:flex;gap:16mm;">${outline("heart", 80, 2.6)}${outline("star", 80, 2.6)}${outline("heart", 80, 2.6)}</div>
+      </div>
+      ${sectionLabel("Trace: I love Arabic", "تتبّع: أحبّ العربية")}
+      ${wordLine("أحبّ العربية", { size: "26pt", height: "22mm" })}
+    </div>
+    ${foot(2, total, qr)}
+  `);
+
+  const cells = [...HUNT_GRID]
+    .map((ch) => `<div class="ar" style="display:flex;align-items:center;justify-content:center;font-size:24pt;border:1px solid #e2e2e2;border-radius:2mm;">${esc(ch)}</div>`)
+    .join("");
+  const nameAndHunt = sheet(`
+    ${head(kicker)}
+    <div class="title"><h1>My name in Arabic</h1><span class="arname ar" dir="rtl">اسمي بالعربية</span></div>
+    <div class="instruction">
+      Ask a grown-up to write your name in Arabic in the first box. Trace it, then write it on your own.
+      <span class="rtl ar">اطلب من شخص كبير أن يكتب اسمك بالعربية في المربّع الأول. تتبّعه، ثم اكتبه وحدك.</span>
+    </div>
+    <div class="body">
+      ${sectionLabel("A grown-up writes it", "يكتبه شخص كبير")}
+      <div class="box" style="height:26mm;"></div>
+      ${sectionLabel("I trace it", "أتتبّعه")}
+      <div class="box" style="height:22mm;"></div>
+      ${sectionLabel("I write it on my own", "أكتبه وحدي")}
+      <div class="box" style="height:22mm;"></div>
+
+      ${sectionLabel("Letter hunt: circle every ب (ba)", "ابحث عن الحرف: ضع دائرة حول كلّ ب")}
+      <div class="grow" dir="rtl" style="display:grid;grid-template-columns:repeat(8,1fr);grid-auto-rows:1fr;gap:2mm;min-height:60mm;">${cells}</div>
+      <div style="margin-top:3mm;font-size:10pt;color:#444;display:flex;justify-content:space-between;">
+        <span>How many did you find? ______</span><span class="ar" dir="rtl">كم باءً وجدت؟ ______</span>
+      </div>
+    </div>
+    ${foot(3, total, qr)}
+  `);
+
+  const facts = LANGUAGE_DAY_FACTS
+    .map((f) => `<div class="box" style="padding:3mm 4mm;">
+      <div style="font-size:10.5pt;font-weight:700;">${esc(f.en)}</div>
+      <div class="ar" dir="rtl" style="font-size:12pt;margin-top:1mm;">${esc(f.ar)}</div>
+    </div>`)
+    .join("");
+  const words = LANGUAGE_DAY_WORDS
+    .map((w) => `<div style="margin-bottom:2.5mm;">
+      <div style="font-size:8.5pt;color:#555;margin-bottom:1mm;"><b class="ar" dir="rtl">${esc(w.ar)}</b> — ${esc(w.translit)} — ${esc(w.en)}</div>
+      ${wordLine(w.ar, { size: "22pt", height: "17mm" })}
+    </div>`)
+    .join("");
+  const wordsAndFacts = sheet(`
+    ${head(kicker)}
+    <div class="title"><h1>Arabic words &amp; facts</h1><span class="arname ar" dir="rtl">كلمات ومعلومات عن العربية</span></div>
+    <div class="instruction">
+      Read the facts together, trace three Arabic words, then draw your favourite Arabic word.
+      <span class="rtl ar">اقرأوا المعلومات معاً، وتتبّعوا ثلاث كلمات عربية، ثم ارسم كلمتك العربية المفضّلة.</span>
+    </div>
+    <div class="body">
+      ${sectionLabel("Did you know?", "هل تعلم؟")}
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3mm;">${facts}</div>
+      ${sectionLabel("Trace the words", "تتبّع الكلمات")}
+      ${words}
+      ${sectionLabel("My favourite Arabic word — draw it and write it", "كلمتي العربية المفضّلة — ارسمها واكتبها")}
+      <div class="box grow" style="min-height:40mm;"></div>
+      <div class="rule" style="height:12mm;"></div>
+    </div>
+    ${foot(4, total, qr)}
+  `);
+
+  return doc("Arabic Language Day Pack — 18 December", certificate + poster + nameAndHunt + wordsAndFacts);
+}
+
+// ---------------------------------------------------------------------------
 // Render
 // ---------------------------------------------------------------------------
 
@@ -876,6 +1029,7 @@ const SETS = [
   { id: "arabic-body-parts-coloring", html: buildBodyParts },
   { id: "arabic-seasons-coloring", html: buildSeasons },
   { id: "arabic-opposites-coloring", html: buildOpposites },
+  { id: "arabic-language-day", html: buildLanguageDay },
 ];
 
 function renderPdf(tmp, id, html) {
@@ -937,19 +1091,26 @@ function renderThumb(tmp, id, html, outDir = THUMB_DIR) {
 
 async function main() {
   const numbersOnly = process.argv.includes("--numbers-only");
-  const numberPackIds = new Set(["arabic-numbers-tracing", "arabic-numbers-11-20"]);
+  const onlyIndex = process.argv.indexOf("--only");
+  const onlyId = onlyIndex > -1 ? process.argv[onlyIndex + 1] : null;
+  if (onlyId && !SETS.some((s) => s.id === onlyId)) throw new Error(`--only: no pack "${onlyId}"`);
+  // A targeted rebuild renders only the named packs (plus the workbook, which
+  // contains them) and keeps every other PDF and manifest entry as it is.
+  const targeted = onlyId
+    ? new Set([onlyId])
+    : numbersOnly ? new Set(["arabic-numbers-tracing", "arabic-numbers-11-20"]) : null;
   mkdirSync(OUT_DIR, { recursive: true });
   mkdirSync(THUMB_DIR, { recursive: true });
   const tmp = mkdtempSync(join(tmpdir(), "arabfingers-worksheets-"));
   const manifestPath = join(ROOT, "lib", "worksheet-files.json");
-  const manifest = numbersOnly ? JSON.parse(readFileSync(manifestPath, "utf8")) : {};
+  const manifest = targeted ? JSON.parse(readFileSync(manifestPath, "utf8")) : {};
 
   try {
     const parts = [];
     for (const set of SETS) {
       const html = await set.html(await qrBlock(set.id));
       parts.push(html);
-      if (numbersOnly && !numberPackIds.has(set.id)) continue;
+      if (targeted && !targeted.has(set.id)) continue;
       const { bytes } = renderPdf(tmp, set.id, html);
       const thumb = renderThumb(tmp, set.id, html);
       manifest[set.id] = bytes;
@@ -967,7 +1128,7 @@ async function main() {
     manifest["arabic-complete-workbook"] = bytes;
     console.log(`  ✓ arabic-complete-workbook.pdf  (${(bytes / 1024).toFixed(0)} KB)`);
 
-    if (!numbersOnly) {
+    if (!targeted) {
       // One standalone PDF + preview per letter — the letter-by-letter landing
       // pages (/printables/letters/<slug>) each need their own download. Same
       // sheet as inside the alphabet pack, but the footer QR points at that

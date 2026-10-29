@@ -94,6 +94,14 @@ export const learnArticles = [
     path: "learn",
   },
   {
+    slug: "arabic-language-day",
+    titleEn: "Arabic Language Day for Kids (18 December)",
+    titleAr: "اليوم العالمي للغة العربية للأطفال (18 ديسمبر)",
+    descEn: "Ten activities for 18 December at home or in class, with a free printable certificate.",
+    descAr: "عشرة أنشطة ليوم 18 ديسمبر في البيت أو الصفّ، مع شهادة مجانية للطباعة.",
+    path: "learn",
+  },
+  {
     slug: "arabic-keyboard-layout-for-kids",
     titleEn: "Which Arabic Keyboard for a Child?",
     titleAr: "أيّ لوحة مفاتيح عربية للطفل؟",

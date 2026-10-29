@@ -150,6 +150,16 @@ const articles: {
     descAr:
       "ستحصل على عشرة أنشطة إبداعية — بعيدة عن الشاشة وأخرى رقمية — تعزّز تعلّم الحروف عبر اللعب. استعملها في الأيام التي تريد فيها الابتعاد عن التطبيق والتدرّب بيديك وصوتك.",
   },
+  {
+    slug: "arabic-language-day",
+    Icon: ParentingIcon,
+    titleEn: "Arabic Language Day for Kids: 10 Activities for 18 December",
+    titleAr: "اليوم العالمي للغة العربية للأطفال: 10 أنشطة ليوم 18 ديسمبر",
+    descEn:
+      "You'll get ten short activities for World Arabic Language Day — writing a name in Arabic, a letter hunt, an 'Arabic only' meal — plus a one-hour classroom plan and a free printable certificate.",
+    descAr:
+      "ستحصل على عشرة أنشطة قصيرة لليوم العالمي للغة العربية — كتابة الاسم بالعربية، والبحث عن الحروف، ووجبة «بالعربية فقط» — مع خطّة ساعة للصفّ وشهادة مجانية للطباعة.",
+  },
 ];
 
 export default async function LearnPage({ params }: { params: Promise<{ locale: string }> }) {

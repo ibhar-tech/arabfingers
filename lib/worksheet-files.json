@@ -15,7 +15,7 @@
   "arabic-body-parts-coloring": 201740,
   "arabic-seasons-coloring": 163988,
   "arabic-opposites-coloring": 229903,
-  "arabic-complete-workbook": 3898338,
+  "arabic-complete-workbook": 3921470,
   "letters/alef": 115400,
   "letters/ba": 121583,
   "letters/ta": 120856,
@@ -43,5 +43,6 @@
   "letters/noon": 121048,
   "letters/ha": 121667,
   "letters/waw": 117307,
-  "letters/ya": 129183
+  "letters/ya": 129183,
+  "arabic-language-day": 310695
 }

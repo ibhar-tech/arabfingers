@@ -119,7 +119,7 @@ export default async function Page({ params }: Props) {
           </h1>
           <p className="mt-2 text-base text-ink/75">{tt(page.taglineEn, page.taglineAr)}</p>
 
-          <p className="mt-4 text-xs font-bold uppercase tracking-wide text-ink/45">
+          <p className="mt-4 text-xs font-bold uppercase tracking-wide text-ink/70">
             {set.pages} {tt(set.pages === 1 ? "page" : "pages", "صفحة")} · PDF · {mb(bytes)} ·{" "}
             {isAr ? set.ageAr : set.ageEn}
           </p>
@@ -127,7 +127,7 @@ export default async function Page({ params }: Props) {
           <a href={`/printables/${set.id}.pdf`} download className="btn-chunky mt-5 inline-flex text-sm">
             ⬇ {tt("Download the PDF — free", "حمّل ملف PDF — مجاناً")}
           </a>
-          <p className="mt-2 text-xs font-semibold text-ink/50">
+          <p className="mt-2 text-xs font-semibold text-ink/70">
             {tt(
               "No email, no account, no watermark.",
               "بلا بريد إلكتروني ولا حساب ولا علامة مائية.",
@@ -215,7 +215,7 @@ export default async function Page({ params }: Props) {
                 <h3 className="font-display text-sm font-extrabold leading-snug text-ink">
                   {isAr ? s.titleAr : s.titleEn}
                 </h3>
-                <p className="mt-0.5 text-xs font-bold uppercase tracking-wide text-ink/45">
+                <p className="mt-0.5 text-xs font-bold uppercase tracking-wide text-ink/70">
                   {s.pages} {tt(s.pages === 1 ? "page" : "pages", "صفحة")} · {isAr ? s.ageAr : s.ageEn}
                 </p>
               </div>
