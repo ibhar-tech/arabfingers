@@ -33,6 +33,20 @@ const activities: Activity[] = [
     count: () => null,
   },
   {
+    href: "/games/dots", emoji: "🔍",
+    titleEn: "How many dots?", titleAr: "كم نقطة؟",
+    descEn: "Read the dots and tap the right letter: ب, ت or ث?",
+    descAr: "اقرأ النقاط وانقر الحرف الصحيح: ب أم ت أم ث؟",
+    count: () => null,
+  },
+  {
+    href: "/games/memory", emoji: "🃏",
+    titleEn: "Memory match", titleAr: "لعبة الذاكرة",
+    descEn: "Turn the cards and pair each letter with its word.",
+    descAr: "اقلب البطاقات وطابق كلّ حرف مع كلمته.",
+    count: () => null,
+  },
+  {
     href: "/games/trace",
     emoji: "✏️",
     titleEn: "Trace the letters",

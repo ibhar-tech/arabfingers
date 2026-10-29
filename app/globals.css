@@ -748,3 +748,17 @@ body {
 @media (max-width: 560px) { .external-library { padding: 20px 15px; } .external-resource-grid { grid-template-columns: 1fr; } .external-library h2 { font-size: 24px; } }
 
 .theme-warm .bg-accent { color: #ffffff; }
+
+/* Letter choices in the games (dots, memory): bigger Arabic glyphs than the
+   counting game's digits. */
+.dots-choices strong { font-family: var(--font-noto-naskh), serif; font-size: 52px; line-height: 1.4; }
+.dots-choices button { width: 104px; min-height: 112px; }
+.memory-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; max-width: 520px; margin: 22px auto; }
+.memory-grid button { aspect-ratio: 3 / 4; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; border: 2px solid #d5dec8; border-radius: 16px; background: #315b41; color: white; font-size: 30px; font-weight: 800; transition: transform .15s; }
+.memory-grid button[data-face=up] { background: white; color: #243e36; }
+.memory-grid button[data-matched=true] { background: #e4efd8; border-color: #577c42; color: #243e36; }
+.memory-grid .memory-letter { font-family: var(--font-noto-naskh), serif; font-size: 44px; line-height: 1.2; }
+.memory-grid .memory-word { font-family: var(--font-noto-naskh), serif; font-size: 18px; }
+.memory-grid .memory-emoji { font-size: 30px; line-height: 1; }
+@media (max-width: 480px) { .memory-grid { gap: 8px; } .memory-grid .memory-letter { font-size: 34px; } .dots-choices button { width: 88px; } }
+@media (prefers-reduced-motion: reduce) { .memory-grid button { transition: none; } }

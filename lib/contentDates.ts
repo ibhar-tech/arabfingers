@@ -13,8 +13,10 @@ export const CONTENT_LAST_UPDATED: Record<string, string> = {
   "/coloring": "2026-09-29",
   "/resources": "2026-09-29",
   "/printables": "2026-09-29",
-  "/games": "2026-09-29",
   "/games/count": "2026-09-29",
+  "/games/dots": "2026-10-29",
+  "/games/memory": "2026-10-29",
+  "/games": "2026-10-29",
   // Science interactive lessons (expanded into full articles 2026-06-11)
   "/learn/states-of-matter": "2026-06-11",
   "/learn/water-cycle": "2026-06-11",

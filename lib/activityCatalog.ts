@@ -40,6 +40,8 @@ export function getActivityCatalog(locale: string): LearningActivity[] {
   }));
   const interactives = [
     { href: "/games/count", kind: "games", en: "Count & discover", ar: "عُدّ واكتشف", descEn: "Count the fruit and match Arabic numerals from 1 to 10.", descAr: "عُدّ الفاكهة واختر الرقم المناسب من 1 إلى 10.", artwork: "1 2 3", ages: [3, 6] },
+    { href: "/games/dots", kind: "games", en: "How many dots?", ar: "كم نقطة؟", descEn: "Read the dots and tap the right letter among look-alikes.", descAr: "اقرأ النقاط وانقر الحرف الصحيح بين الحروف المتشابهة.", artwork: "ب ت ث", ages: [4, 7] },
+    { href: "/games/memory", kind: "games", en: "Memory match", ar: "لعبة الذاكرة", descEn: "Pair each letter with a picture word that starts with it.", descAr: "طابق كلّ حرف مع كلمة مصوّرة تبدأ به.", artwork: "🃏", ages: [3, 7] },
     { href: "/games/trace", kind: "games", en: "Trace the letters", ar: "تتبّع الحروف", descEn: "Follow each Arabic letter with a finger or a pencil on screen.", descAr: "اتبع شكل كل حرف عربي بإصبعك أو بالقلم على الشاشة.", artwork: "ب", ages: [4, 7] },
     { href: "/games/tap", kind: "games", en: "Listen & find", ar: "استمع وابحث", descEn: "Listen to a letter, then find its matching shape.", descAr: "استمع إلى الحرف، ثم ابحث عن شكله الصحيح.", artwork: "أ", ages: [3, 7] },
     { href: "/coloring", kind: "games", en: "Little color studio", ar: "مرسم الألوان الصغير", descEn: "Make the alphabet your own with colors and stickers.", descAr: "لوّن الحروف وزيّنها بالملصقات على ذوقك.", artwork: "🎨", ages: [3, 7] },

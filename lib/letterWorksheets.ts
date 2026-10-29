@@ -13,9 +13,10 @@
 // name and transliteration always visible on the page.
 //
 // Imported by the app AND scripts/build-worksheets.mjs (Node TS stripping):
-// keep it plain data over letterGuide — no imports beyond that.
+// keep it plain data over letterGuide and letterDots — no other imports.
 
 import { letterGuide, type LetterGuideEntry } from "./letterGuide";
+import { dotsPhrase, letterDots } from "./letterDots";
 
 /** Letters that only join to the letter before them (no initial/medial form). */
 const RIGHT_JOINING_ONLY = new Set(["ا", "د", "ذ", "ر", "ز", "و"]);
@@ -34,33 +35,13 @@ export function letterFormsOf(entry: LetterGuideEntry) {
   ];
 }
 
-/* Dots are how children tell look-alike letters apart (ب ت ث, ح ج خ), and
-   Arabic-script searchers ask for them directly — "نقطة حرف الجيم" earned 79
-   impressions in Oct 2026 with no page stating the answer. Letters not listed
-   have no dots. */
-const DOTS: Record<string, { n: 1 | 2 | 3; below: boolean }> = {
-  "ب": { n: 1, below: true }, "ت": { n: 2, below: false }, "ث": { n: 3, below: false },
-  "ج": { n: 1, below: true }, "خ": { n: 1, below: false }, "ذ": { n: 1, below: false },
-  "ز": { n: 1, below: false }, "ش": { n: 3, below: false }, "ض": { n: 1, below: false },
-  "ظ": { n: 1, below: false }, "غ": { n: 1, below: false }, "ف": { n: 1, below: false },
-  "ق": { n: 2, below: false }, "ن": { n: 1, below: false }, "ي": { n: 2, below: true },
-};
-
-/** One sentence on the letter's dots, in each language. */
+/** One sentence on the letter's dots, in each language ("نقطة حرف الجيم"
+    had impressions in Oct 2026 with no page stating the answer). */
 export function letterDotsOf(entry: LetterGuideEntry) {
-  const d = DOTS[entry.ar];
-  if (!d) {
-    return {
-      en: `${entry.enName} (${entry.ar}) has no dots.`,
-      ar: `حرف ال${entry.arName} (${entry.ar}) ليس له نقاط.`,
-    };
-  }
-  const countEn = ["", "one dot", "two dots", "three dots"][d.n];
-  const countAr = ["", "نقطة واحدة", "نقطتان", "ثلاث نقاط"][d.n];
-  return {
-    en: `${entry.enName} (${entry.ar}) has ${countEn} ${d.below ? "below" : "above"} it.`,
-    ar: `حرف ال${entry.arName} (${entry.ar}) له ${countAr} ${d.below ? "تحته" : "فوقه"}.`,
-  };
+  const p = dotsPhrase(entry.ar);
+  return letterDots(entry.ar)
+    ? { en: `${entry.enName} (${entry.ar}) has ${p.en} it.`, ar: `حرف ال${entry.arName} (${entry.ar}) ${p.ar}.` }
+    : { en: `${entry.enName} (${entry.ar}) has no dots.`, ar: `حرف ال${entry.arName} (${entry.ar}) ليس له نقاط.` };
 }
 
 export type LetterWorksheetPage = {

@@ -58,6 +58,8 @@ ${letters.join("\n")}
 ## Games (free, in the browser, no install)
 - [Letter game](${SITE}/en/play): press any key or tap the screen to see and hear an Arabic letter
 - [Count & discover](${SITE}/en/games/count): count apples, match numbers 1–10 and hear their Arabic names
+- [How many dots?](${SITE}/en/games/dots): tell look-alike letters (ب ت ث, ج ح خ) apart by their dots
+- [Memory match](${SITE}/en/games/memory): pair each letter with a picture word that starts with it
 - [Trace the letters](${SITE}/en/games/trace): follow the dotted shape with a finger and earn a star
 - [Tap the letter](${SITE}/en/games/tap): hear a letter and tap the shape that matches
 - [Colour the letters](${SITE}/en/coloring): paint each letter with colours and stickers
