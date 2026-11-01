@@ -227,7 +227,7 @@ Everything below is live on www.arabfingers.site and on `main`.
 - [ ] B2. New Arabic-first pages with a printable each, in this order: الحيوانات وأسماؤها، الفواكه والخضروات، أعضاء الجسم، أيام الأسبوع والشهور، الأشكال الهندسية. Each reuses an existing colouring pack where one exists.
 
 **Track C — UI, mobile first (weeks 1–4)**
-- [ ] C1. Letter and pack pages: H1 and the download button inside the first phone screen (today the preview image comes first and the button sits at the fold).
+- [x] C1. Letter and pack pages: H1 and the download button now come before the preview on phones (the preview used to push the button to the fold); the preview loads eagerly, since it is the LCP element on desktop.
 - [ ] C2. Owner decision: the top ad box sits above the breadcrumb and H1 on every page. Moving it below the first content block keeps the ad and gives Google and visitors the content first.
 - [ ] C3. Sticky "حمّل PDF / Download PDF" bar on phones on letter and pack pages.
 - [ ] C4. Check Core Web Vitals (mobile) in Search Console and fix whatever is flagged.

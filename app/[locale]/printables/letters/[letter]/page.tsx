@@ -117,7 +117,9 @@ export default async function Page({ params }: Props) {
         ]}
       />
 
-      {/* ---------- top: preview + download ---------- */}
+      {/* ---------- top: preview + download ----------
+          On phones the title and download button come first and the preview
+          follows; from sm up the preview sits in the left column. */}
       <section className="mt-4 grid gap-7 sm:grid-cols-[minmax(0,220px)_1fr] sm:items-start">
         <Image
           src={`/printables/previews/letters/${page.slug}.png`}
@@ -128,11 +130,12 @@ export default async function Page({ params }: Props) {
           width={349}
           height={494}
           unoptimized
-          className="h-auto w-full max-w-[220px] rounded-lg border-2 border-ink/15 bg-white shadow-[3px_3px_0_0_rgba(42,29,78,0.12)]"
+          loading="eager"
+          className="order-last h-auto w-full max-w-[220px] rounded-lg border-2 border-ink/15 bg-white shadow-[3px_3px_0_0_rgba(42,29,78,0.12)] sm:order-first"
         />
 
         <div className="min-w-0">
-          <p className="text-xs font-bold uppercase tracking-wide text-ink/45">
+          <p className="text-xs font-bold uppercase tracking-wide text-ink/70">
             {tt(
               `Letter ${page.index + 1} of 28 · Ages 4–7 · Pre-K – Grade 1`,
               `الحرف ${page.index + 1} من 28 · من 4 إلى 7 سنوات`,
@@ -158,7 +161,7 @@ export default async function Page({ params }: Props) {
               labelAr={`اسمع حرف ال${entry.arName}`}
             />
           </div>
-          <p className="mt-2 text-xs font-semibold text-ink/50">
+          <p className="mt-2 text-xs font-semibold text-ink/70">
             {tt(
               `1 page · ${mb(bytes)} · no email, no account, no watermark.`,
               `صفحة واحدة · ${mb(bytes)} · بلا بريد إلكتروني ولا حساب ولا علامة مائية.`,
@@ -191,7 +194,7 @@ export default async function Page({ params }: Props) {
               >
                 {f.glyph}
               </div>
-              <div className="mt-2 text-xs font-bold uppercase tracking-wide text-ink/45">
+              <div className="mt-2 text-xs font-bold uppercase tracking-wide text-ink/70">
                 {isAr ? f.ar : f.en}
               </div>
               {!f.joins && (
@@ -298,7 +301,7 @@ export default async function Page({ params }: Props) {
           href={`/${locale}/printables/letters/${prev.slug}`}
           className="card-stock min-w-0 flex-1 p-4 transition hover:border-qalam"
         >
-          <div className="text-xs font-bold uppercase tracking-wide text-ink/45">
+          <div className="text-xs font-bold uppercase tracking-wide text-ink/70">
             {isAr ? "الحرف التالي" : "Previous letter"}
           </div>
           <div className="mt-1 flex items-center gap-2">
@@ -314,7 +317,7 @@ export default async function Page({ params }: Props) {
           href={`/${locale}/printables/letters/${next.slug}`}
           className="card-stock min-w-0 flex-1 p-4 text-end transition hover:border-qalam"
         >
-          <div className="text-xs font-bold uppercase tracking-wide text-ink/45">
+          <div className="text-xs font-bold uppercase tracking-wide text-ink/70">
             {isAr ? "الحرف السابق" : "Next letter"}
           </div>
           <div className="mt-1 flex items-center justify-end gap-2">

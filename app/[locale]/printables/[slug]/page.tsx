@@ -115,7 +115,9 @@ export default async function Page({ params }: Props) {
         ]}
       />
 
-      {/* ---------- top: preview + download ---------- */}
+      {/* ---------- top: preview + download ----------
+          On phones the title and download button come first and the preview
+          follows; from sm up the preview sits in the left column. */}
       <section className="mt-4 grid gap-7 sm:grid-cols-[minmax(0,220px)_1fr] sm:items-start">
         <Image
           src={`/printables/previews/${set.id}.png`}
@@ -126,7 +128,8 @@ export default async function Page({ params }: Props) {
           width={349}
           height={494}
           unoptimized
-          className="h-auto w-full max-w-[220px] rounded-lg border-2 border-ink/15 bg-white shadow-[3px_3px_0_0_rgba(42,29,78,0.12)]"
+          loading="eager"
+          className="order-last h-auto w-full max-w-[220px] rounded-lg border-2 border-ink/15 bg-white shadow-[3px_3px_0_0_rgba(42,29,78,0.12)] sm:order-first"
         />
 
         <div className="min-w-0">
