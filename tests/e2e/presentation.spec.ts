@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { AD_HOSTS, expect, test } from "./fixtures";
 
 // Network fixtures must not be bypassed by the application service worker.
 test.use({ serviceWorkers: "block" });
@@ -30,7 +30,7 @@ test("external printables credit their publishers and open original resource pag
 test("reading page loads the mobile ad tag directly and excludes it from colouring", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   // The publisher network is the boundary: tests must not generate paid impressions.
-  await page.route(/^https:\/\/(bauval\.org|fortunateambiguous\.com|abscloud\.org)\//, route => route.fulfill({
+  await page.route(AD_HOSTS, route => route.fulfill({
     contentType: "application/javascript",
     body: "document.currentScript.parentElement.dataset.vendorLoaded = String(window.atOptions?.width);",
   }));

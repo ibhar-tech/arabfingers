@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 const lessons = ["states-of-matter", "water-cycle", "gravity", "solar-system"];
 

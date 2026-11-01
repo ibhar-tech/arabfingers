@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test } from "./fixtures";
 
 for (const locale of ["en", "ar"] as const) {
   test(`colouring ${locale}: fill stays inside the picture, undo restores it, and artwork downloads`, async ({ page }) => {
