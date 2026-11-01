@@ -225,7 +225,7 @@ export default async function Page({ params }: Props) {
       {/* ---------- words with this letter ---------- */}
       <section className="mt-12">
         <h2 className="font-display text-xl font-extrabold text-ink">
-          {tt(`Words your child already knows with ${entry.enName}`, `كلمات مألوفة بحرف ${entry.arName}`)}
+          {tt(`Words with ${entry.enName} (${entry.ar}), with pictures`, `كلمات بحرف ${entry.arName} (${entry.ar}) بالصور`)}
         </h2>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink/75">
           {tt(

@@ -40,6 +40,19 @@
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
   X-Content-Type-Options: nosniff
 
+# Point each PDF at the page that offers it, so Google ranks the page (with its
+# download button and links to the rest of the site) instead of the bare file.
+# Letter PDFs are searched in Arabic ("كتابة حرف الراء pdf"), so they point to
+# /ar; the packs and stories are mostly searched in English, so they point to /en.
+# Each placeholder matches one path segment, so the pack rule never catches a
+# letter PDF (checked with wrangler dev).
+/printables/letters/:letter.pdf
+  Link: <https://www.arabfingers.site/ar/printables/letters/:letter>; rel="canonical"
+/printables/:pack.pdf
+  Link: <https://www.arabfingers.site/en/printables/:pack>; rel="canonical"
+/stories/:story.pdf
+  Link: <https://www.arabfingers.site/en/stories/:story>; rel="canonical"
+
 # The service worker must never be cached, or a stale one pins an old build.
 /sw.js
   Cache-Control: no-cache
