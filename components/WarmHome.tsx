@@ -1,9 +1,11 @@
+import { letterGuide } from "@/lib/letterGuide";
 import Link from "next/link";
 import { ArrowRight, BookOpen, Check, Clock3, Heart, Printer, Sparkles } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ActivityFinder } from "@/components/ActivityFinder";
 import { ReadingAds } from "@/components/ReadingAds";
+import { gradePages } from "@/lib/gradePages";
 import { StarTotal } from "@/components/StarTotal";
 import { AlphabetPreview } from "@/components/AlphabetPreview";
 import { getActivityCatalog } from "@/lib/activityCatalog";
@@ -54,6 +56,14 @@ export function WarmHome({ locale }: { locale: string }) {
                 { href: "/stories/al-arnab-al-saeed", title: t("Finish with a little story.", "اختم بقصة صغيرة."), desc: t("Meet the Happy Rabbit together", "تعرّفوا إلى الأرنب السعيد معاً"), time: t("3 min", "3 دقائق") },
               ].map((step, index) => <li key={step.href}><Link href={`/${locale}${step.href}`}><span className="step-number">{number(index + 1)}</span><span className="step-copy"><strong>{step.title}</strong><span>{step.desc}</span></span><span className="step-time">{step.time}</span><ArrowRight size={19} aria-hidden /></Link></li>)}
             </ol>
+          </div>
+        </section>
+        <section className="discovery-container discovery-section parent-corner" aria-labelledby="by-age-title">
+          <div><span className="discovery-eyebrow"><Printer size={16} aria-hidden />{t("WORKSHEETS BY AGE", "أوراق عمل حسب العمر")}</span><h2 id="by-age-title">{t("The right sheets, in the right order.", "الأوراق المناسبة، بالترتيب المناسب.")}</h2><p>{t(`Pick your child's age and get the packs for that year in teaching order, with a 4-week plan. ${number(pages)} free pages in all.`, `اختر عمر طفلك لتجد حزم تلك السنة بترتيب التعليم، مع خطة لأربعة أسابيع. ${number(pages)} صفحة مجانية في المجموع.`)}</p></div>
+          <div className="parent-links">
+            {gradePages.map((g) => <Link key={g.slug} href={`/${locale}/printables/${g.slug}`}>{g.emoji} {ar ? g.h1Ar : g.h1En}<ArrowRight size={18} aria-hidden /></Link>)}
+            <Link href={`/${locale}/learn/letter-of-the-week`}>🗓️ {t(`Letter of the week: a ${letterGuide.length}-week plan`, `حرف الأسبوع: خطة ${letterGuide.length} أسبوعاً`)}<ArrowRight size={18} aria-hidden /></Link>
+            <Link href={`/${locale}/learn/arabic-language-day`}>🎉 {t("Arabic Language Day, 18 December: activities + free pack", "اليوم العالمي للغة العربية، 18 ديسمبر: أنشطة وحزمة مجانية")}<ArrowRight size={18} aria-hidden /></Link>
           </div>
         </section>
         <section className="discovery-container discovery-section parent-corner">

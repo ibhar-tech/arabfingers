@@ -220,7 +220,7 @@ Everything below is live on www.arabfingers.site and on `main`.
 - [x] A0. PDFs send ranking to their page (`Link: rel=canonical` in `public/_headers`): letters → `/ar`, packs and stories → `/en`.
 - [ ] A2. One image per letter for Google Images: the four shapes + picture words as a PNG (`/images/letters/<slug>-shapes.png`) with Arabic alt text, on the page and in the sitemap. The single-letter results are image-heavy.
 - [ ] A3. A colouring page per letter (letter outline + 3 pictures), added to each letter PDF as page 2.
-- [ ] A4. "حرف الأسبوع": a 28-week plan page for KG teachers and parents in Arab countries, linking each week's letter page, PDF and game.
+- [x] A4. `/learn/letter-of-the-week` ("حرف الأسبوع"): 28 weeks in alphabet order, five ten-minute days per letter, each week linking its letter page, PDF and the games; every letter page links back ("week N of the plan").
 
 **Track B — Arabic vocabulary pages (weeks 2–5)**
 - [x] B1. Colours: "جميع الألوان" — 12 basics first, then 24 shades (كحلي، فيروزي، عنابي، بيج، فضي…) = 36; masculine/feminine table for the six أفعل/فعلاء colours; FAQ "ما أسماء جميع الألوان بالعربي؟". The shades have no recorded audio yet (SpeakButton only plays shipped clips), so they show transliteration instead.
@@ -234,11 +234,11 @@ Everything below is live on www.arabfingers.site and on `main`.
 
 **Track D — English growth (ongoing)**
 - [ ] D1. Watch the retitled alphabet guide (position 8.7 → 5.8 on its first day) for "arabic alphabet/letters for kids"; if it stalls on page 1, add an alphabet chart image and the 28 letter cards above the fold.
-- [ ] D2. Grade pages (preschool, KG, grade 1): request indexing, then link them from the home page.
+- [x] D2. Grade pages linked from the home page ("Worksheets by age" section, with the letter-of-the-week plan). Owner: request indexing.
 
 **Track E — Calendar**
 - [ ] E1. Ramadan 1448 (starts ~8 Feb 2027): Ramadan activity pages + calendar/good-deeds printable, live by early January.
-- [ ] E2. Arabic Language Day (18 Dec): page and pack are live; link from the home page from 1 Dec.
+- [x] E2. Arabic Language Day linked from the home page (same section). Take the link down after 18 Dec.
 
 **Track F — Sharing**
 - [x] F1. WhatsApp share button (`components/ShareWhatsApp.tsx`, plain wa.me link) on letter, pack and grade pages.

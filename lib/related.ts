@@ -1,3 +1,4 @@
+import { letterGuide } from "./letterGuide";
 import { blogPosts } from "./blog-data";
 import { RelatedArticle } from "@/components/RelatedArticles";
 
@@ -91,6 +92,14 @@ export const learnArticles = [
     titleAr: "10 أنشطة للحروف في البيت",
     descEn: "Ten hands-on activities written like recipes — materials, steps and an age range for each.",
     descAr: "عشرة أنشطة عملية مكتوبة كوصفات — الموادّ والخطوات والعمر المناسب لكلٍّ منها.",
+    path: "learn",
+  },
+  {
+    slug: "letter-of-the-week",
+    titleEn: `Arabic Letter of the Week: a ${letterGuide.length}-Week Plan`,
+    titleAr: `حرف الأسبوع: خطة ${letterGuide.length} أسبوعاً`,
+    descEn: "One letter a week, ten minutes a day, with a free worksheet, picture words and a game for each letter.",
+    descAr: "حرف كل أسبوع وعشر دقائق يومياً، ولكل حرف ورقة مجانية وكلمات بالصور ولعبة.",
     path: "learn",
   },
   {

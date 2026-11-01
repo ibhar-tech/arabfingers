@@ -1,3 +1,4 @@
+import { letterGuide } from "@/lib/letterGuide";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
@@ -149,6 +150,16 @@ const articles: {
       "You'll get ten creative activities — both screen-free and digital — that reinforce letter learning through play. Use them on days you want to step away from the app and practice with your hands and voice.",
     descAr:
       "ستحصل على عشرة أنشطة إبداعية — بعيدة عن الشاشة وأخرى رقمية — تعزّز تعلّم الحروف عبر اللعب. استعملها في الأيام التي تريد فيها الابتعاد عن التطبيق والتدرّب بيديك وصوتك.",
+  },
+  {
+    slug: "letter-of-the-week",
+    Icon: ParentingIcon,
+    titleEn: `Arabic Letter of the Week: a ${letterGuide.length}-Week Plan with Free Worksheets`,
+    titleAr: `حرف الأسبوع: خطة ${letterGuide.length} أسبوعاً لتعليم الحروف العربية`,
+    descEn:
+      "You'll get a plan that gives each Arabic letter one week — five ten-minute days of hearing, tracing, finding and playing — with the free worksheet, picture words and games for every letter linked in order.",
+    descAr:
+      "ستحصل على خطة تعطي كل حرف أسبوعاً — خمسة أيام من عشر دقائق للاستماع والتتبّع والاكتشاف واللعب — مع ورقة العمل المجانية والكلمات بالصور والألعاب لكل حرف بالترتيب.",
   },
   {
     slug: "arabic-language-day",

@@ -288,6 +288,13 @@ export default async function Page({ params }: Props) {
             🎮 {tt("Hear it in the letter game", "اسمعه في لعبة الحروف")}
           </Link>
         </div>
+        <p className="mt-4 text-sm text-ink/80">
+          {tt(`${entry.enName} is week ${page.index + 1} of the `, `حرف ال${entry.arName} هو الأسبوع ${page.index + 1} في `)}
+          <Link href={`/${locale}/learn/letter-of-the-week`} className="font-semibold text-ink underline underline-offset-4">
+            {tt("letter-of-the-week plan", "خطة حرف الأسبوع")}
+          </Link>
+          {tt(": five ten-minute days for each letter.", ": خمسة أيام من عشر دقائق لكل حرف.")}
+        </p>
       </section>
 
       {/* ---------- faq ---------- */}
