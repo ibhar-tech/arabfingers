@@ -316,6 +316,19 @@ export const worksheetSets: WorksheetSet[] = [
     ageAr: "من 4 إلى 8 سنوات",
   },
   {
+    id: "arabic-ramadan-calendar",
+    emoji: "🏮",
+    titleEn: "Ramadan Calendar & Good Deeds Chart for Kids",
+    titleAr: "تقويم رمضان وجدول الأعمال الطيّبة للأطفال",
+    descEn:
+      "Five pages for Ramadan: a 30-day lantern calendar to colour at iftar, a good-deeds star chart for days 1–15 and 16–30, eight Ramadan words to trace, and an Eid Mubarak card to colour and give.",
+    descAr:
+      "خمس صفحات لرمضان: تقويم من 30 فانوساً يُلوَّن عند كلّ إفطار، وجدول نجوم للأعمال الطيّبة للأيام 1–15 و16–30، وثماني كلمات رمضانية للتتبّع، وبطاقة «عيد مبارك» للتلوين والإهداء.",
+    pages: 5,
+    ageEn: "Ages 4–9",
+    ageAr: "من 4 إلى 9 سنوات",
+  },
+  {
     id: "arabic-complete-workbook",
     emoji: "📚",
     titleEn: "Complete Arabic Workbook (everything above)",
@@ -324,7 +337,7 @@ export const worksheetSets: WorksheetSet[] = [
       "Every pack in this library bound into one file, in teaching order — the alphabet chart first, then letters, harakat, numbers, colours, animals and all the colouring books. One download, one print job.",
     descAr:
       "كل المجموعات في ملف واحد مرتّبة تعليمياً — اللوحة أولاً ثم الحروف فالحركات فالأرقام فالألوان فالحيوانات ثم كتب التلوين كلّها. تنزيل واحد وطباعة واحدة.",
-    pages: 176,
+    pages: 181,
     ageEn: "Ages 3–7",
     ageAr: "من 3 إلى 7 سنوات",
     bundle: true,

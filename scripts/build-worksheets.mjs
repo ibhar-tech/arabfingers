@@ -225,6 +225,11 @@ const PACK_LINKS = {
     captionEn: "More words:",
     captionAr: "كلمات أكثر:",
   },
+  "arabic-ramadan-calendar": {
+    url: `${SITE}/en/learn/ramadan-activities-for-kids`,
+    captionEn: "Ramadan activities:",
+    captionAr: "أنشطة رمضان:",
+  },
   "arabic-language-day": {
     url: `${SITE}/en/learn/arabic-language-day`,
     captionEn: "10 activities:",
@@ -1345,6 +1350,123 @@ function buildLanguageDay(qr) {
 }
 
 // ---------------------------------------------------------------------------
+// Ramadan calendar pack — a 30-day colour-in calendar, a good-deeds chart in
+// two halves, Ramadan words to trace and an Eid card. No Gregorian dates are
+// printed: the month starts with the moon sighting, so the pack works every
+// year. Seasonal like the Language Day pack: families look for it in January
+// and February, before Ramadan 1448 (expected around 8 February 2027).
+// ---------------------------------------------------------------------------
+
+const GOOD_DEEDS = [
+  { en: "I helped at home", ar: "ساعدتُ في البيت" },
+  { en: "I said a kind word", ar: "قلتُ كلمة طيّبة" },
+  { en: "I shared or gave", ar: "شاركتُ أو تصدّقتُ" },
+  { en: "I read or heard Quran", ar: "قرأتُ القرآن أو استمعتُ إليه" },
+  { en: "I made dua for someone", ar: "دعوتُ لغيري" },
+  { en: "I was patient", ar: "صبرتُ" },
+];
+
+const RAMADAN_WORDS = [
+  { ar: "رمضان", translit: "ramadaan", en: "Ramadan" },
+  { ar: "صيام", translit: "siyaam", en: "fasting" },
+  { ar: "إفطار", translit: "iftaar", en: "the meal at sunset" },
+  { ar: "سحور", translit: "suhuur", en: "the meal before dawn" },
+  { ar: "هلال", translit: "hilaal", en: "crescent moon" },
+  { ar: "فانوس", translit: "faanuus", en: "lantern" },
+  { ar: "تمر", translit: "tamr", en: "dates" },
+  { ar: "عيد", translit: "'iid", en: "Eid" },
+];
+
+function buildRamadanCalendar(qr) {
+  const total = 5;
+  const kicker = "Ramadan Calendar";
+
+  const days = Array.from({ length: 30 }, (_, i) => `
+    <div class="box" style="display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:1.5mm 0 1mm;">
+      <div style="font-size:11pt;font-weight:800;">${i + 1}</div>
+      ${outline(i === 29 ? "crescent" : "lantern", 92, 2.4)}
+    </div>`).join("");
+  const calendar = sheet(`
+    ${head(kicker)}
+    <div class="title"><h1>My Ramadan calendar</h1><span class="arname ar" dir="rtl">تقويمي في رمضان</span></div>
+    <div class="instruction">
+      Every evening at iftar, colour one lantern. Ramadan lasts 29 or 30 days, so the last one may wait for next year.
+      <span class="rtl ar">كلّ مساء عند الإفطار لوّن فانوساً واحداً. رمضان 29 أو 30 يوماً، فقد يبقى الفانوس الأخير للعام القادم.</span>
+    </div>
+    <div class="body">
+      <div class="grow" dir="rtl" style="margin-top:4mm;display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(6,minmax(0,1fr));gap:2.5mm;">${days}</div>
+      <div style="margin-top:3mm;display:flex;justify-content:space-between;align-items:center;font-size:12pt;font-weight:700;">
+        <span>Then it is Eid!</span><span class="ar" dir="rtl">ثمّ يأتي العيد!</span>
+      </div>
+    </div>
+    ${foot(1, total, qr)}
+  `);
+
+  const deedsSheet = (from, to, n) => {
+    const header = GOOD_DEEDS.map((d) => `<div style="padding:1.5mm;text-align:center;font-size:7.5pt;line-height:1.25;border-bottom:1.5px solid #1b1b1b;">
+      <div class="ar" dir="rtl" style="font-size:9.5pt;font-weight:700;">${esc(d.ar)}</div>${esc(d.en)}</div>`).join("");
+    const rows = Array.from({ length: to - from + 1 }, (_, i) => `
+      <div style="display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11pt;border-bottom:1px solid #e2e2e2;">${from + i}</div>
+      ${GOOD_DEEDS.map(() => `<div style="display:flex;align-items:center;justify-content:center;border-bottom:1px solid #e2e2e2;border-inline-start:1px dashed #e2e2e2;">${outline("star", 40, 2.4)}</div>`).join("")}`).join("");
+    return sheet(`
+      ${head(kicker)}
+      <div class="title"><h1>My good deeds · days ${from}–${to}</h1><span class="arname ar" dir="rtl">أعمالي الطيّبة</span></div>
+      <div class="instruction">
+        Before bed, colour a star for every good deed you did today.
+        <span class="rtl ar">قبل النوم لوّن نجمة لكلّ عمل طيّب قمتَ به اليوم.</span>
+      </div>
+      <div class="body">
+        <div class="box grow" style="margin-top:4mm;display:grid;grid-template-columns:12mm repeat(${GOOD_DEEDS.length},1fr);grid-template-rows:auto repeat(${to - from + 1},minmax(0,1fr));overflow:hidden;">
+          <div style="border-bottom:1.5px solid #1b1b1b;display:flex;align-items:flex-end;justify-content:center;padding-bottom:1.5mm;font-size:7.5pt;" class="label">Day<br/>اليوم</div>
+          ${header}
+          ${rows}
+        </div>
+      </div>
+      ${foot(n, total, qr)}
+    `);
+  };
+
+  const words = RAMADAN_WORDS.map((w) => `<div style="margin-bottom:1.5mm;">
+      <div style="font-size:8.5pt;color:#555;margin-bottom:.8mm;"><b class="ar" dir="rtl">${esc(w.ar)}</b> — ${esc(w.translit)} — ${esc(w.en)}</div>
+      ${wordLine(w.ar, { size: "24pt", height: "21mm" })}
+    </div>`).join("");
+  const wordsSheet = sheet(`
+    ${head(kicker)}
+    <div class="title"><h1>Ramadan words</h1><span class="arname ar" dir="rtl">كلمات رمضان</span></div>
+    <div class="instruction">
+      Say each word, trace the grey one, then write it on the line.
+      <span class="rtl ar">انطق الكلمة، وتتبّع الكلمة الرمادية، ثمّ اكتبها على السطر.</span>
+    </div>
+    <div class="body" style="margin-top:3mm;">${words}</div>
+    ${foot(4, total, qr)}
+  `);
+
+  const card = sheet(`
+    <div style="flex:1;display:flex;flex-direction:column;">
+      <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border:2.5px solid #1b1b1b;border-radius:4mm;padding:4mm;">
+        <div style="display:flex;gap:14mm;">${outline("crescent", 70, 2.6)}${outline("lantern", 80, 2.6)}${outline("star", 70, 2.6)}</div>
+        ${bubbleText("عيد مبارك", { fontSize: 150, height: 300 })}
+        <div style="font-size:14pt;font-weight:800;">Eid Mubarak!</div>
+        <div style="display:flex;gap:14mm;margin-top:3mm;">${outline("gift", 70, 2.6)}${outline("balloon", 70, 2.6)}${outline("dates", 70, 2.6)}</div>
+      </div>
+      <div style="text-align:center;font-size:8pt;color:#8a8a8a;margin:2mm 0;border-bottom:1.5px dashed #9a9a9a;padding-bottom:1mm;">✂ fold here · اطوِ هنا</div>
+      <div style="flex:1;display:flex;flex-direction:column;border:2.5px solid #1b1b1b;border-radius:4mm;padding:6mm 8mm;gap:4mm;">
+        <div style="display:flex;justify-content:space-between;font-size:12pt;"><span>To:</span><span class="ar" dir="rtl">إلى:</span></div>
+        <div class="rule" style="height:10mm;"></div>
+        ${wordLine("عيد مبارك", { size: "24pt", height: "18mm" })}
+        <div class="rule" style="height:10mm;"></div>
+        <div class="rule" style="height:10mm;"></div>
+        <div style="margin-top:auto;display:flex;justify-content:space-between;font-size:12pt;"><span>From:</span><span class="ar" dir="rtl">من:</span></div>
+        <div class="rule" style="height:10mm;"></div>
+      </div>
+    </div>
+    ${foot(5, total, qr)}
+  `);
+
+  return doc("Ramadan Calendar & Good Deeds Pack", calendar + deedsSheet(1, 15, 2) + deedsSheet(16, 30, 3) + wordsSheet + card);
+}
+
+// ---------------------------------------------------------------------------
 // Render
 // ---------------------------------------------------------------------------
 
@@ -1366,6 +1488,7 @@ const SETS = [
   { id: "arabic-solar-system-coloring", html: buildSolar },
   { id: "arabic-alphabet-coloring", html: buildAlphabetColoring },
   { id: "arabic-ramadan-coloring", html: buildRamadan },
+  { id: "arabic-ramadan-calendar", html: buildRamadanCalendar },
   { id: "arabic-sea-animals-coloring", html: buildSea },
   { id: "arabic-body-parts-coloring", html: buildBodyParts },
   { id: "arabic-seasons-coloring", html: buildSeasons },

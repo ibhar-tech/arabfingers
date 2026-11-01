@@ -153,6 +153,16 @@ const articles: {
       "ستحصل على عشرة أنشطة إبداعية — بعيدة عن الشاشة وأخرى رقمية — تعزّز تعلّم الحروف عبر اللعب. استعملها في الأيام التي تريد فيها الابتعاد عن التطبيق والتدرّب بيديك وصوتك.",
   },
   {
+    slug: "ramadan-activities-for-kids",
+    Icon: ParentingIcon,
+    titleEn: "Ramadan Activities for Kids: 10 Ideas for 2027",
+    titleAr: "أنشطة رمضان للأطفال: 10 أفكار لرمضان 1448",
+    descEn:
+      "You'll get ten short Ramadan activities that give children a part in the month, fasting or not — a lantern calendar, a good-deeds chart, an iftar job, Eid cards — with free printables for each.",
+    descAr:
+      "ستحصل على عشرة أنشطة رمضانية قصيرة تعطي الأطفال دوراً في الشهر، صاموا أم لم يصوموا — تقويم الفوانيس، وجدول الأعمال الطيّبة، ومهمّة في الإفطار، وبطاقات العيد — مع مطبوعات مجانية لكلّ منها.",
+  },
+  {
     slug: "letter-of-the-week",
     Icon: ParentingIcon,
     titleEn: `Arabic Letter of the Week: a ${letterGuide.length}-Week Plan with Free Worksheets`,

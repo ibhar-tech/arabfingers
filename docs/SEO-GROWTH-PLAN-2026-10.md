@@ -237,7 +237,7 @@ Everything below is live on www.arabfingers.site and on `main`.
 - [x] D2. Grade pages linked from the home page ("Worksheets by age" section, with the letter-of-the-week plan). Owner: request indexing.
 
 **Track E — Calendar**
-- [ ] E1. Ramadan 1448 (starts ~8 Feb 2027): Ramadan activity pages + calendar/good-deeds printable, live by early January.
+- [x] E1. Ramadan 1448 (starts ~8 Feb 2027): `/learn/ramadan-activities-for-kids` (10 activities, dates at a glance) + `/printables/arabic-ramadan-calendar` (5 pages: 30-lantern calendar, good-deeds chart ×2, Ramadan words, Eid card; no dates printed, so it works every year). Library now 181 pages. In early January: link both from the home page and request indexing.
 - [x] E2. Arabic Language Day linked from the home page (same section). Take the link down after 18 Dec.
 
 **Track F — Sharing**

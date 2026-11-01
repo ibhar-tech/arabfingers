@@ -96,6 +96,14 @@ export const learnArticles = [
     path: "learn",
   },
   {
+    slug: "ramadan-activities-for-kids",
+    titleEn: "Ramadan Activities for Kids (2027)",
+    titleAr: "أنشطة رمضان للأطفال (1448)",
+    descEn: "Ten simple Ramadan activities, with a free lantern calendar, good-deeds chart and Eid card.",
+    descAr: "عشرة أنشطة رمضانية بسيطة، مع تقويم فوانيس وجدول أعمال طيّبة وبطاقة عيد مجانية.",
+    path: "learn",
+  },
+  {
     slug: "letter-of-the-week",
     titleEn: `Arabic Letter of the Week: a ${letterGuide.length}-Week Plan`,
     titleAr: `حرف الأسبوع: خطة ${letterGuide.length} أسبوعاً`,

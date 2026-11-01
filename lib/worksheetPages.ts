@@ -1226,13 +1226,75 @@ export const worksheetPages: WorksheetPage[] = [
     ],
   },
   {
+    id: "arabic-ramadan-calendar",
+    seoTitleEn: "Ramadan Calendar for Kids — Free Printable Good Deeds Chart (PDF)",
+    seoTitleAr: "تقويم رمضان للأطفال وجدول الأعمال الطيّبة — PDF مجاني للطباعة",
+    seoDescEn:
+      "Free Ramadan printables for kids: a 30-day lantern calendar to colour each evening, a good-deeds star chart, Ramadan words in Arabic to trace and an Eid Mubarak card. One PDF, no signup, works every year.",
+    seoDescAr:
+      "مطبوعات رمضان المجانية للأطفال: تقويم من 30 فانوساً يُلوَّن كلّ مساء، وجدول نجوم للأعمال الطيّبة، وكلمات رمضانية للتتبّع، وبطاقة «عيد مبارك». ملف PDF واحد بلا تسجيل، يصلح لكلّ عام.",
+    keywords: [
+      "ramadan calendar for kids printable",
+      "ramadan good deeds chart printable",
+      "ramadan printables for kids free",
+      "ramadan activity sheets pdf",
+      "تقويم رمضان للأطفال",
+      "جدول الأعمال الصالحة في رمضان للأطفال",
+      "أنشطة رمضان للأطفال للطباعة",
+    ],
+    taglineEn: "One lantern to colour each evening, a star for each good deed, and a card for Eid.",
+    taglineAr: "فانوس يُلوَّن كلّ مساء، ونجمة لكلّ عمل طيّب، وبطاقة للعيد.",
+    insideEn: [
+      "A 30-day Ramadan calendar: one lantern per day to colour at iftar, ending with the crescent of Eid. No dates are printed, so it fits whichever day the month begins.",
+      "A good-deeds chart in two pages (days 1–15 and 16–30) with six deeds — helping at home, a kind word, sharing, Quran, dua for someone, patience — and a star to colour for each.",
+      "Eight Ramadan words to trace: رمضان، صيام، إفطار، سحور، هلال، فانوس، تمر، عيد, each with its transliteration and meaning.",
+      "An Eid Mubarak card to colour, fold and give, with lines for 'to' and 'from' and the greeting to trace.",
+    ],
+    insideAr: [
+      "تقويم رمضان من 30 يوماً: فانوس لكلّ يوم يُلوَّن عند الإفطار، وفي آخره هلال العيد. لا تواريخ مطبوعة، فيناسب أيّ يوم يبدأ فيه الشهر.",
+      "جدول الأعمال الطيّبة في صفحتين (الأيام 1–15 و16–30) بستّة أعمال — المساعدة في البيت، والكلمة الطيّبة، والمشاركة، والقرآن، والدعاء للغير، والصبر — ونجمة لكلّ عمل.",
+      "ثماني كلمات رمضانية للتتبّع: رمضان، صيام، إفطار، سحور، هلال، فانوس، تمر، عيد، مع نطق كلّ منها ومعناها.",
+      "بطاقة «عيد مبارك» للتلوين والطيّ والإهداء، فيها سطر «إلى» وسطر «من» والتهنئة للتتبّع.",
+    ],
+    useEn: [
+      "Print the calendar before the first night and stick it where the family breaks the fast. Colouring the day's lantern at iftar turns the month into something a young child can see moving.",
+      "Fill in the good-deeds chart together at bedtime. Keep it about noticing, not scoring: a day with one star is still a good day.",
+      "Save the Eid card for the last week, so it is ready to give on Eid morning.",
+    ],
+    useAr: [
+      "اطبعوا التقويم قبل الليلة الأولى وألصقوه حيث تفطر الأسرة. تلوين فانوس اليوم عند الإفطار يجعل الطفل الصغير يرى الشهر وهو يمضي.",
+      "املأوا جدول الأعمال الطيّبة معاً قبل النوم، واجعلوه للانتباه لا للمحاسبة: اليوم الذي فيه نجمة واحدة يوم طيّب أيضاً.",
+      "احتفظوا ببطاقة العيد للأسبوع الأخير لتكون جاهزة صباح العيد.",
+    ],
+    faq: [
+      {
+        qEn: "When does Ramadan start in 2027?",
+        qAr: "متى يبدأ رمضان 1448؟",
+        aEn: "Ramadan 1448 is expected to begin around 8 February 2027, with Eid al-Fitr around 9–10 March. The exact day depends on the sighting of the new moon, which is why the calendar has no dates printed on it.",
+        aAr: "يُتوقّع أن يبدأ رمضان 1448 نحو 8 فبراير 2027، وأن يكون عيد الفطر نحو 9 أو 10 مارس. واليوم الدقيق يتوقّف على رؤية الهلال، ولذلك لا تواريخ مطبوعة على التقويم.",
+      },
+      {
+        qEn: "Is the pack suitable for children who do not fast yet?",
+        qAr: "هل تناسب الحزمة الأطفال الذين لم يصوموا بعد؟",
+        aEn: "Yes. Nothing in it is about fasting itself: the calendar, the good deeds and the words are for every child in the family, fasting or not.",
+        aAr: "نعم. لا شيء فيها عن الصيام نفسه: التقويم والأعمال الطيّبة والكلمات لكلّ أطفال الأسرة، صاموا أم لم يصوموا.",
+      },
+      {
+        qEn: "Can I print it for my class or mosque school?",
+        qAr: "هل يمكنني طباعتها لصفّي أو لمدرسة المسجد؟",
+        aEn: "Yes — print as many copies as you need. We only ask that you do not sell the file or host it elsewhere as your own.",
+        aAr: "نعم — اطبع ما تحتاجه من النسخ. وإنّما نطلب ألّا تبيع الملف ولا تنشره في مكان آخر منسوباً إليك.",
+      },
+    ],
+  },
+  {
     id: "arabic-complete-workbook",
     seoTitleEn: `Complete Arabic Workbook PDF — ${totalWorksheetPages} Free Printable Pages`,
     seoTitleAr: `الكرّاسة العربية الكاملة PDF — ${totalWorksheetPages} صفحة مجانية للطباعة`,
     seoDescEn:
-      `Every Arabic worksheet, coloring page and story supplement on this site in one ${totalWorksheetPages}-page PDF, in teaching order: alphabet chart, all 28 letter tracing pages, harakat, numbers, colours, animals, all nine coloring books, the opposites pairs and the Arabic Language Day pack. Free.`,
+      `Every Arabic worksheet, coloring page and story supplement on this site in one ${totalWorksheetPages}-page PDF, in teaching order: alphabet chart, all 28 letter tracing pages, harakat, numbers, colours, animals, all nine coloring books, the opposites pairs, the Arabic Language Day pack and the Ramadan calendar. Free.`,
     seoDescAr:
-      `كلّ أوراق العمل وصفحات التلوين في هذا الموقع في ملف PDF واحد من ${totalWorksheetPages} صفحة، بترتيب تعليميّ: لوحة الحروف، وتتبّع الحروف الـ28، والحركات، والأرقام، والألوان، والحيوانات، وكتب التلوين التسعة كلّها، وحزمة اليوم العالمي للغة العربية. مجاناً.`,
+      `كلّ أوراق العمل وصفحات التلوين في هذا الموقع في ملف PDF واحد من ${totalWorksheetPages} صفحة، بترتيب تعليميّ: لوحة الحروف، وتتبّع الحروف الـ28، والحركات، والأرقام، والألوان، والحيوانات، وكتب التلوين التسعة كلّها، وحزمة اليوم العالمي للغة العربية، وتقويم رمضان. مجاناً.`,
     keywords: [
       "arabic workbook pdf free",
       "complete arabic worksheets pdf",
