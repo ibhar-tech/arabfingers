@@ -1,4 +1,5 @@
 import { letterGuide } from "./letterGuide";
+import { vocabCount, vocabTopics } from "./vocabTopics";
 import { blogPosts } from "./blog-data";
 import { RelatedArticle } from "@/components/RelatedArticles";
 
@@ -127,6 +128,14 @@ export const learnArticles = [
     descAr: "الحروف العشرة التي لا نظير لها في الإنجليزية — مخرج كلّ صوت وما ينفع فعلاً.",
     path: "learn",
   },
+  ...vocabTopics.map((t) => ({
+    slug: t.slug,
+    titleEn: t.h1En,
+    titleAr: t.h1Ar,
+    descEn: t.descEn(vocabCount(t)),
+    descAr: t.descAr(vocabCount(t)),
+    path: "learn",
+  })),
 ];
 
 export function getRelatedArticles(locale: string, currentSlug: string, count = 2): RelatedArticle[] {

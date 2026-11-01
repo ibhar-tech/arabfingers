@@ -224,7 +224,7 @@ Everything below is live on www.arabfingers.site and on `main`.
 
 **Track B — Arabic vocabulary pages (weeks 2–5)**
 - [x] B1. Colours: "جميع الألوان" — 12 basics first, then 24 shades (كحلي، فيروزي، عنابي، بيج، فضي…) = 36; masculine/feminine table for the six أفعل/فعلاء colours; FAQ "ما أسماء جميع الألوان بالعربي؟". The shades have no recorded audio yet (SpeakButton only plays shipped clips), so they show transliteration instead.
-- [ ] B2. New Arabic-first pages with a printable each, in this order: الحيوانات وأسماؤها، الفواكه والخضروات، أعضاء الجسم، أيام الأسبوع والشهور، الأشكال الهندسية. Each reuses an existing colouring pack where one exists.
+- [x] B2. Vocabulary pages from `lib/vocabTopics.ts` via `/learn/[topic]`: animals (44 + animal sounds), fruit and vegetables (31), body parts (24), days/months (Gregorian in both naming systems + Hijri + seasons), shapes (15). Each links its colouring pack where one exists. To add a topic: one entry in `vocabTopics` + a date in `lib/contentDates.ts`.
 
 **Track C — UI, mobile first (weeks 1–4)**
 - [x] C1. Letter and pack pages: H1 and the download button now come before the preview on phones (the preview used to push the button to the fold); the preview loads eagerly, since it is the LCP element on desktop.

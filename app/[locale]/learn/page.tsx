@@ -1,4 +1,5 @@
 import { letterGuide } from "@/lib/letterGuide";
+import { vocabCount, vocabTopics } from "@/lib/vocabTopics";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageLayout } from "@/components/PageLayout";
@@ -171,6 +172,14 @@ const articles: {
     descAr:
       "ستحصل على عشرة أنشطة قصيرة لليوم العالمي للغة العربية — كتابة الاسم بالعربية، والبحث عن الحروف، ووجبة «بالعربية فقط» — مع خطّة ساعة للصفّ وشهادة مجانية للطباعة.",
   },
+  ...vocabTopics.map((t) => ({
+    slug: t.slug,
+    Icon: WordsIcon,
+    titleEn: t.titleEn(vocabCount(t)),
+    titleAr: t.titleAr(vocabCount(t)),
+    descEn: t.descEn(vocabCount(t)),
+    descAr: t.descAr(vocabCount(t)),
+  })),
 ];
 
 export default async function LearnPage({ params }: { params: Promise<{ locale: string }> }) {

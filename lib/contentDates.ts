@@ -93,6 +93,11 @@ export const CONTENT_LAST_UPDATED: Record<string, string> = {
   "/printables/arabic-harakat": "2026-10-29",
   "/learn/arabic-language-day": "2026-10-29",
   "/learn/letter-of-the-week": "2026-11-01",
+  "/learn/arabic-animals": "2026-11-01",
+  "/learn/arabic-fruits-vegetables": "2026-11-01",
+  "/learn/arabic-body-parts": "2026-11-01",
+  "/learn/arabic-days-months": "2026-11-01",
+  "/learn/arabic-shapes": "2026-11-01",
 
   // Per-letter worksheet pages (letter-by-letter launch, Aug 2026)
   ...Object.fromEntries(
