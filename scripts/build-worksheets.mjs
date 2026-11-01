@@ -5,6 +5,7 @@
  *   node scripts/build-worksheets.mjs
  *   node scripts/build-worksheets.mjs --numbers-only
  *   node scripts/build-worksheets.mjs --only arabic-language-day[,another-pack]
+ *   node scripts/build-worksheets.mjs --letters   (the 28 standalone letter PDFs only)
  *
  * Renders HTML with headless Chrome and prints it to PDF. Chrome is used
  * deliberately: it is the only thing on this machine that shapes Arabic
@@ -24,6 +25,7 @@ import { fileURLToPath } from "node:url";
 import QRCode from "qrcode";
 
 import { letterGuide } from "../lib/letterGuide.ts";
+import { letterPositions } from "../lib/letterWords.ts";
 import { coloringShapes as SHAPES } from "../lib/coloringShapes.ts";
 import {
   numbersData, numbers11to20Data, colorsData, animalsData, harakatData, tanweenData,
@@ -140,13 +142,13 @@ function head(kicker) {
   </div>`;
 }
 
-function foot(n, total, qr = "") {
+function foot(n, total, qr = "", label = `Page ${n} of ${total}`) {
   return `<div class="foot">
     <span style="display:flex;align-items:center;gap:2.5mm;">
       ${qr}
       <span>${SITE}</span>
     </span>
-    <span>Page ${n} of ${total}</span>
+    <span>${esc(label)}</span>
   </div>`;
 }
 
@@ -1153,6 +1155,47 @@ function bubbleLetter(ch, size = 380) {
   </svg>`;
 }
 
+/**
+ * Second page of each standalone letter PDF: colour the letter, then circle it
+ * in picture words where it sits at the start, in the middle and at the end —
+ * the same words as the letter's web page (lib/letterWords.ts), so the sheet
+ * and the page teach one set.
+ */
+function letterHuntSheet(entry, index, total, qr) {
+  const pos = letterPositions(entry);
+  const rows = [
+    ["At the start", "في أوّل الكلمة", pos.start],
+    ["In the middle", "في وسط الكلمة", pos.middle],
+    ["At the end", "في آخر الكلمة", pos.end],
+  ].map(([en, ar, words]) => `
+    ${sectionLabel(en, ar)}
+    <div style="display:flex;gap:3mm;">${words.slice(0, 3).map((w) => `
+      <div class="box" style="flex:1;display:flex;align-items:center;justify-content:space-between;gap:3mm;padding:2mm 4mm;height:20mm;">
+        <span style="font-size:20pt;line-height:1;">${w.emoji}</span>
+        <span class="ar" dir="rtl" style="font-size:24pt;line-height:1.2;">${esc(w.word)}</span>
+      </div>`).join("")}</div>`).join("");
+  return sheet(`
+    ${head("Colour & Find")}
+    <div class="title">
+      <h1>Colour &amp; find ${esc(entry.enName)}</h1>
+      <span class="arname ar" dir="rtl">لوّن وابحث: حرف ال${esc(entry.arName)}</span>
+    </div>
+    <div class="instruction">
+      Colour the big letter. Then draw a circle round ${esc(entry.ar)} in every word — look at the start, the middle and the end.
+      <span class="rtl ar">لوّن الحرف الكبير، ثمّ ضع دائرة حول ${esc(entry.ar)} في كلّ كلمة — في أوّلها ووسطها وآخرها.</span>
+    </div>
+    <div class="body">
+      <div class="box grow" style="margin-top:4mm;min-height:70mm;display:flex;align-items:center;justify-content:center;">
+        ${bubbleLetter(entry.ar, 300)}
+      </div>
+      ${rows}
+      ${sectionLabel(`Draw something with ${entry.enName}`, `ارسم شيئاً فيه حرف ال${entry.arName}`)}
+      <div class="box" style="height:38mm;"></div>
+    </div>
+    ${foot(index + 1, total, qr, `Letter ${index + 1} of ${total} · sheet 2 of 2`)}
+  `);
+}
+
 function buildAlphabetColoring(qr) {
   const total = letterGuide.length;
   const sheets = letterGuide
@@ -1555,6 +1598,8 @@ function renderThumb(tmp, id, html, outDir = THUMB_DIR) {
 
 async function main() {
   const numbersOnly = process.argv.includes("--numbers-only");
+  // --letters: only the 28 standalone letter PDFs (and their previews).
+  const lettersOnly = process.argv.includes("--letters");
   const onlyIndex = process.argv.indexOf("--only");
   const onlyIds = onlyIndex > -1 ? process.argv[onlyIndex + 1].split(",") : null;
   for (const id of onlyIds ?? []) {
@@ -1564,7 +1609,8 @@ async function main() {
   // contains them) and keeps every other PDF and manifest entry as it is.
   const targeted = onlyIds
     ? new Set(onlyIds)
-    : numbersOnly ? new Set(["arabic-numbers-tracing", "arabic-numbers-11-20"]) : null;
+    : numbersOnly ? new Set(["arabic-numbers-tracing", "arabic-numbers-11-20"])
+    : lettersOnly ? new Set() : null;
   mkdirSync(OUT_DIR, { recursive: true });
   mkdirSync(THUMB_DIR, { recursive: true });
   const tmp = mkdtempSync(join(tmpdir(), "arabfingers-worksheets-"));
@@ -1587,14 +1633,16 @@ async function main() {
 
     // The complete workbook is every sheet in teaching order, rendered in one
     // pass, including updated number pages in a targeted rebuild.
-    const bodies = parts.map((h) => h.slice(h.indexOf("<body>") + 6, h.lastIndexOf("</body>"))).join("");
-    const workbook = doc("Complete Arabic Workbook", bodies);
-    const { bytes } = renderPdf(tmp, "arabic-complete-workbook", workbook);
-    renderThumb(tmp, "arabic-complete-workbook", workbook);
-    manifest["arabic-complete-workbook"] = bytes;
-    console.log(`  ✓ arabic-complete-workbook.pdf  (${(bytes / 1024).toFixed(0)} KB)`);
+    if (!lettersOnly) {
+      const bodies = parts.map((h) => h.slice(h.indexOf("<body>") + 6, h.lastIndexOf("</body>"))).join("");
+      const workbook = doc("Complete Arabic Workbook", bodies);
+      const { bytes } = renderPdf(tmp, "arabic-complete-workbook", workbook);
+      renderThumb(tmp, "arabic-complete-workbook", workbook);
+      manifest["arabic-complete-workbook"] = bytes;
+      console.log(`  ✓ arabic-complete-workbook.pdf  (${(bytes / 1024).toFixed(0)} KB)`);
+    }
 
-    if (!targeted) {
+    if (!targeted || lettersOnly) {
       // One standalone PDF + preview per letter — the letter-by-letter landing
       // pages (/printables/letters/<slug>) each need their own download. Same
       // sheet as inside the alphabet pack, but the footer QR points at that
@@ -1608,7 +1656,7 @@ async function main() {
         const qr = await qrBlock(`letters/${slug}`);
         const html = doc(
           `Arabic Letter ${entry.enName} Worksheet`,
-          alphabetSheet(entry, index, total, qr),
+          alphabetSheet(entry, index, total, qr) + letterHuntSheet(entry, index, total, qr),
         );
         const { bytes } = renderPdf(tmp, `letters/${slug}`, html);
         renderThumb(tmp, `letters/${slug}`, html, LETTER_THUMB_DIR);

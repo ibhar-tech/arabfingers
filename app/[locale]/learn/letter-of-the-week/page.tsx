@@ -129,8 +129,8 @@ export default async function LetterOfTheWeekPage({ params }: { params: Promise<
         </p>
         <p>
           {tt(
-            `Every letter below has its own free page: a one-page tracing worksheet (PDF), the four shapes, words with pictures at the start, middle and end, and pronunciation help for parents who do not speak Arabic.`,
-            `لكل حرف أدناه صفحة مجانية خاصّة: ورقة تتبّع من صفحة واحدة (PDF)، وأشكال الحرف الأربعة، وكلمات بالصور في أول الكلمة ووسطها وآخرها، وشرح للنطق.`,
+            `Every letter below has its own free page: a free PDF with a tracing sheet and a colour-and-find sheet, the four shapes, words with pictures at the start, middle and end, and pronunciation help for parents who do not speak Arabic.`,
+            `لكل حرف أدناه صفحة مجانية خاصّة: ملف PDF فيه ورقة تتبّع وورقة تلوين وبحث عن الحرف، وأشكال الحرف الأربعة، وكلمات بالصور في أول الكلمة ووسطها وآخرها، وشرح للنطق.`,
           )}
         </p>
       </div>

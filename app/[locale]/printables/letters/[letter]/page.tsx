@@ -16,6 +16,7 @@ import { letterGuide } from "@/lib/letterGuide";
 import { letterPositions } from "@/lib/letterWords";
 import {
   getLetterWorksheetPage,
+  LETTER_PDF_PAGES,
   letterFormsOf,
   letterWorksheetPages,
 } from "@/lib/letterWorksheets";
@@ -171,8 +172,8 @@ export default async function Page({ params }: Props) {
           </div>
           <p className="mt-2 text-xs font-semibold text-ink/70">
             {tt(
-              `1 page · ${mb(bytes)} · no email, no account, no watermark.`,
-              `صفحة واحدة · ${mb(bytes)} · بلا بريد إلكتروني ولا حساب ولا علامة مائية.`,
+              `${LETTER_PDF_PAGES} pages (tracing + colour & find) · ${mb(bytes)} · no email, no account, no watermark.`,
+              `صفحتان (تتبّع + تلوين وبحث) · ${mb(bytes)} · بلا بريد إلكتروني ولا حساب ولا علامة مائية.`,
             )}
           </p>
         </div>

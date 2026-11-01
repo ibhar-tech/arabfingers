@@ -19,6 +19,9 @@ import { letterGuide, type LetterGuideEntry } from "./letterGuide";
 import { dotsPhrase, letterDots } from "./letterDots";
 import { letterPositions } from "./letterWords";
 
+/** Pages in each standalone letter PDF: the tracing sheet + the colour-and-find sheet. */
+export const LETTER_PDF_PAGES = 2;
+
 /** Letters that only join to the letter before them (no initial/medial form). */
 const RIGHT_JOINING_ONLY = new Set(["ا", "د", "ذ", "ر", "ز", "و"]);
 
@@ -67,12 +70,12 @@ function letterPage(entry: LetterGuideEntry, index: number): LetterWorksheetPage
     seoTitleEn: `Arabic Letter ${entry.enName} (${entry.ar}) Worksheet — Free Tracing PDF`,
     seoTitleAr: `حرف ال${entry.arName} (${entry.ar}) بأشكاله الأربعة — ورقة كتابة وتتبّع PDF مجانية`,
     seoDescEn:
-      `Free one-page ${entry.enName} (${entry.ar}) tracing worksheet: the letter large in Naskh, ` +
-      `its four joined forms, graded tracing rows and ${entry.examples.length} words to trace. ` +
+      `Free ${entry.enName} (${entry.ar}) tracing worksheet: the letter large in Naskh, ` +
+      `its four joined forms, graded tracing rows and ${entry.examples.length} words to trace, plus a colour-and-find sheet. ` +
       `Pronounced "${entry.translit}". No email, no signup.`,
     seoDescAr:
       `ورقة مجانية لكتابة وتتبّع حرف ال${entry.arName} (${entry.ar}): الحرف كبيراً بخط النسخ، وأشكاله الأربعة ` +
-      `(أول ووسط وآخر ومنفرد)، وصفوف تتبّع متدرّجة، وكلمات للتتبّع. ${dots.ar} بلا بريد إلكتروني وبلا تسجيل.`,
+      `(أول ووسط وآخر ومنفرد)، وصفوف تتبّع متدرّجة، وكلمات للتتبّع، وصفحة للتلوين والبحث عن الحرف. ${dots.ar} بلا بريد إلكتروني وبلا تسجيل.`,
     keywords: [
       `arabic letter ${entry.enName.toLowerCase()} worksheet`,
       `${entry.enName.toLowerCase()} arabic letter tracing`,
