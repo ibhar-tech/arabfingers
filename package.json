@@ -16,6 +16,7 @@
     "test:e2e": "playwright test",
     "knip": "knip",
     "worksheets": "node scripts/build-worksheets.mjs",
+    "letter-images": "node scripts/build-letter-images.mjs",
     "upload": "npm run build && opennextjs-cloudflare upload",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
     "icons": "node scripts/build-icons.mjs"

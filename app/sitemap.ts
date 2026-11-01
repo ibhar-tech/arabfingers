@@ -76,6 +76,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...letterWorksheetPages.flatMap((p) =>
       localizedUrls(`/printables/letters/${p.slug}`, 0.7, "monthly", [
         `${siteUrl}/printables/previews/letters/${p.slug}.png`,
+        `${siteUrl}/images/letters/${p.slug}-letter-shapes-words.webp`,
       ]),
     ),
 

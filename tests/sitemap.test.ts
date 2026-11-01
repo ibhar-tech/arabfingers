@@ -48,15 +48,18 @@ describe("sitemap", () => {
     }
   });
 
-  it("attaches a preview image that exists to every worksheet page", async () => {
+  it("attaches images that exist to every worksheet page", async () => {
     const { existsSync } = await import("node:fs");
     const gradeUrls = new Set(gradePages.flatMap((g) => ["en", "ar"].map((l) => `${SITE}/${l}/printables/${g.slug}`)));
     const withImages = pages.filter((e) => e.url.includes("/printables/") && !gradeUrls.has(e.url));
     expect(withImages.length).toBe(2 * (worksheetSets.length + letterWorksheetPages.length));
     for (const e of withImages) {
-      expect(e.images, `${e.url} has no image`).toHaveLength(1);
-      const file = `public${e.images![0].slice(SITE.length)}`;
-      expect(existsSync(file), `${file} missing`).toBe(true);
+      // Pack pages: the preview. Letter pages: the preview + the shapes-and-words picture.
+      expect(e.images?.length, `${e.url} images`).toBe(e.url.includes("/printables/letters/") ? 2 : 1);
+      for (const image of e.images!) {
+        const file = `public${image.slice(SITE.length)}`;
+        expect(existsSync(file), `${file} missing`).toBe(true);
+      }
     }
   });
 

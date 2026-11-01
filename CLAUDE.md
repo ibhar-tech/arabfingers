@@ -15,6 +15,7 @@
 ## Working notes
 - Current status and open items: `docs/SEO-GROWTH-PLAN-2026-10.md` §7 (progress log). Update it when you ship something.
 - Worksheet PDFs: `node scripts/build-worksheets.mjs --only <pack-id>[,<pack-id>]` rebuilds just those packs plus the complete workbook; a full run rewrites every PDF, so avoid it unless the shared layout changed. Chrome needs **Noto Naskh Arabic** installed as a system font (TTF, not WOFF — Chrome ignores WOFF), or the Arabic falls back to another face; check with `pdffonts` that NotoNaskhArabic is embedded. After a rebuild, look at the pages (`pdftoppm -png`) before committing.
+- Letter pictures (`public/images/letters/*.webp`, shown on each letter page and listed in the sitemap): `npm run letter-images -- --only <slug>[,<slug>]` after changing `lib/letterWords.ts` or a letter in `lib/letterGuide.ts`. Same font needs as the PDFs, plus Noto Color Emoji.
 - New pack checklist: data in `lib/worksheets.ts` (bump the bundle's `pages`), builder + `SETS` entry in the script, landing copy in `lib/worksheetPages.ts`, date in `lib/contentDates.ts`; sitemap, llms.txt and the hub pick it up from the data.
 - Grade pages (`lib/gradePages.ts`) share `/printables/[slug]` with packs; slugs must not collide (tested).
 - `middleware.ts` stays as is (edge); do not rename to `proxy.ts` while OpenNext marks Node proxies experimental on Workers.

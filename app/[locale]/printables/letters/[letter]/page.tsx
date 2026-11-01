@@ -272,6 +272,27 @@ export default async function Page({ params }: Props) {
         ))}
       </section>
 
+      {/* ---------- the letter as one picture (for saving, sharing, image search) ---------- */}
+      <figure className="mt-8">
+        <Image
+          src={`/images/letters/${page.slug}-letter-shapes-words.webp`}
+          alt={tt(
+            `The Arabic letter ${entry.enName} (${entry.ar}): its four shapes and picture words with ${entry.enName} at the start, middle and end`,
+            `حرف ال${entry.arName} (${entry.ar}) بأشكاله الأربعة، وكلمات بالصور تبدأ به وفي وسطها وآخرها`,
+          )}
+          width={1200}
+          height={800}
+          unoptimized
+          className="h-auto w-full max-w-3xl rounded-2xl border border-ink/15 bg-white"
+        />
+        <figcaption className="mt-2 text-xs text-ink/70">
+          {tt(
+            `${entry.enName} on one picture — save it, print it or send it to the class group.`,
+            `حرف ال${entry.arName} في صورة واحدة — احفظها أو اطبعها أو أرسلها إلى مجموعة الصف.`,
+          )}
+        </figcaption>
+      </figure>
+
       {/* ---------- parent tip ---------- */}
       <section className="mt-12 rounded-2xl border-2 border-ink bg-saffron-soft/40 p-6">
         <h2 className="font-display text-lg font-extrabold text-ink">
