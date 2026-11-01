@@ -135,6 +135,7 @@ export default async function Page({ params }: Props) {
           height={494}
           unoptimized
           loading="eager"
+          fetchPriority="high"
           className="order-last h-auto w-full max-w-[220px] rounded-lg border-2 border-ink/15 bg-white shadow-[3px_3px_0_0_rgba(42,29,78,0.12)] sm:order-first"
         />
 

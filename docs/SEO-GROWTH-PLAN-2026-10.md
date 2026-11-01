@@ -230,7 +230,7 @@ Everything below is live on www.arabfingers.site and on `main`.
 - [x] C1. Letter and pack pages: H1 and the download button now come before the preview on phones (the preview used to push the button to the fold); the preview loads eagerly, since it is the LCP element on desktop.
 - [x] C2. Top ad box moved below the title and download button on letter, pack and grade pages and the printables hub (`PageLayout topAd={false}` + the page places `<ReadingAds placement="top" />`). Other reading pages keep it at the top for now.
 - [x] C3. Sticky download bar on phones (`components/StickyDownload.tsx`), shown once the hero button scrolls off the top; letter and pack pages.
-- [ ] C4. Check Core Web Vitals (mobile) in Search Console and fix whatever is flagged.
+- [x] C4. Lighthouse mobile, 1 Nov (live): home 99/100/77/100 (perf/a11y/best-practices/SEO), letter page 94/100/77/100 (LCP 3.0 s), printables 97/100/77/100, colours 98/100/77/100. The letter/pack preview (the LCP image) now loads with fetchPriority=high. Best practices 77 = third-party cookies from the ad network only; that stays while the ads stay. Owner: also look at Search Console → Core Web Vitals (field data) once a month.
 
 **Track D — English growth (ongoing)**
 - [ ] D1. Watch the retitled alphabet guide (position 8.7 → 5.8 on its first day) for "arabic alphabet/letters for kids"; if it stalls on page 1, add an alphabet chart image and the 28 letter cards above the fold.
