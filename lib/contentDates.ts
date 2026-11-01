@@ -28,7 +28,7 @@ export const CONTENT_LAST_UPDATED: Record<string, string> = {
   "/learn/teaching-arabic-to-kids": "2026-06-12",
   "/learn/teaching-arabic-non-speakers": "2026-08-22",
   "/learn/arabic-numbers": "2026-09-29",
-  "/learn/arabic-colors": "2026-09-29",
+  "/learn/arabic-colors": "2026-11-01",
   "/learn/first-arabic-words": "2026-09-29",
   "/learn/arabic-letter-forms": "2026-06-12",
   "/learn/arabic-vs-english": "2026-06-12",

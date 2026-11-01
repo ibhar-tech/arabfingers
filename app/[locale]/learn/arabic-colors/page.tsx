@@ -15,18 +15,21 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   return generatePageMetadata(locale, "/learn/arabic-colors", {
     titleEn: "Arabic Colours for Kids — Names, Audio + Free Printable Worksheet",
-    // "جميع الألوان واسمائها بالعربي": 72 impressions at pos 8.5, no clicks (Oct 2026).
-    titleAr: "جميع الألوان وأسماؤها بالعربي للأطفال: 12 لوناً مع النطق",
+    // "جميع الألوان واسمائها بالعربي": 91 impressions/7 days at pos 8, 1 click
+    // (Nov 2026). People asking for "all" colours got 12, so the page now
+    // lists the basics plus the shades parents actually meet.
+    titleAr: `جميع الألوان وأسماؤها بالعربي للأطفال: ${totalColors} لوناً مع النطق`,
     descriptionEn:
-      "Learn 12 colors in Arabic with a quick reference table, pronunciation, colors in nature, the masculine/feminine forms explained simply, and a color-hunt game.",
+      `Learn ${totalColors} colors in Arabic: the ${colors.length} basics first, then ${shades.length} more shades, with pronunciation, masculine/feminine forms, colors in nature and a color-hunt game.`,
     descriptionAr:
-      "تعلّم 12 لوناً بالعربية مع جدول مرجعي سريع، والنطق، وأمثلة من الطبيعة، وشرح بسيط للمذكّر والمؤنّث، ولعبة البحث عن الألوان.",
+      `جميع الألوان وأسماؤها بالعربي: ${colors.length} لوناً أساسياً ثم ${shades.length} درجة أخرى مثل الكحلي والفيروزي والعنابي، مع النطق والمذكّر والمؤنّث وأمثلة من الطبيعة ولعبة البحث عن الألوان.`,
     ogType: "article",
     publishedTime: "2026-03-19",
-    modifiedTime: "2026-09-29",
+    modifiedTime: "2026-11-01",
     keywords: [
       "arabic colors for kids", "الألوان بالعربية للأطفال",
       "colors in arabic", "أسماء الألوان بالعربية",
+      "جميع الألوان واسمائها بالعربي", "all colors in arabic",
       "arabic vocabulary for children", "مفردات عربية للأطفال",
     ],
   });
@@ -47,9 +50,53 @@ const colors = [
   { ar: "ذهبي", en: "Gold", pron: "Dhahabi", hex: "#D97706", descEn: "The color of gold and treasure — from ذهب (dhahab) meaning \"gold\".", descAr: "لون الذهب والكنوز، من كلمة \"ذهب\"." },
 ];
 
+// More colours, for "جميع الألوان واسمائها بالعربي". Most are named after a thing
+// (فيروز turquoise stone, عنّاب jujube, فستق pistachio), which is also the
+// easiest way to teach them: show the thing, then the colour.
+const shades = [
+  { ar: "كحلي", en: "Navy blue", pron: "Kuhli", hex: "#1E3A5F" },
+  { ar: "سماوي", en: "Sky blue", pron: "Samaawi", hex: "#7DD3FC" },
+  { ar: "فيروزي", en: "Turquoise / teal", pron: "Fayruuzi", hex: "#14B8A6" },
+  { ar: "نيلي", en: "Indigo", pron: "Niili", hex: "#4338CA" },
+  { ar: "زيتي", en: "Olive green", pron: "Zayti", hex: "#6B7A2A" },
+  { ar: "فستقي", en: "Pistachio green", pron: "Fustuqi", hex: "#A3D977" },
+  { ar: "زمردي", en: "Emerald green", pron: "Zumurrudi", hex: "#10B981" },
+  { ar: "تفاحي", en: "Apple green", pron: "Tuffaahi", hex: "#8DB600" },
+  { ar: "ليموني", en: "Lemon yellow", pron: "Laymuuni", hex: "#FDE047" },
+  { ar: "عسلي", en: "Honey / hazel", pron: "Asali", hex: "#D4A017" },
+  { ar: "مشمشي", en: "Apricot", pron: "Mishmishi", hex: "#FBBF77" },
+  { ar: "خوخي", en: "Peach", pron: "Khookhi", hex: "#FFCBA4" },
+  { ar: "قرمزي", en: "Crimson", pron: "Qirmizi", hex: "#DC143C" },
+  { ar: "عنابي", en: "Maroon / burgundy", pron: "Unnaabi", hex: "#7F1D1D" },
+  { ar: "فوشيا", en: "Fuchsia", pron: "Fooshya", hex: "#D946EF" },
+  { ar: "زهري", en: "Pink (another word)", pron: "Zahri", hex: "#F9A8D4" },
+  { ar: "ليلكي", en: "Lilac", pron: "Laylaki", hex: "#C4B5FD" },
+  { ar: "بيج", en: "Beige", pron: "Beej", hex: "#E8D9B5" },
+  { ar: "كريمي", en: "Cream", pron: "Kreemi", hex: "#FFF5D6" },
+  { ar: "رملي", en: "Sand", pron: "Ramli", hex: "#D6C08D" },
+  { ar: "قهوي", en: "Coffee brown", pron: "Qahwi", hex: "#6F4E37" },
+  { ar: "كستنائي", en: "Chestnut", pron: "Kastanaa'i", hex: "#954535" },
+  { ar: "فضي", en: "Silver", pron: "Fiddi", hex: "#C0C0C0" },
+  { ar: "نحاسي", en: "Copper", pron: "Nuhaasi", hex: "#B87333" },
+];
+
+const totalColors = colors.length + shades.length;
+
+// The colours with their own feminine form (أفعل → فعلاء). The rest are made
+// from a noun and take ـة: برتقالي → برتقالية، بني → بنية.
+const genderPairs = [
+  { m: "أحمر", f: "حمراء", en: "red", mPron: "ahmar", fPron: "hamraa" },
+  { m: "أزرق", f: "زرقاء", en: "blue", mPron: "azraq", fPron: "zarqaa" },
+  { m: "أخضر", f: "خضراء", en: "green", mPron: "akhdar", fPron: "khadraa" },
+  { m: "أصفر", f: "صفراء", en: "yellow", mPron: "asfar", fPron: "safraa" },
+  { m: "أبيض", f: "بيضاء", en: "white", mPron: "abyad", fPron: "baydaa" },
+  { m: "أسود", f: "سوداء", en: "black", mPron: "aswad", fPron: "sawdaa" },
+];
+
 // Targets real GSC question queries: "burtuqaali meaning" (pos 9.8),
 // "yellow/pink/brown/violet/teal in arabic", "colors in arabic for kids".
 const faqEn = [
+  { q: "What are all the colors in Arabic?", a: `The ${colors.length} basic colors are ${colors.map((c) => `${c.pron.toLowerCase()} (${c.en.toLowerCase()})`).join(", ")}. Beyond those, Arabic names many shades after things: ${shades.slice(0, 8).map((c) => `${c.pron.toLowerCase()} (${c.en.toLowerCase()})`).join(", ")} and more — ${totalColors} on this page.` },
   { q: "What does burtuqaali (برتقالي) mean?", a: "Burtuqaali means orange in Arabic. It is named after the fruit — burtuqaal (برتقال) is the Arabic word for an orange, and the color borrows the same name, just like in English." },
   { q: "How do you say the main colors in Arabic for kids?", a: "Red is ahmar, blue is azraq, green is akhdar, yellow is asfar, orange is burtuqaali, purple is banafsaji, pink is wardi, white is abyad, black is aswad, and brown is bunni." },
   { q: "What is yellow in Arabic?", a: "Yellow in Arabic is asfar (أصفر) for masculine nouns and safraa (صفراء) for feminine nouns. It is the color of the sun, bananas, and desert sand." },
@@ -61,6 +108,7 @@ const faqEn = [
 ];
 
 const faqAr = [
+  { q: "ما أسماء جميع الألوان بالعربي؟", a: `الألوان الأساسية ${colors.length}: ${colors.map((c) => c.ar).join("، ")}. ومن الألوان الأخرى: ${shades.map((c) => c.ar).join("، ")} — ${totalColors} لوناً في هذه الصفحة.` },
   { q: "ماذا تعني كلمة برتقالي؟", a: "برتقالي هو لون الـ Orange بالعربية، وهو مأخوذ من اسم الفاكهة، فالبرتقال فاكهة، واللون يأخذ اسمه منها تماماً كما في الإنجليزية." },
   { q: "كيف نقول الألوان الأساسية بالعربية للأطفال؟", a: "الأحمر، والأزرق، والأخضر، والأصفر، والبرتقالي، والبنفسجي، والوردي، والأبيض، والأسود، والبني — هذه هي الألوان الأساسية التي يبدأ بها الأطفال." },
   { q: "ما هو اللون الأصفر بالعربية؟", a: "الأصفر للمذكّر، وصفراء للمؤنّث. وهو لون الشمس والموز ورمل الصحراء." },
@@ -91,10 +139,10 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
       <ArticleMeta
         locale={locale}
         title="Arabic Colors for Kids"
-        description="Learn 12 colors in Arabic with a reference table, pronunciation, nature examples, masculine/feminine forms, and a color-hunt game."
+        description={`Learn ${totalColors} colors in Arabic: ${colors.length} basics and ${shades.length} shades, with pronunciation, nature examples, masculine/feminine forms, and a color-hunt game.`}
         slug="learn/arabic-colors"
         datePublished="2026-03-19"
-        dateModified="2026-09-29"
+        dateModified="2026-11-01"
         section="Education"
         crumbs={[
           { label: locale === "ar" ? "تعلم" : "Learn", href: `/${locale}/learn` },
@@ -103,14 +151,17 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
       />
 
       <h1 className="text-3xl font-semibold text-ink mb-2">
-        {isAr ? "الألوان بالعربية للأطفال" : "Arabic Colors for Kids"}
+        {isAr ? "جميع الألوان وأسماؤها بالعربي للأطفال" : "Arabic Colors for Kids"}
       </h1>
       <p className="text-base text-ink/75 mb-8">
-        {isAr ? "تعلم 12 لوناً أساسياً مع النطق والأمثلة من الطبيعة" : "Learn 12 essential colors with pronunciation and examples from nature"}
+        {isAr
+          ? `${colors.length} لوناً أساسياً أولاً، ثم ${shades.length} درجة أخرى — ${totalColors} لوناً مع النطق والأمثلة من الطبيعة`
+          : `${colors.length} essential colors first, then ${shades.length} more shades — ${totalColors} in all, with pronunciation and examples from nature`}
       </p>
 
       <nav aria-label={isAr ? "ابدأ التعلّم" : "Start learning"} className="mb-8 flex flex-wrap gap-3">
         <a href="#color-reference" className="btn-chunky text-sm">{isAr ? "أسماء الألوان والنطق" : "Color names & audio"}</a>
+        <a href="#more-colors" className="btn-chunky btn-chunky-ghost text-sm">{isAr ? `${shades.length} لوناً آخر` : `${shades.length} more shades`}</a>
         <a href="#color-practice" className="btn-chunky btn-chunky-ghost text-sm">{isAr ? "جرّب نشاط الألوان" : "Try a color activity"}</a>
         <a href="#color-worksheets" className="btn-chunky btn-chunky-ghost text-sm">{isAr ? "أوراق ألوان مجانية" : "Free color worksheets"}</a>
       </nav>
@@ -145,6 +196,66 @@ export default async function ArabicColorsPage({ params }: { params: Promise<{ l
           </tbody>
         </table>
       </div>
+
+      <section aria-labelledby="more-colors" className="mb-10">
+        <h2 id="more-colors" className="scroll-mt-24 text-xl font-semibold text-ink mb-2">
+          {isAr ? `ألوان أخرى وأسماؤها: ${shades.length} لوناً` : `${shades.length} More Colors in Arabic`}
+        </h2>
+        <p className="mb-4 text-sm text-ink/80">
+          {isAr
+            ? "بعد الألوان الأساسية تأتي الدرجات، وأكثرها مسمّى باسم شيء: الفيروزي من حجر الفيروز، والعنابي من ثمر العنّاب، والفستقي من الفستق. أرِ طفلك الشيء أولاً، ثم سمِّ اللون."
+            : "After the basics come the shades, and most are named after a thing: fayruuzi from the turquoise stone, unnaabi from the jujube fruit, fustuqi from pistachios. Show your child the thing first, then name the color."}
+        </p>
+        <ul className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          {shades.map((c) => (
+            <li key={c.en} className="flex items-center gap-3 rounded-xl border border-ink/15 bg-card p-3">
+              <span aria-hidden className="h-9 w-9 shrink-0 rounded-lg border border-ink/15" style={{ backgroundColor: c.hex }} />
+              <div className="min-w-0">
+                <div className="text-lg text-ink" style={{ fontFamily: "var(--font-noto-naskh), var(--font-ibm-plex-arabic), sans-serif" }}>
+                  <bdi lang="ar">{c.ar}</bdi>
+                </div>
+                <div lang="en" dir="ltr" className={`text-xs text-ink/75 ${isAr ? "text-end" : ""}`}>
+                  {c.en}{!isAr && <> · <span className="italic">{c.pron}</span></>}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section aria-labelledby="color-gender" className="mb-10">
+        <h2 id="color-gender" className="text-xl font-semibold text-ink mb-2">
+          {isAr ? "مذكّر الألوان ومؤنّثها" : "Masculine and Feminine Colors"}
+        </h2>
+        <p className="mb-4 text-sm text-ink/80">
+          {isAr
+            ? "هذه الستة لها مؤنّث خاص. باقي الألوان نضيف لها تاءً مربوطة: برتقالي ← برتقالية، بني ← بنية، فيروزي ← فيروزية."
+            : "These six have their own feminine form. Every other color just adds -a: burtuqaali → burtuqaaliyya, bunni → bunniyya, fayruuzi → fayruuziyya."}
+        </p>
+        <div role="region" aria-labelledby="color-gender" tabIndex={0} className="overflow-x-auto rounded-xl border border-ink/15 bg-card focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ink">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-ink/10">
+                <th scope="col" className="py-2 px-3 text-start text-ink/70 font-medium">{isAr ? "اللون" : "Color"}</th>
+                <th scope="col" className="py-2 px-3 text-start text-ink/70 font-medium">{isAr ? "المذكّر" : "Masculine"}</th>
+                <th scope="col" className="py-2 px-3 text-start text-ink/70 font-medium">{isAr ? "المؤنّث" : "Feminine"}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {genderPairs.map((g) => (
+                <tr key={g.en} className="border-b border-ink/10 last:border-0">
+                  <td className="py-2 px-3 text-ink/80">
+                    <span aria-hidden className="me-2 inline-block h-4 w-4 rounded border border-ink/15 align-middle" style={{ backgroundColor: colors.find((c) => c.ar === g.m)?.hex }} />
+                    {!isAr && g.en}
+                  </td>
+                  <td className="py-2 px-3 text-base text-ink"><bdi lang="ar">{g.m}</bdi>{!isAr && <span className="ms-2 text-xs italic text-ink/70">{g.mPron}</span>}</td>
+                  <td className="py-2 px-3 text-base text-ink"><bdi lang="ar">{g.f}</bdi>{!isAr && <span className="ms-2 text-xs italic text-ink/70">{g.fPron}</span>}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
 
       <div className="mb-10 overflow-hidden rounded-3xl border-[2.5px] border-ink bg-card shadow-[4px_4px_0_0_var(--ink)]">
         <Image

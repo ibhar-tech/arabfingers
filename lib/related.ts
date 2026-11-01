@@ -37,7 +37,7 @@ export const learnArticles = [
   {
     slug: "arabic-colors",
     titleEn: "Arabic Colors for Kids",
-    titleAr: "الألوان بالعربية للأطفال",
+    titleAr: "جميع الألوان وأسماؤها بالعربي للأطفال",
     descEn: "Learn the names of everyday colors in Arabic with pronunciation.",
     descAr: "ستتعلم أسماء الألوان اليومية بالعربية مع النطق.",
     path: "learn",

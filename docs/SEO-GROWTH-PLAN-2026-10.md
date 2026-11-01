@@ -223,7 +223,7 @@ Everything below is live on www.arabfingers.site and on `main`.
 - [ ] A4. "حرف الأسبوع": a 28-week plan page for KG teachers and parents in Arab countries, linking each week's letter page, PDF and game.
 
 **Track B — Arabic vocabulary pages (weeks 2–5)**
-- [ ] B1. Colours: "جميع الألوان" — grow from 12 to ~30 colours (shades: كحلي، فيروزي، عنابي، بيج، فضي…), keep the 12 basics first; the pack PDF stays.
+- [x] B1. Colours: "جميع الألوان" — 12 basics first, then 24 shades (كحلي، فيروزي، عنابي، بيج، فضي…) = 36; masculine/feminine table for the six أفعل/فعلاء colours; FAQ "ما أسماء جميع الألوان بالعربي؟". The shades have no recorded audio yet (SpeakButton only plays shipped clips), so they show transliteration instead.
 - [ ] B2. New Arabic-first pages with a printable each, in this order: الحيوانات وأسماؤها، الفواكه والخضروات، أعضاء الجسم، أيام الأسبوع والشهور، الأشكال الهندسية. Each reuses an existing colouring pack where one exists.
 
 **Track C — UI, mobile first (weeks 1–4)**
