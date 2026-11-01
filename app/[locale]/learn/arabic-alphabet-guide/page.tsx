@@ -213,7 +213,7 @@ export default async function ArabicAlphabetGuide({ params }: { params: Promise<
                 className="inline-block text-sm font-bold text-teal-800 underline underline-offset-4"
               >
                 {isAr
-                  ? `ورقة تتبّع حرف ${l.arName} + النطق ←`
+                  ? `ورقة تتبّع حرف ال${l.arName} + النطق ←`
                   : `Get the ${l.enName} (${l.ar}) tracing worksheet →`}
               </Link>
             </div>

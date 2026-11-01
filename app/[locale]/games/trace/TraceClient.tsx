@@ -416,7 +416,7 @@ export default function TraceClient() {
             <h2 className="mt-3 font-display text-2xl font-extrabold text-ink">{isAr ? "أحسنت!" : "Great job!"}</h2>
             <p className="mt-1 text-sm font-semibold text-ink/70">
               {isAr
-                ? `تتبّعت حرف ${letter.arName}. عندك ${traced.length} من ${arabicLetters.length} نجمة.`
+                ? `تتبّعت حرف ال${letter.arName}. عندك ${traced.length} من ${arabicLetters.length} نجمة.`
                 : `You traced ${letter.enName}. That is ${traced.length} of ${arabicLetters.length} stars.`}
             </p>
             <div className="mt-5 flex gap-2.5">

@@ -13,10 +13,11 @@
 // name and transliteration always visible on the page.
 //
 // Imported by the app AND scripts/build-worksheets.mjs (Node TS stripping):
-// keep it plain data over letterGuide and letterDots — no other imports.
+// keep it plain data over letterGuide, letterDots and letterWords — no other imports.
 
 import { letterGuide, type LetterGuideEntry } from "./letterGuide";
 import { dotsPhrase, letterDots } from "./letterDots";
+import { letterPositions } from "./letterWords";
 
 /** Letters that only join to the letter before them (no initial/medial form). */
 const RIGHT_JOINING_ONLY = new Set(["ا", "د", "ذ", "ر", "ز", "و"]);
@@ -59,6 +60,7 @@ export type LetterWorksheetPage = {
 
 function letterPage(entry: LetterGuideEntry, index: number): LetterWorksheetPage {
   const dots = letterDotsOf(entry);
+  const words = letterPositions(entry);
   return {
     slug: slugFor(entry),
     index,
@@ -69,7 +71,7 @@ function letterPage(entry: LetterGuideEntry, index: number): LetterWorksheetPage
       `its four joined forms, graded tracing rows and ${entry.examples.length} words to trace. ` +
       `Pronounced "${entry.translit}". No email, no signup.`,
     seoDescAr:
-      `ورقة مجانية لكتابة وتتبّع حرف ${entry.arName} (${entry.ar}): الحرف كبيراً بخط النسخ، وأشكاله الأربعة ` +
+      `ورقة مجانية لكتابة وتتبّع حرف ال${entry.arName} (${entry.ar}): الحرف كبيراً بخط النسخ، وأشكاله الأربعة ` +
       `(أول ووسط وآخر ومنفرد)، وصفوف تتبّع متدرّجة، وكلمات للتتبّع. ${dots.ar} بلا بريد إلكتروني وبلا تسجيل.`,
     keywords: [
       `arabic letter ${entry.enName.toLowerCase()} worksheet`,
@@ -82,7 +84,7 @@ function letterPage(entry: LetterGuideEntry, index: number): LetterWorksheetPage
       {
         qEn: `How do you pronounce the Arabic letter ${entry.enName} (${entry.ar})?`,
         aEn: `${entry.soundHowToEn} ${entry.comparisonEn}`,
-        qAr: `كيف يُنطق حرف ${entry.arName}؟`,
+        qAr: `كيف يُنطق حرف ال${entry.arName}؟`,
         aAr: entry.soundHowToAr,
       },
       {
@@ -92,9 +94,19 @@ function letterPage(entry: LetterGuideEntry, index: number): LetterWorksheetPage
         aAr: dots.ar,
       },
       {
+        qEn: `What words start with ${entry.enName} (${entry.ar}) in Arabic?`,
+        aEn:
+          `${list(words.start, (x) => `${x.word} (${x.en})`, ", ")}. With ${entry.enName} in the middle: ` +
+          `${list(words.middle, (x) => `${x.word} (${x.en})`, ", ")}; at the end: ${list(words.end, (x) => `${x.word} (${x.en})`, ", ")}.`,
+        qAr: `ما الكلمات التي تبدأ بحرف ال${entry.arName}؟`,
+        aAr:
+          `${list(words.start, (x) => x.word, "، ")}. وفي وسطها حرف ال${entry.arName}: ${list(words.middle, (x) => x.word, "، ")}، ` +
+          `وفي آخرها: ${list(words.end, (x) => x.word, "، ")}.`,
+      },
+      {
         qEn: `What is the most common mistake with ${entry.enName}?`,
         aEn: entry.mistakeEn,
-        qAr: `ما الخطأ الشائع في حرف ${entry.arName}؟`,
+        qAr: `ما الخطأ الشائع في حرف ال${entry.arName}؟`,
         aAr: entry.mistakeAr,
       },
       {
@@ -102,12 +114,14 @@ function letterPage(entry: LetterGuideEntry, index: number): LetterWorksheetPage
         aEn:
           `Start by tracing the grey letters with a finger — saying "${entry.translit}" out loud each time — ` +
           `then move to pencil on the dotted row, and finish with the empty boxes. ${entry.parentTipEn}`,
-        qAr: `كيف أستعمل ورقة حرف ${entry.arName} مع طفلي؟`,
+        qAr: `كيف أستعمل ورقة حرف ال${entry.arName} مع طفلي؟`,
         aAr: `ابدأ بالتتبّع بالإصبع مع نطق اسم الحرف في كل مرّة، ثم بالقلم على الصف المنقّط، وأنهِ بالمربّعات الفارغة. ${entry.parentTipAr}`,
       },
     ],
   };
 }
+
+const list = <T>(xs: T[], show: (x: T) => string, sep: string) => xs.map(show).join(sep);
 
 function slugFor(entry: LetterGuideEntry) {
   return entry.enName.toLowerCase();

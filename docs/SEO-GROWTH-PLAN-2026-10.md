@@ -206,3 +206,42 @@ Everything below is live on www.arabfingers.site and on `main`.
 - Shareability: QR "more free sheets" card in PDFs, WhatsApp share button.
 - Refactor the 29 react-hooks warnings and restore the rules to errors.
 - Ramadan 1448 content (Ramadan starts ~8 Feb 2027): live by early January.
+
+## 8. Plan — Nov 2026 to Jan 2027 (from the 1 Nov exports)
+
+**What the data says (7 days to 30 Oct: 1.4K clicks, 14.2K impressions, CTR 9.9%, pos 5.3)**
+- Core English traffic is steady: `/en/printables` 966 clicks/7 days at position 3.6. Clicks dipped on Thu–Fri 29–30 Oct (171, 165 vs ~215) with position unchanged, so lower demand, not a ranking loss. Confirm with the 2–4 week export.
+- New demand is Arabic, on phones, from Arab countries (Iraq, Egypt, Syria, Saudi): searches for a single letter and its shapes or picture words — "ث" (823 impressions in 24 h), "حرف الجيم", "أشكال حرف الجيم", "صور بحرف الجيم"; and colours — "جميع الألوان واسمائها بالعربي". Our Arabic letter and colour pages sit at position 7–9 for them and get almost no clicks yet.
+- Mobile CTR 3.2% vs desktop 10.3% (24 h); mobile position 7.1 vs 4.9. That's mostly the Arabic query mix above, but it makes the mobile layout of the Arabic pages the place to work.
+- Google ranks some PDFs on their own (`ra.pdf` 163 impressions/7 days).
+
+**Track A — Arabic letter pages: the best page for "حرف X" (weeks 1–3)**
+- [x] A1. Picture words by position on all 28 letter pages: start / middle / end, 3+ each, checked by `tests/letterWords.test.ts`; H3s match the searches ("كلمات تبدأ بحرف الثاء", "…في الوسط", "كلمات تنتهي بحرف الثاء") + FAQ "ما الكلمات التي تبدأ بحرف الثاء؟". "حرف ثاء" → "حرف الثاء" everywhere.
+- [x] A0. PDFs send ranking to their page (`Link: rel=canonical` in `public/_headers`): letters → `/ar`, packs and stories → `/en`.
+- [ ] A2. One image per letter for Google Images: the four shapes + picture words as a PNG (`/images/letters/<slug>-shapes.png`) with Arabic alt text, on the page and in the sitemap. The single-letter results are image-heavy.
+- [ ] A3. A colouring page per letter (letter outline + 3 pictures), added to each letter PDF as page 2.
+- [ ] A4. "حرف الأسبوع": a 28-week plan page for KG teachers and parents in Arab countries, linking each week's letter page, PDF and game.
+
+**Track B — Arabic vocabulary pages (weeks 2–5)**
+- [ ] B1. Colours: "جميع الألوان" — grow from 12 to ~30 colours (shades: كحلي، فيروزي، عنابي، بيج، فضي…), keep the 12 basics first; the pack PDF stays.
+- [ ] B2. New Arabic-first pages with a printable each, in this order: الحيوانات وأسماؤها، الفواكه والخضروات، أعضاء الجسم، أيام الأسبوع والشهور، الأشكال الهندسية. Each reuses an existing colouring pack where one exists.
+
+**Track C — UI, mobile first (weeks 1–4)**
+- [ ] C1. Letter and pack pages: H1 and the download button inside the first phone screen (today the preview image comes first and the button sits at the fold).
+- [ ] C2. Owner decision: the top ad box sits above the breadcrumb and H1 on every page. Moving it below the first content block keeps the ad and gives Google and visitors the content first.
+- [ ] C3. Sticky "حمّل PDF / Download PDF" bar on phones on letter and pack pages.
+- [ ] C4. Check Core Web Vitals (mobile) in Search Console and fix whatever is flagged.
+
+**Track D — English growth (ongoing)**
+- [ ] D1. Watch the retitled alphabet guide (position 8.7 → 5.8 on its first day) for "arabic alphabet/letters for kids"; if it stalls on page 1, add an alphabet chart image and the 28 letter cards above the fold.
+- [ ] D2. Grade pages (preschool, KG, grade 1): request indexing, then link them from the home page.
+
+**Track E — Calendar**
+- [ ] E1. Ramadan 1448 (starts ~8 Feb 2027): Ramadan activity pages + calendar/good-deeds printable, live by early January.
+- [ ] E2. Arabic Language Day (18 Dec): page and pack are live; link from the home page from 1 Dec.
+
+**Track F — Sharing**
+- [ ] F1. WhatsApp share button on letter, pack and grade pages (how Arab parents and teachers pass sheets on).
+- [ ] F2. QR "more free sheets" card on PDF pages.
+
+**Measure**: re-export Search Console at 2 and 4 weeks. Targets by end of January: Arabic letter pages averaging position ≤ 6 and 3%+ CTR on mobile; "جميع الألوان" queries on page 1 top 5; total clicks back above 1.5K/week.

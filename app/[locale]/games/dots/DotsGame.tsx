@@ -116,7 +116,7 @@ export function DotsGame({ locale }: { locale: string }) {
             {picked === null
               ? (ar ? "خذ وقتك، لا توجد ساعة توقيت." : "Take your time. There is no timer.")
               : correct
-                ? (ar ? `أحسنت! هذا حرف ${info.arName} (${info.ar}).` : `Yes! That's ${info.enName} (${info.ar}).`)
+                ? (ar ? `أحسنت! هذا حرف ال${info.arName} (${info.ar}).` : `Yes! That's ${info.enName} (${info.ar}).`)
                 : (ar ? "عُدّ النقاط مرّة أخرى، يمكنك المحاولة من جديد." : "Count the dots again — you can try another one.")}
           </div>
           {correct && (

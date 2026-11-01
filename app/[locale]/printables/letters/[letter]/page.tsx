@@ -10,6 +10,7 @@ import { isLocale, locales } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
 import { arabicLetters } from "@/lib/arabicMap";
 import { letterGuide } from "@/lib/letterGuide";
+import { letterPositions } from "@/lib/letterWords";
 import {
   getLetterWorksheetPage,
   letterFormsOf,
@@ -60,6 +61,7 @@ export default async function Page({ params }: Props) {
   const page = getLetterWorksheetPage(letter);
   if (!page) notFound();
   const entry = letterGuide[page.index];
+  const positions = letterPositions(entry);
   const soundId = arabicLetters[page.index].soundId;
   const forms = letterFormsOf(entry);
 
@@ -121,7 +123,7 @@ export default async function Page({ params }: Props) {
           src={`/printables/previews/letters/${page.slug}.png`}
           alt={tt(
             `The ${entry.enName} (${entry.ar}) tracing worksheet — letter, forms and practice rows`,
-            `ورقة تتبّع حرف ${entry.arName} (${entry.ar})`,
+            `ورقة تتبّع حرف ال${entry.arName} (${entry.ar})`,
           )}
           width={349}
           height={494}
@@ -153,7 +155,7 @@ export default async function Page({ params }: Props) {
               soundId={soundId}
               locale={locale}
               labelEn={`Hear ${entry.enName}`}
-              labelAr={`اسمع حرف ${entry.arName}`}
+              labelAr={`اسمع حرف ال${entry.arName}`}
             />
           </div>
           <p className="mt-2 text-xs font-semibold text-ink/50">
@@ -170,7 +172,7 @@ export default async function Page({ params }: Props) {
         <h2 className="font-display text-xl font-extrabold text-ink">
           {tt(
             `The four shapes of ${entry.enName} (${entry.ar})`,
-            `أشكال حرف ${entry.arName} (${entry.ar}) الأربعة`,
+            `أشكال حرف ال${entry.arName} (${entry.ar}) الأربعة`,
           )}
         </h2>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink/75">
@@ -205,7 +207,7 @@ export default async function Page({ params }: Props) {
       {/* ---------- pronunciation for non-Arabic parents ---------- */}
       <section className="mt-12">
         <h2 className="font-display text-xl font-extrabold text-ink">
-          {tt(`How to pronounce ${entry.enName}`, `كيف يُنطق حرف ${entry.arName}`)}
+          {tt(`How to pronounce ${entry.enName}`, `كيف يُنطق حرف ال${entry.arName}`)}
         </h2>
         <div className="mt-4 space-y-4">
           <p className="max-w-3xl text-sm leading-relaxed text-ink/75">
@@ -222,32 +224,39 @@ export default async function Page({ params }: Props) {
         </div>
       </section>
 
-      {/* ---------- words with this letter ---------- */}
+      {/* ---------- words with this letter, by position ---------- */}
       <section className="mt-12">
         <h2 className="font-display text-xl font-extrabold text-ink">
-          {tt(`Words with ${entry.enName} (${entry.ar}), with pictures`, `كلمات بحرف ${entry.arName} (${entry.ar}) بالصور`)}
+          {tt(`Words with ${entry.enName} (${entry.ar}), with pictures`, `كلمات بحرف ال${entry.arName} (${entry.ar}) بالصور`)}
         </h2>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink/75">
           {tt(
-            "These are the example words printed on the worksheet — trace them together, then find more around the house.",
-            "هذه الكلمات المطبوعة في الورقة — تتبّعاها معاً ثم ابحثا عن كلمات أخرى في البيت.",
+            `${entry.enName} changes shape at the start, in the middle and at the end of a word. Say each word, point to the picture, then find the letter in it together.`,
+            `يتغيّر شكل حرف ال${entry.arName} في أول الكلمة ووسطها وآخرها. اقرأ الكلمة، وأشِر إلى الصورة، ثم ابحثا معاً عن الحرف فيها.`,
           )}
         </p>
-        <div className="mt-4 grid gap-3 sm:grid-cols-3">
-          {entry.examples.map((ex) => (
-            <div key={ex.word} className="card-stock flex items-center gap-3 p-4">
-              <span aria-hidden className="text-3xl leading-none">{ex.emoji}</span>
-              <div className="min-w-0">
-                <div className="font-arabic-display text-2xl text-ink" dir="rtl" style={{ fontFamily: "var(--font-noto-naskh), serif" }}>
-                  {ex.word}
-                </div>
-                <div className="text-xs font-bold text-ink/50">
-                  {ex.translit} — {isAr ? ex.meaningAr : ex.meaningEn}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        {([
+          ["start", tt(`Words that start with ${entry.enName}`, `كلمات تبدأ بحرف ال${entry.arName}`), positions.start],
+          ["middle", tt(`${entry.enName} in the middle of the word`, `كلمات فيها حرف ال${entry.arName} في الوسط`), positions.middle],
+          ["end", tt(`Words that end with ${entry.enName}`, `كلمات تنتهي بحرف ال${entry.arName}`), positions.end],
+        ] as const).map(([key, heading, words]) => (
+          <div key={key} className="mt-6">
+            <h3 className="font-display text-base font-extrabold text-ink">{heading}</h3>
+            <ul className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3">
+              {words.map((x) => (
+                <li key={x.word} className="card-stock flex items-center gap-3 p-3">
+                  <span aria-hidden className="text-3xl leading-none">{x.emoji}</span>
+                  <div className="min-w-0">
+                    <div className="text-2xl text-ink" dir="rtl" lang="ar" style={{ fontFamily: "var(--font-noto-naskh), serif" }}>
+                      {x.word}
+                    </div>
+                    {!isAr && <div className="text-xs font-bold text-ink/70">{x.en}</div>}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </section>
 
       {/* ---------- parent tip ---------- */}
