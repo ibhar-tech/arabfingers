@@ -4,6 +4,7 @@ import { ActivityFinder } from "@/components/ActivityFinder";
 import { ExternalPrintables } from "@/components/ExternalPrintables";
 import { WorkbookFeature } from "@/components/WorkbookFeature";
 import { getActivityCatalog } from "@/lib/activityCatalog";
+import { ReadingAds } from "@/components/ReadingAds";
 import { PageLayout } from "@/components/PageLayout";
 import { FaqSection } from "@/components/FaqSection";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -233,7 +234,7 @@ export default async function PrintablesPage({ params }: { params: Promise<{ loc
   };
 
   return (
-    <PageLayout locale={locale}>
+    <PageLayout locale={locale} topAd={false}>
       <Breadcrumbs locale={locale} crumbs={[{ label: t.crumb }]} />
 
       {/* ---------- Hero ---------- */}
@@ -267,6 +268,8 @@ export default async function PrintablesPage({ params }: { params: Promise<{ loc
           ))}
         </dl>
       </header>
+
+      <ReadingAds placement="top" />
 
       {/* ---------- Download library ---------- */}
       <section className="mb-12" aria-labelledby="downloads">

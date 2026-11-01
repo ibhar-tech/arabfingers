@@ -228,8 +228,8 @@ Everything below is live on www.arabfingers.site and on `main`.
 
 **Track C — UI, mobile first (weeks 1–4)**
 - [x] C1. Letter and pack pages: H1 and the download button now come before the preview on phones (the preview used to push the button to the fold); the preview loads eagerly, since it is the LCP element on desktop.
-- [ ] C2. Owner decision: the top ad box sits above the breadcrumb and H1 on every page. Moving it below the first content block keeps the ad and gives Google and visitors the content first.
-- [ ] C3. Sticky "حمّل PDF / Download PDF" bar on phones on letter and pack pages.
+- [x] C2. Top ad box moved below the title and download button on letter, pack and grade pages and the printables hub (`PageLayout topAd={false}` + the page places `<ReadingAds placement="top" />`). Other reading pages keep it at the top for now.
+- [x] C3. Sticky download bar on phones (`components/StickyDownload.tsx`), shown once the hero button scrolls off the top; letter and pack pages.
 - [ ] C4. Check Core Web Vitals (mobile) in Search Console and fix whatever is flagged.
 
 **Track D — English growth (ongoing)**
@@ -241,7 +241,7 @@ Everything below is live on www.arabfingers.site and on `main`.
 - [ ] E2. Arabic Language Day (18 Dec): page and pack are live; link from the home page from 1 Dec.
 
 **Track F — Sharing**
-- [ ] F1. WhatsApp share button on letter, pack and grade pages (how Arab parents and teachers pass sheets on).
+- [x] F1. WhatsApp share button (`components/ShareWhatsApp.tsx`, plain wa.me link) on letter, pack and grade pages.
 - [ ] F2. QR "more free sheets" card on PDF pages.
 
 **Measure**: re-export Search Console at 2 and 4 weeks. Targets by end of January: Arabic letter pages averaging position ≤ 6 and 3%+ CTR on mobile; "جميع الألوان" queries on page 1 top 5; total clicks back above 1.5K/week.

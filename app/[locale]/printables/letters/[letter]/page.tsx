@@ -6,6 +6,9 @@ import { setRequestLocale } from "next-intl/server";
 import { PageLayout } from "@/components/PageLayout";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { HearLetterButton } from "@/components/HearLetterButton";
+import { ReadingAds } from "@/components/ReadingAds";
+import { ShareWhatsApp } from "@/components/ShareWhatsApp";
+import { StickyDownload } from "@/components/StickyDownload";
 import { isLocale, locales } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
 import { arabicLetters } from "@/lib/arabicMap";
@@ -99,7 +102,7 @@ export default async function Page({ params }: Props) {
   };
 
   return (
-    <PageLayout locale={locale}>
+    <PageLayout locale={locale} topAd={false}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -151,7 +154,7 @@ export default async function Page({ params }: Props) {
           </p>
 
           <div className="mt-5 flex flex-wrap items-center gap-3">
-            <a href={`/printables/letters/${page.slug}.pdf`} download className="btn-chunky inline-flex text-sm">
+            <a id="hero-download" href={`/printables/letters/${page.slug}.pdf`} download className="btn-chunky inline-flex text-sm">
               ⬇ {tt("Download the PDF — free", "حمّل ملف PDF — مجاناً")}
             </a>
             <HearLetterButton
@@ -159,6 +162,11 @@ export default async function Page({ params }: Props) {
               locale={locale}
               labelEn={`Hear ${entry.enName}`}
               labelAr={`اسمع حرف ال${entry.arName}`}
+            />
+            <ShareWhatsApp
+              locale={locale}
+              url={`https://www.arabfingers.site/${locale}/printables/letters/${page.slug}`}
+              text={tt(`Free ${entry.enName} (${entry.ar}) tracing worksheet, PDF`, `ورقة تتبّع حرف ال${entry.arName} (${entry.ar}) مجاناً PDF`)}
             />
           </div>
           <p className="mt-2 text-xs font-semibold text-ink/70">
@@ -169,6 +177,8 @@ export default async function Page({ params }: Props) {
           </p>
         </div>
       </section>
+
+      <ReadingAds placement="top" />
 
       {/* ---------- the four forms ---------- */}
       <section className="mt-12">
@@ -363,6 +373,11 @@ export default async function Page({ params }: Props) {
           </Link>
         </p>
       </section>
+      <StickyDownload
+        watchId="hero-download"
+        href={`/printables/letters/${page.slug}.pdf`}
+        label={tt(`Download ${entry.enName} PDF — free`, `حمّل ورقة حرف ال${entry.arName} PDF`)}
+      />
     </PageLayout>
   );
 }

@@ -16,9 +16,15 @@ type PageLayoutProps = {
    * no navigation, which reads as an unfinished site to crawlers and visitors.
    */
   fullBleed?: boolean;
+  /**
+   * false = the page places <ReadingAds placement="top" /> itself, after its
+   * title and download button. The worksheet pages do this so the first phone
+   * screen shows what the visitor searched for, not an ad box.
+   */
+  topAd?: boolean;
 };
 
-export function PageLayout({ locale, children, fullBleed = false }: PageLayoutProps) {
+export function PageLayout({ locale, children, fullBleed = false, topAd = true }: PageLayoutProps) {
   const isAr = locale === "ar";
 
   return (
@@ -45,7 +51,7 @@ export function PageLayout({ locale, children, fullBleed = false }: PageLayoutPr
             : "relative z-10 mx-auto w-full max-w-6xl flex-1 px-4 py-8 sm:px-6 sm:py-10"
         }
       >
-        <ReadingAds placement="top" />
+        {topAd && <ReadingAds placement="top" />}
         {children}
         {/* End-of-content ad slot. ReadingAds self-gates by route and renders
             nothing visible outside the parent-facing reading pages. */}

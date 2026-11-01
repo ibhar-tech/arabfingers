@@ -4,6 +4,9 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { PageLayout } from "@/components/PageLayout";
+import { ReadingAds } from "@/components/ReadingAds";
+import { ShareWhatsApp } from "@/components/ShareWhatsApp";
+import { StickyDownload } from "@/components/StickyDownload";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { isLocale, locales } from "@/lib/locales";
 import { generatePageMetadata } from "@/lib/seo";
@@ -101,7 +104,7 @@ export default async function Page({ params }: Props) {
   };
 
   return (
-    <PageLayout locale={locale}>
+    <PageLayout locale={locale} topAd={false}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -143,9 +146,16 @@ export default async function Page({ params }: Props) {
             {isAr ? set.ageAr : set.ageEn}
           </p>
 
-          <a href={`/printables/${set.id}.pdf`} download className="btn-chunky mt-5 inline-flex text-sm">
-            ⬇ {tt("Download the PDF — free", "حمّل ملف PDF — مجاناً")}
-          </a>
+          <div className="mt-5 flex flex-wrap items-center gap-3">
+            <a id="hero-download" href={`/printables/${set.id}.pdf`} download className="btn-chunky inline-flex text-sm">
+              ⬇ {tt("Download the PDF — free", "حمّل ملف PDF — مجاناً")}
+            </a>
+            <ShareWhatsApp
+              locale={locale}
+              url={`https://www.arabfingers.site/${locale}/printables/${set.id}`}
+              text={tt(`${set.titleEn} — free PDF`, `${set.titleAr} — PDF مجاني`)}
+            />
+          </div>
           <p className="mt-2 text-xs font-semibold text-ink/70">
             {tt(
               "No email, no account, no watermark.",
@@ -158,6 +168,8 @@ export default async function Page({ params }: Props) {
           </p>
         </div>
       </section>
+
+      <ReadingAds placement="top" />
 
       {/* ---------- what's inside ---------- */}
       <section className="mt-12">
@@ -248,6 +260,11 @@ export default async function Page({ params }: Props) {
           {tt("See all worksheets →", "← كلّ أوراق العمل")}
         </Link>
       </section>
+      <StickyDownload
+        watchId="hero-download"
+        href={`/printables/${set.id}.pdf`}
+        label={tt("Download the PDF — free", "حمّل ملف PDF — مجاناً")}
+      />
     </PageLayout>
   );
 }

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { PageLayout } from "@/components/PageLayout";
+import { ReadingAds } from "@/components/ReadingAds";
+import { ShareWhatsApp } from "@/components/ShareWhatsApp";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { gradePages, type GradePage } from "@/lib/gradePages";
 import { worksheetSets } from "@/lib/worksheets";
@@ -47,7 +49,7 @@ export function GradeLanding({ locale, grade }: { locale: string; grade: GradePa
   };
 
   return (
-    <PageLayout locale={locale}>
+    <PageLayout locale={locale} topAd={false}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Breadcrumbs
         locale={locale}
@@ -67,7 +69,12 @@ export function GradeLanding({ locale, grade }: { locale: string; grade: GradePa
             <p key={p} className="text-base leading-relaxed text-ink/80">{p}</p>
           ))}
         </div>
+        <div className="mt-4">
+          <ShareWhatsApp locale={locale} url={url} text={tt(`${grade.h1En} — free PDFs`, `${grade.h1Ar} — ملفات PDF مجانية`)} />
+        </div>
       </header>
+
+      <ReadingAds placement="top" />
 
       <section className="mt-10">
         <h2 className="font-display text-xl font-extrabold text-ink">{tt("What children can usually do at this age", "ما يستطيعه الطفل غالباً في هذه السنّ")}</h2>
