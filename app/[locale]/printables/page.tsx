@@ -251,6 +251,7 @@ export default async function PrintablesPage({ params }: { params: Promise<{ loc
               {g.emoji} {isAr ? g.h1Ar.split(" (")[0] : g.h1En.split(" (")[0]}
             </Link>
           ))}
+          <Link href={`/${locale}/printables/arabic-handwriting-beginners`} className="inline-flex min-h-11 items-center underline underline-offset-4">🖋️ {isAr ? "للكبار واليافعين" : "For teens & adults"}</Link>
           <a href="#other-publishers" className="inline-flex min-h-11 items-center font-bold text-[#315b41] underline underline-offset-4">{isAr ? "مصادر من ناشرين آخرين" : "Other publishers"}</a>
           <a href="#printing-tips" className="inline-flex min-h-11 items-center underline underline-offset-4">{t.printTitle}</a>
         </nav>

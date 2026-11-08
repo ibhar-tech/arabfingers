@@ -136,6 +136,22 @@ export const learnArticles = [
     descAr: "الحروف العشرة التي لا نظير لها في الإنجليزية — مخرج كلّ صوت وما ينفع فعلاً.",
     path: "learn",
   },
+  {
+    slug: "arabic-alphabet-for-adults",
+    titleEn: "Arabic Alphabet for Adult Beginners",
+    titleAr: "الحروف العربية للكبار المبتدئين",
+    descEn: "What adults should learn first, the shape groups that make it easier, and a free handwriting workbook.",
+    descAr: "بماذا يبدأ الكبير، والمجموعات التي تسهّل حفظ الحروف، وكرّاسة خطّ مجانية.",
+    path: "learn",
+  },
+  {
+    slug: "what-does-habibi-mean",
+    titleEn: "What Does Habibi Mean?",
+    titleAr: "ما معنى حبيبي؟",
+    descEn: "Habibi and habibti: what they mean, who says them to whom, and how the word is written.",
+    descAr: "حبيبي وحبيبتي: معناهما، ولمن تُقالان، وكيف تُكتب الكلمة.",
+    path: "learn",
+  },
   ...vocabTopics.map((t) => ({
     slug: t.slug,
     titleEn: t.h1En,

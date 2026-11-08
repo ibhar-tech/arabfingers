@@ -182,6 +182,26 @@ const articles: {
     descAr:
       "ستحصل على عشرة أنشطة قصيرة لليوم العالمي للغة العربية — كتابة الاسم بالعربية، والبحث عن الحروف، ووجبة «بالعربية فقط» — مع خطّة ساعة للصفّ وشهادة مجانية للطباعة.",
   },
+  {
+    slug: "arabic-alphabet-for-adults",
+    Icon: AlphabetIcon,
+    titleEn: "Arabic Alphabet for Adult Beginners",
+    titleAr: "الحروف العربية للكبار المبتدئين",
+    descEn:
+      "You'll get what adults should learn first when starting the Arabic script, the shape groups that make it easier, and a free handwriting workbook.",
+    descAr:
+      "ستعرف بماذا يبدأ الكبير حين يتعلّم الكتابة العربية، والمجموعات التي تسهّل حفظ الحروف، وكرّاسة خطّ مجانية.",
+  },
+  {
+    slug: "what-does-habibi-mean",
+    Icon: WordsIcon,
+    titleEn: "What Does Habibi Mean? Habibi vs Habibti",
+    titleAr: "ما معنى حبيبي؟ الفرق بين حبيبي وحبيبتي",
+    descEn:
+      "You'll learn what habibi and habibti mean, who says them to whom, when to avoid them, and how the word is written.",
+    descAr:
+      "ستعرف معنى حبيبي وحبيبتي، ولمن تُقالان، ومتى لا تناسبان، وكيف تُكتب الكلمة.",
+  },
   ...vocabTopics.map((t) => ({
     slug: t.slug,
     Icon: WordsIcon,

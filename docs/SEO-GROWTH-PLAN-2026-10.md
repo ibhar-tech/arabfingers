@@ -244,4 +244,8 @@ Everything below is live on www.arabfingers.site and on `main`.
 - [x] F1. WhatsApp share button (`components/ShareWhatsApp.tsx`, plain wa.me link) on letter, pack and grade pages.
 - [x] F2. Already in place: every PDF page footer carries a QR to the matching page on the site (`qrBlock` in the worksheet script); the Ramadan pack links to its activities page.
 
+**Track G — Adult beginners test (8 Nov)**
+- [x] G1. `/learn/arabic-alphabet-for-adults` and `/learn/what-does-habibi-mean` (no politician named, no audio links until the clips are checked), printables hub link to the adult handwriting workbook. Evidence: the 3-month export to 6 Nov has no "habibi" query in the top 1,000, and the impression rise that starts on 30 Oct predates the election. Writing, handwriting and beginner queries with no kids' words: 2,928 impressions, 583 clicks in 92 days (about 32 and 6 a day).
+- [ ] G2. Judge by 31 Jan: that group at least doubles per day and both new pages earn clicks. If so, plan native-voiced phrases and one dialect; if not, stop.
+
 **Measure**: re-export Search Console at 2 and 4 weeks. Targets by end of January: Arabic letter pages averaging position ≤ 6 and 3%+ CTR on mobile; "جميع الألوان" queries on page 1 top 5; total clicks back above 1.5K/week.

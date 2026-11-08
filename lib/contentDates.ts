@@ -31,6 +31,8 @@ export const CONTENT_LAST_UPDATED: Record<string, string> = {
   "/learn/arabic-colors": "2026-11-01",
   "/learn/first-arabic-words": "2026-09-29",
   "/learn/arabic-letter-forms": "2026-06-12",
+  "/learn/arabic-alphabet-for-adults": "2026-11-08",
+  "/learn/what-does-habibi-mean": "2026-11-08",
   "/learn/arabic-vs-english": "2026-06-12",
   "/learn/best-age-to-learn-arabic": "2026-06-12",
   "/learn/bilingual-children-benefits": "2026-06-12",

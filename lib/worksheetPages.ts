@@ -564,8 +564,8 @@ export const worksheetPages: WorksheetPage[] = [
       {
         qEn: "Can an adult learn to write Arabic from worksheets?",
         qAr: "هل يستطيع الكبير تعلّم كتابة العربية من أوراق العمل؟",
-        aEn: "Yes, for the handwriting itself. The script is learned the same way at any age — letter forms first, then joining, then words. What worksheets cannot give you is pronunciation, so pair them with audio: every letter on this site has a recording.",
-        aAr: "نعم، فيما يخصّ الخطّ نفسه. فالكتابة تُتعلّم بالطريقة نفسها في كلّ عمر — أشكال الحروف أوّلاً، ثمّ الوصل، ثمّ الكلمات. أمّا النطق فلا تعطيه الأوراق، فاجمعها مع الصوت: لكلّ حرف على هذا الموقع تسجيل.",
+        aEn: "Yes, for the handwriting itself. The script is learned the same way at any age — letter forms first, then joining, then words. What worksheets cannot give you is pronunciation, so pair them with audio: every letter on this site has an audio clip.",
+        aAr: "نعم، فيما يخصّ الخطّ نفسه. فالكتابة تُتعلّم بالطريقة نفسها في كلّ عمر — أشكال الحروف أوّلاً، ثمّ الوصل، ثمّ الكلمات. أمّا النطق فلا تعطيه الأوراق، فاجمعها مع الصوت: لكلّ حرف على هذا الموقع مقطع صوتيّ.",
       },
       {
         qEn: "Why does each letter have four forms?",
