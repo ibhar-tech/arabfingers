@@ -62,7 +62,7 @@ export function SpeakButton({
 
   const speak = () => {
     setSpeaking(true);
-    playWord(src)?.once("end", () => setSpeaking(false));
+    playWord(`${src}?v=2`)?.once("end", () => setSpeaking(false));
   };
 
   return (

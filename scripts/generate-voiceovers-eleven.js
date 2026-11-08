@@ -34,6 +34,10 @@
  *   --budget=N         refuse to start if the run exceeds N characters, default 1500
  *   --self-check       exercise the encode path, no API key needed
  *
+ * The 51 Arabic letter, number and colour clips were last made with the voice Asmaa
+ * (qi4PkV9c01kb869Vh7Su) on eleven_v3, with vowel marks on numbers and colours. A plain
+ * re-run switches them back to Alice, so pass --voice-id and --model for those.
+ *
  * Rolling back is `git checkout -- public/sounds`; the previous recordings are committed.
  */
 

@@ -8,7 +8,8 @@ function getLetterSound(soundId: string, lang: "ar" | "en"): Howl {
 
   if (!howl) {
     howl = new Howl({
-      src: [`/sounds/letters/${soundId}-${lang}.mp3`],
+      // ?v= busts the year-long immutable cache on /sounds/*; bump it when clips are regenerated.
+      src: [`/sounds/letters/${soundId}-${lang}.mp3?v=2`],
       preload: true,
       html5: false,
       volume: 0.85,

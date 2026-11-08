@@ -16,7 +16,7 @@ export function AlphabetPreview({ locale }: { locale: string }) {
     setSelected(index);
     setAudioFailed(false);
     audio.current?.pause();
-    const sound = new Audio(`/sounds/letters/${HERO_LETTERS[index].id}-ar.mp3`);
+    const sound = new Audio(`/sounds/letters/${HERO_LETTERS[index].id}-ar.mp3?v=2`);
     audio.current = sound;
     try { await sound.play(); }
     catch (error) {

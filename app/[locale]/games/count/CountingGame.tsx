@@ -39,7 +39,7 @@ export function CountingGame({ locale }: { locale: string }) {
   async function hearNumber() {
     sound.current?.pause();
     setAudioError(false);
-    const audio = new Audio(`/sounds/numbers/${NUMBER_NAMES[target]}.mp3`);
+    const audio = new Audio(`/sounds/numbers/${NUMBER_NAMES[target]}.mp3?v=2`);
     sound.current = audio;
     try { await audio.play(); }
     catch (error) {
