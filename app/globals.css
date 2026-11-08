@@ -486,8 +486,7 @@ body {
 .site-navigation { max-width: 1200px; margin: auto; padding: 15px 28px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .site-brand { display: flex; align-items: center; gap: 11px; font-size: 24px; font-weight: 900; letter-spacing: -1px; line-height: 1.1; white-space: nowrap; }
 .site-brand small { display: block; margin-top: 5px; font-size: 10px; font-weight: 600; letter-spacing: .3px; color: #61736c; }
-.brand-mark { width: 43px; height: 46px; border-radius: 15px 15px 15px 4px; display: grid; place-items: center; background: #e1ead8; font-family: var(--font-amiri), serif; font-size: 36px; position: relative; }
-.brand-mark > span { position: absolute; right: -4px; top: -7px; font-size: 20px; color: #c47337; }
+.brand-mark { width: 46px; height: 46px; }
 .desktop-navigation, .nav-actions { display: flex; align-items: center; gap: 8px; }
 .desktop-navigation a { padding: 12px 13px; font-size: 14px; font-weight: 800; border-radius: 10px; }
 .desktop-navigation a:hover, .desktop-navigation a[aria-current], .mobile-navigation a[aria-current] { background: #edf1e6; color: #315b41; }
@@ -626,7 +625,7 @@ body {
 @media (max-width: 700px) {
   .site-navigation { padding: 12px 18px; gap: 10px; } .site-brand { font-size: 21px; } .site-brand small { font-size: 8px; }
   .nav-actions { gap: 3px; } .nav-play { display: none; } .locale-link { padding: 10px 7px; font-size: 12px; }
-  .brand-mark { width: 36px; height: 40px; } .discovery-container { padding-inline: 20px; }
+  .brand-mark { width: 40px; height: 40px; } .discovery-container { padding-inline: 20px; }
   .discovery-hero { grid-template-columns: 1fr; padding-top: 35px; gap: 45px; }
   .hero-copy h1 { font-size: 44px; } .hero-copy > p { font-size: 15px; max-width: none; }
   .hero-actions { gap: 10px; } .discovery-button { font-size: 12px; padding-inline: 14px; }

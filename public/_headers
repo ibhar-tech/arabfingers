@@ -7,8 +7,6 @@
 
 # Media and icons. Filenames are stable, so cache long but allow a revalidate
 # window rather than pinning them immutable for a year.
-/logo.svg
-  Cache-Control: public, max-age=31536000, immutable
 
 # Generated from icon.svg by scripts/build-icons.mjs, so unlike the SVG these
 # CAN be rewritten in place. A week rather than immutable, so a regenerated

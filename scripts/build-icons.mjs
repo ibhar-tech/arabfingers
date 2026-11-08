@@ -18,8 +18,8 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const pub = join(root, "public");
 const source = await readFile(join(root, "scripts/assets/icon-source.png"));
 
-// The artwork's saffron, so the maskable padding is invisible against it.
-const BG = "#ffae23";
+// The artwork's green, so the maskable padding is invisible against it.
+const BG = "#2f5f47";
 
 const render = (size) => sharp(source).resize(size, size);
 

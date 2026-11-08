@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Menu, X, ArrowUpRight } from "lucide-react";
@@ -42,7 +43,7 @@ export function SiteHeader({ locale }: { locale: string }) {
     }}>
       <a href="#main-content" className="skip-link">{ar ? "انتقل إلى المحتوى" : "Skip to content"}</a>
       <nav className="site-navigation" aria-label={ar ? "التنقل الرئيسي" : "Main navigation"}>
-        <Link href={`/${locale}`} className="site-brand" aria-label={ar ? "عرب فنجرز — الرئيسية" : "Arab Fingers — home"}><span className="brand-mark" aria-hidden>أ<span>✦</span></span><span>{ar ? "عرب فنجرز" : "arab fingers"}<small>{ar ? "لنكبر بالعربية" : "little minds, big discoveries"}</small></span></Link>
+        <Link href={`/${locale}`} className="site-brand" aria-label={ar ? "عرب فنجرز — الرئيسية" : "Arab Fingers — home"}><Image className="brand-mark" src="/icon-192.png" alt="" width={46} height={46} priority /><span>{ar ? "عرب فنجرز" : "arab fingers"}<small>{ar ? "لنكبر بالعربية" : "little minds, big discoveries"}</small></span></Link>
         <div className="desktop-navigation">{NAV_LINKS.map((link) => <Link key={link.href} href={`/${locale}${link.href}`} aria-current={isActive(link.href) ? "page" : undefined}>{ar ? link.labelAr : link.labelEn}</Link>)}</div>
         <div className="nav-actions">
           <Link className="locale-link" href={nextPath} hrefLang={nextLocale} lang={nextLocale} aria-label={ar ? "Switch to English" : "التبديل إلى العربية"}>{ar ? "English" : "العربية"}</Link>

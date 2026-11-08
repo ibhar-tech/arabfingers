@@ -39,7 +39,7 @@ export function ArticleStructuredData({
       url: siteUrl,
       logo: {
         "@type": "ImageObject",
-        url: `${siteUrl}/logo.svg`,
+        url: `${siteUrl}/icon-512.png`,
       },
     },
     mainEntityOfPage: {
