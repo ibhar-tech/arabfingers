@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArticleMeta } from "@/components/ArticleMeta";
 import { FaqSection } from "@/components/FaqSection";
@@ -115,6 +116,10 @@ export default async function ArabicAlphabetForAdultsPage({ params }: { params: 
       <p className="text-base text-ink/75 mb-8">
         {tt("What to learn first, in what order, and how to practise on paper.", "بماذا تبدأ، وبأيّ ترتيب، وكيف تتدرّب على الورق.")}
       </p>
+
+      <div className="mb-10 overflow-hidden rounded-3xl border-[2.5px] border-ink bg-card shadow-[4px_4px_0_0_var(--ink)]">
+        <Image src="/images/learn/learn_alphabet_for_adults.webp" alt={tt("An open blank notebook, a fountain pen and a glass of mint tea on a wooden desk", "دفتر مفتوح فارغ وقلم حبر وكوب شاي بالنعناع على مكتب خشبي")} width={1200} height={630} priority className="w-full object-cover" />
+      </div>
 
       <div className="space-y-8 text-base leading-relaxed text-ink/80 mb-10">
         <section>

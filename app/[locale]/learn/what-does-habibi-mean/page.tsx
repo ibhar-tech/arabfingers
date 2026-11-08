@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ArticleMeta } from "@/components/ArticleMeta";
 import { FaqSection } from "@/components/FaqSection";
@@ -103,6 +104,10 @@ export default async function WhatDoesHabibiMeanPage({ params }: { params: Promi
           "حبيبي كلمة مودّة عربية تعني «يا عزيزي» أو «يا من أحبّ»، وتُقال للمذكّر. أمّا للمؤنّث فنقول حبيبتي.",
         )}
       </p>
+
+      <div className="mb-10 overflow-hidden rounded-3xl border-[2.5px] border-ink bg-card shadow-[4px_4px_0_0_var(--ink)]">
+        <Image src="/images/learn/learn_what_does_habibi_mean.webp" alt={tt("A father, a grandmother and a young child sitting close together and sharing tea at golden hour", "أب وجدّة وطفل صغير يجلسون متقاربين ويتشاركون الشاي عند الغروب")} width={1200} height={630} priority className="w-full object-cover" />
+      </div>
 
       <div className="space-y-8 text-base leading-relaxed text-ink/80 mb-10">
         <section>
