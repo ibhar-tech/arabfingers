@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArticleMeta } from "@/components/ArticleMeta";
 import { FaqSection } from "@/components/FaqSection";
+import { LetterSoundsButton } from "@/components/LetterSoundsButton";
 import { PageLayout } from "@/components/PageLayout";
 import { RelatedArticles } from "@/components/RelatedArticles";
 import { WorksheetCrossLink } from "@/components/WorksheetCrossLink";
+import { arabicLetters } from "@/lib/arabicMap";
 import { letterGuide } from "@/lib/letterGuide";
 import { isLocale } from "@/lib/locales";
 import { getRelatedArticles } from "@/lib/related";
@@ -90,7 +92,7 @@ export default async function ArabicAlphabetForAdultsPage({ params }: { params: 
     tt("Learn the six letters that never join to the next letter: ا د ذ ر ز و.", "احفظ الحروف الستّة التي لا تتّصل بما بعدها: ا د ذ ر ز و."),
     tt("Add the three short vowels: fatha (بَ ba), damma (بُ bu) and kasra (بِ bi). Everyday Arabic usually leaves them out, but learner texts show them.", "أضف الحركات الثلاث: الفتحة (بَ) والضمّة (بُ) والكسرة (بِ). وغالباً ما تُحذف في الكتابة اليومية، لكنّها تظهر في نصوص المتعلّمين."),
     tt("Read and write whole words, starting with common ones such as سلام (salaam, peace) and كتاب (kitaab, book).", "اقرأ كلمات كاملة واكتبها، وابدأ بكلمات شائعة مثل سلام وكتاب."),
-    tt("Work on the sounds English does not have. Do this alongside the writing and keep at it; it takes longer than the shapes.", "اعتنِ بمخارج الحروف الصعبة بالتوازي مع الكتابة، فإتقانها يستغرق وقتاً أطول من حفظ الأشكال."),
+    tt("Work on the sounds English does not have. Press the speaker in the table to hear each letter's name and sound. Do this alongside the writing and keep at it; it takes longer than the shapes.", "اعتنِ بمخارج الحروف الصعبة بالتوازي مع الكتابة، واضغط السمّاعة في الجدول لتسمع اسم كلّ حرف وصوته. فإتقان المخارج يستغرق وقتاً أطول من حفظ الأشكال."),
   ];
 
   return (
@@ -168,6 +170,7 @@ export default async function ArabicAlphabetForAdultsPage({ params }: { params: 
           <thead>
             <tr className="border-b border-ink/10">
               <th className="py-2 px-3 text-center text-ink/70 font-medium">{tt("Letter", "الحرف")}</th>
+              <th className="py-2 px-3 text-center text-ink/70 font-medium">{tt("Listen", "استمع")}</th>
               <th className="py-2 px-3 text-start text-ink/70 font-medium">{tt("Name", "الاسم")}</th>
               <th className="py-2 px-3 text-start text-ink/70 font-medium">{tt("Transliteration", "النقل اللاتيني")}</th>
               <th className="py-2 px-3 text-start text-ink/70 font-medium">{tt("Difficulty for English speakers", "الصعوبة للناطقين بالإنجليزية")}</th>
@@ -177,6 +180,9 @@ export default async function ArabicAlphabetForAdultsPage({ params }: { params: 
             {letterGuide.map((l) => (
               <tr key={l.enName} className="border-b border-ink/10">
                 <td className="py-2.5 px-3 text-center text-2xl text-ink" style={NASKH} lang="ar">{l.ar}</td>
+                <td className="py-2.5 px-3 text-center">
+                  <LetterSoundsButton soundId={arabicLetters.find((a) => a.ar === l.ar)!.soundId} label={tt(`Listen to ${l.enName}`, `استمع إلى ${l.arName}`)} />
+                </td>
                 <td className="py-2.5 px-3 text-ink/80">{isAr ? l.arName : l.enName}</td>
                 <td className="py-2.5 px-3 text-ink/80" dir="ltr">{l.translit}</td>
                 <td className="py-2.5 px-3 text-ink/80">{isAr ? DIFFICULTY[l.difficulty].ar : DIFFICULTY[l.difficulty].en}</td>

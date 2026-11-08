@@ -554,10 +554,10 @@
   },
   "audio/states-of-matter/scene_0_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "أهلاً بكم يا أصدقائي في رحلتنا العلمية الممتعة! اليوم سنتعلم معاً عن حالات المادة المذهلة!",
-    "at": "2026-08-06T12:42:35.288Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/states-of-matter/scene_0_en.mp3": {
     "engine": "elevenlabs",
@@ -568,10 +568,10 @@
   },
   "audio/states-of-matter/scene_1_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "أهلاً بك يا بطل! أنا الدكتور حكيم، وهذا صديقي المساعد الذكي أنس! نحن سعيدان جداً بوجودكم معنا اليوم!",
-    "at": "2026-08-06T12:43:59.245Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/states-of-matter/scene_1_en.mp3": {
     "engine": "elevenlabs",
@@ -582,10 +582,10 @@
   },
   "audio/states-of-matter/scene_2_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "يا دكتور حكيم، أنا متحمس جداً! ولكن ما هي 'المادة' بالضبط؟ وهل كل ما نراه حولنا يعتبر مادة؟",
-    "at": "2026-08-06T12:44:03.327Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/states-of-matter/scene_2_en.mp3": {
     "engine": "elevenlabs",
@@ -596,10 +596,10 @@
   },
   "audio/states-of-matter/scene_3_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "سؤال ممتاز يا أنس! المادة هي كل شيء يشغل حيزاً وله وزن. مثل قالب الجليد هذا، إنه في الحالة الصلبة!",
-    "at": "2026-08-06T12:44:07.960Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/states-of-matter/scene_3_en.mp3": {
     "engine": "elevenlabs",
@@ -610,10 +610,10 @@
   },
   "audio/states-of-matter/scene_4_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "يا إلهي! عندما يسخن الجليد ينصهر ليصبح ماءً سائلاً! انظروا لجزيئات الماء، إنها ترتدي نظارات سباحة وتنزلق بنشاط!",
-    "at": "2026-08-06T12:44:12.167Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/states-of-matter/scene_4_en.mp3": {
     "engine": "elevenlabs",
@@ -624,10 +624,10 @@
   },
   "audio/states-of-matter/scene_5_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "رائع يا أنس! وإذا قمنا بتسخين الماء أكثر، فإنه يتبخر ليصبح بخاراً غازياً! تطير الجزيئات هنا وهناك كالأبطال الخارقين!",
-    "at": "2026-08-06T12:44:16.805Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/states-of-matter/scene_5_en.mp3": {
     "engine": "elevenlabs",
@@ -638,10 +638,10 @@
   },
   "audio/states-of-matter/scene_6_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "والآن مفاجأة! هناك حالة رابعة خارقة تسمى البلازما! نراها في البرق والنجوم الساطعة وشاشات النيون المتوهجة!",
-    "at": "2026-08-06T12:44:21.773Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/states-of-matter/scene_6_en.mp3": {
     "engine": "elevenlabs",
@@ -652,10 +652,10 @@
   },
   "audio/states-of-matter/scene_7_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "والآن يا أصدقائي الصغار حان دوركم لتجربة المختبر! حركوا شريط درجة الحرارة وشاهدوا كيف تتحول الجزيئات!",
-    "at": "2026-08-06T12:44:25.767Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/states-of-matter/scene_7_en.mp3": {
     "engine": "elevenlabs",
@@ -666,10 +666,10 @@
   },
   "audio/states-of-matter/scene_8_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "يا له من عرض ممتع ومذهل! دعونا نلخص ما تعلمناه اليوم ببطاقات حالات المادة السحرية!",
-    "at": "2026-08-06T12:44:29.731Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/states-of-matter/scene_8_en.mp3": {
     "engine": "elevenlabs",
@@ -680,10 +680,10 @@
   },
   "audio/states-of-matter/scene_9_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "أحسنتم يا أصدقائي الأذكياء! لقد كنتم علماء رائعين اليوم! استمروا في الاستكشاف والتعلم، ونراكم في مغامرة أخرى!",
-    "at": "2026-08-06T12:44:33.962Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/states-of-matter/scene_9_en.mp3": {
     "engine": "elevenlabs",
@@ -694,10 +694,10 @@
   },
   "audio/water-cycle/scene_0_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "أهلاً بكم من جديد في مختبرنا الساحر! اليوم سنرافق قطرة ماء صغيرة في رحلتها الدائرية المذهلة في الطبيعة!",
-    "at": "2026-08-06T12:45:05.812Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/water-cycle/scene_0_en.mp3": {
     "engine": "elevenlabs",
@@ -708,10 +708,10 @@
   },
   "audio/water-cycle/scene_1_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "يا دكتور حكيم، الجو حار جداً اليوم! المياه في كوبي تختفي ببطء، وفي المحيطات أيضاً! أين تذهب يا ترى؟",
-    "at": "2026-08-06T12:45:10.013Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/water-cycle/scene_1_en.mp3": {
     "engine": "elevenlabs",
@@ -722,10 +722,10 @@
   },
   "audio/water-cycle/scene_2_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "سؤال ذكي كالعادة! عندما تسخن الشمس مياه البحار، تتحول إلى بخار خفيف يرتفع عالياً في السماء! تسمى هذه العملية 'التبخر'!",
-    "at": "2026-08-06T12:45:14.949Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/water-cycle/scene_2_en.mp3": {
     "engine": "elevenlabs",
@@ -736,10 +736,10 @@
   },
   "audio/water-cycle/scene_3_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "يا إلهي! عندما يرتفع البخار عالياً حيث الجو بارد، يجتمع معاً ليشكل سحباً جميلة وناعمة! إنه 'التكاثف'!",
-    "at": "2026-08-06T12:45:19.352Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/water-cycle/scene_3_en.mp3": {
     "engine": "elevenlabs",
@@ -750,10 +750,10 @@
   },
   "audio/water-cycle/scene_4_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "بالتأكيد! وعندما تصبح الغيوم ثقيلة جداً ومحملة بالمياه، لا تستطيع حملها بعد الآن، فتتساقط كأصوات مطر أو ثلج! إنه 'الهطول'!",
-    "at": "2026-08-06T12:45:23.886Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/water-cycle/scene_4_en.mp3": {
     "engine": "elevenlabs",
@@ -764,10 +764,10 @@
   },
   "audio/water-cycle/scene_5_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "رائع! تتدفق مياه الأمطار عبر الأنهار والجداول الجبلية، وتعود مجدداً إلى البحار لتستعد لرحلة جديدة! إنها دورة لا تنتهي أبداً!",
-    "at": "2026-08-06T12:45:28.421Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/water-cycle/scene_5_en.mp3": {
     "engine": "elevenlabs",
@@ -778,10 +778,10 @@
   },
   "audio/water-cycle/scene_6_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "والآن حان دوركم لتصبحوا خبراء طقس! حركوا شريط الحرارة وشاهدوا كيف تؤثر على التبخر وسرعة تشكل الغيوم والمطر!",
-    "at": "2026-08-06T12:45:32.931Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/water-cycle/scene_6_en.mp3": {
     "engine": "elevenlabs",
@@ -792,10 +792,10 @@
   },
   "audio/water-cycle/scene_7_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "يا له من مغامرة مائية منعشة! دعونا نتذكر محطات قطرتنا الصغيرة الأربع ببطاقات الطقس التفاعلية!",
-    "at": "2026-08-06T12:45:37.226Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/water-cycle/scene_7_en.mp3": {
     "engine": "elevenlabs",
@@ -806,10 +806,10 @@
   },
   "audio/water-cycle/scene_8_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "أحسنتم يا أصدقائي المستكشفين الأذكياء! لقد كنتم رائعين في فهم أسرار الطقس اليوم! استمروا في التعلم، ونراكم في مغامرة أخرى!",
-    "at": "2026-08-06T12:45:41.725Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/water-cycle/scene_8_en.mp3": {
     "engine": "elevenlabs",
@@ -820,10 +820,10 @@
   },
   "audio/solar-system/scene_0_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "اربطوا أحزمة الأمان يا أصدقائي! سننطلق اليوم في رحلة فضائية خارقة بين الكواكب لنكتشف كيف تحافظ الجاذبية عليها تدور بسعادة!",
-    "at": "2026-08-06T12:45:54.859Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/solar-system/scene_0_en.mp3": {
     "engine": "elevenlabs",
@@ -834,10 +834,10 @@
   },
   "audio/solar-system/scene_1_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "يا دكتور حكيم، الفضاء واسع ومخيف جداً! لماذا تدور كواكبنا في دوائر منتظمة حول الشمس ولا تطير متباعدة في الكون الفسيح؟",
-    "at": "2026-08-06T12:45:59.103Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/solar-system/scene_1_en.mp3": {
     "engine": "elevenlabs",
@@ -848,10 +848,10 @@
   },
   "audio/solar-system/scene_2_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "سؤال عميق جداً! الشمس ضخمة وثقيلة للغاية، لذا تمتلك قوة جذب خارقة غير مرئية تسحب الكواكب نحوها وتجعلها تدور حولها كالمغناطيس!",
-    "at": "2026-08-06T12:46:04.146Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/solar-system/scene_2_en.mp3": {
     "engine": "elevenlabs",
@@ -862,10 +862,10 @@
   },
   "audio/solar-system/scene_3_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "انظروا إلى عطارد، إنه الكوكب الأقرب للشمس! حجمه صغير جداً وهو سريع كالفهد في دورانه لكي لا تسحبه الجاذبية وتسقطه في الشمس الساخنة!",
-    "at": "2026-08-06T12:46:11.289Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/solar-system/scene_3_en.mp3": {
     "engine": "elevenlabs",
@@ -876,10 +876,10 @@
   },
   "audio/solar-system/scene_4_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "يا لها من لمعان! كوكب الزهرة هو الأكثر سخونة وتوهجاً في مجموعتنا لأنه محاط بغيوم سميكة تحبس الحرارة كصوبة دافئة!",
-    "at": "2026-08-06T12:46:15.774Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/solar-system/scene_4_en.mp3": {
     "engine": "elevenlabs",
@@ -890,10 +890,10 @@
   },
   "audio/solar-system/scene_5_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "والآن كوكبنا الرائع الأرض! إنه الكوكب الوحيد المليء بالماء والهواء والحياة، ويدور حوله قمر صغير ينير ليلنا الجميل بسعادة!",
-    "at": "2026-08-06T12:46:20.909Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/solar-system/scene_5_en.mp3": {
     "engine": "elevenlabs",
@@ -904,10 +904,10 @@
   },
   "audio/solar-system/scene_6_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "انظروا للون الأحمر الرائع! إنه كوكب المريخ المغطى بالحديد والصدأ، ونحن نرسل مركبات فضاء ذكية لتستكشف جباله الشاهقة ووديانه العميقة!",
-    "at": "2026-08-06T12:46:25.772Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/solar-system/scene_6_en.mp3": {
     "engine": "elevenlabs",
@@ -918,10 +918,10 @@
   },
   "audio/solar-system/scene_7_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "والآن حان دوركم للتحكم في جاذبية الشمس! حركوا الشريط لزيادة الجاذبية وشاهدوا كيف تسرع الكواكب، أو خفضوها لتطير الكويكبات بعيداً!",
-    "at": "2026-08-06T12:46:31.237Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/solar-system/scene_7_en.mp3": {
     "engine": "elevenlabs",
@@ -932,10 +932,10 @@
   },
   "audio/solar-system/scene_8_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "يا له من طيران فضائي مذهل! دعونا نلخص خصائص كواكبنا القريبة الأربعة ببطاقات الفضاء التفاعلية!",
-    "at": "2026-08-06T12:46:35.611Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/solar-system/scene_8_en.mp3": {
     "engine": "elevenlabs",
@@ -946,10 +946,10 @@
   },
   "audio/solar-system/scene_9_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "أحسنتم يا أصدقائي رواد الفضاء الأذكياء! لقد كنتم رائعين في مغامرتنا الكونية اليوم! استمروا في استكشاف النجوم ونراكم قريباً!",
-    "at": "2026-08-06T12:46:39.841Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/solar-system/scene_9_en.mp3": {
     "engine": "elevenlabs",
@@ -960,10 +960,10 @@
   },
   "audio/gravity/scene_0_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "مرحباً بكم يا علماء المستقبل! اليوم سنكتشف قوة خفية مذهلة تمسك بنا على الأرض وتجعل الأشياء تسقط للأسفل! إنها الجاذبية!",
-    "at": "2026-08-06T12:46:53.575Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/gravity/scene_0_en.mp3": {
     "engine": "elevenlabs",
@@ -974,10 +974,10 @@
   },
   "audio/gravity/scene_1_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "يا دكتور حكيم، رميت كرتي في الهواء، لكنها عادت وسقطت فوراً على رأسي! لماذا لا تستمر في الطيران للأعلى وتختفي في الفضاء؟",
-    "at": "2026-08-06T12:46:58.657Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/gravity/scene_1_en.mp3": {
     "engine": "elevenlabs",
@@ -988,10 +988,10 @@
   },
   "audio/gravity/scene_2_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "سؤال ذكي يا بطل! منذ زمن طويل، رأى العالم إسحاق نيوتن تفاحة تسقط من شجرة، فأدرك أن الأرض تسحب كل شيء نحوها بقوة تسمى الجاذبية!",
-    "at": "2026-08-06T12:47:02.883Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/gravity/scene_2_en.mp3": {
     "engine": "elevenlabs",
@@ -1002,10 +1002,10 @@
   },
   "audio/gravity/scene_3_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "لاحظ يا أنس! الصخور الثقيلة تسقط بقوة وثبات، بينما الأوراق الخفيفة تطفو ببطء بسبب مقاومة الهواء، لكن الجاذبية تسحب كليهما بالتساوي!",
-    "at": "2026-08-06T12:47:09.756Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/gravity/scene_3_en.mp3": {
     "engine": "elevenlabs",
@@ -1016,10 +1016,10 @@
   },
   "audio/gravity/scene_4_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "يا إلهي! انظروا إلى رواد الفضاء، إنهم يطفون بسعادة في الفضاء الخارجي لعدم وجود جاذبية تسحبهم للأسفل! يبدو ذلك ممتعاً للغاية!",
-    "at": "2026-08-06T12:47:14.058Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/gravity/scene_4_en.mp3": {
     "engine": "elevenlabs",
@@ -1030,10 +1030,10 @@
   },
   "audio/gravity/scene_5_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "صحيح! ولكن انتبهوا، إذا ذهبنا لكوكب المشتري الضخم، فستكون جاذبيته قوية جداً وثقيلة لدرجة تجعل حركتنا بطيئة وصعبة كأننا نحمل صخوراً!",
-    "at": "2026-08-06T12:47:20.817Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/gravity/scene_5_en.mp3": {
     "engine": "elevenlabs",
@@ -1044,10 +1044,10 @@
   },
   "audio/gravity/scene_6_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "والآن حان دوركم لتصبحوا سادة الجاذبية! حركوا الشريط لضبط قوة الجاذبية وشاهدوا الأجسام وهي تطفو أو تسقط بسرعة، واضغطوا عليها لتطلقوها!",
-    "at": "2026-08-06T12:47:25.179Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/gravity/scene_6_en.mp3": {
     "engine": "elevenlabs",
@@ -1058,10 +1058,10 @@
   },
   "audio/gravity/scene_7_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "يا لها من تجربة فيزيائية قوية وممتعة! دعونا نلخص خصائص الجاذبية السحرية بأوراق العلوم التفاعلية اللطيفة!",
-    "at": "2026-08-06T12:47:29.642Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/gravity/scene_7_en.mp3": {
     "engine": "elevenlabs",
@@ -1072,10 +1072,10 @@
   },
   "audio/gravity/scene_8_ar.mp3": {
     "engine": "elevenlabs",
-    "model": "eleven_multilingual_v2",
-    "voice": "Xb7hH8MSUJpSbSDYk0k2",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
     "text": "أحسنتم يا أصدقائي العلماء الصغار! لقد كنتم رائعين في تحدي الجاذبية اليوم! استمروا في طرح الأسئلة الذكية ونراكم قريباً!",
-    "at": "2026-08-06T12:47:33.685Z"
+    "at": "2026-11-08T17:48:39.000Z"
   },
   "audio/gravity/scene_8_en.mp3": {
     "engine": "elevenlabs",
@@ -1083,5 +1083,201 @@
     "voice": "Xb7hH8MSUJpSbSDYk0k2",
     "text": "Outstanding job my little junior scientists! You were amazing at challenging gravity today! Keep asking smart questions and see you soon!",
     "at": "2026-08-06T12:47:36.124Z"
+  },
+  "sounds/letters/alef-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "أَلِف. آ، إِي، أُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/ba-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "بَاء. بَا، بِي، بُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/ta-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "تَاء. تَا، تِي، تُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/tha-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "ثَاء. ثَا، ثِي، ثُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/jeem-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "جِيم. جَا، جِي، جُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/hha-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "حَاء. حَا، حِي، حُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/kha-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "خَاء. خَا، خِي، خُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/dal-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "دَال. دَا، دِي، دُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/thal-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "ذَال. ذَا، ذِي، ذُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/ra-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "رَاء. رَا، رِي، رُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/zay-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "زَاي. زَا، زِي، زُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/seen-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "سِين. سَا، سِي، سُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/sheen-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "شِين. شَا، شِي، شُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/sad-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "صَاد. صَا، صِي، صُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/dad-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "ضَاد. ضَا، ضِي، ضُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/tah-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "طَاء. طَا، طِي، طُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/zah-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "ظَاء. ظَا، ظِي، ظُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/ain-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "عَيْن. عَا، عِي، عُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/ghain-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "غَيْن. غَا، غِي، غُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/fa-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "فَاء. فَا، فِي، فُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/qaf-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "قَاف. قَا، قِي، قُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/kaf-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "كَاف. كَا، كِي، كُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/lam-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "لَام. لَا، لِي، لُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/meem-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "مِيم. مَا، مِي، مُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/noon-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "نُون. نَا، نِي، نُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/ha-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "هَاء. هَا، هِي، هُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/waw-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "وَاو. وَا، وِي، وُو.",
+    "at": "2026-11-08T17:48:39.000Z"
+  },
+  "sounds/letters/ya-sounds.mp3": {
+    "engine": "elevenlabs",
+    "model": "eleven_v3",
+    "voice": "qi4PkV9c01kb869Vh7Su",
+    "text": "يَاء. يَا، يِي، يُو.",
+    "at": "2026-11-08T17:48:39.000Z"
   }
 }

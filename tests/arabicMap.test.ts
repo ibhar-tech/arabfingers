@@ -1,4 +1,6 @@
+import { existsSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { letterGuide } from "@/lib/letterGuide";
 import {
   arabicLetters,
   findArabicLetterByArabicChar,
@@ -10,6 +12,14 @@ import {
 import { keyboardLayouts } from "@/lib/keyboardLayouts";
 
 describe("arabicLetters", () => {
+  it("has a letter-sounds clip for every letter in the guide", () => {
+    for (const { ar } of letterGuide) {
+      const letter = arabicLetters.find((l) => l.ar === ar);
+      expect(letter, ar).toBeDefined();
+      expect(existsSync(`public/sounds/letters/${letter!.soundId}-sounds.mp3`), ar).toBe(true);
+    }
+  });
+
   it("contains exactly the 28 letters with unique glyphs and sound ids", () => {
     expect(arabicLetters).toHaveLength(28);
     expect(new Set(arabicLetters.map((l) => l.ar)).size).toBe(28);

@@ -296,7 +296,7 @@ export default function WaterCycleInteractive({ locale = "ar" }: WaterCycleInter
     // Our own pre-rendered neural narration (scripts/generate-voiceovers-*.js).
     // ponytail: <audio> not Howler here — these are minutes-long clips and should
     // stream, not sit decoded in memory like the short letter sounds do.
-    const audioSrc = `/audio/water-cycle/scene_${activeScene.id}_${locale}.mp3`;
+    const audioSrc = `/audio/water-cycle/scene_${activeScene.id}_${locale}.mp3?v=2`;
     const audio = new Audio(audioSrc);
     audio.playbackRate = playbackSpeed;
     audioRef.current = audio;
