@@ -47,7 +47,7 @@ Generated assets are committed to `public/`:
 
 ```bash
 npm run worksheets   # scripts/build-worksheets.mjs → PDFs + preview PNGs (headless Chrome)
-npm run icons        # scripts/build-icons.mjs     → PNG icon sizes from public/icon.svg
+npm run icons        # scripts/build-icons.mjs     → PNG icon sizes from scripts/assets/icon-source.png
 ```
 
 Audio generation scripts (`scripts/generate-voiceovers-*.js`, `scripts/generate-sfx-eleven.js`) call external TTS APIs and need API keys; they only matter when regenerating narration, not for day-to-day development.

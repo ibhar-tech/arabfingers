@@ -3,7 +3,7 @@
 // forces returning visitors off stale copies. It was still "v4" when all 158
 // audio clips were regenerated in place, which left earlier visitors hearing the
 // old recordings with no way to ever get the new ones.
-const CACHE_NAME = "arabfingers-v6";
+const CACHE_NAME = "arabfingers-v7";
 // Every URL here must exist. cache.addAll is atomic — one 404 rejects the whole
 // call and nothing gets precached at all. This listed /icon-192.png and
 // /icon-512.png back when neither was in public/, so the precache silently did
@@ -12,7 +12,6 @@ const CACHE_NAME = "arabfingers-v6";
 const PRECACHE_URLS = [
   "/en",
   "/ar",
-  "/icon.svg",
   "/icon-192.png",
   "/icon-512.png",
   "/sounds/smash.mp3",

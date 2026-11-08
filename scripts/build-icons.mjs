@@ -1,12 +1,13 @@
-// Raster app icons, rendered from public/icon.svg.
+// Raster app icons, rendered from scripts/assets/icon-source.png (Gemini artwork,
+// cut to a transparent rounded square).
 //
-// The site shipped with only an SVG icon. Chrome tolerates that, but iOS/Safari
+// The site once shipped with only an SVG icon. Chrome tolerates that, but iOS/Safari
 // ignores SVG icons outright — "Add to Home Screen" on an iPhone was giving a
 // screenshot of the page instead of the logo, on a toddler app that parents
 // install on phones. Android also wants a maskable variant, or the launcher
 // letterboxes the icon inside a white circle.
 //
-// Re-run with `npm run icons` after editing public/icon.svg.
+// Re-run with `npm run icons` after replacing that file.
 
 import sharp from "sharp";
 import { readFile, writeFile } from "node:fs/promises";
@@ -15,17 +16,12 @@ import { dirname, join } from "node:path";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const pub = join(root, "public");
-const svg = await readFile(join(pub, "icon.svg"));
+const source = await readFile(join(root, "scripts/assets/icon-source.png"));
 
-// Matches the dark end of the SVG's background gradient, so the maskable
-// padding is invisible against the artwork rather than a grey band.
-const BG = "#050816";
+// The artwork's saffron, so the maskable padding is invisible against it.
+const BG = "#ffae23";
 
-// The viewBox is 512 units, so sharp's default 72 dpi rasterises to 512px.
-// Quadrupling that gives a 2048px source to downsample from — crisp at every
-// output size, and far below sharp's pixel ceiling. Deriving density from the
-// target instead blows past that ceiling at size 512.
-const render = (size) => sharp(svg, { density: 288 }).resize(size, size);
+const render = (size) => sharp(source).resize(size, size);
 
 const outputs = [
   ["icon-192.png", 192, false],
